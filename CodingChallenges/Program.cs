@@ -40,6 +40,27 @@
 
         return true;
     }
+
+    public static int CountDigitsFromString(string pStringValue)
+    {
+        int counter = 0;
+
+        if (pStringValue == null)
+        {
+            return 0;
+        }
+
+        foreach (char character in pStringValue)
+        {
+            if (char.IsDigit(character))
+            {
+                counter++;
+            }
+        }
+
+        return counter; ;
+    }
+
     public static void Main(string[] args)
     {
         Console.WriteLine($"Hello vowels are: {CountingVowels("Hello")}");
@@ -49,5 +70,7 @@
         Console.WriteLine($" Why vowels are: {CountingVowels("why")}");
 
         Console.WriteLine($"RaceCar outcome for Palindrome: {IsPalindrome("RaceCar")}");
+
+        Console.WriteLine($"Count Digits From string should be 3 => Answer: {CountDigitsFromString("abc123")}");
     }
 }
