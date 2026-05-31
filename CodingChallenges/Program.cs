@@ -1,76 +1,68 @@
 ﻿public class Program
 {
-    public static int CountingVowels(string pInput)
+    public static int CountDigitsFromString(string pInputValue)
     {
-        char[] vowels = { 'a', 'e', 'i', 'u', 'o' };
-        pInput = pInput.ToLower().Trim();
-        int counter = 0;
+        int count = 0;
 
-        foreach (char characters in pInput)
+        if (string.IsNullOrEmpty(pInputValue))
         {
-            if (vowels.Contains(characters))
-            {
-                counter++;
-            }
+            return count;
         }
 
-        var count = vowels.Count(x => char.IsDigit(x));
 
-        return counter;
-        
-    }
-
-    public static bool IsPalindrome(string pInput)
-    {
-        pInput = pInput.ToLower().Trim();
-
-        int left = 0;
-        int right = pInput.Length - 1;
-
-        while (left < right)
-        {
-            if (pInput[left] != pInput[right])
-            {
-                return false;
-            }
-
-            left++;
-            right--;
-        }
-
-        return true;
-    }
-
-    public static int CountDigitsFromString(string pStringValue)
-    {
-        int counter = 0;
-
-        if (pStringValue == null)
-        {
-            return 0;
-        }
-
-        foreach (char character in pStringValue)
+        foreach (char character in pInputValue)
         {
             if (char.IsDigit(character))
             {
-                counter++;
+                count++;
             }
         }
 
-        return counter; ;
+        return count;
     }
+
+    public static string ReverseString(string pInputValue)
+    {
+        string answer = string.Empty;
+
+        if (String.IsNullOrEmpty(pInputValue))
+        {
+            return "Input is empty. Please ensure value is sent in.";
+        }
+
+        for (int counter = pInputValue.Length - 1; counter >= 0; counter--)
+        {
+            answer = answer + pInputValue[counter];
+        }
+        
+
+        return answer;
+    }
+
+
 
     public static void Main(string[] args)
     {
-        Console.WriteLine($"Hello vowels are: {CountingVowels("Hello")}");
-        Console.WriteLine($"Cyberpunk vowels are: {CountingVowels("Cyberpunk")}");
-        Console.WriteLine($"APPLE vowels are: {CountingVowels("APPLE")}");
-        Console.WriteLine($" \"\" vowels are: {CountingVowels("")}");
-        Console.WriteLine($" Why vowels are: {CountingVowels("why")}");
+        // PMG TODO: Clean up as it becomes too lengthy
+        // PMG TODO: Eventually start writing unit tests
 
-        Console.WriteLine($"RaceCar outcome for Palindrome: {IsPalindrome("RaceCar")}");
+        //// Counting Vowels
+        //Console.WriteLine($"Hello vowels are: {CountingVowels("Hello")}");
+        //Console.WriteLine($"Cyberpunk vowels are: {CountingVowels("Cyberpunk")}");
+        //Console.WriteLine($"APPLE vowels are: {CountingVowels("APPLE")}");
+        //Console.WriteLine($" \"\" vowels are: {CountingVowels("")}");
+        //Console.WriteLine($" Why vowels are: {CountingVowels("why")}");
 
-        Console.WriteLine($"Count Digits From string should be 3 => Answer: {CountDigitsFromString("abc123")}");
+
+        //// Palindrome: 
+        //Console.WriteLine($"RaceCar outcome for Palindrome: {IsPalindrome("RaceCar")}");
+
+
+        //// Counting Digits:
+        //Console.WriteLine($"Count Digits From string should be 3 => Answer: {CountDigitsFromString("abc123")}");
+
+        // ReverseString:
+
+        Console.WriteLine($"Reverse String => olleh Answer: {ReverseString("Hello")}");
     }
 }
