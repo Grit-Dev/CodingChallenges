@@ -112,8 +112,27 @@
         return answer;
     }
 
+    public static int SumEvenNumbers(int[] pInput)
+    {
+        int total = 0;
 
+        if (pInput == null || pInput.Length == 0)
+        {
+            return 0;
+        }
 
+        foreach (int value in pInput)
+        {   
+            if (value % 2 == 0)
+            {
+                total = total + value;
+            }
+        }
+
+        return total;
+
+    
+    }
     public static void Main(string[] args)
     {
         // PMG TODO: Clean up as it becomes too lengthy
@@ -135,12 +154,15 @@
                 //Console.WriteLine($"Count Digits From string should be 3 => Answer: {CountDigitsFromString("abc123")}");
 
                 // ReverseString:
-
                 Console.WriteLine($"Reverse String => olleh Answer: {ReverseString("Hello")}");
+
+                // Find the Largest number: 
+                Console.WriteLine($"Largest number => [100, 1, 99 ] Answer: {LargestNumber([100, 1, 99])}");
+
         */
 
-        // Find the Largest number: 
-        Console.WriteLine($"Largest number => [100, 1, 99 ] Answer: {LargestNumber([100, 1, 99])}");
+        // Sum of Even Numbers
+        Console.WriteLine($"Sum of Even Numbers  => [1, 2, 3, 4, 5] Answer = 6: {SumEvenNumbers([1, 2, 3, 4,])}");
 
     }
 }
