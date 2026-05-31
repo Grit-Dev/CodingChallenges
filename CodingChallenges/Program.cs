@@ -91,6 +91,27 @@
 
     }
 
+    public static int LargestNumber(int[] pInput)
+    {
+
+        if (pInput == null || pInput.Length == 0)
+        {
+            return 0;
+        }
+
+        int answer = pInput[0];
+
+        for (int counter = 1; counter < pInput.Length; counter++)
+        {
+            if (pInput[counter] > answer)
+            {
+                answer = pInput[counter];
+            }
+        }
+
+        return answer;
+    }
+
 
 
     public static void Main(string[] args)
@@ -98,23 +119,28 @@
         // PMG TODO: Clean up as it becomes too lengthy
         // PMG TODO: Eventually start writing unit tests
 
-        // Counting Vowels
-        Console.WriteLine($"Hello vowels are: {CountingVowels("Hello")}");
-        Console.WriteLine($"Cyberpunk vowels are: {CountingVowels("Cyberpunk")}");
-        Console.WriteLine($"APPLE vowels are: {CountingVowels("APPLE")}");
-        Console.WriteLine($" \"\" vowels are: {CountingVowels("")}");
-        Console.WriteLine($" Why vowels are: {CountingVowels("why")}");
+        /*        // Counting Vowels
+                Console.WriteLine($"Hello vowels are: {CountingVowels("Hello")}");
+                Console.WriteLine($"Cyberpunk vowels are: {CountingVowels("Cyberpunk")}");
+                Console.WriteLine($"APPLE vowels are: {CountingVowels("APPLE")}");
+                Console.WriteLine($" \"\" vowels are: {CountingVowels("")}");
+                Console.WriteLine($" Why vowels are: {CountingVowels("why")}");
 
 
-        //Palindrome: 
-        Console.WriteLine($"RaceCar outcome for Palindrome: {IsPalindrome("RaceCar")}");
+                //Palindrome: 
+                Console.WriteLine($"RaceCar outcome for Palindrome: {IsPalindrome("RaceCar")}");
 
 
-        //// Counting Digits:
-        //Console.WriteLine($"Count Digits From string should be 3 => Answer: {CountDigitsFromString("abc123")}");
+                //// Counting Digits:
+                //Console.WriteLine($"Count Digits From string should be 3 => Answer: {CountDigitsFromString("abc123")}");
 
-        // ReverseString:
+                // ReverseString:
 
-        Console.WriteLine($"Reverse String => olleh Answer: {ReverseString("Hello")}");
+                Console.WriteLine($"Reverse String => olleh Answer: {ReverseString("Hello")}");
+        */
+
+        // Find the Largest number: 
+        Console.WriteLine($"Largest number => [100, 1, 99 ] Answer: {LargestNumber([100, 1, 99])}");
+
     }
 }
