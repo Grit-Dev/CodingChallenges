@@ -39,6 +39,58 @@
         return answer;
     }
 
+    public static int CountingVowels(string pInputValue)
+    {
+        char[] vowels = { 'a', 'e', 'i', 'o', 'u' };
+        int count = 0;
+
+        if (string.IsNullOrEmpty(pInputValue))
+        {
+            return count;
+        }
+
+        pInputValue = pInputValue.ToLower().Trim();
+
+        foreach (var character in pInputValue)
+        {
+            if (vowels.Contains(character))
+            {
+                count++;
+            }
+        }
+
+        return (count);
+
+    }
+
+    public static bool IsPalindrome(string pInputValue)
+    {
+        int leftCounter = 0;
+        int rightCounter = pInputValue.Length - 1;
+
+
+        if (pInputValue == null)
+        {
+            return false;
+        }
+
+        pInputValue = pInputValue.ToLower().Replace(" ", "");
+
+        while (leftCounter < rightCounter)
+        {
+            if (pInputValue[leftCounter] != pInputValue[rightCounter])
+            {
+                return false;
+            }
+
+            leftCounter++;
+            rightCounter--;
+        }
+
+        return true;
+
+    }
+
 
 
     public static void Main(string[] args)
@@ -46,16 +98,16 @@
         // PMG TODO: Clean up as it becomes too lengthy
         // PMG TODO: Eventually start writing unit tests
 
-        //// Counting Vowels
-        //Console.WriteLine($"Hello vowels are: {CountingVowels("Hello")}");
-        //Console.WriteLine($"Cyberpunk vowels are: {CountingVowels("Cyberpunk")}");
-        //Console.WriteLine($"APPLE vowels are: {CountingVowels("APPLE")}");
-        //Console.WriteLine($" \"\" vowels are: {CountingVowels("")}");
-        //Console.WriteLine($" Why vowels are: {CountingVowels("why")}");
+        // Counting Vowels
+        Console.WriteLine($"Hello vowels are: {CountingVowels("Hello")}");
+        Console.WriteLine($"Cyberpunk vowels are: {CountingVowels("Cyberpunk")}");
+        Console.WriteLine($"APPLE vowels are: {CountingVowels("APPLE")}");
+        Console.WriteLine($" \"\" vowels are: {CountingVowels("")}");
+        Console.WriteLine($" Why vowels are: {CountingVowels("why")}");
 
 
-        //// Palindrome: 
-        //Console.WriteLine($"RaceCar outcome for Palindrome: {IsPalindrome("RaceCar")}");
+        //Palindrome: 
+        Console.WriteLine($"RaceCar outcome for Palindrome: {IsPalindrome("RaceCar")}");
 
 
         //// Counting Digits:
