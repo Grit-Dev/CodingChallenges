@@ -156,6 +156,52 @@
         return total;
     }
 
+    public static int CountingCapitalLetters(string pInputValue)
+    {
+        int counter = 0;
+
+        if (string.IsNullOrEmpty(pInputValue))
+        {
+            return 0;
+        }
+
+        foreach (char characters in pInputValue)
+        {
+            if (char.IsUpper(characters))
+            {
+                counter++;
+            }
+        }
+
+        return counter;
+    }
+
+    public static int CountingWords(string pInputValue)
+    {
+        int counter = 0;
+        bool isInsiderWorld = false;
+
+        foreach (char characters in pInputValue)
+        {
+            if (char.IsWhiteSpace(characters) == false)
+            {
+                if (isInsiderWorld == false)
+                { 
+                    counter++;
+                    isInsiderWorld = true;
+                }
+            }
+            else
+            {
+                isInsiderWorld = false;
+            }
+        }
+
+        return counter;
+    }
+
+
+
     public static void Main(string[] args)
     {
         // PMG TODO: Clean up as it becomes too lengthy
@@ -184,14 +230,26 @@
 
         */
 
-        // Sum of Even Numbers
-        Console.WriteLine($"Sum of Even Numbers  => [1, 2, 3, 4, 5] Answer = 6: {SumEvenNumbers([1, 2, 3, 4,])}");
+        /*        // Sum of Even Numbers
+                Console.WriteLine($"Sum of Even Numbers  => [1, 2, 3, 4, 5] Answer = 6: {SumEvenNumbers([1, 2, 3, 4,])}");
 
-        //CountSpaces
-        Console.WriteLine($"Should be 7. Result: {CountingSpaces("       ")}");
-        Console.WriteLine($"Should be 3. Result: {CountingSpaces(" Hello World ")}");
-        Console.WriteLine($"Should be 0. Result: {CountingSpaces("")}");
-        Console.WriteLine($"Should be 1. Result: {CountingSpaces(" ")}");
+                //CountSpaces
+                Console.WriteLine($"Should be 7. Result: {CountingSpaces("       ")}");
+                Console.WriteLine($"Should be 3. Result: {CountingSpaces(" Hello World ")}");
+                Console.WriteLine($"Should be 0. Result: {CountingSpaces("")}");
+                Console.WriteLine($"Should be 1. Result: {CountingSpaces(" ")}");*/
+
+        // Counting Capitals:
+        Console.WriteLine($"Should be 1. Result: {CountingCapitalLetters(" One ")}");
+        Console.WriteLine($"Should be 1. Result: {CountingCapitalLetters("One ")}");
+        Console.WriteLine($"Should be 2. Result: {CountingCapitalLetters(" Hello World ")}");
+        Console.WriteLine($"Should be 9. Result: {CountingCapitalLetters(" I WENT for a WALK today ")}");
+
+        // Counting Words: 
+        Console.WriteLine($"Should be 1. Result: {CountingWords(" One ")}");
+        Console.WriteLine($"Should be 1. Result: {CountingWords("One ")}");
+        Console.WriteLine($"Should be 2. Result: {CountingWords(" Hello World ")}");
+        Console.WriteLine($"Should be 6. Result: {CountingWords(" I went for a walk today ")}");
 
 
     }
