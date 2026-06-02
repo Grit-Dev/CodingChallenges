@@ -1,5 +1,6 @@
 ﻿public class Program
 {
+    // PMG TO DO: REFACTOR
     public static int CountDigitsFromString(string pInputValue)
     {
         int count = 0;
@@ -133,6 +134,28 @@
 
     
     }
+
+    public static int CountingSpaces(string pInputValue)
+    {
+        const int ZERO = 0;
+        int total = 0;
+
+        if (pInputValue == null)
+        {
+            return ZERO;
+        }
+
+        foreach (char characters in pInputValue)
+        {
+            if (char.IsWhiteSpace(characters))
+            {
+                total++;
+            }
+        }
+
+        return total;
+    }
+
     public static void Main(string[] args)
     {
         // PMG TODO: Clean up as it becomes too lengthy
@@ -163,6 +186,13 @@
 
         // Sum of Even Numbers
         Console.WriteLine($"Sum of Even Numbers  => [1, 2, 3, 4, 5] Answer = 6: {SumEvenNumbers([1, 2, 3, 4,])}");
+
+        //CountSpaces
+        Console.WriteLine($"Should be 7. Result: {CountingSpaces("       ")}");
+        Console.WriteLine($"Should be 3. Result: {CountingSpaces(" Hello World ")}");
+        Console.WriteLine($"Should be 0. Result: {CountingSpaces("")}");
+        Console.WriteLine($"Should be 1. Result: {CountingSpaces(" ")}");
+
 
     }
 }
