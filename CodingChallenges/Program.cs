@@ -200,6 +200,27 @@
         return counter;
     }
 
+    public static int SmallestNumber(int[]? pInputValue)
+    {
+        if (pInputValue == null || pInputValue.Length == 0)
+        {
+            return 0;
+        }
+
+        int smallestNumber = pInputValue[0];
+
+        foreach (int value in pInputValue)
+        {
+            if (value < smallestNumber)
+            {
+                smallestNumber = value;
+            }
+        }
+
+        return smallestNumber;
+
+    }
+
 
 
     public static void Main(string[] args)
@@ -250,6 +271,15 @@
         Console.WriteLine($"Should be 1. Result: {CountingWords("One ")}");
         Console.WriteLine($"Should be 2. Result: {CountingWords(" Hello World ")}");
         Console.WriteLine($"Should be 6. Result: {CountingWords(" I went for a walk today ")}");
+
+        // Smallest Number
+        Console.WriteLine($"Smallest number should be 1 => Answer: {SmallestNumber([1, 5, 3, 9, 2])}");
+        Console.WriteLine($"Smallest number should be -10 => Answer: {SmallestNumber([-5, -2, -10])}");
+        Console.WriteLine($"Smallest number should be 100 => Answer: {SmallestNumber([100])}");
+        Console.WriteLine($"Smallest number should be 4 => Answer: {SmallestNumber([4, 4, 4])}");
+        Console.WriteLine($"Smallest number should be -100 => Answer: {SmallestNumber([50, 20, -100, 3])}");
+        Console.WriteLine($"Smallest number should be 0 => Answer: {SmallestNumber([])}");
+        Console.WriteLine($"Smallest number should be 0 => Answer: {SmallestNumber(null)}");
 
 
     }
