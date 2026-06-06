@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace CodingChallenges.Challenge
 {
+    // PMG TODO: Fix up & Refactor
     public class ChallengeSolutions
     {
         private int CountDigitsFromString(string pInputValue)
@@ -333,7 +334,7 @@ namespace CodingChallenges.Challenge
 
 
             //// Counting Digits:
-            //Console.WriteLine($"Count Digits From string should be 3 => Answer: {CountDigitsFromString("abc123")}");
+            Console.WriteLine($"Count Digits From string should be 3 => Answer: {CountDigitsFromString("abc123")}");
 
             // ReverseString:
             Console.WriteLine($"Reverse String => olleh Answer: {ReverseString("Hello")}");
