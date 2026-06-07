@@ -1,10 +1,11 @@
 ﻿using CodingChallenges.Challenge;
+using System.Diagnostics.Metrics;
 
 public class Program
 {
     // PMG TO DO: REFACTOR
-    public static int CountPositiveNumbers(int[] pInputValue)
-    { 
+    public static int CountNegativeNumbers(int[] pInputValue)
+    {
         int counter = 0;
 
         if (pInputValue == null || pInputValue.Length == 0)
@@ -14,7 +15,7 @@ public class Program
 
         foreach (int value in pInputValue)
         {
-            if (value > 0)
+            if (value < 0)
             {
                 counter++;
             }
@@ -23,46 +24,46 @@ public class Program
         return counter;
     }
 
-    public static int CountingWordsRev(string pInputValue)
+    public static char FindFirstNonRepeatingCharacterRev(string pInputValue)
     {
-        int counter = 0;
-        bool insiderWord = false;
-
-        if (string.IsNullOrEmpty(pInputValue))
+        if (pInputValue == null || pInputValue.Length == 0)
         {
-            return 0;
+            return '_';
         }
 
-        foreach (char character in pInputValue)
+        pInputValue = pInputValue.ToLower().Trim();
+
+        for (int counter = 0; counter < pInputValue.Length; counter++)
         {
-            if (char.IsWhiteSpace(character) == false)
+            int charCounter = 0;
+
+            for (int counterTwo = 0; counterTwo < pInputValue.Length; counterTwo++)
             {
-                if (insiderWord == false)
+                if (pInputValue[counter] == pInputValue[counterTwo])
                 {
-                    counter++;
-                    insiderWord = true;
+                    charCounter++;
                 }
             }
-            else
+
+            if (charCounter == 1)
             {
-                insiderWord = false;
+                return pInputValue[counter];
             }
         }
 
-        return counter;
+        return '_';
     }
 
-    public static int[] TwoSumRev(int[] pInputValue, int pTarget)
+    public static int[] TwoSumRevision(int[] pInputValue, int pTarget)
     {
-
         if (pInputValue == null || pInputValue.Length == 0)
         {
             return [0, 0];
         }
 
-        for (int counter = 0; counter <= pInputValue.Length - 1; counter++)
+        for (int counter = 0; counter < pInputValue.Length; counter++)
         {
-            for (int counterTwo = counter + 1; counterTwo <= pInputValue.Length - 1; counterTwo++)
+            for (int counterTwo = counter + 1; counterTwo < pInputValue.Length; counterTwo++)
             {
                 if (pInputValue[counter] + pInputValue[counterTwo] == pTarget)
                 {
@@ -74,8 +75,10 @@ public class Program
         return [0, 0];
     }
 
-    public static int FindFirstRepeatedNumber(int[] pInputValue)
+    public static int FindMissingNumber(int[] pInputValue)
     {
+        int expectedNumber = 1;
+
         if (pInputValue == null || pInputValue.Length == 0)
         {
             return 0;
@@ -83,93 +86,81 @@ public class Program
 
         for (int counter = 0; counter <= pInputValue.Length -1; counter++)
         {
-            for (int counterTwo = counter +1; counterTwo <= pInputValue.Length - 1; counterTwo++)
+            if (pInputValue[counter] != expectedNumber)
             {
-                if (pInputValue[counter] == pInputValue[counterTwo])
-                {
-                    return pInputValue[counter];
-                }
+                return expectedNumber;
             }
-            
+
+            expectedNumber++;
         }
 
-        return 0;
+        return expectedNumber;
     }
 
-    public static char FindFirstNonRepeatingCharacter(string pInputeValue)
+    public static int[] RemoveDuplicateNumbers(int[] pInputValue)
     {
-        if (string.IsNullOrEmpty(pInputeValue))
+        var list = new List<int>();
+
+        if (pInputValue == null || pInputValue.Length == 0)
         {
-            return '_';
+            return [];
         }
 
-        pInputeValue = pInputeValue.ToLower().Trim();
-
-        for (int counter = 0; counter <= pInputeValue.Length - 1; counter++)
+        foreach (int number in pInputValue)
         {
-            int repeatedCharCounter = 0;
-
-            for (int counterTwo = 0; counterTwo <= pInputeValue.Length -1; counterTwo++)
+            if (!list.Contains(number))
             {
-                if (pInputeValue[counter] == pInputeValue[counterTwo])
-                {
-                    repeatedCharCounter++;
-                }
-                  
-            }
-
-            if (repeatedCharCounter == 1)
-            {
-                return pInputeValue[counter];
+                list.Add(number);
             }
         }
 
-        return '_';
+        return list.ToArray();
     }
-
 
     public static void Main(string[] args)
     {
-        // Find first Non Repeating Character: 
-        Console.WriteLine($"swiss should return w => Answer: {FindFirstNonRepeatingCharacter("swiss")}");
-        Console.WriteLine($"hello should return h => Answer: {FindFirstNonRepeatingCharacter("hello")}");
-        Console.WriteLine($"aabbc should return c => Answer: {FindFirstNonRepeatingCharacter("aabbc")}");
-        Console.WriteLine($"aabb should return _ => Answer: {FindFirstNonRepeatingCharacter("aabb")}");
-        Console.WriteLine($"Empty string should return _ => Answer: {FindFirstNonRepeatingCharacter("")}");
-        Console.WriteLine($"Null should return _ => Answer: {FindFirstNonRepeatingCharacter(null)}");
-        Console.WriteLine($"Cyberpunk should return C or c depending on casing rule => Answer: {FindFirstNonRepeatingCharacter("Cyberpunk")}");
 
-        // Find First Repeated Numbers
-        //Console.WriteLine($"[1, 2, 3, 2] should return 2 => Answer: {FindFirstRepeatedNumber(new int[] { 1, 2, 3, 2 })}");
-        //Console.WriteLine($"[5, 1, 5, 2] should return 5 => Answer: {FindFirstRepeatedNumber(new int[] { 5, 1, 5, 2 })}");
-        //Console.WriteLine($"[4, 4, 4] should return 4 => Answer: {FindFirstRepeatedNumber(new int[] { 4, 4, 4 })}");
-        //Console.WriteLine($"[1, 2, 3] should return 0 => Answer: {FindFirstRepeatedNumber(new int[] { 1, 2, 3 })}");
-        //Console.WriteLine($"Empty array should return 0 => Answer: {FindFirstRepeatedNumber(new int[] { })}");
-        //Console.WriteLine($"Null should return 0 => Answer: {FindFirstRepeatedNumber(null)}");
-
-        // Run all challenges
-        // var runChallengeSolution = new ChallengeSolutions();
-        //runChallengeSolution.RunAllChallengeSolutions();
+        // Remove Duplicate numbers:
+        Console.WriteLine($"[1, 2, 2, 3] should return [1, 2, 3] => Answer: [{string.Join(", ", RemoveDuplicateNumbers(new int[] { 1, 2, 2, 3 }))}]");
+        Console.WriteLine($"[5, 5, 5] should return [5] => Answer: [{string.Join(", ", RemoveDuplicateNumbers(new int[] { 5, 5, 5 }))}]");
+        Console.WriteLine($"[1, 2, 3] should return [1, 2, 3] => Answer: [{string.Join(", ", RemoveDuplicateNumbers(new int[] { 1, 2, 3 }))}]");
+        Console.WriteLine($"[4, 1, 4, 2, 1] should return [4, 1, 2] => Answer: [{string.Join(", ", RemoveDuplicateNumbers(new int[] { 4, 1, 4, 2, 1 }))}]");
+        Console.WriteLine($"Empty array should return [] => Answer: [{string.Join(", ", RemoveDuplicateNumbers(new int[] { }))}]");
+        Console.WriteLine($"Null should return [] => Answer: [{string.Join(", ", RemoveDuplicateNumbers(null))}]");
 
 
-        //Console.WriteLine(CountPositiveNumbers([1, -2, 3, 0, 5]));
-        //Console.WriteLine(CountPositiveNumbers([-1, -2, -3]));
-        //Console.WriteLine(CountPositiveNumbers([0, 0, 0]));
-        //Console.WriteLine(CountPositiveNumbers([10]));
-        //Console.WriteLine(CountPositiveNumbers(null));
-        //Console.WriteLine(CountPositiveNumbers([]));
+        // Find missing number: You are given numbers from 1 to n, but one number is missing.
+        //Console.WriteLine($"[1, 2, 4, 5] should return 3 => Answer: {FindMissingNumber([1, 2, 4, 5])}");
+        //Console.WriteLine($"[1, 3, 4, 5] should return 2 => Answer: {FindMissingNumber([1, 3, 4, 5])}");
+        //Console.WriteLine($"[2, 3, 4, 5] should return 1 => Answer: {FindMissingNumber([2, 3, 4, 5])}");
+        //Console.WriteLine($"[1, 2, 3, 4] should return 5 => Answer: {FindMissingNumber([1, 2, 3, 4])}");
+        //Console.WriteLine($"[1, 2, 3, 5, 6] should return 4 => Answer: {FindMissingNumber([1, 2, 3, 5, 6])}");
+        //Console.WriteLine($"Empty array should return 0 => Answer: {FindMissingNumber([])}");
+        //Console.WriteLine($"Null should return 0 => Answer: {FindMissingNumber(null)}");
 
-        //Console.WriteLine($"TwoSum [2, 7, 11, 15], target 9 should be [0, 1] => Answer: [{string.Join(", ", TwoSumRev(new int[] { 2, 7, 11, 15 }, 9))}]");
-        //Console.WriteLine($"TwoSum [4, 5], target 9 should be [0, 1] => Answer: [{string.Join(", ", TwoSumRev(new int[] { 4, 5 }, 9))}]");
-        //Console.WriteLine($"TwoSum [3, 2, 4], target 6 should be [1, 2] => Answer: [{string.Join(", ", TwoSumRev(new int[] { 3, 2, 4 }, 6))}]");
-        //Console.WriteLine($"TwoSum [3, 3], target 6 should be [0, 1] => Answer: [{string.Join(", ", TwoSumRev(new int[] { 3, 3 }, 6))}]");
-        //Console.WriteLine($"TwoSum [1, 8, 10, 2], target 10 should be [1, 3] => Answer: [{string.Join(", ", TwoSumRev(new int[] { 1, 8, 10, 2 }, 10))}]");
-
-        //Console.WriteLine($"Should be 1. Result: {CountingWordsRev(" One ")}");
-        //Console.WriteLine($"Should be 1. Result: {CountingWordsRev("One ")}");
-        //Console.WriteLine($"Should be 2. Result: {CountingWordsRev(" Hello World ")}");
-        //Console.WriteLine($"Should be 6. Result: {CountingWordsRev(" I went for a walk today ")}");
+        // Two Sum Revision:
+        //Console.WriteLine($"TwoSum [2, 7, 11, 15], target 9 should be [0, 1] => Answer: [{string.Join(", ", TwoSumRevision(new int[] { 2, 7, 11, 15 }, 9))}]");
+        //Console.WriteLine($"TwoSum [4, 5], target 9 should be [0, 1] => Answer: [{string.Join(", ", TwoSumRevision(new int[] { 4, 5 }, 9))}]");
+        //Console.WriteLine($"TwoSum [3, 2, 4], target 6 should be [1, 2] => Answer: [{string.Join(", ", TwoSumRevision(new int[] { 3, 2, 4 }, 6))}]");
+        //Console.WriteLine($"TwoSum [3, 3], target 6 should be [0, 1] => Answer: [{string.Join(", ", TwoSumRevision(new int[] { 3, 3 }, 6))}]");
+        //Console.WriteLine($"TwoSum [1, 8, 10, 2], target 10 should be [1, 3] => Answer: [{string.Join(", ", TwoSumRevision(new int[] { 1, 8, 10, 2 }, 10))}]");
 
 
+        //// Find first Non Repeating Character:
+        //Console.WriteLine($"swiss should return w => Answer: {FindFirstNonRepeatingCharacterRev("swiss")}");
+        //Console.WriteLine($"hello should return h => Answer: {FindFirstNonRepeatingCharacterRev("hello")}");
+        //Console.WriteLine($"aabbc should return c => Answer: {FindFirstNonRepeatingCharacterRev("aabbc")}");
+        //Console.WriteLine($"aabb should return _ => Answer: {FindFirstNonRepeatingCharacterRev("aabb")}");
+        //Console.WriteLine($"Empty string should return _ => Answer: {FindFirstNonRepeatingCharacterRev("")}");
+        //Console.WriteLine($"Null should return _ => Answer: {FindFirstNonRepeatingCharacterRev(null)}");
+        //Console.WriteLine($"Cyberpunk should return C or c depending on casing rule => Answer: {FindFirstNonRepeatingCharacterRev("Cyberpunk")}");
+
+        //// Count Negative Numbers: 
+        //Console.WriteLine(CountNegativeNumbers([1, -2, 3, -4, 5]));
+        //Console.WriteLine(CountNegativeNumbers([-1, -2, -3]));
+        //Console.WriteLine(CountNegativeNumbers([0, 0, 0]));
+        //Console.WriteLine(CountNegativeNumbers([10]));
+        //Console.WriteLine(CountNegativeNumbers([]));
+        //Console.WriteLine(CountNegativeNumbers(null));
     }
 }
