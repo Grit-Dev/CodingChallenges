@@ -1,6 +1,6 @@
-﻿namespace CodingChallenges.Challenge
+﻿namespace CodingChallenges.Challenges
 {
-    // PMG TODO: Fix up & Refactor
+    // PMG TODO: Clean up
     public class ChallengeSolutions
     {
         private int CountDigitsFromString(string pInputValue)
@@ -28,7 +28,7 @@
         {
             string answer = string.Empty;
 
-            if (String.IsNullOrEmpty(pInputValue))
+            if (string.IsNullOrEmpty(pInputValue))
             {
                 return "Input is empty. Please ensure value is sent in.";
             }
@@ -62,7 +62,7 @@
                 }
             }
 
-            return (count);
+            return count;
 
         }
 
@@ -257,7 +257,7 @@
                 }
             }
 
-            return ($"Vowels: {vowelsTotal} + Consonants: {Consonantstotal})");
+            return $"Vowels: {vowelsTotal} + Consonants: {Consonantstotal})";
         }
 
         private int CharacterOccurrences(string? pInputValue, char pTargetCharacter)
@@ -507,27 +507,28 @@
             return [0, 0];
         }
 
-        public static int FindMissingNumber(int[] pInputValue)
-        {
-            int expectedNumber = 1;
+        // NOTE: Was a revision Exercise
+        //public static int FindMissingNumber(int[] pInputValue)
+        //{
+        //    int expectedNumber = 1;
 
-            if (pInputValue == null || pInputValue.Length == 0)
-            {
-                return 0;
-            }
+        //    if (pInputValue == null || pInputValue.Length == 0)
+        //    {
+        //        return 0;
+        //    }
 
-            for (int counter = 0; counter <= pInputValue.Length - 1; counter++)
-            {
-                if (pInputValue[counter] != expectedNumber)
-                {
-                    return expectedNumber;
-                }
+        //    for (int counter = 0; counter <= pInputValue.Length - 1; counter++)
+        //    {
+        //        if (pInputValue[counter] != expectedNumber)
+        //        {
+        //            return expectedNumber;
+        //        }
 
-                expectedNumber++;
-            }
+        //        expectedNumber++;
+        //    }
 
-            return expectedNumber;
-        }
+        //    return expectedNumber;
+        //}
 
         public static int[] RemoveDuplicateNumbers(int[] pInputValue)
         {
@@ -547,6 +548,109 @@
             }
 
             return list.ToArray();
+        }
+
+        public static int FindMissingNumber(int[] inputValue)
+        {
+            int incrementer = 1;
+
+            if (inputValue == null || inputValue.Length == 0)
+            {
+                return 0;
+            }
+
+            foreach (int value in inputValue)
+            {
+                if (value != incrementer)
+                {
+                    return incrementer;
+                }
+
+                incrementer++;
+            }
+
+            return 0;
+        }
+
+        public static int FindTheSecondLargestNumber(int[] pInputValue)
+        {
+            int firstLargestNum = 0;
+            int secondLargestNum = 0;
+
+            if (pInputValue == null || pInputValue.Length == 0)
+            {
+                return 0;
+            }
+
+            if (pInputValue.Length == 1)
+            {
+                return pInputValue[0];
+            }
+
+            firstLargestNum = pInputValue[0];
+            secondLargestNum = pInputValue[0];
+
+            foreach (int value in pInputValue)
+            {
+                if (value > firstLargestNum)
+                {
+                    secondLargestNum = firstLargestNum;
+                    firstLargestNum = value;
+                }
+                if (value > secondLargestNum && value != firstLargestNum)
+                {
+                    secondLargestNum = value;
+                }
+            }
+
+            return secondLargestNum;
+
+        }
+
+        public static int[] ReverseAnArray(int[] pInputValue)
+        {
+            int left = 0;
+            int right = pInputValue.Length - 1;
+            int tempHolder = 0;
+
+            if (pInputValue == null || pInputValue.Length == 0)
+            {
+                return [];
+            }
+
+            while (left < right)
+            {
+                tempHolder = pInputValue[left];
+                pInputValue[left] = pInputValue[right];
+                pInputValue[right] = tempHolder;
+
+                left++;
+                right--;
+            }
+
+            return pInputValue;
+        }
+
+        public static bool IsSortedArrayAscending(int[] pInputValue)
+        {
+            if (pInputValue == null || pInputValue.Length == 0)
+            {
+                return false;
+            }
+
+            for (int counter = 0; counter <= pInputValue.Length - 1; counter++)
+            {
+                for (int counterTwo = counter + 1; counterTwo <= pInputValue.Length - 1; counterTwo++)
+                {
+                    if (pInputValue[counter] > pInputValue[counterTwo])
+                    {
+                        return false;
+                    }
+                }
+            }
+
+
+            return true;
         }
 
         public void RunAllChallengeSolutions()
@@ -706,6 +810,40 @@
             Console.WriteLine($"TwoSum [3, 2, 4], target 6 should be [1, 2] => Answer: [{string.Join(", ", TwoSum(new int[] { 3, 2, 4 }, 6))}]");
             Console.WriteLine($"TwoSum [3, 3], target 6 should be [0, 1] => Answer: [{string.Join(", ", TwoSum(new int[] { 3, 3 }, 6))}]");
             Console.WriteLine($"TwoSum [1, 8, 10, 2], target 10 should be [1, 3] => Answer: [{string.Join(", ", TwoSum(new int[] { 1, 8, 10, 2 }, 10))}]");
+
+            // IsArray Ascending - Return True if the array is sorted From Smallest to Largest: 
+            Console.WriteLine(IsSortedArrayAscending([1, 2, 3, 4]));
+            // Expected: True
+            Console.WriteLine(IsSortedArrayAscending([1, 1, 2, 3]));
+            // Expected: True (duplicates allowed)
+            Console.WriteLine(IsSortedArrayAscending([1, 3, 2, 4]));
+            // Expected: False
+            Console.WriteLine(IsSortedArrayAscending([5, 4, 3, 2]));
+            // Expected: False
+            Console.WriteLine(IsSortedArrayAscending([10]));
+            // Expected: True (single element)
+            Console.WriteLine(IsSortedArrayAscending([]));
+            // Expected: True (empty array)
+            Console.WriteLine(IsSortedArrayAscending([2, 2, 2, 2]));
+            // Expected: True
+            Console.WriteLine(IsSortedArrayAscending(null));
+            // Expected: false (empty array)
+
+            // Find Second Largest Number
+            Console.WriteLine(FindTheSecondLargestNumber([1, 2, 4, 5])); // 3
+            Console.WriteLine(FindTheSecondLargestNumber([1, 3, 4, 5])); // 2
+            Console.WriteLine(FindTheSecondLargestNumber([2, 3, 4, 5])); // 1
+            Console.WriteLine(FindTheSecondLargestNumber([1, 2, 3, 4])); // 5
+            Console.WriteLine(FindTheSecondLargestNumber([])); // 0
+            Console.WriteLine(FindTheSecondLargestNumber(null)); // 0
+
+            // Find Missing Number: 
+            Console.WriteLine(FindMissingNumber([1, 2, 4, 5])); // 3
+            Console.WriteLine(FindMissingNumber([1, 3, 4, 5])); // 2
+            Console.WriteLine(FindMissingNumber([2, 3, 4, 5])); // 1
+            Console.WriteLine(FindMissingNumber([1, 2, 3, 4])); // 5
+            Console.WriteLine(FindMissingNumber([])); // 0
+            Console.WriteLine(FindMissingNumber(null)); // 0
         }
     }
 }
