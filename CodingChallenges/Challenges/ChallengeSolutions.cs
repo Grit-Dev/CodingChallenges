@@ -530,6 +530,7 @@
         //    return expectedNumber;
         //}
 
+
         public static int[] RemoveDuplicateNumbers(int[] pInputValue)
         {
             var list = new List<int>();
@@ -651,6 +652,167 @@
 
 
             return true;
+        }
+
+        public static int SumPositiveNumbers(int[] pInputValue)
+        {
+            if (pInputValue == null || pInputValue.Length == 0)
+            {
+                return 0;
+            }
+
+            int total = 0;
+
+            foreach (int value in pInputValue)
+            {
+                if (value > 0)
+                {
+                   total = total + value;
+                }
+            }
+
+            return total;
+        }
+
+        public static int CountSecondLargestNumberRev(int[] pInputValue)
+        {
+            if (pInputValue == null || pInputValue.Length == 0)
+            {
+                return 0;
+            }
+
+            int firstLargestNumber;
+            int secondLargestNumber;
+
+            if (pInputValue.Length == 1)
+            {
+                return pInputValue[0];
+            }
+
+            if (pInputValue[0] >= pInputValue[1])
+            {
+                firstLargestNumber = pInputValue[0];
+                secondLargestNumber = pInputValue[1];
+            }
+            else
+            {
+                firstLargestNumber = pInputValue[1];
+                secondLargestNumber = pInputValue[0];
+            }
+
+            for (int counter = 2; counter <= pInputValue.Length - 1; counter++)
+            {
+                int value = pInputValue[counter];
+
+                if (value > firstLargestNumber)
+                {
+                    secondLargestNumber = firstLargestNumber;
+                    firstLargestNumber = value;
+                }
+                else if (value > secondLargestNumber)
+                {
+                    secondLargestNumber = value;
+                }
+            }
+
+            return secondLargestNumber;
+        }
+
+        public static int[] MergeArraysRev(int[] pInputValueOne, int[] pInputValueTwo)
+        {
+            if ((pInputValueOne == null || pInputValueOne.Length == 0)
+            && (pInputValueTwo == null || pInputValueTwo.Length == 0))
+            {
+                return [];
+            }
+            else if (pInputValueOne == null || pInputValueOne.Length == 0)
+            {
+                return pInputValueTwo;
+            }
+            else if (pInputValueTwo == null || pInputValueTwo.Length == 0)
+            {
+                return pInputValueOne;
+            }
+
+            List<int> mergedArrayList = [];
+
+            foreach (int value in pInputValueOne)
+            {
+                if (!mergedArrayList.Contains(value))
+                {
+                    mergedArrayList.Add(value);
+                }
+            }
+
+            foreach (int value in pInputValueTwo)
+            {
+                if (!mergedArrayList.Contains(value))
+                {
+                    mergedArrayList.Add(value);
+                }
+            }
+
+            return mergedArrayList.ToArray();
+        }
+
+        public static int FindIndexOfTarget(int[] pInputValue, int pTarget)
+        {
+
+            if (pInputValue == null || pInputValue.Length == 0)
+            {
+                return -1;
+            }
+
+            for (int counter = 0; counter <= pInputValue.Length - 1; counter++)
+            {
+                if (pInputValue[counter] == pTarget)
+                {
+                    return counter;
+                }
+            }
+
+            return -1;
+        }
+
+        public static int CountNumbersInRange(int[] pInputValue, int pMin, int pMax)
+        {
+            int incrementor = 0;
+
+            if (pInputValue == null || pInputValue.Length == 0)
+            {
+                return 0;
+            }
+
+            for (int counter = 0; counter <= pInputValue.Length - 1; counter++)
+            {
+                if (pInputValue[counter] >= pMin
+                && pInputValue[counter] <= pMax)
+                {
+                    incrementor++;
+                }
+            }
+
+            return incrementor;
+        }
+
+        public static int[] FilterNumbersBetweenRange(int[] pInputValue, int pMin, int pMax)
+        {
+            if (pInputValue == null || pInputValue.Length == 0)
+            {
+                return [];
+            }
+
+            List<int> filteredNumberList = [];
+
+            for (int counter = 0; counter <= pInputValue.Length - 1; counter++)
+            {
+                if (pInputValue[counter] >= pMin && pInputValue[counter] <= pMax)
+                {
+                    filteredNumberList.Add(pInputValue[counter]);
+                }
+            }
+
+            return filteredNumberList.ToArray();
         }
 
         public void RunAllChallengeSolutions()
@@ -844,6 +1006,71 @@
             Console.WriteLine(FindMissingNumber([1, 2, 3, 4])); // 5
             Console.WriteLine(FindMissingNumber([])); // 0
             Console.WriteLine(FindMissingNumber(null)); // 0
+
+            // Sum Positive Numbers 
+            // - Return total numbers greater than 0
+
+            Console.WriteLine(SumPositiveNumbers([1, 2, 4])); // 3
+            Console.WriteLine(SumPositiveNumbers([0, 0, 0, 5])); // 1 
+            Console.WriteLine(SumPositiveNumbers([-1, -2, -3, 5])); // 1
+            Console.WriteLine(SumPositiveNumbers([1])); // 1
+            Console.WriteLine(SumPositiveNumbers([])); // 0
+            Console.WriteLine(SumPositiveNumbers(null)); // 0
+
+            // Find Second Largest number:             
+            Console.WriteLine(CountSecondLargestNumberRev([-1, 6, 3, 9, 2]));
+            Console.WriteLine(CountSecondLargestNumberRev([10, 20, 30,]));
+            Console.WriteLine(CountSecondLargestNumberRev([30, 20, 10]));
+            Console.WriteLine(CountSecondLargestNumberRev([0 - 5, -2, -1, -10]));
+            Console.WriteLine(CountSecondLargestNumberRev([]));
+            Console.WriteLine(CountSecondLargestNumberRev(null));
+
+            // Merged Arrays: Return a new array  containing all numbers from the 1st 
+            /// array followed by all the numbers from the second Array
+
+            Console.WriteLine(string.Join(",", MergeArraysRev([1, 2, 3], [4, 5, 6]))); // Expected: 1,2,3,4,5,6
+            Console.WriteLine(string.Join(",", MergeArraysRev([], [1, 2]))); // Expected: 1,2
+            Console.WriteLine(string.Join(",", MergeArraysRev([7, 8], []))); // Expected: 7,8
+            Console.WriteLine(string.Join(",", MergeArraysRev([-1, -2], [0, 1]))); // Expected: -1,-2,0,1
+            Console.WriteLine(string.Join(",", MergeArraysRev([], []))); // Expected: -1,-2,0,1
+
+            // Find index of Target:  Return the index of the first number
+            // - matching the target. Return -1 if not found. 
+            // - [1,5,10], target 5 = index would be 1
+            Console.WriteLine(FindIndexOfTarget(null, 5));      // -1 (null array)
+            Console.WriteLine(FindIndexOfTarget([], 5));        // -1 (empty array)
+            Console.WriteLine(FindIndexOfTarget([1, 2, 3], 2)); // 1 (found at index 1)
+            Console.WriteLine(FindIndexOfTarget([1, 2, 3], 4)); // -1 (not found)
+            Console.WriteLine(FindIndexOfTarget([5, 5, 5], 5)); // 0 (first match returned)
+            Console.WriteLine(FindIndexOfTarget([9], 9));       // 0 (single element match)
+            Console.WriteLine(FindIndexOfTarget([9], 1));       // -1 (single element no match)
+
+            // Console.WriteLine(CountNumbersInRange(null, 1, 5));              // 0 (null array)
+            Console.WriteLine(CountNumbersInRange(Array.Empty<int>(), 1, 5));   // 0 (empty array)
+            Console.WriteLine(CountNumbersInRange([1, 5, 10, 15], 5, 10));      // 2 (5 and 10)
+            Console.WriteLine(CountNumbersInRange([3, 6, 9], 1, 5));            // 1 (3)
+            Console.WriteLine(CountNumbersInRange([2, 4, 6, 8], 4, 8));         // 3 (4,6,8)
+            Console.WriteLine(CountNumbersInRange([10, 20, 30], 5, 9));         // 0 (none in range)
+            Console.WriteLine(CountNumbersInRange([5, 5, 5], 5, 5));            // 3 (all match)
+            Console.WriteLine(CountNumbersInRange([-5, 0, 5], -5, 0));      // 2 (-5, 0)
+
+
+            // Filter Numbers between Range: 
+            // - Return a new array containing only numbers between
+            // - min and max
+            // - Example: [1,5,10, 15] - min: 5 max 10 = [5, 10]
+            // - Example [3,6,9] min 1, max 5 = 1 [3]
+            Console.WriteLine(string.Join(", ", FilterNumbersBetweenRange(null, 1, 5)));            // Blank
+            Console.WriteLine(string.Join(", ", FilterNumbersBetweenRange([], 1, 5)));              // Blank 
+            Console.WriteLine(string.Join(", ", FilterNumbersBetweenRange([1, 5, 10, 15], 5, 10))); // 5, 10
+            Console.WriteLine(string.Join(", ", FilterNumbersBetweenRange([3, 6, 9], 1, 5)));       // 3
+            Console.WriteLine(string.Join(", ", FilterNumbersBetweenRange([2, 4, 6, 8], 4, 8)));    // 4, 6, 8
+            Console.WriteLine(string.Join(", ", FilterNumbersBetweenRange([10, 20, 30], 1, 5)));    // Blank
+            Console.WriteLine(string.Join(", ", FilterNumbersBetweenRange([5, 5, 5], 5, 5)));       // 5, 5, 5
+            Console.WriteLine(string.Join(", ", FilterNumbersBetweenRange([-5, 0, 5], -5, 0)));     // -5, 0
+            Console.WriteLine(string.Join(", ", FilterNumbersBetweenRange([1, 2, 3, 4, 5], 2, 4))); // 2, 3, 4
+            Console.WriteLine(string.Join(", ", FilterNumbersBetweenRange([7], 7, 7)));             // 7
+            Console.WriteLine(string.Join(", ", FilterNumbersBetweenRange([7], 1, 5)));             // Blank
         }
     }
 }
