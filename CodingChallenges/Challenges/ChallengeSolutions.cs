@@ -44,7 +44,7 @@
 
         private int CountingVowels(string pInputValue)
         {
-            char[] vowels = { 'a', 'e', 'i', 'o', 'u' };
+            char[] vowels = ['a', 'e', 'i', 'o', 'u'];
             int count = 0;
 
             if (string.IsNullOrEmpty(pInputValue))
@@ -225,15 +225,15 @@
 
         private string CountVowelsAndConsonants(string pInputValue)
         {
-            char[] vowels = { 'a', 'e', 'i', 'o', 'u' };
+            char[] vowels = ['a', 'e', 'i', 'o', 'u'];
 
             char[] consonants =
-            {
+            [
             'b', 'c', 'd', 'f', 'g',
             'h', 'j', 'k', 'l', 'm',
             'n', 'p', 'q', 'r', 's',
             't', 'v', 'w', 'x', 'y', 'z'
-        };
+        ];
 
             int vowelsTotal = 0;
             int Consonantstotal = 0;
@@ -303,7 +303,7 @@
                 {
                     if (pNums[counter] + pNums[counterTwo] == pTarget)
                     {
-                        return new int[] { counter, counterTwo };
+                        return [counter, counterTwo];
                     }
                 }
             }
@@ -667,7 +667,7 @@
             {
                 if (value > 0)
                 {
-                   total = total + value;
+                    total = total + value;
                 }
             }
 
@@ -818,12 +818,12 @@
         public void RunAllChallengeSolutions()
         {
             // Remove Duplicate numbers:
-            Console.WriteLine($"[1, 2, 2, 3] should return [1, 2, 3] => Answer: [{string.Join(", ", RemoveDuplicateNumbers(new int[] { 1, 2, 2, 3 }))}]");
-            Console.WriteLine($"[5, 5, 5] should return [5] => Answer: [{string.Join(", ", RemoveDuplicateNumbers(new int[] { 5, 5, 5 }))}]");
-            Console.WriteLine($"[1, 2, 3] should return [1, 2, 3] => Answer: [{string.Join(", ", RemoveDuplicateNumbers(new int[] { 1, 2, 3 }))}]");
-            Console.WriteLine($"[4, 1, 4, 2, 1] should return [4, 1, 2] => Answer: [{string.Join(", ", RemoveDuplicateNumbers(new int[] { 4, 1, 4, 2, 1 }))}]");
-            Console.WriteLine($"Empty array should return [] => Answer: [{string.Join(", ", RemoveDuplicateNumbers(new int[] { }))}]");
-            Console.WriteLine($"Null should return [] => Answer: [{string.Join(", ", RemoveDuplicateNumbers(null))}]");
+            Console.WriteLine($"[1, 2, 2, 3] should return [1, 2, 3] => Answer: [{string.Join(", ", RemoveDuplicateNumbers([1, 2, 2, 3]))}]");
+            Console.WriteLine($"[5, 5, 5] should return [5] => Answer: [{string.Join(", ", RemoveDuplicateNumbers([5, 5, 5]))}]");
+            Console.WriteLine($"[1, 2, 3] should return [1, 2, 3] => Answer: [{string.Join(", ", RemoveDuplicateNumbers([1, 2, 3]))}]");
+            Console.WriteLine($"[4, 1, 4, 2, 1] should return [4, 1, 2] => Answer: [{string.Join(", ", RemoveDuplicateNumbers([4, 1, 4, 2, 1]))}]");
+            Console.WriteLine($"Empty array should return [] => Answer: [{string.Join(", ", RemoveDuplicateNumbers([]))}]");
+            Console.WriteLine($"Null should return [] => Answer: [{string.Join(", ", RemoveDuplicateNumbers(null!))}]");
 
 
             // Find missing number: You are given numbers from 1 to n, but one number is missing.
@@ -833,14 +833,14 @@
             Console.WriteLine($"[1, 2, 3, 4] should return 5 => Answer: {FindMissingNumber([1, 2, 3, 4])}");
             Console.WriteLine($"[1, 2, 3, 5, 6] should return 4 => Answer: {FindMissingNumber([1, 2, 3, 5, 6])}");
             Console.WriteLine($"Empty array should return 0 => Answer: {FindMissingNumber([])}");
-            Console.WriteLine($"Null should return 0 => Answer: {FindMissingNumber(null)}");
+            Console.WriteLine($"Null should return 0 => Answer: {FindMissingNumber(null!)}");
 
             // Two Sum Revision:
-            Console.WriteLine($"TwoSum [2, 7, 11, 15], target 9 should be [0, 1] => Answer: [{string.Join(", ", TwoSumRevision(new int[] { 2, 7, 11, 15 }, 9))}]");
-            Console.WriteLine($"TwoSum [4, 5], target 9 should be [0, 1] => Answer: [{string.Join(", ", TwoSumRevision(new int[] { 4, 5 }, 9))}]");
-            Console.WriteLine($"TwoSum [3, 2, 4], target 6 should be [1, 2] => Answer: [{string.Join(", ", TwoSumRevision(new int[] { 3, 2, 4 }, 6))}]");
-            Console.WriteLine($"TwoSum [3, 3], target 6 should be [0, 1] => Answer: [{string.Join(", ", TwoSumRevision(new int[] { 3, 3 }, 6))}]");
-            Console.WriteLine($"TwoSum [1, 8, 10, 2], target 10 should be [1, 3] => Answer: [{string.Join(", ", TwoSumRevision(new int[] { 1, 8, 10, 2 }, 10))}]");
+            Console.WriteLine($"TwoSum [2, 7, 11, 15], target 9 should be [0, 1] => Answer: [{string.Join(", ", TwoSumRevision([2, 7, 11, 15], 9))}]");
+            Console.WriteLine($"TwoSum [4, 5], target 9 should be [0, 1] => Answer: [{string.Join(", ", TwoSumRevision([4, 5], 9))}]");
+            Console.WriteLine($"TwoSum [3, 2, 4], target 6 should be [1, 2] => Answer: [{string.Join(", ", TwoSumRevision([3, 2, 4], 6))}]");
+            Console.WriteLine($"TwoSum [3, 3], target 6 should be [0, 1] => Answer: [{string.Join(", ", TwoSumRevision([3, 3], 6))}]");
+            Console.WriteLine($"TwoSum [1, 8, 10, 2], target 10 should be [1, 3] => Answer: [{string.Join(", ", TwoSumRevision([1, 8, 10, 2], 10))}]");
 
 
             //// Find first Non Repeating Character:
@@ -849,7 +849,7 @@
             Console.WriteLine($"aabbc should return c => Answer: {FindFirstNonRepeatingCharacterRev("aabbc")}");
             Console.WriteLine($"aabb should return _ => Answer: {FindFirstNonRepeatingCharacterRev("aabb")}");
             Console.WriteLine($"Empty string should return _ => Answer: {FindFirstNonRepeatingCharacterRev("")}");
-            Console.WriteLine($"Null should return _ => Answer: {FindFirstNonRepeatingCharacterRev(null)}");
+            Console.WriteLine($"Null should return _ => Answer: {FindFirstNonRepeatingCharacterRev(null!)}");
             Console.WriteLine($"Cyberpunk should return C or c depending on casing rule => Answer: {FindFirstNonRepeatingCharacterRev("Cyberpunk")}");
 
             //// Count Negative Numbers: 
@@ -858,7 +858,7 @@
             Console.WriteLine(CountNegativeNumbers([0, 0, 0]));
             Console.WriteLine(CountNegativeNumbers([10]));
             Console.WriteLine(CountNegativeNumbers([]));
-            Console.WriteLine(CountNegativeNumbers(null));
+            Console.WriteLine(CountNegativeNumbers(null!));
 
             // Find first Non Repeating Character:
             Console.WriteLine($"swiss should return w => Answer: {FindFirstNonRepeatingCharacter("swiss")}");
@@ -866,31 +866,31 @@
             Console.WriteLine($"aabbc should return c => Answer: {FindFirstNonRepeatingCharacter("aabbc")}");
             Console.WriteLine($"aabb should return _ => Answer: {FindFirstNonRepeatingCharacter("aabb")}");
             Console.WriteLine($"Empty string should return _ => Answer: {FindFirstNonRepeatingCharacter("")}");
-            Console.WriteLine($"Null should return _ => Answer: {FindFirstNonRepeatingCharacter(null)}");
+            Console.WriteLine($"Null should return _ => Answer: {FindFirstNonRepeatingCharacter(null!)}");
             Console.WriteLine($"Cyberpunk should return C or c depending on casing rule => Answer: {FindFirstNonRepeatingCharacter("Cyberpunk")}");
 
             // Find First Repeated Numbers
-            Console.WriteLine($"[1, 2, 3, 2] should return 2 => Answer: {FindFirstRepeatedNumber(new int[] { 1, 2, 3, 2 })}");
-            Console.WriteLine($"[5, 1, 5, 2] should return 5 => Answer: {FindFirstRepeatedNumber(new int[] { 5, 1, 5, 2 })}");
-            Console.WriteLine($"[4, 4, 4] should return 4 => Answer: {FindFirstRepeatedNumber(new int[] { 4, 4, 4 })}");
-            Console.WriteLine($"[1, 2, 3] should return 0 => Answer: {FindFirstRepeatedNumber(new int[] { 1, 2, 3 })}");
-            Console.WriteLine($"Empty array should return 0 => Answer: {FindFirstRepeatedNumber(new int[] { })}");
-            Console.WriteLine($"Null should return 0 => Answer: {FindFirstRepeatedNumber(null)}");
+            Console.WriteLine($"[1, 2, 3, 2] should return 2 => Answer: {FindFirstRepeatedNumber([1, 2, 3, 2])}");
+            Console.WriteLine($"[5, 1, 5, 2] should return 5 => Answer: {FindFirstRepeatedNumber([5, 1, 5, 2])}");
+            Console.WriteLine($"[4, 4, 4] should return 4 => Answer: {FindFirstRepeatedNumber([4, 4, 4])}");
+            Console.WriteLine($"[1, 2, 3] should return 0 => Answer: {FindFirstRepeatedNumber([1, 2, 3])}");
+            Console.WriteLine($"Empty array should return 0 => Answer: {FindFirstRepeatedNumber([])}");
+            Console.WriteLine($"Null should return 0 => Answer: {FindFirstRepeatedNumber(null!)}");
 
             // Count Positive Numbers
             Console.WriteLine(CountPositiveNumbers([1, -2, 3, 0, 5]));
             Console.WriteLine(CountPositiveNumbers([-1, -2, -3]));
             Console.WriteLine(CountPositiveNumbers([0, 0, 0]));
             Console.WriteLine(CountPositiveNumbers([10]));
-            Console.WriteLine(CountPositiveNumbers(null));
+            Console.WriteLine(CountPositiveNumbers(null!));
             Console.WriteLine(CountPositiveNumbers([]));
 
             // TwoSumRev
-            Console.WriteLine($"TwoSum [2, 7, 11, 15], target 9 should be [0, 1] => Answer: [{string.Join(", ", TwoSumRev(new int[] { 2, 7, 11, 15 }, 9))}]");
-            Console.WriteLine($"TwoSum [4, 5], target 9 should be [0, 1] => Answer: [{string.Join(", ", TwoSumRev(new int[] { 4, 5 }, 9))}]");
-            Console.WriteLine($"TwoSum [3, 2, 4], target 6 should be [1, 2] => Answer: [{string.Join(", ", TwoSumRev(new int[] { 3, 2, 4 }, 6))}]");
-            Console.WriteLine($"TwoSum [3, 3], target 6 should be [0, 1] => Answer: [{string.Join(", ", TwoSumRev(new int[] { 3, 3 }, 6))}]");
-            Console.WriteLine($"TwoSum [1, 8, 10, 2], target 10 should be [1, 3] => Answer: [{string.Join(", ", TwoSumRev(new int[] { 1, 8, 10, 2 }, 10))}]");
+            Console.WriteLine($"TwoSum [2, 7, 11, 15], target 9 should be [0, 1] => Answer: [{string.Join(", ", TwoSumRev([2, 7, 11, 15], 9))}]");
+            Console.WriteLine($"TwoSum [4, 5], target 9 should be [0, 1] => Answer: [{string.Join(", ", TwoSumRev([4, 5], 9))}]");
+            Console.WriteLine($"TwoSum [3, 2, 4], target 6 should be [1, 2] => Answer: [{string.Join(", ", TwoSumRev([3, 2, 4], 6))}]");
+            Console.WriteLine($"TwoSum [3, 3], target 6 should be [0, 1] => Answer: [{string.Join(", ", TwoSumRev([3, 3], 6))}]");
+            Console.WriteLine($"TwoSum [1, 8, 10, 2], target 10 should be [1, 3] => Answer: [{string.Join(", ", TwoSumRev([1, 8, 10, 2], 10))}]");
 
             // CountingWordsRev
             Console.WriteLine($"Should be 1. Result: {CountingWordsRev(" One ")}");
@@ -955,7 +955,7 @@
             Console.WriteLine($"APPLE should be vowels: 2, consonants: 3 => Answer: {CountVowelsAndConsonants("APPLE")}");
             Console.WriteLine($"Cyberpunk 2077 should be vowels: 2, consonants: 7 => Answer: {CountVowelsAndConsonants("Cyberpunk 2077")}");
             Console.WriteLine($"Empty string should be vowels: 0, consonants: 0 => Answer: {CountVowelsAndConsonants("")}");
-            Console.WriteLine($"Null should be vowels: 0, consonants: 0 => Answer: {CountVowelsAndConsonants(null)}");
+            Console.WriteLine($"Null should be vowels: 0, consonants: 0 => Answer: {CountVowelsAndConsonants(null!)}");
             Console.WriteLine($"Why should be vowels: 0, consonants: 3 => Answer: {CountVowelsAndConsonants("Why")}");
 
             // Counting Character Occurrences
@@ -967,11 +967,11 @@
             Console.WriteLine(CharacterOccurrences("", 'a'));
             Console.WriteLine(CharacterOccurrences("null", 'a'));
 
-            Console.WriteLine($"TwoSum [2, 7, 11, 15], target 9 should be [0, 1] => Answer: [{string.Join(", ", TwoSum(new int[] { 2, 7, 11, 15 }, 9))}]");
-            Console.WriteLine($"TwoSum [4, 5], target 9 should be [0, 1] => Answer: [{string.Join(", ", TwoSum(new int[] { 4, 5 }, 9))}]");
-            Console.WriteLine($"TwoSum [3, 2, 4], target 6 should be [1, 2] => Answer: [{string.Join(", ", TwoSum(new int[] { 3, 2, 4 }, 6))}]");
-            Console.WriteLine($"TwoSum [3, 3], target 6 should be [0, 1] => Answer: [{string.Join(", ", TwoSum(new int[] { 3, 3 }, 6))}]");
-            Console.WriteLine($"TwoSum [1, 8, 10, 2], target 10 should be [1, 3] => Answer: [{string.Join(", ", TwoSum(new int[] { 1, 8, 10, 2 }, 10))}]");
+            Console.WriteLine($"TwoSum [2, 7, 11, 15], target 9 should be [0, 1] => Answer: [{string.Join(", ", TwoSum([2, 7, 11, 15], 9))}]");
+            Console.WriteLine($"TwoSum [4, 5], target 9 should be [0, 1] => Answer: [{string.Join(", ", TwoSum([4, 5], 9))}]");
+            Console.WriteLine($"TwoSum [3, 2, 4], target 6 should be [1, 2] => Answer: [{string.Join(", ", TwoSum([3, 2, 4], 6))}]");
+            Console.WriteLine($"TwoSum [3, 3], target 6 should be [0, 1] => Answer: [{string.Join(", ", TwoSum([3, 3], 6))}]");
+            Console.WriteLine($"TwoSum [1, 8, 10, 2], target 10 should be [1, 3] => Answer: [{string.Join(", ", TwoSum([1, 8, 10, 2], 10))}]");
 
             // IsArray Ascending - Return True if the array is sorted From Smallest to Largest: 
             Console.WriteLine(IsSortedArrayAscending([1, 2, 3, 4]));
@@ -988,7 +988,7 @@
             // Expected: True (empty array)
             Console.WriteLine(IsSortedArrayAscending([2, 2, 2, 2]));
             // Expected: True
-            Console.WriteLine(IsSortedArrayAscending(null));
+            Console.WriteLine(IsSortedArrayAscending(null!));
             // Expected: false (empty array)
 
             // Find Second Largest Number
@@ -997,7 +997,7 @@
             Console.WriteLine(FindTheSecondLargestNumber([2, 3, 4, 5])); // 1
             Console.WriteLine(FindTheSecondLargestNumber([1, 2, 3, 4])); // 5
             Console.WriteLine(FindTheSecondLargestNumber([])); // 0
-            Console.WriteLine(FindTheSecondLargestNumber(null)); // 0
+            Console.WriteLine(FindTheSecondLargestNumber(null!)); // 0
 
             // Find Missing Number: 
             Console.WriteLine(FindMissingNumber([1, 2, 4, 5])); // 3
@@ -1005,7 +1005,7 @@
             Console.WriteLine(FindMissingNumber([2, 3, 4, 5])); // 1
             Console.WriteLine(FindMissingNumber([1, 2, 3, 4])); // 5
             Console.WriteLine(FindMissingNumber([])); // 0
-            Console.WriteLine(FindMissingNumber(null)); // 0
+            Console.WriteLine(FindMissingNumber(null!)); // 0
 
             // Sum Positive Numbers 
             // - Return total numbers greater than 0
@@ -1015,7 +1015,7 @@
             Console.WriteLine(SumPositiveNumbers([-1, -2, -3, 5])); // 1
             Console.WriteLine(SumPositiveNumbers([1])); // 1
             Console.WriteLine(SumPositiveNumbers([])); // 0
-            Console.WriteLine(SumPositiveNumbers(null)); // 0
+            Console.WriteLine(SumPositiveNumbers(null!)); // 0
 
             // Find Second Largest number:             
             Console.WriteLine(CountSecondLargestNumberRev([-1, 6, 3, 9, 2]));
@@ -1023,7 +1023,7 @@
             Console.WriteLine(CountSecondLargestNumberRev([30, 20, 10]));
             Console.WriteLine(CountSecondLargestNumberRev([0 - 5, -2, -1, -10]));
             Console.WriteLine(CountSecondLargestNumberRev([]));
-            Console.WriteLine(CountSecondLargestNumberRev(null));
+            Console.WriteLine(CountSecondLargestNumberRev(null!));
 
             // Merged Arrays: Return a new array  containing all numbers from the 1st 
             /// array followed by all the numbers from the second Array
@@ -1037,7 +1037,7 @@
             // Find index of Target:  Return the index of the first number
             // - matching the target. Return -1 if not found. 
             // - [1,5,10], target 5 = index would be 1
-            Console.WriteLine(FindIndexOfTarget(null, 5));      // -1 (null array)
+            Console.WriteLine(FindIndexOfTarget(null!, 5));      // -1 (null array)
             Console.WriteLine(FindIndexOfTarget([], 5));        // -1 (empty array)
             Console.WriteLine(FindIndexOfTarget([1, 2, 3], 2)); // 1 (found at index 1)
             Console.WriteLine(FindIndexOfTarget([1, 2, 3], 4)); // -1 (not found)
@@ -1060,7 +1060,7 @@
             // - min and max
             // - Example: [1,5,10, 15] - min: 5 max 10 = [5, 10]
             // - Example [3,6,9] min 1, max 5 = 1 [3]
-            Console.WriteLine(string.Join(", ", FilterNumbersBetweenRange(null, 1, 5)));            // Blank
+            Console.WriteLine(string.Join(", ", FilterNumbersBetweenRange(null!, 1, 5)));            // Blank
             Console.WriteLine(string.Join(", ", FilterNumbersBetweenRange([], 1, 5)));              // Blank 
             Console.WriteLine(string.Join(", ", FilterNumbersBetweenRange([1, 5, 10, 15], 5, 10))); // 5, 10
             Console.WriteLine(string.Join(", ", FilterNumbersBetweenRange([3, 6, 9], 1, 5)));       // 3
