@@ -960,9 +960,192 @@
             return newArray;
         }
 
+        public static int SumEvenNumbersRev(int[] pInputValue)
+        {
+            if (pInputValue == null || pInputValue.Length == 0)
+            {
+                return 0;
+            }
+
+            int total = 0;
+
+            foreach (int value in pInputValue)
+            {
+                if (value % 2 == 0)
+                {
+                    total = total + value;
+                }
+            }
+
+            return total;
+        }
+
+        public static int[] ReplaceTarget(int[] pInputValue, int pTarget, int pReplacement)
+        {
+            if (pInputValue == null || pInputValue.Length == 0)
+            {
+                return [];
+            }
+
+            var listArray = new List<int>();
+
+            for (int counter = 0; counter <= pInputValue.Length - 1; counter++)
+            {
+
+                if (pInputValue[counter] == pTarget)
+                {
+                    listArray.Add(pReplacement);
+                }
+                else
+                {
+                    listArray.Add(pInputValue[counter]);
+                }
+            }
+
+            return listArray.ToArray();
+        }
+
+        public static int[] SplitPosNeg(int[] pInputValue)
+        {
+            if (pInputValue == null || pInputValue.Length == 0)
+            {
+                return [];
+            }
+
+            List<int> listArray = [];
+
+            foreach (int value in pInputValue)
+            {
+                if (value > 0)
+                {
+                    listArray.Add(value);
+                }
+            }
+
+            foreach (int value in pInputValue)
+            {
+                if (value < 0)
+                {
+                    listArray.Add(value);
+                }
+            }
+
+            return listArray.ToArray();
+        }
+
+        // 4. Count Matching Numbers
+        // -Count how many times a target number appears in an array
+        public static int CountMatching(int[] pInputValue, int pTarget)
+        {
+            if (pInputValue == null || pInputValue.Length == 0)
+            {
+                return 0;
+            }
+
+            int counter = 0;
+
+            foreach (int value in pInputValue)
+            {
+                if (value == pTarget)
+                {
+                    counter++;
+                }
+            }
+
+            return counter;
+        }
+        public static int[] RemoveTarget(int[] pInputValue, int pTarget)
+        {
+            if (pInputValue == null || pInputValue.Length == 0)
+            {
+                return [];
+            }
+
+            List<int> listArray = [];
+
+            for (int counter = 0; counter <= pInputValue.Length - 1; counter++)
+            {
+                if (pInputValue[counter] != pTarget)
+                {
+                    listArray.Add(pInputValue[counter]);
+                }
+            }
+
+            return listArray.ToArray();
+        }
+        public static int[] MoveTargetToEnd(int[] pInputeValue, int pTarget)
+        {
+            if (pInputeValue == null || pInputeValue.Length == 0)
+            {
+                return [];
+            }
+
+            List<int> listArray = [];
+
+            foreach (int value in pInputeValue)
+            {
+                if (value != pTarget)
+                {
+                    listArray.Add(value);
+                }
+            }
+
+            foreach (int value in pInputeValue)
+            {
+                if (value == pTarget)
+                {
+                    listArray.Add(value);
+                }
+            }
+
+            return listArray.ToArray();
+        }
+
 
         public void RunAllChallengeSolutions()
         {
+            // 1. Count even numbers (Sum)
+            Console.WriteLine(SumEvenNumbersRev([1, 2, 3, 4, 5, 6])); // 12 (2+4+6)
+            Console.WriteLine(SumEvenNumbersRev([2, 4, 6, 8]));       // 20
+            Console.WriteLine(SumEvenNumbersRev([1, 3, 5]));          // 0
+            Console.WriteLine(SumEvenNumbersRev([]));                  // 0
+
+
+            //  2. Replace target with value 
+            //- Replace every number that matches the target with a new replacement value 
+            //- Example [1,5,10,5] - Target 5, replacement 99 == [1,99,10,99]
+            Console.WriteLine(string.Join(",", ReplaceTarget([1, 5, 10, 5], 5, 99))); // 1,99,10,99
+            Console.WriteLine(string.Join(",", ReplaceTarget([5, 5, 5], 5, 0)));      // 0,0,0
+            Console.WriteLine(string.Join(",", ReplaceTarget([1, 2, 3], 9, 100)));    // 1,2,3
+
+            // 3. Split positive and negative numbers: 
+            // - Return a new array with positive numbers first, then negative numbers, ignore zeros completely
+            Console.WriteLine(string.Join(",", SplitPosNeg([1, -2, 3, -4, 0]))); // 1,3,-2,-4
+            Console.WriteLine(string.Join(",", SplitPosNeg([-1, -2, -3])));      // -1,-2,-3
+            Console.WriteLine(string.Join(",", SplitPosNeg([1, 2, 3])));         // 1,2,3
+            Console.WriteLine(string.Join(",", SplitPosNeg([0, 0, 0])));         // (empty)
+
+            // 4. Count Matching Numbers
+            // -Count how many times a target number appears in an array
+            Console.WriteLine(CountMatching([1, 2, 2, 3, 2], 2)); // 3
+            Console.WriteLine(CountMatching([5, 5, 5, 5], 5));    // 4
+            Console.WriteLine(CountMatching([1, 2, 3], 9));       // 0
+
+            // 5. Remove Target  From array
+            // - Remove every number that matches target 
+            // - Return a new array with all matching target values matched 
+            Console.WriteLine(string.Join(",", RemoveTarget([1, 2, 3, 2, 4], 2))); // 1,3,4
+            Console.WriteLine(string.Join(",", RemoveTarget([5, 5, 5], 5)));       // (empty)
+            Console.WriteLine(string.Join(",", RemoveTarget([1, 2, 3], 9)));       // 1,2,3
+
+
+            // 6. Move Target to the end 
+            // - meaning move every matching target value to the end of the array.kepp non-target numbers
+            // - in the original order. 
+            // Return  a new array where all target values are moved to the end
+            Console.WriteLine(string.Join(",", MoveTargetToEnd([1, 2, 3, 2, 4], 2))); // 1,3,4,2,2
+            Console.WriteLine(string.Join(",", MoveTargetToEnd([5, 1, 5, 2], 5)));    // 1,2,5,5
+            Console.WriteLine(string.Join(",", MoveTargetToEnd([1, 2, 3], 9)));       // 1,2,3
             // New Challenge: Replace Target With Value
             Console.WriteLine($"[1, 0, 5, 0], target 0, replacement 99 should return [1, 99, 5, 99] => Answer: [{string.Join(", ", ReplaceTargetWithValue([1, 0, 5, 0], 0, 99))}]");
             Console.WriteLine($"[1, 0, 5, 0], target 0, replacement 0 should return [1, 0, 5, 0] => Answer: [{string.Join(", ", ReplaceTargetWithValue([1, 0, 5, 0], 0, 0))}]");
