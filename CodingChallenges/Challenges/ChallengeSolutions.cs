@@ -1,6 +1,6 @@
 ﻿namespace CodingChallenges.Challenges
 {
-    // PMG TODO: Clean up
+    // PMG TODO: Clean up and Refactor - Is getting a bit too big
     public class ChallengeSolutions
     {
         private int CountDigitsFromString(string pInputValue)
