@@ -1101,6 +1101,176 @@
             return listArray.ToArray();
         }
 
+        public static int CountNonZero(int[] pInputValue)
+        {
+            int counter = 0;
+
+            if (pInputValue == null || pInputValue.Length == 0)
+            {
+                return 0;
+            }
+
+            foreach (int value in pInputValue)
+            {
+                if (value != 0)
+                {
+                    counter++;
+                }
+            }
+
+            return counter;
+        }
+
+        public static int[] MoveTargetToEndRev(int[] pInputValue, int pTarget)
+        {
+            List<int> listArray = [];
+
+            if (pInputValue == null || pInputValue.Length == 0)
+            {
+                return [];
+            }
+
+            foreach (int value in pInputValue)
+            {
+                if (value != pTarget)
+                {
+                    listArray.Add(value);
+                }
+            }
+
+            foreach (int value in pInputValue)
+            {
+                if (value == pTarget)
+                {
+                    listArray.Add(value);
+                }
+            }
+
+            return listArray.ToArray();
+        }
+
+        public static int FindSecondLargestNumRev(int[] pInputValue)
+        {
+            if (pInputValue == null || pInputValue.Length == 0)
+            {
+                return 0;
+            }
+
+            int firstLargestNumber;
+            int secondLargestNumber;
+
+            if (pInputValue.Length == 1)
+            {
+                return pInputValue[0];
+            }
+
+            if (pInputValue[0] >= pInputValue[1])
+            {
+                firstLargestNumber = pInputValue[0];
+                secondLargestNumber = pInputValue[1];
+            }
+            else
+            {
+                firstLargestNumber = pInputValue[1];
+                secondLargestNumber = pInputValue[0];
+            }
+
+            foreach (int value in pInputValue)
+            {
+                if (value > firstLargestNumber)
+                {
+                    secondLargestNumber = firstLargestNumber;
+                    firstLargestNumber = value;
+                }
+                else if (value > secondLargestNumber)
+                {
+                    secondLargestNumber = value;
+                }
+            }
+
+            return secondLargestNumber;
+        }
+
+        public static int MostFrequentNumberInArray(int[] pInputValue)
+        {
+            if (pInputValue == null || pInputValue.Length == 0)
+            {
+                return 0;
+            }
+
+            int totalCountFound = 0;
+            int FrequentValue = 0;
+
+            for (int counter = 0; counter <= pInputValue.Length - 1; counter++)
+            {
+                int value = pInputValue[counter];
+                int count = 0;
+
+                for (int counterTwo = 0; counterTwo <= pInputValue.Length - 1; counterTwo++)
+                {
+                    if (value == pInputValue[counterTwo])
+                    {
+                        count++;
+                    }
+
+                    if (count > totalCountFound)
+                    {
+                        totalCountFound = count;
+                        FrequentValue = value;
+                    }
+                }
+            }
+
+            return FrequentValue;
+        }
+
+        // 5. New Challenge: Rotating Array Right By One
+        // Move the Last number to the front - New Sized array 
+        // Example [1,2,3,4] -> [4,1,2,3]
+        // [10, 20, 30] -> [30, 10, 20]
+        // Put last value at index 0; Then
+        // copy the rest of the orginal values one positon to 
+        // the right
+
+        public static int[] RotateArrayRight(int[] pInputValue)
+        {
+            if (pInputValue == null || pInputValue.Length == 0)
+            {
+                return [];
+            }
+
+            int[] newArray = new int[pInputValue.Length];
+            newArray[0] = pInputValue[pInputValue.Length - 1];
+
+            for (int counter = 1; counter <= pInputValue.Length - 1; counter++)
+            {
+
+                newArray[counter] = pInputValue[counter - 1];
+            }
+
+            return newArray;
+        }
+
+        public static int[] RotateArrayLeft(int[] pInputValue)
+        {
+            if (pInputValue == null || pInputValue.Length == 0)
+            {
+                return [];
+            }
+
+            int[] newArray = new int[pInputValue.Length];
+            newArray[pInputValue.Length - 1] = pInputValue[0];
+
+
+            for (int counter = 0; counter < pInputValue.Length - 1; counter++)
+            {
+                newArray[counter] = pInputValue[counter + 1];
+            }
+
+
+            return newArray;
+        }
+
 
         public void RunAllChallengeSolutions()
         {
@@ -1455,6 +1625,59 @@
             Console.WriteLine(string.Join(", ", FilterNumbersBetweenRange([1, 2, 3, 4, 5], 2, 4))); // 2, 3, 4
             Console.WriteLine(string.Join(", ", FilterNumbersBetweenRange([7], 7, 7)));             // 7
             Console.WriteLine(string.Join(", ", FilterNumbersBetweenRange([7], 1, 5)));             // Blank
+
+            // 1. Count Non-Zero Numbers
+            // - Return how many numbers are not zero
+
+            // Console.WriteLine(CountNonZero([1, 0, 2, 0, 3])); // 3
+            // Console.WriteLine(CountNonZero([0, 0, 0]));       // 0
+            // Console.WriteLine(CountNonZero([1, 2, 3]));       // 3
+            // Console.WriteLine(CountNonZero([]));               // 0
+
+            // 2. Revision: Move Target to End 
+            // - Move Target values within an array to the end of the array
+            // Console.WriteLine(string.Join(",", MoveTargetToEnd([1, 2, 3, 2, 4], 2))); // 1,3,4,2,2
+            // Console.WriteLine(string.Join(",", MoveTargetToEnd([5, 1, 5, 2], 5)));    // 1,2,5,5
+            // Console.WriteLine(string.Join(",", MoveTargetToEnd([1, 2, 3], 9)));       // 1,2,3
+
+            // 3. Revision: Find Second Largest Number 
+            // Console.WriteLine(FindSecondLargestNumRev([1, 2, 3, 4]));     // 3
+            // Console.WriteLine(FindSecondLargestNumRev([10, 5, 8, 20]));   // 10
+            // Console.WriteLine(FindSecondLargestNumRev([5, 5, 5, 5]));     // 5
+            // Console.WriteLine(FindSecondLargestNumRev([1]));              // 1
+
+
+            // 4. New Challenge Find Most Frequent Number
+            // - Return the number that appears the most 
+            // 
+            // Console.WriteLine(MostFrequentNumberInArray([1, 2, 2, 3, 2])); // 2
+            // Console.WriteLine(MostFrequentNumberInArray([5, 5, 1, 1]));    // 5
+            // Console.WriteLine(MostFrequentNumberInArray([9]));             // 9
+            // Console.WriteLine(MostFrequentNumberInArray([]));               // 0
+
+
+            // 5. New Challenge: Rotating Array Right By One
+            // Move the Last number to the front - New Sized array 
+            // Example [1,2,3,4] -> [4,1,2,3]
+            // [10, 20, 30] -> [30, 10, 20]
+            // Put last value at index 0; Then
+            // copy the rest of the orginal values one positon to 
+            // the right
+            // Console.WriteLine(string.Join(",", RotateArrayRight(new int[] { 1, 2, 3, 4 }))); // 4,1,2,3
+            // Console.WriteLine(string.Join(",", RotateArrayRight(new int[] { 10, 20, 30 }))); // 30,10,20
+            // Console.WriteLine(string.Join(",", RotateArrayRight(new int[] { 1 })));          // 1
+            // Console.WriteLine(string.Join(",", RotateArrayRight(new int[] { })));            // (empty)
+
+            // 6. New Challenge(Optional): Rotate Array Left By One 
+            // -Move the first number to the end
+            // Example: [1,2,3,4,] = [2,3,4,1]
+            // Copy Everything after index 0 one position left.
+            // Put the original 1st value at the end
+            Console.WriteLine(string.Join(",", RotateArrayLeft([1, 2, 3, 4]))); // 2,3,4,1
+            Console.WriteLine(string.Join(",", RotateArrayLeft([10, 20, 30]))); // 20,30,10
+            Console.WriteLine(string.Join(",", RotateArrayLeft([1])));          // 1
+            Console.WriteLine(string.Join(",", RotateArrayLeft([])));            // (empty)
+
         }
     }
 }
