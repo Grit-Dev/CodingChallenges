@@ -163,17 +163,44 @@
         return 0;
     }
 
+    public static int FindLastNumberGreaterThanTarget(int[] pInputValue, int pTarget)
+    {
+        if (pInputValue == null || pInputValue.Length == 0)
+        {
+            return 0;
+        }
+
+        for (int counter = pInputValue.Length - 1; counter >= 0; counter--)
+        {
+            if (pInputValue[counter] > pTarget)
+            {
+                return pInputValue[counter];
+            }
+        }
+
+        return 0;
+    }
+
+
+
 
     public static void Main(string[] args)
     {
+        // Find last Number Greater Than Target
+        Console.WriteLine($"[1, 5, 10, 3], target 4 should return 10 => Answer: {FindLastNumberGreaterThanTarget(new int[] { 1, 5, 10, 3 }, 4)}");
+        Console.WriteLine($"[1, 2, 3], target 10 should return 0 => Answer: {FindLastNumberGreaterThanTarget(new int[] { 1, 2, 3 }, 10)}");
+        Console.WriteLine($"[-5, -2, 0], target -3 should return 0 => Answer: {FindLastNumberGreaterThanTarget(new int[] { -5, -2, 0 }, -3)}");
+        Console.WriteLine($"[7], target 5 should return 7 => Answer: {FindLastNumberGreaterThanTarget(new int[] { 7 }, 5)}");
+        Console.WriteLine($"Empty array, target 5 should return 0 => Answer: {FindLastNumberGreaterThanTarget(new int[] { }, 5)}");
+        Console.WriteLine($"Null, target 5 should return 0 => Answer: {FindLastNumberGreaterThanTarget(null, 5)}");
 
-        // Find Fist Number Greater Than Target
-        Console.WriteLine($"[1, 5, 10, 3], target 4 should return 5 => Answer: {FindFirstNumberGreaterThanTarget([1, 5, 10, 3], 4)}");
-        Console.WriteLine($"[1, 2, 3], target 10 should return 0 => Answer: {FindFirstNumberGreaterThanTarget([1, 2, 3], 10)}");
-        Console.WriteLine($"[-5, -2, 0], target -3 should return -2 => Answer: {FindFirstNumberGreaterThanTarget([-5, -2, 0], -3)}");
-        Console.WriteLine($"[7], target 5 should return 7 => Answer: {FindFirstNumberGreaterThanTarget([7], 5)}");
-        Console.WriteLine($"Empty array, target 5 should return 0 => Answer: {FindFirstNumberGreaterThanTarget([], 5)}");
-        Console.WriteLine($"Null, target 5 should return 0 => Answer: {FindFirstNumberGreaterThanTarget(null!, 5)}");
+        // Find First Number Greater Than Target
+        //Console.WriteLine($"[1, 5, 10, 3], target 4 should return 5 => Answer: {FindFirstNumberGreaterThanTarget([1, 5, 10, 3], 4)}");
+        //Console.WriteLine($"[1, 2, 3], target 10 should return 0 => Answer: {FindFirstNumberGreaterThanTarget([1, 2, 3], 10)}");
+        //Console.WriteLine($"[-5, -2, 0], target -3 should return -2 => Answer: {FindFirstNumberGreaterThanTarget([-5, -2, 0], -3)}");
+        //Console.WriteLine($"[7], target 5 should return 7 => Answer: {FindFirstNumberGreaterThanTarget([7], 5)}");
+        //Console.WriteLine($"Empty array, target 5 should return 0 => Answer: {FindFirstNumberGreaterThanTarget([], 5)}");
+        //Console.WriteLine($"Null, target 5 should return 0 => Answer: {FindFirstNumberGreaterThanTarget(null!, 5)}");
 
         // Count Non Zeros: 
         //Console.WriteLine(CountNonZerosWarmUp([1, 0, 2, 0, 3])); // 3
