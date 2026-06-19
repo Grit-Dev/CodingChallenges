@@ -109,6 +109,39 @@
         return newList.ToArray();
     }
 
+    public static int FindSecondLargestDistinctNumber(int[] pInputValue)
+    {
+        if (pInputValue == null || pInputValue.Length == 0)
+        {
+            return -1;
+        }
+
+        int firstLargestnumber = int.MinValue;
+        int secondLargestnumber = int.MinValue;
+
+        for (int counter = 0; counter <= pInputValue.Length - 1; counter++)
+        {
+            int value = pInputValue[counter];
+
+            if (value > firstLargestnumber)
+            {
+                secondLargestnumber = firstLargestnumber;
+                firstLargestnumber = value;
+            }
+            else if (value > secondLargestnumber && value != firstLargestnumber)
+            {
+                secondLargestnumber = value;
+            }
+        }
+
+        if (secondLargestnumber == int.MinValue)
+        {
+            return -1;
+        }
+
+        return secondLargestnumber;
+    }
+
 
     public static void Main(string[] args)
     {
@@ -137,11 +170,28 @@
         //Console.WriteLine(MostFrequentNumberInArrayRevision([]));               // 0
 
         // Count Negative Numbers:
-        Console.WriteLine($"[1, -2, 3, -4] should return [1, 3] => Answer: [{string.Join(", ", RemoveNegativeNumbers([1, -2, 3, -4]))}]");
-        Console.WriteLine($"[-1, -2, -3] should return [] => Answer: [{string.Join(", ", RemoveNegativeNumbers([-1, -2, -3]))}]");
-        Console.WriteLine($"[0, 1, 2] should return [0, 1, 2] => Answer: [{string.Join(", ", RemoveNegativeNumbers([0, 1, 2]))}]");
-        Console.WriteLine($"Empty array should return [] => Answer: [{string.Join(", ", RemoveNegativeNumbers([]))}]");
-        Console.WriteLine($"Null should return [] => Answer: [{string.Join(", ", RemoveNegativeNumbers(null!))}]");
+        //Console.WriteLine($"[1, -2, 3, -4] should return [1, 3] => Answer: [{string.Join(", ", RemoveNegativeNumbers([1, -2, 3, -4]))}]");
+        //Console.WriteLine($"[-1, -2, -3] should return [] => Answer: [{string.Join(", ", RemoveNegativeNumbers([-1, -2, -3]))}]");
+        //Console.WriteLine($"[0, 1, 2] should return [0, 1, 2] => Answer: [{string.Join(", ", RemoveNegativeNumbers([0, 1, 2]))}]");
+        //Console.WriteLine($"Empty array should return [] => Answer: [{string.Join(", ", RemoveNegativeNumbers([]))}]");
+        //Console.WriteLine($"Null should return [] => Answer: [{string.Join(", ", RemoveNegativeNumbers(null!))}]");
+
+        Console.WriteLine($"[10, 10, 5, 3] should return 5 => Answer: {FindSecondLargestDistinctNumber(new int[] { 10, 10, 5, 3 })}");
+        Console.WriteLine($"[1, 5, 3, 9, 2] should return 5 => Answer: {FindSecondLargestDistinctNumber(new int[] { 1, 5, 3, 9, 2 })}");
+        Console.WriteLine($"[30, 20, 10] should return 20 => Answer: {FindSecondLargestDistinctNumber(new int[] { 30, 20, 10 })}");
+        Console.WriteLine($"[-5, -2, -1, -10] should return -2 => Answer: {FindSecondLargestDistinctNumber(new int[] { -5, -2, -1, -10 })}");
+        Console.WriteLine($"[10, 10] should return -1 => Answer: {FindSecondLargestDistinctNumber(new int[] { 10, 10 })}");
+        Console.WriteLine($"[5, 5, 5] should return -1 => Answer: {FindSecondLargestDistinctNumber(new int[] { 5, 5, 5 })}");
+        Console.WriteLine($"[100] should return -1 => Answer: {FindSecondLargestDistinctNumber(new int[] { 100 })}");
+        Console.WriteLine($"Empty array should return -1 => Answer: {FindSecondLargestDistinctNumber(new int[] { })}");
+        Console.WriteLine($"Null should return -1 => Answer: {FindSecondLargestDistinctNumber(null)}");
+
+
+
+
+
+
+
 
 
 
