@@ -89,6 +89,26 @@
         return mostFrequentNumber;
     }
 
+    public static int[] RemoveNegativeNumbers(int[] pInputValue)
+    {
+        if (pInputValue == null || pInputValue.Length == 0)
+        {
+            return []; 
+        }
+
+        List<int> newList = [];
+
+        foreach (int counter in pInputValue)
+        {
+            if (counter >= 0)
+            {
+                newList.Add(counter);
+            }
+        }
+
+        return newList.ToArray();
+    }
+
 
     public static void Main(string[] args)
     {
@@ -111,10 +131,18 @@
         //Console.WriteLine(string.Join(",", RotateArrayLeftWarmUp([])));            // (empty)
 
         // Most Frequent Number:
-        Console.WriteLine(MostFrequentNumberInArrayRevision([1, 2, 2, 3, 2])); // 2
-        Console.WriteLine(MostFrequentNumberInArrayRevision([5, 5, 1, 1]));    // 5
-        Console.WriteLine(MostFrequentNumberInArrayRevision([9]));             // 9
-        Console.WriteLine(MostFrequentNumberInArrayRevision([]));               // 0
+        //Console.WriteLine(MostFrequentNumberInArrayRevision([1, 2, 2, 3, 2])); // 2
+        //Console.WriteLine(MostFrequentNumberInArrayRevision([5, 5, 1, 1]));    // 5
+        //Console.WriteLine(MostFrequentNumberInArrayRevision([9]));             // 9
+        //Console.WriteLine(MostFrequentNumberInArrayRevision([]));               // 0
+
+        // Count Negative Numbers:
+        Console.WriteLine($"[1, -2, 3, -4] should return [1, 3] => Answer: [{string.Join(", ", RemoveNegativeNumbers([1, -2, 3, -4]))}]");
+        Console.WriteLine($"[-1, -2, -3] should return [] => Answer: [{string.Join(", ", RemoveNegativeNumbers([-1, -2, -3]))}]");
+        Console.WriteLine($"[0, 1, 2] should return [0, 1, 2] => Answer: [{string.Join(", ", RemoveNegativeNumbers([0, 1, 2]))}]");
+        Console.WriteLine($"Empty array should return [] => Answer: [{string.Join(", ", RemoveNegativeNumbers([]))}]");
+        Console.WriteLine($"Null should return [] => Answer: [{string.Join(", ", RemoveNegativeNumbers(null!))}]");
+
 
 
     }
