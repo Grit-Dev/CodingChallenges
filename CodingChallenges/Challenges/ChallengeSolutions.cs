@@ -1896,7 +1896,7 @@ namespace CodingChallenges.Challenges
             return reversedString.ToString();
         }
 
-        private static string CountVowelsAndConsonants(string pInputvalue)
+        private static string CountVowelsAndConsonantsRev(string pInputvalue)
         {
             char[] vowels = ['a', 'e', 'i', 'o', 'u'];
 
