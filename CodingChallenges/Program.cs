@@ -2,95 +2,67 @@
 
 public class Program
 {
-    public static int CountOddNumbersRevisionOne(int[] pInputValue)
+    private static string CountVowelsAndConsonants(string pInputvalue)
     {
-        if (pInputValue == null || pInputValue.Length == 0)
+        char[] vowels = ['a', 'e', 'i', 'o', 'u'];
+
+        char[] consonants =
+        [
+            'b', 'c', 'd', 'f', 'g',
+                'h', 'j', 'k', 'l', 'm',
+                'n', 'p', 'q', 'r', 's',
+                't', 'v', 'w', 'x', 'y',
+                'z'
+        ];
+
+        if (string.IsNullOrEmpty(pInputvalue))
         {
-            return 0;
+            return "Value was empty";
         }
 
-        int counter = 0;
+        int vowelsCounter = 0;
+        int consantsCounter = 0;
 
-        foreach (int value in pInputValue)
+        pInputvalue = pInputvalue.ToLower();
+
+        foreach (char character in pInputvalue)
         {
-            if (value % 2 != 0)
+            if (vowels.Contains(character))
             {
-                counter++;
+                vowelsCounter++;
+            }
+            else if (consonants.Contains(character))
+            {
+                consantsCounter++;
             }
         }
 
-        return counter;
+        return $"Total Vowels: {vowelsCounter} || Total Consonants: {consantsCounter}";
+
     }
 
-    public static int MostFrequentNumberRevisionOne(int[] pInputValue)
+    public static int[] RemoveLastOccurrenceRevision(int[] pInputValue, int pTarget)
     {
+
         if (pInputValue == null || pInputValue.Length == 0)
-        {
-            return 0;
-        }
-
-        int mostFrequentNumber = 0;
-        int highestCounter = 0;
-
-        for (int counter = 0; counter <= pInputValue.Length - 1; counter++)
-        {
-            int value = pInputValue[counter];
-            int countFrequency = 0;
-
-            for (int counterTwo = 0; counterTwo <= pInputValue.Length - 1; counterTwo++)
-            {
-                if (value == pInputValue[counterTwo])
-                {
-                    countFrequency++;
-                }
-            }
-
-            if (countFrequency > highestCounter)
-            {
-                highestCounter = countFrequency;
-                mostFrequentNumber = value;
-            }
-        }
-
-        return mostFrequentNumber;
-    }
-
-    public static int[] RemoveLastOccurrenceRevisionOne(int[] pInputValue, int? pTarget)
-    {
-        if (pInputValue == null || pInputValue.Length == 0)
-        {
-            return [];
-        }
-
-        if (!pTarget.HasValue)
         {
             return [];
         }
 
         List<int> newList = [];
-        bool isTrue = false;
+        int lastIndex = -1;
 
-        if (pInputValue.Length == 1)
+        for (int counter = 0; counter <= pInputValue.Length - 1; counter++)
         {
-            if (pTarget == pInputValue[0])
+            if (pInputValue[counter] == pTarget)
             {
-                return [];
-            }
-            else
-            {
-                newList.Add(pInputValue[0]);
-                return newList.ToArray();
+                lastIndex = counter;
             }
         }
 
         for (int counter = 0; counter <= pInputValue.Length - 1; counter++)
         {
-            if (pTarget == pInputValue[counter] && isTrue == false)
-            {
-                newList.Add(pInputValue[counter]);
-                isTrue = true;
-            }
-            else if (pTarget != pInputValue[counter])
+            if (counter != lastIndex)
             {
                 newList.Add(pInputValue[counter]);
             }
@@ -99,167 +71,149 @@ public class Program
         return newList.ToArray();
     }
 
-    public static void CountVowelsAndConsonantsRevisionOne(string pInputValue)
+    public static string CountUpperCaseLetters(string pInputValue)
     {
         if (string.IsNullOrEmpty(pInputValue))
         {
-            Console.WriteLine("Input cannot be null or empty                                                                                                                                                                                                          ");
+            return "String is empty";
         }
 
-        char[] vowels = ['a', 'e', 'i', 'o', 'u'];
+        int counter = 0;
 
-        char[] consonants =
-        [
-            'b','c','d','f','g','h','j','k','l','m',
-                'n','p','q','r','s','t','v','w','x','y','z'
-        ];
-        int vowelsCounter = 0;
-        int consonantsCounter = 0;
-
-        pInputValue = pInputValue.ToLower();
-
-        foreach (char counter in pInputValue)
+        foreach (char character in pInputValue)
         {
-            if (vowels.Contains(counter))
+            if (char.IsUpper(character))
             {
-                vowelsCounter++;
-            }
-            else if (consonants.Contains(counter))
-            {
-                consonantsCounter++;
+                counter++;
             }
         }
 
-        Console.WriteLine("vowels: " + vowelsCounter);
-        Console.WriteLine("Other" + consonantsCounter);
+        return $"Total upper case letters for {pInputValue} is: {counter}";
     }
 
-    public static string RemoveSpaces(string pInputValue)
+    public static string CapitaliseFirstLetter(string pInputValue)
     {
         if (string.IsNullOrEmpty(pInputValue))
         {
-            return "";
+            return "String is empty";
         }
 
-        string newWord = "";
+        char capitalLetter = char.ToUpper(pInputValue[0]);
+        string newString = capitalLetter + pInputValue.Substring(1);
+
+        return newString;
+    }
+
+    public static int CountWords(string pInputValue)
+    {
+        if (string.IsNullOrEmpty(pInputValue))
+        {
+            return -1;
+        }
+
+        bool isInsideWord = true;
+        int wordCount = 0;
 
         foreach (char character in pInputValue)
         {
             if (!char.IsWhiteSpace(character))
             {
-                newWord = newWord + character;
+                if (isInsideWord == true)
+                {
+                    wordCount++;
+                    isInsideWord = false;
+                }
             }
-        }
-
-        return newWord;
-    }
-
-    public static string ReverseString(string pInputeValue)
-    {
-        if (string.IsNullOrEmpty(pInputeValue))
-        {
-            return "";
-        }
-
-        StringBuilder reversedString = new();
-
-        for (int counter = pInputeValue.Length - 1; counter >= 0; counter--)
-        {
-            reversedString.Append(pInputeValue[counter]);
-        }
-
-        return reversedString.ToString();
-    }
-
-    public static string ReverseWords(string pInputeValue)
-    {
-        if (string.IsNullOrEmpty(pInputeValue))
-        {
-            return "";
-        }
-
-        StringBuilder reversedString = new();
-        var split = pInputeValue.Split(' ');
-
-        for (int counter = split.Length - 1; counter >= 0; counter--)
-        {
-            reversedString.Append(split[counter]);
-
-            if (counter > 0)
+            else
             {
-                reversedString.Append(' ');
+                isInsideWord = true;
             }
         }
 
-        return reversedString.ToString();
+        return wordCount;
     }
 
+    public static string CapitaliseEachWord(string pInputVale)
+    {
+        if (string.IsNullOrEmpty(pInputVale))
+        {
+            return "String is empty";
+        }
+
+        var split = pInputVale.Split(" ");
+        StringBuilder newString = new();
+
+        foreach (string character in split)
+        {
+            char characterHolder = character[0];
+            characterHolder = char.ToUpper(characterHolder);
+
+            newString.Append(characterHolder).Append(character.Substring(1));
+            newString.Append(' ');
+        }
+
+        return newString.ToString().Trim();
+    }
 
     public static void Main(string[] args)
     {
-
-        /*
-            Best target next session
-            Minimum:
-            1. Count Uppercase Letters
-            2. Remove Last Occurrence revision
-            3. Count Vowels and Consonants revision
-
-            Good:
-            4. Count Words
-            5. Capitalize First Letter
-
-            Stretch:
-            6. Capitalize Each Word         
-         */
-
-        // Refactor Later:
+        // Capitalise Each Word == "Hello World" -- String
+        Console.WriteLine(CapitaliseEachWord("hello world"));               // Hello World
+        Console.WriteLine(CapitaliseEachWord("c# is awesome"));             // C# Is Awesome
+        Console.WriteLine(CapitaliseEachWord("one two three four"));        // One Two Three Four
+        Console.WriteLine(CapitaliseEachWord("hello"));                     // Hello
+        Console.WriteLine(CapitaliseEachWord(""));                          // (empty)
+                                                                            // Console.WriteLine(CountUpperCaseLetters("123!@#"));     // 0
+                                                                            // Console.WriteLine(CountWords("   "));                   // edge case
+                                                                            // Console.WriteLine(CapitaliseFirstLetter("a"));          // A
+                                                                            // Console.WriteLine(CapitaliseEachWord("a b c"));         // A B C
+                                                                            // Console.WriteLine(CountVowelsAndConsonants("WHY"));     // Vowels: 0, Consonants: 3
 
 
-        // Count Odd Numbers 
-        // Console.WriteLine(CountOddNumbersRevisionOne([1, 2, 3, 4, 5])); // 3
-        // Console.WriteLine(CountOddNumbersRevisionOne([2, 4, 6, 8]));    // 0
-        // Console.WriteLine(CountOddNumbersRevisionOne([1, 3, 5, 7]));    // 4
-        // Console.WriteLine(CountOddNumbersRevisionOne([]));               // 0
-
-        // Most Frequent Number Revision
-
-        // Console.WriteLine(MostFrequentNumberRevisionOne([1, 2, 2, 3, 2])); // 2
-        // Console.WriteLine(MostFrequentNumberRevisionOne([5, 5, 1, 1, 5])); // 5
-        // Console.WriteLine(MostFrequentNumberRevisionOne([9]));             // 9
-        // Console.WriteLine(MostFrequentNumberRevisionOne([7, 7, 7, 7]));   // 7
-
-        // Remove last occurrence - [1,5,10, 5] Target 5 => [1,5, 10] 
-        // Console.WriteLine(string.Join(",", RemoveLastOccurrenceRevisionOne(new int[] { 1, 5, 10, 5 }, 5))); // 1,5,10
-        // Console.WriteLine(string.Join(",", RemoveLastOccurrenceRevisionOne(new int[] { 5, 1, 5, 5 }, 5)));  // 5,1,5
-        // Console.WriteLine(string.Join(",", RemoveLastOccurrenceRevisionOne(new int[] { 1, 2, 3 }, 9)));     // 1,2,3
-        // Console.WriteLine(string.Join(",", RemoveLastOccurrenceRevisionOne(new int[] { 5 }, 5)));           // (empty)
+        // Capitalise First Letter === Return the same string but with the first character uppercase
+        // Console.WriteLine(CapitaliseFirstLetter("hello"));          // Hello
+        // Console.WriteLine(CapitaliseFirstLetter("world"));          // World
+        // Console.WriteLine(CapitaliseFirstLetter("hello world"));    // Hello world
+        // Console.WriteLine(CapitaliseFirstLetter("Hello"));          // Hello
+        // Console.WriteLine(CapitaliseFirstLetter(""));               // (empty)
 
 
-        // Count Vowels and Consants
-        // CountVowelsAndConsonantsRevisionOne("hello");      // Vowels: 2, Consonants: 3
-        // CountVowelsAndConsonantsRevisionOne("AEIOU");      // Vowels: 5, Consonants: 0
-        // CountVowelsAndConsonantsRevisionOne("bcdfg");      // Vowels: 0, Consonants: 5
-        // CountVowelsAndConsonantsRevisionOne("Hello World"); // Vowels: 3, Consonants: 7
 
 
-        // Remove spaces From String 
-        // Console.WriteLine(RemoveSpaces("Hello World"));          // HelloWorld
-        // Console.WriteLine(RemoveSpaces(" C# Is Fun "));          // C#IsFun
-        // Console.WriteLine(RemoveSpaces("NoSpaces"));             // NoSpaces
-        // Console.WriteLine(RemoveSpaces("   "));                  // (empty)
 
-        // Reverse Words in string
-        // Console.WriteLine(ReverseString("Hello World"));                 // World Hello
-        // Console.WriteLine(ReverseString("C# Is Awesome"));               // Awesome Is C#
-        // Console.WriteLine(ReverseString("One Two Three Four"));          // Four Three Two One
-        // Console.WriteLine(ReverseString("Single"));                      // Single
 
-        // // Reverse Words in Sentence
-        // Console.WriteLine(ReverseWords("Hello World"));                 // World Hello
-        // Console.WriteLine(ReverseWords("C# Is Awesome"));               // Awesome Is C#
-        // Console.WriteLine(ReverseWords("One Two Three Four"));          // Four Three Two One
-        // Console.WriteLine(ReverseWords("Single"));                      // Single
+        // Count UpperCase Letters -- string - return string 
+        // Console.WriteLine(CountUpperCaseLetters("Hello World"));     // 2
+        // Console.WriteLine(CountUpperCaseLetters("HELLO"));           // 5
+        // Console.WriteLine(CountUpperCaseLetters("hello"));           // 0
+        // Console.WriteLine(CountUpperCaseLetters("HeLLo WoRLD"));     // 7
+        // Console.WriteLine(CountUpperCaseLetters(""));                // 0
+
+
+        // Count Words, -- IsInsider word? String 
+        // Console.WriteLine(CountWords("Hello World"));                    // 2
+        // Console.WriteLine(CountWords("One Two Three Four"));             // 4
+        // Console.WriteLine(CountWords("Single"));                         // 1
+        // Console.WriteLine(CountWords(""));                               // 0
+        // Console.WriteLine(CountWords("C# is fun"));                      // 3
+
+        // Remove last Occurrence Revision --  array with target - [1, 5, 10, 5] - target 5 = [1,5,10]
+        // Console.WriteLine(string.Join(",", RemoveLastOccurrenceRevision([1, 5, 10, 5], 5))); // 1,5,10
+        // Console.WriteLine(string.Join(",", RemoveLastOccurrenceRevision([5, 1, 5, 5], 5)));  // 5,1,5
+        // Console.WriteLine(string.Join(",", RemoveLastOccurrenceRevision([1, 2, 3], 9)));     // 1,2,3
+        // Console.WriteLine(string.Join(",", RemoveLastOccurrenceRevision([5], 5)));           // (empty)
+        // Console.WriteLine(string.Join(",", RemoveLastOccurrenceRevision([5, 5, 5], 5)));     // 5,5
+
+
+
+        // Count Vowels and Consonants Revision  -- Case Insenseitivity - Treay y as a consant
+        // Console.WriteLine(CountVowelsAndConsonants("Hello"));       // Vowels: 2, Consonants: 3
+        // Console.WriteLine(CountVowelsAndConsonants("AEIOU"));       // Vowels: 5, Consonants: 0
+        // Console.WriteLine(CountVowelsAndConsonants("xyz"));         // Vowels: 0, Consonants: 3
+        // Console.WriteLine(CountVowelsAndConsonants("Seagate"));     // Vowels: 4, Consonants: 3
+        // Console.WriteLine(CountVowelsAndConsonants(""));            // Vowels: 0, Consonants: 0
+
+
 
     }
 }
