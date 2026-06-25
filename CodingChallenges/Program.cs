@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using Microsoft.VisualBasic;
+using System.Text;
 
 public class Program
 {
@@ -219,6 +220,20 @@ public class Program
 
     public static void Main(string[] args)
     {
+
+    /*        Minimum:
+                1.Remove Vowels Preserve Casing
+                2.Is Palindrome Ignoring Spaces And Case
+                3.Count Vowels and Consonants revision
+
+                Good:
+                        4.Count Specific Character
+                5.Remove Specific Character
+
+            Stretch:
+                6.First Non - Repeating Character revision
+    */
+
         // Find the longest word
         // - Return the length of the longest word in a string 
         // - Example: Cyberpunk card vault => 9 for Cyberpunk
