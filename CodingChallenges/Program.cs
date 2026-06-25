@@ -2,72 +2,279 @@
 
 public class Program
 {
+    private static string RemoveVowels(string pInputValue)
+    {
+        if (string.IsNullOrEmpty(pInputValue))
+        {
+            return "";
+        }
+
+        var newStringInput = new StringBuilder();
+        char[] vowels = ['a', 'e', 'i', 'o', 'u'];
+        pInputValue = pInputValue.ToLower();
+
+
+        foreach (char character in pInputValue)
+        {
+            if (!vowels.Contains(character))
+            {
+                newStringInput.Append(character);
+            }
+        }
+
+        return newStringInput.ToString();
+    }
+
+    private static string CountVowelsAndConsonants(string pInputvalue)
+    {
+        if (string.IsNullOrEmpty(pInputvalue))
+        {
+            return "Vowels: 0, Consonants: 0";
+
+        }
+
+        char[] vowels = ['a', 'e', 'i', 'o', 'u'];
+
+        char[] consonants =
+        [
+            'b', 'c', 'd', 'f', 'g',
+                'h', 'j', 'k', 'l', 'm',
+                'n', 'p', 'q', 'r', 's',
+                't', 'v', 'w', 'x', 'y',
+                'z'
+        ];
+
+        pInputvalue = pInputvalue.ToLower();
+
+        int vowelsCounter = 0;
+        int consonantsCounter = 0;
+
+        foreach (char character in pInputvalue)
+        {
+            if (vowels.Contains(character))
+            {
+                vowelsCounter++;
+            }
+            else if (consonants.Contains(character))
+            {
+                consonantsCounter++;
+            }
+        }
+
+        return $"Vowels: {vowelsCounter}, Consonants: {consonantsCounter}";
+
+    }
+
+    public static int CountLowerCaseLetters(string pInputVale)
+    {
+        if (string.IsNullOrEmpty(pInputVale))
+        {
+            return 0;
+        }
+
+        int counter = 0;
+
+        foreach (char character in pInputVale)
+        {
+            if (char.IsLower(character))
+            {
+                counter++;
+            }
+        }
+
+        return counter;
+    }
+
+    public static int CountWords(string pInputVale)
+    {
+        if (string.IsNullOrEmpty(pInputVale))
+        {
+            return 0;
+        }
+
+        bool isInsideWord = false;
+        int counter = 0;
+
+        foreach (char character in pInputVale)
+        {
+            if (!char.IsWhiteSpace(character))
+            {
+                if (isInsideWord == false)
+                {
+                    counter++;
+                    isInsideWord = true;
+
+                }
+            }
+            else
+            {
+                isInsideWord = false;
+            }
+        }
+
+        return counter;
+    }
+
+    public static int FindLongestWordLength(string pInputValue)
+    {
+        if (string.IsNullOrEmpty(pInputValue))
+        {
+            return 0;
+        }
+
+        int longestLengthTotal = 0;
+        int counter = 0;
+
+        foreach (char character in pInputValue)
+        {
+            if (!char.IsWhiteSpace(character))
+            {
+                counter++;
+            }
+            else
+            {
+                if (counter > longestLengthTotal)
+                {
+                    longestLengthTotal = counter;
+                }
+
+                counter = 0;
+            }
+        }
+
+        if (counter > longestLengthTotal)
+        {
+            longestLengthTotal = counter;
+        }
+
+        return longestLengthTotal;
+    }
+
+    public static bool IsPalindromeIgnoringSpaces(string pInputValue)
+    {
+        if (string.IsNullOrEmpty(pInputValue))
+        {
+            return false;
+        }
+
+        StringBuilder newString = new StringBuilder();
+
+        foreach (char character in pInputValue)
+        {
+            if (!char.IsWhiteSpace(character))
+            {
+                newString.Append(character);
+            }
+        }
+
+        int left = 0;
+        int right = newString.Length - 1;
+
+        while (left <= right)
+        {
+            if (newString[left] != newString[right])
+            {
+                return false;
+            }
+
+            left++;
+            right--;
+        }
+
+        return true;
+    }
+
+    public static int FindLongestWordLengthAnotherGo(string pInputValue)
+    {
+        if (string.IsNullOrEmpty(pInputValue))
+        {
+            return 0;
+        }
+
+        int longestStringCounter = 0;
+        int counter = 0;
+
+        foreach (char character in pInputValue)
+        {
+            if (!char.IsWhiteSpace(character))
+            {
+                counter++;
+            }
+            else
+            {
+                if (counter > longestStringCounter)
+                {
+                    longestStringCounter = counter;
+                }
+            }
+        }
+
+        if (counter > longestStringCounter)
+        {
+            longestStringCounter = counter;
+        }
+
+        return longestStringCounter;
+    }
+
     public static void Main(string[] args)
     {
-        /*
-            NEXT CHALLENGES
+        // Find the longest word
+        // - Return the length of the longest word in a string 
+        // - Example: Cyberpunk card vault => 9 for Cyberpunk
+        Console.WriteLine(FindLongestWordLength("Cyberpunk card vault") == 9); // 9
+        Console.WriteLine(FindLongestWordLength("dog cat mouse") == 5); // 5
+        Console.WriteLine(FindLongestWordLength("hello") == 5); // 5
+        Console.WriteLine(FindLongestWordLength("") == 0); // 0
+        Console.WriteLine(FindLongestWordLength("a ab abc abcd") == 4); //4
 
-            1. Count Lowercase Letters
+        // Is Palindrome ignoring spaces
+        // - Return true if the string is a palinfrome while ignoring spaces
+        // -- racecar  = true || race car == True
+        // --- hello ==> false 
+        // ---- Return false for null or empty 
+        // Console.WriteLine(IsPalindromeIgnoringSpaces("racecar") == true);
+        // Console.WriteLine(IsPalindromeIgnoringSpaces("race car") == true);
+        // Console.WriteLine(IsPalindromeIgnoringSpaces("never odd or even") == true);
+        // Console.WriteLine(IsPalindromeIgnoringSpaces("hello") == false);
+        // Console.WriteLine(IsPalindromeIgnoringSpaces("") == false);
+        // Console.WriteLine(IsPalindromeIgnoringSpaces(null) == false);
 
-            * Return how many lowercase letters are in a string.
-            * Lowercase means char.IsLower(character).
-            * Example: "Hello" -> 4
-            * Example: "APPLE" -> 0
-            * Example: "Cyberpunk2077" -> 8
-            * Return 0 for null or empty.
 
-            2. Count Words Revision
+        // Count Lower Case Letters
+        // Console.WriteLine(CountLowerCaseLetters("hello") == 5);
+        // Console.WriteLine(CountLowerCaseLetters("Hello World") == 8);
+        // Console.WriteLine(CountLowerCaseLetters("ABC") == 0);
+        // Console.WriteLine(CountLowerCaseLetters("aBc123!") == 2);
+        // Console.WriteLine(CountLowerCaseLetters("") == 0);
 
-            * Return how many words are in a string.
-            * Words are separated by whitespace.
-            * Example: "Hello world" -> 2
-            * Example: "Cyberpunk card vault" -> 3
-            * Example: "   hello   world   " -> 2
-            * Return 0 for null or empty.
-            * Key idea: bool isInsideWord = false.
 
-            3. Count Vowels And Consonants Revision
+        // Count Words Revision
+        // - Return how many words are in the a string 
+        // - isInsider Word
+        // Console.WriteLine(CountWords("Hello World") == 2);
+        // Console.WriteLine(CountWords("One Two Three Four") == 4);
+        // Console.WriteLine(CountWords("Cyberpunk") == 1);
+        // Console.WriteLine(CountWords("") == 0);
+        // Console.WriteLine(CountWords("   ") == 0);
+        // Console.WriteLine(CountWords("  Hello   World  ") == 2);
 
-            * Return a string showing vowel and consonant totals.
-            * Example: "hello" -> "Vowels: 2, Consonants: 3"
-            * Example: "APPLE" -> "Vowels: 2, Consonants: 3"
-            * Example: "Cyberpunk 2077" -> "Vowels: 2, Consonants: 7"
-            * Example: "Why" -> "Vowels: 0, Consonants: 3"
-            * Return "Vowels: 0, Consonants: 0" for null or empty.
-            * Ignore spaces, numbers and symbols.
-            * Treat y as a consonant.
-            * Make it case-insensitive.
+        // COunt Vowels and Consonants 
+        // -Return a string showing vowels and consonants 
+        // Console.WriteLine(CountVowelsAndConsonants("hello") == "Vowels: 2, Consonants: 3");
+        // Console.WriteLine(CountVowelsAndConsonants("aeiou") == "Vowels: 5, Consonants: 0");
+        // Console.WriteLine(CountVowelsAndConsonants("bcdfg") == "Vowels: 0, Consonants: 5");
+        // Console.WriteLine(CountVowelsAndConsonants("A1B2C3") == "Vowels: 1, Consonants: 2");
+        // Console.WriteLine(CountVowelsAndConsonants("") == "Vowels: 0, Consonants: 0");
 
-            4. Remove Vowels From String
 
-            * Return a new string with all vowels removed.
-            * Example: "hello" -> "hll"
-            * Example: "Cyberpunk" -> "Cbrpnk"
-            * Example: "APPLE" -> "PPL"
-            * Example: "Why" -> "Why"
-            * Return "" for null or empty.
-            * Do not use Replace.
-            * Use a loop.
-            * Keep consonants, spaces, numbers and symbols.
-
-            5. Find Longest Word Length
-
-            * Return the length of the longest word in a string.
-            * Example: "Hello world" -> 5
-            * Example: "Cyberpunk card vault" -> 9
-            * Example: "I am Paul" -> 4
-            * Return 0 for null or empty.
-            * Split is allowed for this version.
-
-            6. Optional Stretch: Is Palindrome Ignoring Spaces
-
-            * Return true if the string is a palindrome while ignoring spaces.
-            * Case-insensitive.
-            * Example: "racecar" -> true
-            * Example: "Race Car" -> true
-            * Example: "hello" -> false
-            * Return false for null or empty.
-            * Try to use two pointers if possible.
-        */
+        // Remove vowels From a string
+        //- return a string with all vowels removed
+        // Console.WriteLine(RemoveVowels("hello") == "hll");
+        // Console.WriteLine(RemoveVowels("AEIOU") == "");
+        // Console.WriteLine(RemoveVowels("Cyberpunk") == "cybrpnk");
+        // Console.WriteLine(RemoveVowels("Programming") == "prgrmmng");
+        // Console.WriteLine(RemoveVowels("") == "");
+     
     }
 }
