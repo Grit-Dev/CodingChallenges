@@ -14,7 +14,6 @@ public class Program
         char[] vowels = ['a', 'e', 'i', 'o', 'u'];
         pInputValue = pInputValue.ToLower();
 
-
         foreach (char character in pInputValue)
         {
             if (!vowels.Contains(character))
@@ -31,7 +30,6 @@ public class Program
         if (string.IsNullOrEmpty(pInputvalue))
         {
             return "Vowels: 0, Consonants: 0";
-
         }
 
         char[] vowels = ['a', 'e', 'i', 'o', 'u'];
@@ -39,10 +37,10 @@ public class Program
         char[] consonants =
         [
             'b', 'c', 'd', 'f', 'g',
-                'h', 'j', 'k', 'l', 'm',
-                'n', 'p', 'q', 'r', 's',
-                't', 'v', 'w', 'x', 'y',
-                'z'
+            'h', 'j', 'k', 'l', 'm',
+            'n', 'p', 'q', 'r', 's',
+            't', 'v', 'w', 'x', 'y',
+            'z'
         ];
 
         pInputvalue = pInputvalue.ToLower();
@@ -63,7 +61,6 @@ public class Program
         }
 
         return $"Vowels: {vowelsCounter}, Consonants: {consonantsCounter}";
-
     }
 
     public static int CountLowerCaseLetters(string pInputVale)
@@ -100,11 +97,10 @@ public class Program
         {
             if (!char.IsWhiteSpace(character))
             {
-                if (isInsideWord == false)
+                if (!isInsideWord)
                 {
                     counter++;
                     isInsideWord = true;
-
                 }
             }
             else
@@ -138,7 +134,6 @@ public class Program
                 {
                     longestLengthTotal = counter;
                 }
-
                 counter = 0;
             }
         }
@@ -207,6 +202,7 @@ public class Program
                 {
                     longestStringCounter = counter;
                 }
+                counter = 0;
             }
         }
 
@@ -218,30 +214,236 @@ public class Program
         return longestStringCounter;
     }
 
+    public static string RemoveVowelsFriday(string pInputValue)
+    {
+        if (string.IsNullOrEmpty(pInputValue))
+        {
+            return "";
+        }
+
+        char[] vowels = ['a', 'e', 'i', 'o', 'u',
+                         'A', 'E', 'I', 'O', 'U'];
+
+        StringBuilder newStringValue = new();
+
+        foreach (char character in pInputValue)
+        {
+            if (!vowels.Contains(character))
+            {
+                newStringValue.Append(character);
+            }
+        }
+
+        return newStringValue.ToString();
+    }
+
+    public static bool IsPalindromeFriday(string pInputValue)
+    {
+        if (pInputValue == null)
+        {
+            return false;
+        }
+
+        StringBuilder newStringValue = new();
+
+        foreach (char character in pInputValue)
+        {
+            if (!char.IsWhiteSpace(character))
+            {
+                newStringValue.Append(char.ToLower(character));
+            }
+        }
+
+        int left = 0;
+        int right = newStringValue.Length - 1;
+
+        while (left < right)
+        {
+            if (newStringValue[left] != newStringValue[right])
+            {
+                return false;
+            }
+
+            left++;
+            right--;
+        }
+
+        return true;
+    }
+
+    public static string CountVowelsAndConsonantsFriday(string pInputvalue)
+    {
+        if (string.IsNullOrEmpty(pInputvalue))
+        {
+            return "Vowels: 0. Consonants: 0";
+        }
+
+        char[] vowels = ['a', 'e', 'i', 'o', 'u'];
+
+        char[] consonants =
+        [
+            'b', 'c', 'd', 'f', 'g',
+            'h', 'j', 'k', 'l', 'm',
+            'n', 'p', 'q', 'r', 's',
+            't', 'v', 'w', 'x', 'y',
+            'z'
+        ];
+
+        int vowelsCounter = 0;
+        int consonantsCounter = 0;
+
+        foreach (char character in pInputvalue)
+        {
+            if (vowels.Contains(char.ToLower(character)))
+            {
+                vowelsCounter++;
+            }
+            if (consonants.Contains(char.ToLower(character)))
+            {
+                consonantsCounter++;
+            }
+        }
+
+        return $"Vowels: {vowelsCounter}. Consonants: {consonantsCounter}";
+    }
+
+    public static int CountCharacterFriday(string pInputvalue, char pTarget)
+    {
+        if (string.IsNullOrEmpty(pInputvalue) || char.IsWhiteSpace(pTarget)
+            || char.IsDigit(pTarget))
+        {
+            return 0;
+        }
+
+        int counter = 0;
+        pInputvalue = pInputvalue.ToUpper();
+        pTarget = char.ToUpper(pTarget);
+
+        foreach (char character in pInputvalue)
+        {
+            if (character == pTarget)
+            {
+                counter++;
+            }
+        }
+
+        return counter;
+    }
+
+    public static string RemoveCharacterFriday(string pInputvalue, char pTarget)
+    {
+        if (string.IsNullOrEmpty(pInputvalue))
+        {
+            return "";
+        }
+
+        char theTargetUpper = char.ToUpper(pTarget);
+        char theTargetLower = char.ToLower(pTarget);
+        StringBuilder newStringValue = new();
+
+        foreach (char character in pInputvalue)
+        {
+            if (character != theTargetUpper && character != theTargetLower)
+            {
+                newStringValue.Append(character);
+            }
+        }
+
+        return newStringValue.ToString();
+    }
+
+    public static char FirstNonRepeatingCharacterFriday(string pInputValue)
+    {
+        if (string.IsNullOrEmpty(pInputValue))
+        {
+            return '\0';
+        }
+
+        for (int outerIndex = 0; outerIndex < pInputValue.Length; outerIndex++)
+        {
+            char value = pInputValue[outerIndex];
+            int count = 0;
+
+            for (int innerIndex = 0; innerIndex < pInputValue.Length; innerIndex++)
+            {
+                if (value == pInputValue[innerIndex])
+                {
+                    count++;
+                }
+            }
+
+            if (count == 1)
+            {
+                return value;
+            }
+        }
+
+        return '\0';
+    }
     public static void Main(string[] args)
     {
+        // Remove vowels Preserving case - String
+        // Console.WriteLine(RemoveVowelsFriday("hello") == "hll");
+        // Console.WriteLine(RemoveVowelsFriday("HELLO") == "HLL");
+        // Console.WriteLine(RemoveVowelsFriday("Hello World") == "Hll Wrld");
+        // Console.WriteLine(RemoveVowelsFriday("AEIOUaeiou") == "");
+        // Console.WriteLine(RemoveVowelsFriday("") == "");
+        // Console.WriteLine(RemoveVowelsFriday("bcdfg") == "bcdfg");
 
-    /*        Minimum:
-                1.Remove Vowels Preserve Casing
-                2.Is Palindrome Ignoring Spaces And Case
-                3.Count Vowels and Consonants revision
 
-                Good:
-                        4.Count Specific Character
-                5.Remove Specific Character
+        // Is Palindrome Ignoring spacing and casing 
+        // Case insensitive
+        // Console.WriteLine(IsPalindromeFriday("racecar") == true);
+        // Console.WriteLine(IsPalindromeFriday("RaceCar") == true);
+        // Console.WriteLine(IsPalindromeFriday("Never Odd Or Even") == true);
+        // Console.WriteLine(IsPalindromeFriday("A Santa At NASA") == true);
+        // Console.WriteLine(IsPalindromeFriday("hello") == false);
+        // Console.WriteLine(IsPalindromeFriday("") == true);
+        // Console.WriteLine(IsPalindromeFriday("a") == true);
 
-            Stretch:
-                6.First Non - Repeating Character revision
-    */
+        // //Count Vowels and Consonats
+        // // "Vowels: 0. Consonants: 0"
+        // Console.WriteLine(CountVowelsAndConsonantsFriday("hello"));
+        // Console.WriteLine(CountVowelsAndConsonantsFriday("AEIOU"));
+        // Console.WriteLine(CountVowelsAndConsonantsFriday("bcdfg"));
+        // Console.WriteLine(CountVowelsAndConsonantsFriday(""));
+        // Console.WriteLine(CountVowelsAndConsonantsFriday("Hello World"));
+        // Console.WriteLine(CountVowelsAndConsonantsFriday("123!?"));
+
+
+        // // Count Specfifc Character - string and target variable 
+        // Console.WriteLine(CountCharacterFriday("hello", 'l') == 2);
+        // Console.WriteLine(CountCharacterFriday("Hello", 'H') == 1);
+        // Console.WriteLine(CountCharacterFriday("Mississippi", 's') == 4);
+        // Console.WriteLine(CountCharacterFriday("aaaaa", 'a') == 5);
+        // Console.WriteLine(CountCharacterFriday("", 'a') == 0);
+        // Console.WriteLine(CountCharacterFriday("hello", 'z') == 0);
+
+        // // Remove Specific Character - string and target 
+        // //  perserve casing of all other characters
+        // Console.WriteLine(RemoveCharacterFriday("hello", 'l'));
+        // Console.WriteLine(RemoveCharacterFriday("Hello World", 'o'));
+        // Console.WriteLine(RemoveCharacterFriday("AAAAA", 'A'));
+        // Console.WriteLine(RemoveCharacterFriday("Mississippi", 's'));
+        // Console.WriteLine(RemoveCharacterFriday("", 'a'));
+        // Console.WriteLine(RemoveCharacterFriday("hello", 'z'));
+
+        // //  Find first non repeating character  = example: swiss -> w
+        Console.WriteLine(FirstNonRepeatingCharacterFriday("swiss"));
+        Console.WriteLine(FirstNonRepeatingCharacterFriday("stress") == 't');
+        Console.WriteLine(FirstNonRepeatingCharacterFriday("aabbccd") == 'd');
+        Console.WriteLine(FirstNonRepeatingCharacterFriday("abcabcde") == 'd');
+        Console.WriteLine(FirstNonRepeatingCharacterFriday("a") == 'a');
+
 
         // Find the longest word
         // - Return the length of the longest word in a string 
         // - Example: Cyberpunk card vault => 9 for Cyberpunk
-        Console.WriteLine(FindLongestWordLength("Cyberpunk card vault") == 9); // 9
-        Console.WriteLine(FindLongestWordLength("dog cat mouse") == 5); // 5
-        Console.WriteLine(FindLongestWordLength("hello") == 5); // 5
-        Console.WriteLine(FindLongestWordLength("") == 0); // 0
-        Console.WriteLine(FindLongestWordLength("a ab abc abcd") == 4); //4
+        // Console.WriteLine(FindLongestWordLength("Cyberpunk card vault") == 9); // 9
+        // Console.WriteLine(FindLongestWordLength("dog cat mouse") == 5); // 5
+        // Console.WriteLine(FindLongestWordLength("hello") == 5); // 5
+        // Console.WriteLine(FindLongestWordLength("") == 0); // 0
+        // Console.WriteLine(FindLongestWordLength("a ab abc abcd") == 4); //4
 
         // Is Palindrome ignoring spaces
         // - Return true if the string is a palinfrome while ignoring spaces
@@ -290,6 +492,6 @@ public class Program
         // Console.WriteLine(RemoveVowels("Cyberpunk") == "cybrpnk");
         // Console.WriteLine(RemoveVowels("Programming") == "prgrmmng");
         // Console.WriteLine(RemoveVowels("") == "");
-     
+
     }
 }
