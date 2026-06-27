@@ -145,16 +145,61 @@ public class Program
         return count;
     }
 
+    public static string CompressRepeatedCharacter(string pInputValue)
+    {
+        if (string.IsNullOrEmpty(pInputValue))
+        {
+            return "";
+        }
+
+        StringBuilder stringBuilder = new();
+
+        for (int outerIndex = 0; outerIndex <= pInputValue.Length -1; outerIndex++)
+        {
+            char value = pInputValue[outerIndex];
+            int currentValue = 0;
+            int count = 0;
+
+            for (int innerIndex = 0; innerIndex <= pInputValue.Length -1; innerIndex++)
+            {
+                if (value == pInputValue[innerIndex] && currentValue == 0)
+                {
+                    stringBuilder.Append(value);
+                    currentValue++;
+                    count++;
+                }
+                else if (value == pInputValue[innerIndex])
+                {
+                    count++;
+                }
+            }
+
+            stringBuilder.Append(count);
+        }
+
+        return stringBuilder.ToString();
+
+    }
+
     public static void Main(string[] args)
     {
-        // Remove Digits From String
-        Console.WriteLine(RemoveDigitsFromString("abc123"));
-        Console.WriteLine(RemoveDigitsFromString("abc"));
-        Console.WriteLine(RemoveDigitsFromString("Cyberpunk 2077"));
-        Console.WriteLine(RemoveDigitsFromString("12345"));
-        Console.WriteLine(RemoveDigitsFromString(""));
-        Console.WriteLine(RemoveDigitsFromString(null!));
+        // Compress Repeated Characters:
+        Console.WriteLine(CompressRepeatedCharacter("aaabbc"));
+        Console.WriteLine(CompressRepeatedCharacter("hello"));
+        Console.WriteLine(CompressRepeatedCharacter("a"));
+        Console.WriteLine(CompressRepeatedCharacter("a1"));
+        Console.WriteLine(CompressRepeatedCharacter(""));
+        Console.WriteLine(CompressRepeatedCharacter(null!));
 
+
+
+        // Remove Digits From String
+        //Console.WriteLine(RemoveDigitsFromString("abc123"));
+        //Console.WriteLine(RemoveDigitsFromString("abc"));
+        //Console.WriteLine(RemoveDigitsFromString("Cyberpunk 2077"));
+        //Console.WriteLine(RemoveDigitsFromString("12345"));
+        //Console.WriteLine(RemoveDigitsFromString(""));
+        //Console.WriteLine(RemoveDigitsFromString(null!));
 
 
         // Count Special Characters
