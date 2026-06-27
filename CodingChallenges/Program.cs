@@ -101,18 +101,39 @@ public class Program
 
     public static string RemoveDigitsFromString(string pInputValue)
     {
-        return 0;
+        if (string.IsNullOrEmpty(pInputValue))
+        {
+            return "";
+        }
+
+        StringBuilder stringBuilder = new();
+
+        foreach (char character in pInputValue)
+        {
+            if (!char.IsDigit(character))
+            {
+                stringBuilder.Append(character);
+            }
+        }
+
+        if (string.IsNullOrEmpty(stringBuilder.ToString()))
+        {
+            return "";
+        }
+
+        return stringBuilder.ToString();
+
     }
 
     public static void Main(string[] args)
     {
         // Remove Digits From String
-        Console.WriteLine(CountSpecialCharacter("abc123"));
-        Console.WriteLine(CountSpecialCharacter("abc"));
-        Console.WriteLine(CountSpecialCharacter("Cyberpunk 2077"));
-        Console.WriteLine(CountSpecialCharacter("12345"));
-        Console.WriteLine(CountSpecialCharacter(""));
-        Console.WriteLine(CountSpecialCharacter(null!));
+        Console.WriteLine(RemoveDigitsFromString("abc123"));
+        Console.WriteLine(RemoveDigitsFromString("abc"));
+        Console.WriteLine(RemoveDigitsFromString("Cyberpunk 2077"));
+        Console.WriteLine(RemoveDigitsFromString("12345"));
+        Console.WriteLine(RemoveDigitsFromString(""));
+        Console.WriteLine(RemoveDigitsFromString(null!));
 
 
 
