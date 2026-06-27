@@ -125,6 +125,26 @@ public class Program
 
     }
 
+    public static int CountSpecialCharacters(string pInputValue)
+    {
+        if (string.IsNullOrEmpty(pInputValue))
+        {
+            return 0;
+        }
+
+        int count = 0;
+
+        foreach (char character in pInputValue)
+        {
+            if (!char.IsLetterOrDigit(character) && !char.IsWhiteSpace(character))
+            {
+                count++;
+            }
+        }
+
+        return count;
+    }
+
     public static void Main(string[] args)
     {
         // Remove Digits From String
