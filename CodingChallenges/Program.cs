@@ -89,7 +89,8 @@ public class Program
 
         foreach (char character in pInputValue)
         {
-            if (char.IsSymbol(character))
+            if (!char.IsLetterOrDigit(character) && 
+                !char.IsWhiteSpace(character))
             {
                 counter++;
             }
@@ -101,7 +102,7 @@ public class Program
     public static void Main(string[] args)
     {
         // Count Special Characters
-        Console.WriteLine(CountSpecialCharacter("hello"));
+        Console.WriteLine(CountSpecialCharacter("hello!"));
         Console.WriteLine(CountSpecialCharacter("C# is fun!"));
         Console.WriteLine(CountSpecialCharacter("abc123"));
         Console.WriteLine(CountSpecialCharacter("@Adam_Smasher!"));
