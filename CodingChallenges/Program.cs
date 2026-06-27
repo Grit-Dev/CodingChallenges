@@ -23,7 +23,11 @@ public class Program
     }
     public static void Main(string[] args)
     {
-   
 
+        Console.WriteLine(CountDigitsInString("abc123"));
+        Console.WriteLine(CountDigitsInString("Cyberpunk 2077"));
+        Console.WriteLine(CountDigitsInString("hello"));
+        Console.WriteLine(CountDigitsInString(""));
+        Console.WriteLine(CountDigitsInString(null!));
     }
 }
