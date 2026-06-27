@@ -65,26 +65,65 @@ public class Program
 
         while (left < right)
         {
-            if (char.ToLower(stringBuilder[left]) != char.ToLower(stringBuilder[right]))
+            if (char.ToLower(stringBuilder[left]) != 
+                char.ToLower(stringBuilder[right]))
             {
                 return false;
             }
+
+            left++;
+            right--;
         }
 
         return true;   
     }
 
+    public static int CountSpecialCharacter(string pInputValue)
+    {
+        if (string.IsNullOrEmpty(pInputValue))
+        {
+            return 0;
+        }
+
+        int counter = 0;
+
+        foreach (char character in pInputValue)
+        {
+            if (char.IsSymbol(character))
+            {
+                counter++;
+            }
+        }
+
+        return counter;
+    }
+
     public static void Main(string[] args)
     {
+        // Count Special Characters
+        Console.WriteLine(CountSpecialCharacter("hello"));
+        Console.WriteLine(CountSpecialCharacter("C# is fun!"));
+        Console.WriteLine(CountSpecialCharacter("abc123"));
+        Console.WriteLine(CountSpecialCharacter("@Adam_Smasher!"));
+        Console.WriteLine(CountSpecialCharacter(""));
+        Console.WriteLine(CountSpecialCharacter(null!));
+
+
         // Revision: Is Palindrome Ignoring Spaces And Case
+        //Console.WriteLine(IsPalindromeIgnoringSpacesAndCase("racecar"));
+        //Console.WriteLine(IsPalindromeIgnoringSpacesAndCase("Race Car"));
+        //Console.WriteLine(IsPalindromeIgnoringSpacesAndCase("never odd or even"));
+        //Console.WriteLine(IsPalindromeIgnoringSpacesAndCase("hello"));
+        //Console.WriteLine(IsPalindromeIgnoringSpacesAndCase(""));
+        //Console.WriteLine(IsPalindromeIgnoringSpacesAndCase(null!));
 
 
         // Remove Vowels Preserving Casing
-        Console.WriteLine(RemoveVowelsPreserveCasing("hello"));
-        Console.WriteLine(RemoveVowelsPreserveCasing("Cyberpunk 2077"));
-        Console.WriteLine(RemoveVowelsPreserveCasing("APPLE"));
-        Console.WriteLine(RemoveVowelsPreserveCasing("Why"));
-        Console.WriteLine(RemoveVowelsPreserveCasing(null!));
+        //Console.WriteLine(RemoveVowelsPreserveCasing("hello"));
+        //Console.WriteLine(RemoveVowelsPreserveCasing("Cyberpunk 2077"));
+        //Console.WriteLine(RemoveVowelsPreserveCasing("APPLE"));
+        //Console.WriteLine(RemoveVowelsPreserveCasing("Why"));
+        //Console.WriteLine(RemoveVowelsPreserveCasing(null!));
 
 
         // Count Digits in String
