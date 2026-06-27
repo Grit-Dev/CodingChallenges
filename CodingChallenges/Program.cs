@@ -153,28 +153,35 @@ public class Program
         }
 
         StringBuilder stringBuilder = new();
+        char oldChar = '\0';
 
-        for (int outerIndex = 0; outerIndex <= pInputValue.Length -1; outerIndex++)
+        for (int outerIndex = 0; outerIndex <= pInputValue.Length - 1; outerIndex++)
         {
             char value = pInputValue[outerIndex];
             int currentValue = 0;
             int count = 0;
 
-            for (int innerIndex = 0; innerIndex <= pInputValue.Length -1; innerIndex++)
+            for (int innerIndex = 0; innerIndex <= pInputValue.Length - 1; innerIndex++)
             {
-                if (value == pInputValue[innerIndex] && currentValue == 0)
+
+                if (value == pInputValue[innerIndex] && currentValue == 0 && oldChar != value)
                 {
                     stringBuilder.Append(value);
                     currentValue++;
                     count++;
                 }
-                else if (value == pInputValue[innerIndex])
+                else if (value == pInputValue[innerIndex] && oldChar != value)
                 {
                     count++;
                 }
             }
 
-            stringBuilder.Append(count);
+            if (oldChar != value)
+            { 
+                stringBuilder.Append(count);
+            }
+
+            oldChar = value;
         }
 
         return stringBuilder.ToString();
