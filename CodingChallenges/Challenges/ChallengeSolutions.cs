@@ -7,8 +7,193 @@ namespace CodingChallenges.Challenges
 
     public class ChallengeSolutions
     {
+        public static int CountDigitsInString(string pInputValue)
+        {
+            if (string.IsNullOrEmpty(pInputValue))
+            {
+                return 0;
+            }
 
-        private static string RemoveVowels(string pInputValue)
+            int count = 0;
+
+            foreach (char character in pInputValue)
+            {
+                if (char.IsDigit(character))
+                {
+                    count++;
+                }
+            }
+
+            return count;
+        }
+
+        public static string RemoveVowelsPreserveCasing(string pInputValue)
+        {
+            if (string.IsNullOrEmpty(pInputValue))
+            {
+                return "";
+            }
+
+            char[] vowels = ['a', 'e', 'i', 'o', 'u'];
+            StringBuilder stringBuilder = new();
+
+            foreach (char character in pInputValue)
+            {
+                if (!vowels.Contains(char.ToLower(character)))
+                {
+                    stringBuilder.Append(character);
+                }
+            }
+
+            return stringBuilder.ToString();
+        }
+
+        public static bool IsPalindromeIgnoringSpacesAndCase(string pInputValue)
+        {
+            if (string.IsNullOrEmpty(pInputValue))
+            {
+                return false;
+            }
+
+            StringBuilder stringBuilder = new StringBuilder();
+
+            foreach (char character in pInputValue)
+            {
+                if (!char.IsWhiteSpace(character))
+                {
+                    stringBuilder.Append(character);
+                }
+            }
+
+            int left = 0;
+            int right = stringBuilder.Length - 1;
+
+            while (left < right)
+            {
+                if (char.ToLower(stringBuilder[left]) !=
+                    char.ToLower(stringBuilder[right]))
+                {
+                    return false;
+                }
+
+                left++;
+                right--;
+            }
+
+            return true;
+        }
+
+        public static int CountSpecialCharacter(string pInputValue)
+        {
+            if (string.IsNullOrEmpty(pInputValue))
+            {
+                return 0;
+            }
+
+            int counter = 0;
+
+            foreach (char character in pInputValue)
+            {
+                if (!char.IsLetterOrDigit(character) &&
+                    !char.IsWhiteSpace(character))
+                {
+                    counter++;
+                }
+            }
+
+            return counter;
+        }
+
+        public static string RemoveDigitsFromString(string pInputValue)
+        {
+            if (string.IsNullOrEmpty(pInputValue))
+            {
+                return "";
+            }
+
+            StringBuilder stringBuilder = new();
+
+            foreach (char character in pInputValue)
+            {
+                if (!char.IsDigit(character))
+                {
+                    stringBuilder.Append(character);
+                }
+            }
+
+            if (string.IsNullOrEmpty(stringBuilder.ToString()))
+            {
+                return "";
+            }
+
+            return stringBuilder.ToString();
+
+        }
+
+        public static int CountSpecialCharacters(string pInputValue)
+        {
+            if (string.IsNullOrEmpty(pInputValue))
+            {
+                return 0;
+            }
+
+            int count = 0;
+
+            foreach (char character in pInputValue)
+            {
+                if (!char.IsLetterOrDigit(character) && !char.IsWhiteSpace(character))
+                {
+                    count++;
+                }
+            }
+
+            return count;
+        }
+
+        public static string CompressRepeatedCharacter(string pInputValue)
+        {
+            if (string.IsNullOrEmpty(pInputValue))
+            {
+                return "";
+            }
+
+            StringBuilder stringBuilder = new();
+            char oldChar = '\0';
+
+            for (int outerIndex = 0; outerIndex <= pInputValue.Length - 1; outerIndex++)
+            {
+                char value = pInputValue[outerIndex];
+                int currentValue = 0;
+                int count = 0;
+
+                for (int innerIndex = 0; innerIndex <= pInputValue.Length - 1; innerIndex++)
+                {
+
+                    if (value == pInputValue[innerIndex] && currentValue == 0 && oldChar != value)
+                    {
+                        stringBuilder.Append(value);
+                        currentValue++;
+                        count++;
+                    }
+                    else if (value == pInputValue[innerIndex] && oldChar != value)
+                    {
+                        count++;
+                    }
+                }
+
+                if (oldChar != value)
+                {
+                    stringBuilder.Append(count);
+                }
+
+                oldChar = value;
+            }
+
+            return stringBuilder.ToString();
+
+        }
+
+        public static string RemoveVowels(string pInputValue)
         {
             if (string.IsNullOrEmpty(pInputValue))
             {
@@ -31,7 +216,7 @@ namespace CodingChallenges.Challenges
             return newStringInput.ToString();
         }
 
-        private static string CountVowelsAndConsonants(string pInputvalue)
+        public static string CountVowelsAndConsonants(string pInputvalue)
         {
             if (string.IsNullOrEmpty(pInputvalue))
             {
@@ -223,7 +408,7 @@ namespace CodingChallenges.Challenges
             return longestStringCounter;
         }
 
-        private int CountDigitsFromString(string pInputValue)
+        public int CountDigitsFromString(string pInputValue)
         {
             int count = 0;
 
@@ -244,7 +429,7 @@ namespace CodingChallenges.Challenges
             return count;
         }
 
-        private string ReverseString(string pInputValue)
+        public string ReverseString(string pInputValue)
         {
             string answer = string.Empty;
 
@@ -262,7 +447,7 @@ namespace CodingChallenges.Challenges
             return answer;
         }
 
-        private int CountingVowels(string pInputValue)
+        public int CountingVowels(string pInputValue)
         {
             char[] vowels = ['a', 'e', 'i', 'o', 'u'];
             int count = 0;
@@ -286,7 +471,7 @@ namespace CodingChallenges.Challenges
 
         }
 
-        private bool IsPalindrome(string pInputValue)
+        public bool IsPalindrome(string pInputValue)
         {
             int leftCounter = 0;
             int rightCounter = pInputValue.Length - 1;
@@ -314,7 +499,7 @@ namespace CodingChallenges.Challenges
 
         }
 
-        private int LargestNumber(int[] pInput)
+        public int LargestNumber(int[] pInput)
         {
 
             if (pInput == null || pInput.Length == 0)
@@ -335,7 +520,7 @@ namespace CodingChallenges.Challenges
             return answer;
         }
 
-        private int SumEvenNumbers(int[] pInput)
+        public int SumEvenNumbers(int[] pInput)
         {
             int total = 0;
 
@@ -357,7 +542,7 @@ namespace CodingChallenges.Challenges
 
         }
 
-        private int CountingSpaces(string pInputValue)
+        public int CountingSpaces(string pInputValue)
         {
             const int ZERO = 0;
             int total = 0;
@@ -378,7 +563,7 @@ namespace CodingChallenges.Challenges
             return total;
         }
 
-        private int CountingCapitalLetters(string pInputValue)
+        public int CountingCapitalLetters(string pInputValue)
         {
             int counter = 0;
 
@@ -398,7 +583,7 @@ namespace CodingChallenges.Challenges
             return counter;
         }
 
-        private int CountingWords(string pInputValue)
+        public int CountingWords(string pInputValue)
         {
             int counter = 0;
             bool isInsiderWorld = false;
@@ -422,7 +607,7 @@ namespace CodingChallenges.Challenges
             return counter;
         }
 
-        private int SmallestNumber(int[]? pInputValue)
+        public int SmallestNumber(int[]? pInputValue)
         {
             if (pInputValue == null || pInputValue.Length == 0)
             {
@@ -443,7 +628,7 @@ namespace CodingChallenges.Challenges
 
         }
 
-        private string CountVowelsAndConsonantsFriday(string pInputValue)
+        public string CountVowelsAndConsonantsFriday(string pInputValue)
         {
             char[] vowels = ['a', 'e', 'i', 'o', 'u'];
 
@@ -480,7 +665,7 @@ namespace CodingChallenges.Challenges
             return $"Vowels: {vowelsTotal} + Consonants: {Consonantstotal})";
         }
 
-        private int CharacterOccurrences(string? pInputValue, char pTargetCharacter)
+        public int CharacterOccurrences(string? pInputValue, char pTargetCharacter)
         {
             int counter = 0;
 
@@ -509,7 +694,7 @@ namespace CodingChallenges.Challenges
             return counter;
         }
 
-        private int[] TwoSum(int[] pNums, int pTarget)
+        public int[] TwoSum(int[] pNums, int pTarget)
         {
 
             if (pNums == null || pNums.Length == 0)
@@ -2111,7 +2296,7 @@ namespace CodingChallenges.Challenges
             return reversedString.ToString();
         }
 
-        private static string CountVowelsAndConsonantsRev(string pInputvalue)
+        public static string CountVowelsAndConsonantsRev(string pInputvalue)
         {
             char[] vowels = ['a', 'e', 'i', 'o', 'u'];
 
@@ -2262,733 +2447,6 @@ namespace CodingChallenges.Challenges
             }
 
             return newString.ToString().Trim();
-        }
-
-
-        public void RunAllChallengeSolutions()
-        {
-
-            // Find the longest word
-            // - Return the length of the longest word in a string 
-            // - Example: Cyberpunk card vault => 9 for Cyberpunk
-            Console.WriteLine(FindLongestWordLength("Cyberpunk card vault") == 9); // 9
-            Console.WriteLine(FindLongestWordLength("dog cat mouse") == 5); // 5
-            Console.WriteLine(FindLongestWordLength("hello") == 5); // 5
-            Console.WriteLine(FindLongestWordLength("") == 0); // 0
-            Console.WriteLine(FindLongestWordLength("a ab abc abcd") == 4); //4
-
-            // Is Palindrome ignoring spaces
-            // - Return true if the string is a palinfrome while ignoring spaces
-            // -- racecar  = true || race car == True
-            // --- hello ==> false 
-            // ---- Return false for null or empty 
-            // Console.WriteLine(IsPalindromeIgnoringSpaces("racecar") == true);
-            // Console.WriteLine(IsPalindromeIgnoringSpaces("race car") == true);
-            // Console.WriteLine(IsPalindromeIgnoringSpaces("never odd or even") == true);
-            // Console.WriteLine(IsPalindromeIgnoringSpaces("hello") == false);
-            // Console.WriteLine(IsPalindromeIgnoringSpaces("") == false);
-            // Console.WriteLine(IsPalindromeIgnoringSpaces(null) == false);
-
-
-            // Count Lower Case Letters
-            // Console.WriteLine(CountLowerCaseLetters("hello") == 5);
-            // Console.WriteLine(CountLowerCaseLetters("Hello World") == 8);
-            // Console.WriteLine(CountLowerCaseLetters("ABC") == 0);
-            // Console.WriteLine(CountLowerCaseLetters("aBc123!") == 2);
-            // Console.WriteLine(CountLowerCaseLetters("") == 0);
-
-
-            // Count Words Revision
-            // - Return how many words are in the a string 
-            // - isInsider Word
-            // Console.WriteLine(CountWords("Hello World") == 2);
-            // Console.WriteLine(CountWords("One Two Three Four") == 4);
-            // Console.WriteLine(CountWords("Cyberpunk") == 1);
-            // Console.WriteLine(CountWords("") == 0);
-            // Console.WriteLine(CountWords("   ") == 0);
-            // Console.WriteLine(CountWords("  Hello   World  ") == 2);
-
-            // COunt Vowels and Consonants 
-            // -Return a string showing vowels and consonants 
-            // Console.WriteLine(CountVowelsAndConsonants("hello") == "Vowels: 2, Consonants: 3");
-            // Console.WriteLine(CountVowelsAndConsonants("aeiou") == "Vowels: 5, Consonants: 0");
-            // Console.WriteLine(CountVowelsAndConsonants("bcdfg") == "Vowels: 0, Consonants: 5");
-            // Console.WriteLine(CountVowelsAndConsonants("A1B2C3") == "Vowels: 1, Consonants: 2");
-            // Console.WriteLine(CountVowelsAndConsonants("") == "Vowels: 0, Consonants: 0");
-
-
-            // Remove vowels From a string
-            //- return a string with all vowels removed
-            // Console.WriteLine(RemoveVowels("hello") == "hll");
-            // Console.WriteLine(RemoveVowels("AEIOU") == "");
-            // Console.WriteLine(RemoveVowels("Cyberpunk") == "cybrpnk");
-            // Console.WriteLine(RemoveVowels("Programming") == "prgrmmng");
-            // Console.WriteLine(RemoveVowels("") == "");
-
-
-            // Capitalise Each Word == "Hello World" -- String
-            //Console.WriteLine(CapitaliseEachWord("hello world"));               // Hello World
-            //Console.WriteLine(CapitaliseEachWord("c# is awesome"));             // C# Is Awesome
-            //Console.WriteLine(CapitaliseEachWord("one two three four"));        // One Two Three Four
-            //Console.WriteLine(CapitaliseEachWord("hello"));                     // Hello
-            //Console.WriteLine(CapitaliseEachWord(""));                          // (empty)
-            // Console.WriteLine(CountUpperCaseLetters("123!@#"));     // 0
-            // Console.WriteLine(CountWords("   "));                   // edge case
-            // Console.WriteLine(CapitaliseFirstLetter("a"));          // A
-            // Console.WriteLine(CapitaliseEachWord("a b c"));         // A B C
-            // Console.WriteLine(CountVowelsAndConsonants("WHY"));     // Vowels: 0, Consonants: 3
-
-
-            // Capitalise First Letter === Return the same string but with the first character uppercase
-            // Console.WriteLine(CapitaliseFirstLetter("hello"));          // Hello
-            // Console.WriteLine(CapitaliseFirstLetter("world"));          // World
-            // Console.WriteLine(CapitaliseFirstLetter("hello world"));    // Hello world
-            // Console.WriteLine(CapitaliseFirstLetter("Hello"));          // Hello
-            // Console.WriteLine(CapitaliseFirstLetter(""));               // (empty)
-
-
-
-
-
-
-            // Count UpperCase Letters -- string - return string 
-            // Console.WriteLine(CountUpperCaseLetters("Hello World"));     // 2
-            // Console.WriteLine(CountUpperCaseLetters("HELLO"));           // 5
-            // Console.WriteLine(CountUpperCaseLetters("hello"));           // 0
-            // Console.WriteLine(CountUpperCaseLetters("HeLLo WoRLD"));     // 7
-            // Console.WriteLine(CountUpperCaseLetters(""));                // 0
-
-
-            // Count Words, -- IsInsider word? String 
-            // Console.WriteLine(CountWords("Hello World"));                    // 2
-            // Console.WriteLine(CountWords("One Two Three Four"));             // 4
-            // Console.WriteLine(CountWords("Single"));                         // 1
-            // Console.WriteLine(CountWords(""));                               // 0
-            // Console.WriteLine(CountWords("C# is fun"));                      // 3
-
-            // Remove last Occurrence Revision --  array with target - [1, 5, 10, 5] - target 5 = [1,5,10]
-            // Console.WriteLine(string.Join(",", RemoveLastOccurrenceRevision([1, 5, 10, 5], 5))); // 1,5,10
-            // Console.WriteLine(string.Join(",", RemoveLastOccurrenceRevision([5, 1, 5, 5], 5)));  // 5,1,5
-            // Console.WriteLine(string.Join(",", RemoveLastOccurrenceRevision([1, 2, 3], 9)));     // 1,2,3
-            // Console.WriteLine(string.Join(",", RemoveLastOccurrenceRevision([5], 5)));           // (empty)
-            // Console.WriteLine(string.Join(",", RemoveLastOccurrenceRevision([5, 5, 5], 5)));     // 5,5
-
-
-
-            // Count Vowels and Consonants Revision  -- Case Insenseitivity - Treay y as a consant
-            // Console.WriteLine(CountVowelsAndConsonants("Hello"));       // Vowels: 2, Consonants: 3
-            // Console.WriteLine(CountVowelsAndConsonants("AEIOU"));       // Vowels: 5, Consonants: 0
-            // Console.WriteLine(CountVowelsAndConsonants("xyz"));         // Vowels: 0, Consonants: 3
-            // Console.WriteLine(CountVowelsAndConsonants("Seagate"));     // Vowels: 4, Consonants: 3
-            // Console.WriteLine(CountVowelsAndConsonants(""));            // Vowels: 0, Consonants: 0
-
-
-
-            /*
-          Best target next session
-          Minimum:
-          1. Count Uppercase Letters
-          2. Remove Last Occurrence revision
-          3. Count Vowels and Consonants revision
-
-          Good:
-          4. Count Words
-          5. Capitalize First Letter
-
-          Stretch:
-          6. Capitalize Each Word         
-       */
-
-            // Refactor Later:
-
-
-            // Count Odd Numbers 
-            // Console.WriteLine(CountOddNumbersRevisionOne([1, 2, 3, 4, 5])); // 3
-            // Console.WriteLine(CountOddNumbersRevisionOne([2, 4, 6, 8]));    // 0
-            // Console.WriteLine(CountOddNumbersRevisionOne([1, 3, 5, 7]));    // 4
-            // Console.WriteLine(CountOddNumbersRevisionOne([]));               // 0
-
-            // Most Frequent Number Revision
-
-            // Console.WriteLine(MostFrequentNumberRevisionOne([1, 2, 2, 3, 2])); // 2
-            // Console.WriteLine(MostFrequentNumberRevisionOne([5, 5, 1, 1, 5])); // 5
-            // Console.WriteLine(MostFrequentNumberRevisionOne([9]));             // 9
-            // Console.WriteLine(MostFrequentNumberRevisionOne([7, 7, 7, 7]));   // 7
-
-            // Remove last occurrence - [1,5,10, 5] Target 5 => [1,5, 10] 
-            // Console.WriteLine(string.Join(",", RemoveLastOccurrenceRevisionOne(new int[] { 1, 5, 10, 5 }, 5))); // 1,5,10
-            // Console.WriteLine(string.Join(",", RemoveLastOccurrenceRevisionOne(new int[] { 5, 1, 5, 5 }, 5)));  // 5,1,5
-            // Console.WriteLine(string.Join(",", RemoveLastOccurrenceRevisionOne(new int[] { 1, 2, 3 }, 9)));     // 1,2,3
-            // Console.WriteLine(string.Join(",", RemoveLastOccurrenceRevisionOne(new int[] { 5 }, 5)));           // (empty)
-
-
-            // Count Vowels and Consants
-            // CountVowelsAndConsonantsRevisionOne("hello");      // Vowels: 2, Consonants: 3
-            // CountVowelsAndConsonantsRevisionOne("AEIOU");      // Vowels: 5, Consonants: 0
-            // CountVowelsAndConsonantsRevisionOne("bcdfg");      // Vowels: 0, Consonants: 5
-            // CountVowelsAndConsonantsRevisionOne("Hello World"); // Vowels: 3, Consonants: 7
-
-
-            // Remove spaces From String 
-            // Console.WriteLine(RemoveSpaces("Hello World"));          // HelloWorld
-            // Console.WriteLine(RemoveSpaces(" C# Is Fun "));          // C#IsFun
-            // Console.WriteLine(RemoveSpaces("NoSpaces"));             // NoSpaces
-            // Console.WriteLine(RemoveSpaces("   "));                  // (empty)
-
-            // Reverse Words in string
-            // Console.WriteLine(ReverseString("Hello World"));                 // World Hello
-            // Console.WriteLine(ReverseString("C# Is Awesome"));               // Awesome Is C#
-            // Console.WriteLine(ReverseString("One Two Three Four"));          // Four Three Two One
-            // Console.WriteLine(ReverseString("Single"));                      // Single
-
-            // // Reverse Words in Sentence
-            // Console.WriteLine(ReverseWords("Hello World"));                 // World Hello
-            // Console.WriteLine(ReverseWords("C# Is Awesome"));               // Awesome Is C#
-            // Console.WriteLine(ReverseWords("One Two Three Four"));          // Four Three Two One
-            // Console.WriteLine(ReverseWords("Single"));                      // Single
-
-            // 1. Count even numbers (Sum)
-            Console.WriteLine(SumEvenNumbersRev([1, 2, 3, 4, 5, 6])); // 12 (2+4+6)
-            Console.WriteLine(SumEvenNumbersRev([2, 4, 6, 8]));       // 20
-            Console.WriteLine(SumEvenNumbersRev([1, 3, 5]));          // 0
-            Console.WriteLine(SumEvenNumbersRev([]));                  // 0
-
-
-            //  2. Replace target with value 
-            //- Replace every number that matches the target with a new replacement value 
-            //- Example [1,5,10,5] - Target 5, replacement 99 == [1,99,10,99]
-            Console.WriteLine(string.Join(",", ReplaceTarget([1, 5, 10, 5], 5, 99))); // 1,99,10,99
-            Console.WriteLine(string.Join(",", ReplaceTarget([5, 5, 5], 5, 0)));      // 0,0,0
-            Console.WriteLine(string.Join(",", ReplaceTarget([1, 2, 3], 9, 100)));    // 1,2,3
-
-            // 3. Split positive and negative numbers: 
-            // - Return a new array with positive numbers first, then negative numbers, ignore zeros completely
-            Console.WriteLine(string.Join(",", SplitPosNeg([1, -2, 3, -4, 0]))); // 1,3,-2,-4
-            Console.WriteLine(string.Join(",", SplitPosNeg([-1, -2, -3])));      // -1,-2,-3
-            Console.WriteLine(string.Join(",", SplitPosNeg([1, 2, 3])));         // 1,2,3
-            Console.WriteLine(string.Join(",", SplitPosNeg([0, 0, 0])));         // (empty)
-
-            // 4. Count Matching Numbers
-            // -Count how many times a target number appears in an array
-            Console.WriteLine(CountMatching([1, 2, 2, 3, 2], 2)); // 3
-            Console.WriteLine(CountMatching([5, 5, 5, 5], 5));    // 4
-            Console.WriteLine(CountMatching([1, 2, 3], 9));       // 0
-
-            // 5. Remove Target  From array
-            // - Remove every number that matches target 
-            // - Return a new array with all matching target values matched 
-            Console.WriteLine(string.Join(",", RemoveTarget([1, 2, 3, 2, 4], 2))); // 1,3,4
-            Console.WriteLine(string.Join(",", RemoveTarget([5, 5, 5], 5)));       // (empty)
-            Console.WriteLine(string.Join(",", RemoveTarget([1, 2, 3], 9)));       // 1,2,3
-
-
-            // 6. Move Target to the end 
-            // - meaning move every matching target value to the end of the array.kepp non-target numbers
-            // - in the original order. 
-            // Return  a new array where all target values are moved to the end
-            Console.WriteLine(string.Join(",", MoveTargetToEnd([1, 2, 3, 2, 4], 2))); // 1,3,4,2,2
-            Console.WriteLine(string.Join(",", MoveTargetToEnd([5, 1, 5, 2], 5)));    // 1,2,5,5
-            Console.WriteLine(string.Join(",", MoveTargetToEnd([1, 2, 3], 9)));       // 1,2,3
-            // New Challenge: Replace Target With Value
-            Console.WriteLine($"[1, 0, 5, 0], target 0, replacement 99 should return [1, 99, 5, 99] => Answer: [{string.Join(", ", ReplaceTargetWithValue([1, 0, 5, 0], 0, 99))}]");
-            Console.WriteLine($"[1, 0, 5, 0], target 0, replacement 0 should return [1, 0, 5, 0] => Answer: [{string.Join(", ", ReplaceTargetWithValue([1, 0, 5, 0], 0, 0))}]");
-            Console.WriteLine($"[1, 5, 10, 5], target 5, replacement 99 should return [1, 99, 10, 99] => Answer: [{string.Join(", ", ReplaceTargetWithValue([1, 5, 10, 5], 5, 99))}]");
-            Console.WriteLine($"[3, 4, 5], target 9, replacement 0 should return [3, 4, 5] => Answer: [{string.Join(", ", ReplaceTargetWithValue([3, 4, 5], 9, 0))}]");
-            Console.WriteLine($"[7], target 7, replacement 1 should return [1] => Answer: [{string.Join(", ", ReplaceTargetWithValue([7], 7, 1))}]");
-            Console.WriteLine($"Empty array should return [] => Answer: [{string.Join(", ", ReplaceTargetWithValue([], 5, 99))}]");
-            Console.WriteLine($"Null should return [] => Answer: [{string.Join(", ", ReplaceTargetWithValue(null!, 5, 99))}]");
-
-
-            //  Split Positive And Negative Numbers
-            // Return a new array with positive numbers first, then negative numbers. Ignore zero.
-            Console.WriteLine($"[1, -2, 3, -4, 0] should return [1, 3, -2, -4] => Answer: [{string.Join(", ", SplitPositiveAndNegativeNumbers([1, -2, 3, -4, 0]))}]");
-            Console.WriteLine($"[-1, -2, 5] should return [5, -1, -2] => Answer: [{string.Join(", ", SplitPositiveAndNegativeNumbers([-1, -2, 5]))}]");
-            Console.WriteLine($"[0, 0] should return [] => Answer: [{string.Join(", ", SplitPositiveAndNegativeNumbers([0, 0]))}]");
-            Console.WriteLine($"[1, 2, 3] should return [1, 2, 3] => Answer: [{string.Join(", ", SplitPositiveAndNegativeNumbers([1, 2, 3]))}]");
-            Console.WriteLine($"[-1, -2, -3] should return [-1, -2, -3] => Answer: [{string.Join(", ", SplitPositiveAndNegativeNumbers([-1, -2, -3]))}]");
-            Console.WriteLine($"Empty array should return [] => Answer: [{string.Join(", ", SplitPositiveAndNegativeNumbers([]))}]");
-            Console.WriteLine($"Null should return [] => Answer: [{string.Join(", ", SplitPositiveAndNegativeNumbers(null!))}]");
-
-
-            // Count Numbers Less Than Target
-            //Console.WriteLine(CountNumbersLessThanTarget([1, 5, 10, 3], 4));
-            //Console.WriteLine(CountNumbersLessThanTarget([10, 20, 30], 15));
-            //Console.WriteLine(CountNumbersLessThanTarget([-5, -2, 0], 1));
-            //Console.WriteLine(CountNumbersLessThanTarget([1, 2, 3], 0));
-            //Console.WriteLine(CountNumbersLessThanTarget([], 4));
-            //Console.WriteLine(CountNumbersLessThanTarget(null!, 4));
-
-            // Sum Positive Numbers
-            Console.WriteLine(SumPositiveNumbersRev2([1, 2, 4]));
-            Console.WriteLine(SumPositiveNumbersRev2([0, 0, 0, 5]));
-            Console.WriteLine(SumPositiveNumbersRev2([-1, -2, -3, 5]));
-            Console.WriteLine(SumPositiveNumbersRev2([1]));
-            Console.WriteLine(SumPositiveNumbersRev2([]));
-            Console.WriteLine(SumPositiveNumbersRev2(null!));
-
-            // Merge Arrays(Duplicates allowed)
-            Console.WriteLine($"[1, 2], [3, 4] should return [1, 2, 3, 4] => Answer: [{string.Join(", ", MergeArrays([1, 2], [3, 4]))}]");
-            Console.WriteLine($"[1, 2], [2, 3] should return [1, 2, 2, 3] => Answer: [{string.Join(", ", MergeArrays([1, 2], [2, 3]))}]");
-            Console.WriteLine($"[], [1, 2] should return [1, 2] => Answer: [{string.Join(", ", MergeArrays([], [1, 2]))}]");
-            Console.WriteLine($"[1, 2], [] should return [1, 2] => Answer: [{string.Join(", ", MergeArrays([1, 2], []))}]");
-            Console.WriteLine($"null, [1, 2] should return [1, 2] => Answer: [{string.Join(", ", MergeArrays(null!, [1, 2]))}]");
-            Console.WriteLine($"[1, 2], null should return [1, 2] => Answer: [{string.Join(", ", MergeArrays([1, 2], null!))}]");
-            Console.WriteLine($"null, null should return [] => Answer: [{string.Join(", ", MergeArrays(null!, null!))}]");
-            Console.WriteLine($"[], [] should return [] => Answer: [{string.Join(", ", MergeArrays([], []))}]");
-
-
-            // Find Last Index of Target
-            Console.WriteLine($"[1, 5, 10, 5], target 5 should return 3 => Answer: {FindLastIndexOfTarget([1, 5, 10, 5], 5)}");
-            Console.WriteLine($"[3, 4, 5], target 9 should return -1 => Answer: {FindLastIndexOfTarget([3, 4, 5], 9)}");
-            Console.WriteLine($"[7], target 7 should return 0 => Answer: {FindLastIndexOfTarget([7], 7)}");
-            Console.WriteLine($"[5, 5, 5], target 5 should return 2 => Answer: {FindLastIndexOfTarget([5, 5, 5], 5)}");
-            Console.WriteLine($"Empty array, target 1 should return -1 => Answer: {FindLastIndexOfTarget([], 1)}");
-            Console.WriteLine($"Null, target 1 should return -1 => Answer: {FindLastIndexOfTarget(null!, 1)}");
-            // Remove Duplicate numbers:
-            Console.WriteLine($"[1, 2, 2, 3] should return [1, 2, 3] => Answer: [{string.Join(", ", RemoveDuplicateNumbers([1, 2, 2, 3]))}]");
-            Console.WriteLine($"[5, 5, 5] should return [5] => Answer: [{string.Join(", ", RemoveDuplicateNumbers([5, 5, 5]))}]");
-            Console.WriteLine($"[1, 2, 3] should return [1, 2, 3] => Answer: [{string.Join(", ", RemoveDuplicateNumbers([1, 2, 3]))}]");
-            Console.WriteLine($"[4, 1, 4, 2, 1] should return [4, 1, 2] => Answer: [{string.Join(", ", RemoveDuplicateNumbers([4, 1, 4, 2, 1]))}]");
-            Console.WriteLine($"Empty array should return [] => Answer: [{string.Join(", ", RemoveDuplicateNumbers([]))}]");
-            Console.WriteLine($"Null should return [] => Answer: [{string.Join(", ", RemoveDuplicateNumbers(null!))}]");
-
-
-            // Find missing number: You are given numbers from 1 to n, but one number is missing.
-            Console.WriteLine($"[1, 2, 4, 5] should return 3 => Answer: {FindMissingNumber([1, 2, 4, 5])}");
-            Console.WriteLine($"[1, 3, 4, 5] should return 2 => Answer: {FindMissingNumber([1, 3, 4, 5])}");
-            Console.WriteLine($"[2, 3, 4, 5] should return 1 => Answer: {FindMissingNumber([2, 3, 4, 5])}");
-            Console.WriteLine($"[1, 2, 3, 4] should return 5 => Answer: {FindMissingNumber([1, 2, 3, 4])}");
-            Console.WriteLine($"[1, 2, 3, 5, 6] should return 4 => Answer: {FindMissingNumber([1, 2, 3, 5, 6])}");
-            Console.WriteLine($"Empty array should return 0 => Answer: {FindMissingNumber([])}");
-            Console.WriteLine($"Null should return 0 => Answer: {FindMissingNumber(null!)}");
-
-            // Two Sum Revision:
-            Console.WriteLine($"TwoSum [2, 7, 11, 15], target 9 should be [0, 1] => Answer: [{string.Join(", ", TwoSumRevision([2, 7, 11, 15], 9))}]");
-            Console.WriteLine($"TwoSum [4, 5], target 9 should be [0, 1] => Answer: [{string.Join(", ", TwoSumRevision([4, 5], 9))}]");
-            Console.WriteLine($"TwoSum [3, 2, 4], target 6 should be [1, 2] => Answer: [{string.Join(", ", TwoSumRevision([3, 2, 4], 6))}]");
-            Console.WriteLine($"TwoSum [3, 3], target 6 should be [0, 1] => Answer: [{string.Join(", ", TwoSumRevision([3, 3], 6))}]");
-            Console.WriteLine($"TwoSum [1, 8, 10, 2], target 10 should be [1, 3] => Answer: [{string.Join(", ", TwoSumRevision([1, 8, 10, 2], 10))}]");
-
-
-            //// Find first Non Repeating Character:
-            Console.WriteLine($"swiss should return w => Answer: {FindFirstNonRepeatingCharacterRev("swiss")}");
-            Console.WriteLine($"hello should return h => Answer: {FindFirstNonRepeatingCharacterRev("hello")}");
-            Console.WriteLine($"aabbc should return c => Answer: {FindFirstNonRepeatingCharacterRev("aabbc")}");
-            Console.WriteLine($"aabb should return _ => Answer: {FindFirstNonRepeatingCharacterRev("aabb")}");
-            Console.WriteLine($"Empty string should return _ => Answer: {FindFirstNonRepeatingCharacterRev("")}");
-            Console.WriteLine($"Null should return _ => Answer: {FindFirstNonRepeatingCharacterRev(null!)}");
-            Console.WriteLine($"Cyberpunk should return C or c depending on casing rule => Answer: {FindFirstNonRepeatingCharacterRev("Cyberpunk")}");
-
-            //// Count Negative Numbers: 
-            Console.WriteLine(CountNegativeNumbers([1, -2, 3, -4, 5]));
-            Console.WriteLine(CountNegativeNumbers([-1, -2, -3]));
-            Console.WriteLine(CountNegativeNumbers([0, 0, 0]));
-            Console.WriteLine(CountNegativeNumbers([10]));
-            Console.WriteLine(CountNegativeNumbers([]));
-            Console.WriteLine(CountNegativeNumbers(null!));
-
-            // Find first Non Repeating Character:
-            Console.WriteLine($"swiss should return w => Answer: {FindFirstNonRepeatingCharacter("swiss")}");
-            Console.WriteLine($"hello should return h => Answer: {FindFirstNonRepeatingCharacter("hello")}");
-            Console.WriteLine($"aabbc should return c => Answer: {FindFirstNonRepeatingCharacter("aabbc")}");
-            Console.WriteLine($"aabb should return _ => Answer: {FindFirstNonRepeatingCharacter("aabb")}");
-            Console.WriteLine($"Empty string should return _ => Answer: {FindFirstNonRepeatingCharacter("")}");
-            Console.WriteLine($"Null should return _ => Answer: {FindFirstNonRepeatingCharacter(null!)}");
-            Console.WriteLine($"Cyberpunk should return C or c depending on casing rule => Answer: {FindFirstNonRepeatingCharacter("Cyberpunk")}");
-
-            // Find First Repeated Numbers
-            Console.WriteLine($"[1, 2, 3, 2] should return 2 => Answer: {FindFirstRepeatedNumber([1, 2, 3, 2])}");
-            Console.WriteLine($"[5, 1, 5, 2] should return 5 => Answer: {FindFirstRepeatedNumber([5, 1, 5, 2])}");
-            Console.WriteLine($"[4, 4, 4] should return 4 => Answer: {FindFirstRepeatedNumber([4, 4, 4])}");
-            Console.WriteLine($"[1, 2, 3] should return 0 => Answer: {FindFirstRepeatedNumber([1, 2, 3])}");
-            Console.WriteLine($"Empty array should return 0 => Answer: {FindFirstRepeatedNumber([])}");
-            Console.WriteLine($"Null should return 0 => Answer: {FindFirstRepeatedNumber(null!)}");
-
-            // Count Positive Numbers
-            Console.WriteLine(CountPositiveNumbers([1, -2, 3, 0, 5]));
-            Console.WriteLine(CountPositiveNumbers([-1, -2, -3]));
-            Console.WriteLine(CountPositiveNumbers([0, 0, 0]));
-            Console.WriteLine(CountPositiveNumbers([10]));
-            Console.WriteLine(CountPositiveNumbers(null!));
-            Console.WriteLine(CountPositiveNumbers([]));
-
-            // TwoSumRev
-            Console.WriteLine($"TwoSum [2, 7, 11, 15], target 9 should be [0, 1] => Answer: [{string.Join(", ", TwoSumRev([2, 7, 11, 15], 9))}]");
-            Console.WriteLine($"TwoSum [4, 5], target 9 should be [0, 1] => Answer: [{string.Join(", ", TwoSumRev([4, 5], 9))}]");
-            Console.WriteLine($"TwoSum [3, 2, 4], target 6 should be [1, 2] => Answer: [{string.Join(", ", TwoSumRev([3, 2, 4], 6))}]");
-            Console.WriteLine($"TwoSum [3, 3], target 6 should be [0, 1] => Answer: [{string.Join(", ", TwoSumRev([3, 3], 6))}]");
-            Console.WriteLine($"TwoSum [1, 8, 10, 2], target 10 should be [1, 3] => Answer: [{string.Join(", ", TwoSumRev([1, 8, 10, 2], 10))}]");
-
-            // CountingWordsRev
-            Console.WriteLine($"Should be 1. Result: {CountingWordsRev(" One ")}");
-            Console.WriteLine($"Should be 1. Result: {CountingWordsRev("One ")}");
-            Console.WriteLine($"Should be 2. Result: {CountingWordsRev(" Hello World ")}");
-            Console.WriteLine($"Should be 6. Result: {CountingWordsRev(" I went for a walk today ")}");
-
-            // Counting Vowels
-            Console.WriteLine($"Hello vowels are: {CountingVowels("Hello")}");
-            Console.WriteLine($"Cyberpunk vowels are: {CountingVowels("Cyberpunk")}");
-            Console.WriteLine($"APPLE vowels are: {CountingVowels("APPLE")}");
-            Console.WriteLine($" \"\" vowels are: {CountingVowels("")}");
-            Console.WriteLine($" Why vowels are: {CountingVowels("why")}");
-
-
-            //Palindrome: 
-            Console.WriteLine($"RaceCar outcome for Palindrome: {IsPalindrome("RaceCar")}");
-
-
-            //// Counting Digits:
-            Console.WriteLine($"Count Digits From string should be 3 => Answer: {CountDigitsFromString("abc123")}");
-
-            // ReverseString:
-            Console.WriteLine($"Reverse String => olleh Answer: {ReverseString("Hello")}");
-
-            // Find the Largest number: 
-            Console.WriteLine($"Largest number => [100, 1, 99 ] Answer: {LargestNumber([100, 1, 99])}");
-
-
-            // Sum of Even Numbers
-            Console.WriteLine($"Sum of Even Numbers  => [1, 2, 3, 4, 5] Answer = 6: {SumEvenNumbers([1, 2, 3, 4,])}");
-
-            //CountSpaces
-            Console.WriteLine($"Should be 7. Result: {CountingSpaces("       ")}");
-            Console.WriteLine($"Should be 3. Result: {CountingSpaces(" Hello World ")}");
-            Console.WriteLine($"Should be 0. Result: {CountingSpaces("")}");
-            Console.WriteLine($"Should be 1. Result: {CountingSpaces(" ")}");
-
-            // Counting Capitals:
-            Console.WriteLine($"Should be 1. Result: {CountingCapitalLetters(" One ")}");
-            Console.WriteLine($"Should be 1. Result: {CountingCapitalLetters("One ")}");
-            Console.WriteLine($"Should be 2. Result: {CountingCapitalLetters(" Hello World ")}");
-            Console.WriteLine($"Should be 9. Result: {CountingCapitalLetters(" I WENT for a WALK today ")}");
-
-            // Counting Words: 
-            Console.WriteLine($"Should be 1. Result: {CountingWords(" One ")}");
-            Console.WriteLine($"Should be 1. Result: {CountingWords("One ")}");
-            Console.WriteLine($"Should be 2. Result: {CountingWords(" Hello World ")}");
-            Console.WriteLine($"Should be 6. Result: {CountingWords(" I went for a walk today ")}");
-
-            // Smallest Number
-            Console.WriteLine($"Smallest number should be 1 => Answer: {SmallestNumber([1, 5, 3, 9, 2])}");
-            Console.WriteLine($"Smallest number should be -10 => Answer: {SmallestNumber([-5, -2, -10])}");
-            Console.WriteLine($"Smallest number should be 100 => Answer: {SmallestNumber([100])}");
-            Console.WriteLine($"Smallest number should be 4 => Answer: {SmallestNumber([4, 4, 4])}");
-            Console.WriteLine($"Smallest number should be -100 => Answer: {SmallestNumber([50, 20, -100, 3])}");
-            Console.WriteLine($"Smallest number should be 0 => Answer: {SmallestNumber([])}");
-            Console.WriteLine($"Smallest number should be 0 => Answer: {SmallestNumber(null)}");
-
-            // Counting Vowels and Consonants
-            Console.WriteLine($"hello should be vowels: 2, consonants: 3 => Answer: {CountVowelsAndConsonants("hello")}");
-            Console.WriteLine($"APPLE should be vowels: 2, consonants: 3 => Answer: {CountVowelsAndConsonants("APPLE")}");
-            Console.WriteLine($"Cyberpunk 2077 should be vowels: 2, consonants: 7 => Answer: {CountVowelsAndConsonants("Cyberpunk 2077")}");
-            Console.WriteLine($"Empty string should be vowels: 0, consonants: 0 => Answer: {CountVowelsAndConsonants("")}");
-            Console.WriteLine($"Null should be vowels: 0, consonants: 0 => Answer: {CountVowelsAndConsonants(null!)}");
-            Console.WriteLine($"Why should be vowels: 0, consonants: 3 => Answer: {CountVowelsAndConsonants("Why")}");
-
-            // Counting Character Occurrences
-            // Create a method that takes a string and a character, then returns how many times that character appears.
-            Console.WriteLine(CharacterOccurrences("hello", 'l'));
-            Console.WriteLine(CharacterOccurrences("Cyberpunk", 'y'));
-            Console.WriteLine(CharacterOccurrences("APPLE", 'p'));
-            Console.WriteLine(CharacterOccurrences("aaaa", 'a'));
-            Console.WriteLine(CharacterOccurrences("", 'a'));
-            Console.WriteLine(CharacterOccurrences("null", 'a'));
-
-            Console.WriteLine($"TwoSum [2, 7, 11, 15], target 9 should be [0, 1] => Answer: [{string.Join(", ", TwoSum([2, 7, 11, 15], 9))}]");
-            Console.WriteLine($"TwoSum [4, 5], target 9 should be [0, 1] => Answer: [{string.Join(", ", TwoSum([4, 5], 9))}]");
-            Console.WriteLine($"TwoSum [3, 2, 4], target 6 should be [1, 2] => Answer: [{string.Join(", ", TwoSum([3, 2, 4], 6))}]");
-            Console.WriteLine($"TwoSum [3, 3], target 6 should be [0, 1] => Answer: [{string.Join(", ", TwoSum([3, 3], 6))}]");
-            Console.WriteLine($"TwoSum [1, 8, 10, 2], target 10 should be [1, 3] => Answer: [{string.Join(", ", TwoSum([1, 8, 10, 2], 10))}]");
-
-            // IsArray Ascending - Return True if the array is sorted From Smallest to Largest: 
-            Console.WriteLine(IsSortedArrayAscending([1, 2, 3, 4]));
-            // Expected: True
-            Console.WriteLine(IsSortedArrayAscending([1, 1, 2, 3]));
-            // Expected: True (duplicates allowed)
-            Console.WriteLine(IsSortedArrayAscending([1, 3, 2, 4]));
-            // Expected: False
-            Console.WriteLine(IsSortedArrayAscending([5, 4, 3, 2]));
-            // Expected: False
-            Console.WriteLine(IsSortedArrayAscending([10]));
-            // Expected: True (single element)
-            Console.WriteLine(IsSortedArrayAscending([]));
-            // Expected: True (empty array)
-            Console.WriteLine(IsSortedArrayAscending([2, 2, 2, 2]));
-            // Expected: True
-            Console.WriteLine(IsSortedArrayAscending(null!));
-            // Expected: false (empty array)
-
-            // Find Second Largest Number
-            Console.WriteLine(FindTheSecondLargestNumber([1, 2, 4, 5])); // 3
-            Console.WriteLine(FindTheSecondLargestNumber([1, 3, 4, 5])); // 2
-            Console.WriteLine(FindTheSecondLargestNumber([2, 3, 4, 5])); // 1
-            Console.WriteLine(FindTheSecondLargestNumber([1, 2, 3, 4])); // 5
-            Console.WriteLine(FindTheSecondLargestNumber([])); // 0
-            Console.WriteLine(FindTheSecondLargestNumber(null!)); // 0
-
-            // Find Missing Number: 
-            Console.WriteLine(FindMissingNumber([1, 2, 4, 5])); // 3
-            Console.WriteLine(FindMissingNumber([1, 3, 4, 5])); // 2
-            Console.WriteLine(FindMissingNumber([2, 3, 4, 5])); // 1
-            Console.WriteLine(FindMissingNumber([1, 2, 3, 4])); // 5
-            Console.WriteLine(FindMissingNumber([])); // 0
-            Console.WriteLine(FindMissingNumber(null!)); // 0
-
-            // Sum Positive Numbers 
-            // - Return total numbers greater than 0
-
-            Console.WriteLine(SumPositiveNumbers([1, 2, 4])); // 3
-            Console.WriteLine(SumPositiveNumbers([0, 0, 0, 5])); // 1 
-            Console.WriteLine(SumPositiveNumbers([-1, -2, -3, 5])); // 1
-            Console.WriteLine(SumPositiveNumbers([1])); // 1
-            Console.WriteLine(SumPositiveNumbers([])); // 0
-            Console.WriteLine(SumPositiveNumbers(null!)); // 0
-
-            // Find Second Largest number:             
-            Console.WriteLine(CountSecondLargestNumberRev([-1, 6, 3, 9, 2]));
-            Console.WriteLine(CountSecondLargestNumberRev([10, 20, 30,]));
-            Console.WriteLine(CountSecondLargestNumberRev([30, 20, 10]));
-            Console.WriteLine(CountSecondLargestNumberRev([0 - 5, -2, -1, -10]));
-            Console.WriteLine(CountSecondLargestNumberRev([]));
-            Console.WriteLine(CountSecondLargestNumberRev(null!));
-
-            // Merged Arrays: Return a new array  containing all numbers from the 1st 
-            /// array followed by all the numbers from the second Array
-
-            Console.WriteLine(string.Join(",", MergeArraysRev([1, 2, 3], [4, 5, 6]))); // Expected: 1,2,3,4,5,6
-            Console.WriteLine(string.Join(",", MergeArraysRev([], [1, 2]))); // Expected: 1,2
-            Console.WriteLine(string.Join(",", MergeArraysRev([7, 8], []))); // Expected: 7,8
-            Console.WriteLine(string.Join(",", MergeArraysRev([-1, -2], [0, 1]))); // Expected: -1,-2,0,1
-            Console.WriteLine(string.Join(",", MergeArraysRev([], []))); // Expected: -1,-2,0,1
-
-            // Find index of Target:  Return the index of the first number
-            // - matching the target. Return -1 if not found. 
-            // - [1,5,10], target 5 = index would be 1
-            Console.WriteLine(FindIndexOfTarget(null!, 5));      // -1 (null array)
-            Console.WriteLine(FindIndexOfTarget([], 5));        // -1 (empty array)
-            Console.WriteLine(FindIndexOfTarget([1, 2, 3], 2)); // 1 (found at index 1)
-            Console.WriteLine(FindIndexOfTarget([1, 2, 3], 4)); // -1 (not found)
-            Console.WriteLine(FindIndexOfTarget([5, 5, 5], 5)); // 0 (first match returned)
-            Console.WriteLine(FindIndexOfTarget([9], 9));       // 0 (single element match)
-            Console.WriteLine(FindIndexOfTarget([9], 1));       // -1 (single element no match)
-
-            // Console.WriteLine(CountNumbersInRange(null, 1, 5));              // 0 (null array)
-            Console.WriteLine(CountNumbersInRange(Array.Empty<int>(), 1, 5));   // 0 (empty array)
-            Console.WriteLine(CountNumbersInRange([1, 5, 10, 15], 5, 10));      // 2 (5 and 10)
-            Console.WriteLine(CountNumbersInRange([3, 6, 9], 1, 5));            // 1 (3)
-            Console.WriteLine(CountNumbersInRange([2, 4, 6, 8], 4, 8));         // 3 (4,6,8)
-            Console.WriteLine(CountNumbersInRange([10, 20, 30], 5, 9));         // 0 (none in range)
-            Console.WriteLine(CountNumbersInRange([5, 5, 5], 5, 5));            // 3 (all match)
-            Console.WriteLine(CountNumbersInRange([-5, 0, 5], -5, 0));      // 2 (-5, 0)
-
-
-            // Filter Numbers between Range: 
-            // - Return a new array containing only numbers between
-            // - min and max
-            // - Example: [1,5,10, 15] - min: 5 max 10 = [5, 10]
-            // - Example [3,6,9] min 1, max 5 = 1 [3]
-            Console.WriteLine(string.Join(", ", FilterNumbersBetweenRange(null!, 1, 5)));            // Blank
-            Console.WriteLine(string.Join(", ", FilterNumbersBetweenRange([], 1, 5)));              // Blank 
-            Console.WriteLine(string.Join(", ", FilterNumbersBetweenRange([1, 5, 10, 15], 5, 10))); // 5, 10
-            Console.WriteLine(string.Join(", ", FilterNumbersBetweenRange([3, 6, 9], 1, 5)));       // 3
-            Console.WriteLine(string.Join(", ", FilterNumbersBetweenRange([2, 4, 6, 8], 4, 8)));    // 4, 6, 8
-            Console.WriteLine(string.Join(", ", FilterNumbersBetweenRange([10, 20, 30], 1, 5)));    // Blank
-            Console.WriteLine(string.Join(", ", FilterNumbersBetweenRange([5, 5, 5], 5, 5)));       // 5, 5, 5
-            Console.WriteLine(string.Join(", ", FilterNumbersBetweenRange([-5, 0, 5], -5, 0)));     // -5, 0
-            Console.WriteLine(string.Join(", ", FilterNumbersBetweenRange([1, 2, 3, 4, 5], 2, 4))); // 2, 3, 4
-            Console.WriteLine(string.Join(", ", FilterNumbersBetweenRange([7], 7, 7)));             // 7
-            Console.WriteLine(string.Join(", ", FilterNumbersBetweenRange([7], 1, 5)));             // Blank
-
-            // 1. Count Non-Zero Numbers
-            // - Return how many numbers are not zero
-
-            // Console.WriteLine(CountNonZero([1, 0, 2, 0, 3])); // 3
-            // Console.WriteLine(CountNonZero([0, 0, 0]));       // 0
-            // Console.WriteLine(CountNonZero([1, 2, 3]));       // 3
-            // Console.WriteLine(CountNonZero([]));               // 0
-
-            // 2. Revision: Move Target to End 
-            // - Move Target values within an array to the end of the array
-            // Console.WriteLine(string.Join(",", MoveTargetToEnd([1, 2, 3, 2, 4], 2))); // 1,3,4,2,2
-            // Console.WriteLine(string.Join(",", MoveTargetToEnd([5, 1, 5, 2], 5)));    // 1,2,5,5
-            // Console.WriteLine(string.Join(",", MoveTargetToEnd([1, 2, 3], 9)));       // 1,2,3
-
-            // 3. Revision: Find Second Largest Number 
-            // Console.WriteLine(FindSecondLargestNumRev([1, 2, 3, 4]));     // 3
-            // Console.WriteLine(FindSecondLargestNumRev([10, 5, 8, 20]));   // 10
-            // Console.WriteLine(FindSecondLargestNumRev([5, 5, 5, 5]));     // 5
-            // Console.WriteLine(FindSecondLargestNumRev([1]));              // 1
-
-
-            // 4. New Challenge Find Most Frequent Number
-            // - Return the number that appears the most 
-            // 
-            // Console.WriteLine(MostFrequentNumberInArray([1, 2, 2, 3, 2])); // 2
-            // Console.WriteLine(MostFrequentNumberInArray([5, 5, 1, 1]));    // 5
-            // Console.WriteLine(MostFrequentNumberInArray([9]));             // 9
-            // Console.WriteLine(MostFrequentNumberInArray([]));               // 0
-
-
-            // 5. New Challenge: Rotating Array Right By One
-            // Move the Last number to the front - New Sized array 
-            // Example [1,2,3,4] -> [4,1,2,3]
-            // [10, 20, 30] -> [30, 10, 20]
-            // Put last value at index 0; Then
-            // copy the rest of the orginal values one positon to 
-            // the right
-            // Console.WriteLine(string.Join(",", RotateArrayRight(new int[] { 1, 2, 3, 4 }))); // 4,1,2,3
-            // Console.WriteLine(string.Join(",", RotateArrayRight(new int[] { 10, 20, 30 }))); // 30,10,20
-            // Console.WriteLine(string.Join(",", RotateArrayRight(new int[] { 1 })));          // 1
-            // Console.WriteLine(string.Join(",", RotateArrayRight(new int[] { })));            // (empty)
-
-            // 6. New Challenge(Optional): Rotate Array Left By One 
-            // -Move the first number to the end
-            // Example: [1,2,3,4,] = [2,3,4,1]
-            // Copy Everything after index 0 one position left.
-            // Put the original 1st value at the end
-            Console.WriteLine(string.Join(",", RotateArrayLeftRev([1, 2, 3, 4]))); // 2,3,4,1
-            Console.WriteLine(string.Join(",", RotateArrayLeftRev([10, 20, 30]))); // 20,30,10
-            Console.WriteLine(string.Join(",", RotateArrayLeft([1])));          // 1
-            Console.WriteLine(string.Join(",", RotateArrayLeft([])));            // (empty)
-
-            // 1. Count Non-Zero Numbers - Complete
-            // - Return how many numbers are not zero
-
-            // Console.WriteLine(CountNonZero([1, 0, 2, 0, 3])); // 3
-            // Console.WriteLine(CountNonZero([0, 0, 0]));       // 0
-            // Console.WriteLine(CountNonZero([1, 2, 3]));       // 3
-            // Console.WriteLine(CountNonZero([]));               // 0
-
-            // 2. Revision: Move Target to End 
-            // - Move Target values within an array to the end of the array
-            // Console.WriteLine(string.Join(",", MoveTargetToEnd([1, 2, 3, 2, 4], 2))); // 1,3,4,2,2
-            // Console.WriteLine(string.Join(",", MoveTargetToEnd([5, 1, 5, 2], 5)));    // 1,2,5,5
-            // Console.WriteLine(string.Join(",", MoveTargetToEnd([1, 2, 3], 9)));       // 1,2,3
-
-            // 3. Revision: Find Second Largest Number 
-            Console.WriteLine(FindSecondLargestNumberRevTwo([1, 2, 3, 4]));     // 3
-            Console.WriteLine(FindSecondLargestNumberRevTwo([10, 5, 8, 20]));   // 10
-            Console.WriteLine(FindSecondLargestNumberRevTwo([5, 5, 5, 5]));     // 5
-            Console.WriteLine(FindSecondLargestNumberRevTwo([1]));              // 1
-            Console.WriteLine(FindSecondLargestNumberRevTwo([5, 10])); // 5
-            Console.WriteLine(FindSecondLargestNumberRevTwo([7, 7, 7, 7]));
-            Console.WriteLine(FindSecondLargestNumberRevTwo([-10, -5, -20, -1])); // -5
-            Console.WriteLine(FindSecondLargestNumberRevTwo([-10, 5, 3, 2])); // 3
-            Console.WriteLine(FindSecondLargestNumberRevTwo([10, 10, 5, 3])); // 5
-            Console.WriteLine(FindSecondLargestNumberRevTwo([]));
-
-
-
-            // 4. New Challenge Find Most Frequent Number
-            // - Return the number that appears the most 
-            // 
-            // Console.WriteLine(MostFrequentNumberInArray([1, 2, 2, 3, 2])); // 2
-            // Console.WriteLine(MostFrequentNumberInArray([5, 5, 1, 1]));    // 5
-            // Console.WriteLine(MostFrequentNumberInArray([9]));             // 9
-            // Console.WriteLine(MostFrequentNumberInArray([]));               // 0
-
-
-            // 5. New Challenge: Rotating Array Right By One - Complete
-            // Move the Last number to the front - New Sized array 
-            // Example [1,2,3,4] -> [4,1,2,3]
-            // [10, 20, 30] -> [30, 10, 20]
-            // Put last value at index 0; Then
-            // copy the rest of the orginal values one positon to 
-            // the right
-            // Console.WriteLine(string.Join(",", RotateArrayToRight(new int[] { 1, 2, 3, 4 }))); // 4,1,2,3
-            // Console.WriteLine(string.Join(",", RotateArrayToRight(new int[] { 10, 20, 30 }))); // 30,10,20
-            // Console.WriteLine(string.Join(",", RotateArrayToRight(new int[] { 1 })));          // 1
-            // Console.WriteLine(string.Join(",", RotateArrayToRight(new int[] { })));            // (empty)
-
-            // 6. New Challenge(Optional): Rotate Array Left By One 
-            // -Move the first number to the end
-            // Example: [1,2,3,4,] = [2,3,4,1]
-            // Copy Everything after index 0 one position left.
-            // Put the original 1st value at the end
-            // Console.WriteLine(string.Join(",", RotateArrayLeft([1, 2, 3, 4]))); // 2,3,4,1
-            // Console.WriteLine(string.Join(",", RotateArrayLeft([10, 20, 30]))); // 20,30,10
-            // Console.WriteLine(string.Join(",", RotateArrayLeft([1])));          // 1
-            // Console.WriteLine(string.Join(",", RotateArrayLeft([])));            // (empty)
-
-            // 7 Remove First occurrence of target:
-            // - Remove only the first matching target Value. 
-            // Example: [1,5,10,5] Target: 5 => [1,10,5]
-            // Console.WriteLine(string.Join(",", RemoveFirstOccurrence(new int[] { 1, 5, 10, 5 }, 5))); // 1,10,5
-            // Console.WriteLine(string.Join(",", RemoveFirstOccurrence(new int[] { 5, 1, 5, 5 }, 5)));  // 1,5,5
-            // Console.WriteLine(string.Join(",", RemoveFirstOccurrence(new int[] { 1, 2, 3 }, 9)));     // 1,2,3
-            // Console.WriteLine(string.Join(",", RemoveFirstOccurrence(new int[] { 5 }, 5)));           // (empty)
-
-            // 8 Remove last occurrence of target
-            // - remove only the last matching target value
-            // Example: [1,5,10,5] Target: 5 => [1,5,10]
-            // Console.WriteLine(string.Join(",", RemoveLastOccurrence(new int[] { 1, 5, 10, 5 }, 5))); // 1,5,10
-            // Console.WriteLine(string.Join(",", RemoveLastOccurrence(new int[] { 5, 1, 5, 5 }, 5)));  // 5,1,5
-            // Console.WriteLine(string.Join(",", RemoveLastOccurrence(new int[] { 1, 2, 3 }, 9)));     // 1,2,3
-            // Console.WriteLine(string.Join(",", RemoveLastOccurrence(new int[] { 5 }, 5)));           // (empty)
-
-            // 9 Remove Last occurrence - Messing around
-            // Console.WriteLine(string.Join(",", RemoveLastOccurrenceReverseForLoop(new int[] { 1, 5, 10, 5 }, 5))); // 1,5,10
-            // Console.WriteLine(string.Join(",", RemoveLastOccurrenceReverseForLoop(new int[] { 5, 1, 5, 5 }, 5)));  // 5,1,5
-            // Console.WriteLine(string.Join(",", RemoveLastOccurrenceReverseForLoop(new int[] { 1, 2, 3 }, 9)));     // 1,2,3
-            // Console.WriteLine(string.Join(",", RemoveLastOccurrenceReverseForLoop(new int[] { 5 }, 5)));           // (empty)
-
-            // Find last Number Greater Than Target
-            //Console.WriteLine($"[1, 5, 10, 3], target 4 should return 10 => Answer: {FindLastNumberGreaterThanTarget([1, 5, 10, 3], 4)}");
-            //Console.WriteLine($"[1, 2, 3], target 10 should return 0 => Answer: {FindLastNumberGreaterThanTarget([1, 2, 3], 10)}");
-            //Console.WriteLine($"[-5, -2, 0], target -3 should return 0 => Answer: {FindLastNumberGreaterThanTarget([-5, -2, 0], -3)}");
-            //Console.WriteLine($"[7], target 5 should return 7 => Answer: {FindLastNumberGreaterThanTarget([7], 5)}");
-            //Console.WriteLine($"Empty array, target 5 should return 0 => Answer: {FindLastNumberGreaterThanTarget([], 5)}");
-            //Console.WriteLine($"Null, target 5 should return 0 => Answer: {FindLastNumberGreaterThanTarget(null!, 5)}");
-
-            // Find First Number Greater Than Target
-            //Console.WriteLine($"[1, 5, 10, 3], target 4 should return 5 => Answer: {FindFirstNumberGreaterThanTarget([1, 5, 10, 3], 4)}");
-            //Console.WriteLine($"[1, 2, 3], target 10 should return 0 => Answer: {FindFirstNumberGreaterThanTarget([1, 2, 3], 10)}");
-            //Console.WriteLine($"[-5, -2, 0], target -3 should return -2 => Answer: {FindFirstNumberGreaterThanTarget([-5, -2, 0], -3)}");
-            //Console.WriteLine($"[7], target 5 should return 7 => Answer: {FindFirstNumberGreaterThanTarget([7], 5)}");
-            //Console.WriteLine($"Empty array, target 5 should return 0 => Answer: {FindFirstNumberGreaterThanTarget([], 5)}");
-            //Console.WriteLine($"Null, target 5 should return 0 => Answer: {FindFirstNumberGreaterThanTarget(null!, 5)}");
-
-            // Count Non Zeros: 
-            //Console.WriteLine(CountNonZerosWarmUp([1, 0, 2, 0, 3])); // 3
-            //Console.WriteLine(CountNonZerosWarmUp([0, 0, 0]));       // 0
-            //Console.WriteLine(CountNonZerosWarmUp([1, 2, 3]));       // 3
-            //Console.WriteLine(CountNonZerosWarmUp([]));               // 0
-
-            // Rotate Array right by one:
-            //Console.WriteLine(string.Join(",", RotateArrayRightByOne([1, 2, 3, 4]))); // 4,1,2,3
-            //Console.WriteLine(string.Join(",", RotateArrayRightByOne([10, 20, 30]))); // 30,10,20
-            //Console.WriteLine(string.Join(",", RotateArrayRightByOne([1])));          // 1
-            //Console.WriteLine(string.Join(",", RotateArrayRightByOne([])));            // (empty)
-
-            // Rotate Array left by one:
-            //Console.WriteLine(string.Join(",", RotateArrayLeftWarmUp([1, 2, 3, 4]))); // 2,3,4,1
-            //Console.WriteLine(string.Join(",", RotateArrayLeftWarmUp([10, 20, 30]))); // 20,30,10
-            //Console.WriteLine(string.Join(",", RotateArrayLeftWarmUp([1])));          // 1
-            //Console.WriteLine(string.Join(",", RotateArrayLeftWarmUp([])));            // (empty)
-
-            // Most Frequent Number:
-            //Console.WriteLine(MostFrequentNumberInArrayRevision([1, 2, 2, 3, 2])); // 2
-            //Console.WriteLine(MostFrequentNumberInArrayRevision([5, 5, 1, 1]));    // 5
-            //Console.WriteLine(MostFrequentNumberInArrayRevision([9]));             // 9
-            //Console.WriteLine(MostFrequentNumberInArrayRevision([]));               // 0
-
-            // Count Negative Numbers:
-            //Console.WriteLine($"[1, -2, 3, -4] should return [1, 3] => Answer: [{string.Join(", ", RemoveNegativeNumbers([1, -2, 3, -4]))}]");
-            //Console.WriteLine($"[-1, -2, -3] should return [] => Answer: [{string.Join(", ", RemoveNegativeNumbers([-1, -2, -3]))}]");
-            //Console.WriteLine($"[0, 1, 2] should return [0, 1, 2] => Answer: [{string.Join(", ", RemoveNegativeNumbers([0, 1, 2]))}]");
-            //Console.WriteLine($"Empty array should return [] => Answer: [{string.Join(", ", RemoveNegativeNumbers([]))}]");
-            //Console.WriteLine($"Null should return [] => Answer: [{string.Join(", ", RemoveNegativeNumbers(null!))}]");
-
-            // Second largest Number Distinct
-            //Console.WriteLine($"[10, 10, 5, 3] should return 5 => Answer: {FindSecondLargestDistinctNumber([10, 10, 5, 3])}");
-            //Console.WriteLine($"[1, 5, 3, 9, 2] should return 5 => Answer: {FindSecondLargestDistinctNumber([1, 5, 3, 9, 2])}");
-            //Console.WriteLine($"[30, 20, 10] should return 20 => Answer: {FindSecondLargestDistinctNumber([30, 20, 10])}");
-            //Console.WriteLine($"[-5, -2, -1, -10] should return -2 => Answer: {FindSecondLargestDistinctNumber([-5, -2, -1, -10])}");
-            //Console.WriteLine($"[10, 10] should return -1 => Answer: {FindSecondLargestDistinctNumber([10, 10])}");
-            //Console.WriteLine($"[5, 5, 5] should return -1 => Answer: {FindSecondLargestDistinctNumber([5, 5, 5])}");
-            //Console.WriteLine($"[100] should return -1 => Answer: {FindSecondLargestDistinctNumber([100])}");
-            //Console.WriteLine($"Empty array should return -1 => Answer: {FindSecondLargestDistinctNumber([])}");
-            //Console.WriteLine($"Null should return -1 => Answer: {FindSecondLargestDistinctNumber(null!)}");
         }
     }
 }
