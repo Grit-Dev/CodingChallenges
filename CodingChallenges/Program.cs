@@ -43,8 +43,42 @@ public class Program
         return stringBuilder.ToString();
     }
 
+    public static bool IsPalindromeIgnoringSpacesAndCase(string pInputValue)
+    {
+        if (string.IsNullOrEmpty(pInputValue))
+        {
+            return false;
+        }
+
+        StringBuilder stringBuilder = new StringBuilder();
+
+        foreach (char character in pInputValue)
+        {
+            if (!char.IsWhiteSpace(character))
+            {
+                stringBuilder.Append(character);
+            }
+        }
+
+        int left = 0;
+        int right = stringBuilder.Length - 1;
+
+        while (left < right)
+        {
+            if (char.ToLower(stringBuilder[left]) != char.ToLower(stringBuilder[right]))
+            {
+                return false;
+            }
+        }
+
+        return true;   
+    }
+
     public static void Main(string[] args)
     {
+        // Revision: Is Palindrome Ignoring Spaces And Case
+
+
         // Remove Vowels Preserving Casing
         Console.WriteLine(RemoveVowelsPreserveCasing("hello"));
         Console.WriteLine(RemoveVowelsPreserveCasing("Cyberpunk 2077"));
