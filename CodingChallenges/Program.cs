@@ -99,15 +99,30 @@ public class Program
         return counter;
     }
 
+    public static string RemoveDigitsFromString(string pInputValue)
+    {
+        return 0;
+    }
+
     public static void Main(string[] args)
     {
-        // Count Special Characters
-        Console.WriteLine(CountSpecialCharacter("hello!"));
-        Console.WriteLine(CountSpecialCharacter("C# is fun!"));
+        // Remove Digits From String
         Console.WriteLine(CountSpecialCharacter("abc123"));
-        Console.WriteLine(CountSpecialCharacter("@Adam_Smasher!"));
+        Console.WriteLine(CountSpecialCharacter("abc"));
+        Console.WriteLine(CountSpecialCharacter("Cyberpunk 2077"));
+        Console.WriteLine(CountSpecialCharacter("12345"));
         Console.WriteLine(CountSpecialCharacter(""));
         Console.WriteLine(CountSpecialCharacter(null!));
+
+
+
+        // Count Special Characters
+        //Console.WriteLine(CountSpecialCharacter("hello!"));
+        //Console.WriteLine(CountSpecialCharacter("C# is fun!"));
+        //Console.WriteLine(CountSpecialCharacter("abc123"));
+        //Console.WriteLine(CountSpecialCharacter("@Adam_Smasher!"));
+        //Console.WriteLine(CountSpecialCharacter(""));
+        //Console.WriteLine(CountSpecialCharacter(null!));
 
 
         // Revision: Is Palindrome Ignoring Spaces And Case
