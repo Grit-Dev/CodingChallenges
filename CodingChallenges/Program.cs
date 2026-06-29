@@ -145,15 +145,54 @@ public class Program
 
         return stringBuilder.ToString();
     }
+
+    public static bool AreStringsAnagrams(string pInputValue, string pInputValueComparison)
+    {
+        if (pInputValue == null || pInputValueComparison == null)
+        {
+            return false;
+        }
+
+        if (pInputValue == "" && pInputValueComparison == "")
+        {
+            return true;
+        }
+
+        List<char> charsListOfInputValue = [];
+
+        foreach (char character in pInputValue)
+        {
+            charsListOfInputValue.Add(character);
+        }
+
+        foreach (char character in pInputValueComparison)
+        {
+            if (!charsListOfInputValue.Contains(character))
+            {
+                return false;
+            }
+        }
+
+        return true;
+    }
     public static void Main(string[] args)
     {
+        // Optional Stretch: Are Strings Anagrams
+        Console.WriteLine($"listen and silent should return true => Answer: {AreStringsAnagrams("listen", "silent") == true}");
+        Console.WriteLine($"triangle and integral should return true => Answer: {AreStringsAnagrams("triangle", "integral") == true}");
+        Console.WriteLine($"hello and world should return false => Answer: {AreStringsAnagrams("hello", "world") == false}");
+        Console.WriteLine($"APPLE and PAPEL should return true if case-insensitive => Answer: {AreStringsAnagrams("APPLE", "PAPEL") == true}");
+        Console.WriteLine($"empty and empty should return true => Answer: {AreStringsAnagrams("", "") == true}");
+        Console.WriteLine($"null and test should return false => Answer: {AreStringsAnagrams(null!, "test") == false}");
+        Console.WriteLine($"test and null should return false => Answer: {AreStringsAnagrams("test", null!) == false}");
+
         // Compress Consecutive Repeated Characters
-        Console.WriteLine($"aaabbc should return a3b2c1 => Answer: {CompressConsecutiveRepeatedCharacters("aaabbc") == "a3b2c1"}");
-        Console.WriteLine($"hello should return h1e1l2o1 => Answer: {CompressConsecutiveRepeatedCharacters("hello") == "h1e1l2o1"}");
-        Console.WriteLine($"ababa should return a1b1a1b1a1 => Answer: {CompressConsecutiveRepeatedCharacters("ababa") == "a1b1a1b1a1"}");
-        Console.WriteLine($"a should return a1 => Answer: {CompressConsecutiveRepeatedCharacters("a")}" == "a");
-        Console.WriteLine($"Empty string should return empty => Answer: {CompressConsecutiveRepeatedCharacters("") == ""}");
-        Console.WriteLine($"Null should return empty => Answer: {CompressConsecutiveRepeatedCharacters(null!) == ""}");
+        //Console.WriteLine($"aaabbc should return a3b2c1 => Answer: {CompressConsecutiveRepeatedCharacters("aaabbc") == "a3b2c1"}");
+        //Console.WriteLine($"hello should return h1e1l2o1 => Answer: {CompressConsecutiveRepeatedCharacters("hello") == "h1e1l2o1"}");
+        //Console.WriteLine($"ababa should return a1b1a1b1a1 => Answer: {CompressConsecutiveRepeatedCharacters("ababa") == "a1b1a1b1a1"}");
+        //Console.WriteLine($"a should return a1 => Answer: {CompressConsecutiveRepeatedCharacters("a")}" == "a");
+        //Console.WriteLine($"Empty string should return empty => Answer: {CompressConsecutiveRepeatedCharacters("") == ""}");
+        //Console.WriteLine($"Null should return empty => Answer: {CompressConsecutiveRepeatedCharacters(null!) == ""}");
 
 
         // New Challenge: Find Longest Word
