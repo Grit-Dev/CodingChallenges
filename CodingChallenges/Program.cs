@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics.Metrics;
 using System.Globalization;
+using System.Numerics;
 using System.Text;
 
 public class Program
@@ -110,15 +111,58 @@ public class Program
         return longestWord;
 
     }
+
+    public static string CompressConsecutiveRepeatedCharacters(string pInputValue)
+    {
+        if (string.IsNullOrEmpty(pInputValue))
+        {
+            return "";
+        }
+
+        StringBuilder stringBuilder = new();
+        int counter = 0;
+        char currentChar = pInputValue[0];;
+
+        for (int outerIndex = 0; outerIndex <= pInputValue.Length -1; outerIndex++)
+        {
+            if (currentChar == pInputValue[outerIndex])
+            {
+                counter++;
+            }
+            else
+            {
+                stringBuilder.Append(currentChar);
+                stringBuilder.Append(counter);
+
+                currentChar = pInputValue[outerIndex];
+                counter = 1;
+            }
+
+        }
+
+        stringBuilder.Append(currentChar);
+        stringBuilder.Append(counter);
+
+        return stringBuilder.ToString();
+    }
     public static void Main(string[] args)
     {
+        // Compress Consecutive Repeated Characters
+        Console.WriteLine($"aaabbc should return a3b2c1 => Answer: {CompressConsecutiveRepeatedCharacters("aaabbc")}");
+        Console.WriteLine($"hello should return h1e1l2o1 => Answer: {CompressConsecutiveRepeatedCharacters("hello")}");
+        Console.WriteLine($"ababa should return a1b1a1b1a1 => Answer: {CompressConsecutiveRepeatedCharacters("ababa")}");
+        Console.WriteLine($"a should return a1 => Answer: {CompressConsecutiveRepeatedCharacters("a")}");
+        Console.WriteLine($"Empty string should return empty => Answer: {CompressConsecutiveRepeatedCharacters("")}");
+        Console.WriteLine($"Null should return empty => Answer: {CompressConsecutiveRepeatedCharacters(null!)}");
+
+
         // New Challenge: Find Longest Word
-        Console.WriteLine($"Cyberpunk card vault should return Cyberpunk => Answer: {FindLongestWord("Cyberpunk card vault")}");
-        Console.WriteLine($"I am Paul should return Paul => Answer: {FindLongestWord("I am Paul")}");
-        Console.WriteLine($"one three seven should return three => Answer: {FindLongestWord("one three seven")}");
-        Console.WriteLine($"hello should return hello => Answer: {FindLongestWord("hello")}");
-        Console.WriteLine($"Empty string should return empty => Answer: {FindLongestWord("")}");
-        Console.WriteLine($"Null should return empty => Answer: {FindLongestWord(null!)}");
+        //Console.WriteLine($"Cyberpunk card vault should return Cyberpunk => Answer: {FindLongestWord("Cyberpunk card vault")}");
+        //Console.WriteLine($"I am Paul should return Paul => Answer: {FindLongestWord("I am Paul")}");
+        //Console.WriteLine($"one three seven should return three => Answer: {FindLongestWord("one three seven")}");
+        //Console.WriteLine($"hello should return hello => Answer: {FindLongestWord("hello")}");
+        //Console.WriteLine($"Empty string should return empty => Answer: {FindLongestWord("")}");
+        //Console.WriteLine($"Null should return empty => Answer: {FindLongestWord(null!)}");
 
 
         // Remove Duplicate Characters Preserve Order
