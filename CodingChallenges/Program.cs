@@ -35,7 +35,7 @@ public class Program
         for (int outerIndex = 0; outerIndex <= pInputValue.Length - 1; outerIndex++)
         {
             int counter = 0;
-            char value = pInputValue[outerIndex];
+            char value = char.ToLower(pInputValue[outerIndex]);
 
             for (int innerIndex = 0; innerIndex <= pInputValue.Length -1; innerIndex++)
             {
