@@ -75,6 +75,8 @@ public class Program
             }
         }
 
+        charactersList.Clear();
+
         return stringBuilder.ToString();
     }
     public static void Main(string[] args)
