@@ -6,6 +6,48 @@ namespace CodingChallenges.Challenges
     {
         public void RunAllChallengeSolutions()
         {
+            // Compress Consecutive Repeated Characters
+            Console.WriteLine($"aaabbc should return a3b2c1 => Answer: {CompressConsecutiveRepeatedCharacters("aaabbc") == "a3b2c1"}");
+            Console.WriteLine($"hello should return h1e1l2o1 => Answer: {CompressConsecutiveRepeatedCharacters("hello") == "h1e1l2o1"}");
+            Console.WriteLine($"ababa should return a1b1a1b1a1 => Answer: {CompressConsecutiveRepeatedCharacters("ababa") == "a1b1a1b1a1"}");
+            Console.WriteLine($"a should return a1 => Answer: {CompressConsecutiveRepeatedCharacters("a")}" == "a");
+            Console.WriteLine($"Empty string should return empty => Answer: {CompressConsecutiveRepeatedCharacters("") == ""}");
+            Console.WriteLine($"Null should return empty => Answer: {CompressConsecutiveRepeatedCharacters(null!) == ""}");
+
+
+            // New Challenge: Find Longest Word
+            Console.WriteLine($"Cyberpunk card vault should return Cyberpunk => Answer: {FindLongestWord("Cyberpunk card vault")}");
+            Console.WriteLine($"I am Paul should return Paul => Answer: {FindLongestWord("I am Paul")}");
+            Console.WriteLine($"one three seven should return three => Answer: {FindLongestWord("one three seven")}");
+            Console.WriteLine($"hello should return hello => Answer: {FindLongestWord("hello")}");
+            Console.WriteLine($"Empty string should return empty => Answer: {FindLongestWord("")}");
+            Console.WriteLine($"Null should return empty => Answer: {FindLongestWord(null!)}");
+
+
+            // Remove Duplicate Characters Preserve Order
+            Console.WriteLine($"hello should return helo => Answer: {RemoveDuplicateCharactersPreserveOrder("hello")}");
+            Console.WriteLine($"swiss should return swi => Answer: {RemoveDuplicateCharactersPreserveOrder("swiss")}");
+            Console.WriteLine($"Cyberpunk should return Cyberpunk => Answer: {RemoveDuplicateCharactersPreserveOrder("Cyberpunk")}");
+            Console.WriteLine($"aabbcc should return abc => Answer: {RemoveDuplicateCharactersPreserveOrder("aabbcc")}");
+            Console.WriteLine($"Empty string should return empty => Answer: {RemoveDuplicateCharactersPreserveOrder("")}");
+            Console.WriteLine($"Null should return empty => Answer: {RemoveDuplicateCharactersPreserveOrder(null!)}");
+
+            // Count Letters Only
+            Console.WriteLine($"abc123! should return 3 => Answer: {CountLettersOnly("abc123!")}");
+            Console.WriteLine($"Cyberpunk 2077 should return 9 => Answer: {CountLettersOnly("Cyberpunk 2077")}");
+            Console.WriteLine($"12345 should return 0 => Answer: {CountLettersOnly("12345")}");
+            Console.WriteLine($"Empty string should return 0 => Answer: {CountLettersOnly("")}");
+            Console.WriteLine($"Null should return 0 => Answer: {CountLettersOnly(null!)}");
+
+            //First Non-Repeating Character:
+            Console.WriteLine($"swiss should return w => Answer: {FindFirstNonRepeatingCharacter("swiss")}");
+            Console.WriteLine($"hello should return h => Answer: {FindFirstNonRepeatingCharacter("hello")}");
+            Console.WriteLine($"aabbc should return c => Answer: {FindFirstNonRepeatingCharacter("aabbc")}");
+            Console.WriteLine($"aabb should return _ => Answer: {FindFirstNonRepeatingCharacter("aabb")}");
+            Console.WriteLine($"Cyberpunk should return c or C depending on your casing rule => Answer: {FindFirstNonRepeatingCharacter("Cyberpunk")}");
+            Console.WriteLine($"Empty string should return _ => Answer: {FindFirstNonRepeatingCharacter("")}");
+            Console.WriteLine($"Null should return _ => Answer: {FindFirstNonRepeatingCharacter(null!)}");
+
             // Compress Repeated Characters:
             Console.WriteLine(CompressRepeatedCharacter("aaabbc"));
             Console.WriteLine(CompressRepeatedCharacter("hello"));

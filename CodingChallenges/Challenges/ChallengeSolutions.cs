@@ -2,11 +2,144 @@
 
 namespace CodingChallenges.Challenges
 {
-    // PMG TODO: Clean up and Refactor - Is getting a bit too big
-
-
     public class ChallengeSolutions
     {
+        public static int CountLettersOnly(string pInputValue)
+        {
+            if (string.IsNullOrEmpty(pInputValue))
+            {
+                return 0;
+            }
+
+            int counter = 0;
+
+            foreach (char character in pInputValue)
+            {
+                if (char.IsLetter(character))
+                {
+                    counter++;
+                }
+            }
+
+            return counter;
+        }
+
+        public static char FindFirstNonRepeatingCharacter(string pInputValue)
+        {
+            if (string.IsNullOrEmpty(pInputValue))
+            {
+                return '_';
+            }
+
+            for (int outerIndex = 0; outerIndex <= pInputValue.Length - 1; outerIndex++)
+            {
+                int counter = 0;
+                char value = char.ToLower(pInputValue[outerIndex]);
+
+                for (int innerIndex = 0; innerIndex <= pInputValue.Length - 1; innerIndex++)
+                {
+                    if (value == pInputValue[innerIndex])
+                    {
+                        counter++;
+                    }
+                }
+
+                if (counter == 1)
+                {
+                    return value;
+                }
+            }
+
+            return '_';
+        }
+
+        public static string RemoveDuplicateCharactersPreserveOrder(string pInputValue)
+        {
+            if (string.IsNullOrEmpty(pInputValue))
+            {
+                return "";
+            }
+
+            List<char> charactersList = [];
+            StringBuilder stringBuilder = new();
+
+            foreach (char character in pInputValue)
+            {
+                if (!charactersList.Contains(character))
+                {
+                    charactersList.Add(character);
+                    stringBuilder.Append(character);
+                }
+            }
+
+            return stringBuilder.ToString();
+        }
+
+        public static string FindLongestWord(string pInputValue)
+        {
+            if (string.IsNullOrEmpty(pInputValue))
+            {
+                return "";
+            }
+
+            var splitWords = pInputValue.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+            int longestCount = 0;
+            string longestWord = "";
+
+            foreach (string word in splitWords)
+            {
+                int count = 0;
+
+                foreach (char character in word)
+                {
+                    count++;
+                }
+
+                if (count > longestCount)
+                {
+                    longestCount = count;
+                    longestWord = word;
+                }
+            }
+
+            return longestWord;
+
+        }
+
+        public static string CompressConsecutiveRepeatedCharacters(string pInputValue)
+        {
+            if (string.IsNullOrEmpty(pInputValue))
+            {
+                return "";
+            }
+
+            StringBuilder stringBuilder = new();
+            int counter = 0;
+            char currentChar = pInputValue[0]; ;
+
+            for (int outerIndex = 0; outerIndex <= pInputValue.Length - 1; outerIndex++)
+            {
+                if (currentChar == pInputValue[outerIndex])
+                {
+                    counter++;
+                }
+                else
+                {
+                    stringBuilder.Append(currentChar);
+                    stringBuilder.Append(counter);
+
+                    currentChar = pInputValue[outerIndex];
+                    counter = 1;
+                }
+
+            }
+
+            stringBuilder.Append(currentChar);
+            stringBuilder.Append(counter);
+
+            return stringBuilder.ToString();
+        }
+
         public static int CountDigitsInString(string pInputValue)
         {
             if (string.IsNullOrEmpty(pInputValue))
@@ -810,7 +943,7 @@ namespace CodingChallenges.Challenges
             return 0;
         }
 
-        public static char FindFirstNonRepeatingCharacter(string pInputeValue)
+/*        public static char FindFirstNonRepeatingCharacter(string pInputeValue)
         {
             if (string.IsNullOrEmpty(pInputeValue))
             {
@@ -840,7 +973,7 @@ namespace CodingChallenges.Challenges
 
             return '_';
         }
-
+*/
         public static int CountNegativeNumbers(int[] pInputValue)
         {
             int counter = 0;
