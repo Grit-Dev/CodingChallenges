@@ -83,7 +83,7 @@ public class Program
             return "";
         }
 
-        var splitWords = pInputValue.Split(' ');
+        var splitWords = pInputValue.Split(' ', StringSplitOptions.RemoveEmptyEntries);
         int longestCount = 0;
         string longestWord = "";
 
@@ -96,7 +96,7 @@ public class Program
                 count++;
             }
 
-            if (count > longestCount && count != longestCount)
+            if (count > longestCount)
             {
                 longestCount = count;
                 longestWord = word;
