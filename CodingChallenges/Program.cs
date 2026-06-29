@@ -141,6 +141,7 @@ public class Program
         return stringBuilder.ToString();
     }
 
+    //PMG TODO: This is wrong. Need to come up with a new way to complete this challenge
     public static bool AreStringsAnagrams(string pInputValue, string pInputValueComparison)
     {
         if (pInputValue == null || pInputValueComparison == null)
