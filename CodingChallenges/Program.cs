@@ -64,19 +64,14 @@ public class Program
         List<char> charactersList = [];
         StringBuilder stringBuilder = new();
 
-        for (int outerIndex = 0; outerIndex <= pInputValue.Length - 1; outerIndex++)
+        foreach (char character in pInputValue)
         {
-            foreach (char character in pInputValue)
+            if (!charactersList.Contains(character))
             {
-                if (!charactersList.Contains(character))
-                {
-                    charactersList.Add(character);
-                    stringBuilder.Append(character);
-                }
+                charactersList.Add(character);
+                stringBuilder.Append(character);
             }
         }
-
-        charactersList.Clear();
 
         return stringBuilder.ToString();
     }
