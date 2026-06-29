@@ -148,12 +148,12 @@ public class Program
     public static void Main(string[] args)
     {
         // Compress Consecutive Repeated Characters
-        Console.WriteLine($"aaabbc should return a3b2c1 => Answer: {CompressConsecutiveRepeatedCharacters("aaabbc")}");
-        Console.WriteLine($"hello should return h1e1l2o1 => Answer: {CompressConsecutiveRepeatedCharacters("hello")}");
-        Console.WriteLine($"ababa should return a1b1a1b1a1 => Answer: {CompressConsecutiveRepeatedCharacters("ababa")}");
-        Console.WriteLine($"a should return a1 => Answer: {CompressConsecutiveRepeatedCharacters("a")}");
-        Console.WriteLine($"Empty string should return empty => Answer: {CompressConsecutiveRepeatedCharacters("")}");
-        Console.WriteLine($"Null should return empty => Answer: {CompressConsecutiveRepeatedCharacters(null!)}");
+        Console.WriteLine($"aaabbc should return a3b2c1 => Answer: {CompressConsecutiveRepeatedCharacters("aaabbc") == "a3b2c1"}");
+        Console.WriteLine($"hello should return h1e1l2o1 => Answer: {CompressConsecutiveRepeatedCharacters("hello") == "h1e1l2o1"}");
+        Console.WriteLine($"ababa should return a1b1a1b1a1 => Answer: {CompressConsecutiveRepeatedCharacters("ababa") == "a1b1a1b1a1"}");
+        Console.WriteLine($"a should return a1 => Answer: {CompressConsecutiveRepeatedCharacters("a")}" == "a");
+        Console.WriteLine($"Empty string should return empty => Answer: {CompressConsecutiveRepeatedCharacters("") == ""}");
+        Console.WriteLine($"Null should return empty => Answer: {CompressConsecutiveRepeatedCharacters(null!) == ""}");
 
 
         // New Challenge: Find Longest Word
