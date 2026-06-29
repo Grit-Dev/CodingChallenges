@@ -1,4 +1,5 @@
-﻿using System.Globalization;
+﻿using System.Diagnostics.Metrics;
+using System.Globalization;
 using System.Text;
 
 public class Program
@@ -22,14 +23,52 @@ public class Program
 
         return counter;
     }
+
+    public static char FindFirstNonRepeatingCharacter(string pInputValue)
+    {
+        if (string.IsNullOrEmpty(pInputValue))
+        {
+            return '_';
+        }
+
+        for (int outerIndex = 0; outerIndex <= pInputValue.Length - 1; outerIndex++)
+        {
+            int counter = 0;
+            char value = pInputValue[outerIndex];
+
+            for (int innerIndex = 0; innerIndex <= pInputValue.Length -1; innerIndex++)
+            {
+                if (value == pInputValue[innerIndex])
+                {
+                    counter++;
+                }
+            }
+
+            if (counter == 1)
+            {
+                return value;
+            }
+        }
+
+        return '_';
+    }
     public static void Main(string[] args)
     {
         // Count Letters Only
-        Console.WriteLine($"abc123! should return 3 => Answer: {CountLettersOnly("abc123!")}");
-        Console.WriteLine($"Cyberpunk 2077 should return 9 => Answer: {CountLettersOnly("Cyberpunk 2077")}");
-        Console.WriteLine($"12345 should return 0 => Answer: {CountLettersOnly("12345")}");
-        Console.WriteLine($"Empty string should return 0 => Answer: {CountLettersOnly("")}");
-        Console.WriteLine($"Null should return 0 => Answer: {CountLettersOnly(null!)}");
+        //Console.WriteLine($"abc123! should return 3 => Answer: {CountLettersOnly("abc123!")}");
+        //Console.WriteLine($"Cyberpunk 2077 should return 9 => Answer: {CountLettersOnly("Cyberpunk 2077")}");
+        //Console.WriteLine($"12345 should return 0 => Answer: {CountLettersOnly("12345")}");
+        //Console.WriteLine($"Empty string should return 0 => Answer: {CountLettersOnly("")}");
+        //Console.WriteLine($"Null should return 0 => Answer: {CountLettersOnly(null!)}");
+
+        //First Non-Repeating Character:
+        Console.WriteLine($"swiss should return w => Answer: {FindFirstNonRepeatingCharacter("swiss")}");
+        Console.WriteLine($"hello should return h => Answer: {FindFirstNonRepeatingCharacter("hello")}");
+        Console.WriteLine($"aabbc should return c => Answer: {FindFirstNonRepeatingCharacter("aabbc")}");
+        Console.WriteLine($"aabb should return _ => Answer: {FindFirstNonRepeatingCharacter("aabb")}");
+        Console.WriteLine($"Cyberpunk should return c or C depending on your casing rule => Answer: {FindFirstNonRepeatingCharacter("Cyberpunk")}");
+        Console.WriteLine($"Empty string should return _ => Answer: {FindFirstNonRepeatingCharacter("")}");
+        Console.WriteLine($"Null should return _ => Answer: {FindFirstNonRepeatingCharacter(null!)}");
 
         /*
             NEXT CHALLENGES
