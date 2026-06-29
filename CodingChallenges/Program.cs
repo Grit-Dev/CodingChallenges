@@ -79,15 +79,55 @@ public class Program
 
         return stringBuilder.ToString();
     }
+
+    public static string FindLongestWord(string pInputValue)
+    {
+        if (string.IsNullOrEmpty(pInputValue))
+        {
+            return "";
+        }
+
+        var splitWords = pInputValue.Split(' ');
+        int longestCount = 0;
+        string longestWord = "";
+
+        foreach (string word in splitWords)
+        {
+            int count = 0;
+
+            foreach (char character in word)
+            {
+                count++;
+            }
+
+            if (count > longestCount && count != longestCount)
+            {
+                longestCount = count;
+                longestWord = word;
+            }
+        }
+
+        return longestWord;
+
+    }
     public static void Main(string[] args)
     {
+        // New Challenge: Find Longest Word
+        Console.WriteLine($"Cyberpunk card vault should return Cyberpunk => Answer: {FindLongestWord("Cyberpunk card vault")}");
+        Console.WriteLine($"I am Paul should return Paul => Answer: {FindLongestWord("I am Paul")}");
+        Console.WriteLine($"one three seven should return three => Answer: {FindLongestWord("one three seven")}");
+        Console.WriteLine($"hello should return hello => Answer: {FindLongestWord("hello")}");
+        Console.WriteLine($"Empty string should return empty => Answer: {FindLongestWord("")}");
+        Console.WriteLine($"Null should return empty => Answer: {FindLongestWord(null!)}");
+
+
         // Remove Duplicate Characters Preserve Order
-        Console.WriteLine($"hello should return helo => Answer: {RemoveDuplicateCharactersPreserveOrder("hello")}");
-        Console.WriteLine($"swiss should return swi => Answer: {RemoveDuplicateCharactersPreserveOrder("swiss")}");
-        Console.WriteLine($"Cyberpunk should return Cyberpunk => Answer: {RemoveDuplicateCharactersPreserveOrder("Cyberpunk")}");
-        Console.WriteLine($"aabbcc should return abc => Answer: {RemoveDuplicateCharactersPreserveOrder("aabbcc")}");
-        Console.WriteLine($"Empty string should return empty => Answer: {RemoveDuplicateCharactersPreserveOrder("")}");
-        Console.WriteLine($"Null should return empty => Answer: {RemoveDuplicateCharactersPreserveOrder(null!)}");
+        //Console.WriteLine($"hello should return helo => Answer: {RemoveDuplicateCharactersPreserveOrder("hello")}");
+        //Console.WriteLine($"swiss should return swi => Answer: {RemoveDuplicateCharactersPreserveOrder("swiss")}");
+        //Console.WriteLine($"Cyberpunk should return Cyberpunk => Answer: {RemoveDuplicateCharactersPreserveOrder("Cyberpunk")}");
+        //Console.WriteLine($"aabbcc should return abc => Answer: {RemoveDuplicateCharactersPreserveOrder("aabbcc")}");
+        //Console.WriteLine($"Empty string should return empty => Answer: {RemoveDuplicateCharactersPreserveOrder("")}");
+        //Console.WriteLine($"Null should return empty => Answer: {RemoveDuplicateCharactersPreserveOrder(null!)}");
 
         // Count Letters Only
         //Console.WriteLine($"abc123! should return 3 => Answer: {CountLettersOnly("abc123!")}");
