@@ -8,32 +8,7 @@ public class Program
     //PMG TODO: This is wrong. Need to come up with a new way to complete this challenge
     public static bool AreStringsAnagrams(string pInputValue, string pInputValueComparison)
     {
-        if (pInputValue == null || pInputValueComparison == null)
-        {
-            return false;
-        }
 
-        if (pInputValue == "" && pInputValueComparison == "")
-        {
-            return true;
-        }
-
-        List<char> charsListOfInputValue = [];
-
-        foreach (char character in pInputValue)
-        {
-            charsListOfInputValue.Add(character);
-        }
-
-        foreach (char character in pInputValueComparison)
-        {
-            if (!charsListOfInputValue.Contains(character))
-            {
-                return false;
-            }
-        }
-
-        return true;
     }
 
     public static int CountCharactersExceptSpaces(string pInputValue)
@@ -66,13 +41,13 @@ public class Program
         Console.WriteLine($"Null should return 0 => Answer: {CountCharactersExceptSpaces(null!) == 0}");
 
         // 2. Are Strings Anagrams
-        //Console.WriteLine($"listen and silent should return true => Answer: {AreStringsAnagrams("listen", "silent")}");
-        //Console.WriteLine($"triangle and integral should return true => Answer: {AreStringsAnagrams("triangle", "integral")}");
-        //Console.WriteLine($"hello and world should return false => Answer: {AreStringsAnagrams("hello", "world")}");
-        //Console.WriteLine($"aab and aba should return true => Answer: {AreStringsAnagrams("aab", "aba")}");
-        //Console.WriteLine($"aab and ab should return false => Answer: {AreStringsAnagrams("aab", "ab")}");
-        //Console.WriteLine($"empty and empty should return true => Answer: {AreStringsAnagrams("", "")}");
-        //Console.WriteLine($"null and test should return false => Answer: {AreStringsAnagrams(null!, "test")}");
+        Console.WriteLine($"listen and silent should return true => Answer: {AreStringsAnagrams("listen", "silent")}");
+        Console.WriteLine($"triangle and integral should return true => Answer: {AreStringsAnagrams("triangle", "integral")}");
+        Console.WriteLine($"hello and world should return false => Answer: {AreStringsAnagrams("hello", "world")}");
+        Console.WriteLine($"aab and aba should return true => Answer: {AreStringsAnagrams("aab", "aba")}");
+        Console.WriteLine($"aab and ab should return false => Answer: {AreStringsAnagrams("aab", "ab")}");
+        Console.WriteLine($"empty and empty should return true => Answer: {AreStringsAnagrams("", "")}");
+        Console.WriteLine($"null and test should return false => Answer: {AreStringsAnagrams(null!, "test")}");
 
         //// 3. Find First Non-Repeating Character
         //Console.WriteLine($"swiss should return w => Answer: {FindFirstNonRepeatingCharacter("swiss")}");
