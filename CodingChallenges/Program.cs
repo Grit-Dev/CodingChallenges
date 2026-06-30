@@ -111,6 +111,41 @@ public class Program
         return "_";
     }
 
+    public static char FindLastNonRepeatingCharacter(string pInputValue)
+    {
+        if (string.IsNullOrEmpty(pInputValue))
+        {
+            if (string.IsNullOrEmpty(pInputValue))
+            {
+                return '_';
+            }
+        }
+
+        int counter = 0;
+
+        for (int outterIndex = pInputValue.Length -1; outterIndex >= 0; outterIndex--)
+        {
+            char character = pInputValue[outterIndex];
+
+            for (int innerIndex = pInputValue.Length -1; innerIndex >= 0; innerIndex--)
+            {
+                if (character == pInputValue[innerIndex])
+                {
+                    counter++;
+                }
+            }
+
+            if (counter == 1)
+            {
+                return character;
+            }
+
+            counter = 0;
+        }
+
+        return '_';
+    }
+
     public static void Main(string[] args)
     {
         // 1. Count Characters Except Spaces
@@ -130,20 +165,20 @@ public class Program
         //Console.WriteLine($"null and test should return false => Answer: {AreStringsAnagrams(null!, "test")}");
 
         //// 3. Find First Non-Repeating Character
-        Console.WriteLine($"swiss should return w => Answer: {FindFirstNonRepeatingCharacter("swiss")}");
-        Console.WriteLine($"hello should return h => Answer: {FindFirstNonRepeatingCharacter("hello")}");
-        Console.WriteLine($"aabbc should return c => Answer: {FindFirstNonRepeatingCharacter("aabbc")}");
-        Console.WriteLine($"aabb should return _ => Answer: {FindFirstNonRepeatingCharacter("aabb")}");
-        Console.WriteLine($"Empty string should return _ => Answer: {FindFirstNonRepeatingCharacter("")}");
-        Console.WriteLine($"Null should return _ => Answer: {FindFirstNonRepeatingCharacter(null!)}");
+        //Console.WriteLine($"swiss should return w => Answer: {FindFirstNonRepeatingCharacter("swiss")}");
+        //Console.WriteLine($"hello should return h => Answer: {FindFirstNonRepeatingCharacter("hello")}");
+        //Console.WriteLine($"aabbc should return c => Answer: {FindFirstNonRepeatingCharacter("aabbc")}");
+        //Console.WriteLine($"aabb should return _ => Answer: {FindFirstNonRepeatingCharacter("aabb")}");
+        //Console.WriteLine($"Empty string should return _ => Answer: {FindFirstNonRepeatingCharacter("")}");
+        //Console.WriteLine($"Null should return _ => Answer: {FindFirstNonRepeatingCharacter(null!)}");
 
         //// 4. Find Last Non-Repeating Character
-        //Console.WriteLine($"swiss should return i => Answer: {FindLastNonRepeatingCharacter("swiss")}");
-        //Console.WriteLine($"hello should return o => Answer: {FindLastNonRepeatingCharacter("hello")}");
-        //Console.WriteLine($"aabbc should return c => Answer: {FindLastNonRepeatingCharacter("aabbc")}");
-        //Console.WriteLine($"aabb should return _ => Answer: {FindLastNonRepeatingCharacter("aabb")}");
-        //Console.WriteLine($"Empty string should return _ => Answer: {FindLastNonRepeatingCharacter("")}");
-        //Console.WriteLine($"Null should return _ => Answer: {FindLastNonRepeatingCharacter(null!)}");
+        Console.WriteLine($"swiss should return i => Answer: {FindLastNonRepeatingCharacter("swiss")}");
+        Console.WriteLine($"hello should return o => Answer: {FindLastNonRepeatingCharacter("hello")}");
+        Console.WriteLine($"aabbc should return c => Answer: {FindLastNonRepeatingCharacter("aabbc")}");
+        Console.WriteLine($"aabb should return _ => Answer: {FindLastNonRepeatingCharacter("aabb")}");
+        Console.WriteLine($"Empty string should return _ => Answer: {FindLastNonRepeatingCharacter("")}");
+        Console.WriteLine($"Null should return _ => Answer: {FindLastNonRepeatingCharacter(null!)}");
 
         //// 5. Remove Consecutive Duplicate Characters
         //Console.WriteLine($"aaabbc should return abc => Answer: {RemoveConsecutiveDuplicateCharacters("aaabbc")}");
