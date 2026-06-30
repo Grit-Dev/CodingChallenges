@@ -25,6 +25,9 @@ public class Program
         int firstValueCount = 0;
         int secondValueCount = 0;
 
+        pInputValue = pInputValue.ToLower();
+        pInputValueComparison = pInputValueComparison.ToLower();
+
         for (int outerIndex = 0; outerIndex < pInputValueComparison.Length; outerIndex++)
         {
             char currentChar = pInputValue[outerIndex];
@@ -115,10 +118,7 @@ public class Program
     {
         if (string.IsNullOrEmpty(pInputValue))
         {
-            if (string.IsNullOrEmpty(pInputValue))
-            {
-                return '_';
-            }
+            return '_';
         }
 
         int counter = 0;
@@ -146,6 +146,7 @@ public class Program
         return '_';
     }
 
+    // PMG TODO: Redo - Bug: 
     public static string RemoveConsecutiveDuplicateCharacters(string pInputValue)
     {
         if (string.IsNullOrEmpty(pInputValue))
