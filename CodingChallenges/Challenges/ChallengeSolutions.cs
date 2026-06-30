@@ -4,6 +4,171 @@ namespace CodingChallenges.Challenges
 {
     public class ChallengeSolutions
     {
+        public static bool AreStringsAnagrams(string pInputValue, string pInputValueComparison)
+        {
+            if (pInputValue == null || pInputValueComparison == null)
+            {
+                return false;
+            }
+
+            if (pInputValue == "" && pInputValueComparison == "")
+            {
+                return true;
+            }
+
+            if (pInputValue.Length != pInputValueComparison.Length)
+            {
+                return false;
+            }
+
+            int firstValueCount = 0;
+            int secondValueCount = 0;
+
+            pInputValue = pInputValue.ToLower();
+            pInputValueComparison = pInputValueComparison.ToLower();
+
+            for (int outerIndex = 0; outerIndex < pInputValueComparison.Length; outerIndex++)
+            {
+                char currentChar = pInputValue[outerIndex];
+
+                for (int innerIndex = 0; innerIndex < pInputValueComparison.Length; innerIndex++)
+                {
+
+                    if (pInputValueComparison[innerIndex] == currentChar)
+                    {
+                        firstValueCount++;
+                    }
+
+                    if (pInputValue[innerIndex] == currentChar)
+                    {
+                        secondValueCount++;
+                    }
+                }
+
+                if (firstValueCount != secondValueCount)
+                {
+                    return false;
+                }
+
+                firstValueCount = 0;
+                secondValueCount = 0;
+
+            }
+
+
+
+            return true;
+
+        }
+
+        public static int CountCharactersExceptSpaces(string pInputValue)
+        {
+            if (string.IsNullOrEmpty(pInputValue))
+            {
+                return 0;
+            }
+
+            int count = 0;
+
+            foreach (char character in pInputValue)
+            {
+                if (!char.IsWhiteSpace(character))
+                {
+                    count++;
+                }
+            }
+
+            return count;
+        }
+
+        public static string FindFirstNonRepeatingCharacter(string pInputValue)
+        {
+            if (string.IsNullOrEmpty(pInputValue))
+            {
+                return "_";
+            }
+
+            int count = 0;
+
+            for (int outterIndex = 0; outterIndex < pInputValue.Length; outterIndex++)
+            {
+                char character = pInputValue[outterIndex];
+
+                foreach (char characterTwo in pInputValue)
+                {
+                    if (characterTwo == character)
+                    {
+                        count++;
+                    }
+                }
+
+                if (count == 1)
+                {
+                    return character.ToString();
+                }
+
+                count = 0;
+            }
+
+            return "_";
+        }
+
+        public static char FindLastNonRepeatingCharacter(string pInputValue)
+        {
+            if (string.IsNullOrEmpty(pInputValue))
+            {
+                return '_';
+            }
+
+            int counter = 0;
+
+            for (int outterIndex = pInputValue.Length - 1; outterIndex >= 0; outterIndex--)
+            {
+                char character = pInputValue[outterIndex];
+
+                for (int innerIndex = pInputValue.Length - 1; innerIndex >= 0; innerIndex--)
+                {
+                    if (character == pInputValue[innerIndex])
+                    {
+                        counter++;
+                    }
+                }
+
+                if (counter == 1)
+                {
+                    return character;
+                }
+
+                counter = 0;
+            }
+
+            return '_';
+        }
+        public static int CountWordOccurrences(string pInputValue, string pTargetString)
+        {
+            if (string.IsNullOrEmpty(pInputValue) || string.IsNullOrEmpty(pTargetString))
+            {
+                return 0;
+            }
+
+            int counter = 0;
+            pInputValue = pInputValue.ToLower();
+            pTargetString = pTargetString.ToLower();
+            string[] stringSplit = pInputValue.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+
+            foreach (string word in stringSplit)
+            {
+                if (pTargetString == word)
+                {
+                    counter++;
+                }
+            }
+
+            return counter;
+
+        }
+
         public static int CountLettersOnly(string pInputValue)
         {
             if (string.IsNullOrEmpty(pInputValue))
@@ -24,34 +189,34 @@ namespace CodingChallenges.Challenges
             return counter;
         }
 
-        public static char FindFirstNonRepeatingCharacter(string pInputValue)
-        {
-            if (string.IsNullOrEmpty(pInputValue))
-            {
-                return '_';
-            }
+        //public static char FindFirstNonRepeatingCharacter(string pInputValue)
+        //{
+        //    if (string.IsNullOrEmpty(pInputValue))
+        //    {
+        //        return '_';
+        //    }
 
-            for (int outerIndex = 0; outerIndex <= pInputValue.Length - 1; outerIndex++)
-            {
-                int counter = 0;
-                char value = char.ToLower(pInputValue[outerIndex]);
+        //    for (int outerIndex = 0; outerIndex <= pInputValue.Length - 1; outerIndex++)
+        //    {
+        //        int counter = 0;
+        //        char value = char.ToLower(pInputValue[outerIndex]);
 
-                for (int innerIndex = 0; innerIndex <= pInputValue.Length - 1; innerIndex++)
-                {
-                    if (value == pInputValue[innerIndex])
-                    {
-                        counter++;
-                    }
-                }
+        //        for (int innerIndex = 0; innerIndex <= pInputValue.Length - 1; innerIndex++)
+        //        {
+        //            if (value == pInputValue[innerIndex])
+        //            {
+        //                counter++;
+        //            }
+        //        }
 
-                if (counter == 1)
-                {
-                    return value;
-                }
-            }
+        //        if (counter == 1)
+        //        {
+        //            return value;
+        //        }
+        //    }
 
-            return '_';
-        }
+        //    return '_';
+        //}
 
         public static string RemoveDuplicateCharactersPreserveOrder(string pInputValue)
         {
