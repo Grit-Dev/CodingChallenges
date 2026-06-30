@@ -79,6 +79,38 @@ public class Program
         return count;
     }
 
+    public static string FindFirstNonRepeatingCharacter(string pInputValue)
+    {
+        if (string.IsNullOrEmpty(pInputValue))
+        {
+            return "_";
+        }
+
+        int count = 0;
+
+        for (int outterIndex = 0; outterIndex < pInputValue.Length; outterIndex++)
+        {
+            char character = pInputValue[outterIndex];
+
+            foreach (char characterTwo in pInputValue)
+            {
+                if (characterTwo == character)
+                {
+                    count++;
+                }
+            }
+
+            if (count == 1)
+            {
+                return character.ToString();
+            }
+
+            count = 0;
+        }
+
+        return "_";
+    }
+
     public static void Main(string[] args)
     {
         // 1. Count Characters Except Spaces
@@ -89,21 +121,21 @@ public class Program
         //Console.WriteLine($"Null should return 0 => Answer: {CountCharactersExceptSpaces(null!) == 0}");
 
         // 2. Are Strings Anagrams
-        Console.WriteLine($"listen and silent should return true => Answer: {AreStringsAnagrams("listen", "silent")}");
-        Console.WriteLine($"triangle and integral should return true => Answer: {AreStringsAnagrams("triangle", "integral")}");
-        Console.WriteLine($"hello and world should return false => Answer: {AreStringsAnagrams("hello", "world")}");
-        Console.WriteLine($"aab and aba should return true => Answer: {AreStringsAnagrams("aab", "aba")}");
-        Console.WriteLine($"aab and ab should return false => Answer: {AreStringsAnagrams("aab", "ab")}");
-        Console.WriteLine($"empty and empty should return true => Answer: {AreStringsAnagrams("", "")}");
-        Console.WriteLine($"null and test should return false => Answer: {AreStringsAnagrams(null!, "test")}");
+        //Console.WriteLine($"listen and silent should return true => Answer: {AreStringsAnagrams("listen", "silent")}");
+        //Console.WriteLine($"triangle and integral should return true => Answer: {AreStringsAnagrams("triangle", "integral")}");
+        //Console.WriteLine($"hello and world should return false => Answer: {AreStringsAnagrams("hello", "world")}");
+        //Console.WriteLine($"aab and aba should return true => Answer: {AreStringsAnagrams("aab", "aba")}");
+        //Console.WriteLine($"aab and ab should return false => Answer: {AreStringsAnagrams("aab", "ab")}");
+        //Console.WriteLine($"empty and empty should return true => Answer: {AreStringsAnagrams("", "")}");
+        //Console.WriteLine($"null and test should return false => Answer: {AreStringsAnagrams(null!, "test")}");
 
         //// 3. Find First Non-Repeating Character
-        //Console.WriteLine($"swiss should return w => Answer: {FindFirstNonRepeatingCharacter("swiss")}");
-        //Console.WriteLine($"hello should return h => Answer: {FindFirstNonRepeatingCharacter("hello")}");
-        //Console.WriteLine($"aabbc should return c => Answer: {FindFirstNonRepeatingCharacter("aabbc")}");
-        //Console.WriteLine($"aabb should return _ => Answer: {FindFirstNonRepeatingCharacter("aabb")}");
-        //Console.WriteLine($"Empty string should return _ => Answer: {FindFirstNonRepeatingCharacter("")}");
-        //Console.WriteLine($"Null should return _ => Answer: {FindFirstNonRepeatingCharacter(null!)}");
+        Console.WriteLine($"swiss should return w => Answer: {FindFirstNonRepeatingCharacter("swiss")}");
+        Console.WriteLine($"hello should return h => Answer: {FindFirstNonRepeatingCharacter("hello")}");
+        Console.WriteLine($"aabbc should return c => Answer: {FindFirstNonRepeatingCharacter("aabbc")}");
+        Console.WriteLine($"aabb should return _ => Answer: {FindFirstNonRepeatingCharacter("aabb")}");
+        Console.WriteLine($"Empty string should return _ => Answer: {FindFirstNonRepeatingCharacter("")}");
+        Console.WriteLine($"Null should return _ => Answer: {FindFirstNonRepeatingCharacter(null!)}");
 
         //// 4. Find Last Non-Repeating Character
         //Console.WriteLine($"swiss should return i => Answer: {FindLastNonRepeatingCharacter("swiss")}");
