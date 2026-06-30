@@ -168,8 +168,34 @@ public class Program
         return stringBuilder.ToString();
     }
 
+    public static int CountWordOccurrences(string pInputValue, string pTargetString)
+    {
+        if (string.IsNullOrEmpty(pInputValue) || string.IsNullOrEmpty(pTargetString))
+        {
+            return 0;
+        }
+
+        int counter = 0;
+        pInputValue = pInputValue.ToLower();
+        pTargetString = pTargetString.ToLower();
+        string [] stringSplit = pInputValue.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+
+        foreach (string word in stringSplit)
+        {
+            if (pTargetString == word)
+            {
+                counter++;
+            }
+        }
+
+        return counter;
+
+    }
+
     public static void Main(string[] args)
     {
+
         // 1. Count Characters Except Spaces
         //Console.WriteLine($"Hello World should return 10 => Answer: {CountCharactersExceptSpaces("Hello World") == 10}");
         //Console.WriteLine($" Cyberpunk Vault  should return 14 => Answer: {CountCharactersExceptSpaces(" Cyberpunk Vault ") == 14}");
@@ -203,20 +229,21 @@ public class Program
         //Console.WriteLine($"Null should return _ => Answer: {FindLastNonRepeatingCharacter(null!)}");
 
         //// 5. Remove Consecutive Duplicate Characters
-        Console.WriteLine($"aaabbc should return abc => Answer: {RemoveConsecutiveDuplicateCharacters("aaabbc")}");
-        Console.WriteLine($"helloo should return helo => Answer: {RemoveConsecutiveDuplicateCharacters("helloo")}");
-        Console.WriteLine($"ababa should return ababa => Answer: {RemoveConsecutiveDuplicateCharacters("ababa")}");
-        Console.WriteLine($"a should return a => Answer: {RemoveConsecutiveDuplicateCharacters("a")}");
-        Console.WriteLine($"Empty string should return empty => Answer: {RemoveConsecutiveDuplicateCharacters("")}");
-        Console.WriteLine($"Null should return empty => Answer: {RemoveConsecutiveDuplicateCharacters(null!)}");
+        //Console.WriteLine($"aaabbc should return abc => Answer: {RemoveConsecutiveDuplicateCharacters("aaabbc")}");
+        //Console.WriteLine($"helloo should return helo => Answer: {RemoveConsecutiveDuplicateCharacters("helloo")}");
+        //Console.WriteLine($"ababa should return ababa => Answer: {RemoveConsecutiveDuplicateCharacters("ababa")}");
+        //Console.WriteLine($"a should return a => Answer: {RemoveConsecutiveDuplicateCharacters("a")}");
+        //Console.WriteLine($"Empty string should return empty => Answer: {RemoveConsecutiveDuplicateCharacters("")}");
+        //Console.WriteLine($"Null should return empty => Answer: {RemoveConsecutiveDuplicateCharacters(null!)}");
 
         //// 6. Optional Stretch: Count Word Occurrences
-        //Console.WriteLine($"hello world hello, target hello should return 2 => Answer: {CountWordOccurrences("hello world hello", "hello")}");
-        //Console.WriteLine($"Cyberpunk card vault, target card should return 1 => Answer: {CountWordOccurrences("Cyberpunk card vault", "card")}");
-        //Console.WriteLine($"one two three, target four should return 0 => Answer: {CountWordOccurrences("one two three", "four")}");
-        //Console.WriteLine($"HELLO hello HeLLo, target hello should return 3 => Answer: {CountWordOccurrences("HELLO hello HeLLo", "hello")}");
-        //Console.WriteLine($"Null sentence should return 0 => Answer: {CountWordOccurrences(null!, "hello")}");
-        //Console.WriteLine($"Null target should return 0 => Answer: {CountWordOccurrences("hello world", null!)}");
+        Console.WriteLine($"hello world hello, target hello should return 2 => Answer: {CountWordOccurrences("hello world hello", "hello")}");
+        Console.WriteLine($"Cyberpunk card vault, target card should return 1 => Answer: {CountWordOccurrences("Cyberpunk card vault", "card")}");
+        Console.WriteLine($"one two three, target four should return 0 => Answer: {CountWordOccurrences("one two three", "four")}");
+        Console.WriteLine($"HELLO hello HeLLo, target hello should return 3 => Answer: {CountWordOccurrences("HELLO hello HeLLo", "hello")}");
+        Console.WriteLine($"Null sentence should return 0 => Answer: {CountWordOccurrences(null!, "hello")}");
+        Console.WriteLine($"Null target should return 0 => Answer: {CountWordOccurrences("hello world", null!)}");
+
 
 
         // Optional Stretch: Are Strings Anagrams - Need a new solution - Next Days coding challenge:
