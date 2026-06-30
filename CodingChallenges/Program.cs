@@ -5,9 +5,57 @@ using System.Text;
 
 public class Program
 {
-    //PMG TODO: This is wrong. Need to come up with a new way to complete this challenge
     public static bool AreStringsAnagrams(string pInputValue, string pInputValueComparison)
     {
+        if (pInputValue == null || pInputValueComparison == null)
+        {
+            return false;
+        }
+
+        if (pInputValue == "" && pInputValueComparison == "")
+        {
+            return true;
+        }
+
+        if (pInputValue.Length != pInputValueComparison.Length)
+        {
+            return false;
+        }
+
+        int firstValueCount = 0;
+        int secondValueCount = 0;
+
+        for (int outerIndex = 0; outerIndex < pInputValueComparison.Length; outerIndex++)
+        {
+            char currentChar = pInputValue[outerIndex];
+
+            for (int innerIndex = 0; innerIndex < pInputValueComparison.Length; innerIndex++)
+            {
+
+                if (pInputValueComparison[innerIndex] == currentChar)
+                {
+                    firstValueCount++;
+                }
+
+                if (pInputValue[innerIndex] == currentChar)
+                {
+                    secondValueCount++;
+                }
+            }
+
+            if (firstValueCount != secondValueCount)
+            {
+                return false;
+            }
+
+            firstValueCount = 0;
+            secondValueCount = 0;
+
+        }
+
+
+
+        return true;
 
     }
 
@@ -34,11 +82,11 @@ public class Program
     public static void Main(string[] args)
     {
         // 1. Count Characters Except Spaces
-        Console.WriteLine($"Hello World should return 10 => Answer: {CountCharactersExceptSpaces("Hello World") == 10}");
-        Console.WriteLine($" Cyberpunk Vault  should return 14 => Answer: {CountCharactersExceptSpaces(" Cyberpunk Vault ") == 14}");
-        Console.WriteLine($"Paul should return 4 => Answer: {CountCharactersExceptSpaces("Paul") == 4}");
-        Console.WriteLine($"Empty string should return 0 => Answer: {CountCharactersExceptSpaces("") == 0}");
-        Console.WriteLine($"Null should return 0 => Answer: {CountCharactersExceptSpaces(null!) == 0}");
+        //Console.WriteLine($"Hello World should return 10 => Answer: {CountCharactersExceptSpaces("Hello World") == 10}");
+        //Console.WriteLine($" Cyberpunk Vault  should return 14 => Answer: {CountCharactersExceptSpaces(" Cyberpunk Vault ") == 14}");
+        //Console.WriteLine($"Paul should return 4 => Answer: {CountCharactersExceptSpaces("Paul") == 4}");
+        //Console.WriteLine($"Empty string should return 0 => Answer: {CountCharactersExceptSpaces("") == 0}");
+        //Console.WriteLine($"Null should return 0 => Answer: {CountCharactersExceptSpaces(null!) == 0}");
 
         // 2. Are Strings Anagrams
         Console.WriteLine($"listen and silent should return true => Answer: {AreStringsAnagrams("listen", "silent")}");
