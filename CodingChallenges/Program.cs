@@ -5,7 +5,27 @@ using System.Text;
 
 public class Program
 {
-    // PMG TODO: Redo - Bug: 
+    public static int CountPunctuationCharacters(string pInputValue)
+    {
+        if (string.IsNullOrEmpty(pInputValue))
+        {
+            return 0;
+        }
+
+        int count = 0;
+
+        foreach (char character in pInputValue)
+        {
+            if (char.IsPunctuation(character))
+            {
+                count++;
+            }
+        }
+
+        return count;
+    }
+
+    // Bit more revision on this one. 
     public static string RemoveConsecutiveDuplicateCharacters(string pInputValue)
     {
         if (string.IsNullOrEmpty(pInputValue))
@@ -13,85 +33,250 @@ public class Program
             return "";
         }
 
-        List<char> newList = [];
-        StringBuilder stringBuilder = new StringBuilder();
 
-        foreach (char character in pInputValue)
+        StringBuilder newString = new();
+        char previousCharacter = pInputValue[0];
+        newString.Append(previousCharacter);
+
+        foreach (char currentChar in pInputValue)
         {
-            if (!newList.Contains(character))
+            if (currentChar != previousCharacter)
             {
-                newList.Add(character);
-                stringBuilder.Append(character);
+                newString.Append(currentChar);
+                previousCharacter = currentChar;
             }
+
         }
 
-        return stringBuilder.ToString();
+        return newString.ToString();
+    }
+
+    public static bool AreAnagramsRevision(string pInputValue, string pTargetValue)
+    {
+        if (string.IsNullOrEmpty(pInputValue) || string.IsNullOrEmpty(pTargetValue))
+        {
+            return false;
+        }
+
+        if (pInputValue == "" && pTargetValue == "")
+        {
+            return true;
+        }
+
+        if (pInputValue.Length != pTargetValue.Length)
+        {
+            return false;
+        }
+
+        pInputValue = pInputValue.ToLower();
+        pTargetValue = pTargetValue.ToLower();
+
+        int firstValueCounter = 0;
+        int secondValueCounter = 0;
+
+        for (int outterIndex = 0; outterIndex <= pInputValue.Length - 1; outterIndex++)
+        {
+            char value = pInputValue[outterIndex];
+
+            for (int innerIndex = 0; innerIndex <= pTargetValue.Length - 1; innerIndex++)
+            {
+                if (value == pTargetValue[innerIndex])
+                {
+                    firstValueCounter++;
+                }
+
+                if (pInputValue[innerIndex] == value)
+                {
+                    secondValueCounter++;
+                }
+            }
+
+            if (firstValueCounter != secondValueCounter)
+            {
+                return false;
+            }
+
+            firstValueCounter = 0;
+            secondValueCounter = 0;
+        }
+
+        return true;
+    }
+
+    public static int CountCharacterGroups(string pInputValue)
+    {
+        if (string.IsNullOrEmpty(pInputValue))
+        {
+            return 0;
+        }
+
+        int counter = 1;
+        char previousCharacter = pInputValue[0];
+
+        foreach (char currentChar in pInputValue)
+        {
+            //aabbc
+            if (currentChar != previousCharacter)
+            {
+                counter++;
+                previousCharacter = currentChar;
+            }
+
+        }
+
+        return counter++;
+    }
+
+    public static string GetInitials(string pInputValue)
+    {
+        if (string.IsNullOrEmpty(pInputValue))
+        {
+            return "";
+        }
+
+        pInputValue = pInputValue.ToUpper();
+        string[] splitString = pInputValue.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+        StringBuilder newStringBuilder = new();
+
+        foreach (string word in splitString)
+        {
+            newStringBuilder.Append(word[0]);
+        }
+
+        return newStringBuilder.ToString();
+    }
+
+    public static bool IsPangram(string pInputValue)
+    {
+        if (string.IsNullOrEmpty(pInputValue))
+        {
+            return false;
+        }
+
+        char[] letters =
+        {
+                'A', 'B', 'C', 'D', 'E', 'F', 'G',
+                'H', 'I', 'J', 'K', 'L', 'M', 'N',
+                'O', 'P', 'Q', 'R', 'S', 'T', 'U',
+                'V', 'W', 'X', 'Y', 'Z'
+            };
+
+        int counter = 0;
+        pInputValue = pInputValue.ToUpper();
+
+        for (int outterIndex = 0; outterIndex <= letters.Length - 1; outterIndex++)
+        {
+            char currentChar = letters[outterIndex];
+
+            foreach (char character in pInputValue)
+            {
+                if (currentChar == character)
+                {
+                    counter++;
+                }
+            }
+            if (counter < 1)
+            {
+                return false;
+            }
+
+            counter = 0;
+        }
+
+        return true;
     }
 
     public static void Main(string[] args)
     {
-        //// 5. Remove Consecutive Duplicate Characters - BUG Challenge
-        //Console.WriteLine($"aaabbc should return abc => Answer: {RemoveConsecutiveDuplicateCharacters("aaabbc")}");
-        //Console.WriteLine($"helloo should return helo => Answer: {RemoveConsecutiveDuplicateCharacters("helloo")}");
-        //Console.WriteLine($"ababa should return ababa => Answer: {RemoveConsecutiveDuplicateCharacters("ababa")}");
-        //Console.WriteLine($"a should return a => Answer: {RemoveConsecutiveDuplicateCharacters("a")}");
-        //Console.WriteLine($"Empty string should return empty => Answer: {RemoveConsecutiveDuplicateCharacters("")}");
-        //Console.WriteLine($"Null should return empty => Answer: {RemoveConsecutiveDuplicateCharacters(null!)}");
+        // Is Panagram
+        // - Return true if senetence contains ecer letter: a-z atleast once.
+        // - Example "The quick  brown fox jumps over the lazy dog" - > true
+        // -   string alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        // - Example Hello world - False. 
+        Console.WriteLine(IsPangram("The quick brown fox jumps over the lazy dog")); // True
+        Console.WriteLine(IsPangram("Hello World"));                                 // False
+        Console.WriteLine(IsPangram("Pack my box with five dozen liquor jugs"));     // True
+        Console.WriteLine(IsPangram("Sphinx of black quartz, judge my vow"));        // True
+        Console.WriteLine(IsPangram("abcdefghijklmnopqrstuvwxyz"));                  // True
+        Console.WriteLine(IsPangram("abcdefghijklmnopqrstuvwxy"));                   // False
+        Console.WriteLine(IsPangram(""));                                            // False
+        Console.WriteLine(IsPangram(null));                                          // False
+        Console.WriteLine(IsPangram("The five boxing wizards jump quickly"));        // True
+        Console.WriteLine(IsPangram("A quick movement of the enemy will jeopardize five gunboats")); // false
 
-        /*
-            NEXT CHALLENGES
+        // Complete:
 
-            1. Warm-up: Count Punctuation Characters
+        // Get initals From name
+        // - Return the initals of the full name
+        // - Paul Kinley => PK
+        // - John Ronanld Reuel Tolkien -> JRRT
+        // Console.WriteLine(GetInitials("Paul Kinley"));                      // PK
+        // Console.WriteLine(GetInitials("John Ronald Reuel Tolkien"));        // JRRT
+        // Console.WriteLine(GetInitials("Paul"));                             // P
+        // Console.WriteLine(GetInitials("bob smith"));                        // BS
+        // Console.WriteLine(GetInitials("mary jane watson parker"));          // MJWP
+        // Console.WriteLine(GetInitials(""));                                 // ""
+        // Console.WriteLine(GetInitials(null));                               // ""
+        // Console.WriteLine(GetInitials("   John    Smith   "));              // JS
+        // Console.WriteLine(GetInitials("Jean-Luc Picard"));                  // JP
+        // Console.WriteLine(GetInitials("Bilbo Baggins"));                    // BB
 
-            * Return how many punctuation characters are in a string.
-            * Use char.IsPunctuation(character).
-            * Example: "Hello!" -> 1
-            * Example: "Wait... what?" -> 4
-            * Example: "abc123" -> 0
-            * Return 0 for null or empty.
 
-            2. Revision: Remove Consecutive Duplicate Characters
+        // Warm Up: Count Punctuation Characters 
+        // - Return how many punctuation characters are in a string.  
+        // - Example: "Wait...What?" => 4
+        // Console.WriteLine(CountPunctuationCharacters("Wait...What?") == 4);      // 4
+        // Console.WriteLine(CountPunctuationCharacters("Hello, World!") == 2);     // 2
+        // Console.WriteLine(CountPunctuationCharacters("No punctuation") == 0);    // 0
+        // Console.WriteLine(CountPunctuationCharacters("C# is great.") == 2);      // 2
+        // Console.WriteLine(CountPunctuationCharacters("") == 0);                  // 0
+        // Console.WriteLine(CountPunctuationCharacters(null)== 0);                // 0
+        // Console.WriteLine(CountPunctuationCharacters("...") == 3);               // 3
+        // Console.WriteLine(CountPunctuationCharacters("???")== 3);               // 3
+        // Console.WriteLine(CountPunctuationCharacters("One.Two,Three!") == 3);    // 3
 
-            * Return a string where consecutive duplicate characters are reduced to one.
-            * Example: "aaabbc" -> "abc"
-            * Example: "helloo" -> "helo"
-            * Example: "ababa" -> "ababa"
-            * Return "" for null or empty.
-            * Compare current character to previous character.
+        // Remove Consecutive Duplicate Characters
+        // - Return a string where consecutive duplicate characters are 
+        // - reduced to one.
+        // Example: "aaabbc" -> abc
+        // Console.WriteLine(RemoveConsecutiveDuplicateCharacters("aaabbc"));        // abc
+        // Console.WriteLine(RemoveConsecutiveDuplicateCharacters("a"));             // a
+        // Console.WriteLine(RemoveConsecutiveDuplicateCharacters("aaaaa"));         // a
+        // Console.WriteLine(RemoveConsecutiveDuplicateCharacters("ababa"));         // ababa
+        // Console.WriteLine(RemoveConsecutiveDuplicateCharacters("aabbcc"));        // abc
+        // Console.WriteLine(RemoveConsecutiveDuplicateCharacters("aaAAaa"));        // aAAa
+        // Console.WriteLine(RemoveConsecutiveDuplicateCharacters(""));              // ""           // ""
+        // Console.WriteLine(RemoveConsecutiveDuplicateCharacters("112233"));        // 123
+        // Console.WriteLine(RemoveConsecutiveDuplicateCharacters("111223311"));     // 1231
+        // Console.WriteLine(RemoveConsecutiveDuplicateCharacters("Hellooo!!!"));    // Helo!
+        // Console.WriteLine(RemoveConsecutiveDuplicateCharacters("   hello   "));   // " hello "
+        // Console.WriteLine(RemoveConsecutiveDuplicateCharacters("AABBCC"));        // ABC
+        // Console.WriteLine(RemoveConsecutiveDuplicateCharacters("Mississippi"));   // Misisipi
 
-            3. Revision: Are Strings Anagrams
+        // Count character Groups: 
+        // - Return how many consecutive character groups are in a string
+        // - "aabbc" -> 3 || "helo" -> 4 because h, e, ll, oo,
+        // Console.WriteLine(CountCharacterGroups("aabbc"));          // 3
+        // Console.WriteLine(CountCharacterGroups("helo"));           // 4
+        // Console.WriteLine(CountCharacterGroups("aaabbbccc"));      // 3
+        // Console.WriteLine(CountCharacterGroups("aaaa"));           // 1
+        // Console.WriteLine(CountCharacterGroups("ababa"));          // 5
+        // Console.WriteLine(CountCharacterGroups(""));               // 0
+        // Console.WriteLine(CountCharacterGroups(null!));             // 0
+        // Console.WriteLine(CountCharacterGroups("a"));              // 1
+        // Console.WriteLine(CountCharacterGroups("mississippi"));    // 8
 
-            * Return true if both strings contain the same characters with the same counts.
-            * Example: "listen", "silent" -> true
-            * Example: "aab", "aba" -> true
-            * Example: "aab", "ab" -> false
-            * Make it case-insensitive.
-            * Do not use Sort, LINQ, Dictionary or HashSet.
+        // Are Strings anagrams
+        // - Return trus if both string contain same characters with same counts 
+        // - "Listen, Silent" => True
+        // Console.WriteLine(AreAnagramsRevision("Listen", "Silent"));          // True
+        // Console.WriteLine(AreAnagramsRevision("Triangle", "Integral"));      // True
+        // Console.WriteLine(AreAnagramsRevision("Debit Card", "Bad Credit"));  // True
+        // Console.WriteLine(AreAnagramsRevision("Dormitory", "DirtyRoom"));   // True
 
-            4. New Challenge: Count Character Groups
-
-            * Return how many consecutive character groups are in a string.
-            * Example: "aaabbc" -> 3 because aaa, bb, c
-            * Example: "helloo" -> 4 because h, e, ll, oo
-            * Example: "ababa" -> 5
-            * Return 0 for null or empty.
-
-            5. New Challenge: Get Initials From Name
-
-            * Return the initials from a full name.
-            * Example: "Paul McGinley" -> "PM"
-            * Example: "john ronald reuel tolkien" -> "JRRT"
-            * Example: "  cyberpunk   vault  " -> "CV"
-            * Return "" for null or empty.
-            * Split is allowed.
-
-            6. Optional Stretch: Is Pangram
-
-            * Return true if a sentence contains every letter a-z at least once.
-            * Example: "The quick brown fox jumps over the lazy dog" -> true
-            * Example: "Hello world" -> false
-            * Return false for null or empty.
-            * No LINQ, Dictionary, or HashSet.
-        */
+        // Console.WriteLine(AreAnagramsRevision("Hello", "World"));            // False
+        // Console.WriteLine(AreAnagramsRevision("Apple", "Papel"));            // True
+        // Console.WriteLine(AreAnagramsRevision("Apple", "Appeal"));           // False
+        // Console.WriteLine(AreAnagramsRevision("Rat", "Car"));               // False
     }
 }
