@@ -53,8 +53,7 @@ public class Program
 
     public static bool AreAnagramsRevision(string pInputValue, string pTargetValue)
     {
-        // Bug: The empty-string true check never gets reached because of the check - FYI: Just do A Null check instead. 
-        if (string.IsNullOrEmpty(pInputValue) || string.IsNullOrEmpty(pTargetValue))
+        if (pInputValue == null || pTargetValue == null)
         {
             return false;
         }
