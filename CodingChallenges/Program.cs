@@ -7,95 +7,64 @@ public class Program
 {
     public static void Main(string[] args)
     {
-        // Is Panagram
-        // - Return true if senetence contains ecer letter: a-z atleast once.
-        // - Example "The quick  brown fox jumps over the lazy dog" - > true
-        // -   string alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        // - Example Hello world - False. 
-        Console.WriteLine(IsPangram("The quick brown fox jumps over the lazy dog")); // True
-        Console.WriteLine(IsPangram("Hello World"));                                 // False
-        Console.WriteLine(IsPangram("Pack my box with five dozen liquor jugs"));     // True
-        Console.WriteLine(IsPangram("Sphinx of black quartz, judge my vow"));        // True
-        Console.WriteLine(IsPangram("abcdefghijklmnopqrstuvwxyz"));                  // True
-        Console.WriteLine(IsPangram("abcdefghijklmnopqrstuvwxy"));                   // False
-        Console.WriteLine(IsPangram(""));                                            // False
-        Console.WriteLine(IsPangram(null));                                          // False
-        Console.WriteLine(IsPangram("The five boxing wizards jump quickly"));        // True
-        Console.WriteLine(IsPangram("A quick movement of the enemy will jeopardize five gunboats")); // false
+        /*
+            NEXT CHALLENGES
 
-        // Complete:
+            1. Warm-up: Count Symbols
 
-        // Get initals From name
-        // - Return the initals of the full name
-        // - Paul Kinley => PK
-        // - John Ronanld Reuel Tolkien -> JRRT
-        // Console.WriteLine(GetInitials("Paul Kinley"));                      // PK
-        // Console.WriteLine(GetInitials("John Ronald Reuel Tolkien"));        // JRRT
-        // Console.WriteLine(GetInitials("Paul"));                             // P
-        // Console.WriteLine(GetInitials("bob smith"));                        // BS
-        // Console.WriteLine(GetInitials("mary jane watson parker"));          // MJWP
-        // Console.WriteLine(GetInitials(""));                                 // ""
-        // Console.WriteLine(GetInitials(null));                               // ""
-        // Console.WriteLine(GetInitials("   John    Smith   "));              // JS
-        // Console.WriteLine(GetInitials("Jean-Luc Picard"));                  // JP
-        // Console.WriteLine(GetInitials("Bilbo Baggins"));                    // BB
+            * Return how many symbol characters are in a string.
+            * Use char.IsSymbol(character).
+            * Example: "C# costs £10" -> 2 depending on symbol handling: # and £
+            * Example: "hello!" -> 0 because ! is punctuation, not symbol.
+            * Return 0 for null or empty.
 
+            2. Revision: Are Anagrams
 
-        // Warm Up: Count Punctuation Characters 
-        // - Return how many punctuation characters are in a string.  
-        // - Example: "Wait...What?" => 4
-        // Console.WriteLine(CountPunctuationCharacters("Wait...What?") == 4);      // 4
-        // Console.WriteLine(CountPunctuationCharacters("Hello, World!") == 2);     // 2
-        // Console.WriteLine(CountPunctuationCharacters("No punctuation") == 0);    // 0
-        // Console.WriteLine(CountPunctuationCharacters("C# is great.") == 2);      // 2
-        // Console.WriteLine(CountPunctuationCharacters("") == 0);                  // 0
-        // Console.WriteLine(CountPunctuationCharacters(null)== 0);                // 0
-        // Console.WriteLine(CountPunctuationCharacters("...") == 3);               // 3
-        // Console.WriteLine(CountPunctuationCharacters("???")== 3);               // 3
-        // Console.WriteLine(CountPunctuationCharacters("One.Two,Three!") == 3);    // 3
+            * Return true if both strings contain the same characters with the same counts.
+            * Example: "listen", "silent" -> true
+            * Example: "aab", "aba" -> true
+            * Example: "aab", "ab" -> false
+            * "" and "" -> true.
+            * null -> false.
+            * Case-insensitive.
+            * Do not use Sort, LINQ, Dictionary, or HashSet.
 
-        // Remove Consecutive Duplicate Characters
-        // - Return a string where consecutive duplicate characters are 
-        // - reduced to one.
-        // Example: "aaabbc" -> abc
-        // Console.WriteLine(RemoveConsecutiveDuplicateCharacters("aaabbc"));        // abc
-        // Console.WriteLine(RemoveConsecutiveDuplicateCharacters("a"));             // a
-        // Console.WriteLine(RemoveConsecutiveDuplicateCharacters("aaaaa"));         // a
-        // Console.WriteLine(RemoveConsecutiveDuplicateCharacters("ababa"));         // ababa
-        // Console.WriteLine(RemoveConsecutiveDuplicateCharacters("aabbcc"));        // abc
-        // Console.WriteLine(RemoveConsecutiveDuplicateCharacters("aaAAaa"));        // aAAa
-        // Console.WriteLine(RemoveConsecutiveDuplicateCharacters(""));              // ""           // ""
-        // Console.WriteLine(RemoveConsecutiveDuplicateCharacters("112233"));        // 123
-        // Console.WriteLine(RemoveConsecutiveDuplicateCharacters("111223311"));     // 1231
-        // Console.WriteLine(RemoveConsecutiveDuplicateCharacters("Hellooo!!!"));    // Helo!
-        // Console.WriteLine(RemoveConsecutiveDuplicateCharacters("   hello   "));   // " hello "
-        // Console.WriteLine(RemoveConsecutiveDuplicateCharacters("AABBCC"));        // ABC
-        // Console.WriteLine(RemoveConsecutiveDuplicateCharacters("Mississippi"));   // Misisipi
+            3. Revision: Count Character Groups
 
-        // Count character Groups: 
-        // - Return how many consecutive character groups are in a string
-        // - "aabbc" -> 3 || "helo" -> 4 because h, e, ll, oo,
-        // Console.WriteLine(CountCharacterGroups("aabbc"));          // 3
-        // Console.WriteLine(CountCharacterGroups("helo"));           // 4
-        // Console.WriteLine(CountCharacterGroups("aaabbbccc"));      // 3
-        // Console.WriteLine(CountCharacterGroups("aaaa"));           // 1
-        // Console.WriteLine(CountCharacterGroups("ababa"));          // 5
-        // Console.WriteLine(CountCharacterGroups(""));               // 0
-        // Console.WriteLine(CountCharacterGroups(null!));             // 0
-        // Console.WriteLine(CountCharacterGroups("a"));              // 1
-        // Console.WriteLine(CountCharacterGroups("mississippi"));    // 8
+            * Return how many consecutive character groups are in a string.
+            * Example: "aaabbc" -> 3
+            * Example: "helloo" -> 4
+            * Example: "ababa" -> 5
+            * Example: "aaaa" -> 1
+            * Return 0 for null or empty.
 
-        // Are Strings anagrams
-        // - Return trus if both string contain same characters with same counts 
-        // - "Listen, Silent" => True
-        // Console.WriteLine(AreAnagramsRevision("Listen", "Silent"));          // True
-        // Console.WriteLine(AreAnagramsRevision("Triangle", "Integral"));      // True
-        // Console.WriteLine(AreAnagramsRevision("Debit Card", "Bad Credit"));  // True
-        // Console.WriteLine(AreAnagramsRevision("Dormitory", "DirtyRoom"));   // True
+            4. New Challenge: Get First Letters Of Each Word
 
-        // Console.WriteLine(AreAnagramsRevision("Hello", "World"));            // False
-        // Console.WriteLine(AreAnagramsRevision("Apple", "Papel"));            // True
-        // Console.WriteLine(AreAnagramsRevision("Apple", "Appeal"));           // False
-        // Console.WriteLine(AreAnagramsRevision("Rat", "Car"));               // False
+            * Return a string made from the first letter of each word.
+            * Example: "Cyberpunk Card Vault" -> "CCV"
+            * Example: "paul mcginley" -> "pm"
+            * Example: "  hello   world  " -> "hw"
+            * Return "" for null or empty.
+            * Split is allowed.
+
+            5. New Challenge: Get Last Letters Of Each Word
+
+            * Return a string made from the last letter of each word.
+            * Example: "Cyberpunk Card Vault" -> "kdt"
+            * Example: "paul mcginley" -> "ly"
+            * Example: "  hello   world  " -> "od"
+            * Return "" for null or empty.
+            * Split is allowed.
+
+            6. Optional Stretch: Count Unique Characters
+
+            * Return how many different characters appear in a string.
+            * Example: "hello" -> 4 because h, e, l, o
+            * Example: "swiss" -> 3 because s, w, i
+            * Example: "aabbcc" -> 3
+            * Return 0 for null or empty.
+            * You may use List<char>.Contains() for now.
+        */
+
     }
 }
