@@ -4,6 +4,157 @@ namespace CodingChallenges.Challenges
 {
     public class ChallengeSolutions
     {
+        public static int CountSymbols(string pInputValue)
+        {
+            if (string.IsNullOrEmpty(pInputValue))
+            {
+                return 0;
+            }
+
+            int counter = 0;
+
+            foreach (char character in pInputValue)
+            {
+                if (char.IsSymbol(character) || char.IsPunctuation(character))
+                {
+                    counter++;
+                }
+            }
+
+            return counter;
+        }
+
+        // ChatGpt: We need to add this into the next phase please as missed a 
+        // lot in this one.
+        public static bool AreAnagrams(string pInputValue, string pTargetValue)
+        {
+            if (pInputValue == null || pTargetValue == null)
+            {
+                return false;
+            }
+
+            if (pInputValue.Length != pTargetValue.Length)
+            {
+                return false;
+            }
+
+            int firstCounter = 0;
+            int secondCounter = 0;
+
+            pInputValue = pInputValue.ToLower();
+            pTargetValue = pTargetValue.ToLower();
+
+            for (int outterIndex = 0; outterIndex <= pInputValue.Length - 1; outterIndex++)
+            {
+                char currentChar = pInputValue[outterIndex];
+
+                for (int innerIndex = 0; innerIndex <= pTargetValue.Length - 1; innerIndex++)
+                {
+                    if (currentChar == pTargetValue[innerIndex])
+                    {
+                        firstCounter++;
+                    }
+
+                    if (pInputValue[innerIndex] == currentChar)
+                    {
+                        secondCounter++;
+                    }
+                }
+
+                if (firstCounter != secondCounter)
+                {
+                    return false;
+                }
+
+                firstCounter = 0;
+                secondCounter = 0;
+            }
+
+            return true;
+        }
+
+        public static int CountCharacterGroupsConsecutively(string pInputValue)
+        {
+            if (string.IsNullOrEmpty(pInputValue))
+            {
+                return 0;
+            }
+
+            int counter = 1;
+            char previousCharacter = pInputValue[0];
+
+            foreach (char character in pInputValue)
+            {
+                if (previousCharacter != character)
+                {
+                    counter++;
+                }
+
+                previousCharacter = character;
+            }
+
+            return counter;
+        }
+
+        public static string GetFirstLetters(string pinputValue)
+        {
+            if (string.IsNullOrEmpty(pinputValue))
+            {
+                return "";
+            }
+
+            StringBuilder newStringBuilder = new();
+            string[] stringSplit = pinputValue.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+            foreach (string word in stringSplit)
+            {
+                newStringBuilder.Append(word[0]);
+            }
+
+            return newStringBuilder.ToString();
+        }
+
+        public static string GetLastLetters(string pInputValue)
+        {
+            if (string.IsNullOrEmpty(pInputValue))
+            {
+                return "";
+            }
+
+            StringBuilder newStringBuilder = new();
+            string[] stringSplit = pInputValue.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+            foreach (string word in stringSplit)
+            {
+                newStringBuilder.Append(word[^1]);
+            }
+
+            return newStringBuilder.ToString();
+
+
+        }
+
+        public static int CountUniqueCharacters(string pInputValue)
+        {
+            if (string.IsNullOrEmpty(pInputValue))
+            {
+                return 0;
+            }
+
+            List<char> newList = [];
+            int counter = 0;
+
+            foreach (char character in pInputValue)
+            {
+                if (!newList.Contains(character))
+                {
+                    newList.Add(character);
+                    counter++;
+                }
+            }
+
+            return counter;
+        }
         public static int CountPunctuationCharacters(string pInputValue)
         {
             if (string.IsNullOrEmpty(pInputValue))
