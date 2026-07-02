@@ -13,9 +13,6 @@ namespace CodingChallenges.Challenges
 
             //  Count Unique characters
             // Return how many different characters appear in a string. 
-            // Example Hello => h,e,l,o => 4
-            // Example aabbcc > 3
-            // Example Swiss => 3 s,w,i
             Console.WriteLine(CountUniqueCharacters("Hello"));         // 4
             Console.WriteLine(CountUniqueCharacters("aabbcc"));        // 3
             Console.WriteLine(CountUniqueCharacters("Swiss"));         // 3
@@ -31,91 +28,77 @@ namespace CodingChallenges.Challenges
 
             // Get Last letters of each word.
             // Return a string made from the first letter of each word
-            // Example:  Hello World => hw
-            // Return "" for null or empty
-            // Console.WriteLine(GetLastLetters("Hello World"));                     // od
-            // Console.WriteLine(GetLastLetters("Paul McGinley"));                   // ly
-            // Console.WriteLine(GetLastLetters("John Ronald Reuel Tolkien"));       //
-            // Console.WriteLine(GetLastLetters("Single"));                          // e
-            // Console.WriteLine(GetLastLetters(""));                                // ""
-            // Console.WriteLine(GetLastLetters(null!));                              // ""
-            // Console.WriteLine(GetLastLetters("   Hello    World   "));            // od
-            // Console.WriteLine(GetLastLetters("The Quick Brown Fox"));             // eknx
-            // Console.WriteLine(GetLastLetters("One Two Three Four Five"));         // eoere
-            // Console.WriteLine(GetLastLetters("A B C D"));                         // abcd
-            // Console.WriteLine(GetLastLetters("Programming Challenges"));          // gs
-            // Console.WriteLine(GetLastLetters("Red Green Blue"));                  // den
-            // Console.WriteLine(GetLastLetters("Test"));                            // t
+            Console.WriteLine(GetLastLetters("Hello World"));                     // od
+            Console.WriteLine(GetLastLetters("Paul McGinley"));                   // ly
+            Console.WriteLine(GetLastLetters("John Ronald Reuel Tolkien"));       //
+            Console.WriteLine(GetLastLetters("Single"));                          // e
+            Console.WriteLine(GetLastLetters(""));                                // ""
+            Console.WriteLine(GetLastLetters(null!));                              // ""
+            Console.WriteLine(GetLastLetters("   Hello    World   "));            // od
+            Console.WriteLine(GetLastLetters("The Quick Brown Fox"));             // eknx
+            Console.WriteLine(GetLastLetters("One Two Three Four Five"));         // eoere
+            Console.WriteLine(GetLastLetters("A B C D"));                         // abcd
+            Console.WriteLine(GetLastLetters("Programming Challenges"));          // gs
+            Console.WriteLine(GetLastLetters("Red Green Blue"));                  // den
+            Console.WriteLine(GetLastLetters("Test"));                            // t
 
             // Get First Letters of Each word
-            // Return a string made from the first letter of each word
-            // Example:  Hello World => hw
-            //Return "" for null or empty
-            // Console.WriteLine(GetFirstLetters("Hello World"));                     // hw
-            // Console.WriteLine(GetFirstLetters("Paul McGinley"));                   // pm
-            // Console.WriteLine(GetFirstLetters("John Ronald Reuel Tolkien"));       // jrrt
-            // Console.WriteLine(GetFirstLetters("Single"));                          // s
-            // Console.WriteLine(GetFirstLetters(""));                                // ""
-            // Console.WriteLine(GetFirstLetters(null!));                              // ""
-            // Console.WriteLine(GetFirstLetters("   Hello    World   "));            // hw
-            // Console.WriteLine(GetFirstLetters("The Quick Brown Fox"));             // tqbf
-            // Console.WriteLine(GetFirstLetters("One Two Three Four Five"));         // ottff
+            //Return a string made from the first letter of each word
+            Console.WriteLine(GetFirstLetters("Hello World"));                     // hw
+            Console.WriteLine(GetFirstLetters("Paul McGinley"));                   // pm
+            Console.WriteLine(GetFirstLetters("John Ronald Reuel Tolkien"));       // jrrt
+            Console.WriteLine(GetFirstLetters("Single"));                          // s
+            Console.WriteLine(GetFirstLetters(""));                                // ""
+            Console.WriteLine(GetFirstLetters(null!));                              // ""
+            Console.WriteLine(GetFirstLetters("   Hello    World   "));            // hw
+            Console.WriteLine(GetFirstLetters("The Quick Brown Fox"));             // tqbf
+            Console.WriteLine(GetFirstLetters("One Two Three Four Five"));         // ottff
 
-            // Warm Up: Count Symbols:
-            // - Return how many sysmbols characters are in a string. 
-            // -  "C# costs £10" -> 2 depending on symbol handling. 
-            // - Return 0 for null or empty.
-
+            // Count Symbols:
+            // Return how many sysmbols characters are in a string. 
             // Note: I added punctation into mix
-            // Console.WriteLine(CountSymbols("C# costs £10"));          // 2
-            // Console.WriteLine(CountSymbols("Hello World"));           // 0
-            // Console.WriteLine(CountSymbols("$100"));                 // 1
-            // Console.WriteLine(CountSymbols("@#$"));                  // 3
-            // Console.WriteLine(CountSymbols("! Hello ?"));            // 2
-            // Console.WriteLine(CountSymbols(""));                     // 0
-            // Console.WriteLine(CountSymbols(null!));                   // 0
-            // Console.WriteLine(CountSymbols("12345"));                // 0
-            // Console.WriteLine(CountSymbols("C# & .NET"));            // 3
-            // Console.WriteLine(CountSymbols("50% off!"));             // 2
+            Console.WriteLine(CountSymbols("C# costs £10"));
+            Console.WriteLine(CountSymbols("Hello World"));
+            Console.WriteLine(CountSymbols("$100"));
+            Console.WriteLine(CountSymbols("@#$"));
+            Console.WriteLine(CountSymbols("! Hello ?"));
+            Console.WriteLine(CountSymbols(""));
+            Console.WriteLine(CountSymbols(null!));
+            Console.WriteLine(CountSymbols("12345"));
+            Console.WriteLine(CountSymbols("C# & .NET"));
+            Console.WriteLine(CountSymbols("50% off!"));
 
             // Revision Count character groups
             // Return how many consecutive character groups are in a string
-            // Example: "aaabc" => 3
-            // Example: "Helloo" => 4
-            // Console.WriteLine(CountCharacterGroupsConsecutively("aaabc"));          // 3
-            // Console.WriteLine(CountCharacterGroupsConsecutively("Helloo"));         // 4
-            // Console.WriteLine(CountCharacterGroupsConsecutively("a"));              // 1
-            // Console.WriteLine(CountCharacterGroupsConsecutively("aaaa"));           // 1
-            // Console.WriteLine(CountCharacterGroupsConsecutively("ababa"));          // 5
-            // Console.WriteLine(CountCharacterGroupsConsecutively(""));              // 0
-            // Console.WriteLine(CountCharacterGroupsConsecutively(null));            // 0
-            // Console.WriteLine(CountCharacterGroupsConsecutively("Mississippi"));   // 8
-            // Console.WriteLine(CountCharacterGroupsConsecutively("112233"));        // 6
-            // Console.WriteLine(CountCharacterGroupsConsecutively("bookkeeper"));    // 8
+            Console.WriteLine(CountCharacterGroupsConsecutively("aaabc"));
+            Console.WriteLine(CountCharacterGroupsConsecutively("Helloo"));
+            Console.WriteLine(CountCharacterGroupsConsecutively("a"));
+            Console.WriteLine(CountCharacterGroupsConsecutively("aaaa"));
+            Console.WriteLine(CountCharacterGroupsConsecutively("ababa"));
+            Console.WriteLine(CountCharacterGroupsConsecutively(""));
+            Console.WriteLine(CountCharacterGroupsConsecutively(null!));
+            Console.WriteLine(CountCharacterGroupsConsecutively("Mississippi"));
+            Console.WriteLine(CountCharacterGroupsConsecutively("112233"));
+            Console.WriteLine(CountCharacterGroupsConsecutively("bookkeeper"));
 
             //  Revision are anagrams
             // Return true if both string contain the same character with the same counts
             //  Case-insensitive: null = false
-            // Example:  Listen, silent = True
-            // Example:  aab, ab false
-
-            // Console.WriteLine(AreAnagrams("Listen", "Silent"));           // True
-            // Console.WriteLine(AreAnagrams("aab", "ab"));                 // False
-            // Console.WriteLine(AreAnagrams("Debit Card", "Bad Credit"));  // True
-            // Console.WriteLine(AreAnagrams("Triangle", "Integral"));      // True
-            // Console.WriteLine(AreAnagrams("Hello", "World"));            // False
-            // Console.WriteLine(AreAnagrams("", ""));                      // True
-            // Console.WriteLine(AreAnagrams(null, "abc"));                // False
-            // Console.WriteLine(AreAnagrams("abc", null));                // False
-            // Console.WriteLine(AreAnagrams("abc", "cab"));               // True
-            // Console.WriteLine(AreAnagrams("aabbcc", "abcabc"));         // True
+            Console.WriteLine(AreAnagrams("Listen", "Silent"));           // True
+            Console.WriteLine(AreAnagrams("aab", "ab"));                 // False
+            Console.WriteLine(AreAnagrams("Debit Card", "Bad Credit"));  // True
+            Console.WriteLine(AreAnagrams("Triangle", "Integral"));      // True
+            Console.WriteLine(AreAnagrams("Hello", "World"));            // False
+            Console.WriteLine(AreAnagrams("", ""));                      // True
+            Console.WriteLine(AreAnagrams(null!, "abc"));                // False
+            Console.WriteLine(AreAnagrams("abc", null!));                // False
+            Console.WriteLine(AreAnagrams("abc", "cab"));               // True
+            Console.WriteLine(AreAnagrams("aabbcc", "abcabc"));         // True
 
 
             // Is Panagram
             // - Return true if senetence contains ecer letter: a-z atleast once.
             // - Example "The quick  brown fox jumps over the lazy dog" - > true
-            // -   string alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-            // - Example Hello world - False. 
             Console.WriteLine(IsPangram("The quick brown fox jumps over the lazy dog")); // True
             Console.WriteLine(IsPangram("Hello World"));                                 // False
             Console.WriteLine(IsPangram("Pack my box with five dozen liquor jugs"));     // True
@@ -131,85 +114,70 @@ namespace CodingChallenges.Challenges
 
             // Get initals From name
             // - Return the initals of the full name
-            // - Paul Kinley => PK
-            // - John Ronanld Reuel Tolkien -> JRRT
-            // Console.WriteLine(GetInitials("Paul Kinley"));                      // PK
-            // Console.WriteLine(GetInitials("John Ronald Reuel Tolkien"));        // JRRT
-            // Console.WriteLine(GetInitials("Paul"));                             // P
-            // Console.WriteLine(GetInitials("bob smith"));                        // BS
-            // Console.WriteLine(GetInitials("mary jane watson parker"));          // MJWP
-            // Console.WriteLine(GetInitials(""));                                 // ""
-            // Console.WriteLine(GetInitials(null));                               // ""
-            // Console.WriteLine(GetInitials("   John    Smith   "));              // JS
-            // Console.WriteLine(GetInitials("Jean-Luc Picard"));                  // JP
-            // Console.WriteLine(GetInitials("Bilbo Baggins"));                    // BB
+            Console.WriteLine(GetInitials("Paul Kinley"));                      // PK
+            Console.WriteLine(GetInitials("John Ronald Reuel Tolkien"));        // JRRT
+            Console.WriteLine(GetInitials("Paul"));                             // P
+            Console.WriteLine(GetInitials("bob smith"));                        // BS
+            Console.WriteLine(GetInitials("mary jane watson parker"));          // MJWP
+            Console.WriteLine(GetInitials(""));                                 // ""
+            Console.WriteLine(GetInitials(null!));                               // ""
+            Console.WriteLine(GetInitials("   John    Smith   "));              // JS
+            Console.WriteLine(GetInitials("Jean-Luc Picard"));                  // JP
+            Console.WriteLine(GetInitials("Bilbo Baggins"));                    // BB
 
 
             // Warm Up: Count Punctuation Characters 
-            // - Return how many punctuation characters are in a string.  
-            // - Example: "Wait...What?" => 4
-            // Console.WriteLine(CountPunctuationCharacters("Wait...What?") == 4);      // 4
-            // Console.WriteLine(CountPunctuationCharacters("Hello, World!") == 2);     // 2
-            // Console.WriteLine(CountPunctuationCharacters("No punctuation") == 0);    // 0
-            // Console.WriteLine(CountPunctuationCharacters("C# is great.") == 2);      // 2
-            // Console.WriteLine(CountPunctuationCharacters("") == 0);                  // 0
-            // Console.WriteLine(CountPunctuationCharacters(null)== 0);                // 0
-            // Console.WriteLine(CountPunctuationCharacters("...") == 3);               // 3
-            // Console.WriteLine(CountPunctuationCharacters("???")== 3);               // 3
-            // Console.WriteLine(CountPunctuationCharacters("One.Two,Three!") == 3);    // 3
+            Console.WriteLine(CountPunctuationCharacters("Wait...What?") == 4);      // 4
+            Console.WriteLine(CountPunctuationCharacters("Hello, World!") == 2);     // 2
+            Console.WriteLine(CountPunctuationCharacters("No punctuation") == 0);    // 0
+            Console.WriteLine(CountPunctuationCharacters("C# is great.") == 2);      // 2
+            Console.WriteLine(CountPunctuationCharacters("") == 0);                  // 0
+            Console.WriteLine(CountPunctuationCharacters(null!) == 0);                // 0
+            Console.WriteLine(CountPunctuationCharacters("...") == 3);               // 3
+            Console.WriteLine(CountPunctuationCharacters("???") == 3);               // 3
+            Console.WriteLine(CountPunctuationCharacters("One.Two,Three!") == 3);    // 3
 
             // Remove Consecutive Duplicate Characters
             // - Return a string where consecutive duplicate characters are 
             // - reduced to one.
-            // Example: "aaabbc" -> abc
-            // Console.WriteLine(RemoveConsecutiveDuplicateCharacters("aaabbc"));        // abc
-            // Console.WriteLine(RemoveConsecutiveDuplicateCharacters("a"));             // a
-            // Console.WriteLine(RemoveConsecutiveDuplicateCharacters("aaaaa"));         // a
-            // Console.WriteLine(RemoveConsecutiveDuplicateCharacters("ababa"));         // ababa
-            // Console.WriteLine(RemoveConsecutiveDuplicateCharacters("aabbcc"));        // abc
-            // Console.WriteLine(RemoveConsecutiveDuplicateCharacters("aaAAaa"));        // aAAa
-            // Console.WriteLine(RemoveConsecutiveDuplicateCharacters(""));              // ""           // ""
-            // Console.WriteLine(RemoveConsecutiveDuplicateCharacters("112233"));        // 123
-            // Console.WriteLine(RemoveConsecutiveDuplicateCharacters("111223311"));     // 1231
-            // Console.WriteLine(RemoveConsecutiveDuplicateCharacters("Hellooo!!!"));    // Helo!
-            // Console.WriteLine(RemoveConsecutiveDuplicateCharacters("   hello   "));   // " hello "
-            // Console.WriteLine(RemoveConsecutiveDuplicateCharacters("AABBCC"));        // ABC
-            // Console.WriteLine(RemoveConsecutiveDuplicateCharacters("Mississippi"));   // Misisipi
+            Console.WriteLine(RemoveConsecutiveDuplicateCharacters("aaabbc"));        // abc
+            Console.WriteLine(RemoveConsecutiveDuplicateCharacters("a"));             // a
+            Console.WriteLine(RemoveConsecutiveDuplicateCharacters("aaaaa"));         // a
+            Console.WriteLine(RemoveConsecutiveDuplicateCharacters("ababa"));         // ababa
+            Console.WriteLine(RemoveConsecutiveDuplicateCharacters("aabbcc"));        // abc
+            Console.WriteLine(RemoveConsecutiveDuplicateCharacters("aaAAaa"));        // aAAa
+            Console.WriteLine(RemoveConsecutiveDuplicateCharacters(""));              // ""         
+            Console.WriteLine(RemoveConsecutiveDuplicateCharacters("112233"));        // 123
+            Console.WriteLine(RemoveConsecutiveDuplicateCharacters("111223311"));     // 1231
+            Console.WriteLine(RemoveConsecutiveDuplicateCharacters("Hellooo!!!"));    // Helo!
+            Console.WriteLine(RemoveConsecutiveDuplicateCharacters("   hello   "));   // " hello "
+            Console.WriteLine(RemoveConsecutiveDuplicateCharacters("AABBCC"));        // ABC
+            Console.WriteLine(RemoveConsecutiveDuplicateCharacters("Mississippi"));   // Misisipi
 
             // Count character Groups: 
             // - Return how many consecutive character groups are in a string
-            // - "aabbc" -> 3 || "helo" -> 4 because h, e, ll, oo,
-            // Console.WriteLine(CountCharacterGroups("aabbc"));          // 3
-            // Console.WriteLine(CountCharacterGroups("helo"));           // 4
-            // Console.WriteLine(CountCharacterGroups("aaabbbccc"));      // 3
-            // Console.WriteLine(CountCharacterGroups("aaaa"));           // 1
-            // Console.WriteLine(CountCharacterGroups("ababa"));          // 5
-            // Console.WriteLine(CountCharacterGroups(""));               // 0
-            // Console.WriteLine(CountCharacterGroups(null!));             // 0
-            // Console.WriteLine(CountCharacterGroups("a"));              // 1
-            // Console.WriteLine(CountCharacterGroups("mississippi"));    // 8
+            Console.WriteLine(CountCharacterGroups("aabbc"));          // 3
+            Console.WriteLine(CountCharacterGroups("helo"));           // 4
+            Console.WriteLine(CountCharacterGroups("aaabbbccc"));      // 3
+            Console.WriteLine(CountCharacterGroups("aaaa"));           // 1
+            Console.WriteLine(CountCharacterGroups("ababa"));          // 5
+            Console.WriteLine(CountCharacterGroups(""));               // 0
+            Console.WriteLine(CountCharacterGroups(null!));             // 0
+            Console.WriteLine(CountCharacterGroups("a"));              // 1
+            Console.WriteLine(CountCharacterGroups("mississippi"));    // 8
 
             // Are Strings anagrams
             // - Return trus if both string contain same characters with same counts 
-            // - "Listen, Silent" => True
-            // Console.WriteLine(AreAnagramsRevision("Listen", "Silent"));          // True
-            // Console.WriteLine(AreAnagramsRevision("Triangle", "Integral"));      // True
-            // Console.WriteLine(AreAnagramsRevision("Debit Card", "Bad Credit"));  // True
-            // Console.WriteLine(AreAnagramsRevision("Dormitory", "DirtyRoom"));   // True
+            Console.WriteLine(AreAnagramsRevision("Listen", "Silent"));          // True
+            Console.WriteLine(AreAnagramsRevision("Triangle", "Integral"));      // True
+            Console.WriteLine(AreAnagramsRevision("Debit Card", "Bad Credit"));  // True
+            Console.WriteLine(AreAnagramsRevision("Dormitory", "DirtyRoom"));   // True
+            Console.WriteLine(AreAnagramsRevision("Hello", "World"));            // False
+            Console.WriteLine(AreAnagramsRevision("Apple", "Papel"));            // True
+            Console.WriteLine(AreAnagramsRevision("Apple", "Appeal"));           // False
+            Console.WriteLine(AreAnagramsRevision("Rat", "Car"));               // False
 
-            // Console.WriteLine(AreAnagramsRevision("Hello", "World"));            // False
-            // Console.WriteLine(AreAnagramsRevision("Apple", "Papel"));            // True
-            // Console.WriteLine(AreAnagramsRevision("Apple", "Appeal"));           // False
-            // Console.WriteLine(AreAnagramsRevision("Rat", "Car"));               // False
-
-
-            // PMG TO DO Code clean up ============================================================================
-            // PMG TO DO Code clean up ============================================================================
-            // PMG TO DO Code clean up ============================================================================
-
-
-
-            // 1.Count Characters Except Spaces
+            // Count Characters Except Spaces
             Console.WriteLine($"Hello World should return 10 => Answer: {CountCharactersExceptSpaces("Hello World") == 10}");
             Console.WriteLine($" Cyberpunk Vault  should return 14 => Answer: {CountCharactersExceptSpaces(" Cyberpunk Vault ") == 14}");
             Console.WriteLine($"Paul should return 4 => Answer: {CountCharactersExceptSpaces("Paul") == 4}");
@@ -306,39 +274,39 @@ namespace CodingChallenges.Challenges
             Console.WriteLine(FindLongestWordLength("") == 0);
             Console.WriteLine(FindLongestWordLength("a ab abc abcd") == 4);
 
-            // 1. Count even numbers (Sum)
+            // Count even numbers (Sum)
             Console.WriteLine(SumEvenNumbersRev([1, 2, 3, 4, 5, 6]));
             Console.WriteLine(SumEvenNumbersRev([2, 4, 6, 8]));
             Console.WriteLine(SumEvenNumbersRev([1, 3, 5]));
             Console.WriteLine(SumEvenNumbersRev([]));
 
-            //  2. Replace target with value 
+            // Replace target with value 
             Console.WriteLine(string.Join(",", ReplaceTarget([1, 5, 10, 5], 5, 99)));
             Console.WriteLine(string.Join(",", ReplaceTarget([5, 5, 5], 5, 0)));
             Console.WriteLine(string.Join(",", ReplaceTarget([1, 2, 3], 9, 100)));
 
-            // 3. Split positive and negative numbers: 
+            // Split positive and negative numbers: 
             Console.WriteLine(string.Join(",", SplitPosNeg([1, -2, 3, -4, 0])));
             Console.WriteLine(string.Join(",", SplitPosNeg([-1, -2, -3])));
             Console.WriteLine(string.Join(",", SplitPosNeg([1, 2, 3])));
             Console.WriteLine(string.Join(",", SplitPosNeg([0, 0, 0])));
 
-            // 4. Count Matching Numbers
+            // Count Matching Numbers
             Console.WriteLine(CountMatching([1, 2, 2, 3, 2], 2));
             Console.WriteLine(CountMatching([5, 5, 5, 5], 5));
             Console.WriteLine(CountMatching([1, 2, 3], 9));
 
-            // 5. Remove Target  From array
+            // Remove Target  From array
             Console.WriteLine(string.Join(",", RemoveTarget([1, 2, 3, 2, 4], 2)));
             Console.WriteLine(string.Join(",", RemoveTarget([5, 5, 5], 5)));
             Console.WriteLine(string.Join(",", RemoveTarget([1, 2, 3], 9)));
 
-            // 6. Move Target to the end 
+            // Move Target to the end 
             Console.WriteLine(string.Join(",", MoveTargetToEnd([1, 2, 3, 2, 4], 2)));
             Console.WriteLine(string.Join(",", MoveTargetToEnd([5, 1, 5, 2], 5)));
             Console.WriteLine(string.Join(",", MoveTargetToEnd([1, 2, 3], 9)));
 
-            // New Challenge: Replace Target With Value
+            // Replace Target With Value
             Console.WriteLine($"[1, 0, 5, 0], target 0, replacement 99 should return [1, 99, 5, 99] => Answer: [{string.Join(", ", ReplaceTargetWithValue([1, 0, 5, 0], 0, 99))}]");
             Console.WriteLine($"[1, 0, 5, 0], target 0, replacement 0 should return [1, 0, 5, 0] => Answer: [{string.Join(", ", ReplaceTargetWithValue([1, 0, 5, 0], 0, 0))}]");
             Console.WriteLine($"[1, 5, 10, 5], target 5, replacement 99 should return [1, 99, 10, 99] => Answer: [{string.Join(", ", ReplaceTargetWithValue([1, 5, 10, 5], 5, 99))}]");
@@ -347,7 +315,7 @@ namespace CodingChallenges.Challenges
             Console.WriteLine($"Empty array should return [] => Answer: [{string.Join(", ", ReplaceTargetWithValue([], 5, 99))}]");
             Console.WriteLine($"Null should return [] => Answer: [{string.Join(", ", ReplaceTargetWithValue(null!, 5, 99))}]");
 
-            //  Split Positive And Negative Numbers
+            // Split Positive And Negative Numbers
             Console.WriteLine($"[1, -2, 3, -4, 0] should return [1, 3, -2, -4] => Answer: [{string.Join(", ", SplitPositiveAndNegativeNumbers([1, -2, 3, -4, 0]))}]");
             Console.WriteLine($"[-1, -2, 5] should return [5, -1, -2] => Answer: [{string.Join(", ", SplitPositiveAndNegativeNumbers([-1, -2, 5]))}]");
             Console.WriteLine($"[0, 0] should return [] => Answer: [{string.Join(", ", SplitPositiveAndNegativeNumbers([0, 0]))}]");
@@ -406,7 +374,7 @@ namespace CodingChallenges.Challenges
             Console.WriteLine($"TwoSum [3, 3], target 6 should be [0, 1] => Answer: [{string.Join(", ", TwoSumRevision([3, 3], 6))}]");
             Console.WriteLine($"TwoSum [1, 8, 10, 2], target 10 should be [1, 3] => Answer: [{string.Join(", ", TwoSumRevision([1, 8, 10, 2], 10))}]");
 
-            //// Find first Non Repeating Character:
+            // Find first Non Repeating Character:
             Console.WriteLine($"swiss should return w => Answer: {FindFirstNonRepeatingCharacterRev("swiss")}");
             Console.WriteLine($"hello should return h => Answer: {FindFirstNonRepeatingCharacterRev("hello")}");
             Console.WriteLine($"aabbc should return c => Answer: {FindFirstNonRepeatingCharacterRev("aabbc")}");
@@ -415,7 +383,7 @@ namespace CodingChallenges.Challenges
             Console.WriteLine($"Null should return _ => Answer: {FindFirstNonRepeatingCharacterRev(null!)}");
             Console.WriteLine($"Cyberpunk should return C or c depending on casing rule => Answer: {FindFirstNonRepeatingCharacterRev("Cyberpunk")}");
 
-            //// Count Negative Numbers: 
+            // Count Negative Numbers: 
             Console.WriteLine(CountNegativeNumbers([1, -2, 3, -4, 5]));
             Console.WriteLine(CountNegativeNumbers([-1, -2, -3]));
             Console.WriteLine(CountNegativeNumbers([0, 0, 0]));
@@ -483,7 +451,7 @@ namespace CodingChallenges.Challenges
             // Sum of Even Numbers
             Console.WriteLine($"Sum of Even Numbers  => [1, 2, 3, 4, 5] Answer = 6: {SumEvenNumbers([1, 2, 3, 4,])}");
 
-            //CountSpaces
+            // CountSpaces
             Console.WriteLine($"Should be 7. Result: {CountingSpaces("       ")}");
             Console.WriteLine($"Should be 3. Result: {CountingSpaces(" Hello World ")}");
             Console.WriteLine($"Should be 0. Result: {CountingSpaces("")}");
@@ -590,6 +558,7 @@ namespace CodingChallenges.Challenges
             Console.WriteLine(FindIndexOfTarget([9], 9));
             Console.WriteLine(FindIndexOfTarget([9], 1));
 
+            // Count Numbers In Range
             Console.WriteLine(CountNumbersInRange(Array.Empty<int>(), 1, 5));
             Console.WriteLine(CountNumbersInRange([1, 5, 10, 15], 5, 10));
             Console.WriteLine(CountNumbersInRange([3, 6, 9], 1, 5));
@@ -598,6 +567,7 @@ namespace CodingChallenges.Challenges
             Console.WriteLine(CountNumbersInRange([5, 5, 5], 5, 5));
             Console.WriteLine(CountNumbersInRange([-5, 0, 5], -5, 0));
 
+            // Filter Numbers Between Range
             Console.WriteLine(string.Join(", ", FilterNumbersBetweenRange(null!, 1, 5)));
             Console.WriteLine(string.Join(", ", FilterNumbersBetweenRange([], 1, 5)));
             Console.WriteLine(string.Join(", ", FilterNumbersBetweenRange([1, 5, 10, 15], 5, 10)));
