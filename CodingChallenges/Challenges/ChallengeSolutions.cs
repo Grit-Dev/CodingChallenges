@@ -143,6 +143,7 @@ namespace CodingChallenges.Challenges
 
             List<char> newList = [];
             int counter = 0;
+            pInputValue = pInputValue.ToLower();
 
             foreach (char character in pInputValue)
             {
