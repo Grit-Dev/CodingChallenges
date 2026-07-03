@@ -187,7 +187,7 @@ public class Program
         // Return a formatted string showing how many times each letter appears
         // Example: "abcaba = "A: 3 b:2 C:1"
         // Ignore spaces, numbers and symbols
-        Console.WriteLine(CountEachLetterAToZ("aaaaa"));           // A:3 B:2 C:1
+        Console.WriteLine(CountEachLetterAToZ("aaaaa"));            // A:5
         Console.WriteLine(CountEachLetterAToZ("abcaba"));           // A:3 B:2 C:1
         Console.WriteLine(CountEachLetterAToZ("Hello"));            // H:1 E:1 L:2 O:1
         Console.WriteLine(CountEachLetterAToZ("Mississippi"));      // M:1 I:4 S:4 P:2
