@@ -4,6 +4,182 @@ namespace CodingChallenges.Challenges
 {
     public class ChallengeSolutions
     {
+
+        public static int CountDigitsInString(string pInputValue)
+        {
+            if (string.IsNullOrEmpty(pInputValue))
+            {
+                return 0;
+            }
+
+            int counter = 0;
+
+            foreach (char character in pInputValue)
+            {
+                if (char.IsDigit(character))
+                {
+                    counter++;
+                }
+            }
+
+            return counter;
+        }
+
+        public static bool AreAnagramsRevisionFriday(string pInputValue, string pTarget)
+        {
+            if (pInputValue == null || pTarget == null)
+            {
+                return false;
+            }
+
+            if (pInputValue.Length != pTarget.Length)
+            {
+                return false;
+            }
+
+            pInputValue = pInputValue.ToLower();
+            pTarget = pTarget.ToLower();
+            int firstCounter = 0;
+            int secondCounter = 0;
+
+            for (int outterIndex = 0; outterIndex <= pInputValue.Length - 1; outterIndex++)
+            {
+                char currentChar = pInputValue[outterIndex];
+
+                for (int innerIndex = 0; innerIndex <= pTarget.Length - 1; innerIndex++)
+                {
+                    if (currentChar == pTarget[innerIndex])
+                    {
+                        firstCounter++;
+                    }
+
+                    if (pInputValue[innerIndex] == currentChar)
+                    {
+                        secondCounter++;
+                    }
+                }
+
+                if (firstCounter != secondCounter)
+                {
+                    return false;
+                }
+
+                firstCounter = 0;
+                secondCounter = 0;
+            }
+
+            return true;
+        }
+
+        public static int CountUniqueCharacters(string pInputValue)
+        {
+            if (string.IsNullOrEmpty(pInputValue))
+            {
+                return 0;
+            }
+
+            int counter = 0;
+            List<char> newList = new();
+            pInputValue = pInputValue.ToLower();
+
+            foreach (char character in pInputValue)
+            {
+                if (!newList.Contains(character))
+                {
+                    newList.Add(character);
+                    counter++;
+                }
+            }
+
+            return counter;
+        }
+
+        public static string RemovePunctuationOnly(string pInputValue)
+        {
+            if (string.IsNullOrEmpty(pInputValue))
+            {
+                return "";
+            }
+
+            StringBuilder newString = new();
+
+            foreach (char character in pInputValue)
+            {
+                if (!char.IsPunctuation(character))
+                {
+                    newString.Append(character);
+                }
+            }
+
+            return newString.ToString();
+        }
+
+        public static string KeepOnlyLettersAndSpaces(string pInputValue)
+        {
+            if (string.IsNullOrEmpty(pInputValue))
+            {
+                return "";
+            }
+
+            StringBuilder newString = new();
+
+            foreach (char character in pInputValue)
+            {
+                if (char.IsLetter(character) || char.IsWhiteSpace(character))
+                {
+                    newString.Append(character);
+                }
+            }
+
+            return newString.ToString();
+        }
+
+        public static string CountEachLetterAToZ(string pInputValue)
+        {
+            if (string.IsNullOrEmpty(pInputValue))
+            {
+                return "";
+            }
+
+            int counter = 0;
+            StringBuilder passedParameterString = new();
+            StringBuilder newStringFinal = new();
+            List<char> newList = [];
+            pInputValue = pInputValue.ToUpper();
+
+            foreach (char character in pInputValue)
+            {
+                if (char.IsLetter(character))
+                {
+                    passedParameterString.Append(character);
+                }
+            }
+
+            for (int outterIndex = 0; outterIndex <= passedParameterString.Length - 1; outterIndex++)
+            {
+                char currentChar = passedParameterString[outterIndex];
+
+                if (!newList.Contains(currentChar))
+                {
+                    foreach (char characterInIndex in passedParameterString.ToString())
+                    {
+                        if (currentChar == characterInIndex)
+                        {
+                            newList.Add(currentChar);
+                            counter++;
+                        }
+                    }
+
+                    newStringFinal.Append(currentChar + ":");
+                    newStringFinal.Append(counter);
+                    newStringFinal.Append(' ');
+                    counter = 0;
+                }
+            }
+
+            return newStringFinal.ToString();
+
+        }
         public static int CountSymbols(string pInputValue)
         {
             if (string.IsNullOrEmpty(pInputValue))
@@ -134,28 +310,29 @@ namespace CodingChallenges.Challenges
 
         }
 
-        public static int CountUniqueCharacters(string pInputValue)
-        {
-            if (string.IsNullOrEmpty(pInputValue))
-            {
-                return 0;
-            }
+        // Revision Test:
+        //public static int CountUniqueCharacters(string pInputValue)
+        //{
+        //    if (string.IsNullOrEmpty(pInputValue))
+        //    {
+        //        return 0;
+        //    }
 
-            List<char> newList = [];
-            int counter = 0;
-            pInputValue = pInputValue.ToLower();
+        //    List<char> newList = [];
+        //    int counter = 0;
+        //    pInputValue = pInputValue.ToLower();
 
-            foreach (char character in pInputValue)
-            {
-                if (!newList.Contains(character))
-                {
-                    newList.Add(character);
-                    counter++;
-                }
-            }
+        //    foreach (char character in pInputValue)
+        //    {
+        //        if (!newList.Contains(character))
+        //        {
+        //            newList.Add(character);
+        //            counter++;
+        //        }
+        //    }
 
-            return counter;
-        }
+        //    return counter;
+        //}
         public static int CountPunctuationCharacters(string pInputValue)
         {
             if (string.IsNullOrEmpty(pInputValue))
@@ -637,25 +814,26 @@ namespace CodingChallenges.Challenges
             return stringBuilder.ToString();
         }
 
-        public static int CountDigitsInString(string pInputValue)
-        {
-            if (string.IsNullOrEmpty(pInputValue))
-            {
-                return 0;
-            }
+        // Revision Test:
+        //public static int CountDigitsInString(string pInputValue)
+        //{
+        //    if (string.IsNullOrEmpty(pInputValue))
+        //    {
+        //        return 0;
+        //    }
 
-            int count = 0;
+        //    int count = 0;
 
-            foreach (char character in pInputValue)
-            {
-                if (char.IsDigit(character))
-                {
-                    count++;
-                }
-            }
+        //    foreach (char character in pInputValue)
+        //    {
+        //        if (char.IsDigit(character))
+        //        {
+        //            count++;
+        //        }
+        //    }
 
-            return count;
-        }
+        //    return count;
+        //}
 
         public static string RemoveVowelsPreserveCasing(string pInputValue)
         {
