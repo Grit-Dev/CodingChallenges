@@ -77,17 +77,17 @@ public class Program
             return "";
         }
 
-        StringBuilder newSring = new();
+        StringBuilder newString = new();
 
         foreach (char character in pInputValue)
         {
             if (char.IsLetterOrDigit(character) || char.IsWhiteSpace(character))
             {
-                newSring.Append(character);
+                newString.Append(character);
             }
         }
 
-        return newSring.ToString();
+        return newString.ToString();
     }
 
     public static int CountWordsLongerThanTarget(string pInputValue, int pTarget)
