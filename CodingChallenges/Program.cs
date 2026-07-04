@@ -1,4 +1,6 @@
-﻿public class Program
+﻿using System.Text;
+
+public class Program
 {
     public static int CountLettersCaseInsensitive(string pInputValue)
     {
@@ -66,6 +68,26 @@
 
         return true;
     }
+
+    public static string RemovePunctationAndSymbols(string pInputValue)
+    {
+        if (string.IsNullOrEmpty(pInputValue))
+        {
+            return "";
+        }
+
+        StringBuilder newSring = new();
+
+        foreach (char character in pInputValue)
+        {
+            if (char.IsLetterOrDigit(character) || char.IsWhiteSpace(character))
+            {
+                newSring.Append(character);
+            }
+        }
+
+        return newSring.ToString();
+    }
     public static void Main(string[] args)
     {
 
@@ -76,18 +98,24 @@
         //Console.WriteLine(CountLettersCaseInsensitive(null!));
 
         // Are Anagrams
-        Console.WriteLine(AreAnagramsRevisionSat("aab", "aba"));           // True
-        Console.WriteLine(AreAnagramsRevisionSat("Listen", "Silent"));     // True
-        Console.WriteLine(AreAnagramsRevisionSat("abc", "cab"));           // True
-        Console.WriteLine(AreAnagramsRevisionSat("aab", "abb"));           // False
-        Console.WriteLine(AreAnagramsRevisionSat("aabc", "abcc"));         // False
-        Console.WriteLine(AreAnagramsRevisionSat("abc", "abd"));           // False
-        Console.WriteLine(AreAnagramsRevisionSat("", ""));                 // True
-        Console.WriteLine(AreAnagramsRevisionSat(null!, "abc"));            // False
-        Console.WriteLine(AreAnagramsRevisionSat("abc", null!));            // False
-        Console.WriteLine(AreAnagramsRevisionSat("Hello", "World"));       // False
-        Console.WriteLine(AreAnagramsRevisionSat("AaBb", "bBaA"));         // True
-        Console.WriteLine(AreAnagramsRevisionSat("Miss", "Sims"));         // False
+        //Console.WriteLine(AreAnagramsRevisionSat("aab", "aba"));           // True
+        //Console.WriteLine(AreAnagramsRevisionSat("Listen", "Silent"));     // True
+        //Console.WriteLine(AreAnagramsRevisionSat("abc", "cab"));           // True
+        //Console.WriteLine(AreAnagramsRevisionSat("aab", "abb"));           // False
+        //Console.WriteLine(AreAnagramsRevisionSat("aabc", "abcc"));         // False
+        //Console.WriteLine(AreAnagramsRevisionSat("abc", "abd"));           // False
+        //Console.WriteLine(AreAnagramsRevisionSat("", ""));                 // True
+        //Console.WriteLine(AreAnagramsRevisionSat(null!, "abc"));            // False
+        //Console.WriteLine(AreAnagramsRevisionSat("abc", null!));            // False
+        //Console.WriteLine(AreAnagramsRevisionSat("Hello", "World"));       // False
+        //Console.WriteLine(AreAnagramsRevisionSat("AaBb", "bBaA"));         // True
+        //Console.WriteLine(AreAnagramsRevisionSat("Miss", "Sims"));         // False
+
+        // Remove Punctation and Symbols
+        // Keep letters, digits, and spaces.
+        // Return "" for Null or Empty
+        Console.WriteLine(RemovePunctationAndSymbols("C# costs £10!"));
+        Console.WriteLine(RemovePunctationAndSymbols("Hello World!"));
 
 
         /*
