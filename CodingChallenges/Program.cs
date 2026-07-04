@@ -159,21 +159,74 @@ public class Program
         return newStringReturnOutCome.ToString().Trim();
     }
 
+    public static string FindMostFrequentWord(string pinputValue)
+    {
+        if (string.IsNullOrEmpty(pinputValue))
+        {
+            return "";
+        }
+
+        int counter = 0;
+        int highestCount = 0;
+        string wordHolder = "";
+
+        pinputValue = pinputValue.ToLower();
+        string[] stringspilit = pinputValue.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+        foreach (string wordOutter in stringspilit)
+        {
+            foreach (string wordInner in stringspilit)
+            {
+                if (wordOutter == wordInner)
+                {
+                    counter++;
+                }
+            }
+
+            if (counter > highestCount)
+            {
+                wordHolder = wordOutter;
+                highestCount = counter;
+            }
+
+            counter = 0;
+        }
+
+        return wordHolder;
+    }
+
+
     public static void Main(string[] args)
     {
-        // 3.Revision: Count Each Letter A-Z
-        // * Return a formatted string showing how many times each letter appears.
-        // * Ignore spaces, numbers, and symbols.
-        // * Case - insensitive.
-        // * Example: "abcaba"-> "A:3 B:2 C:1"
-        // * Example: "Hello"-> "H:1 E:1 L:2 O:1"
-        // * Example: "aaaaa"-> "A:5"
-        // * Return "" for null or empty.
-        // * Try to avoid a trailing space if you can.
-        Console.WriteLine(CountEachLetterAToZRevision("abcaba"));
-        Console.WriteLine(CountEachLetterAToZRevision("Hello"));
-        Console.WriteLine(CountEachLetterAToZRevision("aaaaa"));
-        Console.WriteLine(CountEachLetterAToZRevision(""));
+
+        /*
+          NEXT CHALLENGES
+
+          6. Optional Stretch: Find Most Frequent Word
+
+          * Return the word that appears most often.
+          * Example: "hello world hello" -> "hello"
+          * Example: "one two two three" -> "two"
+          * If tied, return the word that appears first.
+          * Return "" for null or empty.
+          * Case-insensitive.
+          * Split is allowed.
+          * No Dictionary or LINQ.
+      */
+
+        // Find Most Frequent Word
+        Console.WriteLine(FindMostFrequentWord("hello world hello"));
+        Console.WriteLine(FindMostFrequentWord("one two two three"));
+        Console.WriteLine(FindMostFrequentWord("one one two two three"));
+        Console.WriteLine(FindMostFrequentWord(""));
+        Console.WriteLine(FindMostFrequentWord(null!));
+
+
+        // Count Each Letter A to Z Revision
+        //Console.WriteLine(CountEachLetterAToZRevision("abcaba"));
+        //Console.WriteLine(CountEachLetterAToZRevision("Hello"));
+        //Console.WriteLine(CountEachLetterAToZRevision("aaaaa"));
+        //Console.WriteLine(CountEachLetterAToZRevision(""));
 
 
         // Count Words Longer than Target:
@@ -211,22 +264,5 @@ public class Program
         //Console.WriteLine(RemovePunctationAndSymbols("Hell#o Wo!rld!"));
         //Console.WriteLine(RemovePunctationAndSymbols(""));
         //Console.WriteLine(RemovePunctationAndSymbols(null!));
-
-
-
-        /*
-            NEXT CHALLENGES
-
-            6. Optional Stretch: Find Most Frequent Word
-
-            * Return the word that appears most often.
-            * Example: "hello world hello" -> "hello"
-            * Example: "one two two three" -> "two"
-            * If tied, return the word that appears first.
-            * Return "" for null or empty.
-            * Case-insensitive.
-            * Split is allowed.
-            * No Dictionary or LINQ.
-        */
     }
 }
