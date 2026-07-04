@@ -4,6 +4,198 @@ namespace CodingChallenges.Challenges
 {
     public class ChallengeSolutions
     {
+        public static int CountLettersCaseInsensitive(string pInputValue)
+        {
+            if (string.IsNullOrEmpty(pInputValue))
+            {
+                return 0;
+            }
+
+            int count = 0;
+
+            foreach (char character in pInputValue)
+            {
+                if (char.IsLetter(character))
+                {
+                    count++;
+                }
+            }
+
+            return count;
+        }
+
+        public static bool AreAnagramsRevisionSat(string pInputValue, string pTarget)
+        {
+            if (pInputValue == null || pTarget == null)
+            {
+                return false;
+            }
+
+            if (pInputValue.Length != pTarget.Length)
+            {
+                return false;
+            }
+
+            int firstCounter = 0;
+            int secondCounter = 0;
+
+            pInputValue = pInputValue.ToLower();
+            pTarget = pTarget.ToLower();
+
+            for (int outterIndex = 0; outterIndex < pInputValue.Length; outterIndex++)
+            {
+                char currentChar = pInputValue[outterIndex];
+
+                for (int innerIndex = 0; innerIndex < pInputValue.Length; innerIndex++)
+                {
+                    if (currentChar == pTarget[innerIndex])
+                    {
+                        firstCounter++;
+                    }
+
+                    if (pInputValue[innerIndex] == currentChar)
+                    {
+                        secondCounter++;
+                    }
+                }
+
+                if (firstCounter != secondCounter)
+                {
+                    return false;
+                }
+
+                firstCounter = 0;
+                secondCounter = 0;
+            }
+
+            return true;
+        }
+
+        public static string RemovePunctationAndSymbols(string pInputValue)
+        {
+            if (string.IsNullOrEmpty(pInputValue))
+            {
+                return "";
+            }
+
+            StringBuilder newString = new();
+
+            foreach (char character in pInputValue)
+            {
+                if (char.IsLetterOrDigit(character) || char.IsWhiteSpace(character))
+                {
+                    newString.Append(character);
+                }
+            }
+
+            return newString.ToString();
+        }
+
+        public static int CountWordsLongerThanTarget(string pInputValue, int pTarget)
+        {
+            if (string.IsNullOrEmpty(pInputValue))
+            {
+                return 0;
+            }
+
+            int count = 0;
+            string[] splitString = pInputValue.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+            foreach (string word in splitString)
+            {
+                if (word.Length > pTarget)
+                {
+                    count++;
+                }
+            }
+
+            return count;
+        }
+
+        public static string CountEachLetterAToZRevision(string pInputValue)
+        {
+            if (string.IsNullOrEmpty(pInputValue))
+            {
+                return "";
+            }
+
+            int counter = 0;
+            pInputValue = pInputValue.ToLower();
+            StringBuilder newStringFromParameter = new();
+            StringBuilder newStringReturnOutCome = new();
+            List<char> newListOfChar = [];
+
+            foreach (char character in pInputValue)
+            {
+                if (char.IsLetter(character))
+                {
+                    newStringFromParameter.Append(character);
+                }
+            }
+
+            for (int outterIndex = 0; outterIndex < newStringFromParameter.Length; outterIndex++)
+            {
+                char currentChar = newStringFromParameter[outterIndex];
+
+                if (!newListOfChar.Contains(currentChar))
+                {
+                    for (int innerIndex = 0; innerIndex < newStringFromParameter.Length; innerIndex++)
+                    {
+                        if (currentChar == newStringFromParameter[innerIndex])
+                        {
+                            counter++;
+                        }
+                    }
+
+                    newListOfChar.Add(currentChar);
+
+                    newStringReturnOutCome.Append(currentChar);
+                    newStringReturnOutCome.Append(':');
+                    newStringReturnOutCome.Append(counter);
+                    newStringReturnOutCome.Append(' ');
+
+                    counter = 0;
+                }
+            }
+
+            return newStringReturnOutCome.ToString().Trim();
+        }
+
+        public static string FindMostFrequentWord(string pinputValue)
+        {
+            if (string.IsNullOrEmpty(pinputValue))
+            {
+                return "";
+            }
+
+            int counter = 0;
+            int highestCount = 0;
+            string wordHolder = "";
+
+            pinputValue = pinputValue.ToLower();
+            string[] stringspilit = pinputValue.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+            foreach (string wordOutter in stringspilit)
+            {
+                foreach (string wordInner in stringspilit)
+                {
+                    if (wordOutter == wordInner)
+                    {
+                        counter++;
+                    }
+                }
+
+                if (counter > highestCount)
+                {
+                    wordHolder = wordOutter;
+                    highestCount = counter;
+                }
+
+                counter = 0;
+            }
+
+            return wordHolder;
+        }
 
         public static int CountDigitsInString(string pInputValue)
         {

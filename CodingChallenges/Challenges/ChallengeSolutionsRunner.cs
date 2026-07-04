@@ -11,6 +11,57 @@ namespace CodingChallenges.Challenges
             // PMG TO DO Code clean up ============================================================================
             // PMG TO DO Code clean up ============================================================================
 
+            // Find Most Frequent Word
+            Console.WriteLine(FindMostFrequentWord("hello world hello"));
+            Console.WriteLine(FindMostFrequentWord("one two two three"));
+            Console.WriteLine(FindMostFrequentWord("one one two two three"));
+            Console.WriteLine(FindMostFrequentWord(""));
+            Console.WriteLine(FindMostFrequentWord(null!));
+
+
+            // Count Each Letter A to Z Revision
+            Console.WriteLine(CountEachLetterAToZRevision("abcaba"));
+            Console.WriteLine(CountEachLetterAToZRevision("Hello"));
+            Console.WriteLine(CountEachLetterAToZRevision("aaaaa"));
+            Console.WriteLine(CountEachLetterAToZRevision(""));
+
+
+            // Count Words Longer than Target:
+            Console.WriteLine(CountWordsLongerThanTarget("Cyberpunk card vault", 4));
+            Console.WriteLine(CountWordsLongerThanTarget("I am Paul", 2));
+            Console.WriteLine(CountWordsLongerThanTarget("Cyberpunk card vault", 3));
+            Console.WriteLine(CountWordsLongerThanTarget("", 3));
+            Console.WriteLine(CountWordsLongerThanTarget(null!, 3));
+
+            // Count Letters Case-Insensitive
+            Console.WriteLine(CountLettersCaseInsensitive("abc1234"));
+            Console.WriteLine(CountLettersCaseInsensitive("Cyberpunk 2077"));
+            Console.WriteLine(CountLettersCaseInsensitive("12345"));
+            Console.WriteLine(CountLettersCaseInsensitive(null!));
+
+            // Are Anagrams
+            Console.WriteLine(AreAnagramsRevisionSat("aab", "aba"));           // True
+            Console.WriteLine(AreAnagramsRevisionSat("Listen", "Silent"));     // True
+            Console.WriteLine(AreAnagramsRevisionSat("abc", "cab"));           // True
+            Console.WriteLine(AreAnagramsRevisionSat("aab", "abb"));           // False
+            Console.WriteLine(AreAnagramsRevisionSat("aabc", "abcc"));         // False
+            Console.WriteLine(AreAnagramsRevisionSat("abc", "abd"));           // False
+            Console.WriteLine(AreAnagramsRevisionSat("", ""));                 // True
+            Console.WriteLine(AreAnagramsRevisionSat(null!, "abc"));            // False
+            Console.WriteLine(AreAnagramsRevisionSat("abc", null!));            // False
+            Console.WriteLine(AreAnagramsRevisionSat("Hello", "World"));       // False
+            Console.WriteLine(AreAnagramsRevisionSat("AaBb", "bBaA"));         // True
+            Console.WriteLine(AreAnagramsRevisionSat("Miss", "Sims"));         // False
+
+            // Remove Punctation and Symbols
+            // Keep letters, digits, and spaces.
+            // Return "" for Null or Empty
+            Console.WriteLine(RemovePunctationAndSymbols("C# costs £10!"));
+            Console.WriteLine(RemovePunctationAndSymbols("He#llo Wo#rld!"));
+            Console.WriteLine(RemovePunctationAndSymbols("Hell#o Wo!rld!"));
+            Console.WriteLine(RemovePunctationAndSymbols(""));
+            Console.WriteLine(RemovePunctationAndSymbols(null!));
+
             // Optional Stretch: Count Each Letter A-Z
             // Return a formatted string showing how many times each letter appears
             // Example: "abcaba = "A: 3 b:2 C:1"
@@ -25,78 +76,76 @@ namespace CodingChallenges.Challenges
             Console.WriteLine(CountEachLetterAToZ(null!));               // ""
             Console.WriteLine(CountEachLetterAToZ("The Quick Brown Fox")); // T:1 H:1 E:1 Q:1 U:1 ...
 
-            // Completed:
             // Count Digits in String
             // - Return how many digits are in a string
             // - Return 0 if Null Or Empty
-            // Console.WriteLine(CountDigitsInString("123"));                // 3
-            // Console.WriteLine(CountDigitsInString("Hello123"));           // 3
-            // Console.WriteLine(CountDigitsInString("A1B2C3"));             // 3
-            // Console.WriteLine(CountDigitsInString("No Digits"));          // 0
-            // Console.WriteLine(CountDigitsInString(""));                   // 0
-            // Console.WriteLine(CountDigitsInString(null!));                 // 0
-            // Console.WriteLine(CountDigitsInString("007"));                // 3
-            // Console.WriteLine(CountDigitsInString("Room 101"));           // 3
-            // Console.WriteLine(CountDigitsInString("1a2b3c4d5e"));         // 5
-            // Console.WriteLine(CountDigitsInString("£100.50"));            // 5
+            Console.WriteLine(CountDigitsInString("123"));                // 3
+            Console.WriteLine(CountDigitsInString("Hello123"));           // 3
+            Console.WriteLine(CountDigitsInString("A1B2C3"));             // 3
+            Console.WriteLine(CountDigitsInString("No Digits"));          // 0
+            Console.WriteLine(CountDigitsInString(""));                   // 0
+            Console.WriteLine(CountDigitsInString(null!));                 // 0
+            Console.WriteLine(CountDigitsInString("007"));                // 3
+            Console.WriteLine(CountDigitsInString("Room 101"));           // 3
+            Console.WriteLine(CountDigitsInString("1a2b3c4d5e"));         // 5
+            Console.WriteLine(CountDigitsInString("£100.50"));            // 5
 
             //  Are Anagams
             // - Return true if both string contain the same characters with the same counts. 
             // - Return false if either string is null 
             // Make it case insensitive. 
             // Example: aab , aba = true
-            // Console.WriteLine(AreAnagramsRevisionFriday("aab", "aba"));           // True
-            // Console.WriteLine(AreAnagramsRevisionFriday("Listen", "Silent"));     // True
-            // Console.WriteLine(AreAnagramsRevisionFriday("abc", "cab"));           // True
-            // Console.WriteLine(AreAnagramsRevisionFriday("aab", "abb"));           // False
-            // Console.WriteLine(AreAnagramsRevisionFriday("aabc", "abcc"));         // False
-            // Console.WriteLine(AreAnagramsRevisionFriday("abc", "abd"));           // False
-            // Console.WriteLine(AreAnagramsRevisionFriday("", ""));                 // True
-            // Console.WriteLine(AreAnagramsRevisionFriday(null!, "abc"));            // False
-            // Console.WriteLine(AreAnagramsRevisionFriday("abc", null!));            // False
-            // Console.WriteLine(AreAnagramsRevisionFriday("Hello", "World"));       // False
-            // Console.WriteLine(AreAnagramsRevisionFriday("AaBb", "bBaA"));         // True
-            // Console.WriteLine(AreAnagramsRevisionFriday("Miss", "Sims"));         // False
+            Console.WriteLine(AreAnagramsRevisionFriday("aab", "aba"));           // True
+            Console.WriteLine(AreAnagramsRevisionFriday("Listen", "Silent"));     // True
+            Console.WriteLine(AreAnagramsRevisionFriday("abc", "cab"));           // True
+            Console.WriteLine(AreAnagramsRevisionFriday("aab", "abb"));           // False
+            Console.WriteLine(AreAnagramsRevisionFriday("aabc", "abcc"));         // False
+            Console.WriteLine(AreAnagramsRevisionFriday("abc", "abd"));           // False
+            Console.WriteLine(AreAnagramsRevisionFriday("", ""));                 // True
+            Console.WriteLine(AreAnagramsRevisionFriday(null!, "abc"));            // False
+            Console.WriteLine(AreAnagramsRevisionFriday("abc", null!));            // False
+            Console.WriteLine(AreAnagramsRevisionFriday("Hello", "World"));       // False
+            Console.WriteLine(AreAnagramsRevisionFriday("AaBb", "bBaA"));         // True
+            Console.WriteLine(AreAnagramsRevisionFriday("Miss", "Sims"));         // False
 
             // Revision Count Unique Characters Case-Insensitive
             // Return how many different characters  appear in a string 
             // Example Hello => 4
-            // Console.WriteLine(CountUniqueCharacters("Hello"));        // 4
-            // Console.WriteLine(CountUniqueCharacters("HELLO"));        // 4
-            // Console.WriteLine(CountUniqueCharacters("Swiss"));        // 3
-            // Console.WriteLine(CountUniqueCharacters("aabbcc"));       // 3
-            // Console.WriteLine(CountUniqueCharacters("abcde"));        // 5
-            // Console.WriteLine(CountUniqueCharacters("AAAA"));         // 1
-            // Console.WriteLine(CountUniqueCharacters(""));            // 0
-            // Console.WriteLine(CountUniqueCharacters(null!));          // 0
-            // Console.WriteLine(CountUniqueCharacters("Mississippi")); // 4
-            // Console.WriteLine(CountUniqueCharacters("AaBbCc"));      // 3
+            Console.WriteLine(CountUniqueCharacters("Hello"));        // 4
+            Console.WriteLine(CountUniqueCharacters("HELLO"));        // 4
+            Console.WriteLine(CountUniqueCharacters("Swiss"));        // 3
+            Console.WriteLine(CountUniqueCharacters("aabbcc"));       // 3
+            Console.WriteLine(CountUniqueCharacters("abcde"));        // 5
+            Console.WriteLine(CountUniqueCharacters("AAAA"));         // 1
+            Console.WriteLine(CountUniqueCharacters(""));            // 0
+            Console.WriteLine(CountUniqueCharacters(null!));          // 0
+            Console.WriteLine(CountUniqueCharacters("Mississippi")); // 4
+            Console.WriteLine(CountUniqueCharacters("AaBbCc"));      // 3
 
             // Remove punctuation  Characters
             // Return a new String when punctuation is removed
             // Example: Hello! = Hello
-            // Console.WriteLine(RemovePunctuationOnly("Hello!"));                    // Hello
-            // Console.WriteLine(RemovePunctuationOnly("Hello, World!"));             // Hello World
-            // Console.WriteLine(RemovePunctuationOnly("What's up?"));                // Whats up
-            // Console.WriteLine(RemovePunctuationOnly("...Hello..."));               // Hello
-            // Console.WriteLine(RemovePunctuationOnly("No punctuation"));            // No punctuation
-            // Console.WriteLine(RemovePunctuationOnly(""));                          // ""
-            // Console.WriteLine(RemovePunctuationOnly(null!));                        // ""
-            // Console.WriteLine(RemovePunctuationOnly("#CSharp!"));                  // CSharp
-            // Console.WriteLine(RemovePunctuationOnly("A,B.C!D?"));                  // ABCD
+            Console.WriteLine(RemovePunctuationOnly("Hello!"));                    // Hello
+            Console.WriteLine(RemovePunctuationOnly("Hello, World!"));             // Hello World
+            Console.WriteLine(RemovePunctuationOnly("What's up?"));                // Whats up
+            Console.WriteLine(RemovePunctuationOnly("...Hello..."));               // Hello
+            Console.WriteLine(RemovePunctuationOnly("No punctuation"));            // No punctuation
+            Console.WriteLine(RemovePunctuationOnly(""));                          // ""
+            Console.WriteLine(RemovePunctuationOnly(null!));                        // ""
+            Console.WriteLine(RemovePunctuationOnly("#CSharp!"));                  // CSharp
+            Console.WriteLine(RemovePunctuationOnly("A,B.C!D?"));                  // ABCD
 
             // Keep only Letters and Spaces
             // Return a new string containing only letters and spaces.
             // Example: "Hello, World! 123" = Hello World
-            // Console.WriteLine(KeepOnlyLettersAndSpaces("Hello, World! 123")); // Hello World
-            // Console.WriteLine(KeepOnlyLettersAndSpaces("C# Programming"));    // C Programming
-            // Console.WriteLine(KeepOnlyLettersAndSpaces("12345"));             // ""
-            // Console.WriteLine(KeepOnlyLettersAndSpaces("Hello World"));       // Hello World
-            // Console.WriteLine(KeepOnlyLettersAndSpaces(""));                  // ""
-            // Console.WriteLine(KeepOnlyLettersAndSpaces(null!));                // ""
-            // Console.WriteLine(KeepOnlyLettersAndSpaces("A1 B2 C3"));          // A B C
-            // Console.WriteLine(KeepOnlyLettersAndSpaces("!@#$%^"));            // ""
-            // Console.WriteLine(KeepOnlyLettersAndSpaces("Johnny Silverhand"));     // Johnny Silverhand
+            Console.WriteLine(KeepOnlyLettersAndSpaces("C# Programming"));    // C Programming
+            Console.WriteLine(KeepOnlyLettersAndSpaces("12345"));             // ""
+            Console.WriteLine(KeepOnlyLettersAndSpaces("Hello World"));       // Hello World
+            Console.WriteLine(KeepOnlyLettersAndSpaces(""));                  // ""
+            Console.WriteLine(KeepOnlyLettersAndSpaces(null!));                // ""
+            Console.WriteLine(KeepOnlyLettersAndSpaces("A1 B2 C3"));          // A B C
+            Console.WriteLine(KeepOnlyLettersAndSpaces("!@#$%^"));            // ""
+            Console.WriteLine(KeepOnlyLettersAndSpaces("Johnny Silverhand"));     // Johnny Silverhand
 
             //  Count Unique characters
             // Return how many different characters appear in a string. 
