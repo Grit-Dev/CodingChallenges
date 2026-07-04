@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Diagnostics.Metrics;
+using System.Text;
 
 public class Program
 {
@@ -109,15 +110,78 @@ public class Program
 
         return count;
     }
+
+    public static string CountEachLetterAToZRevision(string pInputValue)
+    {
+        if (string.IsNullOrEmpty(pInputValue))
+        {
+            return "";
+        }
+
+        int counter = 0;
+        pInputValue = pInputValue.ToLower();
+        StringBuilder newStringFromParameter = new();
+        StringBuilder newStringReturnOutCome = new();
+        List<char> newListOfChar = [];
+
+        foreach (char character in pInputValue)
+        {
+            if (char.IsLetter(character))
+            {
+                newStringFromParameter.Append(character);
+            }
+        }
+        
+        for (int outterIndex = 0; outterIndex < newStringFromParameter.Length; outterIndex++)
+        {
+            char currentChar = newStringFromParameter[outterIndex];
+
+            if (!newListOfChar.Contains(currentChar))
+            {
+                for (int innerIndex = 0; innerIndex < newStringFromParameter.Length; innerIndex++)
+                {
+                    if (currentChar == newStringFromParameter[innerIndex])
+                    {
+                        counter++;
+                        newListOfChar.Add(currentChar);
+                    }
+                }
+
+                newStringReturnOutCome.Append(currentChar);
+                newStringReturnOutCome.Append(':');
+                newStringReturnOutCome.Append(counter);
+                newStringReturnOutCome.Append(' ');
+
+                counter = 0;
+            }
+        }
+
+        return newStringReturnOutCome.ToString().Trim();
+    }
+
     public static void Main(string[] args)
     {
+        // 3.Revision: Count Each Letter A-Z
+        // * Return a formatted string showing how many times each letter appears.
+        // * Ignore spaces, numbers, and symbols.
+        // * Case - insensitive.
+        // * Example: "abcaba"-> "A:3 B:2 C:1"
+        // * Example: "Hello"-> "H:1 E:1 L:2 O:1"
+        // * Example: "aaaaa"-> "A:5"
+        // * Return "" for null or empty.
+        // * Try to avoid a trailing space if you can.
+        Console.WriteLine(CountEachLetterAToZRevision("abcaba"));
+        Console.WriteLine(CountEachLetterAToZRevision("Hello"));
+        Console.WriteLine(CountEachLetterAToZRevision("aaaaa"));
+        Console.WriteLine(CountEachLetterAToZRevision(""));
+
 
         // Count Words Longer than Target:
-        Console.WriteLine(CountWordsLongerThanTarget("Cyberpunk card vault", 4));
-        Console.WriteLine(CountWordsLongerThanTarget("I am Paul", 2));
-        Console.WriteLine(CountWordsLongerThanTarget("Cyberpunk card vault", 3));
-        Console.WriteLine(CountWordsLongerThanTarget("", 3));
-        Console.WriteLine(CountWordsLongerThanTarget(null!, 3));
+        //Console.WriteLine(CountWordsLongerThanTarget("Cyberpunk card vault", 4));
+        //Console.WriteLine(CountWordsLongerThanTarget("I am Paul", 2));
+        //Console.WriteLine(CountWordsLongerThanTarget("Cyberpunk card vault", 3));
+        //Console.WriteLine(CountWordsLongerThanTarget("", 3));
+        //Console.WriteLine(CountWordsLongerThanTarget(null!, 3));
 
         // Count Letters Case-Insensitive
         //Console.WriteLine(CountLettersCaseInsensitive("abc1234"));
@@ -152,25 +216,6 @@ public class Program
 
         /*
             NEXT CHALLENGES
-
-            3. Revision: Count Each Letter A-Z
-
-            * Return a formatted string showing how many times each letter appears.
-            * Ignore spaces, numbers, and symbols.
-            * Case-insensitive.
-            * Example: "abcaba" -> "A:3 B:2 C:1"
-            * Example: "Hello" -> "H:1 E:1 L:2 O:1"
-            * Example: "aaaaa" -> "A:5"
-            * Return "" for null or empty.
-            * Try to avoid a trailing space if you can.
-
-            5. New Challenge: Count Words Longer Than Target
-
-            * Return how many words are longer than a target length.
-            * Example: "Cyberpunk card vault", target 4 -> 2
-            * Example: "I am Paul", target 2 -> 1
-            * Return 0 for null or empty.
-            * Split is allowed.
 
             6. Optional Stretch: Find Most Frequent Word
 
