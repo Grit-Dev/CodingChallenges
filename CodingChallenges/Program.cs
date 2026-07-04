@@ -19,14 +19,75 @@
 
         return count;
     }
+
+    public static bool AreAnagramsRevisionSat(string pInputValue, string pTarget)
+    {
+        if (pInputValue == null || pTarget == null)
+        {
+            return false;
+        }
+
+        if (pInputValue.Length != pTarget.Length)
+        {
+            return false;
+        }
+
+        int firstCounter = 0;
+        int secondCounter = 0;
+
+        pInputValue = pInputValue.ToLower();
+        pTarget = pTarget.ToLower();
+
+        for (int outterIndex = 0; outterIndex < pInputValue.Length; outterIndex++)
+        {
+            char currentChar = pInputValue[outterIndex];
+
+            for (int innerIndex = 0; innerIndex < pInputValue.Length; innerIndex++)
+            {
+                if (currentChar == pTarget[innerIndex])
+                {
+                    firstCounter++;   
+                }
+
+                if (pInputValue[innerIndex] == currentChar)
+                {
+                    secondCounter++;
+                }
+            }
+
+            if (firstCounter != secondCounter)
+            {
+                return false;
+            }
+
+            firstCounter = 0;
+            secondCounter = 0;
+        }
+
+        return true;
+    }
     public static void Main(string[] args)
     {
 
         // Count Letters Case-Insensitive
-        Console.WriteLine(CountLettersCaseInsensitive("abc1234"));
-        Console.WriteLine(CountLettersCaseInsensitive("Cyberpunk 2077"));
-        Console.WriteLine(CountLettersCaseInsensitive("12345")); 
-        Console.WriteLine(CountLettersCaseInsensitive(null!));
+        //Console.WriteLine(CountLettersCaseInsensitive("abc1234"));
+        //Console.WriteLine(CountLettersCaseInsensitive("Cyberpunk 2077"));
+        //Console.WriteLine(CountLettersCaseInsensitive("12345")); 
+        //Console.WriteLine(CountLettersCaseInsensitive(null!));
+
+        // Are Anagrams
+        Console.WriteLine(AreAnagramsRevisionSat("aab", "aba"));           // True
+        Console.WriteLine(AreAnagramsRevisionSat("Listen", "Silent"));     // True
+        Console.WriteLine(AreAnagramsRevisionSat("abc", "cab"));           // True
+        Console.WriteLine(AreAnagramsRevisionSat("aab", "abb"));           // False
+        Console.WriteLine(AreAnagramsRevisionSat("aabc", "abcc"));         // False
+        Console.WriteLine(AreAnagramsRevisionSat("abc", "abd"));           // False
+        Console.WriteLine(AreAnagramsRevisionSat("", ""));                 // True
+        Console.WriteLine(AreAnagramsRevisionSat(null!, "abc"));            // False
+        Console.WriteLine(AreAnagramsRevisionSat("abc", null!));            // False
+        Console.WriteLine(AreAnagramsRevisionSat("Hello", "World"));       // False
+        Console.WriteLine(AreAnagramsRevisionSat("AaBb", "bBaA"));         // True
+        Console.WriteLine(AreAnagramsRevisionSat("Miss", "Sims"));         // False
 
 
         /*
