@@ -5,56 +5,68 @@ public class Program
 {
     public static void Main(string[] args)
     {
+        /*
+            NEXT CHALLENGES
 
-        // Find Most Frequent Word
-        Console.WriteLine(FindMostFrequentWord("hello world hello"));
-        Console.WriteLine(FindMostFrequentWord("one two two three"));
-        Console.WriteLine(FindMostFrequentWord("one one two two three"));
-        Console.WriteLine(FindMostFrequentWord(""));
-        Console.WriteLine(FindMostFrequentWord(null!));
+            1. Warm-up: Count Words Ending With Letter
 
+            * Return how many words end with a target letter.
+            * Example: "Cyberpunk card vault", target 'd' -> 1
+            * Example: "Paul plays games", target 's' -> 2
+            * Return 0 for null or empty.
+            * Case-insensitive.
+            * Split is allowed.
 
-        // Count Each Letter A to Z Revision
-        //Console.WriteLine(CountEachLetterAToZRevision("abcaba"));
-        //Console.WriteLine(CountEachLetterAToZRevision("Hello"));
-        //Console.WriteLine(CountEachLetterAToZRevision("aaaaa"));
-        //Console.WriteLine(CountEachLetterAToZRevision(""));
+            2. Revision: Are Anagrams
 
+            * Redo from memory.
+            * Return true if both strings contain the same characters with the same counts.
+            * Example: "listen", "silent" -> true
+            * Example: "aab", "aba" -> true
+            * Example: "aab", "ab" -> false
+            * Example: "", "" -> true
+            * Return false if either is null.
+            * Case-insensitive.
+            * No Sort, LINQ, Dictionary, or HashSet.
 
-        // Count Words Longer than Target:
-        //Console.WriteLine(CountWordsLongerThanTarget("Cyberpunk card vault", 4));
-        //Console.WriteLine(CountWordsLongerThanTarget("I am Paul", 2));
-        //Console.WriteLine(CountWordsLongerThanTarget("Cyberpunk card vault", 3));
-        //Console.WriteLine(CountWordsLongerThanTarget("", 3));
-        //Console.WriteLine(CountWordsLongerThanTarget(null!, 3));
+            3. Revision: Count Each Letter A-Z
 
-        // Count Letters Case-Insensitive
-        //Console.WriteLine(CountLettersCaseInsensitive("abc1234"));
-        //Console.WriteLine(CountLettersCaseInsensitive("Cyberpunk 2077"));
-        //Console.WriteLine(CountLettersCaseInsensitive("12345")); 
-        //Console.WriteLine(CountLettersCaseInsensitive(null!));
+            * Return a formatted string showing how many times each letter appears.
+            * Ignore spaces, numbers, and symbols.
+            * Case-insensitive.
+            * Example: "abcaba" -> "A:3 B:2 C:1"
+            * Example: "Hello" -> "H:1 E:1 L:2 O:1"
+            * Example: "aaaaa" -> "A:5"
+            * Return "" for null or empty.
+            * Avoid trailing spaces.
 
-        // Are Anagrams
-        //Console.WriteLine(AreAnagramsRevisionSat("aab", "aba"));           // True
-        //Console.WriteLine(AreAnagramsRevisionSat("Listen", "Silent"));     // True
-        //Console.WriteLine(AreAnagramsRevisionSat("abc", "cab"));           // True
-        //Console.WriteLine(AreAnagramsRevisionSat("aab", "abb"));           // False
-        //Console.WriteLine(AreAnagramsRevisionSat("aabc", "abcc"));         // False
-        //Console.WriteLine(AreAnagramsRevisionSat("abc", "abd"));           // False
-        //Console.WriteLine(AreAnagramsRevisionSat("", ""));                 // True
-        //Console.WriteLine(AreAnagramsRevisionSat(null!, "abc"));            // False
-        //Console.WriteLine(AreAnagramsRevisionSat("abc", null!));            // False
-        //Console.WriteLine(AreAnagramsRevisionSat("Hello", "World"));       // False
-        //Console.WriteLine(AreAnagramsRevisionSat("AaBb", "bBaA"));         // True
-        //Console.WriteLine(AreAnagramsRevisionSat("Miss", "Sims"));         // False
+            4. New Challenge: Remove Words Longer Than Target
 
-        // Remove Punctation and Symbols
-        // Keep letters, digits, and spaces.
-        // Return "" for Null or Empty
-        //Console.WriteLine(RemovePunctationAndSymbols("C# costs £10!"));
-        //Console.WriteLine(RemovePunctationAndSymbols("He#llo Wo#rld!"));
-        //Console.WriteLine(RemovePunctationAndSymbols("Hell#o Wo!rld!"));
-        //Console.WriteLine(RemovePunctationAndSymbols(""));
-        //Console.WriteLine(RemovePunctationAndSymbols(null!));
+            * Return a sentence with words removed if they are longer than the target length.
+            * Example: "Cyberpunk card vault", target 4 -> "card"
+            * Example: "I am Paul", target 2 -> "I am"
+            * Return "" for null or empty.
+            * Split is allowed.
+            * Use StringBuilder.
+
+            5. New Challenge: Find Shortest Word
+
+            * Return the shortest word in a sentence.
+            * Example: "Cyberpunk card vault" -> "card"
+            * Example: "I am Paul" -> "I"
+            * If tied, return the first shortest word.
+            * Return "" for null or empty.
+            * Split is allowed.
+
+            6. Optional Stretch: Reverse Each Word In Sentence
+
+            * Reverse each word but keep the word order the same.
+            * Example: "Hello World" -> "olleH dlroW"
+            * Example: "Cyberpunk Vault" -> "knuprebyC tluaV"
+            * Return "" for null or empty.
+            * Split is allowed.
+            * StringBuilder is allowed.
+        */
+
     }
 }
