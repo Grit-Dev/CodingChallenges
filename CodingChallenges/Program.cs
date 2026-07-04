@@ -88,8 +88,36 @@ public class Program
 
         return newSring.ToString();
     }
+
+    public static int CountWordsLongerThanTarget(string pInputValue, int pTarget)
+    { 
+        if (string.IsNullOrEmpty(pInputValue))
+        {
+            return 0;
+        }
+
+        int count = 0;
+        string[] splitString = pInputValue.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+        foreach (string word in splitString)
+        {
+            if (word.Length > pTarget)
+            {
+                count++;
+            }
+        }
+
+        return count;
+    }
     public static void Main(string[] args)
     {
+
+        // Count Words Longer than Target:
+        Console.WriteLine(CountWordsLongerThanTarget("Cyberpunk card vault", 4));
+        Console.WriteLine(CountWordsLongerThanTarget("I am Paul", 2));
+        Console.WriteLine(CountWordsLongerThanTarget("Cyberpunk card vault", 3));
+        Console.WriteLine(CountWordsLongerThanTarget("", 3));
+        Console.WriteLine(CountWordsLongerThanTarget(null!, 3));
 
         // Count Letters Case-Insensitive
         //Console.WriteLine(CountLettersCaseInsensitive("abc1234"));
@@ -114,36 +142,16 @@ public class Program
         // Remove Punctation and Symbols
         // Keep letters, digits, and spaces.
         // Return "" for Null or Empty
-        Console.WriteLine(RemovePunctationAndSymbols("C# costs £10!"));
-        Console.WriteLine(RemovePunctationAndSymbols("He#llo Wo#rld!"));
-        Console.WriteLine(RemovePunctationAndSymbols("Hell#o Wo!rld!"));
-        Console.WriteLine(RemovePunctationAndSymbols(""));
-        Console.WriteLine(RemovePunctationAndSymbols(null!));
+        //Console.WriteLine(RemovePunctationAndSymbols("C# costs £10!"));
+        //Console.WriteLine(RemovePunctationAndSymbols("He#llo Wo#rld!"));
+        //Console.WriteLine(RemovePunctationAndSymbols("Hell#o Wo!rld!"));
+        //Console.WriteLine(RemovePunctationAndSymbols(""));
+        //Console.WriteLine(RemovePunctationAndSymbols(null!));
 
 
 
         /*
             NEXT CHALLENGES
-
-            1. Warm-up: Count Letters Case-Insensitive
-
-            * Return how many alphabetic letters are in a string.
-            * Example: "abc123!" -> 3
-            * Example: "Cyberpunk 2077" -> 9
-            * Example: "12345" -> 0
-            * Return 0 for null or empty.
-
-            2. Revision: Are Anagrams
-
-            * Return true if both strings contain the same characters with the same counts.
-            * Example: "listen", "silent" -> true
-            * Example: "aab", "aba" -> true
-            * Example: "aab", "ab" -> false
-            * Example: "", "" -> true
-            * Return false if either string is null.
-            * Case-insensitive.
-            * Use the count-each-character approach.
-            * No Sort, LINQ, Dictionary, or HashSet.
 
             3. Revision: Count Each Letter A-Z
 
@@ -155,14 +163,6 @@ public class Program
             * Example: "aaaaa" -> "A:5"
             * Return "" for null or empty.
             * Try to avoid a trailing space if you can.
-
-            4. New Challenge: Remove Symbols And Punctuation
-
-            * Return a new string with symbols and punctuation removed.
-            * Keep letters, digits, and spaces.
-            * Example: "C# costs £10!" -> "C costs 10"
-            * Example: "Hello, World!" -> "Hello World"
-            * Return "" for null or empty.
 
             5. New Challenge: Count Words Longer Than Target
 
