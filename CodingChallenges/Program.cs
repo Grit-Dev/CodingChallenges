@@ -115,7 +115,11 @@ public class Program
         // Keep letters, digits, and spaces.
         // Return "" for Null or Empty
         Console.WriteLine(RemovePunctationAndSymbols("C# costs £10!"));
-        Console.WriteLine(RemovePunctationAndSymbols("Hello World!"));
+        Console.WriteLine(RemovePunctationAndSymbols("He#llo Wo#rld!"));
+        Console.WriteLine(RemovePunctationAndSymbols("Hell#o Wo!rld!"));
+        Console.WriteLine(RemovePunctationAndSymbols(""));
+        Console.WriteLine(RemovePunctationAndSymbols(null!));
+
 
 
         /*
