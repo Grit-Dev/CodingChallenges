@@ -4,6 +4,210 @@ namespace CodingChallenges.Challenges
 {
     public class ChallengeSolutions
     {
+        public static int CountWordsEndingWithLetter(string pInputValue, char pTarget)
+        {
+            if (string.IsNullOrEmpty(pInputValue))
+            {
+                return 0;
+            }
+
+            int counter = 0;
+            pInputValue = pInputValue.ToLower();
+            pTarget = char.ToLower(pTarget);
+            string[] splitString = pInputValue.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+            foreach (string word in splitString)
+            {
+                if (word[^1] == pTarget)
+                {
+                    counter++;
+                }
+            }
+
+            return counter;
+        }
+
+        public static bool AreAnagramsRevisionAgain(string pInputValue, string pTarget)
+        {
+            if (pInputValue == null || pTarget == null)
+            {
+                return false;
+            }
+
+            if (pInputValue.Length != pTarget.Length)
+            {
+                return false;
+            }
+
+            int firstCounter = 0;
+            int secondCounter = 0;
+
+            pInputValue = pInputValue.ToLower();
+            pTarget = pTarget.ToLower();
+
+            for (int outterIndex = 0; outterIndex <= pInputValue.Length - 1; outterIndex++)
+            {
+                char currentChar = pInputValue[outterIndex];
+
+                for (int innerIndex = 0; innerIndex <= pTarget.Length - 1; innerIndex++)
+                {
+                    if (currentChar == pTarget[innerIndex])
+                    {
+                        firstCounter++;
+                    }
+
+                    if (pInputValue[innerIndex] == currentChar)
+                    {
+                        secondCounter++;
+                    }
+                }
+
+                if (firstCounter != secondCounter)
+                {
+                    return false;
+                }
+
+                firstCounter = 0;
+                secondCounter = 0;
+            }
+
+            return true;
+        }
+
+        public static string CountLettersRevisionFormat(string pInputValue)
+        {
+            if (string.IsNullOrEmpty(pInputValue))
+            {
+                return "";
+            }
+
+            StringBuilder newStringFromParameter = new();
+            StringBuilder finalNewStringForReturn = new();
+            List<char> NewListChecker = [];
+            int counter = 0;
+            pInputValue = pInputValue.ToUpper();
+
+            foreach (char character in pInputValue)
+            {
+                if (char.IsLetter(character))
+                {
+                    newStringFromParameter.Append(character);
+                }
+            }
+
+            for (int outterIndex = 0; outterIndex <= newStringFromParameter.Length - 1; outterIndex++)
+            {
+                char currentChar = newStringFromParameter[outterIndex];
+
+                if (!NewListChecker.Contains(currentChar))
+                {
+                    foreach (char characterInForEach in newStringFromParameter.ToString())
+                    {
+                        if (currentChar == characterInForEach)
+                        {
+                            counter++;
+                        }
+                    }
+
+                    NewListChecker.Add(currentChar);
+
+                    finalNewStringForReturn.Append(currentChar);
+                    finalNewStringForReturn.Append(':');
+                    finalNewStringForReturn.Append(counter);
+                    finalNewStringForReturn.Append(' ');
+                }
+
+                counter = 0;
+            }
+
+            return finalNewStringForReturn.ToString().Trim();
+        }
+
+        public static string RemoveWordsLongerThanTarget(string pInputValue, int pTarget)
+        {
+            if (string.IsNullOrEmpty(pInputValue))
+            {
+                return "";
+            }
+
+            string[] newStringSplit = pInputValue.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+            StringBuilder newString = new();
+
+            foreach (string word in newStringSplit)
+            {
+                if (word.Length > pTarget)
+                {
+                    continue;
+                }
+
+                newString.Append(word);
+                newString.Append(' ');
+            }
+
+            return newString.ToString().Trim();
+        }
+
+        public static string ReverseEachWordInSentence(string pInputValue)
+        {
+            if (string.IsNullOrEmpty(pInputValue))
+            {
+                return "";
+            }
+
+            StringBuilder cleanedString = new();
+            StringBuilder newString = new();
+
+            // Made an assumption here: If Interviewing I would if they explicity 
+            // Wanted to ignore digits and punctuation.
+            foreach (char character in pInputValue)
+            {
+                if (char.IsLetter(character) || char.IsWhiteSpace(character))
+                {
+                    cleanedString.Append(character);
+                }
+            }
+
+            pInputValue = cleanedString.ToString();
+
+            string[] splitString = pInputValue.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+            foreach (string word in splitString)
+            {
+                for (int innerIndex = word.Length - 1; innerIndex >= 0; innerIndex--)
+                {
+                    newString.Append(word[innerIndex]);
+                }
+
+                newString.Append(' ');
+            }
+
+            return newString.ToString().Trim();
+
+        }
+
+        public static string FindShortestWord(string pInputvalue)
+        {
+            if (string.IsNullOrEmpty(pInputvalue))
+            {
+                return "";
+            }
+
+            string shortestWord = "";
+            int charCounterInWord = int.MaxValue;
+            string[] stringSplit = pInputvalue.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+            foreach (string word in stringSplit)
+            {
+                if (word.Length < charCounterInWord)
+                {
+                    charCounterInWord = word.Length;
+                    shortestWord = word;
+                }
+            }
+
+            return shortestWord;
+
+        }
         public static int CountLettersCaseInsensitive(string pInputValue)
         {
             if (string.IsNullOrEmpty(pInputValue))
