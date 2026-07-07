@@ -4,6 +4,160 @@ namespace CodingChallenges.Challenges
 {
     public class ChallengeSolutions
     {
+        public static int CountWordsExactLength(string pInputValue, int pTargetLength)
+        {
+            if (string.IsNullOrEmpty(pInputValue))
+            {
+                return 0;
+            }
+
+            int counter = 0;
+            string[] spilitString = pInputValue.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+            foreach (string word in spilitString)
+            {
+                if (word.Length == pTargetLength)
+                {
+                    counter++;
+                }
+            }
+
+            return counter;
+        }
+
+        public static string RemoveTargetWord(string pInputValue, string pTargetWord)
+        {
+            if (string.IsNullOrEmpty(pInputValue))
+            {
+                return "";
+            }
+
+            if (string.IsNullOrEmpty(pTargetWord))
+            {
+                return pInputValue;
+            }
+
+            StringBuilder newStringFormed = new StringBuilder();
+            string[] splitString = pInputValue.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+            foreach (string word in splitString)
+            {
+                if (word.ToLower() != pTargetWord.ToLower())
+                {
+                    newStringFormed.Append(word);
+                    newStringFormed.Append(' ');
+                }
+            }
+
+            return newStringFormed.ToString().Trim();
+        }
+
+        public static string ReplaceTargetWord(string pInputValue, string pTargetWord, string pReplacement)
+        {
+            if (string.IsNullOrEmpty(pInputValue))
+            {
+                return "";
+            }
+
+            if (pTargetWord == null)
+            {
+                return pInputValue;
+            }
+
+            string[] splitString = pInputValue.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+            StringBuilder newStringFormed = new();
+
+            foreach (string word in splitString)
+            {
+                if (word.ToLower() == pTargetWord.ToLower())
+                {
+                    newStringFormed.Append(pReplacement);
+                }
+                else
+                {
+                    newStringFormed.Append(word);
+                }
+
+                newStringFormed.Append(' ');
+            }
+
+            return newStringFormed.ToString().Trim();
+        }
+
+        public static string CapitaliseFirstLetterOfEachWord(string pInputValue)
+        {
+            if (string.IsNullOrEmpty(pInputValue))
+            {
+                return "";
+            }
+
+            string[] spilitString = pInputValue.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+            StringBuilder newStringFormed = new();
+
+            foreach (string word in spilitString)
+            {
+                char characterHolder = char.ToUpper(word[0]);
+
+                newStringFormed.Append(characterHolder).Append(word.Substring(1));
+                newStringFormed.Append(' ');
+            }
+
+            return newStringFormed.ToString().Trim();
+        }
+
+        public static string LowercaseAllWordsExceptFirstLetter(string pInputValue)
+        {
+            if (string.IsNullOrEmpty(pInputValue))
+            {
+                return "";
+            }
+
+            pInputValue = pInputValue.ToLower();
+            string[] spilitString = pInputValue.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+            StringBuilder newStringFormed = new();
+
+            foreach (string word in spilitString)
+            {
+                char characterHolder = char.ToUpper(word[0]);
+                newStringFormed.Append(characterHolder).Append(word.Substring(1));
+                newStringFormed.Append(' ');
+            }
+
+            return newStringFormed.ToString().Trim();
+        }
+
+        public static string TitleCaseExceptSmallWords(string pInputValue)
+        {
+            if (string.IsNullOrEmpty(pInputValue))
+            {
+                return "";
+            }
+
+            pInputValue = pInputValue.ToLower();
+
+            string[] spilitString = pInputValue.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+            StringBuilder newStringFormed = new();
+            List<string> smallWordList = ["and", "or", "the", "of", "in"];
+
+
+            foreach (string word in spilitString)
+            {
+                if (smallWordList.Contains(word))
+                {
+                    newStringFormed.Append(word);
+                    newStringFormed.Append(' ');
+                }
+                else
+                {
+                    char characterHolder = char.ToUpper(word[0]);
+                    newStringFormed.Append(characterHolder).Append(word.Substring(1));
+                    newStringFormed.Append(' ');
+                }
+            }
+
+            return newStringFormed.ToString().Trim();
+        }
+
         public static int CountWordsContainingLetter(string pInputValue, char pTarget)
         {
             if (string.IsNullOrEmpty(pInputValue))
@@ -154,7 +308,7 @@ namespace CodingChallenges.Challenges
 
         }
 
-        public static string ReplaceTargetWord(string pInputValue, string pTarget, string pReplacement)
+        public static string ReplaceTargetWordRev(string pInputValue, string pTarget, string pReplacement)
         {
             if (string.IsNullOrEmpty(pInputValue))
             {

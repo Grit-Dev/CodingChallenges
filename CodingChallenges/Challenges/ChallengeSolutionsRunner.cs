@@ -9,127 +9,128 @@ namespace CodingChallenges.Challenges
 
             // PMG TO DO Code clean up ============================================================================
             // PMG TO DO Code clean up ============================================================================
-            // PMG TO DO Code clean up ============================================================================
 
-            // 6. Replace Target Word
-            // Return a sentence where every matching target word is replaced.
-            // Example: "hello world hello", target "hello", replacement "hi" -> "hi world hi"
-            // Example: "Cyberpunk card vault", target "card", replacement "deck" -> "Cyberpunk deck vault"
-            // Return "" for null or empty input.
-            // Return original sentence if target is null or empty.
-            // If replacement is null, use "".
-            // Case-insensitive comparison.
-            // Split is allowed.
-            // Use StringBuilder.
-
-            // Console.WriteLine(ReplaceTargetWord("hello world hello", "hello", "hi")); // hi world hi
-            // Console.WriteLine(ReplaceTargetWord("Cyberpunk card vault", "card", "deck")); // Cyberpunk deck vault
-            // Console.WriteLine(ReplaceTargetWord("HELLO world hello", "hello", "hi")); // hi world hi
-            // Console.WriteLine(ReplaceTargetWord("Paul plays games", "plays", "writes")); // Paul writes games
-            // Console.WriteLine(ReplaceTargetWord("", "hello", "hi")); // ""
-            // Console.WriteLine(ReplaceTargetWord(null, "hello", "hi")); // ""
-            // Console.WriteLine(ReplaceTargetWord("hello world", "", "hi")); // hello world
-            // Console.WriteLine(ReplaceTargetWord("hello world", null, "hi")); // hello world
-            // Console.WriteLine(ReplaceTargetWord("hello world", "world", null)); // hello
-
-            /*
-
-
-                6. Optional Stretch: Replace Target Word
-            */
+            // Next Code:
 
             // ======= Completed: ===============================================================
-            // ======= Completed: ===============================================================
 
-            // 1. Count Words Containing Letter
-            // Return how many words contain a target letter.
-            // Example: "Cyberpunk card vault", target 'a' -> 2
-            // Example: "Paul plays games", target 'p' -> 2
-            // Return 0 for null or empty.
-            // Case-insensitive.
-            // Split is allowed
-            // Console.WriteLine(CountWordsContainingLetter("Cyberpunk card vault", 'a')); // 2
-            // Console.WriteLine(CountWordsContainingLetter("Paul plays games", 'p'));      // 2
-            // Console.WriteLine(CountWordsContainingLetter("Paul plays games", 'P'));      // 2
-            // Console.WriteLine(CountWordsContainingLetter("dog cat rat", 't'));           // 2
-            // Console.WriteLine(CountWordsContainingLetter("APPLE banana", 'a'));          // 2
-            // Console.WriteLine(CountWordsContainingLetter("hello", 'z'));                 // 0
-            // Console.WriteLine(CountWordsContainingLetter("", 'a'));                      // 0
-            // Console.WriteLine(CountWordsContainingLetter(null, 'a'));                    // 0
-            // Console.WriteLine(CountWordsContainingLetter("   ", 'a'));                   // 0
+            // Count Words With Exact Length
+            Console.WriteLine(CountWordsExactLength("Cyberpunk card Vault", 4));
+            Console.WriteLine(CountWordsExactLength("I am Paul", 2));
+            Console.WriteLine(CountWordsExactLength("Cyberpunk card Vault", 0));
+            Console.WriteLine(CountWordsExactLength(null!, 4));
 
-            // 2. Find Shortest Word
-            // Return the shortest word in a sentence.
-            // Example: "Cyberpunk card vault" -> "card"
-            // Example: "I am Paul" -> "I"
-            // If tied, return the first shortest word.
-            // Return "" for null or empty.
-            // Split is allowed.
-            // Console.WriteLine(FindShortestWord("Cyberpunk card vault")); // card
-            // Console.WriteLine(FindShortestWord("I am Paul"));            // I
-            // Console.WriteLine(FindShortestWord("dog cat rat"));          // dog
-            // Console.WriteLine(FindShortestWord("one two three"));        // one
-            // Console.WriteLine(FindShortestWord("apple"));                // apple
-            // Console.WriteLine(FindShortestWord("a bb ccc"));             // a
-            // Console.WriteLine(FindShortestWord(""));                     // ""
-            // Console.WriteLine(FindShortestWord(null));                   // ""
+            // Remove Target Word
+            Console.WriteLine(RemoveTargetWord("hello world hello", "hello"));
+            Console.WriteLine(RemoveTargetWord("Cyberpunk card vault card", "card") == "Cyberpunk vault");
+            Console.WriteLine(RemoveTargetWord("Paul plays games", "plays") == "Paul games");
+            Console.WriteLine(RemoveTargetWord("HELLO world hello", "hello") == "world");
+            Console.WriteLine(RemoveTargetWord("Card card CARD vault", "card") == "vault");
+            Console.WriteLine(RemoveTargetWord("Cyberpunk vault", "card") == "Cyberpunk vault");
+            Console.WriteLine(RemoveTargetWord("", "hello") == "");
+            Console.WriteLine(RemoveTargetWord(null!, "hello") == "");
+            Console.WriteLine(RemoveTargetWord("hello world", "") == "hello world");
+            Console.WriteLine(RemoveTargetWord("hello world", null!) == "hello world");
+            Console.WriteLine(RemoveTargetWord("   hello   world   hello   ", "hello") == "world");
 
-            // 3. Are Anagrams     
-            // Return true if both strings contain the same characters with the same counts.
-            // Example: "listen", "silent" -> true
-            // Example: "aab", "aba" -> true
-            // Example: "aab", "ab" -> false
-            // Example: "", "" -> true
-            // Return false if either is null.
-            // Case-insensitive.
-            // No Sort, LINQ, Dictionary, or HashSet.
-            // Console.WriteLine(AreAnagramsTuesdayRevision_One("listen", "silent"));      // True
-            // Console.WriteLine(AreAnagramsTuesdayRevision_One("aab", "aba"));            // True
-            // Console.WriteLine(AreAnagramsTuesdayRevision_One("triangle", "integral"));  // True
-            // Console.WriteLine(AreAnagramsTuesdayRevision_One("evil", "vile"));          // True
-            // Console.WriteLine(AreAnagramsTuesdayRevision_One("aab", "ab"));            // False
-            // Console.WriteLine(AreAnagramsTuesdayRevision_One("hello", "helo"));        // False
-            // Console.WriteLine(AreAnagramsTuesdayRevision_One("abc", "abd"));           // False
-            // Console.WriteLine(AreAnagramsTuesdayRevision_One("", ""));                  // True
-            // Console.WriteLine(AreAnagramsTuesdayRevision_One(null!, "abc"));            // False
-            // Console.WriteLine(AreAnagramsTuesdayRevision_One("abc", null!));            // False
-            // Console.WriteLine(AreAnagramsTuesdayRevision_One("LISTEN", "silent"));      // True
-            // Console.WriteLine(AreAnagramsTuesdayRevision_One("AAB", "aba"));            // True
+            // Replace Target Word
+            Console.WriteLine(ReplaceTargetWordRev("hello world hello", "hello", "hi") == "hi world hi");
+            Console.WriteLine(ReplaceTargetWordRev("Cyberpunk card vault", "card", "deck") == "Cyberpunk deck vault");
+            Console.WriteLine(ReplaceTargetWordRev("HELLO world hello", "hello", "hi") == "hi world hi");
+            Console.WriteLine(ReplaceTargetWordRev("Paul plays games", "plays", "writes") == "Paul writes games");
+            Console.WriteLine(ReplaceTargetWordRev("Card card CARD vault", "card", "deck") == "deck deck deck vault");
+            Console.WriteLine(ReplaceTargetWordRev("Cyberpunk vault", "card", "deck") == "Cyberpunk vault");
+            Console.WriteLine(ReplaceTargetWordRev("", "hello", "hi") == "");
+            Console.WriteLine(ReplaceTargetWordRev(null!, "hello", "hi") == "");
+            Console.WriteLine(ReplaceTargetWordRev("hello world", "", "hi") == "hello world");
+            Console.WriteLine(ReplaceTargetWordRev("hello world", null!, "hi") == "hello world");
+            Console.WriteLine(ReplaceTargetWordRev("hello world", "world", null!) == "hello");
+            Console.WriteLine(ReplaceTargetWordRev("   hello   world   hello   ", "hello", "hi") == "hi world hi");
 
-            // 4. Find Longest Word              
-            // Return the longest word in a sentence.
-            // Example: "Cyberpunk card vault" -> "Cyberpunk"
-            // Example: "I am Paul" -> "Paul"
-            // If tied, return the first longest word.
-            // Return "" for null or empty.
-            // Split is allowed.
-            // Console.WriteLine(FindLongestWordRevision_One("Cyberpunk card vault")); // Cyberpunk
-            // Console.WriteLine(FindLongestWordRevision_One("I am Paul"));            // Paul
-            // Console.WriteLine(FindLongestWordRevision_One("dog cat elephant"));     // elephant
-            // Console.WriteLine(FindLongestWordRevision_One("one three five"));       // three
-            // Console.WriteLine(FindLongestWordRevision_One("apple"));                // apple
-            // Console.WriteLine(FindLongestWordRevision_One(""));                     // ""
-            // Console.WriteLine(FindLongestWordRevision_One(null));                   // ""
+            // Capitalise First Letter Of Each Word
+            Console.WriteLine(CapitaliseFirstLetterOfEachWord("hello world") == "Hello World");
+            Console.WriteLine(CapitaliseFirstLetterOfEachWord("paul mcginley") == "Paul Mcginley");
+            Console.WriteLine(CapitaliseFirstLetterOfEachWord("CYBERPUNK vault") == "CYBERPUNK Vault");
+            Console.WriteLine(CapitaliseFirstLetterOfEachWord("single") == "Single");
+            Console.WriteLine(CapitaliseFirstLetterOfEachWord("a b c") == "A B C");
+            Console.WriteLine(CapitaliseFirstLetterOfEachWord("   hello   world   ") == "Hello World");
+            Console.WriteLine(CapitaliseFirstLetterOfEachWord("") == "");
+            Console.WriteLine(CapitaliseFirstLetterOfEachWord(null!) == "");
 
-            // 5. Remove Target Word
-            // Return a sentence with all matching target words removed.
-            // Example: "hello world hello", target "hello" -> "world"
-            // Example: "Cyberpunk card vault card", target "card" -> "Cyberpunk vault"
-            // Return "" for null or empty input.
-            // Return original sentence if target is null or empty.
-            // Case-insensitive comparison.
-            // Console.WriteLine(RemoveTargetWord_One("hello world hello", "hello")); // world
-            // Console.WriteLine(RemoveTargetWord_One("Cyberpunk card vault card", "card")); // Cyberpunk vault
-            // Console.WriteLine(RemoveTargetWord_One("Paul plays games", "plays")); // Paul games
-            // Console.WriteLine(RemoveTargetWord_One("HELLO world hello", "hello")); // world
-            // Console.WriteLine(RemoveTargetWord_One("", "hello")); // "" // ""
-            // Console.WriteLine(RemoveTargetWord_One("hello world", "")); // hello world
-            // Console.WriteLine(RemoveTargetWord_One("hello world", null!)); // hello world
+            // Lowercase All Words Except First Letter
+            Console.WriteLine(LowercaseAllWordsExceptFirstLetter("hello world") == "Hello World");
+            Console.WriteLine(LowercaseAllWordsExceptFirstLetter("pAUL mCKINLEY") == "Paul Mckinley");
+            Console.WriteLine(LowercaseAllWordsExceptFirstLetter("CYBERPUNK VAULT") == "Cyberpunk Vault");
+            Console.WriteLine(LowercaseAllWordsExceptFirstLetter("single") == "Single");
+            Console.WriteLine(LowercaseAllWordsExceptFirstLetter("a b c") == "A B C");
+            Console.WriteLine(LowercaseAllWordsExceptFirstLetter("   hELLO   wORLD   ") == "Hello World");
+            Console.WriteLine(LowercaseAllWordsExceptFirstLetter("") == "");
+            Console.WriteLine(LowercaseAllWordsExceptFirstLetter(null!) == "");
+
+            // Title Case Except Small Words
+            Console.WriteLine(TitleCaseExceptSmallWords("the lord of the rings"));
+            Console.WriteLine(TitleCaseExceptSmallWords("cyberpunk and the card vault") == "Cyberpunk and the Card Vault");
+            Console.WriteLine(TitleCaseExceptSmallWords("war of the worlds"));
+            Console.WriteLine(TitleCaseExceptSmallWords("in the name of the king"));
+            Console.WriteLine(TitleCaseExceptSmallWords("paul and the cyberpunk vault"));
+            Console.WriteLine(TitleCaseExceptSmallWords("THE LORD OF THE RINGS"));
+            Console.WriteLine(TitleCaseExceptSmallWords("   the   lord   of   the   rings   "));
+            Console.WriteLine(TitleCaseExceptSmallWords("") == "");
+            Console.WriteLine(TitleCaseExceptSmallWords(null!) == "");
+
+            // Count Words Containing Letter
+            Console.WriteLine(CountWordsContainingLetter("Cyberpunk card vault", 'a')); // 2
+            Console.WriteLine(CountWordsContainingLetter("Paul plays games", 'p'));      // 2
+            Console.WriteLine(CountWordsContainingLetter("Paul plays games", 'P'));      // 2
+            Console.WriteLine(CountWordsContainingLetter("dog cat rat", 't'));           // 2
+            Console.WriteLine(CountWordsContainingLetter("APPLE banana", 'a'));          // 2
+            Console.WriteLine(CountWordsContainingLetter("hello", 'z'));                 // 0
+            Console.WriteLine(CountWordsContainingLetter("", 'a'));                      // 0
+            Console.WriteLine(CountWordsContainingLetter(null!, 'a'));                    // 0
+            Console.WriteLine(CountWordsContainingLetter("   ", 'a'));                   // 0
 
             // Find Shortest Word
-            // - Return the first shortest word in a sentence. 
-            // - Example: Cyber punk card Vault ->  card
-            // - Example: I am Paul -> I
+            Console.WriteLine(FindShortestWord("Cyberpunk card vault")); // card
+            Console.WriteLine(FindShortestWord("I am Paul"));            // I
+            Console.WriteLine(FindShortestWord("dog cat rat"));          // dog
+            Console.WriteLine(FindShortestWord("one two three"));        // one
+            Console.WriteLine(FindShortestWord("apple"));                // apple
+            Console.WriteLine(FindShortestWord("a bb ccc"));             // a
+            Console.WriteLine(FindShortestWord(""));                     // ""
+            Console.WriteLine(FindShortestWord(null!));                   // ""
+
+            // Are Anagrams
+            Console.WriteLine(AreAnagramsTuesdayRevision_One("listen", "silent"));      // True
+            Console.WriteLine(AreAnagramsTuesdayRevision_One("aab", "aba"));            // True
+            Console.WriteLine(AreAnagramsTuesdayRevision_One("triangle", "integral"));  // True
+            Console.WriteLine(AreAnagramsTuesdayRevision_One("evil", "vile"));          // True
+            Console.WriteLine(AreAnagramsTuesdayRevision_One("aab", "ab"));            // False
+            Console.WriteLine(AreAnagramsTuesdayRevision_One("hello", "helo"));        // False
+            Console.WriteLine(AreAnagramsTuesdayRevision_One("abc", "abd"));           // False
+            Console.WriteLine(AreAnagramsTuesdayRevision_One("", ""));                  // True
+            Console.WriteLine(AreAnagramsTuesdayRevision_One(null!, "abc"));            // False
+            Console.WriteLine(AreAnagramsTuesdayRevision_One("abc", null!));            // False
+            Console.WriteLine(AreAnagramsTuesdayRevision_One("LISTEN", "silent"));      // True
+            Console.WriteLine(AreAnagramsTuesdayRevision_One("AAB", "aba"));            // True
+
+            // Find Longest Word              
+            Console.WriteLine(FindLongestWordRevision_One("Cyberpunk card vault")); // Cyberpunk
+            Console.WriteLine(FindLongestWordRevision_One("I am Paul"));            // Paul
+            Console.WriteLine(FindLongestWordRevision_One("dog cat elephant"));     // elephant
+            Console.WriteLine(FindLongestWordRevision_One("one three five"));       // three
+            Console.WriteLine(FindLongestWordRevision_One("apple"));                // apple
+            Console.WriteLine(FindLongestWordRevision_One(""));                     // ""
+            Console.WriteLine(FindLongestWordRevision_One(null!));                   // ""
+
+            // Remove Target Word.
+            Console.WriteLine(RemoveTargetWord_One("hello world hello", "hello")); // world
+            Console.WriteLine(RemoveTargetWord_One("Cyberpunk card vault card", "card")); // Cyberpunk vault
+            Console.WriteLine(RemoveTargetWord_One("Paul plays games", "plays")); // Paul games
+            Console.WriteLine(RemoveTargetWord_One("HELLO world hello", "hello")); // world
+            Console.WriteLine(RemoveTargetWord_One("", "hello")); // "" // ""
+            Console.WriteLine(RemoveTargetWord_One("hello world", "")); // hello world
+            Console.WriteLine(RemoveTargetWord_One("hello world", null!)); // hello world
+
             // Find Shortest Word
             Console.WriteLine(FindShortestWord("Cyber punk card Vault")); // punk
             Console.WriteLine(FindShortestWord("I am Paul"));             // I
@@ -139,98 +140,27 @@ namespace CodingChallenges.Challenges
             Console.WriteLine(FindShortestWord(""));                      // ""
             Console.WriteLine(FindShortestWord(null!));                    // null
 
-            //
-            // == Completed
-            //
-
-            // Warm-up:  Count Words Ending with Letter
-            // - Return how many words end with a target Letter
-            // - Example: Cyberpunk card vault - Target:  d = 1
-            // - Example: Paul plays games - Target s = 2
-            // Return 0 for null or empty
             // Count Words Ending with Letter
-            // Console.WriteLine(CountWordsEndingWithLetter("Cyberpunk card vault", 'd'));     // 1
-            // Console.WriteLine(CountWordsEndingWithLetter("Paul plays games", 's'));          // 2
-            // Console.WriteLine(CountWordsEndingWithLetter("dog cat rat", 't'));               // 2
-            // Console.WriteLine(CountWordsEndingWithLetter("Dog Cat Rat", 't'));               // 2
-            // Console.WriteLine(CountWordsEndingWithLetter("apple banana orange", 'e'));       // 2
-            // Console.WriteLine(CountWordsEndingWithLetter("hello", 'o'));                     // 1
-            // Console.WriteLine(CountWordsEndingWithLetter("", 'a'));                          // 0
-            // Console.WriteLine(CountWordsEndingWithLetter(null!, 'a'));                        // 0
-            // Console.WriteLine(CountWordsEndingWithLetter("   ", 'a'));                       // 0
+            Console.WriteLine(CountWordsEndingWithLetter("Cyberpunk card vault", 'd'));     // 1
+            Console.WriteLine(CountWordsEndingWithLetter("Paul plays games", 's'));          // 2
+            Console.WriteLine(CountWordsEndingWithLetter("dog cat rat", 't'));               // 2
+            Console.WriteLine(CountWordsEndingWithLetter("Dog Cat Rat", 't'));               // 2
+            Console.WriteLine(CountWordsEndingWithLetter("apple banana orange", 'e'));       // 2
+            Console.WriteLine(CountWordsEndingWithLetter("hello", 'o'));                     // 1
+            Console.WriteLine(CountWordsEndingWithLetter("", 'a'));                          // 0
+            Console.WriteLine(CountWordsEndingWithLetter(null!, 'a'));                        // 0
+            Console.WriteLine(CountWordsEndingWithLetter("   ", 'a'));                       // 0
 
-            // Revision Are Anagrams
-            // Return true if both Strings contain the same characters with the same counts 
-            // - Example: Listen, silent -> True
-            // - Example aab,  aba -> true
-            // Return false if either is null
-            // Are Anagrams
-            // Console.WriteLine(AreAnagramsRevisionAgain("listen", "silent"));      // True
-            // Console.WriteLine(AreAnagramsRevisionAgain("aab", "aba"));            // True
-            // Console.WriteLine(AreAnagramsRevisionAgain("triangle", "integral")); // True
-            // Console.WriteLine(AreAnagramsRevisionAgain("evil", "vile"));          // True
-            // Console.WriteLine(AreAnagramsRevisionAgain("abc", "abd"));            // False
-            // Console.WriteLine(AreAnagramsRevisionAgain("aab", "abb"));            // False
-            // Console.WriteLine(AreAnagramsRevisionAgain("hello", "helo"));         // False
-            // Console.WriteLine(AreAnagramsRevisionAgain("", ""));                  // True
-            // Console.WriteLine(AreAnagramsRevisionAgain(null!, "abc"));             // False
-            // Console.WriteLine(AreAnagramsRevisionAgain("abc", null!));             // False
-
-            // Revision each letter A to Z: 
-            // - Return formatted string showing how many times each letter appears.
-            // - Ignore Spaces, Numbers,  and symbols 
-            // - Example: abcaba => a:3 B:2 C1
-            // - Hello -> H:1 E:1 L:2 O:1
-            // - Avoid trailing spaces 
-            // Count Each Letter A-Z
-            // Console.WriteLine(CountLettersRevisionFormat("abcaba"));                  // A:3 B:2 C:1
-            // Console.WriteLine(CountLettersRevisionFormat("Hello"));                   // H:1 E:1 L:2 O:1
-            // Console.WriteLine(CountLettersRevisionFormat("aaaaa"));                   // A:5
-            // Console.WriteLine(CountLettersRevisionFormat("AaAa"));                    // A:4
-            // Console.WriteLine(CountLettersRevisionFormat("C# Rocks!"));               // C:2 R:1 O:1 K:1 S:1
-            // Console.WriteLine(CountLettersRevisionFormat("123abc456"));              // A:1 B:1 C:1
-            // Console.WriteLine(CountLettersRevisionFormat("!@#$%^"));                 // ""
-            // Console.WriteLine(CountLettersRevisionFormat(""));                       // ""
-            // Console.WriteLine(CountLettersRevisionFormat(null!));                     // ""
 
             // Remove Words longer than Target 
-            // - Return a sentence with the words removed if they are longer than the target Length.
-            // Keep words less than or equal to Target. 
-            // - Example: Cyberpunk card Vault - Target 4 -> Card - Ans: Cyberpunk Vault
-            // Remove Words Longer Than Target
-            // Console.WriteLine(RemoveWordsLongerThanTarget("Cyberpunk card Vault", 4));   // card
-            // Console.WriteLine(RemoveWordsLongerThanTarget("I am Paul", 4));              // I am Paul
-            // Console.WriteLine(RemoveWordsLongerThanTarget("dog cat elephant", 3));       // dog cat
-            // Console.WriteLine(RemoveWordsLongerThanTarget("apple pear plum", 4));        // pear plum
-            // Console.WriteLine(RemoveWordsLongerThanTarget("one two three four", 3));     // one two
-            // Console.WriteLine(RemoveWordsLongerThanTarget("", 5));                       // ""
-            // Console.WriteLine(RemoveWordsLongerThanTarget(null, 5));                     // null or ""
+            Console.WriteLine(RemoveWordsLongerThanTarget("Cyberpunk card Vault", 4));   // card
+            Console.WriteLine(RemoveWordsLongerThanTarget("I am Paul", 4));              // I am Paul
+            Console.WriteLine(RemoveWordsLongerThanTarget("dog cat elephant", 3));       // dog cat
+            Console.WriteLine(RemoveWordsLongerThanTarget("apple pear plum", 4));        // pear plum
+            Console.WriteLine(RemoveWordsLongerThanTarget("one two three four", 3));     // one two
+            Console.WriteLine(RemoveWordsLongerThanTarget("", 5));                       // ""
+            Console.WriteLine(RemoveWordsLongerThanTarget(null!, 5));                     // null or ""
 
-            // Stretch: Reverse Each Word in Sentence
-            // - Reverse each word but keep the word order the same.
-            // - Example: Hello World -> "olleh dlrow"
-            // - Example: Cyberpunk vault -> knuprebyc tault
-            // - Return null or Empty 
-            // Reverse Each Word in Sentence
-            // Console.WriteLine(ReverseEachWord("Hello World"));        // olleH dlroW
-            // Console.WriteLine(ReverseEachWord("Cyberpunk vault"));    // knuprebyC tluav
-            // Console.WriteLine(ReverseEachWord("I am Paul"));          // I ma luaP
-            // Console.WriteLine(ReverseEachWord("dog cat"));            // god tac
-            // Console.WriteLine(ReverseEachWord("a"));                  // a
-            // Console.WriteLine(ReverseEachWord(""));                   // ""
-            // Console.WriteLine(ReverseEachWord(null));                 // null
-
-            // Stretch: Reverse Each Word in Sentence
-            // - Reverse each word but keep the word order the same.
-            // - Example: Hello World -> "olleh dlrow"
-            // - Example: Cyberpunk vault -> knuprebyc tault
-            // - Return null or Empty 
-            // Reverse Each Word in Sentence
-
-            // Find Shortest Word
-            // - Return the first shortest word in a sentence. 
-            // - Example: Cyber punk card Vault ->  card
-            // - Example: I am Paul -> I
             // Find Shortest Word
             Console.WriteLine(FindShortestWord("Cyber punk card Vault")); // punk
             Console.WriteLine(FindShortestWord("I am Paul"));             // I
