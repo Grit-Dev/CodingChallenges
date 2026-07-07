@@ -51,6 +51,38 @@ public class Program
         return newStringFormed.ToString().Trim();
     }
 
+    public static string ReplaceTargetWord(string pInputValue, string pTargetWord, string pReplacement)
+    {
+        if (string.IsNullOrEmpty(pInputValue))
+        {
+            return "";
+        }
+
+        if (string.IsNullOrEmpty(pTargetWord))
+        {
+            return pInputValue;
+        }
+
+        string[] splitString = pInputValue.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+        StringBuilder newStringFormed = new();
+
+        foreach (string word in splitString)
+        {
+            if (word.ToLower() == pTargetWord.ToLower())
+            {
+                newStringFormed.Append(pReplacement);
+            }
+            else
+            {
+                newStringFormed.Append(word);
+            }
+
+            newStringFormed.Append(' ');
+        }
+
+        return newStringFormed.ToString().Trim();
+    }
+
     public static void Main(string[] args)
     {
         //1.Warm - up: Count Words With Exact Length
@@ -71,6 +103,20 @@ public class Program
         Console.WriteLine(RemoveTargetWord("hello world", "") == "hello world");
         Console.WriteLine(RemoveTargetWord("hello world", null!) == "hello world");
         Console.WriteLine(RemoveTargetWord("   hello   world   hello   ", "hello") == "world");
+
+        // 3.Revision: Replace Target Word
+        Console.WriteLine(ReplaceTargetWord("hello world hello", "hello", "hi") == "hi world hi");
+        Console.WriteLine(ReplaceTargetWord("Cyberpunk card vault", "card", "deck") == "Cyberpunk deck vault");
+        Console.WriteLine(ReplaceTargetWord("HELLO world hello", "hello", "hi") == "hi world hi");
+        Console.WriteLine(ReplaceTargetWord("Paul plays games", "plays", "writes") == "Paul writes games");
+        Console.WriteLine(ReplaceTargetWord("Card card CARD vault", "card", "deck") == "deck deck deck vault");
+        Console.WriteLine(ReplaceTargetWord("Cyberpunk vault", "card", "deck") == "Cyberpunk vault");
+        Console.WriteLine(ReplaceTargetWord("", "hello", "hi") == "");
+        Console.WriteLine(ReplaceTargetWord(null!, "hello", "hi") == "");
+        Console.WriteLine(ReplaceTargetWord("hello world", "", "hi") == "hello world");
+        Console.WriteLine(ReplaceTargetWord("hello world", null!, "hi") == "hello world");
+        Console.WriteLine(ReplaceTargetWord("hello world", "world", null!) == "hello");
+        Console.WriteLine(ReplaceTargetWord("   hello   world   hello   ", "hello", "hi") == "hi world hi");
 
 
         /*
