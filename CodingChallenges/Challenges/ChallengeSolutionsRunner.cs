@@ -151,7 +151,6 @@ namespace CodingChallenges.Challenges
             Console.WriteLine(CountWordsEndingWithLetter(null!, 'a'));                        // 0
             Console.WriteLine(CountWordsEndingWithLetter("   ", 'a'));                       // 0
 
-
             // Remove Words longer than Target 
             Console.WriteLine(RemoveWordsLongerThanTarget("Cyberpunk card Vault", 4));   // card
             Console.WriteLine(RemoveWordsLongerThanTarget("I am Paul", 4));              // I am Paul
@@ -222,8 +221,6 @@ namespace CodingChallenges.Challenges
             Console.WriteLine(AreAnagramsRevisionSat("Miss", "Sims"));         // False
 
             // Remove Punctation and Symbols
-            // Keep letters, digits, and spaces.
-            // Return "" for Null or Empty
             Console.WriteLine(RemovePunctationAndSymbols("C# costs £10!"));
             Console.WriteLine(RemovePunctationAndSymbols("He#llo Wo#rld!"));
             Console.WriteLine(RemovePunctationAndSymbols("Hell#o Wo!rld!"));
@@ -231,9 +228,6 @@ namespace CodingChallenges.Challenges
             Console.WriteLine(RemovePunctationAndSymbols(null!));
 
             // Optional Stretch: Count Each Letter A-Z
-            // Return a formatted string showing how many times each letter appears
-            // Example: "abcaba = "A: 3 b:2 C:1"
-            // Ignore spaces, numbers and symbols
             Console.WriteLine(CountEachLetterAToZ("aaaaa"));            // A:5
             Console.WriteLine(CountEachLetterAToZ("abcaba"));           // A:3 B:2 C:1
             Console.WriteLine(CountEachLetterAToZ("Hello"));            // H:1 E:1 L:2 O:1
@@ -245,8 +239,6 @@ namespace CodingChallenges.Challenges
             Console.WriteLine(CountEachLetterAToZ("The Quick Brown Fox")); // T:1 H:1 E:1 Q:1 U:1 ...
 
             // Count Digits in String
-            // - Return how many digits are in a string
-            // - Return 0 if Null Or Empty
             Console.WriteLine(CountDigitsInString("123"));                // 3
             Console.WriteLine(CountDigitsInString("Hello123"));           // 3
             Console.WriteLine(CountDigitsInString("A1B2C3"));             // 3
@@ -327,8 +319,6 @@ namespace CodingChallenges.Challenges
             Console.WriteLine(CountUniqueCharacters("Mississippi"));  // 4
             Console.WriteLine(CountUniqueCharacters("112233"));       // 3
             Console.WriteLine(CountUniqueCharacters("CSharp"));       // 6
-
-            // Completed ==================================================================
 
             // Get Last letters of each word.
             // Return a string made from the first letter of each word
@@ -414,8 +404,6 @@ namespace CodingChallenges.Challenges
             Console.WriteLine(IsPangram("The five boxing wizards jump quickly"));        // True
             Console.WriteLine(IsPangram("A quick movement of the enemy will jeopardize five gunboats")); // false
 
-            // Complete:
-
             // Get initals From name
             // - Return the initals of the full name
             Console.WriteLine(GetInitials("Paul Kinley"));                      // PK
@@ -428,7 +416,6 @@ namespace CodingChallenges.Challenges
             Console.WriteLine(GetInitials("   John    Smith   "));              // JS
             Console.WriteLine(GetInitials("Jean-Luc Picard"));                  // JP
             Console.WriteLine(GetInitials("Bilbo Baggins"));                    // BB
-
 
             // Warm Up: Count Punctuation Characters 
             Console.WriteLine(CountPunctuationCharacters("Wait...What?") == 4);      // 4
