@@ -3,8 +3,36 @@ using System.Text;
 
 public class Program
 {
+    public static int CountWordsExactLength(string pInputValue, int pTargetLength)
+    {
+        if (string.IsNullOrEmpty(pInputValue))
+        {
+            return 0;
+        }
+
+        int counter = 0;
+        string[] spilitString = pInputValue.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+        foreach (string word in spilitString)
+        {
+            if (word.Length == pTargetLength)
+            { 
+                counter++;
+            }
+        }
+
+        return counter;
+    }
     public static void Main(string[] args)
     {
+        //1.Warm - up: Count Words With Exact Length
+        Console.WriteLine(CountWordsExactLength("Cyberpunk card Vault", 4));
+        Console.WriteLine(CountWordsExactLength("I am Paul", 2));
+        Console.WriteLine(CountWordsExactLength("Cyberpunk card Vault", 0));
+        Console.WriteLine(CountWordsExactLength(null!, 4));
+
+
+
         /*
             NEXT CHALLENGES
 
