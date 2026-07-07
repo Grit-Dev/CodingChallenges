@@ -105,24 +105,55 @@ public class Program
         return newStringFormed.ToString().Trim();
     }
 
+    public static string LowercaseAllWordsExceptFirstLetter(string pInputValue)
+    {
+        if (string.IsNullOrEmpty(pInputValue))
+        {
+            return "";
+        }
+
+        pInputValue = pInputValue.ToLower();
+        string[] spilitString = pInputValue.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+        StringBuilder newStringFormed = new();
+
+        foreach (string word in spilitString)
+        {
+            char characterHolder = char.ToUpper(word[0]);
+            newStringFormed.Append(characterHolder).Append(word.Substring(1));
+            newStringFormed.Append(' ');
+        }
+
+        return newStringFormed.ToString().Trim();
+    }
     public static void Main(string[] args)
     {
+        // 5. New Challenge: Lowercase All Words Except First Letter
+        //*Return a sentence where each word is capitalised properly.
+        //    *Example: "hello world"-> "Hello World"
+        //    * Example: "pAUL mCGINLEY"-> "Paul Mcginley"
+        //    * Example: "CYBERPUNK VAULT"-> "Cyberpunk Vault"
+        //    * Return "" for null or empty.
+        //    * Split is allowed.
+        //    * Use StringBuilder.
+        Console.WriteLine(LowercaseAllWordsExceptFirstLetter("hello world") == "Hello World");
+        Console.WriteLine(LowercaseAllWordsExceptFirstLetter("pAUL mCKINLEY") == "Paul Mckinley");
+        Console.WriteLine(LowercaseAllWordsExceptFirstLetter("CYBERPUNK VAULT") == "Cyberpunk Vault");
+        Console.WriteLine(LowercaseAllWordsExceptFirstLetter("single") == "Single");
+        Console.WriteLine(LowercaseAllWordsExceptFirstLetter("a b c") == "A B C");
+        Console.WriteLine(LowercaseAllWordsExceptFirstLetter("   hELLO   wORLD   ") == "Hello World");
+        Console.WriteLine(LowercaseAllWordsExceptFirstLetter("") == "");
+        Console.WriteLine(LowercaseAllWordsExceptFirstLetter(null!) == "");
+
+
         // 4.New Challenge: Capitalise First Letter Of Each Word
-        /*        *Return a sentence where each word starts with an uppercase letter.
-                    *Example: "hello world"-> "Hello World"
-                    * Example: "paul mcginley"-> "Paul Mcginley"
-                    * Example: "CYBERPUNK vault"-> "CYBERPUNK Vault"
-                    * Return "" for null or empty.
-                    * Split is allowed.
-                    * Use StringBuilder.*/
-        Console.WriteLine(CapitaliseFirstLetterOfEachWord("hello world") == "Hello World");
-        Console.WriteLine(CapitaliseFirstLetterOfEachWord("paul mcginley") == "Paul Mcginley");
-        Console.WriteLine(CapitaliseFirstLetterOfEachWord("CYBERPUNK vault") == "CYBERPUNK Vault");
-        Console.WriteLine(CapitaliseFirstLetterOfEachWord("single") == "Single");
-        Console.WriteLine(CapitaliseFirstLetterOfEachWord("a b c") == "A B C");
-        Console.WriteLine(CapitaliseFirstLetterOfEachWord("   hello   world   ") == "Hello World");
-        Console.WriteLine(CapitaliseFirstLetterOfEachWord("") == "");
-        Console.WriteLine(CapitaliseFirstLetterOfEachWord(null!) == "");
+        //Console.WriteLine(CapitaliseFirstLetterOfEachWord("hello world") == "Hello World");
+        //Console.WriteLine(CapitaliseFirstLetterOfEachWord("paul mcginley") == "Paul Mcginley");
+        //Console.WriteLine(CapitaliseFirstLetterOfEachWord("CYBERPUNK vault") == "CYBERPUNK Vault");
+        //Console.WriteLine(CapitaliseFirstLetterOfEachWord("single") == "Single");
+        //Console.WriteLine(CapitaliseFirstLetterOfEachWord("a b c") == "A B C");
+        //Console.WriteLine(CapitaliseFirstLetterOfEachWord("   hello   world   ") == "Hello World");
+        //Console.WriteLine(CapitaliseFirstLetterOfEachWord("") == "");
+        //Console.WriteLine(CapitaliseFirstLetterOfEachWord(null!) == "");
 
 
         //1.Warm - up: Count Words With Exact Length
