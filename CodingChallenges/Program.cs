@@ -162,17 +162,7 @@ public class Program
 
     public static void Main(string[] args)
     {
-        //        6.Optional Stretch: Title Case Except Small Words
 
-        //* Capitalise each word except small words: "and", "or", "the", "of", "in".
-
-        //* Always capitalise the first word.
-        //            *Example: "the lord of the rings"-> "The Lord of the Rings"
-        //            * Example: "cyberpunk and the card vault"-> "Cyberpunk and the Card Vault"
-        //            * Return "" for null or empty.
-        //            * Case - insensitive comparison.
-        //            * Split is allowed.
-        //            * No LINQ or Dictionary.
         // 6. Optional Stretch: Title Case Except Small Words
         Console.WriteLine(TitleCaseExceptSmallWords("the lord of the rings"));
         Console.WriteLine(TitleCaseExceptSmallWords("cyberpunk and the card vault") == "Cyberpunk and the Card Vault");
