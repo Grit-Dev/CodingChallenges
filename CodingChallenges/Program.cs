@@ -23,6 +23,34 @@ public class Program
 
         return counter;
     }
+
+    public static string RemoveTargetWord(string pInputValue, string pTargetWord)
+    {
+        if (string.IsNullOrEmpty(pInputValue))
+        {
+            return "";
+        }
+
+        if (string.IsNullOrEmpty(pTargetWord))
+        {
+            return pInputValue;
+        }
+
+        StringBuilder newStringFormed = new StringBuilder();
+        string[] splitString = pInputValue.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+        foreach (string word in splitString)
+        {
+            if (word.ToLower() != pTargetWord.ToLower())
+            {
+                newStringFormed.Append(word);
+                newStringFormed.Append(' ');
+            }
+        }
+
+        return newStringFormed.ToString().Trim();
+    }
+
     public static void Main(string[] args)
     {
         //1.Warm - up: Count Words With Exact Length
@@ -31,19 +59,22 @@ public class Program
         Console.WriteLine(CountWordsExactLength("Cyberpunk card Vault", 0));
         Console.WriteLine(CountWordsExactLength(null!, 4));
 
+        // 2.Revision: Remove Target Word
+        Console.WriteLine(RemoveTargetWord("hello world hello", "hello"));
+        Console.WriteLine(RemoveTargetWord("Cyberpunk card vault card", "card") == "Cyberpunk vault");
+        Console.WriteLine(RemoveTargetWord("Paul plays games", "plays") == "Paul games");
+        Console.WriteLine(RemoveTargetWord("HELLO world hello", "hello") == "world");
+        Console.WriteLine(RemoveTargetWord("Card card CARD vault", "card") == "vault");
+        Console.WriteLine(RemoveTargetWord("Cyberpunk vault", "card") == "Cyberpunk vault");
+        Console.WriteLine(RemoveTargetWord("", "hello") == "");
+        Console.WriteLine(RemoveTargetWord(null!, "hello") == "");
+        Console.WriteLine(RemoveTargetWord("hello world", "") == "hello world");
+        Console.WriteLine(RemoveTargetWord("hello world", null!) == "hello world");
+        Console.WriteLine(RemoveTargetWord("   hello   world   hello   ", "hello") == "world");
 
 
         /*
             NEXT CHALLENGES
-
-            1. Warm-up: Count Words With Exact Length
-
-            * Return how many words have exactly the target length.
-            * Example: "Cyberpunk card vault", target 4 -> 1
-            * Example: "I am Paul", target 2 -> 1
-            * Return 0 for null or empty.
-            * Split is allowed.
-
             2. Revision: Remove Target Word
 
             * Return a sentence with all matching target words removed.
