@@ -4,6 +4,199 @@ namespace CodingChallenges.Challenges
 {
     public class ChallengeSolutions
     {
+        public static int CountWordsContainingLetter(string pInputValue, char pTarget)
+        {
+            if (string.IsNullOrEmpty(pInputValue))
+            {
+                return 0;
+            }
+
+            int counter = 0;
+            pInputValue = pInputValue.ToLower();
+            pTarget = char.ToLower(pTarget);
+            string[] splitString = pInputValue.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+            foreach (string word in splitString)
+            {
+                if (word.Contains(pTarget))
+                {
+                    counter++;
+                }
+            }
+
+            return counter;
+
+
+        }
+
+        public static string FindShortestWord(string pInputValue)
+        {
+            if (string.IsNullOrEmpty(pInputValue))
+            {
+                return "";
+            }
+
+            string shortestWord = "";
+            int shortestWordCounter = int.MaxValue;
+            string[] splitString = pInputValue.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+            foreach (string currentWord in splitString)
+            {
+                if (currentWord.Length < shortestWordCounter)
+                {
+                    shortestWord = currentWord;
+                    shortestWordCounter = currentWord.Length;
+                }
+            }
+
+            return shortestWord;
+
+        }
+
+        public static bool AreAnagramsTuesdayRevision_One(string pInputValue, string pTargetValue)
+        {
+            if (pInputValue == null || pTargetValue == null)
+            {
+                return false;
+            }
+
+            if (pInputValue.Length != pTargetValue.Length)
+            {
+                return false;
+            }
+
+            int counterOne = 0;
+            int counterTwo = 0;
+
+            pInputValue = pInputValue.ToLower();
+            pTargetValue = pTargetValue.ToLower();
+
+            for (int outterIndex = 0; outterIndex <= pInputValue.Length - 1; outterIndex++)
+            {
+                char currentChar = pInputValue[outterIndex];
+
+                for (int innerIndex = 0; innerIndex <= pTargetValue.Length - 1; innerIndex++)
+                {
+                    if (currentChar == pTargetValue[innerIndex])
+                    {
+                        counterOne++;
+                    }
+
+                    if (pInputValue[innerIndex] == currentChar)
+                    {
+                        counterTwo++;
+                    }
+                }
+
+                if (counterOne != counterTwo)
+                {
+                    return false;
+                }
+
+                counterOne = 0;
+                counterTwo = 0;
+            }
+
+            return true;
+        }
+
+        public static string FindLongestWordRevision_One(string pInputValue)
+        {
+            if (string.IsNullOrEmpty(pInputValue))
+            {
+                return "";
+            }
+
+            int longestCounter = int.MinValue;
+            string longestWordDetermined = "";
+            string[] splitString = pInputValue.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+            foreach (string word in splitString)
+            {
+                if (word.Length > longestCounter)
+                {
+                    longestWordDetermined = word;
+                    longestCounter = word.Length;
+                }
+            }
+
+            return longestWordDetermined;
+        }
+
+        public static string RemoveTargetWord_One(string pInputValue, string pTarget)
+        {
+            if (string.IsNullOrEmpty(pInputValue))
+            {
+                return "";
+            }
+
+            if (string.IsNullOrEmpty(pTarget))
+            {
+                return pInputValue;
+            }
+
+            pInputValue = pInputValue.ToLower();
+            pTarget = pTarget.ToLower();
+            string[] splitString = pInputValue.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+            StringBuilder newStringFromParameter = new();
+
+            foreach (string word in splitString)
+            {
+                if (word != pTarget)
+                {
+                    newStringFromParameter.Append(word);
+                    newStringFromParameter.Append(' ');
+                }
+            }
+
+            return newStringFromParameter.ToString().Trim();
+
+        }
+
+        public static string ReplaceTargetWord(string pInputValue, string pTarget, string pReplacement)
+        {
+            if (string.IsNullOrEmpty(pInputValue))
+            {
+                return "";
+            }
+
+            if (string.IsNullOrEmpty(pTarget))
+            {
+                return pInputValue;
+            }
+
+            if (pReplacement == null)
+            {
+                pReplacement = "";
+            }
+
+            pInputValue = pInputValue.ToLower();
+            pTarget = pTarget.ToLower();
+            pReplacement = pReplacement.ToLower();
+            StringBuilder newString = new();
+
+            string[] splitString = pInputValue.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+            foreach (string word in splitString)
+            {
+                if (word == pTarget)
+                {
+                    newString.Append(pReplacement);
+                }
+                else
+                {
+                    newString.Append(word);
+                }
+
+                newString.Append(' ');
+            }
+
+            return newString.ToString();
+
+        }
+
+
         public static int CountWordsEndingWithLetter(string pInputValue, char pTarget)
         {
             if (string.IsNullOrEmpty(pInputValue))
@@ -185,29 +378,29 @@ namespace CodingChallenges.Challenges
 
         }
 
-        public static string FindShortestWord(string pInputvalue)
-        {
-            if (string.IsNullOrEmpty(pInputvalue))
-            {
-                return "";
-            }
+        //public static string FindShortestWord_One(string pInputvalue)
+        //{
+        //    if (string.IsNullOrEmpty(pInputvalue))
+        //    {
+        //        return "";
+        //    }
 
-            string shortestWord = "";
-            int charCounterInWord = int.MaxValue;
-            string[] stringSplit = pInputvalue.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+        //    string shortestWord = "";
+        //    int charCounterInWord = int.MaxValue;
+        //    string[] stringSplit = pInputvalue.Split(' ', StringSplitOptions.RemoveEmptyEntries);
 
-            foreach (string word in stringSplit)
-            {
-                if (word.Length < charCounterInWord)
-                {
-                    charCounterInWord = word.Length;
-                    shortestWord = word;
-                }
-            }
+        //    foreach (string word in stringSplit)
+        //    {
+        //        if (word.Length < charCounterInWord)
+        //        {
+        //            charCounterInWord = word.Length;
+        //            shortestWord = word;
+        //        }
+        //    }
 
-            return shortestWord;
+        //    return shortestWord;
 
-        }
+        //}
         public static int CountLettersCaseInsensitive(string pInputValue)
         {
             if (string.IsNullOrEmpty(pInputValue))
