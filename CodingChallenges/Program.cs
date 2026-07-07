@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics.Metrics;
+using System.Runtime.Intrinsics.X86;
 using System.Text;
 
 public class Program
@@ -83,68 +84,83 @@ public class Program
         return newStringFormed.ToString().Trim();
     }
 
+    public static string CapitaliseFirstLetterOfEachWord(string pInputValue)
+    {
+        if (string.IsNullOrEmpty(pInputValue))
+        {
+            return "";
+        }
+
+        string[] spilitString = pInputValue.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+        StringBuilder newStringFormed = new();
+
+        foreach (string word in spilitString)
+        {
+            char characterHolder = char.ToUpper(word[0]);
+
+            newStringFormed.Append(characterHolder).Append(word.Substring(1));
+            newStringFormed.Append(' ');
+        }
+
+        return newStringFormed.ToString().Trim();
+    }
+
     public static void Main(string[] args)
     {
+        // 4.New Challenge: Capitalise First Letter Of Each Word
+        /*        *Return a sentence where each word starts with an uppercase letter.
+                    *Example: "hello world"-> "Hello World"
+                    * Example: "paul mcginley"-> "Paul Mcginley"
+                    * Example: "CYBERPUNK vault"-> "CYBERPUNK Vault"
+                    * Return "" for null or empty.
+                    * Split is allowed.
+                    * Use StringBuilder.*/
+        Console.WriteLine(CapitaliseFirstLetterOfEachWord("hello world") == "Hello World");
+        Console.WriteLine(CapitaliseFirstLetterOfEachWord("paul mcginley") == "Paul Mcginley");
+        Console.WriteLine(CapitaliseFirstLetterOfEachWord("CYBERPUNK vault") == "CYBERPUNK Vault");
+        Console.WriteLine(CapitaliseFirstLetterOfEachWord("single") == "Single");
+        Console.WriteLine(CapitaliseFirstLetterOfEachWord("a b c") == "A B C");
+        Console.WriteLine(CapitaliseFirstLetterOfEachWord("   hello   world   ") == "Hello World");
+        Console.WriteLine(CapitaliseFirstLetterOfEachWord("") == "");
+        Console.WriteLine(CapitaliseFirstLetterOfEachWord(null!) == "");
+
+
         //1.Warm - up: Count Words With Exact Length
-        Console.WriteLine(CountWordsExactLength("Cyberpunk card Vault", 4));
-        Console.WriteLine(CountWordsExactLength("I am Paul", 2));
-        Console.WriteLine(CountWordsExactLength("Cyberpunk card Vault", 0));
-        Console.WriteLine(CountWordsExactLength(null!, 4));
+        //Console.WriteLine(CountWordsExactLength("Cyberpunk card Vault", 4));
+        //Console.WriteLine(CountWordsExactLength("I am Paul", 2));
+        //Console.WriteLine(CountWordsExactLength("Cyberpunk card Vault", 0));
+        //Console.WriteLine(CountWordsExactLength(null!, 4));
 
         // 2.Revision: Remove Target Word
-        Console.WriteLine(RemoveTargetWord("hello world hello", "hello"));
-        Console.WriteLine(RemoveTargetWord("Cyberpunk card vault card", "card") == "Cyberpunk vault");
-        Console.WriteLine(RemoveTargetWord("Paul plays games", "plays") == "Paul games");
-        Console.WriteLine(RemoveTargetWord("HELLO world hello", "hello") == "world");
-        Console.WriteLine(RemoveTargetWord("Card card CARD vault", "card") == "vault");
-        Console.WriteLine(RemoveTargetWord("Cyberpunk vault", "card") == "Cyberpunk vault");
-        Console.WriteLine(RemoveTargetWord("", "hello") == "");
-        Console.WriteLine(RemoveTargetWord(null!, "hello") == "");
-        Console.WriteLine(RemoveTargetWord("hello world", "") == "hello world");
-        Console.WriteLine(RemoveTargetWord("hello world", null!) == "hello world");
-        Console.WriteLine(RemoveTargetWord("   hello   world   hello   ", "hello") == "world");
+        //Console.WriteLine(RemoveTargetWord("hello world hello", "hello"));
+        //Console.WriteLine(RemoveTargetWord("Cyberpunk card vault card", "card") == "Cyberpunk vault");
+        //Console.WriteLine(RemoveTargetWord("Paul plays games", "plays") == "Paul games");
+        //Console.WriteLine(RemoveTargetWord("HELLO world hello", "hello") == "world");
+        //Console.WriteLine(RemoveTargetWord("Card card CARD vault", "card") == "vault");
+        //Console.WriteLine(RemoveTargetWord("Cyberpunk vault", "card") == "Cyberpunk vault");
+        //Console.WriteLine(RemoveTargetWord("", "hello") == "");
+        //Console.WriteLine(RemoveTargetWord(null!, "hello") == "");
+        //Console.WriteLine(RemoveTargetWord("hello world", "") == "hello world");
+        //Console.WriteLine(RemoveTargetWord("hello world", null!) == "hello world");
+        //Console.WriteLine(RemoveTargetWord("   hello   world   hello   ", "hello") == "world");
 
         // 3.Revision: Replace Target Word
-        Console.WriteLine(ReplaceTargetWord("hello world hello", "hello", "hi") == "hi world hi");
-        Console.WriteLine(ReplaceTargetWord("Cyberpunk card vault", "card", "deck") == "Cyberpunk deck vault");
-        Console.WriteLine(ReplaceTargetWord("HELLO world hello", "hello", "hi") == "hi world hi");
-        Console.WriteLine(ReplaceTargetWord("Paul plays games", "plays", "writes") == "Paul writes games");
-        Console.WriteLine(ReplaceTargetWord("Card card CARD vault", "card", "deck") == "deck deck deck vault");
-        Console.WriteLine(ReplaceTargetWord("Cyberpunk vault", "card", "deck") == "Cyberpunk vault");
-        Console.WriteLine(ReplaceTargetWord("", "hello", "hi") == "");
-        Console.WriteLine(ReplaceTargetWord(null!, "hello", "hi") == "");
-        Console.WriteLine(ReplaceTargetWord("hello world", "", "hi") == "hello world");
-        Console.WriteLine(ReplaceTargetWord("hello world", null!, "hi") == "hello world");
-        Console.WriteLine(ReplaceTargetWord("hello world", "world", null!) == "hello");
-        Console.WriteLine(ReplaceTargetWord("   hello   world   hello   ", "hello", "hi") == "hi world hi");
+        //Console.WriteLine(ReplaceTargetWord("hello world hello", "hello", "hi") == "hi world hi");
+        //Console.WriteLine(ReplaceTargetWord("Cyberpunk card vault", "card", "deck") == "Cyberpunk deck vault");
+        //Console.WriteLine(ReplaceTargetWord("HELLO world hello", "hello", "hi") == "hi world hi");
+        //Console.WriteLine(ReplaceTargetWord("Paul plays games", "plays", "writes") == "Paul writes games");
+        //Console.WriteLine(ReplaceTargetWord("Card card CARD vault", "card", "deck") == "deck deck deck vault");
+        //Console.WriteLine(ReplaceTargetWord("Cyberpunk vault", "card", "deck") == "Cyberpunk vault");
+        //Console.WriteLine(ReplaceTargetWord("", "hello", "hi") == "");
+        //Console.WriteLine(ReplaceTargetWord(null!, "hello", "hi") == "");
+        //Console.WriteLine(ReplaceTargetWord("hello world", "", "hi") == "hello world");
+        //Console.WriteLine(ReplaceTargetWord("hello world", null!, "hi") == "hello world");
+        //Console.WriteLine(ReplaceTargetWord("hello world", "world", null!) == "hello");
+        //Console.WriteLine(ReplaceTargetWord("   hello   world   hello   ", "hello", "hi") == "hi world hi");
 
 
         /*
             NEXT CHALLENGES
-            2. Revision: Remove Target Word
-
-            * Return a sentence with all matching target words removed.
-            * Example: "hello world hello", target "hello" -> "world"
-            * Example: "Cyberpunk card vault card", target "card" -> "Cyberpunk vault"
-            * Return "" for null or empty input.
-            * Return original sentence if target is null or empty.
-            * Case-insensitive comparison.
-            * Preserve original casing in the returned sentence.
-            * Split is allowed.
-            * Use StringBuilder.
-
-            3. Revision: Replace Target Word
-
-            * Return a sentence where every matching target word is replaced.
-            * Example: "hello world hello", target "hello", replacement "hi" -> "hi world hi"
-            * Example: "Cyberpunk card vault", target "card", replacement "deck" -> "Cyberpunk deck vault"
-            * Return "" for null or empty input.
-            * Return original sentence if target is null or empty.
-            * If replacement is null, use "".
-            * Case-insensitive comparison.
-            * Preserve original casing for non-replaced words.
-            * Split is allowed.
-            * Use StringBuilder.
 
             4. New Challenge: Capitalise First Letter Of Each Word
 
