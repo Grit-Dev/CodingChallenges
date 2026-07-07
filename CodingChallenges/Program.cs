@@ -1,4 +1,6 @@
-﻿using System.Diagnostics.Metrics;
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics.Metrics;
 using System.Runtime.Intrinsics.X86;
 using System.Text;
 
@@ -125,25 +127,73 @@ public class Program
 
         return newStringFormed.ToString().Trim();
     }
+
+    public static string TitleCaseExceptSmallWords(string pInputValue)
+    {
+        if (string.IsNullOrEmpty(pInputValue))
+        {
+            return "";
+        }
+
+        pInputValue = pInputValue.ToLower();
+
+        string[] spilitString = pInputValue.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+        StringBuilder newStringFormed = new();
+        List<string> smallWordList = ["and", "or", "the", "of", "in" ];
+
+
+        foreach (string word in spilitString)
+        {
+            if (smallWordList.Contains(word))
+            {
+                newStringFormed.Append(word);
+                newStringFormed.Append(' ');
+            }
+            else
+            {
+                char characterHolder = char.ToUpper(word[0]);
+                newStringFormed.Append(characterHolder).Append(word.Substring(1));
+                newStringFormed.Append(' ');
+            }
+        }
+
+        return newStringFormed.ToString().Trim();
+    }
+
     public static void Main(string[] args)
     {
-        // 5. New Challenge: Lowercase All Words Except First Letter
-        //*Return a sentence where each word is capitalised properly.
-        //    *Example: "hello world"-> "Hello World"
-        //    * Example: "pAUL mCGINLEY"-> "Paul Mcginley"
-        //    * Example: "CYBERPUNK VAULT"-> "Cyberpunk Vault"
-        //    * Return "" for null or empty.
-        //    * Split is allowed.
-        //    * Use StringBuilder.
-        Console.WriteLine(LowercaseAllWordsExceptFirstLetter("hello world") == "Hello World");
-        Console.WriteLine(LowercaseAllWordsExceptFirstLetter("pAUL mCKINLEY") == "Paul Mckinley");
-        Console.WriteLine(LowercaseAllWordsExceptFirstLetter("CYBERPUNK VAULT") == "Cyberpunk Vault");
-        Console.WriteLine(LowercaseAllWordsExceptFirstLetter("single") == "Single");
-        Console.WriteLine(LowercaseAllWordsExceptFirstLetter("a b c") == "A B C");
-        Console.WriteLine(LowercaseAllWordsExceptFirstLetter("   hELLO   wORLD   ") == "Hello World");
-        Console.WriteLine(LowercaseAllWordsExceptFirstLetter("") == "");
-        Console.WriteLine(LowercaseAllWordsExceptFirstLetter(null!) == "");
+        //        6.Optional Stretch: Title Case Except Small Words
 
+        //* Capitalise each word except small words: "and", "or", "the", "of", "in".
+
+        //* Always capitalise the first word.
+        //            *Example: "the lord of the rings"-> "The Lord of the Rings"
+        //            * Example: "cyberpunk and the card vault"-> "Cyberpunk and the Card Vault"
+        //            * Return "" for null or empty.
+        //            * Case - insensitive comparison.
+        //            * Split is allowed.
+        //            * No LINQ or Dictionary.
+        // 6. Optional Stretch: Title Case Except Small Words
+        Console.WriteLine(TitleCaseExceptSmallWords("the lord of the rings"));
+        Console.WriteLine(TitleCaseExceptSmallWords("cyberpunk and the card vault") == "Cyberpunk and the Card Vault");
+        Console.WriteLine(TitleCaseExceptSmallWords("war of the worlds"));
+        Console.WriteLine(TitleCaseExceptSmallWords("in the name of the king"));
+        Console.WriteLine(TitleCaseExceptSmallWords("paul and the cyberpunk vault"));
+        Console.WriteLine(TitleCaseExceptSmallWords("THE LORD OF THE RINGS"));
+        Console.WriteLine(TitleCaseExceptSmallWords("   the   lord   of   the   rings   "));
+        Console.WriteLine(TitleCaseExceptSmallWords("") == "");
+        Console.WriteLine(TitleCaseExceptSmallWords(null!) == "");
+
+
+        // 5. New Challenge: Lowercase All Words Except First Letter
+        //Console.WriteLine(LowercaseAllWordsExceptFirstLetter("hello world") == "Hello World");
+        //Console.WriteLine(LowercaseAllWordsExceptFirstLetter("pAUL mCKINLEY") == "Paul Mckinley");
+        //Console.WriteLine(LowercaseAllWordsExceptFirstLetter("CYBERPUNK VAULT") == "Cyberpunk Vault");
+        //Console.WriteLine(LowercaseAllWordsExceptFirstLetter("single") == "Single");
+        //Console.WriteLine(LowercaseAllWordsExceptFirstLetter("a b c") == "A B C");
+        //Console.WriteLine(LowercaseAllWordsExceptFirstLetter("   hELLO   wORLD   ") == "Hello World");
+        //Console.WriteLine(LowercaseAllWordsExceptFirstLetter("") == "");
+        //Console.WriteLine(LowercaseAllWordsExceptFirstLetter(null!) == "");
 
         // 4.New Challenge: Capitalise First Letter Of Each Word
         //Console.WriteLine(CapitaliseFirstLetterOfEachWord("hello world") == "Hello World");
