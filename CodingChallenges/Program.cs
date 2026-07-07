@@ -61,7 +61,7 @@ public class Program
             return "";
         }
 
-        if (string.IsNullOrEmpty(pTargetWord))
+        if (pTargetWord == null)
         {
             return pInputValue;
         }
