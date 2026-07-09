@@ -12,6 +12,84 @@ namespace CodingChallenges.Challenges
 
             // Next Code:
             // Title Case Except Small Words
+
+            // Remove Duplicate Words Preserve Order
+            Console.WriteLine(RemoveDuplicateWordsPreserveOrder_One("hello world hello"));                         // True
+            Console.WriteLine(RemoveDuplicateWordsPreserveOrder_One("Cyberpunk card vault card"));        // True   ===> "Cyberpunk card vault"
+            Console.WriteLine(RemoveDuplicateWordsPreserveOrder_One("Apple apple APPLE banana") == "Apple banana");                 // True
+            Console.WriteLine(RemoveDuplicateWordsPreserveOrder_One("one two three two one") == "one two three");                   // True
+            Console.WriteLine(RemoveDuplicateWordsPreserveOrder_One("Seagate factory IT factory") == "Seagate factory IT");         // True
+            Console.WriteLine(RemoveDuplicateWordsPreserveOrder_One("A a B b C c"));                                     // True
+            Console.WriteLine(RemoveDuplicateWordsPreserveOrder_One("hello") == "hello");                                           // True
+            Console.WriteLine(RemoveDuplicateWordsPreserveOrder_One("") == "");                                                     // True
+            Console.WriteLine(RemoveDuplicateWordsPreserveOrder_One(null!) == "");                                                   // True
+
+
+            // Count Words Starting And Ending With Same Letter
+            Console.WriteLine(CountWordsStartingAndEndingWithSameLetter("level test radar code") == 3);        // True
+            Console.WriteLine(CountWordsStartingAndEndingWithSameLetter("Anna went to area") == 2);           // True
+            Console.WriteLine(CountWordsStartingAndEndingWithSameLetter("bob cat civic dog") == 2);           // True
+            Console.WriteLine(CountWordsStartingAndEndingWithSameLetter("apple banana orange") == 0);         // True
+            Console.WriteLine(CountWordsStartingAndEndingWithSameLetter("A b cc deed") == 4);                 // True
+            Console.WriteLine(CountWordsStartingAndEndingWithSameLetter("Test toast tent") == 3);             // True
+            Console.WriteLine(CountWordsStartingAndEndingWithSameLetter("") == 0);                            // True
+            Console.WriteLine(CountWordsStartingAndEndingWithSameLetter(null!) == 0);                          // True
+
+            // Revision: Title Case Except Small Words
+            Console.WriteLine(TitleCaseExceptSmallWords_Two("the lord of the rings") == "The Lord of the Rings");                 // True
+            Console.WriteLine(TitleCaseExceptSmallWords_Two("THE LORD OF THE RINGS") == "The Lord of the Rings");                 // True
+            Console.WriteLine(TitleCaseExceptSmallWords_Two("cyberpunk and the card vault") == "Cyberpunk and the Card Vault");   // True
+            Console.WriteLine(TitleCaseExceptSmallWords_Two("war of the worlds") == "War of the Worlds");                         // True
+            Console.WriteLine(TitleCaseExceptSmallWords_Two("in the line of fire") == "In the Line of Fire");                     // True
+            Console.WriteLine(TitleCaseExceptSmallWords_Two("hello OR goodbye") == "Hello or Goodbye");                           // True
+            Console.WriteLine(TitleCaseExceptSmallWords_Two("a tale in the city") == "A Tale in the City");                       // True
+            Console.WriteLine(TitleCaseExceptSmallWords_Two("") == "");                                                           // True
+            Console.WriteLine(TitleCaseExceptSmallWords_Two(null!) == "");                                                        // True
+
+            // Revision: Are Anagrams
+            Console.WriteLine(AreAnagrams_One("listen", "silent") == true);       // True
+            Console.WriteLine(AreAnagrams_One("aab", "aba") == true);             // True
+            Console.WriteLine(AreAnagrams_One("aab", "ab") == false);             // True
+            Console.WriteLine(AreAnagrams_One("", "") == true);                   // True
+            Console.WriteLine(AreAnagrams_One("Triangle", "Integral") == true);   // True
+            Console.WriteLine(AreAnagrams_One("Apple", "Pabble") == false);       // True
+            Console.WriteLine(AreAnagrams_One("abc", "abcd") == false);           // True
+            Console.WriteLine(AreAnagrams_One(null!, "abc") == false);             // True
+            Console.WriteLine(AreAnagrams_One("abc", null!) == false);             // True
+            Console.WriteLine(AreAnagrams_One(null!, null!) == false);              // True
+
+            // New Challenge: Is Sentence Palindrome
+            Console.WriteLine(IsSentencePalindrome_One("never odd or even") == true);      // True
+            Console.WriteLine(IsSentencePalindrome_One("hello world") == false);           // True
+            Console.WriteLine(IsSentencePalindrome_One("nurses run") == true);             // True
+            Console.WriteLine(IsSentencePalindrome_One("Race car") == true);               // True
+            Console.WriteLine(IsSentencePalindrome_One("Was it a rat I saw") == true);     // True
+            Console.WriteLine(IsSentencePalindrome_One("step on no pets") == true);        // True
+            Console.WriteLine(IsSentencePalindrome_One("this is not one") == false);       // True
+            Console.WriteLine(IsSentencePalindrome_One("") == false);                      // True
+            Console.WriteLine(IsSentencePalindrome_One(null!) == false);                    // True
+
+            // 5. New Challenge: Get Word Length Summary
+            Console.WriteLine(GetWordLengthSummary_One("Cyberpunk card vault") == "Cyberpunk:9 card:4 vault:5");   // True
+            Console.WriteLine(GetWordLengthSummary_One("I am Paul") == "I:1 am:2 Paul:4");                         // True
+            Console.WriteLine(GetWordLengthSummary_One("hello world") == "hello:5 world:5");                       // True
+            Console.WriteLine(GetWordLengthSummary_One("A bb ccc dddd") == "A:1 bb:2 ccc:3 dddd:4");               // True
+            Console.WriteLine(GetWordLengthSummary_One("Seagate Factory IT") == "Seagate:7 Factory:7 IT:2");       // True
+            Console.WriteLine(GetWordLengthSummary_One("One") == "One:3");                                        // True
+            Console.WriteLine(GetWordLengthSummary_One("") == "");                                                 // True
+            Console.WriteLine(GetWordLengthSummary_One(null!) == "");                                               // True
+
+            // Remove Duplicate Words Preserve Order
+            Console.WriteLine(RemoveDuplicateWordsPreserveOrder_One("hello world hello"));                         // True
+            Console.WriteLine(RemoveDuplicateWordsPreserveOrder_One("Cyberpunk card vault card"));        // True   ===> "Cyberpunk card vault"
+            Console.WriteLine(RemoveDuplicateWordsPreserveOrder_One("Apple apple APPLE banana") == "Apple banana");                 // True
+            Console.WriteLine(RemoveDuplicateWordsPreserveOrder_One("one two three two one") == "one two three");                   // True
+            Console.WriteLine(RemoveDuplicateWordsPreserveOrder_One("Seagate factory IT factory") == "Seagate factory IT");         // True
+            Console.WriteLine(RemoveDuplicateWordsPreserveOrder_One("A a B b C c"));                                     // True
+            Console.WriteLine(RemoveDuplicateWordsPreserveOrder_One("hello") == "hello");                                           // True
+            Console.WriteLine(RemoveDuplicateWordsPreserveOrder_One("") == "");                                                     // True
+            Console.WriteLine(RemoveDuplicateWordsPreserveOrder_One(null!) == "");                                                   // True
+
             Console.WriteLine(TitleCaseExceptSmallWords_One("the lord of the rings")); // The Lord of the Rings
             Console.WriteLine(TitleCaseExceptSmallWords_One("cyberpunk and the card vault")); // Cyberpunk and the Card Vault
             Console.WriteLine(TitleCaseExceptSmallWords_One("war of the worlds")); // War of the Worlds
