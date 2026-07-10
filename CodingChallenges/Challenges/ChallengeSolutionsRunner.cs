@@ -13,16 +13,87 @@ namespace CodingChallenges.Challenges
             // Next Code:
             // Title Case Except Small Words
 
+            // Optional Stretch: Find Most Frequent Character In Each Word
+            Console.WriteLine(FindMostFrequentCharacterInEachWord("hello world") == "hello:l world:w");                 // True
+            Console.WriteLine(FindMostFrequentCharacterInEachWord("mississippi card") == "mississippi:i card:c");       // True
+            Console.WriteLine(FindMostFrequentCharacterInEachWord("apple banana") == "apple:p banana:a");               // True
+            Console.WriteLine(FindMostFrequentCharacterInEachWord("cat dog sun") == "cat:c dog:d sun:s");               // True
+            Console.WriteLine(FindMostFrequentCharacterInEachWord("Hello World") == "Hello:l World:W");                 // True
+            Console.WriteLine(FindMostFrequentCharacterInEachWord("") == "");                                           // True                                     
+
+            // Count Words With Repeated Letters
+            Console.WriteLine(CountWordsWithRepeatedLetters_Two("hello world cat") == 1);              // True
+            Console.WriteLine(CountWordsWithRepeatedLetters_Two("apple banana dog") == 2);             // True
+            Console.WriteLine(CountWordsWithRepeatedLetters_Two("cat dog sun") == 0);                  // True
+            Console.WriteLine(CountWordsWithRepeatedLetters_Two("book moon tree") == 3);               // True
+            Console.WriteLine(CountWordsWithRepeatedLetters_Two("Apple BANANA dog") == 2);             // True
+            Console.WriteLine(CountWordsWithRepeatedLetters_Two("abc def ghi") == 0);                  // True
+            Console.WriteLine(CountWordsWithRepeatedLetters_Two("mississippi card vault") == 1);       // True
+            Console.WriteLine(CountWordsWithRepeatedLetters_Two("aa bb cc") == 3);                     // True
+            Console.WriteLine(CountWordsWithRepeatedLetters_Two("") == 0);                             // True
+            Console.WriteLine(CountWordsWithRepeatedLetters_Two(null!) == 0);                          // True
+
+            // Is Sentence Palindrome
+            Console.WriteLine(IsSentencePalindrome("never odd or even") == true);                  // True
+            Console.WriteLine(IsSentencePalindrome("Race car") == true);                           // True
+            Console.WriteLine(IsSentencePalindrome("hello world") == false);                       // True
+            Console.WriteLine(IsSentencePalindrome("nurses run") == true);                         // True
+            Console.WriteLine(IsSentencePalindrome("Was it a rat I saw") == true);                 // True
+            Console.WriteLine(IsSentencePalindrome("step on no pets") == true);                    // True
+            Console.WriteLine(IsSentencePalindrome("madam") == true);                              // True
+            Console.WriteLine(IsSentencePalindrome("not a palindrome") == false);                  // True
+            Console.WriteLine(IsSentencePalindrome("") == false);                                  // True
+            Console.WriteLine(IsSentencePalindrome(null!) == false);                               // True
+
             // Remove Duplicate Words Preserve Order
-            Console.WriteLine(RemoveDuplicateWordsPreserveOrder_One("hello world hello"));                         // True
-            Console.WriteLine(RemoveDuplicateWordsPreserveOrder_One("Cyberpunk card vault card"));        // True   ===> "Cyberpunk card vault"
-            Console.WriteLine(RemoveDuplicateWordsPreserveOrder_One("Apple apple APPLE banana") == "Apple banana");                 // True
-            Console.WriteLine(RemoveDuplicateWordsPreserveOrder_One("one two three two one") == "one two three");                   // True
-            Console.WriteLine(RemoveDuplicateWordsPreserveOrder_One("Seagate factory IT factory") == "Seagate factory IT");         // True
-            Console.WriteLine(RemoveDuplicateWordsPreserveOrder_One("A a B b C c"));                                     // True
-            Console.WriteLine(RemoveDuplicateWordsPreserveOrder_One("hello") == "hello");                                           // True
-            Console.WriteLine(RemoveDuplicateWordsPreserveOrder_One("") == "");                                                     // True
-            Console.WriteLine(RemoveDuplicateWordsPreserveOrder_One(null!) == "");                                                   // True
+            Console.WriteLine(RemoveDuplicateWordsPreserveOrder_Two("Hello world HELLO") == "Hello world");                         // True
+            Console.WriteLine(RemoveDuplicateWordsPreserveOrder_Two("Cyberpunk card vault CARD card") == "Cyberpunk card vault");   // True
+            Console.WriteLine(RemoveDuplicateWordsPreserveOrder_Two("hello world hello") == "hello world");                         // True
+            Console.WriteLine(RemoveDuplicateWordsPreserveOrder_Two("one two three two one") == "one two three");                   // True
+            Console.WriteLine(RemoveDuplicateWordsPreserveOrder_Two("Apple apple APPLE banana") == "Apple banana");                 // True
+            Console.WriteLine(RemoveDuplicateWordsPreserveOrder_Two("A a B b C c") == "A B C");                                     // True
+            Console.WriteLine(RemoveDuplicateWordsPreserveOrder_Two("Seagate factory IT factory") == "Seagate factory IT");         // True
+            Console.WriteLine(RemoveDuplicateWordsPreserveOrder_Two("hello") == "hello");                                           // True
+            Console.WriteLine(RemoveDuplicateWordsPreserveOrder_Two("") == "");                                                     // True
+            Console.WriteLine(RemoveDuplicateWordsPreserveOrder_Two(null!) == "");                                                  // True
+
+            // Find First Repeated Word
+            Console.WriteLine(FindFirstRepeatedWord("hello world hello") == "hello");                    // True
+            Console.WriteLine(FindFirstRepeatedWord("one two three two one") == "two");                  // True
+            Console.WriteLine(FindFirstRepeatedWord("Cyberpunk card vault CARD") == "card");             // True
+            Console.WriteLine(FindFirstRepeatedWord("Apple banana APPLE") == "Apple");                   // True
+            Console.WriteLine(FindFirstRepeatedWord("red blue green BLUE red") == "blue");               // True
+            Console.WriteLine(FindFirstRepeatedWord("cat dog bird dog") == "dog");                       // True
+            Console.WriteLine(FindFirstRepeatedWord("Seagate factory IT factory") == "factory");         // True
+            Console.WriteLine(FindFirstRepeatedWord("Same same same") == "Same");                        // True
+            Console.WriteLine(FindFirstRepeatedWord("car bike train bus") == "");                        // True
+            Console.WriteLine(FindFirstRepeatedWord("Cyberpunk card vault") == "");                      // True
+            Console.WriteLine(FindFirstRepeatedWord("") == "");                                          // True
+            Console.WriteLine(FindFirstRepeatedWord(null!) == "");                                        // True
+
+            // Find First Word With Duplicate Letters
+            Console.WriteLine(FindFirstWordWithDuplicateLetters("cat hello world") == "hello");                // True
+            Console.WriteLine(FindFirstWordWithDuplicateLetters("dog apple banana") == "apple");               // True
+            Console.WriteLine(FindFirstWordWithDuplicateLetters("cat dog sun") == "");                         // True
+            Console.WriteLine(FindFirstWordWithDuplicateLetters("Cyberpunk card vault") == "");                 // True
+            Console.WriteLine(FindFirstWordWithDuplicateLetters("one two book moon") == "book");               // True
+            Console.WriteLine(FindFirstWordWithDuplicateLetters("ABC def Gg") == "Gg");                        // True
+            Console.WriteLine(FindFirstWordWithDuplicateLetters("Tree apple banana") == "Tree");               // True
+            Console.WriteLine(FindFirstWordWithDuplicateLetters("a bb cc") == "bb");                           // True
+            Console.WriteLine(FindFirstWordWithDuplicateLetters("") == "");                                    // True
+            Console.WriteLine(FindFirstWordWithDuplicateLetters(null!) == "");                                 // True
+
+
+            // Remove Duplicate Words Preserve Order
+            Console.WriteLine(RemoveDuplicateWordsPreserveOrder_One("hello world hello"));
+            Console.WriteLine(RemoveDuplicateWordsPreserveOrder_One("Cyberpunk card vault card"));
+            Console.WriteLine(RemoveDuplicateWordsPreserveOrder_One("Apple apple APPLE banana") == "Apple banana");               
+            Console.WriteLine(RemoveDuplicateWordsPreserveOrder_One("one two three two one") == "one two three");                  
+            Console.WriteLine(RemoveDuplicateWordsPreserveOrder_One("Seagate factory IT factory") == "Seagate factory IT");        
+            Console.WriteLine(RemoveDuplicateWordsPreserveOrder_One("A a B b C c"));
+            Console.WriteLine(RemoveDuplicateWordsPreserveOrder_One("hello") == "hello");
+            Console.WriteLine(RemoveDuplicateWordsPreserveOrder_One("") == "");
+            Console.WriteLine(RemoveDuplicateWordsPreserveOrder_One(null!) == "");
 
 
             // Count Words Starting And Ending With Same Letter
