@@ -125,18 +125,47 @@ public class Program
             return "";
         }
 
-        return "Gone for Coffee >:)";
+        List<char> newListChar = [];
+        string highestUniqueCharacterCountString = "";
+        int counter = 0;
+        int highestUniqueWordCounter = int.MinValue;
+        string[] newStringSplit = pInputValue.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+        foreach (string word in newStringSplit)
+        {
+            foreach (char character in word)
+            {
+                char characterLowered = char.ToLower(character);
+
+                if (!newListChar.Contains(characterLowered))
+                {
+                    newListChar.Add(characterLowered);
+                    counter++;
+                }
+            }
+
+            if (counter > highestUniqueWordCounter)
+            {
+                highestUniqueWordCounter = counter;
+                highestUniqueCharacterCountString = word;
+            }
+
+            counter = 0;
+        }
+
+        return highestUniqueCharacterCountString;
     }
+
+
 
     public static void Main(string[] args)
     {
         // Find Word With Most Unique Characters
-        Console.WriteLine(FindWordWithMostUniqueCharacters("hello world cyberpunk"));// cyberpunk
-        Console.WriteLine(FindWordWithMostUniqueCharacters("apple banana card")); // card
-        Console.WriteLine(FindWordWithMostUniqueCharacters("cat dog sun")); // cat
+        Console.WriteLine(FindWordWithMostUniqueCharacters("apple banana card")); // apple
+        Console.WriteLine(FindWordWithMostUniqueCharacters("cat dog sun"));       // cat
         Console.WriteLine(FindWordWithMostUniqueCharacters("HELLO CyberPunk world")); // CyberPunk
-        Console.WriteLine(FindWordWithMostUniqueCharacters(""));                   // ""
-        Console.WriteLine(FindWordWithMostUniqueCharacters(null!));                 // ""
+        Console.WriteLine(FindWordWithMostUniqueCharacters(""));                  // ""
+        Console.WriteLine(FindWordWithMostUniqueCharacters(null!));               // ""
 
         /*
             4. New Challenge: Find Word With Most Unique Characters
