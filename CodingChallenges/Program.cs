@@ -52,16 +52,56 @@ public class Program
             return totalUniqueCountHolder;
 
     }
+
+    public static int CountWordsWithRepeatedLetters(string pInputValue)
+    {
+        if (string.IsNullOrEmpty(pInputValue))
+        {
+            return 0;
+        }
+
+        string[] newStringArray = pInputValue.ToLower().Split(' ', StringSplitOptions.RemoveEmptyEntries);
+        List<char> newListOfChars = [];
+        int counter = 0;
+        int totalCounter = 0;
+
+        foreach (string word in newStringArray)
+        {
+            foreach (char currentChar in word)
+            {
+                if (!newListOfChars.Contains(currentChar))
+                {
+                    newListOfChars.Add(currentChar);
+                }
+                else
+                {
+                    counter++;
+                }
+            }
+
+            if (counter >=1)
+            {
+                totalCounter++;
+            }
+
+            newListOfChars.Clear();
+            counter = 0;
+        }
+
+        return totalCounter;
+
+
+    }
     public static void Main(string[] args)
     {
         // 2. Count Words With Repeated Letters
-        //Console.WriteLine(CountWordsWithRepeatedLetters("hello world cat"));       // 1
-        //Console.WriteLine(CountWordsWithRepeatedLetters("apple banana dog"));      // 2
-        //Console.WriteLine(CountWordsWithRepeatedLetters("cat dog sun"));           // 0
-        //Console.WriteLine(CountWordsWithRepeatedLetters("book moon tree"));        // 3
-        //Console.WriteLine(CountWordsWithRepeatedLetters("HELLO Cat DOG"));         // 1
-        //Console.WriteLine(CountWordsWithRepeatedLetters(""));                      // 0
-        //Console.WriteLine(CountWordsWithRepeatedLetters(null));                    // 0
+        Console.WriteLine(CountWordsWithRepeatedLetters("hello world cat"));       // 1
+        Console.WriteLine(CountWordsWithRepeatedLetters("apple banana dog"));      // 2
+        Console.WriteLine(CountWordsWithRepeatedLetters("cat dog sun"));           // 0
+        Console.WriteLine(CountWordsWithRepeatedLetters("book moon tree"));        // 3
+        Console.WriteLine(CountWordsWithRepeatedLetters("HELLO Cat DOG"));         // 1
+        Console.WriteLine(CountWordsWithRepeatedLetters(""));                      // 0
+        Console.WriteLine(CountWordsWithRepeatedLetters(null!));                    // 0
 
         /*
 
@@ -175,7 +215,7 @@ public class Program
         */
 
         // Count Words With All Unique Letters
-        // Notes: Debugged this to find the solution - Needs more Revision
+        // Notes: Debugged this to find the solution - Needs more Revision (Est: 40 minutes)
         //Console.WriteLine(CountWordsWithAllUniqueLetters("cat dog hello"));        // 2
         //Console.WriteLine(CountWordsWithAllUniqueLetters("apple banana sun"));     // 1
         //Console.WriteLine(CountWordsWithAllUniqueLetters("book moon tree"));       // 0
