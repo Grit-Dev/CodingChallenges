@@ -1,24 +1,71 @@
-﻿using System.Text;
+﻿using System.Diagnostics.Metrics;
+using System.Text;
 
 public class Program
 {
+    public static int CountWordsWithAllUniqueLetters(string pInputValue)
+    {
+        if (string.IsNullOrWhiteSpace(pInputValue))
+        {
+            return 0;
+        }
+
+        StringBuilder newStringFormed = new();
+        string[] newStringArray = pInputValue.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+        int uniqueCountHolder = 0;
+        int totalUniqueCountHolder = 0;
+        bool isUniqueWord = true;
+
+        foreach (string word in newStringArray)
+        {
+            uniqueCountHolder = 0;
+
+            for (int outterIndex = 0; outterIndex <= word.Length - 1; outterIndex++)
+            {
+                char currentChar = word.ToLower()[outterIndex];
+
+                for (int innerIndex = outterIndex + 1; innerIndex <= word.Length - 1; innerIndex++)
+                {
+                    char innerChar = word.ToLower()[innerIndex];
+
+                    if (currentChar == innerChar)
+                    {
+                        isUniqueWord = false;
+                        break;
+                    }
+                }
+
+                if (!isUniqueWord)
+                {
+                    break;
+                }
+
+            }
+
+            if (isUniqueWord)
+            {
+                totalUniqueCountHolder++;
+            }
+
+            isUniqueWord = true;
+
+        }
+
+            return totalUniqueCountHolder;
+
+    }
     public static void Main(string[] args)
     {
+        // Count Words With All Unique Letters
+        // Notes: Debugged this to find the solution - Needs more Revision
+        Console.WriteLine(CountWordsWithAllUniqueLetters("cat dog hello"));        // 2
+        Console.WriteLine(CountWordsWithAllUniqueLetters("apple banana sun"));     // 1
+        Console.WriteLine(CountWordsWithAllUniqueLetters("book moon tree"));       // 0
+        Console.WriteLine(CountWordsWithAllUniqueLetters("Cat DOG hello"));        // 2
+        Console.WriteLine(CountWordsWithAllUniqueLetters(""));                     // 0
+        Console.WriteLine(CountWordsWithAllUniqueLetters(null!));                   // 0
+
         /*
-            NEXT CHALLENGES
-
-            1. Warm-up / Pattern Revision: Count Words With All Unique Letters
-
-            * Return how many words contain no repeated letters.
-            * Example: "cat dog hello" -> 2 because cat and dog have no repeated letters.
-            * Example: "apple banana sun" -> 1 because only sun has all unique letters.
-            * Example: "book moon tree" -> 0
-            * Return 0 for null or empty.
-            * Case-insensitive.
-            * Split is allowed.
-            * No HashSet or Dictionary.
-
-            --------------------------------------------------
 
             2. Revision: Count Words With Repeated Letters
 
