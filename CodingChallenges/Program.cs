@@ -11,22 +11,20 @@ public class Program
         }
 
         StringBuilder newStringFormed = new();
-        string[] newStringArray = pInputValue.Split(' ', StringSplitOptions.RemoveEmptyEntries);
-        int uniqueCountHolder = 0;
+        string[] newStringArray = pInputValue.ToLower().Split(' ', StringSplitOptions.RemoveEmptyEntries);
         int totalUniqueCountHolder = 0;
         bool isUniqueWord = true;
 
         foreach (string word in newStringArray)
         {
-            uniqueCountHolder = 0;
-
+;
             for (int outterIndex = 0; outterIndex <= word.Length - 1; outterIndex++)
             {
-                char currentChar = word.ToLower()[outterIndex];
+                char currentChar = word[outterIndex];
 
                 for (int innerIndex = outterIndex + 1; innerIndex <= word.Length - 1; innerIndex++)
                 {
-                    char innerChar = word.ToLower()[innerIndex];
+                    char innerChar = word[innerIndex];
 
                     if (currentChar == innerChar)
                     {
@@ -56,14 +54,14 @@ public class Program
     }
     public static void Main(string[] args)
     {
-        // Count Words With All Unique Letters
-        // Notes: Debugged this to find the solution - Needs more Revision
-        Console.WriteLine(CountWordsWithAllUniqueLetters("cat dog hello"));        // 2
-        Console.WriteLine(CountWordsWithAllUniqueLetters("apple banana sun"));     // 1
-        Console.WriteLine(CountWordsWithAllUniqueLetters("book moon tree"));       // 0
-        Console.WriteLine(CountWordsWithAllUniqueLetters("Cat DOG hello"));        // 2
-        Console.WriteLine(CountWordsWithAllUniqueLetters(""));                     // 0
-        Console.WriteLine(CountWordsWithAllUniqueLetters(null!));                   // 0
+        // 2. Count Words With Repeated Letters
+        //Console.WriteLine(CountWordsWithRepeatedLetters("hello world cat"));       // 1
+        //Console.WriteLine(CountWordsWithRepeatedLetters("apple banana dog"));      // 2
+        //Console.WriteLine(CountWordsWithRepeatedLetters("cat dog sun"));           // 0
+        //Console.WriteLine(CountWordsWithRepeatedLetters("book moon tree"));        // 3
+        //Console.WriteLine(CountWordsWithRepeatedLetters("HELLO Cat DOG"));         // 1
+        //Console.WriteLine(CountWordsWithRepeatedLetters(""));                      // 0
+        //Console.WriteLine(CountWordsWithRepeatedLetters(null));                    // 0
 
         /*
 
@@ -175,5 +173,14 @@ public class Program
             * Split is allowed.
             * No LINQ, Dictionary, or HashSet.
         */
+
+        // Count Words With All Unique Letters
+        // Notes: Debugged this to find the solution - Needs more Revision
+        //Console.WriteLine(CountWordsWithAllUniqueLetters("cat dog hello"));        // 2
+        //Console.WriteLine(CountWordsWithAllUniqueLetters("apple banana sun"));     // 1
+        //Console.WriteLine(CountWordsWithAllUniqueLetters("book moon tree"));       // 0
+        //Console.WriteLine(CountWordsWithAllUniqueLetters("Cat DOG hello"));        // 2
+        //Console.WriteLine(CountWordsWithAllUniqueLetters(""));                     // 0
+        //Console.WriteLine(CountWordsWithAllUniqueLetters(null!));                   // 0
     }
 }
