@@ -200,50 +200,65 @@ public class Program
 
     }
 
+    public static string FindMostFrequentCharacterInEachWord(string pInputValue)
+    {
+        if (string.IsNullOrEmpty(pInputValue))
+        {
+            return "";
+        }
+
+        StringBuilder newStringBuilder = new();
+        string[] splitString = pInputValue.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+        int counter = 0;
+        int mostFrequentCharCounter = int.MinValue;
+        char mostFrequentChar = '\0';
+
+        foreach (string word in splitString)
+        {
+            foreach (char character in word)
+            {
+                char characterLowered = char.ToLower(character);
+
+                for (int innerIndex = 0; innerIndex <= word.Length -1; innerIndex++)
+                {
+                    char innerCharLowered = char.ToLower(word[innerIndex]);
+
+                    if (characterLowered == innerCharLowered)
+                    {
+                        counter++;
+                    }
+                }
+
+                if (counter > mostFrequentCharCounter)
+                {
+                    mostFrequentCharCounter = counter;
+                    mostFrequentChar = character;
+                }
+
+                counter = 0;
+            }
+
+            mostFrequentCharCounter = 0;
+
+            newStringBuilder.Append(word + ':' + mostFrequentChar + ' ');
+        }
+
+        return newStringBuilder.ToString().Trim();
+    }
+
+
     public static void Main(string[] args)
     {
-        // Find Most Common Word Length
-        Console.WriteLine(FindMostCommonWordLength("cat dog sun elephant")); // 3
-        Console.WriteLine(FindMostCommonWordLength("I am Paul John"));       // 4
-        Console.WriteLine(FindMostCommonWordLength("cat dog apple house"));  // 3
-        Console.WriteLine(FindMostCommonWordLength("a bb ccc dddd"));        // 1
-        Console.WriteLine(FindMostCommonWordLength("a bb c dd"));             // 1
-        Console.WriteLine(FindMostCommonWordLength("aa b cc d"));             // 2
-        Console.WriteLine(FindMostCommonWordLength("hello"));                 // 5
-        Console.WriteLine(FindMostCommonWordLength(""));                      // 0
-        Console.WriteLine(FindMostCommonWordLength(null!));                   // 0
-
+        Console.WriteLine(FindMostFrequentCharacterInEachWord("hello world")); // hello:l world:w
+        Console.WriteLine(FindMostFrequentCharacterInEachWord("mississippi card")); // mississippi:i card:c
+        Console.WriteLine(FindMostFrequentCharacterInEachWord("cat dog sun")); // cat:c dog:d sun:s
+        Console.WriteLine(FindMostFrequentCharacterInEachWord("Apple banana")); // Apple:p banana:a
+        Console.WriteLine(FindMostFrequentCharacterInEachWord("AaA bbB")); // AaA:A bbB:b
+        Console.WriteLine(FindMostFrequentCharacterInEachWord("DOG cat")); // DOG:D cat:c
+        Console.WriteLine(FindMostFrequentCharacterInEachWord("aabbcc")); // aabbcc:a
+        Console.WriteLine(FindMostFrequentCharacterInEachWord("")); // ""
+        Console.WriteLine(FindMostFrequentCharacterInEachWord(null!)); // ""
         /*
-            5. New Challenge: Find Most Common Word Length
-
-
-            * Return the word length that appears most frequently.
-
-            * Example:
-              "cat dog sun elephant" -> 3
-
-              Because:
-              cat = 3
-              dog = 3
-              sun = 3
-              elephant = 8
-
-            * Example:
-              "I am Paul John" -> 4
-
-              Because:
-              I = 1
-              am = 2
-              Paul = 4
-              John = 4
-
-            * If tied, return the first word length that reached the highest frequency.
-            * Return 0 for null or empty.
-            * Split is allowed.
-            * No LINQ or Dictionary.
-
-            --------------------------------------------------
-
             6. Optional Stretch / Important Revision:
                Find Most Frequent Character In Each Word
 
@@ -298,5 +313,16 @@ public class Program
         //Console.WriteLine(FindWordWithMostUniqueCharacters("HELLO CyberPunk world")); // CyberPunk
         //Console.WriteLine(FindWordWithMostUniqueCharacters(""));                  // ""
         //Console.WriteLine(FindWordWithMostUniqueCharacters(null!));               // ""
+
+        // Find Most Common Word Length
+        //Console.WriteLine(FindMostCommonWordLength("cat dog sun elephant")); // 3
+        //Console.WriteLine(FindMostCommonWordLength("I am Paul John"));       // 4
+        //Console.WriteLine(FindMostCommonWordLength("cat dog apple house"));  // 3
+        //Console.WriteLine(FindMostCommonWordLength("a bb ccc dddd"));        // 1
+        //Console.WriteLine(FindMostCommonWordLength("a bb c dd"));             // 1
+        //Console.WriteLine(FindMostCommonWordLength("aa b cc d"));             // 2
+        //Console.WriteLine(FindMostCommonWordLength("hello"));                 // 5
+        //Console.WriteLine(FindMostCommonWordLength(""));                      // 0
+        //Console.WriteLine(FindMostCommonWordLength(null!));                   // 0
     }
 }
