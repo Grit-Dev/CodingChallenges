@@ -8,12 +8,64 @@ namespace CodingChallenges.Challenges
         {
 
             // PMG TO DO Code clean up ============================================================================
-            // PMG TO DO Code clean up ============================================================================
 
             // Next Code:
-            // Title Case Except Small Words
+            // Find Most Frequent Character In Each Word
+            Console.WriteLine(FindMostFrequentCharacterInEachWord("hello world")); // hello:l world:w
+            Console.WriteLine(FindMostFrequentCharacterInEachWord("mississippi card")); // mississippi:i card:c
+            Console.WriteLine(FindMostFrequentCharacterInEachWord("cat dog sun")); // cat:c dog:d sun:s
+            Console.WriteLine(FindMostFrequentCharacterInEachWord("Apple banana")); // Apple:p banana:a
+            Console.WriteLine(FindMostFrequentCharacterInEachWord("AaA bbB")); // AaA:A bbB:b
+            Console.WriteLine(FindMostFrequentCharacterInEachWord("DOG cat")); // DOG:D cat:c
+            Console.WriteLine(FindMostFrequentCharacterInEachWord("aabbcc")); // aabbcc:a
+            Console.WriteLine(FindMostFrequentCharacterInEachWord("")); // ""
+            Console.WriteLine(FindMostFrequentCharacterInEachWord(null!)); // ""
 
-            // Optional Stretch: Find Most Frequent Character In Each Word
+            // Count Words With All Unique Letters
+            // Notes: Debugged this to find the solution - Needs more Revision (Est: 40 minutes)
+            Console.WriteLine(CountWordsWithAllUniqueLetters("cat dog hello"));        // 2
+            Console.WriteLine(CountWordsWithAllUniqueLetters("apple banana sun"));     // 1
+            Console.WriteLine(CountWordsWithAllUniqueLetters("book moon tree"));       // 0
+            Console.WriteLine(CountWordsWithAllUniqueLetters("Cat DOG hello"));        // 2
+            Console.WriteLine(CountWordsWithAllUniqueLetters(""));                     // 0
+            Console.WriteLine(CountWordsWithAllUniqueLetters(null!));                   // 0
+
+            // Count Words With Repeated Letters
+            Console.WriteLine(CountWordsWithRepeatedLetters("hello world cat"));       // 1
+            Console.WriteLine(CountWordsWithRepeatedLetters("apple banana dog"));      // 2
+            Console.WriteLine(CountWordsWithRepeatedLetters("cat dog sun"));           // 0
+            Console.WriteLine(CountWordsWithRepeatedLetters("book moon tree"));        // 3
+            Console.WriteLine(CountWordsWithRepeatedLetters("HELLO Cat DOG"));         // 1
+            Console.WriteLine(CountWordsWithRepeatedLetters(""));                      // 0
+            Console.WriteLine(CountWordsWithRepeatedLetters(null!));                    // 0
+
+            // Remove Duplicate Words Preserve Order
+            Console.WriteLine(RemoveDuplicateWordsPreserveOrder("Hello world HELLO")); // Hello world
+            Console.WriteLine(RemoveDuplicateWordsPreserveOrder("Cyberpunk card vault CARD card"));// Cyberpunk card vault
+            Console.WriteLine(RemoveDuplicateWordsPreserveOrder("Apple apple APPLE banana")); // Apple banana
+            Console.WriteLine(RemoveDuplicateWordsPreserveOrder("cat dog cat sun DOG"));// cat dog sun
+            Console.WriteLine(RemoveDuplicateWordsPreserveOrder("")); // ""
+            Console.WriteLine(RemoveDuplicateWordsPreserveOrder(null!)); // ""
+
+            // Find Word With Most Unique Characters
+            Console.WriteLine(FindWordWithMostUniqueCharacters("apple banana card")); // apple
+            Console.WriteLine(FindWordWithMostUniqueCharacters("cat dog sun"));       // cat
+            Console.WriteLine(FindWordWithMostUniqueCharacters("HELLO CyberPunk world")); // CyberPunk
+            Console.WriteLine(FindWordWithMostUniqueCharacters(""));                  // ""
+            Console.WriteLine(FindWordWithMostUniqueCharacters(null!));               // ""
+
+            // Find Most Common Word Length
+            Console.WriteLine(FindMostCommonWordLength("cat dog sun elephant")); // 3
+            Console.WriteLine(FindMostCommonWordLength("I am Paul John"));       // 4
+            Console.WriteLine(FindMostCommonWordLength("cat dog apple house"));  // 3
+            Console.WriteLine(FindMostCommonWordLength("a bb ccc dddd"));        // 1
+            Console.WriteLine(FindMostCommonWordLength("a bb c dd"));             // 1
+            Console.WriteLine(FindMostCommonWordLength("aa b cc d"));             // 2
+            Console.WriteLine(FindMostCommonWordLength("hello"));                 // 5
+            Console.WriteLine(FindMostCommonWordLength(""));                      // 0
+            Console.WriteLine(FindMostCommonWordLength(null!));                   // 0
+
+            // Find Most Frequent Character In Each Word
             Console.WriteLine(FindMostFrequentCharacterInEachWord("hello world") == "hello:l world:w");                 // True
             Console.WriteLine(FindMostFrequentCharacterInEachWord("mississippi card") == "mississippi:i card:c");       // True
             Console.WriteLine(FindMostFrequentCharacterInEachWord("apple banana") == "apple:p banana:a");               // True

@@ -4,6 +4,251 @@ namespace CodingChallenges.Challenges
 {
     public class ChallengeSolutions
     {
+
+        public static int CountWordsWithAllUniqueLetters(string pInputValue)
+        {
+            if (string.IsNullOrWhiteSpace(pInputValue))
+            {
+                return 0;
+            }
+
+            string[] newStringArray = pInputValue.ToLower().Split(' ', StringSplitOptions.RemoveEmptyEntries);
+            int totalUniqueCountHolder = 0;
+            bool isUniqueWord = true;
+
+            foreach (string word in newStringArray)
+            {
+                ;
+                for (int outterIndex = 0; outterIndex <= word.Length - 1; outterIndex++)
+                {
+                    char currentChar = word[outterIndex];
+
+                    for (int innerIndex = outterIndex + 1; innerIndex <= word.Length - 1; innerIndex++)
+                    {
+                        char innerChar = word[innerIndex];
+
+                        if (currentChar == innerChar)
+                        {
+                            isUniqueWord = false;
+                            break;
+                        }
+                    }
+
+                    if (!isUniqueWord)
+                    {
+                        break;
+                    }
+
+                }
+
+                if (isUniqueWord)
+                {
+                    totalUniqueCountHolder++;
+                }
+
+                isUniqueWord = true;
+
+            }
+
+            return totalUniqueCountHolder;
+
+        }
+
+        public static int CountWordsWithRepeatedLetters(string pInputValue)
+        {
+            if (string.IsNullOrEmpty(pInputValue))
+            {
+                return 0;
+            }
+
+            string[] newStringArray = pInputValue.ToLower().Split(' ', StringSplitOptions.RemoveEmptyEntries);
+            List<char> newListOfChars = [];
+            int counter = 0;
+            int totalCounter = 0;
+
+            foreach (string word in newStringArray)
+            {
+                foreach (char currentChar in word)
+                {
+                    if (!newListOfChars.Contains(currentChar))
+                    {
+                        newListOfChars.Add(currentChar);
+                    }
+                    else
+                    {
+                        counter++;
+                    }
+                }
+
+                if (counter >= 1)
+                {
+                    totalCounter++;
+                }
+
+                newListOfChars.Clear();
+                counter = 0;
+            }
+
+            return totalCounter;
+
+
+        }
+
+        public static string RemoveDuplicateWordsPreserveOrder(string pInputValue)
+        {
+            if (string.IsNullOrEmpty(pInputValue))
+            {
+                return "";
+            }
+
+            StringBuilder newStringToBeReturned = new();
+            string[] newStringArray = pInputValue.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+            List<string> newListOfString = [];
+
+            foreach (string word in newStringArray)
+            {
+                string wordLowered = word.ToLower();
+
+                if (!newListOfString.Contains(wordLowered))
+                {
+                    newListOfString.Add(wordLowered);
+                    newStringToBeReturned.Append(word + ' ');
+                }
+            }
+
+            return newStringToBeReturned.ToString().Trim();
+        }
+
+        public static string FindWordWithMostUniqueCharacters(string pInputValue)
+        {
+            if (string.IsNullOrEmpty(pInputValue))
+            {
+                return "";
+            }
+
+            List<char> newListChar = [];
+            string highestUniqueCharacterCountString = "";
+            int counter = 0;
+            int highestUniqueWordCounter = int.MinValue;
+            string[] newStringSplit = pInputValue.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+            foreach (string word in newStringSplit)
+            {
+                foreach (char character in word)
+                {
+                    char characterLowered = char.ToLower(character);
+
+                    if (!newListChar.Contains(characterLowered))
+                    {
+                        newListChar.Add(characterLowered);
+                        newListChar.Add(characterLowered);
+                        counter++;
+                    }
+                }
+
+                if (counter > highestUniqueWordCounter)
+                {
+                    highestUniqueWordCounter = counter;
+                    highestUniqueCharacterCountString = word;
+                }
+
+                newListChar.Clear();
+                counter = 0;
+            }
+
+            return highestUniqueCharacterCountString;
+        }
+
+        public static int FindMostCommonWordLength(string pInputValue)
+        {
+            if (string.IsNullOrEmpty(pInputValue))
+            {
+                return 0;
+            }
+
+            string[] newStringSplit = pInputValue.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+            int totalWordLengthcounter = 0;
+            List<int> listWordLength = [];
+            int wordCommonality = int.MinValue;
+            int counter = 0;
+
+
+            foreach (string word in newStringSplit)
+            {
+                listWordLength.Add(word.Length);
+            }
+
+            for (int outterIndex = 0; outterIndex <= listWordLength.Count - 1; outterIndex++)
+            {
+
+                for (int innerIndex = 0; innerIndex <= listWordLength.Count - 1; innerIndex++)
+                {
+                    if (listWordLength[outterIndex] == listWordLength[innerIndex])
+                    {
+                        counter++;
+                    }
+                }
+
+                if (counter > wordCommonality)
+                {
+                    wordCommonality = counter;
+                    totalWordLengthcounter = listWordLength[outterIndex];
+                }
+
+                counter = 0;
+
+            }
+
+            return totalWordLengthcounter;
+
+        }
+
+        public static string FindMostFrequentCharacterInEachWord(string pInputValue)
+        {
+            if (string.IsNullOrEmpty(pInputValue))
+            {
+                return "";
+            }
+
+            StringBuilder newStringBuilder = new();
+            string[] splitString = pInputValue.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+            int counter = 0;
+            int mostFrequentCharCounter = int.MinValue;
+            char mostFrequentChar = '\0';
+
+            foreach (string word in splitString)
+            {
+                foreach (char character in word)
+                {
+                    char characterLowered = char.ToLower(character);
+
+                    for (int innerIndex = 0; innerIndex <= word.Length - 1; innerIndex++)
+                    {
+                        char innerCharLowered = char.ToLower(word[innerIndex]);
+
+                        if (characterLowered == innerCharLowered)
+                        {
+                            counter++;
+                        }
+                    }
+
+                    if (counter > mostFrequentCharCounter)
+                    {
+                        mostFrequentCharCounter = counter;
+                        mostFrequentChar = character;
+                    }
+
+                    counter = 0;
+                }
+
+                mostFrequentCharCounter = 0;
+
+                newStringBuilder.Append(word + ':' + mostFrequentChar + ' ');
+            }
+
+            return newStringBuilder.ToString().Trim();
+        }
+
         public static int CountWordsWithRepeatedLetters_Two(string pInputValue)
         {
             if (string.IsNullOrEmpty(pInputValue))
@@ -171,51 +416,51 @@ namespace CodingChallenges.Challenges
             return "";
         }
 
-        public static string FindMostFrequentCharacterInEachWord(string pInputValue)
-        {
-            if (string.IsNullOrEmpty(pInputValue))
-            {
-                return "";
-            }
+        //public static string FindMostFrequentCharacterInEachWord(string pInputValue)
+        //{
+        //    if (string.IsNullOrEmpty(pInputValue))
+        //    {
+        //        return "";
+        //    }
 
-            StringBuilder newStringBuilderFormatted = new();
+        //    StringBuilder newStringBuilderFormatted = new();
 
-            string[] stringSplit = pInputValue.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+        //    string[] stringSplit = pInputValue.Split(' ', StringSplitOptions.RemoveEmptyEntries);
 
-            foreach (string word in stringSplit)
-            {
-                string loweredWord = word.ToLower();
+        //    foreach (string word in stringSplit)
+        //    {
+        //        string loweredWord = word.ToLower();
 
-                char characterHolder = word[0];
-                int highestFrequencyCounter = 0;
+        //        char characterHolder = word[0];
+        //        int highestFrequencyCounter = 0;
 
-                for (int outterIndex = 0; outterIndex < word.Length; outterIndex++)
-                {
-                    int counter = 0;
+        //        for (int outterIndex = 0; outterIndex < word.Length; outterIndex++)
+        //        {
+        //            int counter = 0;
 
-                    for (int innerIndex = 0; innerIndex < word.Length; innerIndex++)
-                    {
-                        if (loweredWord[outterIndex] == loweredWord[innerIndex])
-                        {
-                            counter++;
-                        }
-                    }
+        //            for (int innerIndex = 0; innerIndex < word.Length; innerIndex++)
+        //            {
+        //                if (loweredWord[outterIndex] == loweredWord[innerIndex])
+        //                {
+        //                    counter++;
+        //                }
+        //            }
 
-                    if (counter > highestFrequencyCounter)
-                    {
-                        highestFrequencyCounter = counter;
-                        characterHolder = word[outterIndex];
-                    }
-                }
+        //            if (counter > highestFrequencyCounter)
+        //            {
+        //                highestFrequencyCounter = counter;
+        //                characterHolder = word[outterIndex];
+        //            }
+        //        }
 
-                newStringBuilderFormatted.Append(word);
-                newStringBuilderFormatted.Append(':');
-                newStringBuilderFormatted.Append(characterHolder);
-                newStringBuilderFormatted.Append(' ');
-            }
+        //        newStringBuilderFormatted.Append(word);
+        //        newStringBuilderFormatted.Append(':');
+        //        newStringBuilderFormatted.Append(characterHolder);
+        //        newStringBuilderFormatted.Append(' ');
+        //    }
 
-            return newStringBuilderFormatted.ToString().Trim();
-        }
+        //    return newStringBuilderFormatted.ToString().Trim();
+        //}
         public static int CountWordsStartingAndEndingWithSameLetter(string pInputValue)
         {
             if (string.IsNullOrEmpty(pInputValue))
