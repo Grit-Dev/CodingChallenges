@@ -118,40 +118,27 @@ public class Program
         return newStringToBeReturned.ToString().Trim();
     }
 
+    public static string FindWordWithMostUniqueCharacters(string pInputValue)
+    {
+        if (string.IsNullOrEmpty(pInputValue))
+        {
+            return "";
+        }
+
+        return "Gone for Coffee >:)";
+    }
+
     public static void Main(string[] args)
     {
-        // Remove Duplicate Words Preserve Order
-        Console.WriteLine(RemoveDuplicateWordsPreserveOrder("Hello world HELLO")); // Hello world
-        Console.WriteLine(RemoveDuplicateWordsPreserveOrder("Cyberpunk card vault CARD card"));// Cyberpunk card vault
-        Console.WriteLine(RemoveDuplicateWordsPreserveOrder("Apple apple APPLE banana")); // Apple banana
-        Console.WriteLine(RemoveDuplicateWordsPreserveOrder("cat dog cat sun DOG"));// cat dog sun
-        Console.WriteLine(RemoveDuplicateWordsPreserveOrder("")); // ""
-        Console.WriteLine(RemoveDuplicateWordsPreserveOrder(null!)); // ""
+        // Find Word With Most Unique Characters
+        Console.WriteLine(FindWordWithMostUniqueCharacters("hello world cyberpunk"));// cyberpunk
+        Console.WriteLine(FindWordWithMostUniqueCharacters("apple banana card")); // card
+        Console.WriteLine(FindWordWithMostUniqueCharacters("cat dog sun")); // cat
+        Console.WriteLine(FindWordWithMostUniqueCharacters("HELLO CyberPunk world")); // CyberPunk
+        Console.WriteLine(FindWordWithMostUniqueCharacters(""));                   // ""
+        Console.WriteLine(FindWordWithMostUniqueCharacters(null!));                 // ""
 
         /*
-            3. Revision: Remove Duplicate Words Preserve Order
-
-            * Return a sentence with duplicate words removed.
-            * Preserve the first occurrence of each word.
-            * Comparison must be case-insensitive.
-            * Preserve the original casing of the first occurrence.
-
-            * Example:
-              "Hello world HELLO" -> "Hello world"
-
-            * Example:
-              "Cyberpunk card vault CARD card" -> "Cyberpunk card vault"
-
-            * Example:
-              "Apple apple APPLE banana" -> "Apple banana"
-
-            * Return "" for null or empty.
-            * Split is allowed.
-            * Use List<string>.
-            * No LINQ or HashSet.
-
-            --------------------------------------------------
-
             4. New Challenge: Find Word With Most Unique Characters
 
             * Return the word containing the highest number of different characters.
@@ -240,5 +227,13 @@ public class Program
         Console.WriteLine(CountWordsWithRepeatedLetters("HELLO Cat DOG"));         // 1
         Console.WriteLine(CountWordsWithRepeatedLetters(""));                      // 0
         Console.WriteLine(CountWordsWithRepeatedLetters(null!));                    // 0
+
+        // Remove Duplicate Words Preserve Order
+        Console.WriteLine(RemoveDuplicateWordsPreserveOrder("Hello world HELLO")); // Hello world
+        Console.WriteLine(RemoveDuplicateWordsPreserveOrder("Cyberpunk card vault CARD card"));// Cyberpunk card vault
+        Console.WriteLine(RemoveDuplicateWordsPreserveOrder("Apple apple APPLE banana")); // Apple banana
+        Console.WriteLine(RemoveDuplicateWordsPreserveOrder("cat dog cat sun DOG"));// cat dog sun
+        Console.WriteLine(RemoveDuplicateWordsPreserveOrder("")); // ""
+        Console.WriteLine(RemoveDuplicateWordsPreserveOrder(null!)); // ""
     }
 }
