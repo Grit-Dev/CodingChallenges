@@ -95,12 +95,32 @@ public class Program
 
     public static string RemoveDuplicateWordsPreserveOrder(string pInputValue)
     {
-        return "";
+        if (string.IsNullOrEmpty(pInputValue))
+        {
+            return "";
+        }
+
+        StringBuilder newStringToBeReturned = new();
+        string[] newStringArray = pInputValue.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+        List<string> newListOfString = [];
+
+        foreach (string word in newStringArray)
+        {
+            string wordLowered = word.ToLower();
+
+            if (!newListOfString.Contains(wordLowered))
+            {
+                newListOfString.Add(wordLowered);
+                newStringToBeReturned.Append(word + ' ');
+            }
+        }
+
+        return newStringToBeReturned.ToString().Trim();
     }
 
     public static void Main(string[] args)
     {
-        // 3. Remove Duplicate Words Preserve Order
+        // Remove Duplicate Words Preserve Order
         Console.WriteLine(RemoveDuplicateWordsPreserveOrder("Hello world HELLO")); // Hello world
         Console.WriteLine(RemoveDuplicateWordsPreserveOrder("Cyberpunk card vault CARD card"));// Cyberpunk card vault
         Console.WriteLine(RemoveDuplicateWordsPreserveOrder("Apple apple APPLE banana")); // Apple banana
