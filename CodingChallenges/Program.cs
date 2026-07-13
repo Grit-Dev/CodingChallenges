@@ -92,34 +92,23 @@ public class Program
 
 
     }
+
+    public static string RemoveDuplicateWordsPreserveOrder(string pInputValue)
+    {
+        return "";
+    }
+
     public static void Main(string[] args)
     {
-        // 2. Count Words With Repeated Letters
-        Console.WriteLine(CountWordsWithRepeatedLetters("hello world cat"));       // 1
-        Console.WriteLine(CountWordsWithRepeatedLetters("apple banana dog"));      // 2
-        Console.WriteLine(CountWordsWithRepeatedLetters("cat dog sun"));           // 0
-        Console.WriteLine(CountWordsWithRepeatedLetters("book moon tree"));        // 3
-        Console.WriteLine(CountWordsWithRepeatedLetters("HELLO Cat DOG"));         // 1
-        Console.WriteLine(CountWordsWithRepeatedLetters(""));                      // 0
-        Console.WriteLine(CountWordsWithRepeatedLetters(null!));                    // 0
+        // 3. Remove Duplicate Words Preserve Order
+        Console.WriteLine(RemoveDuplicateWordsPreserveOrder("Hello world HELLO")); // Hello world
+        Console.WriteLine(RemoveDuplicateWordsPreserveOrder("Cyberpunk card vault CARD card"));// Cyberpunk card vault
+        Console.WriteLine(RemoveDuplicateWordsPreserveOrder("Apple apple APPLE banana")); // Apple banana
+        Console.WriteLine(RemoveDuplicateWordsPreserveOrder("cat dog cat sun DOG"));// cat dog sun
+        Console.WriteLine(RemoveDuplicateWordsPreserveOrder("")); // ""
+        Console.WriteLine(RemoveDuplicateWordsPreserveOrder(null!)); // ""
 
         /*
-
-            2. Revision: Count Words With Repeated Letters
-
-            * Return how many words contain at least one repeated letter.
-            * Example: "hello world cat" -> 1
-            * Example: "apple banana dog" -> 2
-            * Example: "cat dog sun" -> 0
-            * Example: "book moon tree" -> 3
-            * Return 0 for null or empty.
-            * Case-insensitive.
-            * Split is allowed.
-            * Use nested loops.
-            * Stop checking a word once you know it has a repeated letter.
-
-            --------------------------------------------------
-
             3. Revision: Remove Duplicate Words Preserve Order
 
             * Return a sentence with duplicate words removed.
@@ -222,5 +211,14 @@ public class Program
         //Console.WriteLine(CountWordsWithAllUniqueLetters("Cat DOG hello"));        // 2
         //Console.WriteLine(CountWordsWithAllUniqueLetters(""));                     // 0
         //Console.WriteLine(CountWordsWithAllUniqueLetters(null!));                   // 0
+
+        // Count Words With Repeated Letters
+        Console.WriteLine(CountWordsWithRepeatedLetters("hello world cat"));       // 1
+        Console.WriteLine(CountWordsWithRepeatedLetters("apple banana dog"));      // 2
+        Console.WriteLine(CountWordsWithRepeatedLetters("cat dog sun"));           // 0
+        Console.WriteLine(CountWordsWithRepeatedLetters("book moon tree"));        // 3
+        Console.WriteLine(CountWordsWithRepeatedLetters("HELLO Cat DOG"));         // 1
+        Console.WriteLine(CountWordsWithRepeatedLetters(""));                      // 0
+        Console.WriteLine(CountWordsWithRepeatedLetters(null!));                    // 0
     }
 }
