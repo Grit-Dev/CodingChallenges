@@ -160,34 +160,7 @@ public class Program
 
     public static void Main(string[] args)
     {
-        // Find Word With Most Unique Characters
-        Console.WriteLine(FindWordWithMostUniqueCharacters("apple banana card")); // apple
-        Console.WriteLine(FindWordWithMostUniqueCharacters("cat dog sun"));       // cat
-        Console.WriteLine(FindWordWithMostUniqueCharacters("HELLO CyberPunk world")); // CyberPunk
-        Console.WriteLine(FindWordWithMostUniqueCharacters(""));                  // ""
-        Console.WriteLine(FindWordWithMostUniqueCharacters(null!));               // ""
-
         /*
-            4. New Challenge: Find Word With Most Unique Characters
-
-            * Return the word containing the highest number of different characters.
-            * Comparison should be case-insensitive.
-            * Preserve the original casing of the returned word.
-
-            * Example:
-              "hello world cyberpunk" -> "cyberpunk"
-
-            * Example:
-              "apple banana card" -> "card"
-
-            * If tied, return the first word with the highest count.
-            * Return "" for null or empty.
-            * Split is allowed.
-            * You may use List<char>.Contains().
-            * No LINQ, Dictionary, or HashSet.
-
-            --------------------------------------------------
-
             5. New Challenge: Find Most Common Word Length
 
             * Return the word length that appears most frequently.
@@ -258,11 +231,18 @@ public class Program
         Console.WriteLine(CountWordsWithRepeatedLetters(null!));                    // 0
 
         // Remove Duplicate Words Preserve Order
-        Console.WriteLine(RemoveDuplicateWordsPreserveOrder("Hello world HELLO")); // Hello world
-        Console.WriteLine(RemoveDuplicateWordsPreserveOrder("Cyberpunk card vault CARD card"));// Cyberpunk card vault
-        Console.WriteLine(RemoveDuplicateWordsPreserveOrder("Apple apple APPLE banana")); // Apple banana
-        Console.WriteLine(RemoveDuplicateWordsPreserveOrder("cat dog cat sun DOG"));// cat dog sun
-        Console.WriteLine(RemoveDuplicateWordsPreserveOrder("")); // ""
-        Console.WriteLine(RemoveDuplicateWordsPreserveOrder(null!)); // ""
+        //Console.WriteLine(RemoveDuplicateWordsPreserveOrder("Hello world HELLO")); // Hello world
+        //Console.WriteLine(RemoveDuplicateWordsPreserveOrder("Cyberpunk card vault CARD card"));// Cyberpunk card vault
+        //Console.WriteLine(RemoveDuplicateWordsPreserveOrder("Apple apple APPLE banana")); // Apple banana
+        //Console.WriteLine(RemoveDuplicateWordsPreserveOrder("cat dog cat sun DOG"));// cat dog sun
+        //Console.WriteLine(RemoveDuplicateWordsPreserveOrder("")); // ""
+        //Console.WriteLine(RemoveDuplicateWordsPreserveOrder(null!)); // ""
+
+        // Find Word With Most Unique Characters
+        //Console.WriteLine(FindWordWithMostUniqueCharacters("apple banana card")); // apple
+        //Console.WriteLine(FindWordWithMostUniqueCharacters("cat dog sun"));       // cat
+        //Console.WriteLine(FindWordWithMostUniqueCharacters("HELLO CyberPunk world")); // CyberPunk
+        //Console.WriteLine(FindWordWithMostUniqueCharacters(""));                  // ""
+        //Console.WriteLine(FindWordWithMostUniqueCharacters(null!));               // ""
     }
 }
