@@ -156,12 +156,66 @@ public class Program
         return highestUniqueCharacterCountString;
     }
 
+    public static int FindMostCommonWordLength(string pInputValue)
+    {
+        if (string.IsNullOrEmpty(pInputValue))
+        {
+            return 0;
+        }
 
+        string[] newStringSplit = pInputValue.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+        int totalWordLengthcounter = 0;
+        List<int> listWordLength = [];
+        int wordCommonality = int.MinValue;
+        int counter = 0;
+
+
+        foreach (string word in newStringSplit)
+        {
+            listWordLength.Add(word.Length);
+        }
+
+        for (int outterIndex = 0; outterIndex <= listWordLength.Count -1; outterIndex++)
+        {
+
+            for (int innerIndex = 0; innerIndex <= listWordLength.Count -1; innerIndex++)
+            {
+                if (listWordLength[outterIndex] == listWordLength[innerIndex])
+                {
+                    counter++;
+                }
+            }
+
+            if (counter > wordCommonality)
+            {
+                wordCommonality = counter;
+                totalWordLengthcounter = listWordLength[outterIndex];
+            }
+
+            counter = 0;
+
+        }
+
+        return totalWordLengthcounter;
+
+    }
 
     public static void Main(string[] args)
     {
+        // Find Most Common Word Length
+        Console.WriteLine(FindMostCommonWordLength("cat dog sun elephant")); // 3
+        Console.WriteLine(FindMostCommonWordLength("I am Paul John"));       // 4
+        Console.WriteLine(FindMostCommonWordLength("cat dog apple house"));  // 3
+        Console.WriteLine(FindMostCommonWordLength("a bb ccc dddd"));        // 1
+        Console.WriteLine(FindMostCommonWordLength("a bb c dd"));             // 1
+        Console.WriteLine(FindMostCommonWordLength("aa b cc d"));             // 2
+        Console.WriteLine(FindMostCommonWordLength("hello"));                 // 5
+        Console.WriteLine(FindMostCommonWordLength(""));                      // 0
+        Console.WriteLine(FindMostCommonWordLength(null!));                   // 0
+
         /*
             5. New Challenge: Find Most Common Word Length
+
 
             * Return the word length that appears most frequently.
 
@@ -222,13 +276,13 @@ public class Program
         //Console.WriteLine(CountWordsWithAllUniqueLetters(null!));                   // 0
 
         // Count Words With Repeated Letters
-        Console.WriteLine(CountWordsWithRepeatedLetters("hello world cat"));       // 1
-        Console.WriteLine(CountWordsWithRepeatedLetters("apple banana dog"));      // 2
-        Console.WriteLine(CountWordsWithRepeatedLetters("cat dog sun"));           // 0
-        Console.WriteLine(CountWordsWithRepeatedLetters("book moon tree"));        // 3
-        Console.WriteLine(CountWordsWithRepeatedLetters("HELLO Cat DOG"));         // 1
-        Console.WriteLine(CountWordsWithRepeatedLetters(""));                      // 0
-        Console.WriteLine(CountWordsWithRepeatedLetters(null!));                    // 0
+        //Console.WriteLine(CountWordsWithRepeatedLetters("hello world cat"));       // 1
+        //Console.WriteLine(CountWordsWithRepeatedLetters("apple banana dog"));      // 2
+        //Console.WriteLine(CountWordsWithRepeatedLetters("cat dog sun"));           // 0
+        //Console.WriteLine(CountWordsWithRepeatedLetters("book moon tree"));        // 3
+        //Console.WriteLine(CountWordsWithRepeatedLetters("HELLO Cat DOG"));         // 1
+        //Console.WriteLine(CountWordsWithRepeatedLetters(""));                      // 0
+        //Console.WriteLine(CountWordsWithRepeatedLetters(null!));                    // 0
 
         // Remove Duplicate Words Preserve Order
         //Console.WriteLine(RemoveDuplicateWordsPreserveOrder("Hello world HELLO")); // Hello world
