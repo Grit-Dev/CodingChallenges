@@ -268,7 +268,7 @@ namespace CodingChallenges.Challenges
 
         }
 
-        public static int CountWordsWithRepeatedLetters(string pInputValue)
+        public static int CountWordsWithRepeatedLetters_Three(string pInputValue)
         {
             if (string.IsNullOrEmpty(pInputValue))
             {
@@ -544,7 +544,7 @@ namespace CodingChallenges.Challenges
 
         }
 
-        public static string RemoveDuplicateWordsPreserveOrder_Two(string pInputValue)
+        public static string RemoveDuplicateWordsPreserveOrder_Three(string pInputValue)
         {
             if (string.IsNullOrEmpty(pInputValue))
             {
@@ -781,7 +781,7 @@ namespace CodingChallenges.Challenges
 
         }
 
-        public static bool IsSentencePalindrome_One(string pInputValue)
+        public static bool IsSentencePalindrome_Three(string pInputValue)
         {
             if (string.IsNullOrEmpty(pInputValue))
             {
