@@ -9,6 +9,68 @@ namespace CodingChallenges.Challenges
 
             // PMG TO DO Code clean up ============================================================================
 
+            // Find Most Frequent Character In Each Word
+            // Console.WriteLine(FindMostFrequentCharacterInEachWord("hello world")); // "hello:l world:o"
+            // Console.WriteLine(FindMostFrequentCharacterInEachWord("mississippi card")); // "mississippi:i card:c"
+            // Console.WriteLine(FindMostFrequentCharacterInEachWord("hello")); // hello:l
+            // Console.WriteLine(FindMostFrequentCharacterInEachWord("mississippi") == "mississippi:i");
+            // Console.WriteLine(FindMostFrequentCharacterInEachWord("book") == "book:o");
+            // Console.WriteLine(FindMostFrequentCharacterInEachWord("apple") == "apple:p");
+            // Console.WriteLine(FindMostFrequentCharacterInEachWord("cat") == "cat:c");
+            // Console.WriteLine(FindMostFrequentCharacterInEachWord("dog") == "dog:d");
+            // Console.WriteLine(FindMostFrequentCharacterInEachWord("") == "");
+            // Console.WriteLine(FindMostFrequentCharacterInEachWord(null!) == "");
+
+            // Count Words With Repeated Letters
+            // Console.WriteLine(CountWordsWithRepeatedLetters("hello world cat") == 1);
+            // Console.WriteLine(CountWordsWithRepeatedLetters("apple banana dog") == 2);
+            // Console.WriteLine(CountWordsWithRepeatedLetters("cat dog sun") == 0);
+            // Console.WriteLine(CountWordsWithRepeatedLetters("book cat") == 1);
+            // Console.WriteLine(CountWordsWithRepeatedLetters("APPLE dog") == 1);
+            // Console.WriteLine(CountWordsWithRepeatedLetters("") == 0);
+            // Console.WriteLine(CountWordsWithRepeatedLetters(null!) == 0);
+
+            // Revision: Is Sentence Palindrome
+            // Console.WriteLine(IsSentencePalindrome("never odd or even") == true);
+            // Console.WriteLine(IsSentencePalindrome("Race car") == true);
+            // Console.WriteLine(IsSentencePalindrome("racecar") == true);
+            // Console.WriteLine(IsSentencePalindrome("hello world") == false);
+            // Console.WriteLine(IsSentencePalindrome("Paul") == false);
+            // Console.WriteLine(IsSentencePalindrome("") == false);
+            // Console.WriteLine(IsSentencePalindrome(null!) == false);
+
+            // Remove Duplicate Words Preserve Order
+            // Console.WriteLine(RemoveDuplicateWordsPreserveOrder("Hello world HELLO") == "Hello world");
+            // Console.WriteLine(RemoveDuplicateWordsPreserveOrder("Cyberpunk card vault CARD card") == "Cyberpunk card vault");
+            // Console.WriteLine(RemoveDuplicateWordsPreserveOrder("Paul paul PAUL") == "Paul");
+            // Console.WriteLine(RemoveDuplicateWordsPreserveOrder("dog cat sun") == "dog cat sun");
+            // Console.WriteLine(RemoveDuplicateWordsPreserveOrder("cat cat cat cat") == "cat");
+            // Console.WriteLine(RemoveDuplicateWordsPreserveOrder("one two three two one") == "one two three");
+            // Console.WriteLine(RemoveDuplicateWordsPreserveOrder("") == "");
+            // Console.WriteLine(RemoveDuplicateWordsPreserveOrder(null!) == "");
+
+            // Find First Repeated Word
+            // Console.WriteLine(FindFirstRepeatedWord("hello world hello") == "hello");
+            // Console.WriteLine(FindFirstRepeatedWord("one two three two one") == "two");
+            // Console.WriteLine(FindFirstRepeatedWord("Cyberpunk card vault CARD") == "card");
+            // Console.WriteLine(FindFirstRepeatedWord("Paul paul games") == "Paul");
+            // Console.WriteLine(FindFirstRepeatedWord("cat dog sun") =="");
+            // Console.WriteLine(FindFirstRepeatedWord("test test test") == "test");
+            // Console.WriteLine(FindFirstRepeatedWord("one two three four five") == "");
+            // Console.WriteLine(FindFirstRepeatedWord("") == "");
+            // Console.WriteLine(FindFirstRepeatedWord(null!) == "");   
+
+            // Find First Word With Duplicate Letters
+            // Console.WriteLine(FindFirstWordWithDuplicateLetters("cat hello world") == "hello");
+            // Console.WriteLine(FindFirstWordWithDuplicateLetters("dog apple banana") == "apple");
+            // Console.WriteLine(FindFirstWordWithDuplicateLetters("cat dog sun") == "");
+            // Console.WriteLine(FindFirstWordWithDuplicateLetters("book cat sun") == "book");
+            // Console.WriteLine(FindFirstWordWithDuplicateLetters("APPLE dog") == "APPLE");
+            // Console.WriteLine(FindFirstWordWithDuplicateLetters("a bb ccc") == "bb");
+            // Console.WriteLine(FindFirstWordWithDuplicateLetters("Paul games") == "");
+            // Console.WriteLine(FindFirstWordWithDuplicateLetters("") == "");
+            // Console.WriteLine(FindFirstWordWithDuplicateLetters(null!) == ""); 
+
             // Next Code:
             // Find Most Frequent Character In Each Word
             Console.WriteLine(FindMostFrequentCharacterInEachWord("hello world")); // hello:l world:w

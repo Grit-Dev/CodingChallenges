@@ -4,6 +4,220 @@ namespace CodingChallenges.Challenges
 {
     public class ChallengeSolutions
     {
+        public static int CountWordsWithRepeatedLetters(string pInputValue)
+        {
+            if (string.IsNullOrEmpty(pInputValue))
+            {
+                return 0;
+            }
+
+            string[] stringsplit = pInputValue.ToLower().Split(' ', StringSplitOptions.RemoveEmptyEntries);
+            int countHolder = 0;
+
+            foreach (string word in stringsplit)
+            {
+                bool repeatedLetterInWord = false;
+
+                for (int outterIndex = 0; outterIndex <= word.Length - 1; outterIndex++)
+                {
+                    for (int innerIndex = outterIndex + 1; innerIndex <= word.Length - 1; innerIndex++)
+                    {
+                        if (word[outterIndex] == word[innerIndex])
+                        {
+                            repeatedLetterInWord = true;
+                            break;
+                        }
+
+                    }
+
+                    if (repeatedLetterInWord)
+                    {
+                        break;
+                    }
+                }
+
+                if (repeatedLetterInWord)
+                {
+                    countHolder++;
+                }
+            }
+
+            return countHolder;
+        }
+
+        public static bool IsSentencePalindrome(string pInputValue)
+        {
+            if (string.IsNullOrEmpty(pInputValue))
+            {
+                return false;
+            }
+
+            StringBuilder newParameterStringFormed = new();
+            pInputValue = pInputValue.ToLower();
+
+            foreach (char character in pInputValue)
+            {
+                if (!char.IsWhiteSpace(character))
+                {
+                    newParameterStringFormed.Append(character);
+                }
+            }
+
+            int left = 0;
+            int right = newParameterStringFormed.Length - 1;
+
+            while (left < right)
+            {
+                if (newParameterStringFormed[left] != newParameterStringFormed[right])
+                {
+                    return false;
+                }
+
+                left++;
+                right--;
+            }
+
+            return true;
+
+        }
+
+        public static string RemoveDuplicateWordsPreserveOrder(string pInputValue)
+        {
+            if (string.IsNullOrEmpty(pInputValue))
+            {
+                return "";
+            }
+
+            List<string> newStringList = [];
+            StringBuilder newStringtobeReturned = new();
+            string[] stringSplit = pInputValue.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+            foreach (string word in stringSplit)
+            {
+                string wordLowered = word.ToLower();
+
+                if (!newStringList.Contains(wordLowered))
+                {
+                    newStringList.Add(wordLowered);
+                    newStringtobeReturned.Append(word + ' ');
+                }
+            }
+
+            return newStringtobeReturned.ToString().Trim();
+        }
+
+        public static string FindFirstRepeatedWord(string pInputValue)
+        {
+            if (string.IsNullOrEmpty(pInputValue))
+            {
+                return "";
+            }
+
+            List<string> newListCheckerLowered = [];
+            List<string> newListForStringSplitOriginal = [];
+
+            string[] stringSplit = pInputValue.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+            for (int outterIndex = 0; outterIndex <= stringSplit.Length - 1; outterIndex++)
+            {
+                string wordLowered = stringSplit[outterIndex].ToLower();
+
+                if (!newListCheckerLowered.Contains(wordLowered))
+                {
+                    newListCheckerLowered.Add(wordLowered);
+                    newListForStringSplitOriginal.Add(stringSplit[outterIndex]);
+                }
+                else
+                {
+                    for (int counter = 0; counter <= newListCheckerLowered.Count - 1; counter++)
+                    {
+                        if (wordLowered == newListCheckerLowered[counter])
+                        {
+                            return newListForStringSplitOriginal[counter];
+                        }
+                    }
+
+                }
+            }
+
+            return "";
+        }
+
+        public static string FindFirstWordWithDuplicateLetters(string pInputValue)
+        {
+            if (string.IsNullOrEmpty(pInputValue))
+            {
+                return "";
+            }
+
+            string[] splitString = pInputValue.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+            foreach (string word in splitString)
+            {
+                for (int outterIndex = 0; outterIndex <= word.Length - 1; outterIndex++)
+                {
+                    char currentCharLowered = word.ToLower()[outterIndex];
+
+                    for (int innerIndex = outterIndex + 1; innerIndex <= word.Length - 1; innerIndex++)
+                    {
+                        char innerCharLowered = word.ToLower()[innerIndex];
+
+                        if (currentCharLowered == innerCharLowered)
+                        {
+                            return word;
+                        }
+                    }
+                }
+            }
+
+            return "";
+
+        }
+        public static string FindMostFrequentCharacterInEachWord(string pInputValue)
+        {
+            if (string.IsNullOrEmpty(pInputValue))
+            {
+                return "";
+            }
+
+            StringBuilder newStringToReturn = new();
+            int counter = 0;
+            int highestFrequencyCounter = int.MinValue;
+            char charHighestFrequency = '\0';
+            string[] stringSplit = pInputValue.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+            foreach (string word in stringSplit)
+            {
+                for (int outterIndex = 0; outterIndex <= word.Length - 1; outterIndex++)
+                {
+                    char currentCharacterLowered = word.ToLower()[outterIndex];
+
+                    for (int innerIndex = outterIndex + 1; innerIndex <= word.Length - 1; innerIndex++)
+                    {
+                        char innerCharacterbeingLowered = word.ToLower()[innerIndex];
+
+                        if (currentCharacterLowered == innerCharacterbeingLowered)
+                        {
+                            counter++;
+                        }
+                    }
+
+                    if (counter > highestFrequencyCounter)
+                    {
+                        highestFrequencyCounter = counter;
+                        charHighestFrequency = word[outterIndex];
+                    }
+
+                    counter = 0;
+                }
+
+                newStringToReturn.Append(word + ':' + charHighestFrequency + ' ');
+                highestFrequencyCounter = int.MinValue;
+                charHighestFrequency = '\0';
+            }
+
+            return newStringToReturn.ToString().Trim();
+        }
 
         public static int CountWordsWithAllUniqueLetters(string pInputValue)
         {
@@ -94,7 +308,7 @@ namespace CodingChallenges.Challenges
 
         }
 
-        public static string RemoveDuplicateWordsPreserveOrder(string pInputValue)
+        public static string RemoveDuplicateWordsPreserveOrder_Two(string pInputValue)
         {
             if (string.IsNullOrEmpty(pInputValue))
             {
@@ -203,7 +417,7 @@ namespace CodingChallenges.Challenges
 
         }
 
-        public static string FindMostFrequentCharacterInEachWord(string pInputValue)
+        public static string FindMostFrequentCharacterInEachWord_One(string pInputValue)
         {
             if (string.IsNullOrEmpty(pInputValue))
             {
@@ -294,7 +508,7 @@ namespace CodingChallenges.Challenges
             return counter;
         }
 
-        public static bool IsSentencePalindrome(string pInputValue)
+        public static bool IsSentencePalindrome_One(string pInputValue)
         {
             if (string.IsNullOrEmpty(pInputValue))
             {
@@ -355,7 +569,7 @@ namespace CodingChallenges.Challenges
             return newStringFormed.ToString().Trim();
         }
 
-        public static string FindFirstRepeatedWord(string pInputValue)
+        public static string FindFirstRepeatedWord_one(string pInputValue)
         {
             if (string.IsNullOrEmpty(pInputValue))
             {
@@ -390,7 +604,7 @@ namespace CodingChallenges.Challenges
             return "";
         }
 
-        public static string FindFirstWordWithDuplicateLetters(string pInputValue)
+        public static string FindFirstWordWithDuplicateLetters_One(string pInputValue)
         {
             if (string.IsNullOrEmpty(pInputValue))
             {
