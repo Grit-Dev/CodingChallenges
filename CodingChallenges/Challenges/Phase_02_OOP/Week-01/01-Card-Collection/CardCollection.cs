@@ -2,19 +2,19 @@
 {
     public class CardCollection : Card
     {
-        public List<Card> Cards = [];
+        public List<Card> Cards { get; } = [];
 
         public Card? FindHighestAttackCard()
         {
             int highestAttack = int.MinValue;
             Card highestCard = new();
 
-            if (cards.Count == 0)
+            if (Cards.Count == 0)
             {
                 return null;
             }
 
-            foreach (Card card in cards)
+            foreach (Card card in Cards)
             {
                 if (card.Attack > highestAttack)
                 {
@@ -33,7 +33,7 @@
                 throw new ArgumentNullException(nameof(pAddCard));
             }
 
-            cards.Add(pAddCard);
+            Cards.Add(pAddCard);
         }
 
         public List<Card> FindCardsByRarity(string pRarity)
@@ -45,7 +45,7 @@
 
             List<Card> cardListsWithRarity = new();
 
-            foreach (Card card in cards)
+            foreach (Card card in Cards)
             {
                 if (card.Rarity.Equals(pRarity, StringComparison.OrdinalIgnoreCase))
                 {
@@ -63,13 +63,13 @@
                 return false;
             }
 
-            for (int index = 0; index < cards.Count; index++)
+            for (int index = 0; index < Cards.Count; index++)
             {
-                if (cards[index].Name.Equals(
+                if (Cards[index].Name.Equals(
                     pName,
                     StringComparison.OrdinalIgnoreCase))
                 {
-                    cards.RemoveAt(index);
+                    Cards.RemoveAt(index);
                     return true;
                 }
             }
@@ -79,19 +79,19 @@
 
         public double CalculateAverageAttack()
         {
-            if (cards.Count == 0)
+            if (Cards.Count == 0)
             {
                 return 0;
             }
 
             int total = 0;
 
-            foreach (Card card in cards)
+            foreach (Card card in Cards)
             {
                 total += card.Attack;
             }
 
-            return (double)total / cards.Count;
+            return (double)total / Cards.Count;
         }
     }
 }
