@@ -5,237 +5,416 @@ public class Program
 {
     public static void Main(string[] args)
     {
-
         /*
-         * 1 coding challenge warm-up
-         * main OOP / classes / objects block
-         * 1 optional coding challenge if fresh
-         */
-
-        /*
+            ============================================================
             NEXT CHALLENGES
             PHASE 2: OOP / CLASSES / OBJECTS
+            SET 2: PLAYER AND CARDS
+            ============================================================
 
-            ==================================================
-            1. CODING WARM-UP: FIND FIRST WORD WITH ALL UNIQUE LETTERS
-            ==================================================
+            TODAY'S STRUCTURE:
 
-            * Return the first word containing no repeated letters.
-            * Example: "hello apple cat dog" -> "cat"
-            * Example: "book moon tree" -> ""
-            * Example: "Apple SUN hello" -> "SUN"
-            * Return "" for null or empty.
-            * Case-insensitive comparison.
-            * Preserve original casing.
+            1 coding revision challenge
+            1 new coding challenge
+            4 main OOP challenges
+            1 optional OOP stretch
+
+
+            ============================================================
+            1. CODING REVISION:
+               FIND WORD WITH MOST UNIQUE CHARACTERS
+            ============================================================
+
+            Return the word containing the highest number of unique
+            characters.
+
+            Examples:
+
+            "abc abcd"
+            -> "abcd"
+
+            "apple banana card"
+            -> "apple"
+
+            "HELLO CyberPunk world"
+            -> "CyberPunk"
+
+
+            Requirements:
+
+            * Return "" for null or empty input.
+            * Comparison must be case-insensitive.
+            * Preserve the original casing of the returned word.
+            * If there is a tie, return the first word.
             * Split is allowed.
-            * Use nested loops.
-            * No HashSet or Dictionary.
+            * You may use List<char>.Contains().
+            * Do not use LINQ.
+            * Do not use Dictionary.
+            * Do not use HashSet.
+            * Reset character tracking for every new word.
 
 
-            ==================================================
-            2. OOP CHALLENGE: CREATE A CARD CLASS
-            ==================================================
+            ============================================================
+            2. NEW CODING CHALLENGE:
+               FIND MOST COMMON WORD LENGTH AND COUNT
+            ============================================================
 
-            Create a class named Card.
+            Find the word length that occurs most frequently.
 
-            It should have these properties:
+            Return the result in this format:
 
-            * string Name
-            * string Rarity
-            * int Attack
+            "Length:3 Count:3"
 
-            Add a constructor that accepts:
-
-            * name
-            * rarity
-            * attack
 
             Example:
 
-            Card card = new Card(
+            "cat dog sun elephant"
+
+            Word lengths:
+
+            cat      -> 3
+            dog      -> 3
+            sun      -> 3
+            elephant -> 8
+
+            Expected:
+
+            "Length:3 Count:3"
+
+
+            Another example:
+
+            "I am Paul John"
+
+            Word lengths:
+
+            I    -> 1
+            am   -> 2
+            Paul -> 4
+            John -> 4
+
+            Expected:
+
+            "Length:4 Count:2"
+
+
+            Requirements:
+
+            * Return "" for null or empty input.
+            * Split is allowed.
+            * If two word lengths have the same highest frequency,
+              return the first word length encountered.
+            * You may use List<int>.
+            * You may use StringBuilder.
+            * No LINQ.
+            * No Dictionary.
+            * No HashSet.
+
+
+            ============================================================
+            3. OOP CHALLENGE:
+               CREATE A PLAYER CLASS
+            ============================================================
+
+            Create a new class named:
+
+            Player
+
+
+            Give it these properties:
+
+            * string Name
+            * int Credits
+            * List<Card> OwnedCards
+
+
+            Add a constructor accepting:
+
+            * name
+            * credits
+
+
+            Requirements:
+
+            * Name should be set from the constructor.
+            * Credits should be set from the constructor.
+            * OwnedCards should start as an empty List<Card>.
+
+
+            Example:
+
+            Player player = new Player(
+                "V",
+                1000
+            );
+
+
+            Expected:
+
+            player.Name
+            -> "V"
+
+            player.Credits
+            -> 1000
+
+            player.OwnedCards.Count
+            -> 0
+
+
+            ============================================================
+            4. OOP CHALLENGE:
+               ADD CARD TO PLAYER
+            ============================================================
+
+            Add this method to Player:
+
+            public void AddCard(Card card)
+
+
+            Requirements:
+
+            * Add the supplied Card to OwnedCards.
+            * Do not add null cards.
+            * Do not throw an exception for null.
+            * Simply return without adding anything.
+
+
+            Example:
+
+            Player player = new Player(
+                "V",
+                1000
+            );
+
+            Card johnny = new Card(
                 "Johnny Silverhand",
                 "Iconic",
                 95
             );
 
-            Expected:
+            player.AddCard(johnny);
 
-            card.Name   -> "Johnny Silverhand"
-            card.Rarity -> "Iconic"
-            card.Attack -> 95
-
-
-            ==================================================
-            3. OOP CHALLENGE: CREATE A CARD COLLECTION
-            ==================================================
-
-            Create a class named CardCollection.
-
-            It should contain:
-
-            * A List<Card> called Cards.
-
-            Add this method:
-
-            public void AddCard(Card card)
-
-            Requirements:
-
-            * Add the supplied card to Cards.
-            * Do not add null cards.
-
-            Example:
-
-            CardCollection collection = new CardCollection();
-
-            collection.AddCard(
-                new Card("Johnny Silverhand", "Iconic", 95)
-            );
 
             Expected:
 
-            collection.Cards.Count -> 1
+            player.OwnedCards.Count
+            -> 1
 
 
-            ==================================================
-            4. OOP CHALLENGE: FIND HIGHEST ATTACK CARD
-            ==================================================
+            ============================================================
+            5. OOP CHALLENGE:
+               FIND PLAYER'S STRONGEST CARD
+            ============================================================
 
-            Add this method to CardCollection:
+            Add this method to Player:
 
-            public Card? FindHighestAttackCard()
+            public Card? FindStrongestCard()
+
 
             Requirements:
 
-            * Return the Card with the highest Attack.
-            * If two cards tie, return the first card.
-            * Return null if there are no cards.
+            * Return the Card with the highest Attack value.
+            * If multiple cards tie, return the first card encountered.
+            * Return null when OwnedCards is empty.
             * Do not use LINQ.
 
+
             Example:
+
+            Player owns:
 
             Johnny Silverhand -> 95
             Judy Alvarez       -> 70
             Adam Smasher       -> 100
 
-            Expected:
-
-            Adam Smasher
-
-
-            ==================================================
-            5. OOP CHALLENGE: FIND CARDS BY RARITY
-            ==================================================
-
-            Add this method to CardCollection:
-
-            public List<Card> FindCardsByRarity(string rarity)
-
-            Requirements:
-
-            * Return all cards matching the supplied rarity.
-            * Comparison must be case-insensitive.
-            * Preserve the original Card objects.
-            * Return an empty List<Card> if none match.
-            * Return an empty List<Card> if rarity is null or empty.
-            * Do not use LINQ.
-
-            Example:
-
-            Johnny Silverhand -> Iconic
-            Adam Smasher       -> Iconic
-            Judy Alvarez       -> Rare
-
-            FindCardsByRarity("iconic")
 
             Expected:
 
-            Johnny Silverhand
             Adam Smasher
 
 
-            ==================================================
-            6. OOP CHALLENGE: REMOVE CARD BY NAME
-            ==================================================
+            ============================================================
+            6. OOP CHALLENGE:
+               BUY A CARD
+            ============================================================
 
-            Add this method to CardCollection:
+            First, update the Card class.
 
-            public bool RemoveCardByName(string name)
+            Add this property:
 
-            Requirements:
+            * int Price
 
-            * Find the first card matching the supplied name.
-            * Comparison must be case-insensitive.
-            * Remove that card.
-            * Return true if a card was removed.
-            * Return false if no matching card exists.
-            * Return false if name is null or empty.
-            * Do not use LINQ.
+
+            Update the Card constructor so it accepts:
+
+            * name
+            * rarity
+            * attack
+            * price
+
 
             Example:
 
-            Cards:
+            Card johnny = new Card(
+                "Johnny Silverhand",
+                "Iconic",
+                95,
+                400
+            );
 
-            Johnny Silverhand
-            Judy Alvarez
-            Adam Smasher
 
-            RemoveCardByName("judy alvarez")
+            Then add this method to Player:
+
+            public bool BuyCard(Card card)
+
+
+            Requirements:
+
+            * Return false if card is null.
+
+            * Return false if the player does not have enough Credits.
+
+            * If the player has enough Credits:
+
+                - subtract Card.Price from Credits;
+                - add the Card to OwnedCards;
+                - return true.
+
+
+            Example:
+
+            Player:
+
+            Name:
+            "V"
+
+            Credits:
+            1000
+
+
+            Card:
+
+            Name:
+            "Johnny Silverhand"
+
+            Price:
+            400
+
+
+            Call:
+
+            player.BuyCard(johnny);
+
 
             Expected:
 
             true
 
-            Remaining:
+            player.Credits
+            -> 600
 
-            Johnny Silverhand
-            Adam Smasher
+            player.OwnedCards.Count
+            -> 1
 
 
-            ==================================================
-            7. OPTIONAL STRETCH: CALCULATE AVERAGE ATTACK
-            ==================================================
+            Another example:
 
-            Add this method to CardCollection:
-
-            public double CalculateAverageAttack()
-
-            Requirements:
-
-            * Return the average Attack value of all cards.
-            * Return 0 if the collection is empty.
-            * Do not use LINQ.
-
-            Example:
-
-            Attack values:
-
+            Player Credits:
             100
-            80
-            60
+
+            Card Price:
+            400
+
 
             Expected:
 
-            80
+            false
+
+            Credits remain:
+            100
+
+            OwnedCards remains empty.
 
 
-            ==================================================
-            8. OPTIONAL CODING REVISION IF STILL FRESH
-            ==================================================
+            ============================================================
+            7. OPTIONAL OOP STRETCH:
+               TRANSFER CARD BETWEEN PLAYERS
+            ============================================================
 
-            FIND WORD WITH MOST UNIQUE CHARACTERS
+            Add this method to Player:
 
-            * Return the word containing the highest number of unique characters.
-            * Example: "abc abcd" -> "abcd"
-            * Example: "apple banana card" -> "apple"
-            * Example: "HELLO CyberPunk world" -> "CyberPunk"
-            * If tied, return the first word.
-            * Case-insensitive comparison.
-            * Preserve original casing.
-            * Return "" for null or empty.
-            * You may use List<char>.Contains().
-            * Remember to reset character tracking for every word.
+            public bool TransferCardTo(
+                string cardName,
+                Player receivingPlayer
+            )
+
+
+            Requirements:
+
+            * Return false if cardName is null or empty.
+
+            * Return false if receivingPlayer is null.
+
+            * Find the first owned Card whose Name matches cardName.
+
+            * Comparison must be case-insensitive.
+
+            * Remove the Card from the current player's OwnedCards.
+
+            * Add the SAME Card object to the receiving player's
+              OwnedCards.
+
+            * Return true when successful.
+
+            * Return false if no matching Card exists.
+
+            * Do not use LINQ.
+
+
+            Example:
+
+            Player one:
+
+            Name:
+            V
+
+            Owned cards:
+
+            Johnny Silverhand
+            Judy Alvarez
+
+
+            Player two:
+
+            Name:
+            Jackie
+
+            Owned cards:
+
+            None
+
+
+            Call:
+
+            playerOne.TransferCardTo(
+                "johnny silverhand",
+                playerTwo
+            );
+
+
+            Expected:
+
+            true
+
+
+            playerOne.OwnedCards:
+
+            Judy Alvarez
+
+
+            playerTwo.OwnedCards:
+
+            Johnny Silverhand
         */
-
     }
 }
