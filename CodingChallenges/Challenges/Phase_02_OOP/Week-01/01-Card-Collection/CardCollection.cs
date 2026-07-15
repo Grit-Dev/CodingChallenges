@@ -1,6 +1,6 @@
 ﻿namespace CodingChallenges.Challenges.Phase_02_OOP.Week_01._01_Card_Collection
 {
-    public class CardCollection : Card
+    public class CardCollection
     {
         public List<Card> Cards { get; } = [];
 
