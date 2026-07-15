@@ -1,10 +1,22 @@
-﻿using System.Diagnostics.Metrics;
+﻿using CodingChallenges.Challenges;
+using CodingChallenges.Challenges.Phase_02_OOP;
+using System.Diagnostics.Metrics;
 using System.Text;
 
 public class Program
 {
     public static void Main(string[] args)
     {
+        // Fundamental Challenges
+        // var fundamental = new ChallengeSolutionsRunner();
+        // fundamental.Run();
+
+        // phase 02: Challenges
+        var oopChallenges = new CardCollectionChallenges();
+        oopChallenges.Run();
+
+
+
         /*
             ============================================================
             NEXT CHALLENGES

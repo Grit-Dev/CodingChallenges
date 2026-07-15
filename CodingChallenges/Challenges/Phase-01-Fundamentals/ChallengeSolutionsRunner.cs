@@ -4,7 +4,7 @@ namespace CodingChallenges.Challenges
 {
     public class ChallengeSolutionsRunner : ChallengeSolutions
     {
-        public void RunAllChallengeSolutions()
+        public void Run()
         {
 
             // PMG TO DO Code clean up ============================================================================

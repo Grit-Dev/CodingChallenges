@@ -4,7 +4,7 @@ namespace CodingChallenges.Challenges.Phase_02_OOP
 {
     internal class CardCollectionChallenges
     {
-        public static void Run()
+        public void Run()
         {
             Console.WriteLine("========================================");
             Console.WriteLine("OOP SET 1 - CARD COLLECTION CHALLENGES");
