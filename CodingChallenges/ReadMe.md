@@ -1,54 +1,99 @@
-# C# Coding Challenges
+﻿# C# Coding Challenges
 
-This repository is a personal C# practice space focused on strengthening core programming fundamentals and keeping my problem-solving skills sharp.
+This repository is my personal C# practice space for strengthening programming fundamentals, improving problem-solving skills, and gradually progressing toward more practical object-oriented and .NET development exercises.
 
-The aim is to work through small coding challenges regularly, starting with simple exercises and gradually progressing toward more difficult problems over time.
+The goal is not simply to complete challenges once. It is to practise solving problems from scratch, revisit weaker areas, improve confidence, and build a stronger understanding of how C# code works.
 
 ## Purpose
 
 The main focus of this repository is to practise and reinforce:
 
-* loops
-* conditionals
-* arrays
-* strings
-* characters
-* counters
-* comparison logic
-* basic problem solving
+* loops and conditionals
+* strings, characters, arrays, and collections
+* counters and comparison logic
+* nested loops
+* frequency counting
+* duplicate detection
 * edge case handling
+* debugging and problem solving
+* classes and objects
+* constructors and properties
+* working with collections of objects
+* object responsibilities and interactions
 * explaining code clearly
 
-Some challenges may be removed, rewritten, or repeated as part of the learning process. The goal is not just to complete each challenge once, but to rebuild confidence, improve understanding, and become more comfortable solving problems from scratch.
+As the repository progresses, it will also move into more practical C# and .NET concepts such as:
+
+* encapsulation
+* inheritance
+* abstraction
+* interfaces
+* services
+* DTOs
+* dependency injection
+* APIs and controllers
+* unit testing
+* async/await
+* exception handling
 
 ## Approach
 
-For these exercises, I am intentionally solving the problems manually rather than relying on shortcut methods that solve the main task directly.
+For many of these exercises, I intentionally solve the core problem manually rather than relying on methods that directly perform the main task.
 
-For example, depending on the challenge, I avoid using methods such as:
+Depending on the challenge, I may avoid shortcuts such as:
 
 * `Reverse()`
 * `Max()`
-* LINQ shortcuts such as `Count()`
+* `Min()`
+* `Sort()`
+* `Distinct()`
+* LINQ methods such as `Where()`, `Select()`, `Count()`, and `Sum()`
 
-This helps me practise the underlying logic using loops, conditions, variables, and basic C# features.
+This is intentional and allows me to practise the underlying logic using:
+
+* loops
+* conditions
+* counters
+* variables
+* lists
+* nested iteration
+* state tracking
+
+Normal C# and .NET features are still used where appropriate, including methods such as `Contains()`, `IndexOf()`, `Split()`, `StringBuilder`, and character helper methods.
 
 ## Tooling
 
-GitHub Copilot and AI code completion are disabled while working through these challenges.
+GitHub Copilot and AI code completion are disabled while solving the challenges.
 
-Normal development tools such as IntelliSense, compiler errors, and debugging are used, as they help with syntax, types, and understanding how the code runs.
+I use normal development tools such as:
 
-## Progression
+* IntelliSense
+* compiler errors
+* breakpoints
+* the Visual Studio debugger
 
-The plan is to build this up gradually:
+These are part of the learning process and help me inspect values, understand execution flow, identify mistakes, and debug solutions independently.
 
-1. Start with beginner-friendly string, array, and loop challenges.
-2. Repeat and rewrite previous challenges to reinforce the concepts.
-3. Add edge cases and cleaner handling over time.
-4. Progress into more interview-style problems.
-5. Eventually move into more practical C#/.NET exercises involving classes, DTOs, services, controllers, and tests.
+AI may be used after I have attempted or completed a challenge to review the finished solution, suggest cleaner C# conventions, identify edge cases, or help refactor code while preserving the original logic.
 
-## Current Focus
+## Repository Structure
 
-The current focus is on building strong fundamentals through small, repeatable challenges before moving into more advanced problem-solving and .NET-specific tasks.
+The repository is organised into learning phases so that progress can be tracked over time.
+
+```text
+Challenges/
+│
+├── Phase_01_Fundamentals/
+│
+└── Phase_02_OOP/
+    │
+    └── Week-01/
+        │
+        ├── 01-Card-Collection/
+        │   ├── Card.cs
+        │   ├── CardCollection.cs
+        │   └── CardCollectionChallenges.cs
+        │
+        └── 02-Player-And-Cards/
+            ├── Player.cs
+            └── PlayerAndCardsChallenges.cs
