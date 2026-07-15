@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace CodingChallenges.Challenges
+﻿namespace CodingChallenges.Challenges
 {
     public class ChallengeSolutionsRunner : ChallengeSolutions
     {

@@ -7,4 +7,11 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Challenges\Phase_02_OOP\Week-01\02-Player-And-Cards\" />
+    <Folder Include="Challenges\Phase_02_OOP\Week-01\03-\" />
+    <Folder Include="Challenges\Phase_02_OOP\Week-01\04-\" />
+    <Folder Include="Challenges\Phase_02_OOP\Week-01\05-\" />
+  </ItemGroup>
+
 </Project>

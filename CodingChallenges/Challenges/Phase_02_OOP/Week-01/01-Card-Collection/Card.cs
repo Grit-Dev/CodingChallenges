@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CodingChallenges.Challenges.Phase_02_OOP.Week_01._01_Card_Collection
+﻿namespace CodingChallenges.Challenges.Phase_02_OOP.Week_01._01_Card_Collection
 {
     public class Card
     {
