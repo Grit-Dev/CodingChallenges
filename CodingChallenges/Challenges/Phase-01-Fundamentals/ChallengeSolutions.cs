@@ -4,6 +4,60 @@ namespace CodingChallenges.Challenges
 {
     public class ChallengeSolutions
     {
+        public static string FindMostFrequentWordLength(
+          string inputValue)
+        {
+            if (string.IsNullOrWhiteSpace(inputValue))
+            {
+                return "";
+            }
+
+            string[] splitString = inputValue.Split(
+                ' ',
+                StringSplitOptions.RemoveEmptyEntries);
+
+            if (splitString.Length == 0)
+            {
+                return "";
+            }
+
+            List<int> wordLengths = new List<int>();
+
+            foreach (string word in splitString)
+            {
+                wordLengths.Add(word.Length);
+            }
+
+            int mostFrequentLength = wordLengths[0];
+            int highestCount = 0;
+
+            for (int outerIndex = 0;
+                 outerIndex < wordLengths.Count;
+                 outerIndex++)
+            {
+                int currentLength = wordLengths[outerIndex];
+                int currentCount = 0;
+
+                for (int innerIndex = 0;
+                     innerIndex < wordLengths.Count;
+                     innerIndex++)
+                {
+                    if (wordLengths[innerIndex] == currentLength)
+                    {
+                        currentCount++;
+                    }
+                }
+
+                if (currentCount > highestCount)
+                {
+                    highestCount = currentCount;
+                    mostFrequentLength = currentLength;
+                }
+            }
+
+            return $"Length:{mostFrequentLength} Count:{highestCount}";
+        }
+
         public static int CountWordsWithRepeatedLetters(string pInputValue)
         {
             if (string.IsNullOrEmpty(pInputValue))
@@ -3383,37 +3437,37 @@ namespace CodingChallenges.Challenges
             return 0;
         }
 
-/*        public static char FindFirstNonRepeatingCharacter(string pInputeValue)
-        {
-            if (string.IsNullOrEmpty(pInputeValue))
-            {
-                return '_';
-            }
-
-            pInputeValue = pInputeValue.ToLower().Trim();
-
-            for (int counter = 0; counter <= pInputeValue.Length - 1; counter++)
-            {
-                int repeatedCharCounter = 0;
-
-                for (int counterTwo = 0; counterTwo <= pInputeValue.Length - 1; counterTwo++)
+        /*        public static char FindFirstNonRepeatingCharacter(string pInputeValue)
                 {
-                    if (pInputeValue[counter] == pInputeValue[counterTwo])
+                    if (string.IsNullOrEmpty(pInputeValue))
                     {
-                        repeatedCharCounter++;
+                        return '_';
                     }
 
-                }
+                    pInputeValue = pInputeValue.ToLower().Trim();
 
-                if (repeatedCharCounter == 1)
-                {
-                    return pInputeValue[counter];
-                }
-            }
+                    for (int counter = 0; counter <= pInputeValue.Length - 1; counter++)
+                    {
+                        int repeatedCharCounter = 0;
 
-            return '_';
-        }
-*/
+                        for (int counterTwo = 0; counterTwo <= pInputeValue.Length - 1; counterTwo++)
+                        {
+                            if (pInputeValue[counter] == pInputeValue[counterTwo])
+                            {
+                                repeatedCharCounter++;
+                            }
+
+                        }
+
+                        if (repeatedCharCounter == 1)
+                        {
+                            return pInputeValue[counter];
+                        }
+                    }
+
+                    return '_';
+                }
+        */
         public static int CountNegativeNumbers(int[] pInputValue)
         {
             int counter = 0;

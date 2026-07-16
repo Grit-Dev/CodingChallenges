@@ -33,7 +33,7 @@
 
             Cards.Add(pAddCard);
         }
-        z
+
 
         public List<Card> FindCardsByRarity(string pRarity)
         {
@@ -91,6 +91,105 @@
             }
 
             return (double)total / Cards.Count;
+        }
+
+        public class Player
+        {
+            public string Name { get; set; } = string.Empty;
+
+            public int Credits { get; set; }
+
+            public List<Card> OwnedCards { get; set; } = new List<Card>();
+
+            public Player()
+            {
+            }
+
+            public Player(string name, int credits)
+            {
+                Name = name;
+                Credits = credits;
+            }
+
+            public void AddCard(Card card)
+            {
+                if (card == null)
+                {
+                    return;
+                }
+
+                OwnedCards.Add(card);
+            }
+
+            public Card? FindStrongestCard()
+            {
+                if (OwnedCards.Count == 0)
+                {
+                    return null;
+                }
+
+                Card strongestCard = OwnedCards[0];
+
+                for (int index = 1; index < OwnedCards.Count; index++)
+                {
+                    if (OwnedCards[index].Attack > strongestCard.Attack)
+                    {
+                        strongestCard = OwnedCards[index];
+                    }
+                }
+
+                return strongestCard;
+            }
+
+            public bool BuyCard(Card card)
+            {
+                if (card == null)
+                {
+                    return false;
+                }
+
+                if (Credits < card.Price)
+                {
+                    return false;
+                }
+
+                Credits -= card.Price;
+                OwnedCards.Add(card);
+
+                return true;
+            }
+
+            public bool TransferCardTo(
+                string cardName,
+                Player receivingPlayer)
+            {
+                if (string.IsNullOrWhiteSpace(cardName))
+                {
+                    return false;
+                }
+
+                if (receivingPlayer == null)
+                {
+                    return false;
+                }
+
+                for (int index = 0; index < OwnedCards.Count; index++)
+                {
+                    Card currentCard = OwnedCards[index];
+
+                    if (currentCard.Name.Equals(
+                        cardName,
+                        StringComparison.OrdinalIgnoreCase))
+                    {
+                        OwnedCards.RemoveAt(index);
+                        receivingPlayer.AddCard(currentCard);
+
+                        return true;
+                    }
+                }
+
+                return false;
+            }
         }
     }
 }

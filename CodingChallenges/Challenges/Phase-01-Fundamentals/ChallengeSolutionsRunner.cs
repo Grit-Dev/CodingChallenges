@@ -4,6 +4,94 @@
     {
         public void Run()
         {
+            Console.WriteLine(
+              FindWordWithMostUniqueCharacters(null!) == ""
+           );
+
+            Console.WriteLine(
+                FindWordWithMostUniqueCharacters("") == ""
+            );
+
+            Console.WriteLine(
+                FindWordWithMostUniqueCharacters("   ") == ""
+            );
+
+            Console.WriteLine(
+                FindWordWithMostUniqueCharacters("abc abcd") == "abcd"
+            );
+
+            Console.WriteLine(
+                FindWordWithMostUniqueCharacters("apple banana card") == "apple"
+            );
+
+            Console.WriteLine(
+                FindWordWithMostUniqueCharacters("HELLO CyberPunk world")
+                == "CyberPunk"
+            );
+
+            Console.WriteLine(
+                FindWordWithMostUniqueCharacters("abc def") == "abc"
+            );
+
+            Console.WriteLine(
+                FindWordWithMostUniqueCharacters("AaBbCc xyz") == "AaBbCc"
+            );
+
+            Console.WriteLine(
+                FindWordWithMostUniqueCharacters("aaaaa abc") == "abc"
+            );
+
+            Console.WriteLine(
+                FindWordWithMostUniqueCharacters("mississippi algorithm")
+                == "algorithm"
+            );
+
+            /*
+                ============================================================
+                2. FIND MOST FREQUENT WORD LENGTH
+                ============================================================
+            */
+
+            Console.WriteLine(
+                FindMostFrequentWordLength(null!) == ""
+            );
+
+            Console.WriteLine(
+                FindMostFrequentWordLength("") == ""
+            );
+
+            Console.WriteLine(
+                FindMostFrequentWordLength("   ") == ""
+            );
+
+            Console.WriteLine(
+                FindMostFrequentWordLength("cat") == "Length:3 Count:1"
+            );
+
+            Console.WriteLine(
+                FindMostFrequentWordLength("cat dog sun elephant")
+                == "Length:3 Count:3"
+            );
+
+            Console.WriteLine(
+                FindMostFrequentWordLength("I am Paul John")
+                == "Length:4 Count:2"
+            );
+
+            Console.WriteLine(
+                FindMostFrequentWordLength("a bb ccc")
+                == "Length:1 Count:1"
+            );
+
+            Console.WriteLine(
+                FindMostFrequentWordLength("red blue green")
+                == "Length:3 Count:1"
+            );
+
+            Console.WriteLine(
+                FindMostFrequentWordLength("a bb cc ddd eee fff")
+                == "Length:3 Count:3"
+            );
 
             // PMG TO DO Code clean up ============================================================================
 
@@ -199,9 +287,9 @@
             // Remove Duplicate Words Preserve Order
             Console.WriteLine(RemoveDuplicateWordsPreserveOrder_One("hello world hello"));
             Console.WriteLine(RemoveDuplicateWordsPreserveOrder_One("Cyberpunk card vault card"));
-            Console.WriteLine(RemoveDuplicateWordsPreserveOrder_One("Apple apple APPLE banana") == "Apple banana");               
-            Console.WriteLine(RemoveDuplicateWordsPreserveOrder_One("one two three two one") == "one two three");                  
-            Console.WriteLine(RemoveDuplicateWordsPreserveOrder_One("Seagate factory IT factory") == "Seagate factory IT");        
+            Console.WriteLine(RemoveDuplicateWordsPreserveOrder_One("Apple apple APPLE banana") == "Apple banana");
+            Console.WriteLine(RemoveDuplicateWordsPreserveOrder_One("one two three two one") == "one two three");
+            Console.WriteLine(RemoveDuplicateWordsPreserveOrder_One("Seagate factory IT factory") == "Seagate factory IT");
             Console.WriteLine(RemoveDuplicateWordsPreserveOrder_One("A a B b C c"));
             Console.WriteLine(RemoveDuplicateWordsPreserveOrder_One("hello") == "hello");
             Console.WriteLine(RemoveDuplicateWordsPreserveOrder_One("") == "");
