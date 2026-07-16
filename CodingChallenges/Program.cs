@@ -27,7 +27,7 @@ public class Program
             - protect an object's data;
             - stop outside code changing important values directly;
             - use methods to control how values are changed.
-        git a
+
             Example:
 
             Bad:
