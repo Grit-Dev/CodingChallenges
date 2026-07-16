@@ -6,20 +6,18 @@
 
         public Card? FindHighestAttackCard()
         {
-            int highestAttack = int.MinValue;
-            Card highestCard = new();
-
             if (Cards.Count == 0)
             {
                 return null;
             }
 
-            foreach (Card card in Cards)
+            Card highestCard = Cards[0];
+
+            for (int index = 1; index < Cards.Count; index++)
             {
-                if (card.Attack > highestAttack)
+                if (Cards[index].Attack > highestCard.Attack)
                 {
-                    highestAttack = card.Attack;
-                    highestCard = card;
+                    highestCard = Cards[index];
                 }
             }
 
@@ -35,6 +33,7 @@
 
             Cards.Add(pAddCard);
         }
+        z
 
         public List<Card> FindCardsByRarity(string pRarity)
         {

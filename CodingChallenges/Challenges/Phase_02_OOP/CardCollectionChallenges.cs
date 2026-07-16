@@ -1,9 +1,330 @@
 ﻿using CodingChallenges.Challenges.Phase_02_OOP.Week_01._01_Card_Collection;
+using static CodingChallenges.Challenges.Phase_02_OOP.Week_01._01_Card_Collection.CardCollection;
 
 namespace CodingChallenges.Challenges.Phase_02_OOP
 {
     internal class CardCollectionChallenges
     {
+        public void RunTodaydsTest_16_07_2026()
+        {
+
+            /*
+                ============================================================
+                3. CREATE PLAYER
+                ============================================================
+            */
+
+            Player player = new Player("V", 1000);
+
+            Console.WriteLine(
+                player.Name == "V"
+            );
+
+            Console.WriteLine(
+                player.Credits == 1000
+            );
+
+            Console.WriteLine(
+                player.OwnedCards.Count == 0
+            );
+
+            /*
+                ============================================================
+                4. ADD CARD TO PLAYER
+                ============================================================
+            */
+
+            Player addCardPlayer = new Player("V", 1000);
+
+            Card johnny = new Card(
+                "Johnny Silverhand",
+                "Iconic",
+                95,
+                400
+            );
+
+            addCardPlayer.AddCard(johnny);
+
+            Console.WriteLine(
+                addCardPlayer.OwnedCards.Count == 1
+            );
+
+            Console.WriteLine(
+                addCardPlayer.OwnedCards[0] == johnny
+            );
+
+            addCardPlayer.AddCard(null!);
+
+            Console.WriteLine(
+                addCardPlayer.OwnedCards.Count == 1
+            );
+
+            /*
+                ============================================================
+                5. FIND PLAYER'S STRONGEST CARD
+                ============================================================
+            */
+
+            Player emptyPlayer = new Player("V", 1000);
+
+            Console.WriteLine(
+                emptyPlayer.FindStrongestCard() == null
+            );
+
+            Player oneCardPlayer = new Player("V", 1000);
+
+            oneCardPlayer.AddCard(
+                new Card(
+                    "Johnny Silverhand",
+                    "Iconic",
+                    95,
+                    400
+                )
+            );
+
+            Console.WriteLine(
+                oneCardPlayer.FindStrongestCard()?.Name
+                == "Johnny Silverhand"
+            );
+
+            Player strongestPlayer = new Player("V", 1000);
+
+            strongestPlayer.AddCard(
+                new Card(
+                    "Johnny Silverhand",
+                    "Iconic",
+                    95,
+                    400
+                )
+            );
+
+            strongestPlayer.AddCard(
+                new Card(
+                    "Judy Alvarez",
+                    "Rare",
+                    70,
+                    250
+                )
+            );
+
+            strongestPlayer.AddCard(
+                new Card(
+                    "Adam Smasher",
+                    "Legendary",
+                    100,
+                    700
+                )
+            );
+
+            Console.WriteLine(
+                strongestPlayer.FindStrongestCard()?.Name
+                == "Adam Smasher"
+            );
+
+            Player tiePlayer = new Player("V", 1000);
+
+            tiePlayer.AddCard(
+                new Card(
+                    "Johnny Silverhand",
+                    "Iconic",
+                    100,
+                    400
+                )
+            );
+
+            tiePlayer.AddCard(
+                new Card(
+                    "Adam Smasher",
+                    "Legendary",
+                    100,
+                    700
+                )
+            );
+
+            Console.WriteLine(
+                tiePlayer.FindStrongestCard()?.Name
+                == "Johnny Silverhand"
+            );
+
+            /*
+                ============================================================
+                6. BUY CARD
+                ============================================================
+            */
+
+            Player nullCardBuyer = new Player("V", 1000);
+
+            Console.WriteLine(
+                nullCardBuyer.BuyCard(null!) == false
+            );
+
+            Console.WriteLine(
+                nullCardBuyer.Credits == 1000
+            );
+
+            Console.WriteLine(
+                nullCardBuyer.OwnedCards.Count == 0
+            );
+
+            Player poorPlayer = new Player("V", 100);
+
+            Card expensiveJohnny = new Card(
+                "Johnny Silverhand",
+                "Iconic",
+                95,
+                400
+            );
+
+            Console.WriteLine(
+                poorPlayer.BuyCard(expensiveJohnny) == false
+            );
+
+            Console.WriteLine(
+                poorPlayer.Credits == 100
+            );
+
+            Console.WriteLine(
+                poorPlayer.OwnedCards.Count == 0
+            );
+
+            Player richPlayer = new Player("V", 1000);
+
+            Console.WriteLine(
+                richPlayer.BuyCard(expensiveJohnny) == true
+            );
+
+            Console.WriteLine(
+                richPlayer.Credits == 600
+            );
+
+            Console.WriteLine(
+                richPlayer.OwnedCards.Count == 1
+            );
+
+            Console.WriteLine(
+                richPlayer.OwnedCards[0] == expensiveJohnny
+            );
+
+            Player exactCreditsPlayer = new Player("V", 400);
+
+            Console.WriteLine(
+                exactCreditsPlayer.BuyCard(expensiveJohnny) == true
+            );
+
+            Console.WriteLine(
+                exactCreditsPlayer.Credits == 0
+            );
+
+            Console.WriteLine(
+                exactCreditsPlayer.OwnedCards.Count == 1
+            );
+
+            /*
+                ============================================================
+                7. TRANSFER CARD BETWEEN PLAYERS
+                ============================================================
+            */
+
+            Player senderOne = new Player("V", 1000);
+            Player receiverOne = new Player("Jackie", 1000);
+
+            Console.WriteLine(
+                senderOne.TransferCardTo(null!, receiverOne) == false
+            );
+
+            Console.WriteLine(
+                senderOne.TransferCardTo("", receiverOne) == false
+            );
+
+            Console.WriteLine(
+                senderOne.TransferCardTo("   ", receiverOne) == false
+            );
+
+            Console.WriteLine(
+                senderOne.TransferCardTo("Johnny Silverhand", null!) == false
+            );
+
+            Console.WriteLine(
+                senderOne.TransferCardTo("Johnny Silverhand", receiverOne)
+                == false
+            );
+
+            Card transferJohnny = new Card(
+                "Johnny Silverhand",
+                "Iconic",
+                95,
+                400
+            );
+
+            senderOne.AddCard(transferJohnny);
+
+            Console.WriteLine(
+                senderOne.TransferCardTo("johnny silverhand", receiverOne)
+                == true
+            );
+
+            Console.WriteLine(
+                senderOne.OwnedCards.Count == 0
+            );
+
+            Console.WriteLine(
+                receiverOne.OwnedCards.Count == 1
+            );
+
+            Console.WriteLine(
+                receiverOne.OwnedCards[0] == transferJohnny
+            );
+
+            Console.WriteLine(
+                receiverOne.OwnedCards[0].Name == "Johnny Silverhand"
+            );
+
+            Player senderTwo = new Player("V", 1000);
+            Player receiverTwo = new Player("Jackie", 1000);
+
+            Card johnnyOne = new Card(
+                "Johnny Silverhand",
+                "Rare",
+                50,
+                200
+            );
+
+            Card johnnyTwo = new Card(
+                "Johnny Silverhand",
+                "Iconic",
+                95,
+                400
+            );
+
+            senderTwo.AddCard(johnnyOne);
+            senderTwo.AddCard(johnnyTwo);
+
+            Console.WriteLine(
+                senderTwo.TransferCardTo("Johnny Silverhand", receiverTwo)
+                == true
+            );
+
+            Console.WriteLine(
+                senderTwo.OwnedCards.Count == 1
+            );
+
+            Console.WriteLine(
+                receiverTwo.OwnedCards.Count == 1
+            );
+
+            Console.WriteLine(
+                receiverTwo.OwnedCards[0] == johnnyOne
+            );
+
+            Console.WriteLine(
+                senderTwo.OwnedCards[0] == johnnyTwo
+            );
+
+            Console.WriteLine("========================================");
+            Console.WriteLine("TODAY'S TESTS COMPLETE");
+            Console.WriteLine("========================================");
+        }
+
         public void Run()
         {
             Console.WriteLine("========================================");
