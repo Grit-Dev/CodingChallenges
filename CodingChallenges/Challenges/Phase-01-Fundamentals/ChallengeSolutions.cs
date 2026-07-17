@@ -4,8 +4,103 @@ namespace CodingChallenges.Challenges
 {
     public class ChallengeSolutions
     {
-        public static string FindMostFrequentWordLength(
-          string inputValue)
+        public static string FindMostFrequentWordLength(string inputValue)
+        {
+            if (string.IsNullOrWhiteSpace(inputValue))
+            {
+                return "";
+            }
+
+            string[] splitString = inputValue.Split(
+                ' ',
+                StringSplitOptions.RemoveEmptyEntries);
+
+            List<int> wordLengths = [];
+
+            foreach (string word in splitString)
+            {
+                wordLengths.Add(word.Length);
+            }
+
+            if (wordLengths.Count == 0)
+            {
+                return "";
+            }
+
+            int mostFrequentLength = wordLengths[0];
+            int highestCount = 0;
+
+            for (int outerIndex = 0;
+                 outerIndex < wordLengths.Count;
+                 outerIndex++)
+            {
+                int currentLength = wordLengths[outerIndex];
+                int currentCount = 0;
+
+                for (int innerIndex = 0;
+                     innerIndex < wordLengths.Count;
+                     innerIndex++)
+                {
+                    if (wordLengths[innerIndex] == currentLength)
+                    {
+                        currentCount++;
+                    }
+                }
+
+                if (currentCount > highestCount)
+                {
+                    highestCount = currentCount;
+                    mostFrequentLength = currentLength;
+                }
+            }
+
+            return $"Length:{mostFrequentLength} Count:{highestCount}";
+        }
+
+        public static int CountWordsWithMoreUniqueThanRepeatedCharacters(
+            string inputValue)
+        {
+            if (string.IsNullOrWhiteSpace(inputValue))
+            {
+                return 0;
+            }
+
+            string[] splitString = inputValue.Split(
+                ' ',
+                StringSplitOptions.RemoveEmptyEntries);
+
+            int totalWordsWithMoreUniqueCharacters = 0;
+
+            foreach (string word in splitString)
+            {
+                string loweredWord = word.ToLower();
+
+                List<char> uniqueCharacters = [];
+
+                int repeatedCharacterCount = 0;
+
+                foreach (char currentChar in loweredWord)
+                {
+                    if (!uniqueCharacters.Contains(currentChar))
+                    {
+                        uniqueCharacters.Add(currentChar);
+                    }
+                    else
+                    {
+                        repeatedCharacterCount++;
+                    }
+                }
+
+                if (uniqueCharacters.Count > repeatedCharacterCount)
+                {
+                    totalWordsWithMoreUniqueCharacters++;
+                }
+            }
+
+            return totalWordsWithMoreUniqueCharacters;
+        }
+
+        public static string FindMostFrequentWordLength_One(string inputValue)
         {
             if (string.IsNullOrWhiteSpace(inputValue))
             {

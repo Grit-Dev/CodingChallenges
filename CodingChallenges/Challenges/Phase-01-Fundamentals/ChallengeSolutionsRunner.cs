@@ -1,7 +1,221 @@
-﻿namespace CodingChallenges.Challenges
+﻿using CodingChallenges.Challenges.Phase_02_OOP.shared;
+
+namespace CodingChallenges.Challenges
 {
     public class ChallengeSolutionsRunner : ChallengeSolutions
     {
+        public static void Run_DayFive()
+        {
+            /*
+                ============================================================
+                OOP CHALLENGE 4:
+                ADD CREDITS TO PLAYER
+                ============================================================
+            */
+
+            Player player = new Player("V", 1000);
+
+            player.AddCredits(500);
+
+            Console.WriteLine(
+                player.Credits == 1500
+            );
+
+            player.AddCredits(0);
+
+            Console.WriteLine(
+                player.Credits == 1500
+            );
+
+            player.AddCredits(-500);
+
+            Console.WriteLine(
+                player.Credits == 1500
+            );
+
+
+            /*
+                ============================================================
+                OOP CHALLENGE 5:
+                TRY SPEND CREDITS
+                ============================================================
+            */
+
+            player = new Player("V", 1000);
+
+            Console.WriteLine(
+                player.TrySpendCredits(400) == true
+            );
+
+            Console.WriteLine(
+                player.Credits == 600
+            );
+
+            Console.WriteLine(
+                player.TrySpendCredits(1000) == false
+            );
+
+            Console.WriteLine(
+                player.Credits == 600
+            );
+
+            Console.WriteLine(
+                player.TrySpendCredits(0) == false
+            );
+
+            Console.WriteLine(
+                player.TrySpendCredits(-1) == false
+            );
+
+
+            /*
+                ============================================================
+                OOP CHALLENGE 6:
+                BUY CARD USING TRYSPENDCREDITS
+                ============================================================
+            */
+
+            player = new Player("V", 1000);
+
+            Card johnny = new Card(
+                "Johnny Silverhand",
+                "Iconic",
+                95,
+                400
+            );
+
+            Console.WriteLine(
+                player.BuyCard(johnny) == true
+            );
+
+            Console.WriteLine(
+                player.Credits == 600
+            );
+
+            Console.WriteLine(
+                player.OwnedCards.Count == 1
+            );
+
+            Console.WriteLine(
+                player.OwnedCards[0] == johnny
+            );
+
+            Console.WriteLine(
+                player.BuyCard(null!) == false
+            );
+
+
+            /*
+                ============================================================
+                OOP CHALLENGE 7:
+                CARD SHOP ADD CARD
+                ============================================================
+            */
+
+            CardShop shop = new CardShop();
+
+            shop.AddCard(johnny);
+
+            Console.WriteLine(
+                shop.Inventory.Count == 1
+            );
+
+            shop.AddCard(null!);
+
+            Console.WriteLine(
+                shop.Inventory.Count == 1
+            );
+
+
+            /*
+                ============================================================
+                OOP CHALLENGE 8:
+                BUY CARD FROM SHOP
+                ============================================================
+            */
+
+            player = new Player("V", 1000);
+            shop = new CardShop();
+
+            shop.AddCard(johnny);
+
+            Console.WriteLine(
+                shop.BuyCard(player, "johnny silverhand") == true
+            );
+
+            Console.WriteLine(
+                player.Credits == 600
+            );
+
+            Console.WriteLine(
+                player.OwnedCards.Count == 1
+            );
+
+            Console.WriteLine(
+                player.OwnedCards[0] == johnny
+            );
+
+            Console.WriteLine(
+                shop.Inventory.Count == 0
+            );
+
+            Console.WriteLine(
+                shop.BuyCard(null!, "johnny silverhand") == false
+            );
+
+            Console.WriteLine(
+                shop.BuyCard(player, " ") == false
+            );
+
+
+            /*
+                ============================================================
+                OOP CHALLENGE 9:
+                FIND MOST EXPENSIVE CARD IN SHOP
+                ============================================================
+            */
+
+            shop = new CardShop();
+
+            Console.WriteLine(
+                shop.FindMostExpensiveCard() == null
+            );
+
+            shop.AddCard(
+                new Card(
+                    "Johnny Silverhand",
+                    "Iconic",
+                    95,
+                    400
+                )
+            );
+
+            shop.AddCard(
+                new Card(
+                    "Judy Alvarez",
+                    "Epic",
+                    70,
+                    250
+                )
+            );
+
+            shop.AddCard(
+                new Card(
+                    "Adam Smasher",
+                    "Legendary",
+                    99,
+                    700
+                )
+            );
+
+            Console.WriteLine(
+                shop.FindMostExpensiveCard()?.Name == "Adam Smasher"
+            );
+
+            Console.WriteLine("========================================");
+            Console.WriteLine("SET 3 COMPLETE");
+            Console.WriteLine("========================================");
+        }
         public void Run()
         {
             Console.WriteLine(

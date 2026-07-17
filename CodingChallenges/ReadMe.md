@@ -80,7 +80,7 @@ AI may be used after I have attempted or completed a challenge to review the fin
 
 The repository is organised into learning phases so that progress can be tracked over time.
 
-```text
+##text
 Challenges/
 │
 ├── Phase_01_Fundamentals/

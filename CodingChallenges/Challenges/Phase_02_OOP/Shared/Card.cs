@@ -1,4 +1,4 @@
-﻿namespace CodingChallenges.Challenges.Phase_02_OOP.Week_01._01_Card_Collection
+﻿namespace CodingChallenges.Challenges.Phase_02_OOP.shared
 {
     public class Card
     {
@@ -7,6 +7,8 @@
         public string Rarity { get; set; } = string.Empty;
 
         public int Attack { get; set; }
+
+        public int Price { get; set; }
 
         public Card()
         {
@@ -17,7 +19,15 @@
             Name = name;
             Rarity = rarity;
             Attack = attack;
+            Price = 0;
         }
 
+        public Card(string name, string rarity, int attack, int price)
+        {
+            Name = name;
+            Rarity = rarity;
+            Attack = attack;
+            Price = price;
+        }
     }
 }

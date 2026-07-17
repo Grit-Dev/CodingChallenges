@@ -1,5 +1,4 @@
-﻿using CodingChallenges.Challenges.Phase_02_OOP.Week_01._01_Card_Collection;
-using static CodingChallenges.Challenges.Phase_02_OOP.Week_01._01_Card_Collection.CardCollection;
+﻿using CodingChallenges.Challenges.Phase_02_OOP.shared;
 
 namespace CodingChallenges.Challenges.Phase_02_OOP
 {
