@@ -2,6 +2,8 @@
 
 namespace CodingChallenges.Challenges.Phase_02_OOP
 {
+    // PMG TO DO: Big Refactor into its on seperate Folders/files.
+    // have a new Class called PhaseTwoChallengeRunner - Run all files seperately
     internal class CardCollectionChallenges
     {
         public void RunTodaysTest_21_07_2026()
