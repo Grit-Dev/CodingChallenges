@@ -4,7 +4,7 @@ namespace CodingChallenges.Challenges
 {
     public class ChallengeSolutionsRunner : ChallengeSolutions
     {
-        public static void Run_DayFive()
+        public void Run_Two()
         {
             // Test no match, exact match, first match returned, case-insensitive, and original casing preserved
             Console.WriteLine($"'{FindFirstWordWithExactlyTwoRepeatedCharacters(null!)}'");             // Expected: ''

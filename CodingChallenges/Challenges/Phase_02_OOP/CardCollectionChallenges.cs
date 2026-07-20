@@ -4,6 +4,10 @@ namespace CodingChallenges.Challenges.Phase_02_OOP
 {
     internal class CardCollectionChallenges
     {
+        public void RunTodaysTest_21_07_2026()
+        {
+            // Next Day
+        }
         public void RunTodaysTest_20_07_2026()
         {
             // Setup
