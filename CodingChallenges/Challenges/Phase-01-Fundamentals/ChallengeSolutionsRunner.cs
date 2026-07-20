@@ -6,6 +6,12 @@ namespace CodingChallenges.Challenges
     {
         public static void Run_DayFive()
         {
+            // Test no match, exact match, first match returned, case-insensitive, and original casing preserved
+            Console.WriteLine($"'{FindFirstWordWithExactlyTwoRepeatedCharacters(null!)}'");             // Expected: ''
+            Console.WriteLine($"'{FindFirstWordWithExactlyTwoRepeatedCharacters("cat hello book")}'");  // Expected: ''
+            Console.WriteLine(FindFirstWordWithExactlyTwoRepeatedCharacters("aabb cat moon"));          // Expected: aabb
+            Console.WriteLine(FindFirstWordWithExactlyTwoRepeatedCharacters("abc banana aabb"));        // Expected: aabb
+            Console.WriteLine(FindFirstWordWithExactlyTwoRepeatedCharacters("AAbb moon"));              // Expected: AAbb
             /*
                 ============================================================
                 OOP CHALLENGE 4:

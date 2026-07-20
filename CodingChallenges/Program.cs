@@ -11,6 +11,8 @@ public class Program
         // phase 02: Challenges
         var oopChallenges = new CardCollectionChallenges();
         oopChallenges.Run();
+        oopChallenges.RunTodaydsTest_16_07_2026();
+        oopChallenges.RunTodaysTest_20_07_2026();
 
         /*
             ============================================================

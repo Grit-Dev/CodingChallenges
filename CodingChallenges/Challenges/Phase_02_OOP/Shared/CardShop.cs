@@ -14,45 +14,133 @@
             Inventory.Add(card);
         }
 
-        public bool BuyCard(Player player, string cardName)
+         private Card? FindCardByName(string pCardName)
         {
-            if (player == null)
+            if(string.IsNullOrWhiteSpace(pCardName))
             {
-                return false;
+                return null;
             }
 
-            if (string.IsNullOrWhiteSpace(cardName))
+            foreach(Card card in Inventory)
             {
-                return false;
-            }
-
-            Card? targetedCard = null;
-
-            foreach (Card card in Inventory)
-            {
-                if (card.Name.Equals(
-                    cardName,
-                    StringComparison.OrdinalIgnoreCase))
+                if(card.Name.Equals(pCardName, StringComparison.OrdinalIgnoreCase))
                 {
-                    targetedCard = card;
-                    break;
+                    return card;
                 }
             }
 
-            if (targetedCard == null)
+            return null;
+        }
+
+        public bool BuyCheapestAffordableCard(Player pPlayer)
+        {
+            if(pPlayer == null)
             {
                 return false;
             }
 
-            if (!player.BuyCard(targetedCard))
+            Card? cheapestCard = FindCheapestCardPlayerCanAfford(pPlayer);
+
+            if(cheapestCard == null)
             {
                 return false;
             }
 
-            Inventory.Remove(targetedCard);
+            if(!pPlayer.BuyCard(cheapestCard))
+            {
+                return false;
+            }
+            
+            Inventory.Remove(cheapestCard);
+
+            return true;
+        }
+        
+        
+        public bool BuyCard(Player pPlayer, string pCardName)
+        {
+            if(pPlayer == null || string.IsNullOrEmpty(pCardName) 
+            || string.IsNullOrWhiteSpace(pCardName))
+            {
+                return false;
+            }
+
+            Card? targetedCardInInventory = FindCardByName(pCardName);
+
+            if(targetedCardInInventory == null)
+            {
+                return false;
+            }
+
+            if(!pPlayer.BuyCard(targetedCardInInventory))
+            {
+                return false;
+            }
+
+            Inventory.Remove(targetedCardInInventory);
             return true;
         }
 
+        public bool HasCard(string pCardName)
+        {
+            if(string.IsNullOrWhiteSpace(pCardName))
+            {
+                return false;
+            }
+
+            Card? targetedCardInInventory = FindCardByName(pCardName);
+
+            if(targetedCardInInventory == null)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        public int CountCardsByRarity(string pRarity)
+        {
+            if(string.IsNullOrWhiteSpace(pRarity))
+            {
+                return 0;
+            }
+
+            int counter = 0;
+
+            foreach(Card card in Inventory)
+            {
+                if(card.Rarity.Equals(pRarity, StringComparison.OrdinalIgnoreCase))
+                {   
+                    counter++;
+                }
+            }
+
+            return counter;
+        }
+
+        public Card? FindCheapestCardPlayerCanAfford(Player player)
+        {
+            if (player == null)
+            {
+                return null;
+            }
+
+            Card? cheapestAffordableCard = null;
+
+            foreach (Card card in Inventory)
+            {
+                if (card.Price <= player.Credits)
+                {
+                    if (cheapestAffordableCard == null ||
+                        card.Price < cheapestAffordableCard.Price)
+                    {
+                        cheapestAffordableCard = card;
+                    }
+                }
+            }
+
+            return cheapestAffordableCard;
+        }
         public Card? FindMostExpensiveCard()
         {
             if (Inventory.Count == 0)

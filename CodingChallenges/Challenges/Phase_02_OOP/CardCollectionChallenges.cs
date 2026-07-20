@@ -4,6 +4,76 @@ namespace CodingChallenges.Challenges.Phase_02_OOP
 {
     internal class CardCollectionChallenges
     {
+        public void RunTodaysTest_20_07_2026()
+        {
+            // Setup
+            Player player = new("V", 500);
+
+            Card johnny = new("Johnny Silverhand", "Iconic", 95, 400);
+            Card adam = new("Adam Smasher", "Iconic", 99, 700);
+            Card judy = new("Judy Alvarez", "Rare", 70, 250);
+
+            CardShop shop = new();
+
+            shop.AddCard(johnny);
+            shop.AddCard(adam);
+            shop.AddCard(judy);
+
+
+            // 4. BuyCard - case-insensitive lookup, successful purchase, inventory removal
+            Console.WriteLine(shop.BuyCard(player, "johnny silverhand")); // Expected: True
+            Console.WriteLine(player.Credits);                            // Expected: 100
+            Console.WriteLine(player.OwnedCards.Count);                   // Expected: 1
+            Console.WriteLine(shop.Inventory.Count);                      // Expected: 2
+
+            // BuyCard validation and no match
+            Console.WriteLine(shop.BuyCard(null!, "Adam Smasher"));        // Expected: False
+            Console.WriteLine(shop.BuyCard(player, "Unknown Card"));      // Expected: False
+
+
+            // 5. HasCard - valid match, no match, invalid input
+            Console.WriteLine(shop.HasCard("adam smasher"));              // Expected: True
+            Console.WriteLine(shop.HasCard("Unknown Card"));              // Expected: False
+            Console.WriteLine(shop.HasCard(" "));                         // Expected: False
+
+
+            // 6. CountCardsByRarity - case-insensitive count and invalid input
+            Console.WriteLine(shop.CountCardsByRarity("iconic"));         // Expected: 1
+            Console.WriteLine(shop.CountCardsByRarity("rare"));           // Expected: 1
+            Console.WriteLine(shop.CountCardsByRarity(null!));             // Expected: 0
+
+
+            // 7. FindCheapestCardPlayerCanAfford - cheapest affordable card and no affordable card
+            Player richPlayer = new("Rich", 500);
+            Player poorPlayer = new("Poor", 100);
+
+            Console.WriteLine(
+                shop.FindCheapestCardPlayerCanAfford(richPlayer)?.Name
+            ); // Expected: Judy Alvarez
+
+            Console.WriteLine(
+                shop.FindCheapestCardPlayerCanAfford(poorPlayer) == null
+            ); // Expected: True
+
+
+            // 8. BuyCheapestAffordableCard - buys cheapest affordable card and removes from inventory
+            CardShop secondShop = new();
+
+            secondShop.AddCard(new Card("Johnny Silverhand", "Iconic", 95, 400));
+            secondShop.AddCard(new Card("Adam Smasher", "Iconic", 99, 700));
+            secondShop.AddCard(new Card("Judy Alvarez", "Rare", 70, 250));
+
+            Player buyer = new("Buyer", 500);
+
+            Console.WriteLine(
+                secondShop.BuyCheapestAffordableCard(buyer)
+            ); // Expected: True
+
+            Console.WriteLine(buyer.Credits);                  // Expected: 250
+            Console.WriteLine(buyer.OwnedCards.Count);         // Expected: 1
+            Console.WriteLine(buyer.OwnedCards[0].Name);       // Expected: Judy Alvarez
+            Console.WriteLine(secondShop.Inventory.Count);     // Expected: 2
+        }
         public void RunTodaydsTest_16_07_2026()
         {
 
