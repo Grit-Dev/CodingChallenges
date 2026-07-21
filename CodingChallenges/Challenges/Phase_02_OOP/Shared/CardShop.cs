@@ -32,6 +32,18 @@
             return null;
         }
 
+        public int CalculateTotalInventoryValue()
+        {
+            int total = 0;
+
+            foreach(Card card in Inventory)
+            {
+                total += card.Price;
+            }
+
+            return total;
+        }
+
         public List<Card> FindAffordableCards(Player pPlayer)
         {
             if(pPlayer == null)
@@ -50,6 +62,42 @@
             }
 
             return affordableCardsList;
+        }
+
+        public Card? FindHighestAttackCardPlayerCanAfford(Player pPlayer)
+        {
+            if(pPlayer == null || Inventory.Count == 0)
+            {
+                return null;
+            }
+
+            int HighestAttack = 0;
+            Card highestAttackCardAffordable = new();
+            List<Card> affordableCardsList = [];
+
+            foreach(Card card in Inventory)
+            {
+                if(card.Price <= pPlayer.Credits)
+                {
+                    affordableCardsList.Add(card);
+                }
+            }
+
+            if(affordableCardsList.Count == 0)
+            {
+                return null;
+            }
+
+            foreach(Card card in affordableCardsList)
+            {
+                if(card.Attack > HighestAttack)
+                {
+                    HighestAttack = card.Attack;
+                    highestAttackCardAffordable = card;
+                }
+            }
+
+            return highestAttackCardAffordable;
         }
 
         public List<Card> FindCardsByRarity(string pRarity)
@@ -173,7 +221,7 @@
                 if (card.Price <= player.Credits)
                 {
                     if (cheapestAffordableCard == null ||
-                        card.Price < cheapestAffordableCard.Price)
+                        card.Price <= cheapestAffordableCard.Price)
                     {
                         cheapestAffordableCard = card;
                     }
