@@ -6,6 +6,26 @@ namespace CodingChallenges.Challenges
     {
         public void Run_Two()
         {
+            // FindFirstWordWithExactlyTwoRepeatedCharacters
+            // Tests null/whitespace, first match, case-insensitive comparison, and original casing
+            Console.WriteLine($"'{FindFirstWordWithExactlyTwoRepeatedCharacters(null!)}'");          // Expected: ''
+            Console.WriteLine($"'{FindFirstWordWithExactlyTwoRepeatedCharacters("   ")}'");         // Expected: ''
+            Console.WriteLine(FindFirstWordWithExactlyTwoRepeatedCharacters("aabb cat moon"));      // Expected: aabb
+            Console.WriteLine(FindFirstWordWithExactlyTwoRepeatedCharacters("abc banana aabb"));    // Expected: aabb
+            Console.WriteLine(FindFirstWordWithExactlyTwoRepeatedCharacters("aaa cat dog"));        // Expected: aaa
+            Console.WriteLine(FindFirstWordWithExactlyTwoRepeatedCharacters("cat hello book"));     // Expected: ""
+            Console.WriteLine(FindFirstWordWithExactlyTwoRepeatedCharacters("AAbb cat dog"));       // Expected: AAbb
+
+            // FindWordWithHighestRepeatedCharacterCount
+            // Tests null/whitespace, highest repeat count, ties, no repeats, and original casing
+            Console.WriteLine($"'{FindWordWithHighestRepeatedCharacterCount(null!)}'");              // Expected: ''
+            Console.WriteLine($"'{FindWordWithHighestRepeatedCharacterCount("   ")}'");             // Expected: ''
+            Console.WriteLine(FindWordWithHighestRepeatedCharacterCount("cat hello mississippi")); // Expected: mississippi
+            Console.WriteLine(FindWordWithHighestRepeatedCharacterCount("book moon tree")); // Expected: book
+            Console.WriteLine(FindWordWithHighestRepeatedCharacterCount("book moon")); // Expected: book
+            Console.WriteLine(FindWordWithHighestRepeatedCharacterCount("cat dog sun")); // Expected: cat
+            Console.WriteLine(FindWordWithHighestRepeatedCharacterCount("MiSSiSSiPPi book")); // Expected: MiSSiSSiPPi
+
             // Test no match, exact match, first match returned, case-insensitive, and original casing preserved
             Console.WriteLine($"'{FindFirstWordWithExactlyTwoRepeatedCharacters(null!)}'");             // Expected: ''
             Console.WriteLine($"'{FindFirstWordWithExactlyTwoRepeatedCharacters("cat hello book")}'");  // Expected: ''

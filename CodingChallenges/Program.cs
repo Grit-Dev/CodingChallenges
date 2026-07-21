@@ -3,101 +3,8 @@ using CodingChallenges.Challenges.Phase_02_OOP;
 
 public class Program
 {
-    public static string FindFirstWordWithExactlyTwoRepeatedCharacters(string pInputValue)
-    {
-        if(string.IsNullOrWhiteSpace(pInputValue))
-        {
-            return "";
-        }
-
-        const int REPEATEDCHARACTERLIMIT = 2;
-        string [] splitString = pInputValue.Split(' ', StringSplitOptions.RemoveEmptyEntries);
-
-        foreach(string word in splitString)
-        {
-            List<char> uniqueCharactersList = [];
-            int repeatedCharacter = 0;
-            string wordLowered = word.ToLower();
-
-            for(int outterIndex = 0; outterIndex <= wordLowered.Length -1; outterIndex++)
-            {
-                char currentCharacter = wordLowered[outterIndex];
-
-                if(!uniqueCharactersList.Contains(currentCharacter))
-                {
-                    uniqueCharactersList.Add(currentCharacter);
-                }
-                else
-                {
-                    repeatedCharacter++;
-                }
-            }
-
-                if(repeatedCharacter == REPEATEDCHARACTERLIMIT)
-                {
-                    return word;
-                }
-        }
-
-        return "";
-    }
-
-    public static string FindWordWithHighestRepeatedCharacterCount(string pInputValue)
-    {
-        if(string.IsNullOrWhiteSpace(pInputValue))
-        {
-            return "";
-        }
-
-        string [] splitString = pInputValue.Split(' ', StringSplitOptions.RemoveEmptyEntries);
-        int highestRepeatedCharacters = int.MinValue;
-        string highestWordRepeatedCharacters = "";
-
-
-        foreach(string word in splitString)
-        {
-            int repeatedCharacterCounter = 0;
-            List<char> uniqueCharacterList = [];
-
-            string wordLowered = word.ToLower();
-
-            foreach(char character in wordLowered)
-            {
-                if(!uniqueCharacterList.Contains(character))
-                {
-                    uniqueCharacterList.Add(character);
-                }
-                else
-                {
-                    repeatedCharacterCounter++;
-                }
-            }
-
-            if(repeatedCharacterCounter > highestRepeatedCharacters)
-            {
-                highestRepeatedCharacters = repeatedCharacterCounter;
-                highestWordRepeatedCharacters = word;
-            }
-
-        }
-
-        return highestWordRepeatedCharacters;
-    }
-
     public static void Main(string[] args)
     {
-        // 2. FindWordWithHighestRepeatedCharacterCount
-        // Tests null/whitespace, highest repeat count, ties, no repeats, and original casing
-        Console.WriteLine($"'{FindWordWithHighestRepeatedCharacterCount(null)}'");              // Expected: ''
-        Console.WriteLine($"'{FindWordWithHighestRepeatedCharacterCount("   ")}'");             // Expected: ''
-        Console.WriteLine(FindWordWithHighestRepeatedCharacterCount("cat hello mississippi")); // Expected: mississippi
-        Console.WriteLine(FindWordWithHighestRepeatedCharacterCount("book moon tree")); // Expected: book
-        Console.WriteLine(FindWordWithHighestRepeatedCharacterCount("book moon")); // Expected: book
-        Console.WriteLine(FindWordWithHighestRepeatedCharacterCount("cat dog sun")); // Expected: cat
-        Console.WriteLine(FindWordWithHighestRepeatedCharacterCount("MiSSiSSiPPi book")); // Expected: MiSSiSSiPPi
-
-
-
         // Fundamental Challenges
         //var fundamental = new ChallengeSolutionsRunner();
         // fundamental.Run();
@@ -341,17 +248,5 @@ public class Program
 
             550
         */
-
-        // 1. FindFirstWordWithExactlyTwoRepeatedCharacters
-        // Tests null/whitespace, first match, case-insensitive comparison, and original casing
-        // Console.WriteLine($"'{FindFirstWordWithExactlyTwoRepeatedCharacters(null)}'");          // Expected: ''
-        // Console.WriteLine($"'{FindFirstWordWithExactlyTwoRepeatedCharacters("   ")}'");         // Expected: ''
-        // Console.WriteLine(FindFirstWordWithExactlyTwoRepeatedCharacters("aabb cat moon"));      // Expected: aabb
-        // Console.WriteLine(FindFirstWordWithExactlyTwoRepeatedCharacters("abc banana aabb"));    // Expected: aabb
-        // Console.WriteLine(FindFirstWordWithExactlyTwoRepeatedCharacters("aaa cat dog"));        // Expected: aaa
-        // Console.WriteLine(FindFirstWordWithExactlyTwoRepeatedCharacters("cat hello book"));     // Expected: ""
-        // Console.WriteLine(FindFirstWordWithExactlyTwoRepeatedCharacters("AAbb cat dog"));       // Expected: AAbb
-
-
     }
 }
