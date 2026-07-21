@@ -32,6 +32,26 @@
             return null;
         }
 
+        public List<Card> FindAffordableCards(Player pPlayer)
+        {
+            if(pPlayer == null)
+            {
+                return [];
+            }
+
+            List<Card> affordableCardsList = [];
+
+            foreach(Card card in Inventory)
+            {
+                if(card.Price <= pPlayer.Credits)
+                {
+                    affordableCardsList.Add(card);
+                }
+            }
+
+            return affordableCardsList;
+        }
+
         public List<Card> FindCardsByRarity(string pRarity)
         {
             if(string.IsNullOrWhiteSpace(pRarity))
