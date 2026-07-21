@@ -14,7 +14,7 @@
             Inventory.Add(card);
         }
 
-         private Card? FindCardByName(string pCardName)
+        private Card? FindCardByName(string pCardName)
         {
             if(string.IsNullOrWhiteSpace(pCardName))
             {
@@ -30,6 +30,35 @@
             }
 
             return null;
+        }    
+
+        public double CalculateAveragePriceByRarity(string pRarity)
+        {
+            if(string.IsNullOrWhiteSpace(pRarity))
+            {
+                return 0;
+            }
+
+            int total = 0;
+            int counter = 0;
+
+            foreach(Card card in Inventory)
+            {
+                if(card.Rarity.Equals(pRarity, StringComparison.OrdinalIgnoreCase))
+                {
+                    total += card.Price;
+                    counter++;
+                }
+            }
+
+            if(counter == 0)
+            {
+                return 0;
+            }
+
+            return (double)total / counter;
+
+
         }
 
         public bool BuyHighestAttackAffordableCard(Player pPlayer)
@@ -168,8 +197,7 @@
 
             return true;
         }
-        
-        
+           
         public bool BuyCard(Player pPlayer, string pCardName)
         {
             if(pPlayer == null || string.IsNullOrEmpty(pCardName) 
