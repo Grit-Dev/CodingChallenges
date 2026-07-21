@@ -32,6 +32,30 @@
             return null;
         }
 
+        public bool BuyHighestAttackAffordableCard(Player pPlayer)
+        {
+            if(pPlayer == null)
+            {
+                return false;
+            }
+
+            Card? buyHighestAttackAffordableCard = FindHighestAttackCardPlayerCanAfford(pPlayer);
+
+            if(buyHighestAttackAffordableCard == null)
+            {
+                return false;
+            }
+
+            if(!pPlayer.BuyCard(buyHighestAttackAffordableCard))
+            {
+                return false;
+            }
+
+            Inventory.Remove(buyHighestAttackAffordableCard);
+
+            return true;
+        }
+
         public int CalculateTotalInventoryValue()
         {
             int total = 0;
