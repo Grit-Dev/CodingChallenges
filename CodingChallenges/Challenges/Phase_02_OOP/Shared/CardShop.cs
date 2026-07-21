@@ -125,7 +125,7 @@
             }
 
             int HighestAttack = 0;
-            Card highestAttackCardAffordable = new();
+            Card? highestAttackCardAffordable = null;
             List<Card> affordableCardsList = [];
 
             foreach(Card card in Inventory)
@@ -273,7 +273,7 @@
                 if (card.Price <= player.Credits)
                 {
                     if (cheapestAffordableCard == null ||
-                        card.Price <= cheapestAffordableCard.Price)
+                        card.Price < cheapestAffordableCard.Price)
                     {
                         cheapestAffordableCard = card;
                     }

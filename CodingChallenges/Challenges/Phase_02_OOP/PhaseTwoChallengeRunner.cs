@@ -4,13 +4,64 @@ namespace CodingChallenges.Challenges.Phase_02_OOP
 {
     // PMG TO DO: Big Refactor into its on seperate Folders/files.
     // have a new Class called PhaseTwoChallengeRunner - Run all files
-    internal class CardCollectionChallenges
+    internal class PhaseTwoChallengeRunner
     {
-        public void RunTodaysTest_21_07_2026()
+        public static void RunTodaysTest_21_07_2026()
         {
-            // Next Day
+            // Setup
+            CardShop shop = new();
+
+            shop.AddCard(new Card("Johnny Silverhand", "Iconic", 95, 400));
+            shop.AddCard(new Card("Adam Smasher", "Iconic", 99, 700));
+            shop.AddCard(new Card("Judy Alvarez", "Rare", 70, 250));
+
+            Player richPlayer = new("V", 500);
+            Player poorPlayer = new("Poor", 100);
+
+            // 3. FindCardsByRarity
+            Console.WriteLine(shop.FindCardsByRarity("iconic").Count == 2);
+            Console.WriteLine(shop.FindCardsByRarity("RARE").Count == 1);
+            Console.WriteLine(shop.FindCardsByRarity(" ").Count == 0);
+            Console.WriteLine(shop.FindCardsByRarity("Legendary").Count == 0);
+
+            // 4. FindAffordableCards
+            Console.WriteLine(shop.FindAffordableCards(null!).Count == 0);
+            Console.WriteLine(shop.FindAffordableCards(richPlayer).Count == 2);
+            Console.WriteLine(shop.FindAffordableCards(poorPlayer).Count == 0);
+
+            // 5. CalculateTotalInventoryValue
+            CardShop emptyShop = new();
+
+            Console.WriteLine(emptyShop.CalculateTotalInventoryValue() == 0);
+            Console.WriteLine(shop.CalculateTotalInventoryValue() == 1350);
+
+            // 6. FindHighestAttackCardPlayerCanAfford
+            Console.WriteLine(shop.FindHighestAttackCardPlayerCanAfford(null!) == null);
+            Console.WriteLine(shop.FindHighestAttackCardPlayerCanAfford(richPlayer)?.Name == "Johnny Silverhand");
+            Console.WriteLine(shop.FindHighestAttackCardPlayerCanAfford(poorPlayer) == null);
+
+            // 7. BuyHighestAttackAffordableCard
+            CardShop purchaseShop = new();
+
+            purchaseShop.AddCard(new Card("Johnny Silverhand", "Iconic", 95, 400));
+            purchaseShop.AddCard(new Card("Adam Smasher", "Iconic", 99, 700));
+            purchaseShop.AddCard(new Card("Judy Alvarez", "Rare", 70, 250));
+
+            Player buyer = new("Buyer", 500);
+
+            Console.WriteLine(purchaseShop.BuyHighestAttackAffordableCard(buyer));
+            Console.WriteLine(buyer.Credits == 100);
+            Console.WriteLine(buyer.OwnedCards.Count == 1);
+            Console.WriteLine(buyer.OwnedCards[0].Name == "Johnny Silverhand");
+            Console.WriteLine(purchaseShop.Inventory.Count == 2);
+            Console.WriteLine(!purchaseShop.BuyHighestAttackAffordableCard(poorPlayer));
+
+            // 8. CalculateAveragePriceByRarity
+            Console.WriteLine(shop.CalculateAveragePriceByRarity(null!) == 0);
+            Console.WriteLine(shop.CalculateAveragePriceByRarity("Legendary") == 0);
+            Console.WriteLine(shop.CalculateAveragePriceByRarity("iconic") == 550);
         }
-        
+
         // public void RunTodaysTest_20_07_2026()
         // {
         //     // Setup

@@ -4,7 +4,7 @@ namespace CodingChallenges.Challenges
 {
     public class ChallengeSolutionsRunner : ChallengeSolutions
     {
-        public void Run_Two()
+        public static void Run_Two()
         {
             // FindFirstWordWithExactlyTwoRepeatedCharacters
             // Tests null/whitespace, first match, case-insensitive comparison, and original casing
