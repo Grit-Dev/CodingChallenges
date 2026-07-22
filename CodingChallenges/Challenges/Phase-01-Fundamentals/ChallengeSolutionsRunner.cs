@@ -6,6 +6,15 @@ namespace CodingChallenges.Challenges
     {
         public static void Run_Two()
         {
+            // CODING REVISION: FIND FIRST WORD WITH EXACTLY TWO REPEATED CHARACTERS
+            Console.WriteLine($"'{FindFirstWordWithExactlyTwoRepeatedCharacters_Rev(null!)}'");          // Expected: ''
+            Console.WriteLine($"'{FindFirstWordWithExactlyTwoRepeatedCharacters_Rev("   ")}'");         // Expected: ''
+            Console.WriteLine(FindFirstWordWithExactlyTwoRepeatedCharacters_Rev("aabb cat moon"));      // Expected: aabb
+            Console.WriteLine(FindFirstWordWithExactlyTwoRepeatedCharacters_Rev("abc banana aabb"));    // Expected: aabb
+            Console.WriteLine(FindFirstWordWithExactlyTwoRepeatedCharacters_Rev("aaa cat dog"));        // Expected: aaa
+            Console.WriteLine(FindFirstWordWithExactlyTwoRepeatedCharacters_Rev("cat hello book"));     // Expected: ""
+            Console.WriteLine(FindFirstWordWithExactlyTwoRepeatedCharacters_Rev("AAbb cat dog"));       // Expected: AAbb
+
             // FindFirstWordWithExactlyTwoRepeatedCharacters
             // Tests null/whitespace, first match, case-insensitive comparison, and original casing
             Console.WriteLine($"'{FindFirstWordWithExactlyTwoRepeatedCharacters(null!)}'");          // Expected: ''

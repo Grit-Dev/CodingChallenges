@@ -4,86 +4,124 @@ namespace CodingChallenges.Challenges
 {
     public class ChallengeSolutions
     {
-            public static string FindFirstWordWithExactlyTwoRepeatedCharacters(string pInputValue)
-    {
-        if(string.IsNullOrWhiteSpace(pInputValue))
+        public static string FindFirstWordWithExactlyTwoRepeatedCharacters_Rev(string pInputValue)
         {
-            return "";
-        }
-
-        const int REPEATEDCHARACTERLIMIT = 2;
-        string [] splitString = pInputValue.Split(' ', StringSplitOptions.RemoveEmptyEntries);
-
-        foreach(string word in splitString)
-        {
-            List<char> uniqueCharactersList = [];
-            int repeatedCharacter = 0;
-            string wordLowered = word.ToLower();
-
-            for(int outterIndex = 0; outterIndex <= wordLowered.Length -1; outterIndex++)
+            if(string.IsNullOrWhiteSpace(pInputValue))
             {
-                char currentCharacter = wordLowered[outterIndex];
-
-                if(!uniqueCharactersList.Contains(currentCharacter))
-                {
-                    uniqueCharactersList.Add(currentCharacter);
-                }
-                else
-                {
-                    repeatedCharacter++;
-                }
+                return "";
             }
 
-                if(repeatedCharacter == REPEATEDCHARACTERLIMIT)
+            const int repeatedCharactersLimit = 2;
+
+            string [] splitString = pInputValue.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+            foreach(string word in splitString)
+            {
+                List<char> characterList = [];
+                int repeatedCharactersCounter = 0;
+
+                string wordLowered = word.ToLower();
+
+                foreach(char character in wordLowered)
+                {
+                    if(!characterList.Contains(character))
+                    {
+                        characterList.Add(character);
+                    }
+                    else
+                    {
+                    repeatedCharactersCounter++;  
+                    }
+                }
+
+                if(repeatedCharactersCounter == repeatedCharactersLimit)
                 {
                     return word;
                 }
+            }
+
+            return "";
         }
-
-        return "";
-    }
-
-    public static string FindWordWithHighestRepeatedCharacterCount(string pInputValue)
-    {
-        if(string.IsNullOrWhiteSpace(pInputValue))
+        public static string FindFirstWordWithExactlyTwoRepeatedCharacters(string pInputValue)
         {
+            if(string.IsNullOrWhiteSpace(pInputValue))
+            {
+                return "";
+            }
+
+            const int REPEATEDCHARACTERLIMIT = 2;
+            string [] splitString = pInputValue.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+            foreach(string word in splitString)
+            {
+                List<char> uniqueCharactersList = [];
+                int repeatedCharacter = 0;
+                string wordLowered = word.ToLower();
+
+                for(int outterIndex = 0; outterIndex <= wordLowered.Length -1; outterIndex++)
+                {
+                    char currentCharacter = wordLowered[outterIndex];
+
+                    if(!uniqueCharactersList.Contains(currentCharacter))
+                    {
+                        uniqueCharactersList.Add(currentCharacter);
+                    }
+                    else
+                    {
+                        repeatedCharacter++;
+                    }
+                }
+
+                    if(repeatedCharacter == REPEATEDCHARACTERLIMIT)
+                    {
+                        return word;
+                    }
+            }
+
             return "";
         }
 
-        string [] splitString = pInputValue.Split(' ', StringSplitOptions.RemoveEmptyEntries);
-        int highestRepeatedCharacters = int.MinValue;
-        string highestWordRepeatedCharacters = "";
-
-
-        foreach(string word in splitString)
+        public static string FindWordWithHighestRepeatedCharacterCount(string pInputValue)
         {
-            int repeatedCharacterCounter = 0;
-            List<char> uniqueCharacterList = [];
-
-            string wordLowered = word.ToLower();
-
-            foreach(char character in wordLowered)
+            if(string.IsNullOrWhiteSpace(pInputValue))
             {
-                if(!uniqueCharacterList.Contains(character))
-                {
-                    uniqueCharacterList.Add(character);
-                }
-                else
-                {
-                    repeatedCharacterCounter++;
-                }
+                return "";
             }
 
-            if(repeatedCharacterCounter > highestRepeatedCharacters)
+            string [] splitString = pInputValue.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+            int highestRepeatedCharacters = int.MinValue;
+            string highestWordRepeatedCharacters = "";
+
+
+            foreach(string word in splitString)
             {
-                highestRepeatedCharacters = repeatedCharacterCounter;
-                highestWordRepeatedCharacters = word;
+                int repeatedCharacterCounter = 0;
+                List<char> uniqueCharacterList = [];
+
+                string wordLowered = word.ToLower();
+
+                foreach(char character in wordLowered)
+                {
+                    if(!uniqueCharacterList.Contains(character))
+                    {
+                        uniqueCharacterList.Add(character);
+                    }
+                    else
+                    {
+                        repeatedCharacterCounter++;
+                    }
+                }
+
+                if(repeatedCharacterCounter > highestRepeatedCharacters)
+                {
+                    highestRepeatedCharacters = repeatedCharacterCounter;
+                    highestWordRepeatedCharacters = word;
+                }
+
             }
 
+            return highestWordRepeatedCharacters;
         }
-
-        return highestWordRepeatedCharacters;
-    }
         public static int CountWordsWithMoreUniqueThanRepeatedCharacters(string pInputValue)
         {
             if (string.IsNullOrEmpty(pInputValue))
