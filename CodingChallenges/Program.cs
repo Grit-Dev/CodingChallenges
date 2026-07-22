@@ -1,60 +1,7 @@
 ﻿public class Program
 {
-    public static char FindFirstWordWithRepeatedCharactersAppearingTwice(string pInputValue)
-    {
-        if(string.IsNullOrWhiteSpace(pInputValue))
-        {
-            return '\0';
-        }
-
-        List<char> cleanedList = [];
-        pInputValue = pInputValue.ToLower();
-
-        foreach(char character in pInputValue)
-        {
-            if(!char.IsWhiteSpace(character))
-            {
-                cleanedList.Add(character);
-            }
-        };
-
-        for(int outterIndex = 0; outterIndex <= cleanedList.Count -1; outterIndex++)
-        {
-            int counter = 0;
-            char currentCharacter = cleanedList[outterIndex];
-
-            for(int innerIndex = 0; innerIndex <= cleanedList.Count -1; innerIndex++)
-            {
-                if(currentCharacter == cleanedList[innerIndex])
-                {
-                    counter++;
-                }
-            }
-
-            if(counter == 2)
-            {
-                return currentCharacter;
-            }
-        }
-
-
-        return '\0';
-
-    }
-
     public static void Main(string[] args)
     {
-        // NEW CODING CHALLENGE: FIND FIRST CHARACTER THAT APPEARS EXACTLY TWICE
-        Console.WriteLine(FindFirstWordWithRepeatedCharactersAppearingTwice("aaa") == '\0');
-        Console.WriteLine(FindFirstWordWithRepeatedCharactersAppearingTwice("banana") == 'n');
-        Console.WriteLine(FindFirstWordWithRepeatedCharactersAppearingTwice("abca") == 'a');
-        Console.WriteLine(FindFirstWordWithRepeatedCharactersAppearingTwice("AabB") == 'a');
-        Console.WriteLine(FindFirstWordWithRepeatedCharactersAppearingTwice("hello") == 'l');
-        Console.WriteLine(FindFirstWordWithRepeatedCharactersAppearingTwice("abc") == '\0');
-        Console.WriteLine(FindFirstWordWithRepeatedCharactersAppearingTwice("aabbcc") == 'a');
-        Console.WriteLine(FindFirstWordWithRepeatedCharactersAppearingTwice(null!) == '\0');
-        Console.WriteLine(FindFirstWordWithRepeatedCharactersAppearingTwice("   ") == '\0');
-        Console.WriteLine(FindFirstWordWithRepeatedCharactersAppearingTwice("abca") == 'a');
         // NEW CODING CHALLENGE: FIND FIRST CHARACTER THAT APPEARS EXACTLY TWICE
         // Fundamental Challenges
         // ChallengeSolutionsRunner.Run();

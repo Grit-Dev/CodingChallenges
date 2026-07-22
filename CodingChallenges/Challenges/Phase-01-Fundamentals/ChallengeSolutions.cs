@@ -4,6 +4,47 @@ namespace CodingChallenges.Challenges
 {
     public class ChallengeSolutions
     {
+        public static char FindFirstWordWithRepeatedCharactersAppearingTwice(string pInputValue)
+        {
+            if(string.IsNullOrWhiteSpace(pInputValue))
+            {
+                return '\0';
+            }
+
+            List<char> cleanedList = [];
+            pInputValue = pInputValue.ToLower();
+
+            foreach(char character in pInputValue)
+            {
+                if(!char.IsWhiteSpace(character))
+                {
+                    cleanedList.Add(character);
+                }
+            };
+
+            for(int outterIndex = 0; outterIndex <= cleanedList.Count -1; outterIndex++)
+            {
+                int counter = 0;
+                char currentCharacter = cleanedList[outterIndex];
+
+                for(int innerIndex = 0; innerIndex <= cleanedList.Count -1; innerIndex++)
+                {
+                    if(currentCharacter == cleanedList[innerIndex])
+                    {
+                        counter++;
+                    }
+                }
+
+                if(counter == 2)
+                {
+                    return currentCharacter;
+                }
+            }
+
+
+            return '\0';
+
+        }
         public static string FindWordWithHighestRepeatedCharacterCount_Rev(string pInputValue)
         {
             if(string.IsNullOrWhiteSpace(pInputValue))

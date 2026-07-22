@@ -6,11 +6,23 @@ namespace CodingChallenges.Challenges
     {
         public static void Run_Two()
         {
+            // NEW CODING CHALLENGE: FIND FIRST CHARACTER THAT APPEARS EXACTLY TWICE
+            Console.WriteLine(FindFirstWordWithRepeatedCharactersAppearingTwice("aaa") == '\0');
+            Console.WriteLine(FindFirstWordWithRepeatedCharactersAppearingTwice("banana") == 'n');
+            Console.WriteLine(FindFirstWordWithRepeatedCharactersAppearingTwice("abca") == 'a');
+            Console.WriteLine(FindFirstWordWithRepeatedCharactersAppearingTwice("AabB") == 'a');
+            Console.WriteLine(FindFirstWordWithRepeatedCharactersAppearingTwice("hello") == 'l');
+            Console.WriteLine(FindFirstWordWithRepeatedCharactersAppearingTwice("abc") == '\0');
+            Console.WriteLine(FindFirstWordWithRepeatedCharactersAppearingTwice("aabbcc") == 'a');
+            Console.WriteLine(FindFirstWordWithRepeatedCharactersAppearingTwice(null!) == '\0');
+            Console.WriteLine(FindFirstWordWithRepeatedCharactersAppearingTwice("   ") == '\0');
+            Console.WriteLine(FindFirstWordWithRepeatedCharactersAppearingTwice("abca") == 'a');
+
             // FindWordWithHighestRepeatedCharacterCount
             // Tests null/whitespace, highest repeat count, ties, no repeats, and original casing
             Console.WriteLine(FindWordWithHighestRepeatedCharacterCount_Rev("aaa book")); // Expected: book
-            Console.WriteLine($"'{FindWordWithHighestRepeatedCharacterCount_Rev(null!)}'");              // Expected: ''
-            Console.WriteLine($"'{FindWordWithHighestRepeatedCharacterCount_Rev("   ")}'");             // Expected: ''
+            Console.WriteLine(FindWordWithHighestRepeatedCharacterCount_Rev(null!));              // Expected: ''
+            Console.WriteLine(FindWordWithHighestRepeatedCharacterCount_Rev("   "));             // Expected: ''
             Console.WriteLine(FindWordWithHighestRepeatedCharacterCount_Rev("cat hello mississippi")); // Expected: mississippi
             Console.WriteLine(FindWordWithHighestRepeatedCharacterCount_Rev("book moon tree")); // Expected: book
             Console.WriteLine(FindWordWithHighestRepeatedCharacterCount_Rev("book moon")); // Expected: book
@@ -18,8 +30,8 @@ namespace CodingChallenges.Challenges
             Console.WriteLine(FindWordWithHighestRepeatedCharacterCount_Rev("MiSSiSSiPPi book")); // Expected: MiSSiSSiPPi
 
             // CODING REVISION: FIND FIRST WORD WITH EXACTLY TWO REPEATED CHARACTERS
-            Console.WriteLine($"'{FindFirstWordWithExactlyTwoRepeatedCharacters_Rev(null!)}'");          // Expected: ''
-            Console.WriteLine($"'{FindFirstWordWithExactlyTwoRepeatedCharacters_Rev("   ")}'");         // Expected: ''
+            Console.WriteLine(FindFirstWordWithExactlyTwoRepeatedCharacters_Rev(null!));          // Expected: ''
+            Console.WriteLine(FindFirstWordWithExactlyTwoRepeatedCharacters_Rev("   "));         // Expected: ''
             Console.WriteLine(FindFirstWordWithExactlyTwoRepeatedCharacters_Rev("aabb cat moon"));      // Expected: aabb
             Console.WriteLine(FindFirstWordWithExactlyTwoRepeatedCharacters_Rev("abc banana aabb"));    // Expected: aabb
             Console.WriteLine(FindFirstWordWithExactlyTwoRepeatedCharacters_Rev("aaa cat dog"));        // Expected: aaa
@@ -28,8 +40,8 @@ namespace CodingChallenges.Challenges
 
             // FindFirstWordWithExactlyTwoRepeatedCharacters
             // Tests null/whitespace, first match, case-insensitive comparison, and original casing
-            Console.WriteLine($"'{FindFirstWordWithExactlyTwoRepeatedCharacters(null!)}'");          // Expected: ''
-            Console.WriteLine($"'{FindFirstWordWithExactlyTwoRepeatedCharacters("   ")}'");         // Expected: ''
+            Console.WriteLine(FindFirstWordWithExactlyTwoRepeatedCharacters(null!));          // Expected: ''
+            Console.WriteLine(FindFirstWordWithExactlyTwoRepeatedCharacters("   "));         // Expected: ''
             Console.WriteLine(FindFirstWordWithExactlyTwoRepeatedCharacters("aabb cat moon"));      // Expected: aabb
             Console.WriteLine(FindFirstWordWithExactlyTwoRepeatedCharacters("abc banana aabb"));    // Expected: aabb
             Console.WriteLine(FindFirstWordWithExactlyTwoRepeatedCharacters("aaa cat dog"));        // Expected: aaa
@@ -38,8 +50,8 @@ namespace CodingChallenges.Challenges
 
             // FindWordWithHighestRepeatedCharacterCount
             // Tests null/whitespace, highest repeat count, ties, no repeats, and original casing
-            Console.WriteLine($"'{FindWordWithHighestRepeatedCharacterCount(null!)}'");              // Expected: ''
-            Console.WriteLine($"'{FindWordWithHighestRepeatedCharacterCount("   ")}'");             // Expected: ''
+            Console.WriteLine(FindWordWithHighestRepeatedCharacterCount(null!));              // Expected: ''
+            Console.WriteLine(FindWordWithHighestRepeatedCharacterCount("   "));             // Expected: ''
             Console.WriteLine(FindWordWithHighestRepeatedCharacterCount("cat hello mississippi")); // Expected: mississippi
             Console.WriteLine(FindWordWithHighestRepeatedCharacterCount("book moon tree")); // Expected: book
             Console.WriteLine(FindWordWithHighestRepeatedCharacterCount("book moon")); // Expected: book
