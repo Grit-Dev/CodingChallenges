@@ -4,46 +4,46 @@ namespace CodingChallenges.Challenges
 {
     public class ChallengeSolutions
     {
-            public static string FindWordWithHighestRepeatedCharacterCount_Rev(string pInputValue)
-    {
-        if(string.IsNullOrWhiteSpace(pInputValue))
+        public static string FindWordWithHighestRepeatedCharacterCount_Rev(string pInputValue)
         {
-            return "";
-        }   
-
-        string highestRepeatedCharacterWord = "";
-        int highestRepeatedCharacterCounter = int.MinValue;
-
-        string [] splitString = pInputValue.Split(' ', StringSplitOptions.RemoveEmptyEntries);
-
-        foreach(string word in splitString)
-        {
-            List<char> charList = [];
-            int repeatedCharacterCounter = 0;
-
-            string wordLowered = word.ToLower();
-
-            foreach(char character in wordLowered)
+            if(string.IsNullOrWhiteSpace(pInputValue))
             {
-                if(!charList.Contains(character))
+                return "";
+            }   
+
+            string highestRepeatedCharacterWord = "";
+            int highestRepeatedCharacterCounter = int.MinValue;
+
+            string [] splitString = pInputValue.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+            foreach(string word in splitString)
+            {
+                List<char> charList = [];
+                int repeatedCharacterCounter = 0;
+
+                string wordLowered = word.ToLower();
+
+                foreach(char character in wordLowered)
                 {
-                    charList.Add(character);
+                    if(!charList.Contains(character))
+                    {
+                        charList.Add(character);
+                    }
+                    else
+                    {
+                        repeatedCharacterCounter++;
+                    }
                 }
-                else
+
+                if(repeatedCharacterCounter > highestRepeatedCharacterCounter)
                 {
-                    repeatedCharacterCounter++;
+                    highestRepeatedCharacterCounter = repeatedCharacterCounter;
+                    highestRepeatedCharacterWord = word;
                 }
             }
 
-            if(repeatedCharacterCounter > highestRepeatedCharacterCounter)
-            {
-                highestRepeatedCharacterCounter = repeatedCharacterCounter;
-                highestRepeatedCharacterWord = word;
-            }
+            return highestRepeatedCharacterWord;
         }
-
-        return highestRepeatedCharacterWord;
-    }
         public static string FindFirstWordWithExactlyTwoRepeatedCharacters_Rev(string pInputValue)
         {
             if(string.IsNullOrWhiteSpace(pInputValue))
