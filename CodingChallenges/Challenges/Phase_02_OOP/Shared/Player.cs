@@ -142,39 +142,6 @@
             return strongestCard;
         }
 
-        public bool TransferCardTo(string pCardName, Player pReceivingPlayer)
-        {
-            if(pCardName is null || pReceivingPlayer is null)
-            {
-                return false;
-            }
-
-            bool isCardFound = false;
-
-            foreach(Card card in OwnedCards)
-            {
-                if(card.Name.Equals(pCardName, StringComparison.OrdinalIgnoreCase))
-                {
-                    OwnedCards.Remove(card);
-                    pReceivingPlayer.OwnedCards.Add(card);
-                    isCardFound = true;
-
-                    break;        
-                }
-                else
-                {
-                    isCardFound = false;
-                }
-            }
-
-            if(!isCardFound)
-            {
-                return false;
-            }
-
-            return true;
-        }
-
         public bool BuyCard(Card card)
         {
             if (card == null)
