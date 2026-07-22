@@ -18,6 +18,55 @@
             Credits = credits;
         }
 
+        public bool HasCard(string pCardName)
+        {
+            if(string.IsNullOrWhiteSpace(pCardName))
+            {
+                return false;
+            }
+
+            foreach(Card card in OwnedCards)
+            {
+                if(card.Name.Equals(pCardName, StringComparison.OrdinalIgnoreCase))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        public Card? RemoveCardByName(string pCardName)
+        {
+            if(string.IsNullOrWhiteSpace(pCardName))
+            {
+                return null;
+            }
+
+            Card? cardFound = null;
+            int targetIndex = 0;
+
+            for(int outterIndex = 0; outterIndex <= OwnedCards.Count -1; outterIndex++)
+            {
+                Card currentCard = OwnedCards[outterIndex];
+
+                if(currentCard.Name.Equals(pCardName, StringComparison.OrdinalIgnoreCase))
+                {
+                    cardFound = currentCard;
+                    targetIndex = outterIndex;
+                    break;
+                }
+            }
+
+            if(cardFound == null)
+            {
+                return null;
+            }
+
+            OwnedCards.RemoveAt(targetIndex);
+            return cardFound;
+        }
+
         public void AddCredits(int amount)
         {
             if (amount <= 0)

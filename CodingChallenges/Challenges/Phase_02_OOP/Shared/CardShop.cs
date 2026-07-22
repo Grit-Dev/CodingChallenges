@@ -197,6 +197,28 @@
 
             return true;
         }
+
+        public bool BuyCardFromPlayer(Player pPlayer, string pCardName)
+        {
+            if(pPlayer == null || string.IsNullOrWhiteSpace(pCardName))
+            {
+                return false;
+            }
+
+            Card? cardFound = pPlayer.RemoveCardByName(pCardName);
+
+            if(cardFound == null)
+            {
+                return false;
+            }
+
+            Inventory.Add(cardFound);
+
+            pPlayer.AddCredits(cardFound.Price / 2);
+            
+            return true;
+
+        }
            
         public bool BuyCard(Player pPlayer, string pCardName)
         {
