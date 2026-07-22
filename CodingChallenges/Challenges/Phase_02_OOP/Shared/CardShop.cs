@@ -32,7 +32,7 @@
             return null;
         }
 
-        public Card? FindMostValuableCardInSystem(Player pPlayer)
+        public Card? FindMostValuableCardInSystem(Player? pPlayer)
         {
             Card? mostValuableCard = null;
             int highestPrice = 0;
