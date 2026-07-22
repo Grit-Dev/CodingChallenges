@@ -6,6 +6,10 @@ namespace CodingChallenges.Challenges.Phase_02_OOP
     // have a new Class called PhaseTwoChallengeRunner - Run all files
     internal class PhaseTwoChallengeRunner
     {
+        public static void CardShopSellingAndStockChallenges_Run_23_07_2026()
+        {
+            // To Do
+        }
         public static void CardShopSellingAndStockChallenges_Run_22_07_2026()
         {
             // Setup
