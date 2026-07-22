@@ -3,8 +3,54 @@ using CodingChallenges.Challenges.Phase_02_OOP;
 
 public class Program
 {
+    public static string FindFirstWordWithExactlyTwoRepeatedCharacters_Rev(string pInputValue)
+    {
+        if(string.IsNullOrWhiteSpace(pInputValue))
+        {
+            return "";
+        }
+
+        const int repeatedCharactersLimit = 2;
+
+        string [] splitString = pInputValue.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+        foreach(string word in splitString)
+        {
+            List<char> characterList = [];
+            int repeatedCharactersCounter = 0;
+
+            string wordLowered = word.ToLower();
+
+            foreach(char character in wordLowered)
+            {
+                if(!characterList.Contains(character))
+                {
+                    characterList.Add(character);
+                }
+                else
+                {
+                  repeatedCharactersCounter++;  
+                }
+            }
+
+            if(repeatedCharactersCounter == repeatedCharactersLimit)
+            {
+                return word;
+            }
+        }
+
+        return "";
+    }
     public static void Main(string[] args)
     {
+        // CODING REVISION: FIND FIRST WORD WITH EXACTLY TWO REPEATED CHARACTERS
+        Console.WriteLine($"'{FindFirstWordWithExactlyTwoRepeatedCharacters_Rev(null!)}'");          // Expected: ''
+        Console.WriteLine($"'{FindFirstWordWithExactlyTwoRepeatedCharacters_Rev("   ")}'");         // Expected: ''
+        Console.WriteLine(FindFirstWordWithExactlyTwoRepeatedCharacters_Rev("aabb cat moon"));      // Expected: aabb
+        Console.WriteLine(FindFirstWordWithExactlyTwoRepeatedCharacters_Rev("abc banana aabb"));    // Expected: aabb
+        Console.WriteLine(FindFirstWordWithExactlyTwoRepeatedCharacters_Rev("aaa cat dog"));        // Expected: aaa
+        Console.WriteLine(FindFirstWordWithExactlyTwoRepeatedCharacters_Rev("cat hello book"));     // Expected: ""
+        Console.WriteLine(FindFirstWordWithExactlyTwoRepeatedCharacters_Rev("AAbb cat dog"));       // Expected: AAbb
         // Fundamental Challenges
         // ChallengeSolutionsRunner.Run();
         // ChallengeSolutionsRunner.Run_Two();
@@ -13,8 +59,7 @@ public class Program
         // PhaseTwoChallengeRunner.Run();
         // PhaseTwoChallengeRunner.RunTodaydsTest_16_07_2026();
         // PhaseTwoChallengeRunner.RunTodaysTest_20_07_2026();
-        
-        PhaseTwoChallengeRunner.CardShopSellingAndStockChallenges_Run_22_07_2026();
+        // PhaseTwoChallengeRunner.CardShopSellingAndStockChallenges_Run_22_07_2026();
 
         /*
             ============================================================
