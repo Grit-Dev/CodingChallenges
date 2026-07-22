@@ -36,6 +36,25 @@
             return false;
         }
 
+        public bool TransferCardTo(Player pReceivingPlayer, string pCardName)
+        {
+            if(pReceivingPlayer == null || string.IsNullOrWhiteSpace(pCardName))
+            {
+                return false;
+            }
+
+            Card? cardFound = RemoveCardByName(pCardName);
+
+            if(cardFound == null)
+            {
+                return false;
+            }
+
+            pReceivingPlayer.AddCard(cardFound);
+
+            return true;
+        }
+
         public Card? RemoveCardByName(string pCardName)
         {
             if(string.IsNullOrWhiteSpace(pCardName))

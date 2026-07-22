@@ -30,7 +30,48 @@
             }
 
             return null;
-        }    
+        }
+
+        public Card? FindMostValuableCardInSystem(Player pPlayer)
+        {
+            Card? mostValuableCard = null;
+            int highestPrice = 0;
+
+            foreach(Card card in Inventory)
+            {
+                if(card.Price > highestPrice)
+                {
+                    highestPrice = card.Price;
+                    mostValuableCard = card;
+                }
+            }
+
+            if(pPlayer != null)
+            {
+                foreach(Card card in pPlayer.OwnedCards)
+                {
+                    if(card.Price > highestPrice)
+                    {
+                        highestPrice = card.Price;
+                        mostValuableCard = card;
+                    }
+                }
+
+                return mostValuableCard;
+            }
+
+            return mostValuableCard;
+        }
+
+        public int CountTotalCardsInSystem(Player pPlayer)
+        {
+            if(pPlayer == null)
+            {
+                return Inventory.Count;
+            }
+
+            return Inventory.Count + pPlayer.OwnedCards.Count;
+        }
 
         public double CalculateAveragePriceByRarity(string pRarity)
         {

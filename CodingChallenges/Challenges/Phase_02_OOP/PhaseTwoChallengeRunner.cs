@@ -8,8 +8,97 @@ namespace CodingChallenges.Challenges.Phase_02_OOP
     {
         public static void CardShopSellingAndStockChallenges_Run_22_07_2026()
         {
-            //  CardShopSellingAndStockChallenges
+            // Setup
+            Player player = new("V", 100);
+
+            Card johnny = new("Johnny Silverhand", "Iconic", 95, 400);
+            Card judy = new("Judy Alvarez", "Rare", 70, 250);
+
+            player.AddCard(johnny);
+            player.AddCard(judy);
+
+            CardShop shop = new();
+
+            // 4. HasCard
+            // Case-insensitive match, invalid input, and card not owned
+            Console.WriteLine(player.HasCard("johnny silverhand"));
+            Console.WriteLine(!player.HasCard("Adam Smasher"));
+            Console.WriteLine(!player.HasCard(null!));
+            Console.WriteLine(!player.HasCard(""));
+            Console.WriteLine(!player.HasCard("   "));
+
+            // 5. RemoveCardByName
+            // Remove card, return removed card, card no longer owned, invalid input
+            Player removePlayer = new("Remove", 1000);
+
+            removePlayer.AddCard(new Card("Johnny Silverhand", "Iconic", 95, 400));
+
+            Console.WriteLine(removePlayer.RemoveCardByName("johnny silverhand")?.Name == "Johnny Silverhand");
+            Console.WriteLine(removePlayer.OwnedCards.Count == 0);
+            Console.WriteLine(removePlayer.RemoveCardByName("Adam Smasher") == null);
+            Console.WriteLine(removePlayer.RemoveCardByName(null!) == null);
+
+            // 6. BuyCardFromPlayer
+            // Successful sale, credits increase by half price, card moved to shop
+            Player seller = new("Seller", 100);
+
+            seller.AddCard(new Card("Johnny Silverhand", "Iconic", 95, 400));
+
+            Console.WriteLine(shop.BuyCardFromPlayer(seller, "johnny silverhand"));
+
+            Console.WriteLine(seller.Credits == 300);
+            Console.WriteLine(seller.OwnedCards.Count == 0);
+            Console.WriteLine(shop.Inventory.Count == 1);
+            Console.WriteLine(!shop.BuyCardFromPlayer(seller, "Adam Smasher"));
+            Console.WriteLine(!shop.BuyCardFromPlayer(null!, "Johnny Silverhand"));
+
+            // 7. CountTotalCardsInSystem
+            CardShop countShop = new();
+
+            countShop.AddCard(new Card("Johnny", "Iconic", 95, 400));
+            countShop.AddCard(new Card("Judy", "Rare", 70, 250));
+            countShop.AddCard(new Card("Adam", "Legendary", 99, 700));
+
+            Player countPlayer = new("Count", 1000);
+
+            countPlayer.AddCard(new Card("Panam", "Epic", 80, 300));
+            countPlayer.AddCard(new Card("River", "Rare", 75, 200));
+
+            Console.WriteLine(countShop.CountTotalCardsInSystem(null!) == 3);
+            Console.WriteLine(countShop.CountTotalCardsInSystem(countPlayer) == 5);
+
+            // 8. FindMostValuableCardInSystem
+            CardShop valueShop = new();
+
+            valueShop.AddCard(new Card("Johnny", "Iconic", 95, 400));
+            valueShop.AddCard(new Card("Judy", "Rare", 70, 250));
+
+            Player valuePlayer = new("Value", 1000);
+
+            valuePlayer.AddCard(new Card("Adam", "Legendary", 99, 700));
+
+            Console.WriteLine(valueShop.FindMostValuableCardInSystem(valuePlayer)?.Name == "Adam");
+            Console.WriteLine(valueShop.FindMostValuableCardInSystem(null!)?.Name == "Johnny");
+
+            CardShop emptyShop = new();
+
+            Console.WriteLine(emptyShop.FindMostValuableCardInSystem(null!) == null);
+
+            // 9. TransferCardTo
+            // Card transferred, removed from sender, added to receiver
+            Player sender = new("Sender", 1000);
+            Player destination = new("Destination", 1000);
+
+            sender.AddCard(new Card("Johnny Silverhand", "Iconic", 95, 400));
+
+            Console.WriteLine(sender.TransferCardTo(destination,"johnny silverhand"));
+            Console.WriteLine(sender.OwnedCards.Count == 0);
+            Console.WriteLine(destination.OwnedCards.Count == 1);
+            Console.WriteLine(destination.OwnedCards[0].Name == "Johnny Silverhand");
+            Console.WriteLine(!sender.TransferCardTo(destination,"Adam Smasher"));
+            Console.WriteLine(!sender.TransferCardTo(null!,"Johnny Silverhand"));
         }
+
         // public static void RunTodaysTest_21_07_2026()
         // {
         //     // Setup
