@@ -6,6 +6,17 @@ namespace CodingChallenges.Challenges
     {
         public static void Run_Two()
         {
+            // FindWordWithHighestRepeatedCharacterCount
+            // Tests null/whitespace, highest repeat count, ties, no repeats, and original casing
+            Console.WriteLine(FindWordWithHighestRepeatedCharacterCount_Rev("aaa book")); // Expected: book
+            Console.WriteLine($"'{FindWordWithHighestRepeatedCharacterCount_Rev(null!)}'");              // Expected: ''
+            Console.WriteLine($"'{FindWordWithHighestRepeatedCharacterCount_Rev("   ")}'");             // Expected: ''
+            Console.WriteLine(FindWordWithHighestRepeatedCharacterCount_Rev("cat hello mississippi")); // Expected: mississippi
+            Console.WriteLine(FindWordWithHighestRepeatedCharacterCount_Rev("book moon tree")); // Expected: book
+            Console.WriteLine(FindWordWithHighestRepeatedCharacterCount_Rev("book moon")); // Expected: book
+            Console.WriteLine(FindWordWithHighestRepeatedCharacterCount_Rev("cat dog sun")); // Expected: cat
+            Console.WriteLine(FindWordWithHighestRepeatedCharacterCount_Rev("MiSSiSSiPPi book")); // Expected: MiSSiSSiPPi
+
             // CODING REVISION: FIND FIRST WORD WITH EXACTLY TWO REPEATED CHARACTERS
             Console.WriteLine($"'{FindFirstWordWithExactlyTwoRepeatedCharacters_Rev(null!)}'");          // Expected: ''
             Console.WriteLine($"'{FindFirstWordWithExactlyTwoRepeatedCharacters_Rev("   ")}'");         // Expected: ''

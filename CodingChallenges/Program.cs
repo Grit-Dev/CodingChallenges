@@ -3,59 +3,9 @@ using CodingChallenges.Challenges.Phase_02_OOP;
 
 public class Program
 {
-    public static string FindWordWithHighestRepeatedCharacterCount_Rev(string pInputValue)
-    {
-        if(string.IsNullOrWhiteSpace(pInputValue))
-        {
-            return "";
-        }   
 
-        string highestRepeatedCharacterWord = "";
-        int highestRepeatedCharacterCounter = int.MinValue;
-
-        string [] splitString = pInputValue.Split(' ', StringSplitOptions.RemoveEmptyEntries);
-
-        foreach(string word in splitString)
-        {
-            List<char> charList = [];
-            int repeatedCharacterCounter = 0;
-
-            string wordLowered = word.ToLower();
-
-            foreach(char character in wordLowered)
-            {
-                if(!charList.Contains(character))
-                {
-                    charList.Add(character);
-                }
-                else
-                {
-                    repeatedCharacterCounter++;
-                }
-            }
-
-            if(repeatedCharacterCounter > highestRepeatedCharacterCounter)
-            {
-                highestRepeatedCharacterCounter = repeatedCharacterCounter;
-                highestRepeatedCharacterWord = word;
-            }
-        }
-
-        return highestRepeatedCharacterWord;
-    }
     public static void Main(string[] args)
     {
-        // FindWordWithHighestRepeatedCharacterCount
-        // Tests null/whitespace, highest repeat count, ties, no repeats, and original casing
-        Console.WriteLine(FindWordWithHighestRepeatedCharacterCount_Rev("aaa book")); // Expected: book
-        Console.WriteLine($"'{FindWordWithHighestRepeatedCharacterCount_Rev(null!)}'");              // Expected: ''
-        Console.WriteLine($"'{FindWordWithHighestRepeatedCharacterCount_Rev("   ")}'");             // Expected: ''
-        Console.WriteLine(FindWordWithHighestRepeatedCharacterCount_Rev("cat hello mississippi")); // Expected: mississippi
-        Console.WriteLine(FindWordWithHighestRepeatedCharacterCount_Rev("book moon tree")); // Expected: book
-        Console.WriteLine(FindWordWithHighestRepeatedCharacterCount_Rev("book moon")); // Expected: book
-        Console.WriteLine(FindWordWithHighestRepeatedCharacterCount_Rev("cat dog sun")); // Expected: cat
-        Console.WriteLine(FindWordWithHighestRepeatedCharacterCount_Rev("MiSSiSSiPPi book")); // Expected: MiSSiSSiPPi
-
         // Fundamental Challenges
         // ChallengeSolutionsRunner.Run();
         // ChallengeSolutionsRunner.Run_Two();
