@@ -1,8 +1,12 @@
-﻿namespace CodingChallenges.Challenges.Phase_02_OOP.shared
+﻿using System.Transactions;
+
+namespace CodingChallenges.Challenges.Phase_02_OOP.shared
 {
     public class CardShop
     {
         public List<Card> Inventory { get; } = [];
+
+        public List<ShopTransaction> Transactions {get;} = [];
 
         public void AddCard(Card card)
         {
@@ -30,6 +34,40 @@
             }
 
             return null;
+        }
+
+        public int CountTransactionsByType(string pTransactionType)
+        {
+            if(string.IsNullOrWhiteSpace(pTransactionType))
+            {
+                return 0;
+            }
+
+            int total = 0;
+            
+
+            foreach(ShopTransaction transaction in Transactions)
+            {
+                if(transaction.TransactionType
+                .Equals(pTransactionType, StringComparison.OrdinalIgnoreCase))
+                {
+                    total++;
+                }
+            }
+
+            return total;
+        }
+
+        public int CalculateTotalTransactionValue()
+        {
+            int total = 0;
+
+            foreach(ShopTransaction transaction in Transactions)
+            {
+                total += transaction.Amount;
+            }
+
+            return total;
         }
 
         public Card? FindMostValuableCardInSystem(Player? pPlayer)
@@ -255,7 +293,17 @@
 
             Inventory.Add(cardFound);
 
-            pPlayer.AddCredits(cardFound.Price / 2);
+            int total = cardFound.Price / 2;
+
+            pPlayer.AddCredits(total);
+
+            Transactions.Add(
+                new ShopTransaction(
+                pPlayer.Name,
+                cardFound.Name,
+                "Sale",
+                total
+            ));
             
             return true;
 
@@ -282,6 +330,13 @@
             }
 
             Inventory.Remove(targetedCardInInventory);
+            
+            Transactions.Add(new ShopTransaction(
+                pPlayer.Name, 
+                targetedCardInInventory.Name, 
+                "Purchase", 
+                targetedCardInInventory.Price));
+
             return true;
         }
 
