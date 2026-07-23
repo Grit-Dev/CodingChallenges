@@ -13,9 +13,9 @@ namespace CodingChallenges.Challenges.Phase_02_OOP.shared
         public ShopTransaction()
         {
         }
-        public ShopTransaction(string pPlayName, string pCardName, string pTransactionType, int pAmount)
+        public ShopTransaction(string pPlayerName, string pCardName, string pTransactionType, int pAmount)
         {
-            PlayerName = pPlayName;
+            PlayerName = pPlayerName;
             CardName = pCardName;
             TransactionType = pTransactionType;
             Amount = pAmount;
