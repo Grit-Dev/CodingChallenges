@@ -4,6 +4,113 @@ namespace CodingChallenges.Challenges
 {
     public class ChallengeSolutions
     {
+    public static int? FindSecondLargestDistinctNumber(int[] pNumbers)
+        {
+            if(pNumbers == null)
+            {
+                return null;
+            }
+
+            List<int> newListInt = [];
+            int largestNumber;
+            int secondLargestNumber;
+
+            foreach (int value in pNumbers)
+            {
+                if (!newListInt.Contains(value))
+                {
+                    newListInt.Add(value);
+                }
+            }
+
+            if (newListInt.Count < 2)
+            {
+                return null;
+            }
+
+            if (newListInt[0] > newListInt[1])
+            {
+                largestNumber = newListInt[0];
+                secondLargestNumber = newListInt[1];
+            }
+            else
+            {
+                largestNumber = newListInt[1];
+                secondLargestNumber = newListInt[0];
+            }
+
+            for (int outterIndex = 2; outterIndex <= newListInt.Count -1; outterIndex++)
+            {
+                int value = newListInt[outterIndex];
+
+                if(value > largestNumber)
+                {
+                    secondLargestNumber = largestNumber;
+                    largestNumber = value;
+                }
+                else if(value > secondLargestNumber)
+                {
+                    secondLargestNumber = value;
+                }
+            }
+
+            return secondLargestNumber;
+        } 
+
+        public static int[] MoveZerosToEnd(int [] pNumber)
+        {
+            if(pNumber == null)
+            {
+                return [];
+            }
+
+            int counter = 0; 
+            List<int> newListInts = [];
+
+            foreach(int value in pNumber)
+            {
+                if(value != 0)
+                {
+                    newListInts.Add(value);
+                }
+                else
+                {
+                    counter++;
+                }
+            }
+
+            for(int outterIndex = 0; outterIndex <= counter -1; outterIndex++)
+            {
+                newListInts.Add(0);
+            }
+
+            return newListInts.ToArray();
+        }
+
+        public static int SumPositiveNumbersFromText(string pInputValue)
+        {
+            if(string.IsNullOrWhiteSpace(pInputValue))
+            {
+                return 0;
+            }
+            
+            int total = 0;
+            
+            string [] splitString = pInputValue.Split([' ', ','], StringSplitOptions.RemoveEmptyEntries);
+
+            foreach(string wordValue in splitString)
+            {
+                if(int.TryParse(wordValue, out int result))
+                {
+                    if(result > 0)
+                    {
+                        total += result;
+                    } 
+                }
+            }
+        
+            return total;
+        }
         public static char FindFirstWordWithRepeatedCharactersAppearingTwice(string pInputValue)
         {
             if(string.IsNullOrWhiteSpace(pInputValue))
@@ -4993,39 +5100,6 @@ namespace CodingChallenges.Challenges
             }
 
             return newList.ToArray();
-        }
-
-        public static int FindSecondLargestDistinctNumber(int[] pInputValue)
-        {
-            if (pInputValue == null || pInputValue.Length == 0)
-            {
-                return -1;
-            }
-
-            int firstLargestnumber = int.MinValue;
-            int secondLargestnumber = int.MinValue;
-
-            for (int counter = 0; counter <= pInputValue.Length - 1; counter++)
-            {
-                int value = pInputValue[counter];
-
-                if (value > firstLargestnumber)
-                {
-                    secondLargestnumber = firstLargestnumber;
-                    firstLargestnumber = value;
-                }
-                else if (value > secondLargestnumber && value != firstLargestnumber)
-                {
-                    secondLargestnumber = value;
-                }
-            }
-
-            if (secondLargestnumber == int.MinValue)
-            {
-                return -1;
-            }
-
-            return secondLargestnumber;
         }
 
         public static int FindFirstNumberGreaterThanTarget(int[] pInputValue, int pInputTarget)

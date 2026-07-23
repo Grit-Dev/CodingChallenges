@@ -6,6 +6,36 @@ namespace CodingChallenges.Challenges
     {
         public static void Run_Two()
         {
+             // PARSE AND SUM POSITIVE NUMBERS
+            Console.WriteLine(SumPositiveNumbersFromText("1,2,3"));
+            Console.WriteLine(SumPositiveNumbersFromText("10, -5, 3, hello"));
+            Console.WriteLine(SumPositiveNumbersFromText("0, -1, -2"));
+            Console.WriteLine(SumPositiveNumbersFromText("5, abc, 7"));
+            Console.WriteLine(SumPositiveNumbersFromText(" 4, 6 , test, -2, 0, 10 "));
+            Console.WriteLine(SumPositiveNumbersFromText(""));
+
+            // Find Second Largest Distinct number:
+            Console.WriteLine(FindSecondLargestDistinctNumber(null!) == null);
+            Console.WriteLine(FindSecondLargestDistinctNumber([]) == null);
+            Console.WriteLine(FindSecondLargestDistinctNumber([5]) == null);
+            Console.WriteLine(FindSecondLargestDistinctNumber([5, 5]) == null);
+            Console.WriteLine(FindSecondLargestDistinctNumber([7, 3, 7, 3]) == 3);
+            Console.WriteLine(FindSecondLargestDistinctNumber([-10, -20]) == -20);
+            Console.WriteLine(FindSecondLargestDistinctNumber([-1, -5, -3]) == -20);
+
+            // Move Zeros to End: 
+            Console.WriteLine(string.Join(", ", MoveZerosToEnd([0, 1, 0, 3, 12]))); // Expected: 1, 3, 12, 0, 0
+            Console.WriteLine(string.Join(", ", MoveZerosToEnd([1, 2, 3]))); // Expected: 1, 2, 3
+            Console.WriteLine(string.Join(", ", MoveZerosToEnd([0, 0, 1]))); // Expected: 1, 0, 0
+            Console.WriteLine(string.Join(", ", MoveZerosToEnd([0, 0, 0]))); // Expected: 0, 0, 0
+            Console.WriteLine(string.Join(", ", MoveZerosToEnd([-1, 0, -2, 0, 3]))); // Expected: -1, -2, 3, 0, 0
+            Console.WriteLine(string.Join(", ", MoveZerosToEnd([]))); // Expected:
+            Console.WriteLine(string.Join(", ", MoveZerosToEnd([5]))); // Expected: 5
+            Console.WriteLine(string.Join(", ", MoveZerosToEnd([0]))); // Expected: 0
+            Console.WriteLine(string.Join(", ", MoveZerosToEnd([4, 0, 5, 0, 6, 0]))); // Expected: 4, 5, 6, 0, 0, 0
+            Console.WriteLine(string.Join(", ", MoveZerosToEnd([0, 1, 2, 0, 3, 0, 4]))); // Expected: 1, 2, 3, 4, 0, 0, 0
+            Console.WriteLine(string.Join(", ", MoveZerosToEnd(null!))); // Expected:
+
             // NEW CODING CHALLENGE: FIND FIRST CHARACTER THAT APPEARS EXACTLY TWICE
             Console.WriteLine(FindFirstWordWithRepeatedCharactersAppearingTwice("aaa") == '\0');
             Console.WriteLine(FindFirstWordWithRepeatedCharactersAppearingTwice("banana") == 'n');
