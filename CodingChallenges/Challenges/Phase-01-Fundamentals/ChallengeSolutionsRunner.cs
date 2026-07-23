@@ -21,7 +21,7 @@ namespace CodingChallenges.Challenges
             Console.WriteLine(FindSecondLargestDistinctNumber([5, 5]) == null);
             Console.WriteLine(FindSecondLargestDistinctNumber([7, 3, 7, 3]) == 3);
             Console.WriteLine(FindSecondLargestDistinctNumber([-10, -20]) == -20);
-            Console.WriteLine(FindSecondLargestDistinctNumber([-1, -5, -3]) == -20);
+            Console.WriteLine(FindSecondLargestDistinctNumber([-1, -5, -3]) == -3);
 
             // Move Zeros to End: 
             Console.WriteLine(string.Join(", ", MoveZerosToEnd([0, 1, 0, 3, 12]))); // Expected: 1, 3, 12, 0, 0

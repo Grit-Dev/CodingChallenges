@@ -96,11 +96,14 @@ namespace CodingChallenges.Challenges
             
             int total = 0;
             
-            string [] splitString = pInputValue.Split([' ', ','], StringSplitOptions.RemoveEmptyEntries);
+            string [] splitString = pInputValue.Split([','], StringSplitOptions.RemoveEmptyEntries);
+
 
             foreach(string wordValue in splitString)
             {
-                if(int.TryParse(wordValue, out int result))
+                string trimmedPart = wordValue.Trim();
+
+                if(int.TryParse(trimmedPart, out int result))
                 {
                     if(result > 0)
                     {
