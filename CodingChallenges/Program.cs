@@ -86,9 +86,42 @@ public class Program
         return newListInts.ToArray();
     }
 
+    public static int SumPositiveNumbersFromText(string pInputValue)
+    {
+        if(string.IsNullOrWhiteSpace(pInputValue))
+        {
+            return 0;
+        }
+        
+        int total = 0;
+        
+        string [] splitString = pInputValue.Split([' ', ','], StringSplitOptions.RemoveEmptyEntries);
+
+        foreach(string wordValue in splitString)
+        {
+            if(int.TryParse(wordValue, out int result))
+            {
+                if(result > 0)
+                {
+                    total += result;
+                } 
+            }
+        }
+    
+        return total;
+    }
+
     public static void Main(string[] args)
     {
-        // 1. Find Second Largest Distinct number:
+        // PARSE AND SUM POSITIVE NUMBERS
+        Console.WriteLine(SumPositiveNumbersFromText("1,2,3"));
+        Console.WriteLine(SumPositiveNumbersFromText("10, -5, 3, hello"));
+        Console.WriteLine(SumPositiveNumbersFromText("0, -1, -2"));
+        Console.WriteLine(SumPositiveNumbersFromText("5, abc, 7"));
+        Console.WriteLine(SumPositiveNumbersFromText(" 4, 6 , test, -2, 0, 10 "));
+        Console.WriteLine(SumPositiveNumbersFromText(""));
+
+        // Find Second Largest Distinct number:
         // Console.WriteLine(FindSecondLargestDistinctNumber(null!) == null);
         // Console.WriteLine(FindSecondLargestDistinctNumber([]) == null);
         // Console.WriteLine(FindSecondLargestDistinctNumber([5]) == null);
@@ -97,45 +130,24 @@ public class Program
         // Console.WriteLine(FindSecondLargestDistinctNumber([-10, -20]) == -20);
         // Console.WriteLine(FindSecondLargestDistinctNumber([-1, -5, -3]) == -20);
 
-        // 2. Move Zeros to End: 
-        Console.WriteLine(string.Join(", ", MoveZerosToEnd([0, 1, 0, 3, 12]))); // Expected: 1, 3, 12, 0, 0
-        Console.WriteLine(string.Join(", ", MoveZerosToEnd([1, 2, 3]))); // Expected: 1, 2, 3
-        Console.WriteLine(string.Join(", ", MoveZerosToEnd([0, 0, 1]))); // Expected: 1, 0, 0
-        Console.WriteLine(string.Join(", ", MoveZerosToEnd([0, 0, 0]))); // Expected: 0, 0, 0
-        Console.WriteLine(string.Join(", ", MoveZerosToEnd([-1, 0, -2, 0, 3]))); // Expected: -1, -2, 3, 0, 0
-        Console.WriteLine(string.Join(", ", MoveZerosToEnd([]))); // Expected:
-        Console.WriteLine(string.Join(", ", MoveZerosToEnd([5]))); // Expected: 5
-        Console.WriteLine(string.Join(", ", MoveZerosToEnd([0]))); // Expected: 0
-        Console.WriteLine(string.Join(", ", MoveZerosToEnd([4, 0, 5, 0, 6, 0]))); // Expected: 4, 5, 6, 0, 0, 0
-        Console.WriteLine(string.Join(", ", MoveZerosToEnd([0, 1, 2, 0, 3, 0, 4]))); // Expected: 1, 2, 3, 4, 0, 0, 0
-        Console.WriteLine(string.Join(", ", MoveZerosToEnd(null!))); // Expected:
+        // Move Zeros to End: 
+        // Console.WriteLine(string.Join(", ", MoveZerosToEnd([0, 1, 0, 3, 12]))); // Expected: 1, 3, 12, 0, 0
+        // Console.WriteLine(string.Join(", ", MoveZerosToEnd([1, 2, 3]))); // Expected: 1, 2, 3
+        // Console.WriteLine(string.Join(", ", MoveZerosToEnd([0, 0, 1]))); // Expected: 1, 0, 0
+        // Console.WriteLine(string.Join(", ", MoveZerosToEnd([0, 0, 0]))); // Expected: 0, 0, 0
+        // Console.WriteLine(string.Join(", ", MoveZerosToEnd([-1, 0, -2, 0, 3]))); // Expected: -1, -2, 3, 0, 0
+        // Console.WriteLine(string.Join(", ", MoveZerosToEnd([]))); // Expected:
+        // Console.WriteLine(string.Join(", ", MoveZerosToEnd([5]))); // Expected: 5
+        // Console.WriteLine(string.Join(", ", MoveZerosToEnd([0]))); // Expected: 0
+        // Console.WriteLine(string.Join(", ", MoveZerosToEnd([4, 0, 5, 0, 6, 0]))); // Expected: 4, 5, 6, 0, 0, 0
+        // Console.WriteLine(string.Join(", ", MoveZerosToEnd([0, 1, 2, 0, 3, 0, 4]))); // Expected: 1, 2, 3, 4, 0, 0, 0
+        // Console.WriteLine(string.Join(", ", MoveZerosToEnd(null!))); // Expected:
 
 
         // PMG TO DO:
         //PhaseTwoChallengeRunner.CardShopSellingAndStockChallenges_Run_23_07_2026();
 
         /*
-            ============================================================
-            CODING CHALLENGE 2:
-            MOVE ZEROS TO THE END
-            ============================================================
-
-            Create this method:
-
-            public static int[] MoveZerosToEnd(int[] numbers)
-
-            Requirements:
-
-            * Return an empty array if numbers is null.
-            * Keep the original order of non-zero numbers.
-            * Move all zeros to the end.
-            * Do not use Sort.
-            * No LINQ.
-
-            Examples:
-
-
-
             ============================================================
             CODING CHALLENGE 3:
             PARSE AND SUM POSITIVE NUMBERS
