@@ -1,5 +1,4 @@
-﻿using System.Security.Cryptography.X509Certificates;
-using CodingChallenges.Challenges.Phase_02_OOP;
+﻿using CodingChallenges.Challenges.Phase_02_OOP;
 
 public class Program
 {   
@@ -7,45 +6,9 @@ public class Program
     public static void Main(string[] args)
     {
        
-        // PMG TO DO:
-        //PhaseTwoChallengeRunner.CardShopSellingAndStockChallenges_Run_23_07_2026();
+        CardShopTransactionHistoryChallenge.TransactionHistoryChallenges_Run_23_07_2026();
 
         /*
-            ============================================================
-            CODING CHALLENGE 3:
-            PARSE AND SUM POSITIVE NUMBERS
-            ============================================================
-
-            Create this method:
-
-            public static int SumPositiveNumbersFromText(string input)
-
-            Requirements:
-
-            * Return 0 if input is null, empty, or whitespace.
-            * Numbers are separated by commas.
-            * Trim spaces around each value.
-            * Ignore invalid values.
-            * Ignore zero.
-            * Ignore negative numbers.
-            * Add only positive valid integers.
-            * No LINQ.
-
-            Examples:
-
-            "1,2,3" -> 6
-
-            "10, -5, 3, hello" -> 13
-
-            "0, -1, -2" -> 0
-
-            "5, abc, 7" -> 12
-
-            "" -> 0
-
-            " 4, 6 , test, -2, 0, 10 " -> 20
-
-
             ============================================================
             LEARNING FOCUS:
             TRANSACTION HISTORY
