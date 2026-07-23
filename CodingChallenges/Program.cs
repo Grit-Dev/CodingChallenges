@@ -55,54 +55,66 @@ public class Program
 
         return secondLargestNumber;
     } 
+
+    public static int[] MoveZerosToEnd(int [] pNumber)
+    {
+        if(pNumber == null)
+        {
+            return [];
+        }
+
+        int counter = 0; 
+        List<int> newListInts = [];
+
+        foreach(int value in pNumber)
+        {
+            if(value != 0)
+            {
+                newListInts.Add(value);
+            }
+            else
+            {
+                counter++;
+            }
+        }
+
+        for(int outterIndex = 0; outterIndex <= counter -1; outterIndex++)
+        {
+            newListInts.Add(0);
+        }
+
+        return newListInts.ToArray();
+    }
+
     public static void Main(string[] args)
     {
-        Console.WriteLine(FindSecondLargestDistinctNumber(null!) == null);
-        Console.WriteLine(FindSecondLargestDistinctNumber([]) == null);
-        Console.WriteLine(FindSecondLargestDistinctNumber([5]) == null);
-        Console.WriteLine(FindSecondLargestDistinctNumber([5, 5]) == null);
-        Console.WriteLine(FindSecondLargestDistinctNumber([7, 3, 7, 3]) == 3);
-        Console.WriteLine(FindSecondLargestDistinctNumber([-10, -20]) == -20);
-        Console.WriteLine(FindSecondLargestDistinctNumber([-1, -5, -3]) == -20);
+        // 1. Find Second Largest Distinct number:
+        // Console.WriteLine(FindSecondLargestDistinctNumber(null!) == null);
+        // Console.WriteLine(FindSecondLargestDistinctNumber([]) == null);
+        // Console.WriteLine(FindSecondLargestDistinctNumber([5]) == null);
+        // Console.WriteLine(FindSecondLargestDistinctNumber([5, 5]) == null);
+        // Console.WriteLine(FindSecondLargestDistinctNumber([7, 3, 7, 3]) == 3);
+        // Console.WriteLine(FindSecondLargestDistinctNumber([-10, -20]) == -20);
+        // Console.WriteLine(FindSecondLargestDistinctNumber([-1, -5, -3]) == -20);
+
+        // 2. Move Zeros to End: 
+        Console.WriteLine(string.Join(", ", MoveZerosToEnd([0, 1, 0, 3, 12]))); // Expected: 1, 3, 12, 0, 0
+        Console.WriteLine(string.Join(", ", MoveZerosToEnd([1, 2, 3]))); // Expected: 1, 2, 3
+        Console.WriteLine(string.Join(", ", MoveZerosToEnd([0, 0, 1]))); // Expected: 1, 0, 0
+        Console.WriteLine(string.Join(", ", MoveZerosToEnd([0, 0, 0]))); // Expected: 0, 0, 0
+        Console.WriteLine(string.Join(", ", MoveZerosToEnd([-1, 0, -2, 0, 3]))); // Expected: -1, -2, 3, 0, 0
+        Console.WriteLine(string.Join(", ", MoveZerosToEnd([]))); // Expected:
+        Console.WriteLine(string.Join(", ", MoveZerosToEnd([5]))); // Expected: 5
+        Console.WriteLine(string.Join(", ", MoveZerosToEnd([0]))); // Expected: 0
+        Console.WriteLine(string.Join(", ", MoveZerosToEnd([4, 0, 5, 0, 6, 0]))); // Expected: 4, 5, 6, 0, 0, 0
+        Console.WriteLine(string.Join(", ", MoveZerosToEnd([0, 1, 2, 0, 3, 0, 4]))); // Expected: 1, 2, 3, 4, 0, 0, 0
+        Console.WriteLine(string.Join(", ", MoveZerosToEnd(null!))); // Expected:
+
 
         // PMG TO DO:
         //PhaseTwoChallengeRunner.CardShopSellingAndStockChallenges_Run_23_07_2026();
 
         /*
-            ============================================================
-            CODING CHALLENGE 1:
-            FIND SECOND LARGEST DISTINCT NUMBER
-            ============================================================
-
-            Create this method:
-
-            public static int? FindSecondLargestDistinctNumber(int[] numbers)
-
-            Requirements:
-
-            * Return null if numbers is null.
-            * Return null if numbers has fewer than 2 distinct values.
-            * Return the second largest distinct number.
-            * Do not sort the array.
-            * No LINQ.
-            * No Dictionary.
-            * No HashSet.
-
-            Examples:
-
-            [5, 1, 9, 3] -> 5
-
-            [10, 10, 8, 7] -> 8
-
-            [4, 4, 4] -> null
-
-            [-1, -5, -3] -> -3
-
-            [100, 50] -> 50
-
-            [50, 100] -> 50
-
-
             ============================================================
             CODING CHALLENGE 2:
             MOVE ZEROS TO THE END
@@ -122,17 +134,6 @@ public class Program
 
             Examples:
 
-            [0, 1, 0, 3, 12] -> [1, 3, 12, 0, 0]
-
-            [1, 2, 3] -> [1, 2, 3]
-
-            [0, 0, 1] -> [1, 0, 0]
-
-            [] -> []
-
-            [0, 0, 0] -> [0, 0, 0]
-
-            [-1, 0, -2, 0, 3] -> [-1, -2, 3, 0, 0]
 
 
             ============================================================
