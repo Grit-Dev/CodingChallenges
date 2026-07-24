@@ -1,7 +1,4 @@
-﻿using System.Security.Cryptography.X509Certificates;
-using System.Transactions;
-
-namespace CodingChallenges.Challenges.Phase_02_OOP.shared
+﻿namespace CodingChallenges.Challenges.Phase_02_OOP.shared
 {
     public class CardShop
     {
@@ -84,15 +81,13 @@ namespace CodingChallenges.Challenges.Phase_02_OOP.shared
             {
                 return null;
             }
-
-            int? highestAmount = null;
+            
             ShopTransaction? highestValueTransaction = null;
 
             foreach(ShopTransaction transaction in Transactions)
             {
-                if(transaction.Amount > highestAmount)
+                if(highestValueTransaction == null || transaction.Amount > highestValueTransaction.Amount)
                 {
-                    highestAmount = transaction.Amount;
                     highestValueTransaction = transaction;
                 }
             }
@@ -123,10 +118,10 @@ namespace CodingChallenges.Challenges.Phase_02_OOP.shared
         public string BuildTransactionSummary()
         {
             return
-                $@"Transactions:{Transactions.Count} 
-                Purchases:{CalculateTotalValueByTransactionType("Purchase")} 
-                Sales:{CalculateTotalValueByTransactionType("Sale")} 
-                Total:{CalculateTotalTransactionValue()}";
+                $"Transactions:{Transactions.Count}" +
+                $"Purchases:{CalculateTotalValueByTransactionType("Purchase")}" +
+                $"Sales:{CalculateTotalValueByTransactionType("Sale")}" + 
+                $"Total:{CalculateTotalTransactionValue()}";
         }
 
         public int CountTransactionsByType(string pTransactionType)
@@ -166,13 +161,11 @@ namespace CodingChallenges.Challenges.Phase_02_OOP.shared
         public Card? FindMostValuableCardInSystem(Player? pPlayer)
         {
             Card? mostValuableCard = null;
-            int highestPrice = 0;
 
             foreach(Card card in Inventory)
             {
-                if(card.Price > highestPrice)
+                if(mostValuableCard == null || card.Price > mostValuableCard.Price)
                 {
-                    highestPrice = card.Price;
                     mostValuableCard = card;
                 }
             }
@@ -181,9 +174,8 @@ namespace CodingChallenges.Challenges.Phase_02_OOP.shared
             {
                 foreach(Card card in pPlayer.OwnedCards)
                 {
-                    if(card.Price > highestPrice)
+                    if(mostValuableCard == null || card.Price > mostValuableCard.Price)
                     {
-                        highestPrice = card.Price;
                         mostValuableCard = card;
                     }
                 }
