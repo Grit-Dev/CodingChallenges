@@ -1,5 +1,4 @@
-﻿using System.Diagnostics.Metrics;
-using CodingChallenges.Challenges.Phase_02_OOP.shared;
+﻿using CodingChallenges.Challenges.Phase_02_OOP;
 
 public class Program
 {   
