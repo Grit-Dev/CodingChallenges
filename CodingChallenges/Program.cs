@@ -1,8 +1,45 @@
-﻿using CodingChallenges.Challenges.Phase_02_OOP.shared;
+﻿using System.Diagnostics.Metrics;
+using CodingChallenges.Challenges.Phase_02_OOP.shared;
 
 public class Program
 {   
+    public static int FindLongestIncreasingStreak(int [] pNumbers)
+    {
+        if(pNumbers == null || pNumbers.Length == 0)
+        {
+            return 0;
+        }
+        
+        int currentStreak = 1;
+        int highestStreak = 1;
 
+        for(int outterIndex = 1; outterIndex <= pNumbers.Length -1; outterIndex++)
+        {
+            int currentValue = pNumbers[outterIndex];
+
+            if(currentValue > pNumbers[outterIndex -1])
+            {
+                currentStreak++;
+            }
+            else
+            {
+                if(currentStreak > highestStreak)
+                {
+                    highestStreak = currentStreak;
+                }
+
+                currentStreak = 1;
+            }
+        }
+
+        if(currentStreak > highestStreak)
+        {
+            highestStreak = currentStreak;
+        }
+
+        return highestStreak;
+        
+    }
     public static int CountNumbersGreaterThanPrevious(int[] pNumbers)
     {
         if(pNumbers == null || pNumbers.Length < 2)
@@ -29,64 +66,24 @@ public class Program
     }
     public static void Main(string[] args)
     {
-        Console.WriteLine(CountNumbersGreaterThanPrevious(null)); // 0           
-        Console.WriteLine(CountNumbersGreaterThanPrevious([5])); // 0            
-        Console.WriteLine(CountNumbersGreaterThanPrevious([1, 2, 3, 4, 5]));// 4
-        Console.WriteLine(CountNumbersGreaterThanPrevious([1, 2, 3, 2, 5])); // 3
+        Console.WriteLine(FindLongestIncreasingStreak([1, 2, 3, 2, 3, 4, 5])); // 4
+        Console.WriteLine(FindLongestIncreasingStreak([5, 4, 3])); // 1
+        Console.WriteLine(FindLongestIncreasingStreak([1, 2, 1, 2, 3])); // 3
+        Console.WriteLine(FindLongestIncreasingStreak([7])); // 1
+
+        // COUNT NUMBERS GREATER THAN THE PREVIOUS NUMBER
+        // Console.WriteLine(CountNumbersGreaterThanPrevious(null!)); // 0           
+        // Console.WriteLine(CountNumbersGreaterThanPrevious([5])); // 0            
+        // Console.WriteLine(CountNumbersGreaterThanPrevious([1, 2, 3, 4, 5]));// 4
+        // Console.WriteLine(CountNumbersGreaterThanPrevious([1, 2, 3, 2, 5])); // 3
+
+
         CardShopTransactionReportsChallenges.Run();
        // CardShopTransactionHistoryChallenges.TransactionHistoryChallenges_Run_23_07_2026();
 
     }
 
     /*
-        ============================================================
-        NEXT CHALLENGES
-        PHASE 2: OOP / CLASSES / OBJECTS
-        CARDSHOP TRANSACTION REPORTS
-        ============================================================
-
-        TODAY'S STRUCTURE:
-
-        REQUIRED:
-        3 coding challenges
-        4 OOP challenges
-
-        OPTIONAL:
-        1 OOP stretch
-
-
-        ============================================================
-        CODING CHALLENGE 1:
-        COUNT NUMBERS GREATER THAN THE PREVIOUS NUMBER
-        ============================================================
-
-        Create this method:
-
-        public static int CountNumbersGreaterThanPrevious(int[] numbers)
-
-        Requirements:
-
-        * Return 0 if numbers is null.
-        * Return 0 if numbers has fewer than 2 items.
-        * Count how many numbers are greater than the number directly before them.
-        * No LINQ.
-
-        Examples:
-
-        [1, 2, 3, 2, 5] -> 3
-        Explanation:
-        2 > 1
-        3 > 2
-        2 is not > 3
-        5 > 2
-
-        [5, 4, 3] -> 0
-
-        [1, 1, 2] -> 1
-
-        [] -> 0
-
-
         ============================================================
         CODING CHALLENGE 2:
         FIND LONGEST INCREASING STREAK
