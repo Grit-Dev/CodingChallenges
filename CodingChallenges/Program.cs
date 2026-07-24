@@ -3,10 +3,37 @@
 public class Program
 {   
 
+    public static int CountNumbersGreaterThanPrevious(int[] pNumbers)
+    {
+        if(pNumbers == null || pNumbers.Length < 2)
+        {
+            return 0;
+        }
+
+        int counter = 0;
+        int previousValue = pNumbers[0];
+
+        for(int outterIndex = 1; outterIndex <= pNumbers.Length -1; outterIndex++)
+        {
+            int currentValue = pNumbers[outterIndex];
+
+            if( previousValue < currentValue)
+            {
+                counter++;
+            }
+
+            previousValue = currentValue;
+        }
+
+        return counter;
+    }
     public static void Main(string[] args)
     {
-       
-       CardShopTransactionReportsChallenges.Run();
+        Console.WriteLine(CountNumbersGreaterThanPrevious(null)); // 0           
+        Console.WriteLine(CountNumbersGreaterThanPrevious([5])); // 0            
+        Console.WriteLine(CountNumbersGreaterThanPrevious([1, 2, 3, 4, 5]));// 4
+        Console.WriteLine(CountNumbersGreaterThanPrevious([1, 2, 3, 2, 5])); // 3
+        CardShopTransactionReportsChallenges.Run();
        // CardShopTransactionHistoryChallenges.TransactionHistoryChallenges_Run_23_07_2026();
 
     }
