@@ -4,7 +4,95 @@ namespace CodingChallenges.Challenges
 {
     public class ChallengeSolutions
     {
-    public static int? FindSecondLargestDistinctNumber(int[] pNumbers)
+        public static int? FindHighestValidScoreFromCsv(string pInput)
+        {
+            if(string.IsNullOrWhiteSpace(pInput))
+            {
+                return null;
+            }
+
+            int? highestScore = null;
+            string [] splitString = pInput.Split([','], StringSplitOptions.RemoveEmptyEntries);
+
+            foreach(string text in splitString)
+            {
+                if(int.TryParse(text.Trim(), out int result))
+                {
+                    if(result >= 0 && result <= 100)
+                    {
+                        if(highestScore == null || result > highestScore)
+                        {
+                            highestScore = result;
+                        }
+                    }
+                }
+            }
+
+            return highestScore;
+
+        }
+        public static int FindLongestIncreasingStreak(int [] pNumbers)
+        {
+            if(pNumbers == null || pNumbers.Length == 0)
+            {
+                return 0;
+            }
+            
+            int currentStreak = 1;
+            int highestStreak = 1;
+
+            for(int outterIndex = 1; outterIndex <= pNumbers.Length -1; outterIndex++)
+            {
+                int currentValue = pNumbers[outterIndex];
+
+                if(currentValue > pNumbers[outterIndex -1])
+                {
+                    currentStreak++;
+                }
+                else
+                {
+                    if(currentStreak > highestStreak)
+                    {
+                        highestStreak = currentStreak;
+                    }
+
+                    currentStreak = 1;
+                }
+            }
+
+            if(currentStreak > highestStreak)
+            {
+                highestStreak = currentStreak;
+            }
+
+            return highestStreak;
+            
+        }
+        public static int CountNumbersGreaterThanPrevious(int[] pNumbers)
+        {
+            if(pNumbers == null || pNumbers.Length < 2)
+            {
+                return 0;
+            }
+
+            int counter = 0;
+            int previousValue = pNumbers[0];
+
+            for(int outterIndex = 1; outterIndex <= pNumbers.Length -1; outterIndex++)
+            {
+                int currentValue = pNumbers[outterIndex];
+
+                if( previousValue < currentValue)
+                {
+                    counter++;
+                }
+
+                previousValue = currentValue;
+            }
+
+            return counter;
+        }  
+        public static int? FindSecondLargestDistinctNumber(int[] pNumbers)
         {
             if(pNumbers == null)
             {

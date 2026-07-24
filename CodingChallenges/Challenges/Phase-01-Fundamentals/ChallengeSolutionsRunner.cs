@@ -6,7 +6,26 @@ namespace CodingChallenges.Challenges
     {
         public static void Run_Two()
         {
-             // PARSE AND SUM POSITIVE NUMBERS
+            // FIND HIGHEST VALID SCORE FROM CSV TEXT
+            Console.WriteLine(FindHighestValidScoreFromCsv("10, 50, 90"));
+            Console.WriteLine(FindHighestValidScoreFromCsv("101, -5, hello, 80"));
+            Console.WriteLine(FindHighestValidScoreFromCsv("abc, -1, 200"));
+            Console.WriteLine(FindHighestValidScoreFromCsv("60, 60, 59"));
+            Console.WriteLine(FindHighestValidScoreFromCsv(null!));
+
+            // FIND LONGEST INCREASING STREAK
+            Console.WriteLine(FindLongestIncreasingStreak([1, 2, 3, 2, 3, 4, 5])); // 4
+            Console.WriteLine(FindLongestIncreasingStreak([5, 4, 3])); // 1
+            Console.WriteLine(FindLongestIncreasingStreak([1, 2, 1, 2, 3])); // 3
+            Console.WriteLine(FindLongestIncreasingStreak([7])); // 1
+
+            // COUNT NUMBERS GREATER THAN THE PREVIOUS NUMBER
+            Console.WriteLine(CountNumbersGreaterThanPrevious(null!)); // 0           
+            Console.WriteLine(CountNumbersGreaterThanPrevious([5])); // 0            
+            Console.WriteLine(CountNumbersGreaterThanPrevious([1, 2, 3, 4, 5]));// 4
+            Console.WriteLine(CountNumbersGreaterThanPrevious([1, 2, 3, 2, 5])); // 3
+             
+            // PARSE AND SUM POSITIVE NUMBERS
             Console.WriteLine(SumPositiveNumbersFromText("1,2,3"));
             Console.WriteLine(SumPositiveNumbersFromText("10, -5, 3, hello"));
             Console.WriteLine(SumPositiveNumbersFromText("0, -1, -2"));

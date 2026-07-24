@@ -2,7 +2,7 @@ using CodingChallenges.Challenges.Phase_02_OOP.shared;
 
 namespace CodingChallenges.Challenges.Phase_02_OOP
 {
-    public class CardShopTransactionHistoryChallenge
+    public class CardShopTransactionHistoryChallenges
     {
         public static void TransactionHistoryChallenges_Run_23_07_2026()
         {
