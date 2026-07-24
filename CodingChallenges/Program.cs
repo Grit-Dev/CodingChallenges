@@ -3,6 +3,10 @@ using CodingChallenges.Challenges.Phase_02_OOP.shared;
 
 public class Program
 {   
+    public static int FindHighestValidScoreFromCsv(string input)
+    {
+        return 0;
+    }
     public static int FindLongestIncreasingStreak(int [] pNumbers)
     {
         if(pNumbers == null || pNumbers.Length == 0)
@@ -66,10 +70,18 @@ public class Program
     }
     public static void Main(string[] args)
     {
-        Console.WriteLine(FindLongestIncreasingStreak([1, 2, 3, 2, 3, 4, 5])); // 4
-        Console.WriteLine(FindLongestIncreasingStreak([5, 4, 3])); // 1
-        Console.WriteLine(FindLongestIncreasingStreak([1, 2, 1, 2, 3])); // 3
-        Console.WriteLine(FindLongestIncreasingStreak([7])); // 1
+        // FIND HIGHEST VALID SCORE FROM CSV TEXT
+        Console.WriteLine(FindHighestValidScoreFromCsv("10, 50, 90"));
+        Console.WriteLine(FindHighestValidScoreFromCsv("101, -5, hello, 80"));
+        Console.WriteLine(FindHighestValidScoreFromCsv("abc, -1, 200"));
+        Console.WriteLine(FindHighestValidScoreFromCsv("60, 60, 59"));
+        Console.WriteLine(FindHighestValidScoreFromCsv(null!));
+        
+        // FIND LONGEST INCREASING STREAK
+        // Console.WriteLine(FindLongestIncreasingStreak([1, 2, 3, 2, 3, 4, 5])); // 4
+        // Console.WriteLine(FindLongestIncreasingStreak([5, 4, 3])); // 1
+        // Console.WriteLine(FindLongestIncreasingStreak([1, 2, 1, 2, 3])); // 3
+        // Console.WriteLine(FindLongestIncreasingStreak([7])); // 1
 
         // COUNT NUMBERS GREATER THAN THE PREVIOUS NUMBER
         // Console.WriteLine(CountNumbersGreaterThanPrevious(null!)); // 0           
@@ -84,37 +96,6 @@ public class Program
     }
 
     /*
-        ============================================================
-        CODING CHALLENGE 2:
-        FIND LONGEST INCREASING STREAK
-        ============================================================
-
-        Create this method:
-
-        public static int FindLongestIncreasingStreak(int[] numbers)
-
-        Requirements:
-
-        * Return 0 if numbers is null.
-        * Return 0 if numbers is empty.
-        * A streak increases when each number is greater than the one before it.
-        * Return the length of the longest increasing streak.
-        * No LINQ.
-
-        Examples:
-
-        [1, 2, 3, 2, 3, 4, 5] -> 4
-        Explanation:
-        1,2,3 has length 3
-        2,3,4,5 has length 4
-
-        [5, 4, 3] -> 1
-
-        [1, 2, 1, 2, 3] -> 3
-
-        [7] -> 1
-
-
         ============================================================
         CODING CHALLENGE 3:
         FIND HIGHEST VALID SCORE FROM CSV TEXT
