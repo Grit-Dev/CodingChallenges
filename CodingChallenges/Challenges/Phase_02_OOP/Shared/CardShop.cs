@@ -1,4 +1,5 @@
-﻿using System.Transactions;
+﻿using System.Security.Cryptography.X509Certificates;
+using System.Transactions;
 
 namespace CodingChallenges.Challenges.Phase_02_OOP.shared
 {
@@ -34,6 +35,98 @@ namespace CodingChallenges.Challenges.Phase_02_OOP.shared
             }
 
             return null;
+        }
+
+        public List<ShopTransaction> GetTransactionsByPlayerName(string pPlayerName)
+        {
+            if(string.IsNullOrWhiteSpace(pPlayerName))
+            {
+                return [];
+            }
+
+            List<ShopTransaction> listOfShopTransactions = [];
+
+            foreach(ShopTransaction transaction in Transactions)
+            {
+                if(transaction.PlayerName
+                .Equals(pPlayerName, StringComparison.CurrentCultureIgnoreCase))
+                {
+                    listOfShopTransactions.Add(transaction);
+                }
+            }
+
+            return listOfShopTransactions;
+        }
+
+        public List<ShopTransaction> GetTransactionsByType(string pTransactionType)
+        {
+            if(string.IsNullOrWhiteSpace(pTransactionType))
+            {
+                return [];
+            }
+
+            List<ShopTransaction> listOfTransaction = [];
+
+            foreach(ShopTransaction transaction in Transactions)
+            {
+                if(transaction.TransactionType.Equals(pTransactionType, StringComparison.OrdinalIgnoreCase))
+                {
+                    listOfTransaction.Add(transaction);
+                }
+            }
+
+            return listOfTransaction;
+        }
+
+        public ShopTransaction? FindHighestValueTransaction()
+        {
+            if(Transactions.Count == 0)
+            {
+                return null;
+            }
+
+            int? highestAmount = null;
+            ShopTransaction? highestValueTransaction = null;
+
+            foreach(ShopTransaction transaction in Transactions)
+            {
+                if(transaction.Amount > highestAmount)
+                {
+                    highestAmount = transaction.Amount;
+                    highestValueTransaction = transaction;
+                }
+            }
+
+            return highestValueTransaction;
+        }
+
+        public int CalculateTotalValueByTransactionType(string pTransactionType)
+        {
+            if(string.IsNullOrWhiteSpace(pTransactionType))
+            {
+                return 0;
+            }
+
+            int total = 0;
+
+            foreach(ShopTransaction transaction in Transactions)
+            {
+                if(transaction.TransactionType.Equals(pTransactionType, StringComparison.OrdinalIgnoreCase))
+                {
+                    total += transaction.Amount;
+                }
+            }
+
+            return total;
+        }
+
+        public string BuildTransactionSummary()
+        {
+            return
+                $@"Transactions:{Transactions.Count} 
+                Purchases:{CalculateTotalValueByTransactionType("Purchase")} 
+                Sales:{CalculateTotalValueByTransactionType("Sale")} 
+                Total:{CalculateTotalTransactionValue()}";
         }
 
         public int CountTransactionsByType(string pTransactionType)
