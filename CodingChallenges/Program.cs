@@ -3,9 +3,32 @@ using CodingChallenges.Challenges.Phase_02_OOP.shared;
 
 public class Program
 {   
-    public static int FindHighestValidScoreFromCsv(string input)
+    public static int? FindHighestValidScoreFromCsv(string pInput)
     {
-        return 0;
+        if(string.IsNullOrWhiteSpace(pInput))
+        {
+            return null;
+        }
+
+        int? highestScore = null;
+        string [] splitString = pInput.Split([','], StringSplitOptions.RemoveEmptyEntries);
+
+        foreach(string text in splitString)
+        {
+            if(int.TryParse(text.Trim(), out int result))
+            {
+                if(result >= 0 && result <= 100)
+                {
+                    if(highestScore == null || result > highestScore)
+                    {
+                        highestScore = result;
+                    }
+                }
+            }
+        }
+
+        return highestScore;
+
     }
     public static int FindLongestIncreasingStreak(int [] pNumbers)
     {
@@ -76,7 +99,7 @@ public class Program
         Console.WriteLine(FindHighestValidScoreFromCsv("abc, -1, 200"));
         Console.WriteLine(FindHighestValidScoreFromCsv("60, 60, 59"));
         Console.WriteLine(FindHighestValidScoreFromCsv(null!));
-        
+
         // FIND LONGEST INCREASING STREAK
         // Console.WriteLine(FindLongestIncreasingStreak([1, 2, 3, 2, 3, 4, 5])); // 4
         // Console.WriteLine(FindLongestIncreasingStreak([5, 4, 3])); // 1
