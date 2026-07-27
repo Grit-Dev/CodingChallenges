@@ -136,10 +136,10 @@ namespace CodingChallenges.Challenges.Phase_02_OOP
 
             CardShop summaryShop = new();
 
-            Console.WriteLine(summaryShop.BuildResultSummary(null!) == "");
+            Console.WriteLine(CardShop.BuildResultSummary(null!) == "");
 
             CardShopResult summaryResult = new(true, "Purchase successful", "Johnny Silverhand", 400);
-            Console.WriteLine(summaryShop.BuildResultSummary(summaryResult) == "Success:True Message:Purchase successful Card:Johnny Silverhand Amount:400");
+            Console.WriteLine(CardShop.BuildResultSummary(summaryResult) == "Success:True Message:Purchase successful Card:Johnny Silverhand Amount:400");
         }
     }
 }

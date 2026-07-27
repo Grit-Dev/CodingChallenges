@@ -16,7 +16,7 @@
             Inventory.Add(card);
         }
 
-        public string BuildResultSummary(CardShopResult result)
+        public static string BuildResultSummary(CardShopResult result)
         {
             if(result == null)
             {

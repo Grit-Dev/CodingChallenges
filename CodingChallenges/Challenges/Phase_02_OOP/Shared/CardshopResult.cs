@@ -6,7 +6,7 @@ namespace CodingChallenges.Challenges.Phase_02_OOP.shared
 
         public string Message {get; set;} = string.Empty;
 
-        public string? CardName {get;set;} = string.Empty;
+        public string CardName {get;set;} = string.Empty;
 
         public int Amount {get; set;}
 
@@ -14,7 +14,7 @@ namespace CodingChallenges.Challenges.Phase_02_OOP.shared
         {     
         }
 
-        public CardShopResult(bool success, string message, string? cardName, int amount)
+        public CardShopResult(bool success, string message, string cardName, int amount)
         {
             Success = success;
             Message = message;
