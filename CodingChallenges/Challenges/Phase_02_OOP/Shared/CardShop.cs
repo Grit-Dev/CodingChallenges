@@ -16,6 +16,141 @@
             Inventory.Add(card);
         }
 
+        public string BuildResultSummary(CardShopResult result)
+        {
+            if(result == null)
+            {
+                return "";
+            }
+
+            return $"Success:{result.Success} Message:{result.Message} Card:{result.CardName} Amount:{result.Amount}";
+        }
+
+        public ShopTransaction? GetLastTransaction()
+        {
+            if(Transactions.Count == 0)
+            {
+                return null;
+            }    
+
+            return Transactions[^1];
+        }
+
+        public CardShopResult BuyCardFromPlayerWithResult(Player player,string cardName)
+        {
+            if(player == null)
+            {
+                return new CardShopResult(
+                    false,
+                    "Player is required",
+                    "",
+                    0);
+            }
+
+            if(string.IsNullOrWhiteSpace(cardName))
+            {
+                return new CardShopResult(
+                    false,
+                    "Card name is required",
+                    "",
+                    0);
+            }
+
+            Card? cardFound = player.RemoveCardByName(cardName);
+
+            if(cardFound == null)
+            {
+                return new CardShopResult(
+                    false,
+                    "Player does not own card",
+                    cardName,
+                    0);
+            }
+
+            player.AddCard(cardFound);
+
+            int amount = cardFound.Price / 2;
+
+            bool isSuccessful =
+                BuyCardFromPlayer(
+                    player,
+                    cardName);
+
+            if(!isSuccessful)
+            {
+                return new CardShopResult(
+                    false,
+                    "Error",
+                    "",
+                    0);
+            }
+
+            return new CardShopResult(
+                true,
+                "Sale successful",
+                cardFound.Name,
+                amount);
+        }
+
+
+        public CardShopResult BuyCardWithResult(Player player, string cardName)
+        {
+            if(player == null)
+            {
+                return new CardShopResult(
+                    false,
+                    "Player is required",
+                    "",
+                    0);
+            }
+
+            if(string.IsNullOrWhiteSpace(cardName))
+            {
+                return new CardShopResult(
+                    false,
+                    "Card name is required",
+                    "",
+                    0);
+            }
+
+            Card? cardFound = FindCardByName(cardName);
+
+            if(cardFound == null)
+            {
+                return new CardShopResult(
+                    false,
+                    "Card not found",
+                    cardName,
+                    0);
+            }
+
+            if(player.Credits < cardFound.Price)
+            {
+                return new CardShopResult(
+                    false,
+                    "Insufficient credits",
+                    cardFound.Name,
+                    cardFound.Price);
+            }
+
+            bool success = BuyCard(player, cardName);
+
+            if(!success)
+            {
+                return new CardShopResult(
+                    false,
+                    "Error",
+                    "",
+                    0);
+            }
+
+            return new CardShopResult(
+                true,
+                "Purchase successful",
+                cardFound.Name,
+                cardFound.Price);
+        }    
+
         private Card? FindCardByName(string pCardName)
         {
             if(string.IsNullOrWhiteSpace(pCardName))
