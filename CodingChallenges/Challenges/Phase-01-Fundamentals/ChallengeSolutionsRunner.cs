@@ -6,6 +6,20 @@ namespace CodingChallenges.Challenges
     {
         public static void Run_Two()
         {
+            // PARSE VALID SCORES INTO ARRAY
+            Console.WriteLine($"[{string.Join(", ", ParseValidScoresFromCsV("10, 50, 90"))}] Expected: [10, 50, 90]");
+            Console.WriteLine($"[{string.Join(", ", ParseValidScoresFromCsV("101, -5, hello, 80"))}] Expected: [80]");
+            Console.WriteLine($"[{string.Join(", ", ParseValidScoresFromCsV("abc, -1, 200"))}] Expected: []");
+            Console.WriteLine($"[{string.Join(", ", ParseValidScoresFromCsV("60, 60, 59"))}] Expected: [60, 60, 59]");
+            Console.WriteLine($"[{string.Join(", ", ParseValidScoresFromCsV(""))}] Expected: []");
+            Console.WriteLine($"[{string.Join(", ", ParseValidScoresFromCsV("0"))}] Expected: [0]");
+            Console.WriteLine($"[{string.Join(", ", ParseValidScoresFromCsV("100"))}] Expected: [100]");
+            Console.WriteLine($"[{string.Join(", ", ParseValidScoresFromCsV("-1, 0, 1, 99, 100, 101"))}] Expected: [0, 1, 99, 100]");
+            Console.WriteLine($"[{string.Join(", ", ParseValidScoresFromCsV(" 10 , 20 , 30 "))}] Expected: [10, 20, 30]");
+            Console.WriteLine($"[{string.Join(", ", ParseValidScoresFromCsV("10,,20,,,30"))}] Expected: [10, 20, 30]");
+            Console.WriteLine($"[{string.Join(", ", ParseValidScoresFromCsV("50,hello,75,test,100"))}] Expected: [50, 75, 100]");
+            Console.WriteLine($"[{string.Join(", ", ParseValidScoresFromCsV("0,0,0,100,100"))}] Expected: [0, 0, 0, 100, 100]");
+
             //FIND CLOSEST NUMBER TO ZERO
             Console.WriteLine(FindClosestNumberToZero([-4, -2, 1, 3])); // 1
             Console.WriteLine(FindClosestNumberToZero([-10, -5, 5, 20])); // 5

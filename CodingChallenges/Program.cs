@@ -1,86 +1,12 @@
 ﻿public class Program
 {   
 
-    public static int[] ParseValidScoresFromCsV(string input)
-    {
-        if(string.IsNullOrWhiteSpace(input))
-        {
-            return [];
-        }
-
-        string [] splitString = input.Split([','], StringSplitOptions.RemoveEmptyEntries);
-        List<int> validListOfScores = [];
-
-        foreach(string text in splitString)
-        {
-            if(int.TryParse(text.Trim(), out int result))
-            {
-                if(result >= 0 && result <= 100)
-                {
-                    validListOfScores.Add(result);
-                }
-            }
-        }
-
-        return validListOfScores.ToArray();
-    }
     public static void Main(string[] args)
     {
-        // PARSE VALID SCORES INTO ARRAY
-        Console.WriteLine($"[{string.Join(", ", ParseValidScoresFromCsV("10, 50, 90"))}] Expected: [10, 50, 90]");
-        Console.WriteLine($"[{string.Join(", ", ParseValidScoresFromCsV("101, -5, hello, 80"))}] Expected: [80]");
-        Console.WriteLine($"[{string.Join(", ", ParseValidScoresFromCsV("abc, -1, 200"))}] Expected: []");
-        Console.WriteLine($"[{string.Join(", ", ParseValidScoresFromCsV("60, 60, 59"))}] Expected: [60, 60, 59]");
-        Console.WriteLine($"[{string.Join(", ", ParseValidScoresFromCsV(""))}] Expected: []");
-        Console.WriteLine($"[{string.Join(", ", ParseValidScoresFromCsV("0"))}] Expected: [0]");
-        Console.WriteLine($"[{string.Join(", ", ParseValidScoresFromCsV("100"))}] Expected: [100]");
-        Console.WriteLine($"[{string.Join(", ", ParseValidScoresFromCsV("-1, 0, 1, 99, 100, 101"))}] Expected: [0, 1, 99, 100]");
-        Console.WriteLine($"[{string.Join(", ", ParseValidScoresFromCsV(" 10 , 20 , 30 "))}] Expected: [10, 20, 30]");
-        Console.WriteLine($"[{string.Join(", ", ParseValidScoresFromCsV("10,,20,,,30"))}] Expected: [10, 20, 30]");
-        Console.WriteLine($"[{string.Join(", ", ParseValidScoresFromCsV("50,hello,75,test,100"))}] Expected: [50, 75, 100]");
-        Console.WriteLine($"[{string.Join(", ", ParseValidScoresFromCsV("0,0,0,100,100"))}] Expected: [0, 0, 0, 100, 100]");
-
-
         // CardShopTransactionReportsChallenges.Run();
         // CardShopTransactionHistoryChallenges.TransactionHistoryChallenges_Run_23_07_2026();
 
         /*
-            ============================================================
-            CODING CHALLENGE 3:
-            PARSE VALID SCORES INTO ARRAY
-            ============================================================
-
-            Create this method:
-
-            public static int[] ParseValidScoresFromCsv(string input)
-
-            Requirements:
-
-            * Return an empty array if input is null, empty, or whitespace.
-            * Values are separated by commas.
-            * Trim spaces around each value.
-            * Use int.TryParse.
-            * Only scores from 0 to 100 are valid.
-            * Ignore invalid values.
-            * Ignore numbers below 0.
-            * Ignore numbers above 100.
-            * Preserve the order of valid scores.
-            * Use List<int> internally if needed.
-            * No LINQ.
-
-            Examples:
-
-            "10, 50, 90" -> [10, 50, 90]
-
-            "101, -5, hello, 80" -> [80]
-
-            "abc, -1, 200" -> []
-
-            "60, 60, 59" -> [60, 60, 59]
-
-            "" -> []
-
-
             ============================================================
             LEARNING FOCUS:
             OPERATION RESULT OBJECTS

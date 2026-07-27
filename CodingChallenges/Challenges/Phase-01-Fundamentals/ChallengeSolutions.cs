@@ -4,6 +4,30 @@ namespace CodingChallenges.Challenges
 {
     public class ChallengeSolutions
     {
+            public static int[] ParseValidScoresFromCsV(string input)
+    {
+        if(string.IsNullOrWhiteSpace(input))
+        {
+            return [];
+        }
+
+        string [] splitString = input.Split([','], StringSplitOptions.RemoveEmptyEntries);
+        List<int> validListOfScores = [];
+
+        foreach(string text in splitString)
+        {
+            if(int.TryParse(text.Trim(), out int result))
+            {
+                if(result >= 0 && result <= 100)
+                {
+                    validListOfScores.Add(result);
+                }
+            }
+        }
+
+        return validListOfScores.ToArray();
+    }
+    
         public static int CountPeaks(int[] numbers)
         {
             if( numbers == null || numbers.Length < 3)
@@ -12,7 +36,6 @@ namespace CodingChallenges.Challenges
             }
 
             
-
             int previousPosition = numbers[0];
             int counter = 0;
 
