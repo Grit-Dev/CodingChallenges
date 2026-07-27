@@ -4,6 +4,62 @@ namespace CodingChallenges.Challenges
 {
     public class ChallengeSolutions
     {
+        public static int CountPeaks(int[] numbers)
+        {
+            if( numbers == null || numbers.Length < 3)
+            {
+                return 0;
+            }
+
+            
+
+            int previousPosition = numbers[0];
+            int counter = 0;
+
+            for(int outterIndex = 2; outterIndex <= numbers.Length -1; outterIndex++)
+            {
+                int currentPosition = numbers[outterIndex -1];
+                int futurePosition = numbers[outterIndex];
+
+                if(currentPosition > previousPosition && currentPosition > futurePosition)
+                {
+                    counter++;
+                }
+
+                previousPosition = currentPosition;
+
+
+            }
+
+            return counter;
+        }
+
+        public static int? FindClosestNumberToZero(int[] numbers)
+        {
+            if(numbers == null || numbers.Length == 0)
+            {
+                return null;
+            }
+
+            int closest = numbers[0];
+
+            foreach(int value in numbers)
+            {
+                int currentDistance = Math.Abs(value);
+                int closestDistance = Math.Abs(closest);
+
+                if(currentDistance < closestDistance)
+                {
+                    closest = value;
+                }
+                else if(currentDistance == closestDistance && value > closest)
+                {
+                    closest = value;
+                }
+            }
+
+            return closest;
+        }
         public static int? FindHighestValidScoreFromCsv(string pInput)
         {
             if(string.IsNullOrWhiteSpace(pInput))
