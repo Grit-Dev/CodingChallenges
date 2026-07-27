@@ -1,118 +1,50 @@
-﻿using System.Net.Security;
-using CodingChallenges.Challenges.Phase_02_OOP;
-
-public class Program
+﻿public class Program
 {   
-    public static int CountPeaks(int[] numbers)
+
+    public static int[] ParseValidScoresFromCsV(string input)
     {
-        if( numbers == null || numbers.Length < 3)
+        if(string.IsNullOrWhiteSpace(input))
         {
-            return 0;
+            return [];
         }
 
-        
+        string [] splitString = input.Split([','], StringSplitOptions.RemoveEmptyEntries);
+        List<int> validListOfScores = [];
 
-        int previousPosition = numbers[0];
-        int counter = 0;
-
-        for(int outterIndex = 2; outterIndex <= numbers.Length -1; outterIndex++)
+        foreach(string text in splitString)
         {
-            int currentPosition = numbers[outterIndex -1];
-            int futurePosition = numbers[outterIndex];
-
-            if(currentPosition > previousPosition && currentPosition > futurePosition)
+            if(int.TryParse(text.Trim(), out int result))
             {
-                counter++;
-            }
-
-            previousPosition = currentPosition;
-
-
-        }
-
-        return counter;
-    }
-
-    public static int? FindClosestNumberToZero(int[] numbers)
-    {
-        if(numbers == null || numbers.Length == 0)
-        {
-            return null;
-        }
-
-        int closest = numbers[0];
-
-        foreach(int value in numbers)
-        {
-            int currentDistance = Math.Abs(value);
-            int closestDistance = Math.Abs(closest);
-
-            if(currentDistance < closestDistance)
-            {
-                closest = value;
-            }
-            else if(currentDistance == closestDistance && value > closest)
-            {
-                closest = value;
+                if(result >= 0 && result <= 100)
+                {
+                    validListOfScores.Add(result);
+                }
             }
         }
 
-        return closest;
+        return validListOfScores.ToArray();
     }
     public static void Main(string[] args)
     {
-        //FIND CLOSEST NUMBER TO ZERO
-        Console.WriteLine(FindClosestNumberToZero([-4, -2, 1, 3])); // 1
-        Console.WriteLine(FindClosestNumberToZero([-10, -5, 5, 20])); // 5
-        Console.WriteLine(FindClosestNumberToZero([-7, -3, -2])); // 2
-        Console.WriteLine(FindClosestNumberToZero([-8])); // 8
-        Console.WriteLine(FindClosestNumberToZero([])); // null
+        // PARSE VALID SCORES INTO ARRAY
+        Console.WriteLine($"[{string.Join(", ", ParseValidScoresFromCsV("10, 50, 90"))}] Expected: [10, 50, 90]");
+        Console.WriteLine($"[{string.Join(", ", ParseValidScoresFromCsV("101, -5, hello, 80"))}] Expected: [80]");
+        Console.WriteLine($"[{string.Join(", ", ParseValidScoresFromCsV("abc, -1, 200"))}] Expected: []");
+        Console.WriteLine($"[{string.Join(", ", ParseValidScoresFromCsV("60, 60, 59"))}] Expected: [60, 60, 59]");
+        Console.WriteLine($"[{string.Join(", ", ParseValidScoresFromCsV(""))}] Expected: []");
+        Console.WriteLine($"[{string.Join(", ", ParseValidScoresFromCsV("0"))}] Expected: [0]");
+        Console.WriteLine($"[{string.Join(", ", ParseValidScoresFromCsV("100"))}] Expected: [100]");
+        Console.WriteLine($"[{string.Join(", ", ParseValidScoresFromCsV("-1, 0, 1, 99, 100, 101"))}] Expected: [0, 1, 99, 100]");
+        Console.WriteLine($"[{string.Join(", ", ParseValidScoresFromCsV(" 10 , 20 , 30 "))}] Expected: [10, 20, 30]");
+        Console.WriteLine($"[{string.Join(", ", ParseValidScoresFromCsV("10,,20,,,30"))}] Expected: [10, 20, 30]");
+        Console.WriteLine($"[{string.Join(", ", ParseValidScoresFromCsV("50,hello,75,test,100"))}] Expected: [50, 75, 100]");
+        Console.WriteLine($"[{string.Join(", ", ParseValidScoresFromCsV("0,0,0,100,100"))}] Expected: [0, 0, 0, 100, 100]");
 
-
-        // COUNT PEAKS IN ARRAY
-        // Console.WriteLine(CountPeaks([1, 3, 2, 4, 1]));
-        // Console.WriteLine(CountPeaks([1, 3, 2]));
-        // Console.WriteLine(CountPeaks([5, 4, 3, 2, 1]));
-        // Console.WriteLine(CountPeaks([1, 2, 3, 4]));
-        // Console.WriteLine(CountPeaks(null!));
-        // Console.WriteLine(CountPeaks([1, 2, 3, 4]));
-        // Console.WriteLine(CountPeaks([1,2]));
 
         // CardShopTransactionReportsChallenges.Run();
         // CardShopTransactionHistoryChallenges.TransactionHistoryChallenges_Run_23_07_2026();
 
         /*
-
-            ============================================================
-            CODING CHALLENGE 2:
-            FIND CLOSEST NUMBER TO ZERO
-            ============================================================
-
-            Create this method:
-
-            public static int? FindClosestNumberToZero(int[] numbers)
-
-            Requirements:
-
-            * Return null if numbers is null.
-            * Return null if numbers is empty.
-            * Return the number closest to zero.
-            * If two numbers are equally close, return the positive one.
-            * No LINQ.
-
-            Examples:
-
-            [-4, -2, 1, 3] -> 1
-
-            [-10, -5, 5, 20] -> 5
-
-            [-7, -3, -2] -> -2
-
-            [8] -> 8
-
-            [] -> null
-
-
             ============================================================
             CODING CHALLENGE 3:
             PARSE VALID SCORES INTO ARRAY

@@ -6,6 +6,22 @@ namespace CodingChallenges.Challenges
     {
         public static void Run_Two()
         {
+            //FIND CLOSEST NUMBER TO ZERO
+            Console.WriteLine(FindClosestNumberToZero([-4, -2, 1, 3])); // 1
+            Console.WriteLine(FindClosestNumberToZero([-10, -5, 5, 20])); // 5
+            Console.WriteLine(FindClosestNumberToZero([-7, -3, -2])); // 2
+            Console.WriteLine(FindClosestNumberToZero([-8])); // 8
+            Console.WriteLine(FindClosestNumberToZero([])); // null
+
+            // COUNT PEAKS IN ARRAY
+            Console.WriteLine(CountPeaks([1, 3, 2, 4, 1]));
+            Console.WriteLine(CountPeaks([1, 3, 2]));
+            Console.WriteLine(CountPeaks([5, 4, 3, 2, 1]));
+            Console.WriteLine(CountPeaks([1, 2, 3, 4]));
+            Console.WriteLine(CountPeaks(null!));
+            Console.WriteLine(CountPeaks([1, 2, 3, 4]));
+            Console.WriteLine(CountPeaks([1,2]));
+
             // FIND HIGHEST VALID SCORE FROM CSV TEXT
             Console.WriteLine(FindHighestValidScoreFromCsv("10, 50, 90"));
             Console.WriteLine(FindHighestValidScoreFromCsv("101, -5, hello, 80"));
