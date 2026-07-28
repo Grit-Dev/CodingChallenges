@@ -1,34 +1,7 @@
-﻿using CodingChallenges.Challenges.Phase_02_OOP;
-
-public class Program
+﻿public class Program
 {   
-    public static int CountScoresOutsideValidRange(int[] scores)
-    {
-        if(scores == null)
-        {
-            return 0;
-        }
-
-        int counter = 0;
-
-        foreach(int value in scores)
-        {
-            if(value < 0 || value > 100)
-            {
-                counter++;
-            }
-        }
-
-        return counter;
-    }
-
     public static void Main(string[] args)
     {   
-        Console.WriteLine($"[{string.Join(", ", CountScoresOutsideValidRange([-5, 50, 120]))}]"); // 2
-        Console.WriteLine($"[{string.Join(", ", CountScoresOutsideValidRange([0, 50, 100]))}]"); // 0
-        Console.WriteLine($"[{string.Join(", ", CountScoresOutsideValidRange([101, -1, 0, 100]))}]"); // 2
-        Console.WriteLine($"[{string.Join(", ", CountScoresOutsideValidRange([]))}]"); // 0
-
     
         // CardShopResultRefactorChallenges.Run();
         // CardShopTransactionReportsChallenges.Run();
@@ -36,30 +9,6 @@ public class Program
     }
 
     /*
-        ============================================================
-        OPTIONAL CODING STRETCH:
-        COUNT SCORES OUTSIDE VALID RANGE
-        ============================================================
-
-        Create this method:
-
-        public static int CountScoresOutsideValidRange(int[] scores)
-
-        Requirements:
-
-        * Return 0 if scores is null.
-        * Count how many scores are below 0 or above 100.
-        * No LINQ.
-
-        Examples:
-
-        [-5, 50, 120] -> 2
-
-        [0, 50, 100] -> 0
-
-        [101, -1, 0, 100] -> 2
-
-
         ============================================================
         LEARNING FOCUS:
         REFACTORING RESULT METHODS

@@ -6,6 +6,11 @@ namespace CodingChallenges.Challenges
     {
         public static void Run_Two()
         {
+            // COUNT SCORES OUTSIDE VALID RANGE
+            Console.WriteLine($"[{string.Join(", ", CountScoresOutsideValidRange([-5, 50, 120]))}]"); // 2
+            Console.WriteLine($"[{string.Join(", ", CountScoresOutsideValidRange([0, 50, 100]))}]"); // 0
+            Console.WriteLine($"[{string.Join(", ", CountScoresOutsideValidRange([101, -1, 0, 100]))}]"); // 2
+            Console.WriteLine($"[{string.Join(", ", CountScoresOutsideValidRange([]))}]"); // 0
 
             // CLAMP SCORES TO VALID RANGE
             Console.WriteLine($"[{string.Join(", ", ClampScores([10, 50, 90]))}]"); // [10, 50, 90]

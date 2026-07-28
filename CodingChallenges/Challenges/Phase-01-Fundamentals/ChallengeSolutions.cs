@@ -4,6 +4,25 @@ namespace CodingChallenges.Challenges
 {
     public class ChallengeSolutions
     {
+        public static int CountScoresOutsideValidRange(int[] scores)
+        {
+            if(scores == null)
+            {
+                return 0;
+            }
+
+            int counter = 0;
+
+            foreach(int value in scores)
+            {
+                if(value < 0 || value > 100)
+                {
+                    counter++;
+                }
+            }
+
+            return counter;
+        }
         public static int[] ClampScores(int[] scores)
         {
 
