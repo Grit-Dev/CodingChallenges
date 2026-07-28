@@ -4,29 +4,57 @@ namespace CodingChallenges.Challenges
 {
     public class ChallengeSolutions
     {
-            public static int[] ParseValidScoresFromCsV(string input)
-    {
-        if(string.IsNullOrWhiteSpace(input))
+        public static int? FindClosestNumberToTarget(int [] numbers, int target)
         {
-            return [];
-        }
-
-        string [] splitString = input.Split([','], StringSplitOptions.RemoveEmptyEntries);
-        List<int> validListOfScores = [];
-
-        foreach(string text in splitString)
-        {
-            if(int.TryParse(text.Trim(), out int result))
+            if(numbers == null || numbers.Length == 0)
             {
-                if(result >= 0 && result <= 100)
+                return null; 
+            }
+
+            int closest = int.MaxValue;
+            int valueToReturn = 0;
+
+            foreach(int value in numbers)
+            {
+                int outcome = Math.Abs(target - value);
+
+                if(outcome < closest)
                 {
-                    validListOfScores.Add(result);
+                    closest = outcome;
+                    valueToReturn = value;
+                }
+                else if(outcome == closest && value > valueToReturn)
+                {
+                    valueToReturn = value;
                 }
             }
-        }
 
-        return validListOfScores.ToArray();
-    }
+            return valueToReturn;
+
+        }
+        public static int[] ParseValidScoresFromCsV(string input)
+        {
+            if(string.IsNullOrWhiteSpace(input))
+            {
+                return [];
+            }
+
+            string [] splitString = input.Split([','], StringSplitOptions.RemoveEmptyEntries);
+            List<int> validListOfScores = [];
+
+            foreach(string text in splitString)
+            {
+                if(int.TryParse(text.Trim(), out int result))
+                {
+                    if(result >= 0 && result <= 100)
+                    {
+                        validListOfScores.Add(result);
+                    }
+                }
+            }
+
+            return validListOfScores.ToArray();
+        }
     
         public static int CountPeaks(int[] numbers)
         {

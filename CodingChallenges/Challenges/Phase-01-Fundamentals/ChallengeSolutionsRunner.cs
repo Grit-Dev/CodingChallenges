@@ -6,6 +6,18 @@ namespace CodingChallenges.Challenges
     {
         public static void Run_Two()
         {
+            // FIND CLOSEST NUMBER TO TARGET
+            Console.WriteLine(FindClosestNumberToTarget([1, 5, 9], 6)); // 5
+            Console.WriteLine(FindClosestNumberToTarget([1, 4, 8], 6)); // 8
+            Console.WriteLine(FindClosestNumberToTarget([-5, 5], 0)); // 5
+            Console.WriteLine(FindClosestNumberToTarget([10], 7)); // 10
+            Console.WriteLine(FindClosestNumberToTarget([], 7)); // null
+            Console.WriteLine(FindClosestNumberToTarget([8, 4], 6));      // 8
+            Console.WriteLine(FindClosestNumberToTarget([4, 8], 6));      // 8
+            Console.WriteLine(FindClosestNumberToTarget([-10, 10], 0));   // 10
+            Console.WriteLine(FindClosestNumberToTarget([5, 5], 6));      // 5
+            Console.WriteLine(FindClosestNumberToTarget([-1, 1], 0));     // 1
+
             // PARSE VALID SCORES INTO ARRAY
             Console.WriteLine($"[{string.Join(", ", ParseValidScoresFromCsV("10, 50, 90"))}] Expected: [10, 50, 90]");
             Console.WriteLine($"[{string.Join(", ", ParseValidScoresFromCsV("101, -5, hello, 80"))}] Expected: [80]");

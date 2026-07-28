@@ -2,122 +2,56 @@
 
 public class Program
 {   
-    public static int? FindClosestNumberToTarget(int [] numbers, int target)
+    public static int[] ClampScores(int[] scores)
     {
-        if(numbers == null || numbers.Length == 0)
+
+        if(scores == null)
         {
-            return null; 
+            return [];
         }
 
-        int closest = int.MaxValue;
-        int valueToReturn = 0;
+        List<int> newIntList = [];
 
-        foreach(int value in numbers)
+        foreach(int value in scores)
         {
-            int outcome = Math.Abs(target - value);
-
-            if(outcome < closest)
+            if( value >= 0 && value <= 100)
             {
-                closest = outcome;
-                valueToReturn = value;
+                newIntList.Add(value);
             }
-            else if(outcome == closest && value > valueToReturn)
+            else if(value > 100)
             {
-                valueToReturn = value;
+                newIntList.Add(100);
+            }
+            else if(value < 0)
+            {
+                newIntList.Add(0);
             }
         }
 
-        return valueToReturn;
-
+        return newIntList.ToArray();
     }
 
     public static void Main(string[] args)
     {   
-        // FIND CLOSEST NUMBER TO TARGET
-        Console.WriteLine(FindClosestNumberToTarget([1, 5, 9], 6)); // 5
-        Console.WriteLine(FindClosestNumberToTarget([1, 4, 8], 6)); // 8
-        Console.WriteLine(FindClosestNumberToTarget([-5, 5], 0)); // 5
-        Console.WriteLine(FindClosestNumberToTarget([10], 7)); // 10
-        Console.WriteLine(FindClosestNumberToTarget([], 7)); // null
-        Console.WriteLine(FindClosestNumberToTarget([8, 4], 6));      // 8
-        Console.WriteLine(FindClosestNumberToTarget([4, 8], 6));      // 8
-        Console.WriteLine(FindClosestNumberToTarget([-10, 10], 0));   // 10
-        Console.WriteLine(FindClosestNumberToTarget([5, 5], 6));      // 5
-        Console.WriteLine(FindClosestNumberToTarget([-1, 1], 0));     // 1
-        
+        // CLAMP SCORES TO VALID RANGE
+        Console.WriteLine($"[{string.Join(", ", ClampScores([10, 50, 90]))}]"); // [10, 50, 90]
+        Console.WriteLine($"[{string.Join(", ", ClampScores([-5, 50, 120]))}]"); // [0, 50, 100]
+        Console.WriteLine($"[{string.Join(", ", ClampScores([101, -1, 0, 100]))}]"); // [100, 0, 0, 100]
+        Console.WriteLine($"[{string.Join(", ", ClampScores([]))}]"); // []
+        Console.WriteLine($"[{string.Join(", ", ClampScores(null))}]"); // []
+        Console.WriteLine($"[{string.Join(", ", ClampScores([0]))}]"); // [0]
+        Console.WriteLine($"[{string.Join(", ", ClampScores([100]))}]"); // [100]
+        Console.WriteLine($"[{string.Join(", ", ClampScores([-100]))}]"); // [0]
+        Console.WriteLine($"[{string.Join(", ", ClampScores([500]))}]"); // [100]
+        Console.WriteLine($"[{string.Join(", ", ClampScores([-5, 0, 50, 100, 120]))}]"); // [0, 0, 50, 100, 100]
 
+    
         // CardShopResultRefactorChallenges.Run();
         // CardShopTransactionReportsChallenges.Run();
         // CardShopTransactionHistoryChallenges.TransactionHistoryChallenges_Run_23_07_2026();
     }
 
     /*
-        ============================================================
-        CODING CHALLENGE 1:
-        FIND CLOSEST NUMBER TO TARGET
-        ============================================================
-
-        Create this method:
-
-        public static int? FindClosestNumberToTarget(
-            int[] numbers,
-            int target
-        )
-
-        Requirements:
-
-        * Return null if numbers is null.
-        * Return null if numbers is empty.
-        * Return the number closest to the target.
-        * If two numbers are equally close, return the higher number.
-        * No LINQ.
-
-        Examples:
-
-        [1, 5, 9], target 6 -> 5
-
-        [1, 4, 8], target 6 -> 8
-        Explanation:
-        4 is distance 2 from 6
-        8 is distance 2 from 6
-        return higher number: 8
-
-        [-5, 5], target 0 -> 5
-
-        [10], target 7 -> 10
-
-        [], target 5 -> null
-
-
-        ============================================================
-        CODING CHALLENGE 2:
-        CLAMP SCORES TO VALID RANGE
-        ============================================================
-
-        Create this method:
-
-        public static int[] ClampScores(int[] scores)
-
-        Requirements:
-
-        * Return an empty array if scores is null.
-        * Scores below 0 should become 0.
-        * Scores above 100 should become 100.
-        * Scores from 0 to 100 stay unchanged.
-        * Preserve original order.
-        * No LINQ.
-
-        Examples:
-
-        [10, 50, 90] -> [10, 50, 90]
-
-        [-5, 50, 120] -> [0, 50, 100]
-
-        [101, -1, 0, 100] -> [100, 0, 0, 100]
-
-        [] -> []
-
-
         ============================================================
         OPTIONAL CODING STRETCH:
         COUNT SCORES OUTSIDE VALID RANGE
