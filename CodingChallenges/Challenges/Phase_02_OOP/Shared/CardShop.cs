@@ -4,27 +4,27 @@
     {
         public List<Card> Inventory { get; } = [];
 
-        public List<ShopTransaction> Transactions {get;} = [];
+        public List<ShopTransaction> Transactions { get; } = [];
 
         public bool HasTransactions() => Transactions.Count > 0;
 
-        private static CardShopResult CreateFailureResult(string message, string cardName, int amount) => new(false, message, cardName, amount); 
+        private static CardShopResult CreateFailureResult(string message, string cardName, int amount) => new(false, message, cardName, amount);
 
-        private static CardShopResult CreateSuccessResult(string message, string cardName, int amount) => new(true, message, cardName, amount); 
+        private static CardShopResult CreateSuccessResult(string message, string cardName, int amount) => new(true, message, cardName, amount);
 
-        private void RecordTransaction(Player player, Card card, string transactionType, int amount) => 
+        private void RecordTransaction(Player player, Card card, string transactionType, int amount) =>
         Transactions.Add(new ShopTransaction(player.Name, card.Name, transactionType, amount));
 
         private Card? FindCardByName(string pCardName)
         {
-            if(string.IsNullOrWhiteSpace(pCardName))
+            if (string.IsNullOrWhiteSpace(pCardName))
             {
                 return null;
             }
 
-            foreach(Card card in Inventory)
+            foreach (Card card in Inventory)
             {
-                if(card.Name.Equals(pCardName, StringComparison.OrdinalIgnoreCase))
+                if (card.Name.Equals(pCardName, StringComparison.OrdinalIgnoreCase))
                 {
                     return card;
                 }
@@ -45,7 +45,7 @@
 
         public static string BuildResultSummary(CardShopResult result)
         {
-            if(result == null)
+            if (result == null)
             {
                 return "";
             }
@@ -55,154 +55,121 @@
 
         public ShopTransaction? GetLastTransaction()
         {
-            if(Transactions.Count == 0)
+            if (Transactions.Count == 0)
             {
                 return null;
-            }    
+            }
 
             return Transactions[^1];
         }
 
-        public CardShopResult BuyCardFromPlayerWithResult(Player player,string cardName)
+        public CardShopResult BuyCardFromPlayerWithResult(Player player, string cardName)
         {
-            if(player == null)
+            if (player == null)
             {
-                return CreateFailureResult
-                (
-                    "Player is required", 
-                    "", 
-                    0
-                );
+                return CreateFailureResult(
+                  "Player is required",
+                  "",
+                  0);
             }
 
-            if(string.IsNullOrWhiteSpace(cardName))
+            if (string.IsNullOrWhiteSpace(cardName))
             {
-                return CreateFailureResult
-                (
-                    "Card name is required",
-                    "",
-                    0
-                );
+                return CreateFailureResult(
+                  "Card name is required",
+                  "",
+                  0);
             }
 
             Card? cardFound = player.RemoveCardByName(cardName);
 
-            if(cardFound == null)
+            if (cardFound == null)
             {
-                return CreateFailureResult
-                (
-                    "Player does not own card",
-                    cardName,
-                    0
-                );
+                return CreateFailureResult(
+                  "Player does not own card",
+                  cardName,
+                  0);
             }
-
-            player.AddCard(cardFound);
 
             int amount = cardFound.Price / 2;
 
-            bool isSuccessful =
-                BuyCardFromPlayer(
-                    player,
-                    cardName);
+            Inventory.Add(cardFound);
+            player.AddCredits(amount);
 
-            if(!isSuccessful)
-            {
-                return CreateFailureResult
-                (
-                    "Error",
-                    "",
-                    0
-                );
-            }
+            RecordTransaction(
+              player,
+              cardFound,
+              "Sale",
+              amount);
 
-            RecordTransaction(player, cardFound, "Sale", amount);
-
-            return CreateSuccessResult
-            (
-                "Sale successful",
-                cardFound.Name,
-                amount
-            );
+            return CreateSuccessResult(
+              "Sale successful",
+              cardFound.Name,
+              amount);
         }
-
 
         public CardShopResult BuyCardWithResult(Player player, string cardName)
         {
-            if(player == null)
+            if (player == null)
             {
-                return CreateFailureResult
-                (
-                    "Player is required",
-                    "",
-                    0
-                );
+                return CreateFailureResult(
+                  "Player is required",
+                  "",
+                  0);
             }
 
-            if(string.IsNullOrWhiteSpace(cardName))
+            if (string.IsNullOrWhiteSpace(cardName))
             {
-                return CreateFailureResult
-                (
-                    "Card name is required",
-                    "",
-                    0
-                );
+                return CreateFailureResult(
+                  "Card name is required",
+                  "",
+                  0);
             }
 
             Card? cardFound = FindCardByName(cardName);
 
-            if(cardFound == null)
+            if (cardFound == null)
             {
-                return CreateFailureResult
-                (
-                    "Card not found",
-                    "",
-                    0
-                );
+                return CreateFailureResult(
+                  "Card not found",
+                  cardName,
+                  0);
             }
 
-            if(player.Credits < cardFound.Price)
+            if (!player.BuyCard(cardFound))
             {
-                return CreateFailureResult
-                (
-                    "Insufficient credits",
-                    cardFound.Name,
-                    cardFound.Price
-                );
+                return CreateFailureResult(
+                  "Insufficient credits",
+                  cardFound.Name,
+                  cardFound.Price);
             }
 
-            bool success = BuyCard(player, cardName);
+            Inventory.Remove(cardFound);
 
-            if(!success)
-            {
-                return CreateFailureResult
-                (
-                    "Error",
-                    "",
-                    0
-                );
-            }
+            RecordTransaction(
+              player,
+              cardFound,
+              "Purchase",
+              cardFound.Price);
 
-            return CreateSuccessResult
-            (
-                "Purchase successful",
-                cardFound.Name,
-                cardFound.Price
-            );
-        }    
+            return CreateSuccessResult(
+              "Purchase successful",
+              cardFound.Name,
+              cardFound.Price);
+        }
 
         public List<ShopTransaction> GetTransactionsByPlayerName(string pPlayerName)
         {
-            if(string.IsNullOrWhiteSpace(pPlayerName))
+            if (string.IsNullOrWhiteSpace(pPlayerName))
             {
                 return [];
             }
 
             List<ShopTransaction> listOfShopTransactions = [];
 
-            foreach(ShopTransaction transaction in Transactions)
+            foreach (ShopTransaction transaction in Transactions)
             {
-                if(transaction.PlayerName
+                if (transaction.PlayerName
                 .Equals(pPlayerName, StringComparison.CurrentCultureIgnoreCase))
                 {
                     listOfShopTransactions.Add(transaction);
@@ -214,16 +181,16 @@
 
         public List<ShopTransaction> GetTransactionsByType(string pTransactionType)
         {
-            if(string.IsNullOrWhiteSpace(pTransactionType))
+            if (string.IsNullOrWhiteSpace(pTransactionType))
             {
                 return [];
             }
 
             List<ShopTransaction> listOfTransaction = [];
 
-            foreach(ShopTransaction transaction in Transactions)
+            foreach (ShopTransaction transaction in Transactions)
             {
-                if(transaction.TransactionType.Equals(pTransactionType, StringComparison.OrdinalIgnoreCase))
+                if (transaction.TransactionType.Equals(pTransactionType, StringComparison.OrdinalIgnoreCase))
                 {
                     listOfTransaction.Add(transaction);
                 }
@@ -234,16 +201,16 @@
 
         public ShopTransaction? FindHighestValueTransaction()
         {
-            if(Transactions.Count == 0)
+            if (Transactions.Count == 0)
             {
                 return null;
             }
-            
+
             ShopTransaction? highestValueTransaction = null;
 
-            foreach(ShopTransaction transaction in Transactions)
+            foreach (ShopTransaction transaction in Transactions)
             {
-                if(highestValueTransaction == null || transaction.Amount > highestValueTransaction.Amount)
+                if (highestValueTransaction == null || transaction.Amount > highestValueTransaction.Amount)
                 {
                     highestValueTransaction = transaction;
                 }
@@ -254,16 +221,16 @@
 
         public int CalculateTotalValueByTransactionType(string pTransactionType)
         {
-            if(string.IsNullOrWhiteSpace(pTransactionType))
+            if (string.IsNullOrWhiteSpace(pTransactionType))
             {
                 return 0;
             }
 
             int total = 0;
 
-            foreach(ShopTransaction transaction in Transactions)
+            foreach (ShopTransaction transaction in Transactions)
             {
-                if(transaction.TransactionType.Equals(pTransactionType, StringComparison.OrdinalIgnoreCase))
+                if (transaction.TransactionType.Equals(pTransactionType, StringComparison.OrdinalIgnoreCase))
                 {
                     total += transaction.Amount;
                 }
@@ -277,23 +244,23 @@
             return
                 $"Transactions:{Transactions.Count}" +
                 $"Purchases:{CalculateTotalValueByTransactionType("Purchase")}" +
-                $"Sales:{CalculateTotalValueByTransactionType("Sale")}" + 
+                $"Sales:{CalculateTotalValueByTransactionType("Sale")}" +
                 $"Total:{CalculateTotalTransactionValue()}";
         }
 
         public int CountTransactionsByType(string pTransactionType)
         {
-            if(string.IsNullOrWhiteSpace(pTransactionType))
+            if (string.IsNullOrWhiteSpace(pTransactionType))
             {
                 return 0;
             }
 
             int total = 0;
-            
 
-            foreach(ShopTransaction transaction in Transactions)
+
+            foreach (ShopTransaction transaction in Transactions)
             {
-                if(transaction.TransactionType
+                if (transaction.TransactionType
                 .Equals(pTransactionType, StringComparison.OrdinalIgnoreCase))
                 {
                     total++;
@@ -307,7 +274,7 @@
         {
             int total = 0;
 
-            foreach(ShopTransaction transaction in Transactions)
+            foreach (ShopTransaction transaction in Transactions)
             {
                 total += transaction.Amount;
             }
@@ -319,19 +286,19 @@
         {
             Card? mostValuableCard = null;
 
-            foreach(Card card in Inventory)
+            foreach (Card card in Inventory)
             {
-                if(mostValuableCard == null || card.Price > mostValuableCard.Price)
+                if (mostValuableCard == null || card.Price > mostValuableCard.Price)
                 {
                     mostValuableCard = card;
                 }
             }
 
-            if(pPlayer != null)
+            if (pPlayer != null)
             {
-                foreach(Card card in pPlayer.OwnedCards)
+                foreach (Card card in pPlayer.OwnedCards)
                 {
-                    if(mostValuableCard == null || card.Price > mostValuableCard.Price)
+                    if (mostValuableCard == null || card.Price > mostValuableCard.Price)
                     {
                         mostValuableCard = card;
                     }
@@ -345,7 +312,7 @@
 
         public int CountTotalCardsInSystem(Player pPlayer)
         {
-            if(pPlayer == null)
+            if (pPlayer == null)
             {
                 return Inventory.Count;
             }
@@ -355,7 +322,7 @@
 
         public double CalculateAveragePriceByRarity(string pRarity)
         {
-            if(string.IsNullOrWhiteSpace(pRarity))
+            if (string.IsNullOrWhiteSpace(pRarity))
             {
                 return 0;
             }
@@ -363,16 +330,16 @@
             int total = 0;
             int counter = 0;
 
-            foreach(Card card in Inventory)
+            foreach (Card card in Inventory)
             {
-                if(card.Rarity.Equals(pRarity, StringComparison.OrdinalIgnoreCase))
+                if (card.Rarity.Equals(pRarity, StringComparison.OrdinalIgnoreCase))
                 {
                     total += card.Price;
                     counter++;
                 }
             }
 
-            if(counter == 0)
+            if (counter == 0)
             {
                 return 0;
             }
@@ -384,19 +351,19 @@
 
         public bool BuyHighestAttackAffordableCard(Player pPlayer)
         {
-            if(pPlayer == null)
+            if (pPlayer == null)
             {
                 return false;
             }
 
             Card? buyHighestAttackAffordableCard = FindHighestAttackCardPlayerCanAfford(pPlayer);
 
-            if(buyHighestAttackAffordableCard == null)
+            if (buyHighestAttackAffordableCard == null)
             {
                 return false;
             }
 
-            if(!pPlayer.BuyCard(buyHighestAttackAffordableCard))
+            if (!pPlayer.BuyCard(buyHighestAttackAffordableCard))
             {
                 return false;
             }
@@ -410,7 +377,7 @@
         {
             int total = 0;
 
-            foreach(Card card in Inventory)
+            foreach (Card card in Inventory)
             {
                 total += card.Price;
             }
@@ -420,16 +387,16 @@
 
         public List<Card> FindAffordableCards(Player pPlayer)
         {
-            if(pPlayer == null)
+            if (pPlayer == null)
             {
                 return [];
             }
 
             List<Card> affordableCardsList = [];
 
-            foreach(Card card in Inventory)
+            foreach (Card card in Inventory)
             {
-                if(card.Price <= pPlayer.Credits)
+                if (card.Price <= pPlayer.Credits)
                 {
                     affordableCardsList.Add(card);
                 }
@@ -440,7 +407,7 @@
 
         public Card? FindHighestAttackCardPlayerCanAfford(Player pPlayer)
         {
-            if(pPlayer == null || Inventory.Count == 0)
+            if (pPlayer == null || Inventory.Count == 0)
             {
                 return null;
             }
@@ -449,22 +416,22 @@
             Card? highestAttackCardAffordable = null;
             List<Card> affordableCardsList = [];
 
-            foreach(Card card in Inventory)
+            foreach (Card card in Inventory)
             {
-                if(card.Price <= pPlayer.Credits)
+                if (card.Price <= pPlayer.Credits)
                 {
                     affordableCardsList.Add(card);
                 }
             }
 
-            if(affordableCardsList.Count == 0)
+            if (affordableCardsList.Count == 0)
             {
                 return null;
             }
 
-            foreach(Card card in affordableCardsList)
+            foreach (Card card in affordableCardsList)
             {
-                if(card.Attack > HighestAttack)
+                if (card.Attack > HighestAttack)
                 {
                     HighestAttack = card.Attack;
                     highestAttackCardAffordable = card;
@@ -476,16 +443,16 @@
 
         public List<Card> FindCardsByRarity(string pRarity)
         {
-            if(string.IsNullOrWhiteSpace(pRarity))
+            if (string.IsNullOrWhiteSpace(pRarity))
             {
                 return [];
             }
 
             List<Card> cardsList = [];
 
-            foreach(Card card in Inventory)
+            foreach (Card card in Inventory)
             {
-                if(card.Rarity.Equals(pRarity, StringComparison.OrdinalIgnoreCase))
+                if (card.Rarity.Equals(pRarity, StringComparison.OrdinalIgnoreCase))
                 {
                     cardsList.Add(card);
                 }
@@ -497,23 +464,23 @@
 
         public bool BuyCheapestAffordableCard(Player pPlayer)
         {
-            if(pPlayer == null)
+            if (pPlayer == null)
             {
                 return false;
             }
 
             Card? cheapestCard = FindCheapestCardPlayerCanAfford(pPlayer);
 
-            if(cheapestCard == null)
+            if (cheapestCard == null)
             {
                 return false;
             }
 
-            if(!pPlayer.BuyCard(cheapestCard))
+            if (!pPlayer.BuyCard(cheapestCard))
             {
                 return false;
             }
-            
+
             Inventory.Remove(cheapestCard);
 
             return true;
@@ -521,14 +488,14 @@
 
         public bool BuyCardFromPlayer(Player pPlayer, string pCardName)
         {
-            if(pPlayer == null || string.IsNullOrWhiteSpace(pCardName))
+            if (pPlayer == null || string.IsNullOrWhiteSpace(pCardName))
             {
                 return false;
             }
 
             Card? cardFound = pPlayer.RemoveCardByName(pCardName);
 
-            if(cardFound == null)
+            if (cardFound == null)
             {
                 return false;
             }
@@ -542,10 +509,10 @@
             return true;
 
         }
-           
+
         public bool BuyCard(Player pPlayer, string pCardName)
         {
-            if(pPlayer == null || string.IsNullOrEmpty(pCardName) 
+            if (pPlayer == null || string.IsNullOrEmpty(pCardName)
             || string.IsNullOrWhiteSpace(pCardName))
             {
                 return false;
@@ -553,22 +520,22 @@
 
             Card? targetedCardInInventory = FindCardByName(pCardName);
 
-            if(targetedCardInInventory == null)
+            if (targetedCardInInventory == null)
             {
                 return false;
             }
 
-            if(!pPlayer.BuyCard(targetedCardInInventory))
+            if (!pPlayer.BuyCard(targetedCardInInventory))
             {
                 return false;
             }
 
             Inventory.Remove(targetedCardInInventory);
-            
+
             Transactions.Add(new ShopTransaction(
-                pPlayer.Name, 
-                targetedCardInInventory.Name, 
-                "Purchase", 
+                pPlayer.Name,
+                targetedCardInInventory.Name,
+                "Purchase",
                 targetedCardInInventory.Price));
 
             return true;
@@ -576,14 +543,14 @@
 
         public bool HasCard(string pCardName)
         {
-            if(string.IsNullOrWhiteSpace(pCardName))
+            if (string.IsNullOrWhiteSpace(pCardName))
             {
                 return false;
             }
 
             Card? targetedCardInInventory = FindCardByName(pCardName);
 
-            if(targetedCardInInventory == null)
+            if (targetedCardInInventory == null)
             {
                 return false;
             }
@@ -593,17 +560,17 @@
 
         public int CountCardsByRarity(string pRarity)
         {
-            if(string.IsNullOrWhiteSpace(pRarity))
+            if (string.IsNullOrWhiteSpace(pRarity))
             {
                 return 0;
             }
 
             int counter = 0;
 
-            foreach(Card card in Inventory)
+            foreach (Card card in Inventory)
             {
-                if(card.Rarity.Equals(pRarity, StringComparison.OrdinalIgnoreCase))
-                {   
+                if (card.Rarity.Equals(pRarity, StringComparison.OrdinalIgnoreCase))
+                {
                     counter++;
                 }
             }
@@ -652,11 +619,6 @@
             }
 
             return mostExpensiveCard;
-        }
-
-        internal static string? BuildResultSummary(object value)
-        {
-            throw new NotImplementedException();
         }
     }
 }

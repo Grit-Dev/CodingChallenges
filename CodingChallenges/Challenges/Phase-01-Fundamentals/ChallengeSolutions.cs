@@ -79,7 +79,7 @@ namespace CodingChallenges.Challenges
             return valueToReturn;
 
         }
-        public static int[] ParseValidScoresFromCsV(string input)
+        public static int[] ParseValidScoresFromCsv(string input)
         {
             if(string.IsNullOrWhiteSpace(input))
             {
