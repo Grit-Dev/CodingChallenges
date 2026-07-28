@@ -2,32 +2,56 @@
 
 public class Program
 {   
+    public static int? FindClosestNumberToTarget(int [] numbers, int target)
+    {
+        if(numbers == null || numbers.Length == 0)
+        {
+            return null; 
+        }
+
+        int closest = int.MaxValue;
+        int valueToReturn = 0;
+
+        foreach(int value in numbers)
+        {
+            int outcome = Math.Abs(target - value);
+
+            if(outcome < closest)
+            {
+                closest = outcome;
+                valueToReturn = value;
+            }
+            else if(outcome == closest && value > valueToReturn)
+            {
+                valueToReturn = value;
+            }
+        }
+
+        return valueToReturn;
+
+    }
 
     public static void Main(string[] args)
     {   
+        // FIND CLOSEST NUMBER TO TARGET
+        Console.WriteLine(FindClosestNumberToTarget([1, 5, 9], 6)); // 5
+        Console.WriteLine(FindClosestNumberToTarget([1, 4, 8], 6)); // 8
+        Console.WriteLine(FindClosestNumberToTarget([-5, 5], 0)); // 5
+        Console.WriteLine(FindClosestNumberToTarget([10], 7)); // 10
+        Console.WriteLine(FindClosestNumberToTarget([], 7)); // null
+        Console.WriteLine(FindClosestNumberToTarget([8, 4], 6));      // 8
+        Console.WriteLine(FindClosestNumberToTarget([4, 8], 6));      // 8
+        Console.WriteLine(FindClosestNumberToTarget([-10, 10], 0));   // 10
+        Console.WriteLine(FindClosestNumberToTarget([5, 5], 6));      // 5
+        Console.WriteLine(FindClosestNumberToTarget([-1, 1], 0));     // 1
+        
+
         // CardShopResultRefactorChallenges.Run();
         // CardShopTransactionReportsChallenges.Run();
         // CardShopTransactionHistoryChallenges.TransactionHistoryChallenges_Run_23_07_2026();
     }
 
     /*
-        ============================================================
-        NEXT CHALLENGES
-        PHASE 2: OOP / CLASSES / OBJECTS
-        CARDSHOP RESULT REFACTOR
-        ============================================================
-
-        TODAY IS LIGHTER.
-
-        REQUIRED:
-        2 coding challenges
-        4 OOP challenges
-
-        OPTIONAL:
-        1 coding stretch
-        1 OOP stretch
-
-
         ============================================================
         CODING CHALLENGE 1:
         FIND CLOSEST NUMBER TO TARGET
