@@ -6,6 +6,33 @@
 
         public List<ShopTransaction> Transactions {get;} = [];
 
+        public bool HasTransactions() => Transactions.Count > 0;
+
+        private static CardShopResult CreateFailureResult(string message, string cardName, int amount) => new(false, message, cardName, amount); 
+
+        private static CardShopResult CreateSuccessResult(string message, string cardName, int amount) => new(true, message, cardName, amount); 
+
+        private void RecordTransaction(Player player, Card card, string transactionType, int amount) => 
+        Transactions.Add(new ShopTransaction(player.Name, card.Name, transactionType, amount));
+
+        private Card? FindCardByName(string pCardName)
+        {
+            if(string.IsNullOrWhiteSpace(pCardName))
+            {
+                return null;
+            }
+
+            foreach(Card card in Inventory)
+            {
+                if(card.Name.Equals(pCardName, StringComparison.OrdinalIgnoreCase))
+                {
+                    return card;
+                }
+            }
+
+            return null;
+        }
+
         public void AddCard(Card card)
         {
             if (card == null)
@@ -40,31 +67,34 @@
         {
             if(player == null)
             {
-                return new CardShopResult(
-                    false,
-                    "Player is required",
-                    "",
-                    0);
+                return CreateFailureResult
+                (
+                    "Player is required", 
+                    "", 
+                    0
+                );
             }
 
             if(string.IsNullOrWhiteSpace(cardName))
             {
-                return new CardShopResult(
-                    false,
+                return CreateFailureResult
+                (
                     "Card name is required",
                     "",
-                    0);
+                    0
+                );
             }
 
             Card? cardFound = player.RemoveCardByName(cardName);
 
             if(cardFound == null)
             {
-                return new CardShopResult(
-                    false,
+                return CreateFailureResult
+                (
                     "Player does not own card",
                     cardName,
-                    0);
+                    0
+                );
             }
 
             player.AddCard(cardFound);
@@ -78,18 +108,22 @@
 
             if(!isSuccessful)
             {
-                return new CardShopResult(
-                    false,
+                return CreateFailureResult
+                (
                     "Error",
                     "",
-                    0);
+                    0
+                );
             }
 
-            return new CardShopResult(
-                true,
+            RecordTransaction(player, cardFound, "Sale", amount);
+
+            return CreateSuccessResult
+            (
                 "Sale successful",
                 cardFound.Name,
-                amount);
+                amount
+            );
         }
 
 
@@ -97,77 +131,65 @@
         {
             if(player == null)
             {
-                return new CardShopResult(
-                    false,
+                return CreateFailureResult
+                (
                     "Player is required",
                     "",
-                    0);
+                    0
+                );
             }
 
             if(string.IsNullOrWhiteSpace(cardName))
             {
-                return new CardShopResult(
-                    false,
+                return CreateFailureResult
+                (
                     "Card name is required",
                     "",
-                    0);
+                    0
+                );
             }
 
             Card? cardFound = FindCardByName(cardName);
 
             if(cardFound == null)
             {
-                return new CardShopResult(
-                    false,
+                return CreateFailureResult
+                (
                     "Card not found",
-                    cardName,
-                    0);
+                    "",
+                    0
+                );
             }
 
             if(player.Credits < cardFound.Price)
             {
-                return new CardShopResult(
-                    false,
+                return CreateFailureResult
+                (
                     "Insufficient credits",
                     cardFound.Name,
-                    cardFound.Price);
+                    cardFound.Price
+                );
             }
 
             bool success = BuyCard(player, cardName);
 
             if(!success)
             {
-                return new CardShopResult(
-                    false,
+                return CreateFailureResult
+                (
                     "Error",
                     "",
-                    0);
+                    0
+                );
             }
 
-            return new CardShopResult(
-                true,
+            return CreateSuccessResult
+            (
                 "Purchase successful",
                 cardFound.Name,
-                cardFound.Price);
+                cardFound.Price
+            );
         }    
-
-        private Card? FindCardByName(string pCardName)
-        {
-            if(string.IsNullOrWhiteSpace(pCardName))
-            {
-                return null;
-            }
-
-            foreach(Card card in Inventory)
-            {
-                if(card.Name.Equals(pCardName, StringComparison.OrdinalIgnoreCase))
-                {
-                    return card;
-                }
-            }
-
-            return null;
-        }
 
         public List<ShopTransaction> GetTransactionsByPlayerName(string pPlayerName)
         {
@@ -517,14 +539,6 @@
 
             pPlayer.AddCredits(total);
 
-            Transactions.Add(
-                new ShopTransaction(
-                pPlayer.Name,
-                cardFound.Name,
-                "Sale",
-                total
-            ));
-            
             return true;
 
         }
@@ -638,6 +652,11 @@
             }
 
             return mostExpensiveCard;
+        }
+
+        internal static string? BuildResultSummary(object value)
+        {
+            throw new NotImplementedException();
         }
     }
 }
