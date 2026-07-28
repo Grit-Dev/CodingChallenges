@@ -2,48 +2,32 @@
 
 public class Program
 {   
-    public static int[] ClampScores(int[] scores)
+    public static int CountScoresOutsideValidRange(int[] scores)
     {
-
         if(scores == null)
         {
-            return [];
+            return 0;
         }
 
-        List<int> newIntList = [];
+        int counter = 0;
 
         foreach(int value in scores)
         {
-            if( value >= 0 && value <= 100)
+            if(value < 0 || value > 100)
             {
-                newIntList.Add(value);
-            }
-            else if(value > 100)
-            {
-                newIntList.Add(100);
-            }
-            else if(value < 0)
-            {
-                newIntList.Add(0);
+                counter++;
             }
         }
 
-        return newIntList.ToArray();
+        return counter;
     }
 
     public static void Main(string[] args)
     {   
-        // CLAMP SCORES TO VALID RANGE
-        Console.WriteLine($"[{string.Join(", ", ClampScores([10, 50, 90]))}]"); // [10, 50, 90]
-        Console.WriteLine($"[{string.Join(", ", ClampScores([-5, 50, 120]))}]"); // [0, 50, 100]
-        Console.WriteLine($"[{string.Join(", ", ClampScores([101, -1, 0, 100]))}]"); // [100, 0, 0, 100]
-        Console.WriteLine($"[{string.Join(", ", ClampScores([]))}]"); // []
-        Console.WriteLine($"[{string.Join(", ", ClampScores(null))}]"); // []
-        Console.WriteLine($"[{string.Join(", ", ClampScores([0]))}]"); // [0]
-        Console.WriteLine($"[{string.Join(", ", ClampScores([100]))}]"); // [100]
-        Console.WriteLine($"[{string.Join(", ", ClampScores([-100]))}]"); // [0]
-        Console.WriteLine($"[{string.Join(", ", ClampScores([500]))}]"); // [100]
-        Console.WriteLine($"[{string.Join(", ", ClampScores([-5, 0, 50, 100, 120]))}]"); // [0, 0, 50, 100, 100]
+        Console.WriteLine($"[{string.Join(", ", CountScoresOutsideValidRange([-5, 50, 120]))}]"); // 2
+        Console.WriteLine($"[{string.Join(", ", CountScoresOutsideValidRange([0, 50, 100]))}]"); // 0
+        Console.WriteLine($"[{string.Join(", ", CountScoresOutsideValidRange([101, -1, 0, 100]))}]"); // 2
+        Console.WriteLine($"[{string.Join(", ", CountScoresOutsideValidRange([]))}]"); // 0
 
     
         // CardShopResultRefactorChallenges.Run();

@@ -4,6 +4,34 @@ namespace CodingChallenges.Challenges
 {
     public class ChallengeSolutions
     {
+        public static int[] ClampScores(int[] scores)
+        {
+
+            if(scores == null)
+            {
+                return [];
+            }
+
+            List<int> newIntList = [];
+
+            foreach(int value in scores)
+            {
+                if( value >= 0 && value <= 100)
+                {
+                    newIntList.Add(value);
+                }
+                else if(value > 100)
+                {
+                    newIntList.Add(100);
+                }
+                else if(value < 0)
+                {
+                    newIntList.Add(0);
+                }
+            }
+
+            return newIntList.ToArray();
+        }
         public static int? FindClosestNumberToTarget(int [] numbers, int target)
         {
             if(numbers == null || numbers.Length == 0)

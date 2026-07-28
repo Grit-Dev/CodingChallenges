@@ -6,6 +6,19 @@ namespace CodingChallenges.Challenges
     {
         public static void Run_Two()
         {
+
+            // CLAMP SCORES TO VALID RANGE
+            Console.WriteLine($"[{string.Join(", ", ClampScores([10, 50, 90]))}]"); // [10, 50, 90]
+            Console.WriteLine($"[{string.Join(", ", ClampScores([-5, 50, 120]))}]"); // [0, 50, 100]
+            Console.WriteLine($"[{string.Join(", ", ClampScores([101, -1, 0, 100]))}]"); // [100, 0, 0, 100]
+            Console.WriteLine($"[{string.Join(", ", ClampScores([]))}]"); // []
+            Console.WriteLine($"[{string.Join(", ", ClampScores(null!))}]"); // []
+            Console.WriteLine($"[{string.Join(", ", ClampScores([0]))}]"); // [0]
+            Console.WriteLine($"[{string.Join(", ", ClampScores([100]))}]"); // [100]
+            Console.WriteLine($"[{string.Join(", ", ClampScores([-100]))}]"); // [0]
+            Console.WriteLine($"[{string.Join(", ", ClampScores([500]))}]"); // [100]
+            Console.WriteLine($"[{string.Join(", ", ClampScores([-5, 0, 50, 100, 120]))}]"); // [0, 0, 50, 100, 100]
+
             // FIND CLOSEST NUMBER TO TARGET
             Console.WriteLine(FindClosestNumberToTarget([1, 5, 9], 6)); // 5
             Console.WriteLine(FindClosestNumberToTarget([1, 4, 8], 6)); // 8
