@@ -51,14 +51,47 @@ public class Program
         return newFormattedList;
 
     }
+
+    public static List<int> RemoveDuplicateIdsPreservingOrder(List<int> ids)
+    {
+        if(ids == null)
+        {
+            return [];
+        }
+
+        List<int> newListOfIds = [];
+
+        foreach(int values in ids)
+        {
+            if(!newListOfIds.Contains(values))
+            {
+                newListOfIds.Add(values);
+            }
+        }
+
+        return newListOfIds;
+    }
     public static void Main(string[] args)
     {   
+        // REMOVE DUPLICATE IDS PRESERVING ORDER
+        Console.WriteLine($"[{string.Join(", ", RemoveDuplicateIdsPreservingOrder([1, 2, 2, 3, 1]))}]"); // [1, 2, 3]
+        Console.WriteLine($"[{string.Join(", ", RemoveDuplicateIdsPreservingOrder([5, 5, 5]))}]"); // [5]
+        Console.WriteLine($"[{string.Join(", ", RemoveDuplicateIdsPreservingOrder([1, 2, 3]))}]"); // [1, 2, 3]
+        Console.WriteLine($"[{string.Join(", ", RemoveDuplicateIdsPreservingOrder([]))}]"); // []
+        Console.WriteLine($"[{string.Join(", ", RemoveDuplicateIdsPreservingOrder(null!))}]"); // []
+        Console.WriteLine($"[{string.Join(", ", RemoveDuplicateIdsPreservingOrder([1]))}]"); // [1]
+        Console.WriteLine($"[{string.Join(", ", RemoveDuplicateIdsPreservingOrder([1, 1]))}]"); // [1]
+        Console.WriteLine($"[{string.Join(", ", RemoveDuplicateIdsPreservingOrder([1, 2, 1, 2, 1, 2]))}]"); // [1, 2]
+        Console.WriteLine($"[{string.Join(", ", RemoveDuplicateIdsPreservingOrder([10, 20, 30, 10, 20, 30]))}]"); // [10, 20, 30]
+        Console.WriteLine($"[{string.Join(", ", RemoveDuplicateIdsPreservingOrder([-1, -1, 0, 0, 1, 1]))}]"); // [-1, 0, 1]
+        Console.WriteLine($"[{string.Join(", ", RemoveDuplicateIdsPreservingOrder([3, 2, 1, 3, 2, 1]))}]"); // [3, 2, 1]
+
         // PARSE VALID IDS FROM CSV
         Console.WriteLine($"[{string.Join(", ", ParseValidIdsFromCsv("1,2,3"))}]"); // [1, 2, 3]
         Console.WriteLine($"[{string.Join(", ", ParseValidIdsFromCsv("10, -5, 3, hello"))}]"); // [10, 3]
         Console.WriteLine($"[{string.Join(", ", ParseValidIdsFromCsv("0, -1, abc"))}]"); // []
         Console.WriteLine($"[{string.Join(", ", ParseValidIdsFromCsv(" 4, 6 , test, 8 "))}]"); // [4, 6, 8]
-        Console.WriteLine($"[{string.Join(", ", ParseValidIdsFromCsv(null))}]"); // []
+        Console.WriteLine($"[{string.Join(", ", ParseValidIdsFromCsv(null!))}]"); // []
         Console.WriteLine($"[{string.Join(", ", ParseValidIdsFromCsv(""))}]"); // []
         Console.WriteLine($"[{string.Join(", ", ParseValidIdsFromCsv(" "))}]"); // []
         Console.WriteLine($"[{string.Join(", ", ParseValidIdsFromCsv("5"))}]"); // [5]
@@ -78,26 +111,6 @@ public class Program
     }
     /*
 
-        * Return an empty list if input is null, empty, or whitespace.
-        * Values are separated by commas.
-        * Trim spaces around each value.
-        * Use int.TryParse.
-        * Only positive integers are valid.
-        * Ignore 0.
-        * Ignore negative numbers.
-        * Ignore invalid text.
-        * Preserve original order.
-        * No LINQ.
-
-        Examples:
-
-        "1,2,3" -> [1, 2, 3]
-
-        "10, -5, 3, hello" -> [10, 3]
-
-        "0, -1, abc" -> []
-
-        " 4, 6 , test, 8 " -> [4, 6, 8]
 
 
         ============================================================
