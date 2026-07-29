@@ -1,8 +1,8 @@
-﻿using CodingChallenges.Challenges.Phase_02_OOP;
+﻿using System.Reflection.Metadata.Ecma335;
+using CodingChallenges.Challenges.Phase_02_OOP;
 
 public class Program
 {   
-
     public static int?  FindFirstDuplicateNumber(int [] numbers)
     {
         if(numbers == null || numbers.Length < 2)
@@ -26,8 +26,45 @@ public class Program
 
         return null;
     }
+
+    public static List<int> ParseValidIdsFromCsv(string input)
+    {
+        if(string.IsNullOrWhiteSpace(input))
+        {
+            return [];
+        }
+
+        string [] stringSplit = input.Split([','], StringSplitOptions.RemoveEmptyEntries);
+        List<int> newFormattedList = [];
+
+        foreach(string text in stringSplit)
+        {
+            if(int.TryParse(text.Trim(), out int result))
+            {
+                if(result > 0)
+                {
+                    newFormattedList.Add(result);
+                }
+            }
+        }
+
+        return newFormattedList;
+
+    }
     public static void Main(string[] args)
     {   
+        // PARSE VALID IDS FROM CSV
+        Console.WriteLine($"[{string.Join(", ", ParseValidIdsFromCsv("1,2,3"))}]"); // [1, 2, 3]
+        Console.WriteLine($"[{string.Join(", ", ParseValidIdsFromCsv("10, -5, 3, hello"))}]"); // [10, 3]
+        Console.WriteLine($"[{string.Join(", ", ParseValidIdsFromCsv("0, -1, abc"))}]"); // []
+        Console.WriteLine($"[{string.Join(", ", ParseValidIdsFromCsv(" 4, 6 , test, 8 "))}]"); // [4, 6, 8]
+        Console.WriteLine($"[{string.Join(", ", ParseValidIdsFromCsv(null))}]"); // []
+        Console.WriteLine($"[{string.Join(", ", ParseValidIdsFromCsv(""))}]"); // []
+        Console.WriteLine($"[{string.Join(", ", ParseValidIdsFromCsv(" "))}]"); // []
+        Console.WriteLine($"[{string.Join(", ", ParseValidIdsFromCsv("5"))}]"); // [5]
+        Console.WriteLine($"[{string.Join(", ", ParseValidIdsFromCsv("0"))}]"); // []
+        Console.WriteLine($"[{string.Join(", ", ParseValidIdsFromCsv("-10"))}]"); // []
+
         // FIND FIRST DUPLICATE NUMBER
         Console.WriteLine(FindFirstDuplicateNumber([1, 2, 3, 2, 4])); // 2
         Console.WriteLine(FindFirstDuplicateNumber([5, 1, 5, 2, 1])); // 5
@@ -40,54 +77,6 @@ public class Program
         // CardShopTransactionHistoryChallenges.TransactionHistoryChallenges_Run_23_07_2026();
     }
     /*
-        ============================================================
-        CODING CHALLENGE 1:
-        FIND FIRST DUPLICATE NUMBER
-        ============================================================
-
-        Create this method:
-
-        public static int? FindFirstDuplicateNumber(int[] numbers)
-
-        Requirements:
-
-        * Return null if numbers is null.
-        * Return null if numbers has fewer than 2 items.
-        * Return the first number whose second appearance happens first.
-        * No LINQ.
-        * No Dictionary.
-        * No HashSet.
-
-        Examples:
-
-        [1, 2, 3, 2, 4] -> 2
-
-        [5, 1, 5, 2, 1] -> 5
-
-        [1, 2, 3] -> null
-
-        [7, 7, 1] -> 7
-
-        [] -> null
-
-
-        HINT:
-
-        Loop from left to right.
-        For each number, check the numbers before it.
-        When you find a previous match, return the current number.
-
-
-        ============================================================
-        CODING CHALLENGE 2:
-        PARSE VALID IDS FROM CSV
-        ============================================================
-
-        Create this method:
-
-        public static List<int> ParseValidIdsFromCsv(string input)
-
-        Requirements:
 
         * Return an empty list if input is null, empty, or whitespace.
         * Values are separated by commas.
