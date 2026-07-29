@@ -2,345 +2,360 @@
 
 public class Program
 {   
+
+    public static int?  FindFirstDuplicateNumber(int [] numbers)
+    {
+        if(numbers == null || numbers.Length < 2)
+        {
+            return null;
+        }
+
+        List<int> newList = [];
+
+        foreach(int value in numbers)
+        {
+            if(!newList.Contains(value))
+            {
+                newList.Add(value);
+            }
+            else
+            {
+                return value;
+            }
+        }
+
+        return null;
+    }
     public static void Main(string[] args)
     {   
-        CardShopRequestObjectChallenges.Run();
+        // FIND FIRST DUPLICATE NUMBER
+        Console.WriteLine(FindFirstDuplicateNumber([1, 2, 3, 2, 4])); // 2
+        Console.WriteLine(FindFirstDuplicateNumber([5, 1, 5, 2, 1])); // 5
+        Console.WriteLine(FindFirstDuplicateNumber([1, 2, 3] )); // null
+        Console.WriteLine(FindFirstDuplicateNumber([7, 7, 1] )); // 7
+        Console.WriteLine(FindFirstDuplicateNumber([] )); // null
+
+        // CardShopRequestObjectChallenges.Run();
         // CardShopTransactionReportsChallenges.Run();
         // CardShopTransactionHistoryChallenges.TransactionHistoryChallenges_Run_23_07_2026();
     }
-        /*
-            ============================================================
-            WEDNESDAY CHALLENGES
-            PHASE 2: OOP / CLASSES / OBJECTS
-            CARDSHOP REQUEST OBJECTS
-            ============================================================
+    /*
+        ============================================================
+        CODING CHALLENGE 1:
+        FIND FIRST DUPLICATE NUMBER
+        ============================================================
 
-            WORK DAY VERSION
+        Create this method:
 
-            REQUIRED:
-            3 coding challenges
-            3 OOP challenges
+        public static int? FindFirstDuplicateNumber(int[] numbers)
 
-            OPTIONAL:
-            1 OOP stretch
+        Requirements:
 
+        * Return null if numbers is null.
+        * Return null if numbers has fewer than 2 items.
+        * Return the first number whose second appearance happens first.
+        * No LINQ.
+        * No Dictionary.
+        * No HashSet.
 
-            ============================================================
-            CODING CHALLENGE 1:
-            FIND FIRST DUPLICATE NUMBER
-            ============================================================
+        Examples:
 
-            Create this method:
+        [1, 2, 3, 2, 4] -> 2
 
-            public static int? FindFirstDuplicateNumber(int[] numbers)
+        [5, 1, 5, 2, 1] -> 5
 
-            Requirements:
+        [1, 2, 3] -> null
 
-            * Return null if numbers is null.
-            * Return null if numbers has fewer than 2 items.
-            * Return the first number whose second appearance happens first.
-            * No LINQ.
-            * No Dictionary.
-            * No HashSet.
+        [7, 7, 1] -> 7
 
-            Examples:
+        [] -> null
 
-            [1, 2, 3, 2, 4] -> 2
 
-            [5, 1, 5, 2, 1] -> 5
+        HINT:
 
-            [1, 2, 3] -> null
+        Loop from left to right.
+        For each number, check the numbers before it.
+        When you find a previous match, return the current number.
 
-            [7, 7, 1] -> 7
 
-            [] -> null
+        ============================================================
+        CODING CHALLENGE 2:
+        PARSE VALID IDS FROM CSV
+        ============================================================
 
+        Create this method:
 
-            HINT:
+        public static List<int> ParseValidIdsFromCsv(string input)
 
-            Loop from left to right.
-            For each number, check the numbers before it.
-            When you find a previous match, return the current number.
+        Requirements:
 
+        * Return an empty list if input is null, empty, or whitespace.
+        * Values are separated by commas.
+        * Trim spaces around each value.
+        * Use int.TryParse.
+        * Only positive integers are valid.
+        * Ignore 0.
+        * Ignore negative numbers.
+        * Ignore invalid text.
+        * Preserve original order.
+        * No LINQ.
 
-            ============================================================
-            CODING CHALLENGE 2:
-            PARSE VALID IDS FROM CSV
-            ============================================================
+        Examples:
 
-            Create this method:
+        "1,2,3" -> [1, 2, 3]
 
-            public static List<int> ParseValidIdsFromCsv(string input)
+        "10, -5, 3, hello" -> [10, 3]
 
-            Requirements:
+        "0, -1, abc" -> []
 
-            * Return an empty list if input is null, empty, or whitespace.
-            * Values are separated by commas.
-            * Trim spaces around each value.
-            * Use int.TryParse.
-            * Only positive integers are valid.
-            * Ignore 0.
-            * Ignore negative numbers.
-            * Ignore invalid text.
-            * Preserve original order.
-            * No LINQ.
+        " 4, 6 , test, 8 " -> [4, 6, 8]
 
-            Examples:
 
-            "1,2,3" -> [1, 2, 3]
+        ============================================================
+        CODING CHALLENGE 3:
+        REMOVE DUPLICATE IDS PRESERVING ORDER
+        ============================================================
 
-            "10, -5, 3, hello" -> [10, 3]
+        Create this method:
 
-            "0, -1, abc" -> []
+        public static List<int> RemoveDuplicateIdsPreservingOrder(List<int> ids)
 
-            " 4, 6 , test, 8 " -> [4, 6, 8]
+        Requirements:
 
+        * Return an empty list if ids is null.
+        * Keep the first appearance of each ID.
+        * Remove later duplicates.
+        * Preserve original order.
+        * You may use List<int>.Contains.
+        * No LINQ.
+        * No Dictionary.
+        * No HashSet.
 
-            ============================================================
-            CODING CHALLENGE 3:
-            REMOVE DUPLICATE IDS PRESERVING ORDER
-            ============================================================
+        Examples:
 
-            Create this method:
+        [1, 2, 2, 3, 1] -> [1, 2, 3]
 
-            public static List<int> RemoveDuplicateIdsPreservingOrder(List<int> ids)
+        [5, 5, 5] -> [5]
 
-            Requirements:
+        [1, 2, 3] -> [1, 2, 3]
 
-            * Return an empty list if ids is null.
-            * Keep the first appearance of each ID.
-            * Remove later duplicates.
-            * Preserve original order.
-            * You may use List<int>.Contains.
-            * No LINQ.
-            * No Dictionary.
-            * No HashSet.
+        [] -> []
 
-            Examples:
 
-            [1, 2, 2, 3, 1] -> [1, 2, 3]
+        ============================================================
+        LEARNING FOCUS:
+        REQUEST OBJECTS / DTO-STYLE THINKING
+        ============================================================
 
-            [5, 5, 5] -> [5]
+        So far, your methods mostly take separate parameters:
 
-            [1, 2, 3] -> [1, 2, 3]
+        BuyCardWithResult(player, cardName)
 
-            [] -> []
+        In APIs, data often arrives as an object.
 
+        Example:
 
-            ============================================================
-            LEARNING FOCUS:
-            REQUEST OBJECTS / DTO-STYLE THINKING
-            ============================================================
+        public class BuyCardRequest
+        {
+            public string PlayerName { get; set; }
+            public string CardName { get; set; }
+        }
 
-            So far, your methods mostly take separate parameters:
+        This is similar to a DTO.
 
-            BuyCardWithResult(player, cardName)
+        DTO means Data Transfer Object.
 
-            In APIs, data often arrives as an object.
+        It carries data into or out of a method, service, or API endpoint.
 
-            Example:
+        Today we are still in plain C#.
+        But this is preparing you for controller/service/API thinking.
 
-            public class BuyCardRequest
-            {
-                public string PlayerName { get; set; }
-                public string CardName { get; set; }
-            }
 
-            This is similar to a DTO.
+        ============================================================
+        OOP CHALLENGE 4:
+        CREATE REQUEST CLASSES
+        ============================================================
 
-            DTO means Data Transfer Object.
+        Create this class in Shared:
 
-            It carries data into or out of a method, service, or API endpoint.
+        File name:
 
-            Today we are still in plain C#.
-            But this is preparing you for controller/service/API thinking.
+        BuyCardRequest.cs
 
+        Class:
 
-            ============================================================
-            OOP CHALLENGE 4:
-            CREATE REQUEST CLASSES
-            ============================================================
+        public class BuyCardRequest
 
-            Create this class in Shared:
+        Properties:
 
-            File name:
+        public string PlayerName { get; set; }
+        public string CardName { get; set; }
 
-            BuyCardRequest.cs
+        Requirements:
 
-            Class:
+        * Both strings should default to string.Empty.
+        * Add a default constructor.
+        * Add a constructor with both values.
 
-            public class BuyCardRequest
 
-            Properties:
+        Then create this class in Shared:
 
-            public string PlayerName { get; set; }
-            public string CardName { get; set; }
+        File name:
 
-            Requirements:
+        SellCardRequest.cs
 
-            * Both strings should default to string.Empty.
-            * Add a default constructor.
-            * Add a constructor with both values.
+        Class:
 
+        public class SellCardRequest
 
-            Then create this class in Shared:
+        Properties:
 
-            File name:
+        public string PlayerName { get; set; }
+        public string CardName { get; set; }
 
-            SellCardRequest.cs
+        Requirements:
 
-            Class:
+        * Both strings should default to string.Empty.
+        * Add a default constructor.
+        * Add a constructor with both values.
 
-            public class SellCardRequest
 
-            Properties:
+        ============================================================
+        OOP CHALLENGE 5:
+        BUY CARD WITH REQUEST
+        ============================================================
 
-            public string PlayerName { get; set; }
-            public string CardName { get; set; }
+        Add this method to CardShop:
 
-            Requirements:
+        public CardShopResult BuyCardWithRequest(
+            Player? player,
+            BuyCardRequest? request
+        )
 
-            * Both strings should default to string.Empty.
-            * Add a default constructor.
-            * Add a constructor with both values.
+        Requirements:
 
+        * Return failure result if player is null:
+            Success: false
+            Message: "Player is required"
+            CardName: ""
+            Amount: 0
 
-            ============================================================
-            OOP CHALLENGE 5:
-            BUY CARD WITH REQUEST
-            ============================================================
+        * Return failure result if request is null:
+            Success: false
+            Message: "Request is required"
+            CardName: ""
+            Amount: 0
 
-            Add this method to CardShop:
+        * Return failure result if request.PlayerName is null, empty, or whitespace:
+            Success: false
+            Message: "Player name is required"
+            CardName: ""
+            Amount: 0
 
-            public CardShopResult BuyCardWithRequest(
-                Player? player,
-                BuyCardRequest? request
-            )
+        * Return failure result if request.PlayerName does not match player.Name:
+            Success: false
+            Message: "Player mismatch"
+            CardName: request.CardName
+            Amount: 0
 
-            Requirements:
+        * Return failure result if request.CardName is null, empty, or whitespace:
+            Success: false
+            Message: "Card name is required"
+            CardName: ""
+            Amount: 0
 
-            * Return failure result if player is null:
-                Success: false
-                Message: "Player is required"
-                CardName: ""
-                Amount: 0
+        * After validation, reuse your existing method:
 
-            * Return failure result if request is null:
-                Success: false
-                Message: "Request is required"
-                CardName: ""
-                Amount: 0
+            BuyCardWithResult(player, request.CardName)
 
-            * Return failure result if request.PlayerName is null, empty, or whitespace:
-                Success: false
-                Message: "Player name is required"
-                CardName: ""
-                Amount: 0
+        * Do not duplicate all the purchase logic again.
+        * No LINQ.
 
-            * Return failure result if request.PlayerName does not match player.Name:
-                Success: false
-                Message: "Player mismatch"
-                CardName: request.CardName
-                Amount: 0
 
-            * Return failure result if request.CardName is null, empty, or whitespace:
-                Success: false
-                Message: "Card name is required"
-                CardName: ""
-                Amount: 0
+        Example:
 
-            * After validation, reuse your existing method:
+        Player name:
 
-                BuyCardWithResult(player, request.CardName)
+        "V"
 
-            * Do not duplicate all the purchase logic again.
-            * No LINQ.
+        Request:
 
+        PlayerName = "V"
+        CardName = "Johnny Silverhand"
 
-            Example:
+        Expected:
 
-            Player name:
+        Calls BuyCardWithResult(player, "Johnny Silverhand")
 
-            "V"
 
-            Request:
+        ============================================================
+        OOP CHALLENGE 6:
+        SELL CARD WITH REQUEST
+        ============================================================
 
-            PlayerName = "V"
-            CardName = "Johnny Silverhand"
+        Add this method to CardShop:
 
-            Expected:
+        public CardShopResult BuyCardFromPlayerWithRequest(
+            Player? player,
+            SellCardRequest? request
+        )
 
-            Calls BuyCardWithResult(player, "Johnny Silverhand")
+        Requirements:
 
+        * Return failure result if player is null:
+            Success: false
+            Message: "Player is required"
+            CardName: ""
+            Amount: 0
 
-            ============================================================
-            OOP CHALLENGE 6:
-            SELL CARD WITH REQUEST
-            ============================================================
+        * Return failure result if request is null:
+            Success: false
+            Message: "Request is required"
+            CardName: ""
+            Amount: 0
 
-            Add this method to CardShop:
+        * Return failure result if request.PlayerName is null, empty, or whitespace:
+            Success: false
+            Message: "Player name is required"
+            CardName: ""
+            Amount: 0
 
-            public CardShopResult BuyCardFromPlayerWithRequest(
-                Player? player,
-                SellCardRequest? request
-            )
+        * Return failure result if request.PlayerName does not match player.Name:
+            Success: false
+            Message: "Player mismatch"
+            CardName: request.CardName
+            Amount: 0
 
-            Requirements:
+        * Return failure result if request.CardName is null, empty, or whitespace:
+            Success: false
+            Message: "Card name is required"
+            CardName: ""
+            Amount: 0
 
-            * Return failure result if player is null:
-                Success: false
-                Message: "Player is required"
-                CardName: ""
-                Amount: 0
+        * After validation, reuse your existing method:
 
-            * Return failure result if request is null:
-                Success: false
-                Message: "Request is required"
-                CardName: ""
-                Amount: 0
+            BuyCardFromPlayerWithResult(player, request.CardName)
 
-            * Return failure result if request.PlayerName is null, empty, or whitespace:
-                Success: false
-                Message: "Player name is required"
-                CardName: ""
-                Amount: 0
+        * Do not duplicate all the sale logic again.
+        * No LINQ.
 
-            * Return failure result if request.PlayerName does not match player.Name:
-                Success: false
-                Message: "Player mismatch"
-                CardName: request.CardName
-                Amount: 0
 
-            * Return failure result if request.CardName is null, empty, or whitespace:
-                Success: false
-                Message: "Card name is required"
-                CardName: ""
-                Amount: 0
+        ============================================================
+        OPTIONAL OOP STRETCH 7:
+        BUILD REQUEST SUMMARY
+        ============================================================
 
-            * After validation, reuse your existing method:
+        Add this method to CardShop:
 
-                BuyCardFromPlayerWithResult(player, request.CardName)
+        public string BuildBuyRequestSummary(BuyCardRequest? request)
 
-            * Do not duplicate all the sale logic again.
-            * No LINQ.
+        Requirements:
 
+        * Return "" if request is null.
+        * Return a one-line summary using this exact format:
 
-            ============================================================
-            OPTIONAL OOP STRETCH 7:
-            BUILD REQUEST SUMMARY
-            ============================================================
+        "Player:V Card:Johnny Silverhand"
 
-            Add this method to CardShop:
-
-            public string BuildBuyRequestSummary(BuyCardRequest? request)
-
-            Requirements:
-
-            * Return "" if request is null.
-            * Return a one-line summary using this exact format:
-
-            "Player:V Card:Johnny Silverhand"
-
-            * No LINQ.
-        */
+        * No LINQ.
+    */
 }
