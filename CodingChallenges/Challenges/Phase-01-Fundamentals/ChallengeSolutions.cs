@@ -4,6 +4,74 @@ namespace CodingChallenges.Challenges
 {
     public class ChallengeSolutions
     {
+        public static int?  FindFirstDuplicateNumber(int [] numbers)
+        {
+            if(numbers == null || numbers.Length < 2)
+            {
+                return null;
+            }
+
+            List<int> newList = [];
+
+            foreach(int value in numbers)
+            {
+                if(!newList.Contains(value))
+                {
+                    newList.Add(value);
+                }
+                else
+                {
+                    return value;
+                }
+            }
+
+            return null;
+        }
+
+        public static List<int> ParseValidIdsFromCsv(string input)
+        {
+            if(string.IsNullOrWhiteSpace(input))
+            {
+                return [];
+            }
+
+            string [] stringSplit = input.Split([','], StringSplitOptions.RemoveEmptyEntries);
+            List<int> newFormattedList = [];
+
+            foreach(string text in stringSplit)
+            {
+                if(int.TryParse(text.Trim(), out int result))
+                {
+                    if(result > 0)
+                    {
+                        newFormattedList.Add(result);
+                    }
+                }
+            }
+
+            return newFormattedList;
+
+        }
+
+        public static List<int> RemoveDuplicateIdsPreservingOrder(List<int> ids)
+        {
+            if(ids == null)
+            {
+                return [];
+            }
+
+            List<int> newListOfIds = [];
+
+            foreach(int values in ids)
+            {
+                if(!newListOfIds.Contains(values))
+                {
+                    newListOfIds.Add(values);
+                }
+            }
+
+            return newListOfIds;
+        }
         public static int CountScoresOutsideValidRange(int[] scores)
         {
             if(scores == null)

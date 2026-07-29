@@ -6,6 +6,38 @@ namespace CodingChallenges.Challenges
     {
         public static void Run_Two()
         {
+            // REMOVE DUPLICATE IDS PRESERVING ORDER
+            Console.WriteLine($"[{string.Join(", ", RemoveDuplicateIdsPreservingOrder([1, 2, 2, 3, 1]))}]"); // [1, 2, 3]
+            Console.WriteLine($"[{string.Join(", ", RemoveDuplicateIdsPreservingOrder([5, 5, 5]))}]"); // [5]
+            Console.WriteLine($"[{string.Join(", ", RemoveDuplicateIdsPreservingOrder([1, 2, 3]))}]"); // [1, 2, 3]
+            Console.WriteLine($"[{string.Join(", ", RemoveDuplicateIdsPreservingOrder([]))}]"); // []
+            Console.WriteLine($"[{string.Join(", ", RemoveDuplicateIdsPreservingOrder(null!))}]"); // []
+            Console.WriteLine($"[{string.Join(", ", RemoveDuplicateIdsPreservingOrder([1]))}]"); // [1]
+            Console.WriteLine($"[{string.Join(", ", RemoveDuplicateIdsPreservingOrder([1, 1]))}]"); // [1]
+            Console.WriteLine($"[{string.Join(", ", RemoveDuplicateIdsPreservingOrder([1, 2, 1, 2, 1, 2]))}]"); // [1, 2]
+            Console.WriteLine($"[{string.Join(", ", RemoveDuplicateIdsPreservingOrder([10, 20, 30, 10, 20, 30]))}]"); // [10, 20, 30]
+            Console.WriteLine($"[{string.Join(", ", RemoveDuplicateIdsPreservingOrder([-1, -1, 0, 0, 1, 1]))}]"); // [-1, 0, 1]
+            Console.WriteLine($"[{string.Join(", ", RemoveDuplicateIdsPreservingOrder([3, 2, 1, 3, 2, 1]))}]"); // [3, 2, 1]
+
+            // PARSE VALID IDS FROM CSV
+            Console.WriteLine($"[{string.Join(", ", ParseValidIdsFromCsv("1,2,3"))}]"); // [1, 2, 3]
+            Console.WriteLine($"[{string.Join(", ", ParseValidIdsFromCsv("10, -5, 3, hello"))}]"); // [10, 3]
+            Console.WriteLine($"[{string.Join(", ", ParseValidIdsFromCsv("0, -1, abc"))}]"); // []
+            Console.WriteLine($"[{string.Join(", ", ParseValidIdsFromCsv(" 4, 6 , test, 8 "))}]"); // [4, 6, 8]
+            Console.WriteLine($"[{string.Join(", ", ParseValidIdsFromCsv(null!))}]"); // []
+            Console.WriteLine($"[{string.Join(", ", ParseValidIdsFromCsv(""))}]"); // []
+            Console.WriteLine($"[{string.Join(", ", ParseValidIdsFromCsv(" "))}]"); // []
+            Console.WriteLine($"[{string.Join(", ", ParseValidIdsFromCsv("5"))}]"); // [5]
+            Console.WriteLine($"[{string.Join(", ", ParseValidIdsFromCsv("0"))}]"); // []
+            Console.WriteLine($"[{string.Join(", ", ParseValidIdsFromCsv("-10"))}]"); // []
+
+            // FIND FIRST DUPLICATE NUMBER
+            Console.WriteLine(FindFirstDuplicateNumber([1, 2, 3, 2, 4])); // 2
+            Console.WriteLine(FindFirstDuplicateNumber([5, 1, 5, 2, 1])); // 5
+            Console.WriteLine(FindFirstDuplicateNumber([1, 2, 3] )); // null
+            Console.WriteLine(FindFirstDuplicateNumber([7, 7, 1] )); // 7
+            Console.WriteLine(FindFirstDuplicateNumber([] )); // null
+            
             // COUNT SCORES OUTSIDE VALID RANGE
             Console.WriteLine($"[{string.Join(", ", CountScoresOutsideValidRange([-5, 50, 120]))}]"); // 2
             Console.WriteLine($"[{string.Join(", ", CountScoresOutsideValidRange([0, 50, 100]))}]"); // 0
