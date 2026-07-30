@@ -33,6 +33,77 @@
             return null;
         }
 
+         public string BuildBuyRequestSummary(BuyCardRequest? request)
+        {
+            if(request == null)
+            {
+                return "";
+            }
+
+            return $"Player:{request.PlayerName} Card:{request.CardName}";
+
+        }
+
+        public CardShopResult BuyCardFromPlayerWithRequest(Player? player, SellCardRequest? request)
+        {
+            if(player is null)
+            {
+                return new CardShopResult(false, "player is Required", "", 0);
+            }
+
+            if(request is null)
+            {
+                return new CardShopResult(false, "Request is required", "", 0);
+            }
+
+            if(string.IsNullOrWhiteSpace(request.PlayerName))
+            {
+                return new CardShopResult(false, "Player name is required", "", 0);
+            }
+
+            if(!request.PlayerName.Equals(player.Name, StringComparison.InvariantCultureIgnoreCase))
+            {
+                return new CardShopResult(false, "Player mismatch", request.CardName, 0);
+            }
+
+            if(string.IsNullOrWhiteSpace(request.CardName))
+            {
+                return new CardShopResult(false, "Card name is required", "", 0);
+            }
+            
+            return BuyCardFromPlayerWithResult(player, request.CardName);
+        }
+
+        public CardShopResult BuyCardWithRequest(Player? player, BuyCardRequest? request)
+        {
+            if(player is null)
+            {
+                return new CardShopResult(false, "player is Required", "", 0);
+            }
+
+            if(request is null)
+            {
+                return new CardShopResult(false, "Request is required", "", 0);
+            }
+
+            if(string.IsNullOrWhiteSpace(request.PlayerName))
+            {
+                return new CardShopResult(false, "Player name is required", "", 0);
+            }
+
+            if(!request.PlayerName.Equals(request.PlayerName, StringComparison.InvariantCultureIgnoreCase))
+            {
+                return new CardShopResult(false, "Player mismatch", request.CardName, 0);
+            }
+
+            if(string.IsNullOrWhiteSpace(request.CardName))
+            {
+                return new CardShopResult(false, "Card name is required", "", 0);
+            }
+            
+            return BuyCardWithResult(player, request.CardName);
+        }
+
         public void AddCard(Card card)
         {
             if (card == null)
