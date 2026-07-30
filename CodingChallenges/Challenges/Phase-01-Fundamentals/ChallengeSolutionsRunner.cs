@@ -6,6 +6,26 @@ namespace CodingChallenges.Challenges
     {
         public static void Run_Two()
         {
+            // FIND DUPLICATE IDS
+            Console.WriteLine(string.Join(", ", FindDuplicateIds([1, 2, 2, 3, 1]))); // 2, 1
+            Console.WriteLine(string.Join(", ", FindDuplicateIds([5, 5, 5]))); // 5
+            Console.WriteLine(string.Join(", ", FindDuplicateIds([1, 2, 3]))); // ""
+            Console.WriteLine(string.Join(", ", FindDuplicateIds([4, 4, 2, 2, 4]))); // 4, 2
+            Console.WriteLine(string.Join(", ", FindDuplicateIds(null!))); // ""
+            
+            // FindClosestScoreToTarget
+            Console.WriteLine(FindClosestScoreToTarget([40, 60, 80], 65)); // 60
+            Console.WriteLine(FindClosestScoreToTarget([50, 70], 60)); // 70
+            Console.WriteLine(FindClosestScoreToTarget([10, 90, 100], 95)); // 100
+            Console.WriteLine(FindClosestScoreToTarget([88], 70)); // 88
+            Console.WriteLine(FindClosestScoreToTarget([], 70)); // null
+
+            // COUNT UNIQUE IDS
+            Console.WriteLine(CountUniqueIds([1, 2, 2, 3, 1])); // 3
+            Console.WriteLine(CountUniqueIds([5, 5, 5])); // 1
+            Console.WriteLine(CountUniqueIds([1, 2, 3])); // 3
+            Console.WriteLine(CountUniqueIds([])); // 0
+            Console.WriteLine(CountUniqueIds(null!)); // 0
             // REMOVE DUPLICATE IDS PRESERVING ORDER
             Console.WriteLine($"[{string.Join(", ", RemoveDuplicateIdsPreservingOrder([1, 2, 2, 3, 1]))}]"); // [1, 2, 3]
             Console.WriteLine($"[{string.Join(", ", RemoveDuplicateIdsPreservingOrder([5, 5, 5]))}]"); // [5]

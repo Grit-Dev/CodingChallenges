@@ -4,6 +4,78 @@ namespace CodingChallenges.Challenges
 {
     public class ChallengeSolutions
     {
+        public static int CountUniqueIds(List<int> ids)
+        {
+            if(ids is null)
+            {
+                return 0;
+            }
+
+            List<int> uniqueIdsList = [];
+
+            foreach(int value in ids)
+            {
+                if(!uniqueIdsList.Contains(value))
+                {
+                    uniqueIdsList.Add(value);
+                }
+            }
+
+            return uniqueIdsList.Count;
+        }
+
+        public static int? FindClosestScoreToTarget(int[] scores, int target)
+        {
+            if(scores == null || scores.Length == 0)
+            {
+                return null;
+            }
+
+            int overallClosestScore = Math.Abs(target - scores[0]);
+            int targetValue = scores[0];
+
+            foreach(int value in scores)
+            {
+                int closestScore = Math.Abs(target - value);
+
+                if(closestScore < overallClosestScore)
+                {
+                    overallClosestScore = closestScore;
+                    targetValue = value;
+                }
+                else if(closestScore == overallClosestScore && value > targetValue)
+                {
+                    targetValue = value;
+                }
+            }
+
+            return targetValue;
+        }    
+
+        public static List<int> FindDuplicateIds(List<int> ids)
+        {
+            if(ids == null || ids.Count == 0)
+            {
+                return [];
+            }
+
+            List<int> uniqueIdLists = [];
+            List<int> notUniqueIdList = [];
+
+            foreach(int value in ids)
+            {
+                if(!uniqueIdLists.Contains(value))
+                {
+                    uniqueIdLists.Add(value);
+                }
+                else if(!notUniqueIdList.Contains(value))
+                {
+                    notUniqueIdList.Add(value);
+                }
+            }
+
+            return notUniqueIdList;
+        }
         public static int?  FindFirstDuplicateNumber(int [] numbers)
         {
             if(numbers == null || numbers.Length < 2)
