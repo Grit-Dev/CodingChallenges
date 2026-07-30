@@ -51,9 +51,40 @@ public class Program
         return targetValue;
     }    
 
+    public static List<int> FindDuplicateIds(List<int> ids)
+    {
+        if(ids == null || ids.Count == 0)
+        {
+            return [];
+        }
+
+        List<int> uniqueIdLists = [];
+        List<int> notUniqueIdList = [];
+
+        foreach(int value in ids)
+        {
+            if(!uniqueIdLists.Contains(value))
+            {
+                uniqueIdLists.Add(value);
+            }
+            else if(!notUniqueIdList.Contains(value))
+            {
+                notUniqueIdList.Add(value);
+            }
+        }
+
+        return notUniqueIdList;
+    }
 
     public static void Main(string[] args)
     {   
+        // FIND DUPLICATE IDS
+        Console.WriteLine(string.Join(", ", FindDuplicateIds([1, 2, 2, 3, 1]))); // 2, 1
+        Console.WriteLine(string.Join(", ", FindDuplicateIds([5, 5, 5]))); // 5
+        Console.WriteLine(string.Join(", ", FindDuplicateIds([1, 2, 3]))); // ""
+        Console.WriteLine(string.Join(", ", FindDuplicateIds([4, 4, 2, 2, 4]))); // 4, 2
+        Console.WriteLine(string.Join(", ", FindDuplicateIds(null!))); // ""
+        
         // FindClosestScoreToTarget
         Console.WriteLine(FindClosestScoreToTarget([40, 60, 80], 65)); // 60
         Console.WriteLine(FindClosestScoreToTarget([50, 70], 60)); // 70
@@ -91,16 +122,6 @@ public class Program
     * No LINQ.
     * No Dictionary.
     * No HashSet.
-
-    Examples:
-
-    [1, 2, 2, 3, 1] -> [2, 1]
-
-    [5, 5, 5] -> [5]
-
-    [1, 2, 3] -> []
-
-    [4, 4, 2, 2, 4] -> [4, 2]
 
 
     HINT:
