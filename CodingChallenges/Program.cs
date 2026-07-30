@@ -22,105 +22,56 @@ public class Program
 
         return uniqueIdsList.Count;
     }
+
+    public static int? FindClosestScoreToTarget(int[] scores, int target)
+    {
+        if(scores == null || scores.Length == 0)
+        {
+            return null;
+        }
+
+        int overallClosestScore = Math.Abs(target - scores[0]);
+        int targetValue = scores[0];
+
+        foreach(int value in scores)
+        {
+            int closestScore = Math.Abs(target - value);
+
+            if(closestScore < overallClosestScore)
+            {
+                overallClosestScore = closestScore;
+                targetValue = value;
+            }
+            else if(closestScore == overallClosestScore && value > targetValue)
+            {
+                targetValue = value;
+            }
+        }
+
+        return targetValue;
+    }    
+
+
     public static void Main(string[] args)
     {   
+        // FindClosestScoreToTarget
+        Console.WriteLine(FindClosestScoreToTarget([40, 60, 80], 65)); // 60
+        Console.WriteLine(FindClosestScoreToTarget([50, 70], 60)); // 70
+        Console.WriteLine(FindClosestScoreToTarget([10, 90, 100], 95)); // 100
+        Console.WriteLine(FindClosestScoreToTarget([88], 70)); // 88
+        Console.WriteLine(FindClosestScoreToTarget([], 70)); // null
+
         // COUNT UNIQUE IDS
         Console.WriteLine(CountUniqueIds([1, 2, 2, 3, 1])); // 3
         Console.WriteLine(CountUniqueIds([5, 5, 5])); // 1
         Console.WriteLine(CountUniqueIds([1, 2, 3])); // 3
         Console.WriteLine(CountUniqueIds([])); // 0
-        Console.WriteLine(CountUniqueIds(null!)); //
+        Console.WriteLine(CountUniqueIds(null!)); // 0
         // CardShopRequestObjectChallenges.Run();
         // CardShopTransactionReportsChallenges.Run();
         // CardShopTransactionHistoryChallenges.TransactionHistoryChallenges_Run_23_07_2026();
     }
     /*
-    ============================================================
-    CODING CHALLENGE 1:
-    COUNT UNIQUE IDS
-    ============================================================
-
-    Create this method:
-
-    public static int CountUniqueIds(List<int> ids)
-
-    Requirements:
-
-    * Return 0 if ids is null.
-    * Count how many unique IDs are in the list.
-    * Preserve the idea that duplicates only count once.
-    * You may use List<int>.Contains.
-    * No LINQ.
-    * No Dictionary.
-    * No HashSet.
-
-    Examples:
-
-    [1, 2, 2, 3, 1] -> 3
-
-    [5, 5, 5] -> 1
-
-    [1, 2, 3] -> 3
-
-    [] -> 0
-
-
-    HINT:
-
-    Create a new List<int> called seenIds.
-    Loop through ids.
-    If seenIds does not contain the current ID, add it.
-
-
-    ============================================================
-    CODING CHALLENGE 2:
-    FIND CLOSEST SCORE TO TARGET
-    ============================================================
-
-    Create this method:
-
-    public static int? FindClosestScoreToTarget(
-        int[] scores,
-        int target
-    )
-
-    Requirements:
-
-    * Return null if scores is null.
-    * Return null if scores is empty.
-    * Return the score closest to the target.
-    * If two scores are equally close, return the higher score.
-    * No LINQ.
-
-    Examples:
-
-    [40, 60, 80], target 65 -> 60
-
-    [50, 70], target 60 -> 70
-    Explanation:
-    50 is distance 10 from 60.
-    70 is distance 10 from 60.
-    Return the higher score.
-
-    [10, 90, 100], target 95 -> 90
-
-    [88], target 70 -> 88
-
-    [] -> null
-
-
-    HINT:
-
-    Track four things:
-
-    int closestScore
-    int closestDistance
-    int currentScore
-    int currentDistance
-
-    Start by assuming scores[0] is the closest.
-
-
     ============================================================
     CODING CHALLENGE 3:
     FIND DUPLICATE IDS
