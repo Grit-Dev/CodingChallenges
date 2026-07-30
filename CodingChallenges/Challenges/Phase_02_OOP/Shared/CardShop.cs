@@ -48,7 +48,7 @@
         {
             if(player is null)
             {
-                return new CardShopResult(false, "player is Required", "", 0);
+                return new CardShopResult(false, "player is required", "", 0);
             }
 
             if(request is null)
@@ -91,7 +91,7 @@
                 return new CardShopResult(false, "Player name is required", "", 0);
             }
 
-            if(!request.PlayerName.Equals(request.PlayerName, StringComparison.InvariantCultureIgnoreCase))
+            if(!request.PlayerName.Equals(player.Name, StringComparison.InvariantCultureIgnoreCase))
             {
                 return new CardShopResult(false, "Player mismatch", request.CardName, 0);
             }
