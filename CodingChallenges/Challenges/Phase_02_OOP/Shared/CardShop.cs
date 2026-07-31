@@ -71,7 +71,7 @@
         {
             if (player is null)
             {
-                return new CardShopResult(false, "player is required", "", 0);
+                return new CardShopResult(false, "Player is required", "", 0);
             }
 
             if (request is null)
@@ -101,7 +101,7 @@
         {
             if (player is null)
             {
-                return new CardShopResult(false, "player is required", "", 0);
+                return new CardShopResult(false, "Player is required", "", 0);
             }
 
             if (request is null)
