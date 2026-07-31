@@ -2,11 +2,11 @@
 
 namespace CodingChallenges.Challenges
 {
-        public class ChallengeSolutions
+    public class ChallengeSolutions
+    {
+        public static int? FindClosestAttackToTarget(int[] attacks, int target)
         {
-            public static int? FindClosestAttackToTarget(int[] attacks, int target)
-        {
-            if(attacks is null || attacks.Length == 0)
+            if (attacks is null || attacks.Length == 0)
             {
                 return null;
             }
@@ -14,16 +14,16 @@ namespace CodingChallenges.Challenges
             int closestToTargetsoFar = int.MaxValue;
             int closestvalueFromArray = target;
 
-            foreach(var value in attacks)
+            foreach (var value in attacks)
             {
                 int rangeFromTarget = Math.Abs(target - value);
 
-                if(rangeFromTarget < closestToTargetsoFar)
+                if (rangeFromTarget < closestToTargetsoFar)
                 {
                     closestToTargetsoFar = rangeFromTarget;
                     closestvalueFromArray = value;
                 }
-                else if(rangeFromTarget == closestToTargetsoFar && value > closestvalueFromArray)
+                else if (rangeFromTarget == closestToTargetsoFar && value > closestvalueFromArray)
                 {
                     closestvalueFromArray = value;
                 }
@@ -34,16 +34,16 @@ namespace CodingChallenges.Challenges
 
         public static int CountIdsAboveTarget(List<int> ids, int target)
         {
-            if(ids is null)
+            if (ids is null)
             {
                 return 0;
             }
 
             int counter = 0;
 
-            foreach(int value in ids)
+            foreach (int value in ids)
             {
-                if(value > target)
+                if (value > target)
                 {
                     counter++;
                 }
@@ -51,42 +51,42 @@ namespace CodingChallenges.Challenges
 
             return counter;
         }
-        
+
         public static List<int> ParseValidCardPricesFromCsv(string input)
         {
-            if(string.IsNullOrWhiteSpace(input))
+            if (string.IsNullOrWhiteSpace(input))
             {
                 return [];
             }
 
             List<int> newListInput = [];
-            string [] splitString = input.Split([','], StringSplitOptions.RemoveEmptyEntries);
+            string[] splitString = input.Split([','], StringSplitOptions.RemoveEmptyEntries);
 
-            foreach(string stringValue in splitString)
+            foreach (string stringValue in splitString)
             {
-                if(int.TryParse(stringValue.Trim(), out int result))
+                if (int.TryParse(stringValue.Trim(), out int result))
                 {
-                    if(result > 0)
+                    if (result > 0)
                     {
                         newListInput.Add(result);
-                    }   
+                    }
                 }
             }
-            
+
             return newListInput;
         }
         public static int CountUniqueIds(List<int> ids)
         {
-            if(ids is null)
+            if (ids is null)
             {
                 return 0;
             }
 
             List<int> uniqueIdsList = [];
 
-            foreach(int value in ids)
+            foreach (int value in ids)
             {
-                if(!uniqueIdsList.Contains(value))
+                if (!uniqueIdsList.Contains(value))
                 {
                     uniqueIdsList.Add(value);
                 }
@@ -97,7 +97,7 @@ namespace CodingChallenges.Challenges
 
         public static int? FindClosestScoreToTarget(int[] scores, int target)
         {
-            if(scores == null || scores.Length == 0)
+            if (scores == null || scores.Length == 0)
             {
                 return null;
             }
@@ -105,27 +105,27 @@ namespace CodingChallenges.Challenges
             int overallClosestScore = Math.Abs(target - scores[0]);
             int targetValue = scores[0];
 
-            foreach(int value in scores)
+            foreach (int value in scores)
             {
                 int closestScore = Math.Abs(target - value);
 
-                if(closestScore < overallClosestScore)
+                if (closestScore < overallClosestScore)
                 {
                     overallClosestScore = closestScore;
                     targetValue = value;
                 }
-                else if(closestScore == overallClosestScore && value > targetValue)
+                else if (closestScore == overallClosestScore && value > targetValue)
                 {
                     targetValue = value;
                 }
             }
 
             return targetValue;
-        }    
+        }
 
         public static List<int> FindDuplicateIds(List<int> ids)
         {
-            if(ids == null || ids.Count == 0)
+            if (ids == null || ids.Count == 0)
             {
                 return [];
             }
@@ -133,13 +133,13 @@ namespace CodingChallenges.Challenges
             List<int> uniqueIdLists = [];
             List<int> notUniqueIdList = [];
 
-            foreach(int value in ids)
+            foreach (int value in ids)
             {
-                if(!uniqueIdLists.Contains(value))
+                if (!uniqueIdLists.Contains(value))
                 {
                     uniqueIdLists.Add(value);
                 }
-                else if(!notUniqueIdList.Contains(value))
+                else if (!notUniqueIdList.Contains(value))
                 {
                     notUniqueIdList.Add(value);
                 }
@@ -147,18 +147,18 @@ namespace CodingChallenges.Challenges
 
             return notUniqueIdList;
         }
-        public static int?  FindFirstDuplicateNumber(int [] numbers)
+        public static int? FindFirstDuplicateNumber(int[] numbers)
         {
-            if(numbers == null || numbers.Length < 2)
+            if (numbers == null || numbers.Length < 2)
             {
                 return null;
             }
 
             List<int> newList = [];
 
-            foreach(int value in numbers)
+            foreach (int value in numbers)
             {
-                if(!newList.Contains(value))
+                if (!newList.Contains(value))
                 {
                     newList.Add(value);
                 }
@@ -173,19 +173,19 @@ namespace CodingChallenges.Challenges
 
         public static List<int> ParseValidIdsFromCsv(string input)
         {
-            if(string.IsNullOrWhiteSpace(input))
+            if (string.IsNullOrWhiteSpace(input))
             {
                 return [];
             }
 
-            string [] stringSplit = input.Split([','], StringSplitOptions.RemoveEmptyEntries);
+            string[] stringSplit = input.Split([','], StringSplitOptions.RemoveEmptyEntries);
             List<int> newFormattedList = [];
 
-            foreach(string text in stringSplit)
+            foreach (string text in stringSplit)
             {
-                if(int.TryParse(text.Trim(), out int result))
+                if (int.TryParse(text.Trim(), out int result))
                 {
-                    if(result > 0)
+                    if (result > 0)
                     {
                         newFormattedList.Add(result);
                     }
@@ -198,16 +198,16 @@ namespace CodingChallenges.Challenges
 
         public static List<int> RemoveDuplicateIdsPreservingOrder(List<int> ids)
         {
-            if(ids == null)
+            if (ids == null)
             {
                 return [];
             }
 
             List<int> newListOfIds = [];
 
-            foreach(int values in ids)
+            foreach (int values in ids)
             {
-                if(!newListOfIds.Contains(values))
+                if (!newListOfIds.Contains(values))
                 {
                     newListOfIds.Add(values);
                 }
@@ -217,16 +217,16 @@ namespace CodingChallenges.Challenges
         }
         public static int CountScoresOutsideValidRange(int[] scores)
         {
-            if(scores == null)
+            if (scores == null)
             {
                 return 0;
             }
 
             int counter = 0;
 
-            foreach(int value in scores)
+            foreach (int value in scores)
             {
-                if(value < 0 || value > 100)
+                if (value < 0 || value > 100)
                 {
                     counter++;
                 }
@@ -237,24 +237,24 @@ namespace CodingChallenges.Challenges
         public static int[] ClampScores(int[] scores)
         {
 
-            if(scores == null)
+            if (scores == null)
             {
                 return [];
             }
 
             List<int> newIntList = [];
 
-            foreach(int value in scores)
+            foreach (int value in scores)
             {
-                if( value >= 0 && value <= 100)
+                if (value >= 0 && value <= 100)
                 {
                     newIntList.Add(value);
                 }
-                else if(value > 100)
+                else if (value > 100)
                 {
                     newIntList.Add(100);
                 }
-                else if(value < 0)
+                else if (value < 0)
                 {
                     newIntList.Add(0);
                 }
@@ -262,26 +262,26 @@ namespace CodingChallenges.Challenges
 
             return newIntList.ToArray();
         }
-        public static int? FindClosestNumberToTarget(int [] numbers, int target)
+        public static int? FindClosestNumberToTarget(int[] numbers, int target)
         {
-            if(numbers == null || numbers.Length == 0)
+            if (numbers == null || numbers.Length == 0)
             {
-                return null; 
+                return null;
             }
 
             int closest = int.MaxValue;
             int valueToReturn = 0;
 
-            foreach(int value in numbers)
+            foreach (int value in numbers)
             {
                 int outcome = Math.Abs(target - value);
 
-                if(outcome < closest)
+                if (outcome < closest)
                 {
                     closest = outcome;
                     valueToReturn = value;
                 }
-                else if(outcome == closest && value > valueToReturn)
+                else if (outcome == closest && value > valueToReturn)
                 {
                     valueToReturn = value;
                 }
@@ -292,19 +292,19 @@ namespace CodingChallenges.Challenges
         }
         public static int[] ParseValidScoresFromCsv(string input)
         {
-            if(string.IsNullOrWhiteSpace(input))
+            if (string.IsNullOrWhiteSpace(input))
             {
                 return [];
             }
 
-            string [] splitString = input.Split([','], StringSplitOptions.RemoveEmptyEntries);
+            string[] splitString = input.Split([','], StringSplitOptions.RemoveEmptyEntries);
             List<int> validListOfScores = [];
 
-            foreach(string text in splitString)
+            foreach (string text in splitString)
             {
-                if(int.TryParse(text.Trim(), out int result))
+                if (int.TryParse(text.Trim(), out int result))
                 {
-                    if(result >= 0 && result <= 100)
+                    if (result >= 0 && result <= 100)
                     {
                         validListOfScores.Add(result);
                     }
@@ -313,24 +313,24 @@ namespace CodingChallenges.Challenges
 
             return validListOfScores.ToArray();
         }
-    
+
         public static int CountPeaks(int[] numbers)
         {
-            if( numbers == null || numbers.Length < 3)
+            if (numbers == null || numbers.Length < 3)
             {
                 return 0;
             }
 
-            
+
             int previousPosition = numbers[0];
             int counter = 0;
 
-            for(int outterIndex = 2; outterIndex <= numbers.Length -1; outterIndex++)
+            for (int outterIndex = 2; outterIndex <= numbers.Length - 1; outterIndex++)
             {
-                int currentPosition = numbers[outterIndex -1];
+                int currentPosition = numbers[outterIndex - 1];
                 int futurePosition = numbers[outterIndex];
 
-                if(currentPosition > previousPosition && currentPosition > futurePosition)
+                if (currentPosition > previousPosition && currentPosition > futurePosition)
                 {
                     counter++;
                 }
@@ -345,23 +345,23 @@ namespace CodingChallenges.Challenges
 
         public static int? FindClosestNumberToZero(int[] numbers)
         {
-            if(numbers == null || numbers.Length == 0)
+            if (numbers == null || numbers.Length == 0)
             {
                 return null;
             }
 
             int closest = numbers[0];
 
-            foreach(int value in numbers)
+            foreach (int value in numbers)
             {
                 int currentDistance = Math.Abs(value);
                 int closestDistance = Math.Abs(closest);
 
-                if(currentDistance < closestDistance)
+                if (currentDistance < closestDistance)
                 {
                     closest = value;
                 }
-                else if(currentDistance == closestDistance && value > closest)
+                else if (currentDistance == closestDistance && value > closest)
                 {
                     closest = value;
                 }
@@ -371,21 +371,21 @@ namespace CodingChallenges.Challenges
         }
         public static int? FindHighestValidScoreFromCsv(string pInput)
         {
-            if(string.IsNullOrWhiteSpace(pInput))
+            if (string.IsNullOrWhiteSpace(pInput))
             {
                 return null;
             }
 
             int? highestScore = null;
-            string [] splitString = pInput.Split([','], StringSplitOptions.RemoveEmptyEntries);
+            string[] splitString = pInput.Split([','], StringSplitOptions.RemoveEmptyEntries);
 
-            foreach(string text in splitString)
+            foreach (string text in splitString)
             {
-                if(int.TryParse(text.Trim(), out int result))
+                if (int.TryParse(text.Trim(), out int result))
                 {
-                    if(result >= 0 && result <= 100)
+                    if (result >= 0 && result <= 100)
                     {
-                        if(highestScore == null || result > highestScore)
+                        if (highestScore == null || result > highestScore)
                         {
                             highestScore = result;
                         }
@@ -396,27 +396,27 @@ namespace CodingChallenges.Challenges
             return highestScore;
 
         }
-        public static int FindLongestIncreasingStreak(int [] pNumbers)
+        public static int FindLongestIncreasingStreak(int[] pNumbers)
         {
-            if(pNumbers == null || pNumbers.Length == 0)
+            if (pNumbers == null || pNumbers.Length == 0)
             {
                 return 0;
             }
-            
+
             int currentStreak = 1;
             int highestStreak = 1;
 
-            for(int outterIndex = 1; outterIndex <= pNumbers.Length -1; outterIndex++)
+            for (int outterIndex = 1; outterIndex <= pNumbers.Length - 1; outterIndex++)
             {
                 int currentValue = pNumbers[outterIndex];
 
-                if(currentValue > pNumbers[outterIndex -1])
+                if (currentValue > pNumbers[outterIndex - 1])
                 {
                     currentStreak++;
                 }
                 else
                 {
-                    if(currentStreak > highestStreak)
+                    if (currentStreak > highestStreak)
                     {
                         highestStreak = currentStreak;
                     }
@@ -425,17 +425,17 @@ namespace CodingChallenges.Challenges
                 }
             }
 
-            if(currentStreak > highestStreak)
+            if (currentStreak > highestStreak)
             {
                 highestStreak = currentStreak;
             }
 
             return highestStreak;
-            
+
         }
         public static int CountNumbersGreaterThanPrevious(int[] pNumbers)
         {
-            if(pNumbers == null || pNumbers.Length < 2)
+            if (pNumbers == null || pNumbers.Length < 2)
             {
                 return 0;
             }
@@ -443,11 +443,11 @@ namespace CodingChallenges.Challenges
             int counter = 0;
             int previousValue = pNumbers[0];
 
-            for(int outterIndex = 1; outterIndex <= pNumbers.Length -1; outterIndex++)
+            for (int outterIndex = 1; outterIndex <= pNumbers.Length - 1; outterIndex++)
             {
                 int currentValue = pNumbers[outterIndex];
 
-                if( previousValue < currentValue)
+                if (previousValue < currentValue)
                 {
                     counter++;
                 }
@@ -456,10 +456,10 @@ namespace CodingChallenges.Challenges
             }
 
             return counter;
-        }  
+        }
         public static int? FindSecondLargestDistinctNumber(int[] pNumbers)
         {
-            if(pNumbers == null)
+            if (pNumbers == null)
             {
                 return null;
             }
@@ -492,37 +492,37 @@ namespace CodingChallenges.Challenges
                 secondLargestNumber = newListInt[0];
             }
 
-            for (int outterIndex = 2; outterIndex <= newListInt.Count -1; outterIndex++)
+            for (int outterIndex = 2; outterIndex <= newListInt.Count - 1; outterIndex++)
             {
                 int value = newListInt[outterIndex];
 
-                if(value > largestNumber)
+                if (value > largestNumber)
                 {
                     secondLargestNumber = largestNumber;
                     largestNumber = value;
                 }
-                else if(value > secondLargestNumber)
+                else if (value > secondLargestNumber)
                 {
                     secondLargestNumber = value;
                 }
             }
 
             return secondLargestNumber;
-        } 
+        }
 
-        public static int[] MoveZerosToEnd(int [] pNumber)
+        public static int[] MoveZerosToEnd(int[] pNumber)
         {
-            if(pNumber == null)
+            if (pNumber == null)
             {
                 return [];
             }
 
-            int counter = 0; 
+            int counter = 0;
             List<int> newListInts = [];
 
-            foreach(int value in pNumber)
+            foreach (int value in pNumber)
             {
-                if(value != 0)
+                if (value != 0)
                 {
                     newListInts.Add(value);
                 }
@@ -532,7 +532,7 @@ namespace CodingChallenges.Challenges
                 }
             }
 
-            for(int outterIndex = 0; outterIndex <= counter -1; outterIndex++)
+            for (int outterIndex = 0; outterIndex <= counter - 1; outterIndex++)
             {
                 newListInts.Add(0);
             }
@@ -542,34 +542,34 @@ namespace CodingChallenges.Challenges
 
         public static int SumPositiveNumbersFromText(string pInputValue)
         {
-            if(string.IsNullOrWhiteSpace(pInputValue))
+            if (string.IsNullOrWhiteSpace(pInputValue))
             {
                 return 0;
             }
-            
+
             int total = 0;
-            
-            string [] splitString = pInputValue.Split([','], StringSplitOptions.RemoveEmptyEntries);
+
+            string[] splitString = pInputValue.Split([','], StringSplitOptions.RemoveEmptyEntries);
 
 
-            foreach(string wordValue in splitString)
+            foreach (string wordValue in splitString)
             {
                 string trimmedPart = wordValue.Trim();
 
-                if(int.TryParse(trimmedPart, out int result))
+                if (int.TryParse(trimmedPart, out int result))
                 {
-                    if(result > 0)
+                    if (result > 0)
                     {
                         total += result;
-                    } 
+                    }
                 }
             }
-        
+
             return total;
         }
         public static char FindFirstWordWithRepeatedCharactersAppearingTwice(string pInputValue)
         {
-            if(string.IsNullOrWhiteSpace(pInputValue))
+            if (string.IsNullOrWhiteSpace(pInputValue))
             {
                 return '\0';
             }
@@ -577,28 +577,29 @@ namespace CodingChallenges.Challenges
             List<char> cleanedList = [];
             pInputValue = pInputValue.ToLower();
 
-            foreach(char character in pInputValue)
+            foreach (char character in pInputValue)
             {
-                if(!char.IsWhiteSpace(character))
+                if (!char.IsWhiteSpace(character))
                 {
                     cleanedList.Add(character);
                 }
-            };
+            }
+            ;
 
-            for(int outterIndex = 0; outterIndex <= cleanedList.Count -1; outterIndex++)
+            for (int outterIndex = 0; outterIndex <= cleanedList.Count - 1; outterIndex++)
             {
                 int counter = 0;
                 char currentCharacter = cleanedList[outterIndex];
 
-                for(int innerIndex = 0; innerIndex <= cleanedList.Count -1; innerIndex++)
+                for (int innerIndex = 0; innerIndex <= cleanedList.Count - 1; innerIndex++)
                 {
-                    if(currentCharacter == cleanedList[innerIndex])
+                    if (currentCharacter == cleanedList[innerIndex])
                     {
                         counter++;
                     }
                 }
 
-                if(counter == 2)
+                if (counter == 2)
                 {
                     return currentCharacter;
                 }
@@ -610,26 +611,26 @@ namespace CodingChallenges.Challenges
         }
         public static string FindWordWithHighestRepeatedCharacterCount_Rev(string pInputValue)
         {
-            if(string.IsNullOrWhiteSpace(pInputValue))
+            if (string.IsNullOrWhiteSpace(pInputValue))
             {
                 return "";
-            }   
+            }
 
             string highestRepeatedCharacterWord = "";
             int highestRepeatedCharacterCounter = int.MinValue;
 
-            string [] splitString = pInputValue.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+            string[] splitString = pInputValue.Split(' ', StringSplitOptions.RemoveEmptyEntries);
 
-            foreach(string word in splitString)
+            foreach (string word in splitString)
             {
                 List<char> charList = [];
                 int repeatedCharacterCounter = 0;
 
                 string wordLowered = word.ToLower();
 
-                foreach(char character in wordLowered)
+                foreach (char character in wordLowered)
                 {
-                    if(!charList.Contains(character))
+                    if (!charList.Contains(character))
                     {
                         charList.Add(character);
                     }
@@ -639,7 +640,7 @@ namespace CodingChallenges.Challenges
                     }
                 }
 
-                if(repeatedCharacterCounter > highestRepeatedCharacterCounter)
+                if (repeatedCharacterCounter > highestRepeatedCharacterCounter)
                 {
                     highestRepeatedCharacterCounter = repeatedCharacterCounter;
                     highestRepeatedCharacterWord = word;
@@ -650,35 +651,35 @@ namespace CodingChallenges.Challenges
         }
         public static string FindFirstWordWithExactlyTwoRepeatedCharacters_Rev(string pInputValue)
         {
-            if(string.IsNullOrWhiteSpace(pInputValue))
+            if (string.IsNullOrWhiteSpace(pInputValue))
             {
                 return "";
             }
 
             const int repeatedCharactersLimit = 2;
 
-            string [] splitString = pInputValue.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+            string[] splitString = pInputValue.Split(' ', StringSplitOptions.RemoveEmptyEntries);
 
-            foreach(string word in splitString)
+            foreach (string word in splitString)
             {
                 List<char> characterList = [];
                 int repeatedCharactersCounter = 0;
 
                 string wordLowered = word.ToLower();
 
-                foreach(char character in wordLowered)
+                foreach (char character in wordLowered)
                 {
-                    if(!characterList.Contains(character))
+                    if (!characterList.Contains(character))
                     {
                         characterList.Add(character);
                     }
                     else
                     {
-                    repeatedCharactersCounter++;  
+                        repeatedCharactersCounter++;
                     }
                 }
 
-                if(repeatedCharactersCounter == repeatedCharactersLimit)
+                if (repeatedCharactersCounter == repeatedCharactersLimit)
                 {
                     return word;
                 }
@@ -688,25 +689,25 @@ namespace CodingChallenges.Challenges
         }
         public static string FindFirstWordWithExactlyTwoRepeatedCharacters(string pInputValue)
         {
-            if(string.IsNullOrWhiteSpace(pInputValue))
+            if (string.IsNullOrWhiteSpace(pInputValue))
             {
                 return "";
             }
 
             const int REPEATEDCHARACTERLIMIT = 2;
-            string [] splitString = pInputValue.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+            string[] splitString = pInputValue.Split(' ', StringSplitOptions.RemoveEmptyEntries);
 
-            foreach(string word in splitString)
+            foreach (string word in splitString)
             {
                 List<char> uniqueCharactersList = [];
                 int repeatedCharacter = 0;
                 string wordLowered = word.ToLower();
 
-                for(int outterIndex = 0; outterIndex <= wordLowered.Length -1; outterIndex++)
+                for (int outterIndex = 0; outterIndex <= wordLowered.Length - 1; outterIndex++)
                 {
                     char currentCharacter = wordLowered[outterIndex];
 
-                    if(!uniqueCharactersList.Contains(currentCharacter))
+                    if (!uniqueCharactersList.Contains(currentCharacter))
                     {
                         uniqueCharactersList.Add(currentCharacter);
                     }
@@ -716,10 +717,10 @@ namespace CodingChallenges.Challenges
                     }
                 }
 
-                    if(repeatedCharacter == REPEATEDCHARACTERLIMIT)
-                    {
-                        return word;
-                    }
+                if (repeatedCharacter == REPEATEDCHARACTERLIMIT)
+                {
+                    return word;
+                }
             }
 
             return "";
@@ -727,26 +728,26 @@ namespace CodingChallenges.Challenges
 
         public static string FindWordWithHighestRepeatedCharacterCount(string pInputValue)
         {
-            if(string.IsNullOrWhiteSpace(pInputValue))
+            if (string.IsNullOrWhiteSpace(pInputValue))
             {
                 return "";
             }
 
-            string [] splitString = pInputValue.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+            string[] splitString = pInputValue.Split(' ', StringSplitOptions.RemoveEmptyEntries);
             int highestRepeatedCharacters = int.MinValue;
             string highestWordRepeatedCharacters = "";
 
 
-            foreach(string word in splitString)
+            foreach (string word in splitString)
             {
                 int repeatedCharacterCounter = 0;
                 List<char> uniqueCharacterList = [];
 
                 string wordLowered = word.ToLower();
 
-                foreach(char character in wordLowered)
+                foreach (char character in wordLowered)
                 {
-                    if(!uniqueCharacterList.Contains(character))
+                    if (!uniqueCharacterList.Contains(character))
                     {
                         uniqueCharacterList.Add(character);
                     }
@@ -756,7 +757,7 @@ namespace CodingChallenges.Challenges
                     }
                 }
 
-                if(repeatedCharacterCounter > highestRepeatedCharacters)
+                if (repeatedCharacterCounter > highestRepeatedCharacters)
                 {
                     highestRepeatedCharacters = repeatedCharacterCounter;
                     highestWordRepeatedCharacters = word;

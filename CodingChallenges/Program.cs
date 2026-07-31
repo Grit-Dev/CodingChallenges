@@ -1,105 +1,142 @@
 ﻿public class Program
-{   
+{
+    public static List<int> FindIdsInBothLists(List<int> firstIds, List<int> secondIds)
+    {
+        if (firstIds is null || secondIds is null)
+        {
+            return [];
+        }
+
+        List<int> commonalityList = [];
+
+        foreach (int outterValue in firstIds)
+        {
+            foreach (int innerValue in secondIds)
+            {
+                if (outterValue == innerValue)
+                {
+                    if (!commonalityList.Contains(outterValue))
+                    {
+                        commonalityList.Add(outterValue);
+                    }
+                }
+            }
+        }
+
+        return commonalityList;
+    }
     public static void Main(string[] args)
-    {   
+    {
+        // FIND IDS IN BOTH LISTS
+        Console.WriteLine(string.Join(", ", FindIdsInBothLists([1, 2, 3], [2, 3, 4])) == "2, 3");
+        Console.WriteLine(string.Join(", ", FindIdsInBothLists([5, 5, 6], [5, 7])) == "5");
+        Console.WriteLine(string.Join(", ", FindIdsInBothLists([1, 2], [3, 4])) == "");
+        Console.WriteLine(string.Join(", ", FindIdsInBothLists([], [1, 2])) == "");
+        Console.WriteLine(string.Join(", ", FindIdsInBothLists([1, 2], [])) == "");
+        Console.WriteLine(string.Join(", ", FindIdsInBothLists([1, 2, 3], [1, 2, 3])) == "1, 2, 3");
+        Console.WriteLine(string.Join(", ", FindIdsInBothLists([5, 5, 5, 6, 6], [5, 6])) == "5, 6");
+        Console.WriteLine(string.Join(", ", FindIdsInBothLists([10, 20, 30, 20], [20])) == "20");
+        Console.WriteLine(FindIdsInBothLists(null!, [1, 2]).Count == 0);
+        Console.WriteLine(FindIdsInBothLists([1, 2], null!).Count == 0);
+
         // CardShopRequestObjectCleanupChallenge.Run();
         // CardShopRequestObjectChallenges.Run();
         // CardShopTransactionReportsChallenges.Run();
         // CardShopTransactionHistoryChallenges.TransactionHistoryChallenges_Run_23_07_2026();
 
-        
-    /*
-        ============================================================
-        OOP CHALLENGE 4:
-        FIX BUYCARDWITHREQUEST
-        ============================================================
 
-        Fix your existing method:
+        /*
+            ============================================================
+            OOP CHALLENGE 4:
+            FIX BUYCARDWITHREQUEST
+            ============================================================
 
-        public CardShopResult BuyCardWithRequest(
-            Player? player,
-            BuyCardRequest? request
-        )
+            Fix your existing method:
 
-        Requirements:
+            public CardShopResult BuyCardWithRequest(
+                Player? player,
+                BuyCardRequest? request
+            )
 
-        * Fix message casing.
+            Requirements:
 
-          Correct message:
+            * Fix message casing.
 
-          "Player is required"
+              Correct message:
 
-          Not:
+              "Player is required"
 
-          "player is Required"
+              Not:
 
-        * Fix the player mismatch check.
+              "player is Required"
 
-          Wrong:
+            * Fix the player mismatch check.
 
-          request.PlayerName compared to request.PlayerName
+              Wrong:
 
-          Correct:
+              request.PlayerName compared to request.PlayerName
 
-          request.PlayerName compared to player.Name
+              Correct:
 
-        * Use StringComparison.OrdinalIgnoreCase.
+              request.PlayerName compared to player.Name
 
-        * After validation, reuse:
+            * Use StringComparison.OrdinalIgnoreCase.
 
-          BuyCardWithResult(player, request.CardName)
+            * After validation, reuse:
 
-        * Do not duplicate the purchase logic again.
+              BuyCardWithResult(player, request.CardName)
 
-
-        ============================================================
-        OOP CHALLENGE 5:
-        ADD PRIVATE PLAYER MATCH HELPER
-        ============================================================
-
-        Add this private method to CardShop:
-
-        private bool DoesPlayerMatchRequest(
-            Player player,
-            string playerName
-        )
-
-        Requirements:
-
-        * Return false if player is null.
-        * Return false if playerName is null, empty, or whitespace.
-        * Return true if player.Name matches playerName.
-        * Match should be case-insensitive.
-        * Use StringComparison.OrdinalIgnoreCase.
-        * No LINQ.
-
-        Then use this helper inside:
-
-        BuyCardWithRequest
-
-        and:
-
-        BuyCardFromPlayerWithRequest
+            * Do not duplicate the purchase logic again.
 
 
-        ============================================================
-        OPTIONAL OOP STRETCH 6:
-        BUILD SELL REQUEST SUMMARY
-        ============================================================
+            ============================================================
+            OOP CHALLENGE 5:
+            ADD PRIVATE PLAYER MATCH HELPER
+            ============================================================
 
-        Add this method to CardShop:
+            Add this private method to CardShop:
 
-        public string BuildSellRequestSummary(SellCardRequest? request)
+            private bool DoesPlayerMatchRequest(
+                Player player,
+                string playerName
+            )
 
-        Requirements:
+            Requirements:
 
-        * Return "" if request is null.
-        * Return a one-line summary using this exact format:
+            * Return false if player is null.
+            * Return false if playerName is null, empty, or whitespace.
+            * Return true if player.Name matches playerName.
+            * Match should be case-insensitive.
+            * Use StringComparison.OrdinalIgnoreCase.
+            * No LINQ.
 
-          "Player:V Card:Johnny Silverhand"
+            Then use this helper inside:
 
-        * No LINQ.
-    */
+            BuyCardWithRequest
+
+            and:
+
+            BuyCardFromPlayerWithRequest
+
+
+            ============================================================
+            OPTIONAL OOP STRETCH 6:
+            BUILD SELL REQUEST SUMMARY
+            ============================================================
+
+            Add this method to CardShop:
+
+            public string BuildSellRequestSummary(SellCardRequest? request)
+
+            Requirements:
+
+            * Return "" if request is null.
+            * Return a one-line summary using this exact format:
+
+              "Player:V Card:Johnny Silverhand"
+
+            * No LINQ.
+        */
 
     }
 
