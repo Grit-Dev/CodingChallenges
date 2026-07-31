@@ -1,74 +1,49 @@
 ﻿using CodingChallenges.Challenges.Phase_02_OOP;
 
 public class Program
-{   
+{   public static int? FindClosestAttackToTarget(int[] attacks, int target)
+    {
+        if(attacks is null || attacks.Length == 0)
+        {
+            return null;
+        }
+
+        int closestToTargetsoFar = attacks[0];
+        int closestvalueFromArray = target;
+
+        foreach(var value in attacks)
+        {
+            int rangeFromTarget = Math.Abs(target - value);
+
+            if(rangeFromTarget < closestToTargetsoFar)
+            {
+                closestToTargetsoFar = rangeFromTarget;
+                closestvalueFromArray = value;
+            }
+            else if(rangeFromTarget == closestToTargetsoFar && value > closestvalueFromArray)
+            {
+                closestvalueFromArray = value;
+            }
+        }
+
+        return closestvalueFromArray;
+    }
+
     public static void Main(string[] args)
     {   
-        CardShopRequestObjectCleanupChallenge.Run();
+        // FIND CLOSEST ATTACK TO TARGET
+        Console.WriteLine(FindClosestAttackToTarget([40, 60, 80], 65)); // 60
+        Console.WriteLine(FindClosestAttackToTarget([50, 70], 60)); // 70
+        Console.WriteLine(FindClosestAttackToTarget([10, 90, 100], 95)); // 100
+        Console.WriteLine(FindClosestAttackToTarget([], 95)); // null
+
+        // CardShopRequestObjectCleanupChallenge.Run();
         //CardShopRequestObjectChallenges.Run();
         // CardShopTransactionReportsChallenges.Run();
         // CardShopTransactionHistoryChallenges.TransactionHistoryChallenges_Run_23_07_2026();
 
         
     /*
-        ============================================================
-        FRIDAY CHALLENGES
-        PHASE 2: OOP / CLASSES / OBJECTS
-        06_REQUEST OBJECTS CLEANUP
-        ============================================================
-
-        REQUIRED:
-        3 coding challenges
-        2 OOP challenges
-
-        EXTRA:
-        1 closest-target reinforcement drill
-
-        OPTIONAL:
-        1 OOP stretch
-
-
-        ============================================================
-        EXTRA CODING DRILL:
-        FIND CLOSEST ATTACK TO TARGET
-        ============================================================
-
-        Create this method:
-
-        public static int? FindClosestAttackToTarget(
-            int[] attacks,
-            int target
-        )
-
-        Requirements:
-
-        * Return null if attacks is null.
-        * Return null if attacks is empty.
-        * Return the attack value closest to the target.
-        * If two attack values are equally close, return the higher attack.
-        * No LINQ.
-
-        Examples:
-
-        [40, 60, 80], target 65 -> 60
-
-        [50, 70], target 60 -> 70
-
-        [10, 90, 100], target 95 -> 100
-
-        [88], target 70 -> 88
-
-        [] -> null
-
-
-        REQUIRED VARIABLE NAMES:
-
-        int closestAttack
-        int closestDistance
-        int currentAttack
-        int currentDistance
-
-
         ============================================================
         CODING CHALLENGE 1:
         COUNT IDS ABOVE TARGET
