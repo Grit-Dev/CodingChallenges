@@ -48,8 +48,39 @@ public class Program
 
         return counter;
     }
+    
+    public static List<int> ParseValidCardPricesFromCsv(string input)
+    {
+        if(string.IsNullOrWhiteSpace(input))
+        {
+            return [];
+        }
+
+        List<int> newListInput = [];
+        string [] splitString = input.Split([','], StringSplitOptions.RemoveEmptyEntries);
+
+        foreach(string stringValue in splitString)
+        {
+            if(int.TryParse(stringValue.Trim(), out int result))
+            {
+                if(result > 0)
+                {
+                    newListInput.Add(result);
+                }   
+            }
+        }
+        
+        return newListInput;
+    }
+    
     public static void Main(string[] args)
     {   
+        // PARSE VALID CARD PRICES FROM CSV
+        Console.WriteLine(string.Join(", ", ParseValidCardPricesFromCsv("100, 200, 300")) == "100, 200, 300");
+        Console.WriteLine(string.Join(", ", ParseValidCardPricesFromCsv("50, -10, hello, 400")) == "50, 400");
+        Console.WriteLine(string.Join(", ", ParseValidCardPricesFromCsv("0, -1, abc")) == "");
+        Console.WriteLine(string.Join(", ", ParseValidCardPricesFromCsv(" 25, 75 , test, 125 ")) == "25, 75, 125");
+
         // COUNT IDS ABOVE TARGET
         Console.WriteLine(CountIdsAboveTarget([1, 5, 10], 4)); // 2
         Console.WriteLine(CountIdsAboveTarget([3, 3, 3], 3)); // 0
@@ -69,35 +100,6 @@ public class Program
 
         
     /*
-        ============================================================
-        CODING CHALLENGE 1:
-        COUNT IDS ABOVE TARGET
-        ============================================================
-
-        Create this method:
-
-        public static int CountIdsAboveTarget(
-            List<int> ids,
-            int target
-        )
-
-        Requirements:
-
-        * Return 0 if ids is null.
-        * Count how many IDs are greater than target.
-        * No LINQ.
-
-        Examples:
-
-        [1, 5, 10], target 4 -> 2
-
-        [3, 3, 3], target 3 -> 0
-
-        [10, 20, 30], target 15 -> 2
-
-        [] -> 0
-
-
         ============================================================
         CODING CHALLENGE 2:
         PARSE VALID CARD PRICES FROM CSV
