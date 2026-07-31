@@ -6,6 +6,18 @@ namespace CodingChallenges.Challenges
     {
         public static void Run_Two()
         {
+            // FIND IDS IN BOTH LISTS
+            Console.WriteLine(string.Join(", ", FindIdsInBothLists([1, 2, 3], [2, 3, 4])) == "2, 3");
+            Console.WriteLine(string.Join(", ", FindIdsInBothLists([5, 5, 6], [5, 7])) == "5");
+            Console.WriteLine(string.Join(", ", FindIdsInBothLists([1, 2], [3, 4])) == "");
+            Console.WriteLine(string.Join(", ", FindIdsInBothLists([], [1, 2])) == "");
+            Console.WriteLine(string.Join(", ", FindIdsInBothLists([1, 2], [])) == "");
+            Console.WriteLine(string.Join(", ", FindIdsInBothLists([1, 2, 3], [1, 2, 3])) == "1, 2, 3");
+            Console.WriteLine(string.Join(", ", FindIdsInBothLists([5, 5, 5, 6, 6], [5, 6])) == "5, 6");
+            Console.WriteLine(string.Join(", ", FindIdsInBothLists([10, 20, 30, 20], [20])) == "20");
+            Console.WriteLine(FindIdsInBothLists(null!, [1, 2]).Count == 0);
+            Console.WriteLine(FindIdsInBothLists([1, 2], null!).Count == 0);
+
             // PARSE VALID CARD PRICES FROM CSV
             Console.WriteLine(string.Join(", ", ParseValidCardPricesFromCsv("100, 200, 300")) == "100, 200, 300");
             Console.WriteLine(string.Join(", ", ParseValidCardPricesFromCsv("50, -10, hello, 400")) == "50, 400");
@@ -17,20 +29,20 @@ namespace CodingChallenges.Challenges
             Console.WriteLine(CountIdsAboveTarget([3, 3, 3], 3)); // 0
             Console.WriteLine(CountIdsAboveTarget([10, 20, 30], 15)); // 2
             Console.WriteLine(CountIdsAboveTarget([], 0)); // 0
-            
+
             // FIND CLOSEST ATTACK TO TARGET
             Console.WriteLine(FindClosestAttackToTarget([40, 60, 80], 65)); // 60
             Console.WriteLine(FindClosestAttackToTarget([50, 70], 60)); // 70
             Console.WriteLine(FindClosestAttackToTarget([10, 90, 100], 95)); // 100
             Console.WriteLine(FindClosestAttackToTarget([], 95)); // null
-            
+
             // FIND DUPLICATE IDS
             Console.WriteLine(string.Join(", ", FindDuplicateIds([1, 2, 2, 3, 1]))); // 2, 1
             Console.WriteLine(string.Join(", ", FindDuplicateIds([5, 5, 5]))); // 5
             Console.WriteLine(string.Join(", ", FindDuplicateIds([1, 2, 3]))); // ""
             Console.WriteLine(string.Join(", ", FindDuplicateIds([4, 4, 2, 2, 4]))); // 4, 2
             Console.WriteLine(string.Join(", ", FindDuplicateIds(null!))); // ""
-            
+
             // FindClosestScoreToTarget
             Console.WriteLine(FindClosestScoreToTarget([40, 60, 80], 65)); // 60
             Console.WriteLine(FindClosestScoreToTarget([50, 70], 60)); // 70
@@ -72,10 +84,10 @@ namespace CodingChallenges.Challenges
             // FIND FIRST DUPLICATE NUMBER
             Console.WriteLine(FindFirstDuplicateNumber([1, 2, 3, 2, 4])); // 2
             Console.WriteLine(FindFirstDuplicateNumber([5, 1, 5, 2, 1])); // 5
-            Console.WriteLine(FindFirstDuplicateNumber([1, 2, 3] )); // null
-            Console.WriteLine(FindFirstDuplicateNumber([7, 7, 1] )); // 7
-            Console.WriteLine(FindFirstDuplicateNumber([] )); // null
-            
+            Console.WriteLine(FindFirstDuplicateNumber([1, 2, 3])); // null
+            Console.WriteLine(FindFirstDuplicateNumber([7, 7, 1])); // 7
+            Console.WriteLine(FindFirstDuplicateNumber([])); // null
+
             // COUNT SCORES OUTSIDE VALID RANGE
             Console.WriteLine($"[{string.Join(", ", CountScoresOutsideValidRange([-5, 50, 120]))}]"); // 2
             Console.WriteLine($"[{string.Join(", ", CountScoresOutsideValidRange([0, 50, 100]))}]"); // 0
@@ -134,7 +146,7 @@ namespace CodingChallenges.Challenges
             Console.WriteLine(CountPeaks([1, 2, 3, 4]));
             Console.WriteLine(CountPeaks(null!));
             Console.WriteLine(CountPeaks([1, 2, 3, 4]));
-            Console.WriteLine(CountPeaks([1,2]));
+            Console.WriteLine(CountPeaks([1, 2]));
 
             // FIND HIGHEST VALID SCORE FROM CSV TEXT
             Console.WriteLine(FindHighestValidScoreFromCsv("10, 50, 90"));
@@ -154,7 +166,7 @@ namespace CodingChallenges.Challenges
             Console.WriteLine(CountNumbersGreaterThanPrevious([5])); // 0            
             Console.WriteLine(CountNumbersGreaterThanPrevious([1, 2, 3, 4, 5]));// 4
             Console.WriteLine(CountNumbersGreaterThanPrevious([1, 2, 3, 2, 5])); // 3
-             
+
             // PARSE AND SUM POSITIVE NUMBERS
             Console.WriteLine(SumPositiveNumbersFromText("1,2,3"));
             Console.WriteLine(SumPositiveNumbersFromText("10, -5, 3, hello"));

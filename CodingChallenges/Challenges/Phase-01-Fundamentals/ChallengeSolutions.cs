@@ -4,6 +4,31 @@ namespace CodingChallenges.Challenges
 {
     public class ChallengeSolutions
     {
+        public static List<int> FindIdsInBothLists(List<int> firstIds, List<int> secondIds)
+        {
+            if (firstIds is null || secondIds is null)
+            {
+                return [];
+            }
+
+            List<int> commonalityList = [];
+
+            foreach (int outterValue in firstIds)
+            {
+                foreach (int innerValue in secondIds)
+                {
+                    if (outterValue == innerValue)
+                    {
+                        if (!commonalityList.Contains(outterValue))
+                        {
+                            commonalityList.Add(outterValue);
+                        }
+                    }
+                }
+            }
+
+            return commonalityList;
+        }
         public static int? FindClosestAttackToTarget(int[] attacks, int target)
         {
             if (attacks is null || attacks.Length == 0)

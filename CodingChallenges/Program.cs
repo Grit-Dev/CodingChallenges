@@ -1,49 +1,11 @@
 ﻿public class Program
 {
-    public static List<int> FindIdsInBothLists(List<int> firstIds, List<int> secondIds)
-    {
-        if (firstIds is null || secondIds is null)
-        {
-            return [];
-        }
-
-        List<int> commonalityList = [];
-
-        foreach (int outterValue in firstIds)
-        {
-            foreach (int innerValue in secondIds)
-            {
-                if (outterValue == innerValue)
-                {
-                    if (!commonalityList.Contains(outterValue))
-                    {
-                        commonalityList.Add(outterValue);
-                    }
-                }
-            }
-        }
-
-        return commonalityList;
-    }
     public static void Main(string[] args)
     {
-        // FIND IDS IN BOTH LISTS
-        Console.WriteLine(string.Join(", ", FindIdsInBothLists([1, 2, 3], [2, 3, 4])) == "2, 3");
-        Console.WriteLine(string.Join(", ", FindIdsInBothLists([5, 5, 6], [5, 7])) == "5");
-        Console.WriteLine(string.Join(", ", FindIdsInBothLists([1, 2], [3, 4])) == "");
-        Console.WriteLine(string.Join(", ", FindIdsInBothLists([], [1, 2])) == "");
-        Console.WriteLine(string.Join(", ", FindIdsInBothLists([1, 2], [])) == "");
-        Console.WriteLine(string.Join(", ", FindIdsInBothLists([1, 2, 3], [1, 2, 3])) == "1, 2, 3");
-        Console.WriteLine(string.Join(", ", FindIdsInBothLists([5, 5, 5, 6, 6], [5, 6])) == "5, 6");
-        Console.WriteLine(string.Join(", ", FindIdsInBothLists([10, 20, 30, 20], [20])) == "20");
-        Console.WriteLine(FindIdsInBothLists(null!, [1, 2]).Count == 0);
-        Console.WriteLine(FindIdsInBothLists([1, 2], null!).Count == 0);
-
         // CardShopRequestObjectCleanupChallenge.Run();
         // CardShopRequestObjectChallenges.Run();
         // CardShopTransactionReportsChallenges.Run();
         // CardShopTransactionHistoryChallenges.TransactionHistoryChallenges_Run_23_07_2026();
-
 
         /*
             ============================================================
