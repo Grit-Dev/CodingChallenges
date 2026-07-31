@@ -2,8 +2,79 @@
 
 namespace CodingChallenges.Challenges
 {
-    public class ChallengeSolutions
-    {
+        public class ChallengeSolutions
+        {
+            public static int? FindClosestAttackToTarget(int[] attacks, int target)
+        {
+            if(attacks is null || attacks.Length == 0)
+            {
+                return null;
+            }
+
+            int closestToTargetsoFar = attacks[0];
+            int closestvalueFromArray = target;
+
+            foreach(var value in attacks)
+            {
+                int rangeFromTarget = Math.Abs(target - value);
+
+                if(rangeFromTarget < closestToTargetsoFar)
+                {
+                    closestToTargetsoFar = rangeFromTarget;
+                    closestvalueFromArray = value;
+                }
+                else if(rangeFromTarget == closestToTargetsoFar && value > closestvalueFromArray)
+                {
+                    closestvalueFromArray = value;
+                }
+            }
+
+            return closestvalueFromArray;
+        }
+
+        public static int CountIdsAboveTarget(List<int> ids, int target)
+        {
+            if(ids is null)
+            {
+                return 0;
+            }
+
+            int counter = 0;
+
+            foreach(int value in ids)
+            {
+                if(value > target)
+                {
+                    counter++;
+                }
+            }
+
+            return counter;
+        }
+        
+        public static List<int> ParseValidCardPricesFromCsv(string input)
+        {
+            if(string.IsNullOrWhiteSpace(input))
+            {
+                return [];
+            }
+
+            List<int> newListInput = [];
+            string [] splitString = input.Split([','], StringSplitOptions.RemoveEmptyEntries);
+
+            foreach(string stringValue in splitString)
+            {
+                if(int.TryParse(stringValue.Trim(), out int result))
+                {
+                    if(result > 0)
+                    {
+                        newListInput.Add(result);
+                    }   
+                }
+            }
+            
+            return newListInput;
+        }
         public static int CountUniqueIds(List<int> ids)
         {
             if(ids is null)

@@ -6,6 +6,24 @@ namespace CodingChallenges.Challenges
     {
         public static void Run_Two()
         {
+            // PARSE VALID CARD PRICES FROM CSV
+            Console.WriteLine(string.Join(", ", ParseValidCardPricesFromCsv("100, 200, 300")) == "100, 200, 300");
+            Console.WriteLine(string.Join(", ", ParseValidCardPricesFromCsv("50, -10, hello, 400")) == "50, 400");
+            Console.WriteLine(string.Join(", ", ParseValidCardPricesFromCsv("0, -1, abc")) == "");
+            Console.WriteLine(string.Join(", ", ParseValidCardPricesFromCsv(" 25, 75 , test, 125 ")) == "25, 75, 125");
+
+            // COUNT IDS ABOVE TARGET
+            Console.WriteLine(CountIdsAboveTarget([1, 5, 10], 4)); // 2
+            Console.WriteLine(CountIdsAboveTarget([3, 3, 3], 3)); // 0
+            Console.WriteLine(CountIdsAboveTarget([10, 20, 30], 15)); // 2
+            Console.WriteLine(CountIdsAboveTarget([], 0)); // 0
+            
+            // FIND CLOSEST ATTACK TO TARGET
+            Console.WriteLine(FindClosestAttackToTarget([40, 60, 80], 65)); // 60
+            Console.WriteLine(FindClosestAttackToTarget([50, 70], 60)); // 70
+            Console.WriteLine(FindClosestAttackToTarget([10, 90, 100], 95)); // 100
+            Console.WriteLine(FindClosestAttackToTarget([], 95)); // null
+            
             // FIND DUPLICATE IDS
             Console.WriteLine(string.Join(", ", FindDuplicateIds([1, 2, 2, 3, 1]))); // 2, 1
             Console.WriteLine(string.Join(", ", FindDuplicateIds([5, 5, 5]))); // 5
