@@ -11,8 +11,8 @@ namespace CodingChallenges.Challenges
                 return null;
             }
 
-            int closestToTargetsoFar = attacks[0];
-            int closestvalueFromArray = int.MaxValue;
+            int closestToTargetsoFar = int.MaxValue;
+            int closestvalueFromArray = target;
 
             foreach(var value in attacks)
             {
