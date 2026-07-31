@@ -22,14 +22,7 @@
                 return false;
             }
 
-            bool isTrue = player.Name.Equals(playerName, StringComparison.OrdinalIgnoreCase);
-
-            if (!isTrue)
-            {
-                return false;
-            }
-
-            return isTrue;
+            return player.Name.Equals(playerName, StringComparison.OrdinalIgnoreCase);
         }
 
         private void RecordTransaction(Player player, Card card, string transactionType, int amount) =>

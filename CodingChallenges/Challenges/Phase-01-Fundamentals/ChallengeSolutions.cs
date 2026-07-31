@@ -13,15 +13,15 @@ namespace CodingChallenges.Challenges
 
             List<int> commonalityList = [];
 
-            foreach (int outterValue in firstIds)
+            foreach (int outerValue in firstIds)
             {
                 foreach (int innerValue in secondIds)
                 {
-                    if (outterValue == innerValue)
+                    if (outerValue == innerValue)
                     {
-                        if (!commonalityList.Contains(outterValue))
+                        if (!commonalityList.Contains(outerValue))
                         {
-                            commonalityList.Add(outterValue);
+                            commonalityList.Add(outerValue);
                         }
                     }
                 }
