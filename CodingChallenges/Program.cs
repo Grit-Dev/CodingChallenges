@@ -29,8 +29,33 @@ public class Program
         return closestvalueFromArray;
     }
 
+    public static int CountIdsAboveTarget(List<int> ids, int target)
+    {
+        if(ids is null)
+        {
+            return 0;
+        }
+
+        int counter = 0;
+
+        foreach(int value in ids)
+        {
+            if(value > target)
+            {
+                counter++;
+            }
+        }
+
+        return counter;
+    }
     public static void Main(string[] args)
     {   
+        // COUNT IDS ABOVE TARGET
+        Console.WriteLine(CountIdsAboveTarget([1, 5, 10], 4)); // 2
+        Console.WriteLine(CountIdsAboveTarget([3, 3, 3], 3)); // 0
+        Console.WriteLine(CountIdsAboveTarget([10, 20, 30], 15)); // 2
+        Console.WriteLine(CountIdsAboveTarget([], 0)); // 0
+        
         // FIND CLOSEST ATTACK TO TARGET
         Console.WriteLine(FindClosestAttackToTarget([40, 60, 80], 65)); // 60
         Console.WriteLine(FindClosestAttackToTarget([50, 70], 60)); // 70
