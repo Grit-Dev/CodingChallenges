@@ -9,24 +9,22 @@
         public bool HasTransactions() => Transactions.Count > 0;
 
         private static CardShopResult CreateFailureResult(string message, string cardName, int amount) => new(false, message, cardName, amount);
-
         private static CardShopResult CreateSuccessResult(string message, string cardName, int amount) => new(true, message, cardName, amount);
-
         private bool DoesPlayerMatchRequest(Player player, string playerName)
         {
-            if(player is null)
+            if (player is null)
             {
                 return false;
             }
 
-            if(string.IsNullOrWhiteSpace(playerName))
+            if (string.IsNullOrWhiteSpace(playerName))
             {
                 return false;
             }
 
             bool isTrue = player.Name.Equals(playerName, StringComparison.OrdinalIgnoreCase);
 
-            if(!isTrue)
+            if (!isTrue)
             {
                 return false;
             }
@@ -53,6 +51,16 @@
             }
 
             return null;
+        }
+
+        public string BuildSellRequestSummary(SellCardRequest? request)
+        {
+            if(request is null)
+            {
+                return "";
+            }
+
+            return $"Player:{request.PlayerName} Card:{request.CardName}";
         }
 
         public string BuildBuyRequestSummary(BuyCardRequest? request)
