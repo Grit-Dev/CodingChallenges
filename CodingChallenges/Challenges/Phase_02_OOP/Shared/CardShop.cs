@@ -12,6 +12,28 @@
 
         private static CardShopResult CreateSuccessResult(string message, string cardName, int amount) => new(true, message, cardName, amount);
 
+        private bool DoesPlayerMatchRequest(Player player, string playerName)
+        {
+            if(player is null)
+            {
+                return false;
+            }
+
+            if(string.IsNullOrWhiteSpace(playerName))
+            {
+                return false;
+            }
+
+            bool isTrue = player.Name.Equals(playerName, StringComparison.OrdinalIgnoreCase);
+
+            if(!isTrue)
+            {
+                return false;
+            }
+
+            return isTrue;
+        }
+
         private void RecordTransaction(Player player, Card card, string transactionType, int amount) =>
         Transactions.Add(new ShopTransaction(player.Name, card.Name, transactionType, amount));
 
@@ -33,9 +55,9 @@
             return null;
         }
 
-         public string BuildBuyRequestSummary(BuyCardRequest? request)
+        public string BuildBuyRequestSummary(BuyCardRequest? request)
         {
-            if(request == null)
+            if (request == null)
             {
                 return "";
             }
@@ -46,61 +68,61 @@
 
         public CardShopResult BuyCardFromPlayerWithRequest(Player? player, SellCardRequest? request)
         {
-            if(player is null)
+            if (player is null)
             {
                 return new CardShopResult(false, "player is required", "", 0);
             }
 
-            if(request is null)
+            if (request is null)
             {
                 return new CardShopResult(false, "Request is required", "", 0);
             }
 
-            if(string.IsNullOrWhiteSpace(request.PlayerName))
+            if (string.IsNullOrWhiteSpace(request.PlayerName))
             {
                 return new CardShopResult(false, "Player name is required", "", 0);
             }
 
-            if(!request.PlayerName.Equals(player.Name, StringComparison.InvariantCultureIgnoreCase))
+            if (!DoesPlayerMatchRequest(player, request.PlayerName))
             {
                 return new CardShopResult(false, "Player mismatch", request.CardName, 0);
             }
 
-            if(string.IsNullOrWhiteSpace(request.CardName))
+            if (string.IsNullOrWhiteSpace(request.CardName))
             {
                 return new CardShopResult(false, "Card name is required", "", 0);
             }
-            
+
             return BuyCardFromPlayerWithResult(player, request.CardName);
         }
 
         public CardShopResult BuyCardWithRequest(Player? player, BuyCardRequest? request)
         {
-            if(player is null)
+            if (player is null)
             {
-                return new CardShopResult(false, "player is Required", "", 0);
+                return new CardShopResult(false, "player is required", "", 0);
             }
 
-            if(request is null)
+            if (request is null)
             {
                 return new CardShopResult(false, "Request is required", "", 0);
             }
 
-            if(string.IsNullOrWhiteSpace(request.PlayerName))
+            if (string.IsNullOrWhiteSpace(request.PlayerName))
             {
                 return new CardShopResult(false, "Player name is required", "", 0);
             }
 
-            if(!request.PlayerName.Equals(player.Name, StringComparison.InvariantCultureIgnoreCase))
+            if (!DoesPlayerMatchRequest(player, request.PlayerName))
             {
                 return new CardShopResult(false, "Player mismatch", request.CardName, 0);
             }
 
-            if(string.IsNullOrWhiteSpace(request.CardName))
+            if (string.IsNullOrWhiteSpace(request.CardName))
             {
                 return new CardShopResult(false, "Card name is required", "", 0);
             }
-            
+
             return BuyCardWithResult(player, request.CardName);
         }
 
