@@ -1,4 +1,5 @@
-﻿using System.Text.Json;
+﻿using System.Reflection.Metadata.Ecma335;
+using System.Text.Json;
 using CodingChallenges.Challenges.Phase_03_Practical_Challenges;
 
 
@@ -43,7 +44,7 @@ public class Program
 
     }
 
-    public static string AddressRedaction(string houseAddress)
+    private static string AddressRedaction(string houseAddress)
     {
         if(string.IsNullOrWhiteSpace(houseAddress))
         {
@@ -105,20 +106,52 @@ public class Program
         return serializationOfJson;
     }
 
+    private static string MobileNumberRedaction(string mobileNumber)
+    {
+        if(string.IsNullOrWhiteSpace(mobileNumber))
+        {
+            return "";
+        }
+
+        if(mobileNumber.Length <= 4)
+        {
+            return mobileNumber;
+        }
+
+        int remainingNumber = mobileNumber.Length - 4;
+
+        var lastFourDigits = mobileNumber.Substring(remainingNumber);
+
+        var asterisks = new string('*', remainingNumber);
+
+        return asterisks + lastFourDigits;
+
+    } 
+
     public static void Main(string[] args)
     {
+        // MOBILE REDACTION
+        Console.WriteLine(MobileNumberRedaction("07700900832") == "*******0832");
+        Console.WriteLine(MobileNumberRedaction("1234567890") == "******7890");
+        Console.WriteLine(MobileNumberRedaction("5551234") == "***1234");
+        Console.WriteLine(MobileNumberRedaction("98765") == "*8765");
+        Console.WriteLine(MobileNumberRedaction("1234") == "1234");
+        Console.WriteLine(MobileNumberRedaction("123") == "123");
+        Console.WriteLine(MobileNumberRedaction("") == "");
+        Console.WriteLine(MobileNumberRedaction("   ") == "");
+        Console.WriteLine(MobileNumberRedaction(null!) == "");
 
         // EMAIL REDACTION
-        Console.WriteLine(EmailAddressRedaction("derek.morgan@example.co.uk") == "************@example.co.uk");
-        Console.WriteLine(EmailAddressRedaction("paul@example.com") == "****@example.com");
-        Console.WriteLine(EmailAddressRedaction("john.smith@test.com") == "**********@test.com");
-        Console.WriteLine(EmailAddressRedaction("a@test.com") == "*@test.com");
-        Console.WriteLine(EmailAddressRedaction("abc@domain.com") == "***@domain.com");
-        Console.WriteLine(EmailAddressRedaction("@example.com") == "@example.com");
-        Console.WriteLine(EmailAddressRedaction("no-at-symbol") == "");
-        Console.WriteLine(EmailAddressRedaction("") == "");
-        Console.WriteLine(EmailAddressRedaction("   ") == "");
-        Console.WriteLine(EmailAddressRedaction(null!) == "");
+        // Console.WriteLine(EmailAddressRedaction("derek.morgan@example.co.uk") == "************@example.co.uk");
+        // Console.WriteLine(EmailAddressRedaction("paul@example.com") == "****@example.com");
+        // Console.WriteLine(EmailAddressRedaction("john.smith@test.com") == "**********@test.com");
+        // Console.WriteLine(EmailAddressRedaction("a@test.com") == "*@test.com");
+        // Console.WriteLine(EmailAddressRedaction("abc@domain.com") == "***@domain.com");
+        // Console.WriteLine(EmailAddressRedaction("@example.com") == "@example.com");
+        // Console.WriteLine(EmailAddressRedaction("no-at-symbol") == "");
+        // Console.WriteLine(EmailAddressRedaction("") == "");
+        // Console.WriteLine(EmailAddressRedaction("   ") == "");
+        // Console.WriteLine(EmailAddressRedaction(null!) == "");
         
         // Address Redaction
         // Console.WriteLine(AddressRedaction("4321 Willow Lane, Edinburgh, EH12 7JQ") == "Edinburgh");
