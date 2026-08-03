@@ -76,6 +76,29 @@ public class Program
         return splitString[1].ToString().Trim();
     }
 
+    private static string EmailAddressRedaction(string EmailAddress)
+    {
+        if(string.IsNullOrWhiteSpace(EmailAddress))
+        {
+            return "";
+        }
+
+        var indexOfSpecialCharacter = EmailAddress.IndexOf('@');
+
+        if(indexOfSpecialCharacter < 0)
+        {
+            return "";
+        }
+
+        var stringWithAsterisks = new string('*' , indexOfSpecialCharacter);
+
+        var restOfEmail = EmailAddress.Substring(indexOfSpecialCharacter);
+
+        return stringWithAsterisks + restOfEmail;
+
+
+    }
+
     public static string RedactPersonalData(string json)
     {
         PeopleData? deserializationOfJson = JsonSerializer.Deserialize<PeopleData>(json);
@@ -88,9 +111,9 @@ public class Program
         foreach(Person person in deserializationOfJson.People)
         {
             person.Name = NameRedaction(person.Name);
-            person.Address = "";
+            person.Address = AddressRedaction(person.Address);
             person.Mobile = "";
-            person.EmailAddress = "";
+            person.EmailAddress = EmailAddressRedaction(person.EmailAddress);
         }
 
         var serializationOfJson = JsonSerializer.Serialize(deserializationOfJson);
@@ -100,16 +123,30 @@ public class Program
 
     public static void Main(string[] args)
     {
-        
-        Console.WriteLine(AddressRedaction("4321 Willow Lane, Edinburgh, EH12 7JQ") == "Edinburgh");
-        Console.WriteLine(AddressRedaction("12 Main Street, Belfast, BT1 1AA") == "Belfast");
-        Console.WriteLine(AddressRedaction("99 River Road, Derry, BT48 6DQ") == "Derry");
-        Console.WriteLine(AddressRedaction("1 High Street, London, SW1A 1AA") == "London");
-        Console.WriteLine(AddressRedaction("Unit 5 Industrial Estate, Dublin, D02 AB12") == "Dublin");
-        Console.WriteLine(AddressRedaction("") == "");
-        Console.WriteLine(AddressRedaction("   ") == "");
-        Console.WriteLine(AddressRedaction(null!) == "");
 
+        // EMAIL REDACTION
+        Console.WriteLine(EmailAddressRedaction("derek.morgan@example.co.uk") == "************@example.co.uk");
+        Console.WriteLine(EmailAddressRedaction("paul@example.com") == "****@example.com");
+        Console.WriteLine(EmailAddressRedaction("john.smith@test.com") == "**********@test.com");
+        Console.WriteLine(EmailAddressRedaction("a@test.com") == "*@test.com");
+        Console.WriteLine(EmailAddressRedaction("abc@domain.com") == "***@domain.com");
+        Console.WriteLine(EmailAddressRedaction("@example.com") == "@example.com");
+        Console.WriteLine(EmailAddressRedaction("no-at-symbol") == "");
+        Console.WriteLine(EmailAddressRedaction("") == "");
+        Console.WriteLine(EmailAddressRedaction("   ") == "");
+        Console.WriteLine(EmailAddressRedaction(null!) == "");
+        
+        // Address Redaction
+        // Console.WriteLine(AddressRedaction("4321 Willow Lane, Edinburgh, EH12 7JQ") == "Edinburgh");
+        // Console.WriteLine(AddressRedaction("12 Main Street, Belfast, BT1 1AA") == "Belfast");
+        // Console.WriteLine(AddressRedaction("99 River Road, Derry, BT48 6DQ") == "Derry");
+        // Console.WriteLine(AddressRedaction("1 High Street, London, SW1A 1AA") == "London");
+        // Console.WriteLine(AddressRedaction("Unit 5 Industrial Estate, Dublin, D02 AB12") == "Dublin");
+        // Console.WriteLine(AddressRedaction("") == "");
+        // Console.WriteLine(AddressRedaction("   ") == "");
+        // Console.WriteLine(AddressRedaction(null!) == "");
+
+        // Name Redaction
         // Console.WriteLine(NameRedaction("Derek Morgan") == "DM");
         // Console.WriteLine(NameRedaction("Robert McDowell") == "RD");
         // Console.WriteLine(NameRedaction("paul mcginley") == "PG");
