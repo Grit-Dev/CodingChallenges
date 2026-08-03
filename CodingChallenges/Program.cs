@@ -1,25 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.Text.Json;
-using CodingChallenges.Challenges;
+﻿using System.Text.Json;
+using CodingChallenges.Challenges.Phase_03_Practical_Challenges;
+
 
 public class Program
 {
-    public class PeopleData
-    {
-        public List<Person> People = [];
-    }
-
-    public class Person
-    {
-        public string Name {get; set;} = string.Empty;
-
-        public string Address {get; set;} = string.Empty;
-
-        public string Mobile {get; set;} = string.Empty;
-
-        public string EmailAddress {get; set;} = string. Empty;
-    }
-
     private static string NameRedaction(string fullName)
     {
         if(string.IsNullOrWhiteSpace(fullName))
