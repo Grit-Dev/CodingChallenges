@@ -20,7 +20,7 @@ public class Program
         public string EmailAddress {get; set;} = string. Empty;
     }
 
-    public static string NameRedaction(string fullName)
+    private static string NameRedaction(string fullName)
     {
         if(string.IsNullOrWhiteSpace(fullName))
         {
@@ -40,7 +40,7 @@ public class Program
         }
 
         string firstName = splitString[0];
-        string surname = splitString[splitString.Length -1];
+        string surname = splitString[^1];
 
         char firstInitial = firstName[0];
         char surnameInitial;
@@ -59,7 +59,24 @@ public class Program
 
     }
 
-    public string RedactPersonalData(string json)
+    public static string AddressRedaction(string houseAddress)
+    {
+        if(string.IsNullOrWhiteSpace(houseAddress))
+        {
+            return "";
+        }
+
+        string [] splitString = houseAddress.Split([','], StringSplitOptions.RemoveEmptyEntries);
+
+        if(splitString.Length < 2)
+        {
+            return "";
+        }
+
+        return splitString[1].ToString().Trim();
+    }
+
+    public static string RedactPersonalData(string json)
     {
         PeopleData? deserializationOfJson = JsonSerializer.Deserialize<PeopleData>(json);
 
@@ -80,15 +97,25 @@ public class Program
         
         return serializationOfJson;
     }
+
     public static void Main(string[] args)
     {
         
-        Console.WriteLine(NameRedaction("Derek Morgan") == "DM");
-        Console.WriteLine(NameRedaction("Robert McDowell") == "RD");
-        Console.WriteLine(NameRedaction("paul mcginley") == "PG");
-        Console.WriteLine(NameRedaction("V") == "V");
-        Console.WriteLine(NameRedaction("") == "");
-        Console.WriteLine(NameRedaction("   ") == "");
+        Console.WriteLine(AddressRedaction("4321 Willow Lane, Edinburgh, EH12 7JQ") == "Edinburgh");
+        Console.WriteLine(AddressRedaction("12 Main Street, Belfast, BT1 1AA") == "Belfast");
+        Console.WriteLine(AddressRedaction("99 River Road, Derry, BT48 6DQ") == "Derry");
+        Console.WriteLine(AddressRedaction("1 High Street, London, SW1A 1AA") == "London");
+        Console.WriteLine(AddressRedaction("Unit 5 Industrial Estate, Dublin, D02 AB12") == "Dublin");
+        Console.WriteLine(AddressRedaction("") == "");
+        Console.WriteLine(AddressRedaction("   ") == "");
+        Console.WriteLine(AddressRedaction(null!) == "");
+
+        // Console.WriteLine(NameRedaction("Derek Morgan") == "DM");
+        // Console.WriteLine(NameRedaction("Robert McDowell") == "RD");
+        // Console.WriteLine(NameRedaction("paul mcginley") == "PG");
+        // Console.WriteLine(NameRedaction("V") == "V");
+        // Console.WriteLine(NameRedaction("") == "");
+        // Console.WriteLine(NameRedaction("   ") == "");
                 
         // JsonDataSanitizerRunner.Run();
         // CardShopCompositionChallenges.Run();
