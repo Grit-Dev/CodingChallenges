@@ -1,11 +1,51 @@
-﻿using CodingChallenges.Challenges;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json;
+using CodingChallenges.Challenges;
 
 public class Program
 {
+    public class PeopleData
+    {
+        public List<Person> People = [];
+    }
+
+    public class Person
+    {
+        public string Name {get; set;} = string.Empty;
+
+        public string Address {get; set;} = string.Empty;
+
+        public string Mobile {get; set;} = string.Empty;
+
+        public string EmailAddress {get; set;} = string. Empty;
+    }
+
+    public string RedactPersonalData(string json)
+    {
+        PeopleData? deserializationOfJson = JsonSerializer.Deserialize<PeopleData>(json);
+
+        if(deserializationOfJson is null)
+        {
+            return "";
+        }
+
+        foreach(Person person in deserializationOfJson.People)
+        {
+            person.Name = "";
+            person.Address = "";
+            person.Mobile = "";
+            person.EmailAddress = "";
+        }
+
+        var serializationOfJson = JsonSerializer.Serialize(deserializationOfJson);
+        
+        return serializationOfJson;
+    }
     public static void Main(string[] args)
     {
-        JsonDataSanitizerRunner.Run();
-
+        
+        
+        // JsonDataSanitizerRunner.Run();
         // CardShopCompositionChallenges.Run();
         // CardShopRequestObjectChallenges.Run();
         // CardShopTransactionReportsChallenges.Run();
