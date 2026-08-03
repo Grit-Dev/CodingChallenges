@@ -20,6 +20,45 @@ public class Program
         public string EmailAddress {get; set;} = string. Empty;
     }
 
+    public static string NameRedaction(string fullName)
+    {
+        if(string.IsNullOrWhiteSpace(fullName))
+        {
+            return "";
+        }
+
+        string [] splitString = fullName.Split([' '], StringSplitOptions.RemoveEmptyEntries);
+
+        if(splitString.Length == 0)
+        {
+            return "";
+        }
+
+        if(splitString.Length == 1)
+        {
+            return splitString[0][0].ToString().ToUpper();
+        }
+
+        string firstName = splitString[0];
+        string surname = splitString[splitString.Length -1];
+
+        char firstInitial = firstName[0];
+        char surnameInitial;
+
+        if(surname.StartsWith("Mc", StringComparison.OrdinalIgnoreCase) &&
+        surname.Length > 2)
+        {
+            surnameInitial = surname[2];
+        }
+        else
+        {
+            surnameInitial = surname[0];
+        }
+
+        return $"{char.ToUpper(firstInitial)}{char.ToUpper(surnameInitial)}";
+
+    }
+
     public string RedactPersonalData(string json)
     {
         PeopleData? deserializationOfJson = JsonSerializer.Deserialize<PeopleData>(json);
@@ -31,7 +70,7 @@ public class Program
 
         foreach(Person person in deserializationOfJson.People)
         {
-            person.Name = "";
+            person.Name = NameRedaction(person.Name);
             person.Address = "";
             person.Mobile = "";
             person.EmailAddress = "";
@@ -44,7 +83,13 @@ public class Program
     public static void Main(string[] args)
     {
         
-        
+        Console.WriteLine(NameRedaction("Derek Morgan") == "DM");
+        Console.WriteLine(NameRedaction("Robert McDowell") == "RD");
+        Console.WriteLine(NameRedaction("paul mcginley") == "PG");
+        Console.WriteLine(NameRedaction("V") == "V");
+        Console.WriteLine(NameRedaction("") == "");
+        Console.WriteLine(NameRedaction("   ") == "");
+                
         // JsonDataSanitizerRunner.Run();
         // CardShopCompositionChallenges.Run();
         // CardShopRequestObjectChallenges.Run();
