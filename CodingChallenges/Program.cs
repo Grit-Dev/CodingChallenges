@@ -1,5 +1,6 @@
 ﻿
 using CodingChallenges.Challenges.Phase_03_Practical_Challenges;
+using Xunit.Sdk;
 
 public class Program
 {
@@ -47,16 +48,44 @@ public class Program
 
         return asterisks + lastThreeDigits;
     }
+
+    public static int? FindHighestNumberBelowTarget(int[] numbers, int target)
+    {
+        if(numbers is null || numbers.Length == 0)
+        {
+            return null;
+        }
+
+        int? highestNumberSoFar = null;
+
+        foreach(int digit in numbers)
+        {
+            if(digit < target)
+            {
+                if(highestNumberSoFar is null || digit > highestNumberSoFar)
+                {
+                    highestNumberSoFar = digit;
+                }
+            }
+        }
+
+        return highestNumberSoFar;
+    }
     public static void Main(string[] args)
     {
+        // Find Highest Number Below Target
+        Console.WriteLine(FindHighestNumberBelowTarget([1, 5, 10, 20], 12) == 10);
+        Console.WriteLine(FindHighestNumberBelowTarget([10, 20, 30], 10) == null);
+        Console.WriteLine(FindHighestNumberBelowTarget([3, 8, 2], 9) == 8);
+        Console.WriteLine(FindHighestNumberBelowTarget([], 9) == null);
 
         // Mask Code Except Last Three
-        Console.WriteLine(MaskCodeExceptLastThree("ABCDEFG") == "****EFG");
-        Console.WriteLine(MaskCodeExceptLastThree("123456") == "***456");
-        Console.WriteLine(MaskCodeExceptLastThree("ABC") == "ABC");
-        Console.WriteLine(MaskCodeExceptLastThree("AB") == "AB");
-        Console.WriteLine(MaskCodeExceptLastThree(null!) == "");
-        Console.WriteLine(MaskCodeExceptLastThree("") == "");
+        // Console.WriteLine(MaskCodeExceptLastThree("ABCDEFG") == "****EFG");
+        // Console.WriteLine(MaskCodeExceptLastThree("123456") == "***456");
+        // Console.WriteLine(MaskCodeExceptLastThree("ABC") == "ABC");
+        // Console.WriteLine(MaskCodeExceptLastThree("AB") == "AB");
+        // Console.WriteLine(MaskCodeExceptLastThree(null!) == "");
+        // Console.WriteLine(MaskCodeExceptLastThree("") == "");
 
 
         // Count Valid Prices
