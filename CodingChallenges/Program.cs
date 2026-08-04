@@ -89,9 +89,9 @@ public class Program
 
         foreach (var person in jsonDeserialized.People)
         {
-            person.Name = NameRedaction(person.Name.Trim());
-            person.Address = "";
-            person.Mobile = "";
+            person.Name = NameRedaction(person.Name);
+            person.Address = AddressRedaction(person.Address);
+            person.Mobile = MobileNumberRedaction(person.Mobile);
             person.EmailAddress = "";
         }
 
@@ -99,16 +99,45 @@ public class Program
 
         return jsonSerialized;
     }
+
+    public static string MobileNumberRedaction(string mobileNumber)
+    {
+        if (string.IsNullOrWhiteSpace(mobileNumber))
+        {
+            return "";
+        }
+
+        if (mobileNumber.Length <= 4)
+        {
+            return mobileNumber;
+        }
+
+        int charactersLeftOver = mobileNumber.Length - 4;
+
+        string asterisks = new('*', charactersLeftOver);
+
+        string lastFourCharacters = mobileNumber.Substring(charactersLeftOver);
+
+        return asterisks + lastFourCharacters;
+    }
     public static void Main(string[] args)
     {
-        Console.WriteLine("=== MobileNumberRedaction Tests ===");
-        Console.WriteLine(AddressRedaction("4321 Willow Lane, Edinburgh, EH12 7JQ") == "Edinburgh");
-        Console.WriteLine(AddressRedaction("12 Main Street, Belfast, BT1 1AA") == "Belfast");
-        Console.WriteLine(AddressRedaction("Flat 4, Derry, BT48 6AA") == "Derry");
-        Console.WriteLine(AddressRedaction("No commas here") == "");
-        Console.WriteLine(AddressRedaction("") == "");
-        Console.WriteLine(AddressRedaction("   ") == "");
 
+        Console.WriteLine("=== MobileNumberRedaction Tests ===");
+        Console.WriteLine(MobileNumberRedaction("07700900832") == "*******0832");
+        Console.WriteLine(MobileNumberRedaction("07123456789") == "*******6789");
+        Console.WriteLine(MobileNumberRedaction("1234") == "1234");
+        Console.WriteLine(MobileNumberRedaction("123") == "123");
+        Console.WriteLine(MobileNumberRedaction("") == "");
+        Console.WriteLine(MobileNumberRedaction("   ") == "");
+
+        //Console.WriteLine("=== MobileNumberRedaction Tests ===");
+        //Console.WriteLine(AddressRedaction("4321 Willow Lane, Edinburgh, EH12 7JQ") == "Edinburgh");
+        //Console.WriteLine(AddressRedaction("12 Main Street, Belfast, BT1 1AA") == "Belfast");
+        //Console.WriteLine(AddressRedaction("Flat 4, Derry, BT48 6AA") == "Derry");
+        //Console.WriteLine(AddressRedaction("No commas here") == "");
+        //Console.WriteLine(AddressRedaction("") == "");
+        //Console.WriteLine(AddressRedaction("   ") == "");
 
         //Console.WriteLine("=== NameRedaction Tests ===");
         //Console.WriteLine(NameRedaction("Derek Morgan") == "DM");
