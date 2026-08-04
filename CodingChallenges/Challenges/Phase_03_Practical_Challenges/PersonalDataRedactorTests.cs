@@ -132,29 +132,79 @@ namespace CodingChallenges.Challenges.Phase_03_Practical_Challenges
             Assert.DoesNotContain("07700900555", actualResult);
             Assert.DoesNotContain("07700900777", actualResult);
             Assert.DoesNotContain("07700900901", actualResult);
-
             Assert.DoesNotContain("derek.morgan@example.co.uk", actualResult);
             Assert.DoesNotContain("solid.snake@example.co.uk", actualResult);
             Assert.DoesNotContain("geralt.mcrivia@example.co.uk", actualResult);
         }
-        [Fact(Skip = "TODO: implement test")]
+
+        [Fact]
         public void RedactPersonalData_WithEmptyJson_ReturnsEmptyString()
         {
+            // Arrange 
+            string json = "";
+
+            // Act
+            var actualResult = PersonalDataRedactor.RedactPersonalData(json);
+
+            // Assert
+            Assert.Equal("", json);
         }
 
-        [Fact(Skip = "TODO: implement test")]
+        [Fact]
         public void RedactPersonalData_WithWhitespaceJson_ReturnsEmptyString()
         {
+            // Arrange
+            string json = "    ";
+
+            // Act
+            var actualResult = PersonalDataRedactor.RedactPersonalData(json);
+
+            // Assert
+            Assert.Equal("", actualResult);
         }
 
-        [Fact(Skip = "TODO: implement test")]
+        [Fact]
         public void RedactPersonalData_WithMobileShorterThanFourCharacters_KeepsMobile()
         {
+            // Arrange
+            var json = @"{
+                    ""people"": [
+                        {
+                            ""name"": """",
+                            ""address"": """",
+                            ""mobile"": ""1234"",
+                            ""emailAddress"": """"
+                        }
+                    ]
+                }";
+
+            // Act 
+            var actualResult = PersonalDataRedactor.RedactPersonalData(json);
+
+            // Assert
+            Assert.Contains(@"""mobile"":""1234""", actualResult);
         }
 
-        [Fact(Skip = "TODO: implement test")]
+        [Fact]
         public void RedactPersonalData_WithInvalidEmail_ReturnsEmptyEmail()
         {
+            // Arrange
+            var json = @"{
+                    ""people"": [
+                        {
+                            ""name"": """",
+                            ""address"": """",
+                            ""mobile"": """",
+                            ""emailAddress"": ""geralt.mcriviaexample.co.uk""
+                        }
+                    ]
+                }";
+
+            // Act 
+            var actualResult = PersonalDataRedactor.RedactPersonalData(json);
+
+            // Assert
+            Assert.Contains(@"""emailAddress"":""""", actualResult);
         }
     }
 }
