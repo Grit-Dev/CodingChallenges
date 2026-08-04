@@ -50,6 +50,23 @@ public class Program
         return firstName + secondName;
     }
 
+    public static string AddressRedaction(string address)
+    {
+        if (string.IsNullOrWhiteSpace(address))
+        {
+            return "";
+        }
+
+        string[] splitString = address.Split([','], StringSplitOptions.RemoveEmptyEntries);
+
+        if (splitString.Length < 2)
+        {
+            return "";
+        }
+
+        return splitString[1].Trim();
+    }
+
     public static string RedactPersonalData(string json)
     {
         if (string.IsNullOrEmpty(json))
@@ -84,7 +101,13 @@ public class Program
     }
     public static void Main(string[] args)
     {
-
+        Console.WriteLine("=== MobileNumberRedaction Tests ===");
+        Console.WriteLine(AddressRedaction("4321 Willow Lane, Edinburgh, EH12 7JQ") == "Edinburgh");
+        Console.WriteLine(AddressRedaction("12 Main Street, Belfast, BT1 1AA") == "Belfast");
+        Console.WriteLine(AddressRedaction("Flat 4, Derry, BT48 6AA") == "Derry");
+        Console.WriteLine(AddressRedaction("No commas here") == "");
+        Console.WriteLine(AddressRedaction("") == "");
+        Console.WriteLine(AddressRedaction("   ") == "");
 
 
         //Console.WriteLine("=== NameRedaction Tests ===");
