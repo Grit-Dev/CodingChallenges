@@ -6,7 +6,7 @@ namespace CodingChallenges.Challenges.Phase_03_Practical_Challenges
     {
         public static string RedactPersonalData(string json)
         {
-            if (string.IsNullOrEmpty(json))
+            if (string.IsNullOrWhiteSpace(json))
             {
                 return "";
             }
