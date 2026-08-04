@@ -4,6 +4,73 @@ namespace CodingChallenges.Challenges.Phase_02_OOP
 {
     public class ChallengeSolutions
     {
+        public static int CountValidPrices(string input)
+        {
+            if (string.IsNullOrEmpty(input))
+            {
+                return 0;
+            }
+
+            string[] stringSplit = input.Split([','], StringSplitOptions.RemoveEmptyEntries);
+            int counter = 0;
+
+            foreach (string stringIndex in stringSplit)
+            {
+                if (int.TryParse(stringIndex.Trim(), out int result))
+                {
+                    if (result > 0)
+                    {
+                        counter++;
+                    }
+                }
+            }
+
+            return counter;
+        }
+
+        public static string MaskCodeExceptLastThree(string code)
+        {
+            if (string.IsNullOrWhiteSpace(code))
+            {
+                return "";
+            }
+
+            if (code.Length <= 3)
+            {
+                return code;
+            }
+
+            int lengthLeft = code.Length - 3;
+
+            string asterisks = new('*', lengthLeft);
+
+            string lastThreeDigits = code.Substring(lengthLeft);
+
+            return asterisks + lastThreeDigits;
+        }
+
+        public static int? FindHighestNumberBelowTarget(int[] numbers, int target)
+        {
+            if (numbers is null || numbers.Length == 0)
+            {
+                return null;
+            }
+
+            int? highestNumberSoFar = null;
+
+            foreach (int digit in numbers)
+            {
+                if (digit < target)
+                {
+                    if (highestNumberSoFar is null || digit > highestNumberSoFar)
+                    {
+                        highestNumberSoFar = digit;
+                    }
+                }
+            }
+
+            return highestNumberSoFar;
+        }
         public static List<int> FindIdsInBothLists(List<int> firstIds, List<int> secondIds)
         {
             if (firstIds is null || secondIds is null)
