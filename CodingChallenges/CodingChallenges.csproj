@@ -8,13 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Challenges\Phase_02_OOP\Week-01\02-Player-And-Cards\" />
-    <Folder Include="Challenges\Phase_02_OOP\Week-01\03-\" />
-    <Folder Include="Challenges\Phase_02_OOP\Week-01\04-\" />
-    <Folder Include="Challenges\Phase_02_OOP\Week-01\05-\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="xunit.extensibility.core" Version="2.9.3" />
   </ItemGroup>
 
