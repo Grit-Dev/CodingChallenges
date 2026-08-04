@@ -92,7 +92,7 @@ public class Program
             person.Name = NameRedaction(person.Name);
             person.Address = AddressRedaction(person.Address);
             person.Mobile = MobileNumberRedaction(person.Mobile);
-            person.EmailAddress = "";
+            person.EmailAddress = EmailAddressRedaction(person.EmailAddress);
         }
 
         var jsonSerialized = JsonSerializer.Serialize(jsonDeserialized);
