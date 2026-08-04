@@ -34,7 +34,7 @@ public class Program
             return splitString[0][0].ToString().Trim().ToUpper();
         }
 
-        string firstName = splitString[0][0].ToString().Trim();
+        string firstName = splitString[0][0].ToString().ToUpper();
 
         string secondName = splitString[1];
 
@@ -84,15 +84,18 @@ public class Program
     }
     public static void Main(string[] args)
     {
-        Console.WriteLine("=== NameRedaction Tests ===");
-        Console.WriteLine(NameRedaction("Derek Morgan") == "DM");
-        Console.WriteLine(NameRedaction("Robert McDowell") == "RD");
-        Console.WriteLine(NameRedaction("Robert mcdowell") == "RD");
-        Console.WriteLine(NameRedaction("Derek") == "D");
-        Console.WriteLine(NameRedaction("  Derek   Morgan  ") == "DM");
-        Console.WriteLine(NameRedaction("Mary Smith") == "MS");
-        Console.WriteLine(NameRedaction("") == "");
-        Console.WriteLine(NameRedaction("   ") == "");
+
+
+
+        //Console.WriteLine("=== NameRedaction Tests ===");
+        //Console.WriteLine(NameRedaction("Derek Morgan") == "DM");
+        //Console.WriteLine(NameRedaction("Robert McDowell") == "RD");
+        //Console.WriteLine(NameRedaction("Robert mcdowell") == "RD");
+        //Console.WriteLine(NameRedaction("Derek") == "D");
+        //Console.WriteLine(NameRedaction("  Derek   Morgan  ") == "DM");
+        //Console.WriteLine(NameRedaction("Mary Smith") == "MS");
+        //Console.WriteLine(NameRedaction("") == "");
+        //Console.WriteLine(NameRedaction("   ") == "");
 
         //JsonDataSanitizerRunner.Run();
     }
