@@ -3,7 +3,7 @@ using CodingChallenges.Challenges.Phase_03_Practical_Challenges;
 
 public class Program
 {
-    public static void Run(string[] args)
+    public static void Main(string[] args)
     {
         JsonDataSanitizerRunner.Run();
 
