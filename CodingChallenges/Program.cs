@@ -120,16 +120,45 @@ public class Program
 
         return asterisks + lastFourCharacters;
     }
+
+    public static string EmailAddressRedaction(string address)
+    {
+        if (string.IsNullOrWhiteSpace(address))
+        {
+            return "";
+        }
+
+        int indexOfSpecialCharacter = address.IndexOf('@');
+
+        if (indexOfSpecialCharacter < 0)
+        {
+            return "";
+        }
+
+        string everythingBeforeAt = new ('*', indexOfSpecialCharacter);
+
+        string remainingEmailAddress = address.Substring(indexOfSpecialCharacter);
+
+        return everythingBeforeAt + remainingEmailAddress;
+    }
     public static void Main(string[] args)
     {
 
-        Console.WriteLine("=== MobileNumberRedaction Tests ===");
-        Console.WriteLine(MobileNumberRedaction("07700900832") == "*******0832");
-        Console.WriteLine(MobileNumberRedaction("07123456789") == "*******6789");
-        Console.WriteLine(MobileNumberRedaction("1234") == "1234");
-        Console.WriteLine(MobileNumberRedaction("123") == "123");
-        Console.WriteLine(MobileNumberRedaction("") == "");
-        Console.WriteLine(MobileNumberRedaction("   ") == "");
+        Console.WriteLine("=== EmailAddressRedaction Tests ===");
+        Console.WriteLine(EmailAddressRedaction("derek.morgan@example.co.uk") == "************@example.co.uk");
+        Console.WriteLine(EmailAddressRedaction("robert.mcdowell@test.com") == "***************@test.com");
+        Console.WriteLine(EmailAddressRedaction("derek@example.co.uk") == "*****@example.co.uk");
+        Console.WriteLine(EmailAddressRedaction("invalidEmail") == "");
+        Console.WriteLine(EmailAddressRedaction("") == "");
+        Console.WriteLine(EmailAddressRedaction("   ") == "");
+
+        //Console.WriteLine("=== MobileNumberRedaction Tests ===");
+        //Console.WriteLine(MobileNumberRedaction("07700900832") == "*******0832");
+        //Console.WriteLine(MobileNumberRedaction("07123456789") == "*******6789");
+        //Console.WriteLine(MobileNumberRedaction("1234") == "1234");
+        //Console.WriteLine(MobileNumberRedaction("123") == "123");
+        //Console.WriteLine(MobileNumberRedaction("") == "");
+        //Console.WriteLine(MobileNumberRedaction("   ") == "");
 
         //Console.WriteLine("=== MobileNumberRedaction Tests ===");
         //Console.WriteLine(AddressRedaction("4321 Willow Lane, Edinburgh, EH12 7JQ") == "Edinburgh");
