@@ -1,9 +1,132 @@
-﻿using System.Text;
+﻿using CodingChallenges.Challenges.Phase_03_Practical_Challenges;
+using System.Text;
+using System.Text.Json;
 
 namespace CodingChallenges.Challenges.Phase_02_OOP
 {
     public class ChallengeSolutions
     {
+        public static string NameRedaction(string name)
+        {
+            if (string.IsNullOrWhiteSpace(name))
+            {
+                return "";
+            }
+
+            string[] splitString = name.Split([' '], StringSplitOptions.RemoveEmptyEntries);
+
+            if (splitString.Length == 1)
+            {
+                return splitString[0][0].ToString().Trim().ToUpper();
+            }
+
+            string firstName = splitString[0][0].ToString().ToUpper();
+
+            string secondName = splitString[1];
+
+            if (secondName.StartsWith("Mc", StringComparison.OrdinalIgnoreCase) && secondName.Length > 2)
+            {
+                secondName = secondName[2].ToString().ToUpper();
+            }
+            else
+            {
+                secondName = secondName[0].ToString().ToUpper();
+            }
+
+            return firstName + secondName;
+        }
+
+        public static string AddressRedaction(string address)
+        {
+            if (string.IsNullOrWhiteSpace(address))
+            {
+                return "";
+            }
+
+            string[] splitString = address.Split([','], StringSplitOptions.RemoveEmptyEntries);
+
+            if (splitString.Length < 2)
+            {
+                return "";
+            }
+
+            return splitString[1].Trim();
+        }
+
+        public static string RedactPersonalData(string json)
+        {
+            if (string.IsNullOrEmpty(json))
+            {
+                return "";
+            }
+
+            var options = new JsonSerializerOptions
+            {
+                PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+                PropertyNameCaseInsensitive = true
+            };
+
+            var jsonDeserialized = JsonSerializer.Deserialize<PeopleData>(json, options);
+
+            if (jsonDeserialized == null || jsonDeserialized.People.Count == 0)
+            {
+                return "";
+            }
+
+            foreach (var person in jsonDeserialized.People)
+            {
+                person.Name = NameRedaction(person.Name);
+                person.Address = AddressRedaction(person.Address);
+                person.Mobile = MobileNumberRedaction(person.Mobile);
+                person.EmailAddress = EmailAddressRedaction(person.EmailAddress);
+            }
+
+            var jsonSerialized = JsonSerializer.Serialize(jsonDeserialized);
+
+            return jsonSerialized;
+        }
+
+        public static string MobileNumberRedaction(string mobileNumber)
+        {
+            if (string.IsNullOrWhiteSpace(mobileNumber))
+            {
+                return "";
+            }
+
+            if (mobileNumber.Length <= 4)
+            {
+                return mobileNumber;
+            }
+
+            int charactersLeftOver = mobileNumber.Length - 4;
+
+            string asterisks = new('*', charactersLeftOver);
+
+            string lastFourCharacters = mobileNumber.Substring(charactersLeftOver);
+
+            return asterisks + lastFourCharacters;
+        }
+
+        public static string EmailAddressRedaction(string address)
+        {
+            if (string.IsNullOrWhiteSpace(address))
+            {
+                return "";
+            }
+
+            int indexOfSpecialCharacter = address.IndexOf('@');
+
+            if (indexOfSpecialCharacter < 0)
+            {
+                return "";
+            }
+
+            string everythingBeforeAt = new('*', indexOfSpecialCharacter);
+
+            string remainingEmailAddress = address.Substring(indexOfSpecialCharacter);
+
+            return everythingBeforeAt + remainingEmailAddress;
+        }
         public static int CountValidPrices(string input)
         {
             if (string.IsNullOrEmpty(input))

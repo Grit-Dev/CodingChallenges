@@ -6,6 +6,40 @@ namespace CodingChallenges.Challenges.Phase_02_OOP
     {
         public static void Run_Two()
         {
+            Console.WriteLine("=== EmailAddressRedaction Tests ===");
+            Console.WriteLine(EmailAddressRedaction("derek.morgan@example.co.uk") == "************@example.co.uk");
+            Console.WriteLine(EmailAddressRedaction("robert.mcdowell@test.com") == "***************@test.com");
+            Console.WriteLine(EmailAddressRedaction("derek@example.co.uk") == "*****@example.co.uk");
+            Console.WriteLine(EmailAddressRedaction("invalidEmail") == "");
+            Console.WriteLine(EmailAddressRedaction("") == "");
+            Console.WriteLine(EmailAddressRedaction("   ") == "");
+
+            //Console.WriteLine("=== MobileNumberRedaction Tests ===");
+            Console.WriteLine(MobileNumberRedaction("07700900832") == "*******0832");
+            Console.WriteLine(MobileNumberRedaction("07123456789") == "*******6789");
+            Console.WriteLine(MobileNumberRedaction("1234") == "1234");
+            Console.WriteLine(MobileNumberRedaction("123") == "123");
+            Console.WriteLine(MobileNumberRedaction("") == "");
+            Console.WriteLine(MobileNumberRedaction("   ") == "");
+
+            //Console.WriteLine("=== MobileNumberRedaction Tests ===");
+            Console.WriteLine(AddressRedaction("4321 Willow Lane, Edinburgh, EH12 7JQ") == "Edinburgh");
+            Console.WriteLine(AddressRedaction("12 Main Street, Belfast, BT1 1AA") == "Belfast");
+            Console.WriteLine(AddressRedaction("Flat 4, Derry, BT48 6AA") == "Derry");
+            Console.WriteLine(AddressRedaction("No commas here") == "");
+            Console.WriteLine(AddressRedaction("") == "");
+            Console.WriteLine(AddressRedaction("   ") == "");
+
+            //Console.WriteLine("=== NameRedaction Tests ===");
+            Console.WriteLine(NameRedaction("Derek Morgan") == "DM");
+            Console.WriteLine(NameRedaction("Robert McDowell") == "RD");
+            Console.WriteLine(NameRedaction("Robert mcdowell") == "RD");
+            Console.WriteLine(NameRedaction("Derek") == "D");
+            Console.WriteLine(NameRedaction("  Derek   Morgan  ") == "DM");
+            Console.WriteLine(NameRedaction("Mary Smith") == "MS");
+            Console.WriteLine(NameRedaction("") == "");
+            Console.WriteLine(NameRedaction("   ") == "");
+
             // FIND IDS IN BOTH LISTS
             Console.WriteLine(string.Join(", ", FindIdsInBothLists([1, 2, 3], [2, 3, 4])) == "2, 3");
             Console.WriteLine(string.Join(", ", FindIdsInBothLists([5, 5, 6], [5, 7])) == "5");
