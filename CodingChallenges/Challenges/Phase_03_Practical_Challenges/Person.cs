@@ -8,6 +8,6 @@ namespace CodingChallenges.Challenges.Phase_03_Practical_Challenges
 
         public string Mobile {get; set;} = string.Empty;
 
-        public string EmailAddress {get; set;} = string. Empty;
+        public string EmailAddress {get; set;} = string.Empty;
     }
 }
