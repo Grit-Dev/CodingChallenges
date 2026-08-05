@@ -101,7 +101,29 @@ public class Program
         }
 
         return splitString[1].Trim();
+    }
 
+    public static string MobileNumberRedaction(string mobileNumber)
+    {
+        if(string.IsNullOrWhiteSpace(mobileNumber))
+        {
+            return "";
+        }
+
+        mobileNumber = mobileNumber.Trim();
+
+        if(mobileNumber.Length <= 4)
+        {
+            return mobileNumber;
+        }
+
+        int charactersLeftOver = mobileNumber.Length - 4;
+
+        string asterisks = new('*', charactersLeftOver);
+
+        string lastFourCharacters = mobileNumber.Substring(charactersLeftOver);
+
+        return asterisks + lastFourCharacters;
     }
 
     public static void Main(string[] args)
