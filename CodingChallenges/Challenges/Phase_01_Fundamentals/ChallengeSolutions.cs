@@ -6,6 +6,75 @@ namespace CodingChallenges.Challenges.Phase_02_OOP
 {
     public class ChallengeSolutions
     {
+        public static int CountValidPrices_RunThree(string input)
+        {
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                return 0;
+            }
+
+            int counter = 0;
+            string[] splitString = input.Split([','], StringSplitOptions.RemoveEmptyEntries);
+
+            foreach (var str in splitString)
+            {
+                if (int.TryParse(str, out int result))
+                {
+                    if (result > 0)
+                    {
+                        counter++;
+                    }
+                }
+            }
+
+            return counter;
+        }
+
+        public static string MaskCodeExceptLastThree_RunThree(string code)
+        {
+            if (string.IsNullOrWhiteSpace(code))
+            {
+                return "";
+            }
+
+            code = code.Trim();
+
+            if (code.Length <= 3)
+            {
+                return code;
+            }
+
+            int indexCountLeft = code.Length - 3;
+
+            string asterisks = new string('*', indexCountLeft);
+
+            string lastThreeCharacters = code.Substring(indexCountLeft);
+
+            return asterisks + lastThreeCharacters;
+        }
+
+        public static int? FindHighestNumberBelowTarget_RunThree(int[] numbers, int target)
+        {
+            if (numbers is null || numbers.Length == 0)
+            {
+                return null;
+            }
+
+            int? highestNumberFound = null;
+
+            foreach (int digit in numbers)
+            {
+                if (digit < target)
+                {
+                    if (highestNumberFound is null || digit > highestNumberFound)
+                    {
+                        highestNumberFound = digit;
+                    }
+                }
+            }
+
+            return highestNumberFound;
+        }
         public static string NameRedaction(string name)
         {
             if (string.IsNullOrWhiteSpace(name))
