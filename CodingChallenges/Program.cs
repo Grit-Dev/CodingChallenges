@@ -46,14 +46,42 @@
 
         return asterisks + lastThreeCharacters;
     }
+
+    public static int? FindHighestNumberBelowTarget_RunThree(int[] numbers, int target)
+    {
+        if(numbers is null || numbers.Length == 0)
+        {
+            return null;
+        }
+
+        int? highestNumberFound = null;
+
+        foreach(int digit in numbers)
+        {
+            if(digit < target)
+            {
+                if(highestNumberFound is null || digit > highestNumberFound)
+                {
+                    highestNumberFound = digit;
+                }
+            }
+        }
+
+        return highestNumberFound;
+    }
     public static void Main(string[] args)
     {
-        // Mask Code Except Last Three
-        Console.WriteLine(MaskCodeExceptLastThree_RunThree("ABCDEFG") == "****EFG");
-        Console.WriteLine(MaskCodeExceptLastThree_RunThree("123456") == "***456");
-        Console.WriteLine(MaskCodeExceptLastThree_RunThree("ABC") == "ABC");
-        Console.WriteLine(MaskCodeExceptLastThree_RunThree("") == "");
+        // Find Highest Number Below Target
+        Console.WriteLine(FindHighestNumberBelowTarget_RunThree([1, 5, 10, 20], 12) == 10);
+        Console.WriteLine(FindHighestNumberBelowTarget_RunThree([10, 20, 30], 10) == null);
+        Console.WriteLine(FindHighestNumberBelowTarget_RunThree([3, 8, 2], 9) == 8);
+        Console.WriteLine(FindHighestNumberBelowTarget_RunThree([], 9) == null);
 
+        // Mask Code Except Last Three
+        // Console.WriteLine(MaskCodeExceptLastThree_RunThree("ABCDEFG") == "****EFG");
+        // Console.WriteLine(MaskCodeExceptLastThree_RunThree("123456") == "***456");
+        // Console.WriteLine(MaskCodeExceptLastThree_RunThree("ABC") == "ABC");
+        // Console.WriteLine(MaskCodeExceptLastThree_RunThree("") == "");
 
         // Count Valid Prices
         // Console.WriteLine(CountValidPrices_RunThree("10, 20, 0, -5, hello") == 2);
