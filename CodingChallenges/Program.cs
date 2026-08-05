@@ -86,6 +86,24 @@ public class Program
 
     }
 
+    public static string AddressRedaction(string address)
+    {
+        if(string.IsNullOrWhiteSpace(address))
+        {
+            return "";
+        }
+
+        string [] splitString = address.Split([','], StringSplitOptions.RemoveEmptyEntries);
+
+        if(splitString.Length < 2)
+        {
+            return "";
+        }
+
+        return splitString[1].Trim();
+
+    }
+
     public static void Main(string[] args)
     {
         // ChallengeSolutionsRunner.Run_Three();
