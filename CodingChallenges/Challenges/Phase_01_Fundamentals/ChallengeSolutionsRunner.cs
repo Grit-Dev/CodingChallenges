@@ -6,6 +6,28 @@ namespace CodingChallenges.Challenges.Phase_02_OOP
     {
         public static void Run_Two()
         {
+            // NameRedaction
+            Console.WriteLine(NameRedaction_RunThree("Derek,Morgan") == "DM");
+            Console.WriteLine(NameRedaction_RunThree("Robert,McDowell") == "RD");
+            Console.WriteLine(NameRedaction_RunThree("Paul") == "P");
+            Console.WriteLine(NameRedaction_RunThree("") == "");
+
+            // AddressRedaction
+            Console.WriteLine(AddressRedaction_RunThree("4321 Willow Lane, Edinburgh, EH12 7JQ") == "Edinburgh");
+            Console.WriteLine(AddressRedaction_RunThree("NoComma") == "");
+            Console.WriteLine(AddressRedaction_RunThree("") == "");
+
+            // MobileNumberRedaction
+            Console.WriteLine(MobileNumberRedaction_RunThree("07700900832") == "*******0832");
+            Console.WriteLine(MobileNumberRedaction_RunThree("1234") == "1234");
+            Console.WriteLine(MobileNumberRedaction_RunThree("") == "");
+
+            // EmailAddressRedaction
+            Console.WriteLine(EmailAddressRedaction_RunThree("derek.morgan@example.co.uk") == "************@example.co.uk");
+            Console.WriteLine(EmailAddressRedaction_RunThree("@example.co.uk") == "");
+            Console.WriteLine(EmailAddressRedaction_RunThree("invalidemail") == "");
+            Console.WriteLine(EmailAddressRedaction_RunThree("") == "");
+
             Console.WriteLine("=== EmailAddressRedaction Tests ===");
             Console.WriteLine(EmailAddressRedaction("derek.morgan@example.co.uk") == "************@example.co.uk");
             Console.WriteLine(EmailAddressRedaction("robert.mcdowell@test.com") == "***************@test.com");

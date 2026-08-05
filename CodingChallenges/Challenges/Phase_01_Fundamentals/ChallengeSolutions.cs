@@ -6,6 +6,139 @@ namespace CodingChallenges.Challenges.Phase_02_OOP
 {
     public class ChallengeSolutions
     {
+        public string RedactPersonalData_RunThree(string json)
+        {
+            if (string.IsNullOrWhiteSpace(json))
+            {
+                return "";
+            }
+
+            var options = new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true,
+                PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+            };
+
+            var deserialized = JsonSerializer.Deserialize<PeopleData>(json, options);
+
+            if (deserialized is null || deserialized.People is null)
+            {
+                return "";
+            }
+
+            foreach (var person in deserialized.People)
+            {
+                person.Name = NameRedaction(person.Name);
+                person.Address = AddressRedaction(person.Address);
+                person.Mobile = MobileNumberRedaction(person.Mobile);
+                person.EmailAddress = EmailAddressRedaction(person.EmailAddress);
+            }
+
+            return JsonSerializer.Serialize(deserialized, options);
+
+        }
+        public static string NameRedaction_RunThree(string fullName)
+        {
+            if (string.IsNullOrWhiteSpace(fullName))
+            {
+                return "";
+            }
+
+            string[] splitString = fullName.Trim().Split(',', StringSplitOptions.RemoveEmptyEntries);
+
+            if (splitString.Length == 0)
+            {
+                return "";
+            }
+
+            if (splitString.Length == 1)
+            {
+                return fullName[0].ToString();
+            }
+
+            string firstInitial = splitString[0][0].ToString();
+
+            string secondName = splitString[1].Trim();
+
+            string surnameInitial;
+
+            if (secondName.StartsWith("Mc", StringComparison.OrdinalIgnoreCase) &&
+            secondName.Length > 2)
+            {
+                surnameInitial = secondName[2].ToString();
+            }
+            else
+            {
+                surnameInitial = secondName[0].ToString();
+            }
+
+            return firstInitial + surnameInitial;
+
+        }
+
+        public static string AddressRedaction_RunThree(string address)
+        {
+            if (string.IsNullOrWhiteSpace(address))
+            {
+                return "";
+            }
+
+            string[] splitString = address.Split([','], StringSplitOptions.RemoveEmptyEntries);
+
+            if (splitString.Length < 2)
+            {
+                return "";
+            }
+
+            return splitString[1].Trim();
+        }
+
+        public static string MobileNumberRedaction_RunThree(string mobileNumber)
+        {
+            if (string.IsNullOrWhiteSpace(mobileNumber))
+            {
+                return "";
+            }
+
+            mobileNumber = mobileNumber.Trim();
+
+            if (mobileNumber.Length <= 4)
+            {
+                return mobileNumber;
+            }
+
+            int charactersLeftOver = mobileNumber.Length - 4;
+
+            string asterisks = new('*', charactersLeftOver);
+
+            string lastFourCharacters = mobileNumber.Substring(charactersLeftOver);
+
+            return asterisks + lastFourCharacters;
+        }
+
+        public static string EmailAddressRedaction_RunThree(string emailAddress)
+        {
+            if (string.IsNullOrWhiteSpace(emailAddress))
+            {
+                return "";
+            }
+
+            emailAddress = emailAddress.Trim();
+
+            int indexOfAt = emailAddress.IndexOf('@');
+
+            if (indexOfAt <= 0)
+            {
+                return "";
+            }
+
+            string asterisks = new('*', indexOfAt);
+
+            string restOfEmail = emailAddress.Substring(indexOfAt);
+
+            return asterisks + restOfEmail;
+        }
+
         public static int CountValidPrices_RunThree(string input)
         {
             if (string.IsNullOrWhiteSpace(input))
