@@ -50,6 +50,37 @@ public class Program
         return JsonSerializer.Serialize(jsonDeserialized, options);
 
     }
+
+    public string NameRedaction(string name)
+    {
+        if(string.IsNullOrWhiteSpace(name))
+        {
+            return "";
+        }
+
+        string [] splitString = name.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+        if(splitString.Length == 1)
+        {
+            return splitString[0][0].ToString().ToUpper();
+        }
+
+        string firstName = splitString[0].ToString().ToUpper();
+        string firstInitial = firstName[0].ToString();
+        string secondName = splitString[splitString.Length -1].ToUpper();
+        string secondInital = "";
+
+        if(secondName.StartsWith("Mc", StringComparison.OrdinalIgnoreCase) && secondName.Length > 2)
+        {
+            secondInital = secondName[2].ToString().ToUpper();
+        }
+        else
+        {
+            secondInital = secondName[0].ToString().ToUpper();
+        }
+
+        return firstInitial + secondInital;
+    }
     public static void Main(string[] args)
     {
         // ChallengeSolutionsRunner.Run_Four();
