@@ -47,8 +47,38 @@
 
         return asterisks + lastThreeCharacters;
     }
+
+    public static int? FindHighestNumberBelowTarget_RunThree(int[] numbers, int target)
+    {
+        if(numbers is null || numbers.Length == 0)
+        {
+            return null;
+        }
+
+        int? highestSoFar = null;
+
+        foreach(int digit in numbers)
+        {
+            if(digit < target)
+            {
+                if(highestSoFar is null || digit > highestSoFar)
+                {
+                    highestSoFar = digit;
+                }
+            }
+        }
+
+        return highestSoFar;
+    }
     public static void Main(string[] args)
     {
+        // Find The Highest Number Below Target
+        Console.WriteLine(FindHighestNumberBelowTarget_RunThree([1, 5, 10, 20], 12) == 10);
+        Console.WriteLine(FindHighestNumberBelowTarget_RunThree([10, 20, 30], 10) == null);
+        Console.WriteLine(FindHighestNumberBelowTarget_RunThree([3, 8, 2], 9) == 8);
+        Console.WriteLine(FindHighestNumberBelowTarget_RunThree([3, 8, 2], 9) == 8);
+        Console.WriteLine(FindHighestNumberBelowTarget_RunThree([], 9) == null);
+
         // Mask Code Except Last Three:
         Console.WriteLine(MaskCodeExceptLastThree_RunThree("ABCDEFG") == "****EFG");
         Console.WriteLine(MaskCodeExceptLastThree_RunThree("123456") == "***456");
