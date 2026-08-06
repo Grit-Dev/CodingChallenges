@@ -41,7 +41,7 @@ public class Program
 
         foreach (var person in jsonDeserialized.People)
         {
-            person.Name = "";
+            person.Name = NameRedaction_RunFour(person.Name);
             person.Address = "";
             person.Mobile = "";
             person.Email = "";
@@ -51,7 +51,7 @@ public class Program
 
     }
 
-    public string NameRedaction(string name)
+    public string NameRedaction_RunFour(string name)
     {
         if(string.IsNullOrWhiteSpace(name))
         {
@@ -80,6 +80,25 @@ public class Program
         }
 
         return firstInitial + secondInital;
+    }
+
+    public static string AddressRedaction_RunFour(string address)
+    {
+        if(string.IsNullOrWhiteSpace(address))
+        {
+            return "";
+        }
+
+        string[] splitString = address.Split([','], StringSplitOptions.RemoveEmptyEntries);
+
+        if(splitString.Length < 2)
+        {
+            return "";
+        }
+
+        return splitString[1].Trim();
+
+
     }
     public static void Main(string[] args)
     {
