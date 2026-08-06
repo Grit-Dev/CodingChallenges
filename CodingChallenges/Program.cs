@@ -42,7 +42,7 @@ public class Program
         foreach (var person in jsonDeserialized.People)
         {
             person.Name = NameRedaction_RunFour(person.Name);
-            person.Address = "";
+            person.Address = AddressRedaction_RunFour(person.Name);
             person.Mobile = "";
             person.Email = "";
         }
@@ -99,6 +99,29 @@ public class Program
         return splitString[1].Trim();
 
 
+    }
+
+    public static string MobileNumberRedaction_RunFour(string mobile)
+    {
+        if(string.IsNullOrWhiteSpace(mobile))
+        {
+            return "";
+        }
+
+        mobile = mobile.Trim();
+
+        if(mobile.Length <= 4)
+        {
+            return mobile;
+        }
+
+        int charactersLeftOver = mobile.Length - 4;
+
+        string asterisks = new string('*', charactersLeftOver);
+
+        string  lastFourCharacters = mobile.Substring(charactersLeftOver);
+
+        return asterisks + lastFourCharacters;
     }
     public static void Main(string[] args)
     {
