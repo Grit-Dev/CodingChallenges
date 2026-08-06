@@ -43,8 +43,8 @@ public class Program
         {
             person.Name = NameRedaction_RunFour(person.Name);
             person.Address = AddressRedaction_RunFour(person.Name);
-            person.Mobile = "";
-            person.Email = "";
+            person.Mobile = MobileNumberRedaction_RunFour(person.Mobile);
+            person.Email = EmailAddressRedaction_RunFour(person.Email);
         }
 
         return JsonSerializer.Serialize(jsonDeserialized, options);
@@ -53,24 +53,24 @@ public class Program
 
     public string NameRedaction_RunFour(string name)
     {
-        if(string.IsNullOrWhiteSpace(name))
+        if (string.IsNullOrWhiteSpace(name))
         {
             return "";
         }
 
-        string [] splitString = name.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+        string[] splitString = name.Split(' ', StringSplitOptions.RemoveEmptyEntries);
 
-        if(splitString.Length == 1)
+        if (splitString.Length == 1)
         {
             return splitString[0][0].ToString().ToUpper();
         }
 
         string firstName = splitString[0].ToString().ToUpper();
         string firstInitial = firstName[0].ToString();
-        string secondName = splitString[splitString.Length -1].ToUpper();
+        string secondName = splitString[splitString.Length - 1].ToUpper();
         string secondInital = "";
 
-        if(secondName.StartsWith("Mc", StringComparison.OrdinalIgnoreCase) && secondName.Length > 2)
+        if (secondName.StartsWith("Mc", StringComparison.OrdinalIgnoreCase) && secondName.Length > 2)
         {
             secondInital = secondName[2].ToString().ToUpper();
         }
@@ -84,14 +84,14 @@ public class Program
 
     public static string AddressRedaction_RunFour(string address)
     {
-        if(string.IsNullOrWhiteSpace(address))
+        if (string.IsNullOrWhiteSpace(address))
         {
             return "";
         }
 
         string[] splitString = address.Split([','], StringSplitOptions.RemoveEmptyEntries);
 
-        if(splitString.Length < 2)
+        if (splitString.Length < 2)
         {
             return "";
         }
@@ -103,14 +103,14 @@ public class Program
 
     public static string MobileNumberRedaction_RunFour(string mobile)
     {
-        if(string.IsNullOrWhiteSpace(mobile))
+        if (string.IsNullOrWhiteSpace(mobile))
         {
             return "";
         }
 
         mobile = mobile.Trim();
 
-        if(mobile.Length <= 4)
+        if (mobile.Length <= 4)
         {
             return mobile;
         }
@@ -119,9 +119,32 @@ public class Program
 
         string asterisks = new string('*', charactersLeftOver);
 
-        string  lastFourCharacters = mobile.Substring(charactersLeftOver);
+        string lastFourCharacters = mobile.Substring(charactersLeftOver);
 
         return asterisks + lastFourCharacters;
+    }
+
+    public static string EmailAddressRedaction_RunFour(string emailAddress)
+    {
+        if (string.IsNullOrWhiteSpace(emailAddress))
+        {
+            return "";
+        }
+
+        emailAddress = emailAddress.Trim();
+
+        int indexOfAt = emailAddress.IndexOf('@');
+
+        if (indexOfAt < 0)
+        {
+            return "";
+        }
+
+        string asterisks = new string('*', indexOfAt);
+
+        string restOfEmail = emailAddress.Substring(indexOfAt);
+
+        return asterisks + restOfEmail;
     }
     public static void Main(string[] args)
     {
