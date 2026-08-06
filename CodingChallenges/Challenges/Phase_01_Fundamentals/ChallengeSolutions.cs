@@ -6,6 +6,75 @@ namespace CodingChallenges.Challenges.Phase_02_OOP
 {
     public class ChallengeSolutions
     {
+        public static int CountValidPrices_RunFour(string input)
+        {
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                return 0;
+            }
+
+            int counter = 0;
+            string[] splitString = input.Split([','], StringSplitOptions.RemoveEmptyEntries);
+
+            foreach (string str in splitString)
+            {
+                if (int.TryParse(str.Trim(), out int result))
+                {
+                    if (result > 0)
+                    {
+                        counter++;
+                    }
+                }
+            }
+
+            return counter;
+        }
+
+        public static string MaskCodeExceptLastThree_RunFour(string code)
+        {
+            if (string.IsNullOrWhiteSpace(code))
+            {
+                return "";
+            }
+
+            code = code.Trim();
+
+            if (code.Length <= 3)
+            {
+                return code;
+            }
+
+            int charactersLeftOver = code.Length - 3;
+
+            string asterisks = new string('*', charactersLeftOver);
+
+            string lastThreeCharacters = code.Substring(charactersLeftOver);
+
+            return asterisks + lastThreeCharacters;
+        }
+
+        public static int? FindHighestNumberBelowTarget_RunFour(int[] numbers, int target)
+        {
+            if (numbers is null || numbers.Length == 0)
+            {
+                return null;
+            }
+
+            int? highestSoFar = null;
+
+            foreach (int digit in numbers)
+            {
+                if (digit < target)
+                {
+                    if (highestSoFar is null || digit > highestSoFar)
+                    {
+                        highestSoFar = digit;
+                    }
+                }
+            }
+
+            return highestSoFar;
+        }
         public string RedactPersonalData_RunThree(string json)
         {
             if (string.IsNullOrWhiteSpace(json))
