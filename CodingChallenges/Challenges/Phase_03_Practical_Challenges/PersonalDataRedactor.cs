@@ -25,11 +25,6 @@ namespace CodingChallenges.Challenges.Phase_03_Practical_Challenges
                 return "";
             }
 
-            if (deserializationOfJson is null)
-            {
-                return "";
-            }
-
             foreach (Person person in deserializationOfJson.People)
             {
                 person.Name = NameRedaction(person.Name);
