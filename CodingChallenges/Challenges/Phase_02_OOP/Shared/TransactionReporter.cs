@@ -67,6 +67,34 @@ namespace CodingChallenges.Challenges.Phase_02_OOP
             return HighestTransaction;
         }
 
+        public int CountTransactionsByType(List<ShopTransaction> transactions, string transactionType)
+        {
+            if (transactions is null || transactions.Count == 0)
+            {
+                return 0;
+            }
+
+            if (string.IsNullOrWhiteSpace(transactionType))
+            {
+                return 0;
+            }
+
+            int count = 0;
+
+            foreach (var transaction in transactions)
+            {
+                if (transaction.TransactionType.Equals(
+                    transactionType,
+                    StringComparison.OrdinalIgnoreCase))
+                {
+                    count++;
+                }
+            }
+
+            return count;
+        }
+
+
         public string BuildTransactionSummary(List<ShopTransaction> transactions)
         {
             if (transactions is null || transactions.Count == 0)

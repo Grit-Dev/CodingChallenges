@@ -8,6 +8,7 @@
 
         public bool HasTransactions() => Transactions.Count > 0;
 
+        private readonly TransactionReporter _transactionReporter = new();
         private static CardShopResult CreateFailureResult(string message, string cardName, int amount) => new(false, message, cardName, amount);
         private static CardShopResult CreateSuccessResult(string message, string cardName, int amount) => new(true, message, cardName, amount);
         private bool DoesPlayerMatchRequest(Player player, string playerName)
@@ -46,9 +47,20 @@
             return null;
         }
 
+        public int CalculateTotalTransactionValue() => _transactionReporter.CalculateTotalTransactionValue(Transactions);
+
+        public int CalculateTotalValueByTransactionType(string pTransactionType) => _transactionReporter.CalculateTotalValueByTransactionType(Transactions, pTransactionType);
+
+        public string BuildTransactionSummary() => _transactionReporter.BuildTransactionSummary(Transactions);
+
+        public int CountTransactionsByType(string transactionType) => _transactionReporter.CountTransactionsByType(Transactions, transactionType);
+
+        public ShopTransaction? FindHighestValueTransaction() => _transactionReporter.FindHighestValueTransaction(Transactions);
+
+
         public string BuildSellRequestSummary(SellCardRequest? request)
         {
-            if(request is null)
+            if (request is null)
             {
                 return "";
             }
@@ -293,89 +305,6 @@
             return listOfTransaction;
         }
 
-        public ShopTransaction? FindHighestValueTransaction()
-        {
-            if (Transactions.Count == 0)
-            {
-                return null;
-            }
-
-            ShopTransaction? highestValueTransaction = null;
-
-            foreach (ShopTransaction transaction in Transactions)
-            {
-                if (highestValueTransaction == null || transaction.Amount > highestValueTransaction.Amount)
-                {
-                    highestValueTransaction = transaction;
-                }
-            }
-
-            return highestValueTransaction;
-        }
-
-        public int CalculateTotalValueByTransactionType(string pTransactionType)
-        {
-            if (string.IsNullOrWhiteSpace(pTransactionType))
-            {
-                return 0;
-            }
-
-            int total = 0;
-
-            foreach (ShopTransaction transaction in Transactions)
-            {
-                if (transaction.TransactionType.Equals(pTransactionType, StringComparison.OrdinalIgnoreCase))
-                {
-                    total += transaction.Amount;
-                }
-            }
-
-            return total;
-        }
-
-        public string BuildTransactionSummary()
-        {
-            return
-                $"Transactions:{Transactions.Count}" +
-                $"Purchases:{CalculateTotalValueByTransactionType("Purchase")}" +
-                $"Sales:{CalculateTotalValueByTransactionType("Sale")}" +
-                $"Total:{CalculateTotalTransactionValue()}";
-        }
-
-        public int CountTransactionsByType(string pTransactionType)
-        {
-            if (string.IsNullOrWhiteSpace(pTransactionType))
-            {
-                return 0;
-            }
-
-            int total = 0;
-
-
-            foreach (ShopTransaction transaction in Transactions)
-            {
-                if (transaction.TransactionType
-                .Equals(pTransactionType, StringComparison.OrdinalIgnoreCase))
-                {
-                    total++;
-                }
-            }
-
-            return total;
-        }
-
-        public int CalculateTotalTransactionValue()
-        {
-            int total = 0;
-
-            foreach (ShopTransaction transaction in Transactions)
-            {
-                total += transaction.Amount;
-            }
-
-            return total;
-        }
-
         public Card? FindMostValuableCardInSystem(Player? pPlayer)
         {
             Card? mostValuableCard = null;
@@ -606,8 +535,7 @@
 
         public bool BuyCard(Player pPlayer, string pCardName)
         {
-            if (pPlayer == null || string.IsNullOrEmpty(pCardName)
-            || string.IsNullOrWhiteSpace(pCardName))
+            if (pPlayer == null || string.IsNullOrWhiteSpace(pCardName))
             {
                 return false;
             }
