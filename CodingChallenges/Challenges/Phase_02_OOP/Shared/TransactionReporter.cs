@@ -66,5 +66,18 @@ namespace CodingChallenges.Challenges.Phase_02_OOP
 
             return HighestTransaction;
         }
+
+        public string BuildTransactionSummary(List<ShopTransaction> transactions)
+        {
+            if(transactions is null || transactions.Count == 0)
+            {
+                return "No transactions found";
+            }
+
+            const string sales = "Sale";
+            const string purchases = "purchase";
+
+            return $"Transactions:{transactions.Count} Purchases:{CalculateTotalValueByTransactionType(transactions, purchases)} Sales:{CalculateTotalValueByTransactionType(transactions, sales)} Total:{CalculateTotalTransactionValue(transactions)}";
+        }
     }
 }
