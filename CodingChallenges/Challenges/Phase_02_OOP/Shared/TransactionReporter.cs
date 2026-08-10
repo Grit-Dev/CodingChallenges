@@ -1,4 +1,5 @@
 using CodingChallenges.Challenges.Phase_02_OOP.shared;
+using Microsoft.VisualBasic;
 
 namespace CodingChallenges.Challenges.Phase_02_OOP
 {
@@ -18,6 +19,31 @@ namespace CodingChallenges.Challenges.Phase_02_OOP
                 total += value.Amount;
             }
             
+            return total;
+        }
+
+        public int CalculateTotalValueByTransactionType(List<ShopTransaction> transactions, string transactionType)
+        {
+            if(transactions is null || transactions.Count == 0)
+            {
+                return 0;
+            }
+
+            int total = 0;
+
+            if(string.IsNullOrWhiteSpace(transactionType))
+            {
+                return 0;
+            }
+
+            foreach(var value in transactions)
+            {
+                if(value.TransactionType.Equals(transactionType, StringComparison.OrdinalIgnoreCase))
+                {
+                    total += value.Amount;
+                }
+            }
+
             return total;
         }
     }
