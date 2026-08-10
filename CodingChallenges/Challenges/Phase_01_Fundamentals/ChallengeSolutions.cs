@@ -6,6 +6,50 @@ namespace CodingChallenges.Challenges.Phase_02_OOP
 {
     public class ChallengeSolutions
     {
+        public static int CountValidScores_Rev(string input)
+        {
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                return 0;
+            }
+
+            int counter = 0;
+            string[] splitString = input.Split(',', StringSplitOptions.RemoveEmptyEntries);
+
+            foreach (var str in splitString)
+            {
+                if (int.TryParse(str.Trim(), out int result))
+                {
+                    if (result >= 0 && result <= 100)
+                    {
+                        counter++;
+                    }
+                }
+            }
+
+            return counter;
+        }
+
+        public static string MaskReferenceExceptLastFour_Rev(string reference)
+        {
+            if (string.IsNullOrWhiteSpace(reference))
+            {
+                return "";
+            }
+
+            if (reference.Length <= 4)
+            {
+                return reference;
+            }
+
+            int characterLeftOver = reference.Length - 4;
+
+            string asterisks = new('*', characterLeftOver);
+
+            string lastFourCharacters = reference.Substring(characterLeftOver);
+
+            return asterisks + lastFourCharacters;
+        }
         public static string RedactPersonalData_RunFour(string json)
         {
             if (string.IsNullOrWhiteSpace(json))
