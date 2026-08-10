@@ -46,5 +46,25 @@ namespace CodingChallenges.Challenges.Phase_02_OOP
 
             return total;
         }
+
+        public ShopTransaction? FindHighestValueTransaction(List<ShopTransaction> transactions)
+        {
+            if(transactions is null || transactions.Count == 0)
+            {
+                return null;
+            }
+
+            ShopTransaction? HighestTransaction = transactions[0];
+
+            foreach(var value in transactions)
+            {
+                if(value.Amount > HighestTransaction.Amount)
+                {
+                    HighestTransaction = value;
+                }
+            }
+
+            return HighestTransaction;
+        }
     }
 }

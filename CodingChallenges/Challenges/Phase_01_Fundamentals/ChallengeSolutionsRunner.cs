@@ -4,63 +4,230 @@ namespace CodingChallenges.Challenges.Phase_02_OOP
 {
     public class ChallengeSolutionsRunner : ChallengeSolutions
     {
+        public static void Run_Four()
+        {
+            // REDACT PERSONAL DATA - SINGLE PERSON
+            string json1 = @"{
+                ""people"": [
+                    {
+                        ""name"": ""Derek Morgan"",
+                        ""address"": ""4321 Willow Lane, Edinburgh, EH12 7JQ"",
+                        ""mobile"": ""07700900832"",
+                        ""email"": ""derek.morgan@example.co.uk""
+                    }
+                ]
+            }";
+
+            string result1 = RedactPersonalData_RunFour(json1);
+            Console.WriteLine(result1);
+            Console.WriteLine(result1.Contains(@"""name"":""DM"""));
+            Console.WriteLine(result1.Contains(@"""address"":""Edinburgh"""));
+            Console.WriteLine(result1.Contains(@"""mobile"":""*******0832"""));
+            Console.WriteLine(result1.Contains(@"""email"":""************@example.co.uk"""));
+            Console.WriteLine(result1.Contains("Derek Morgan") == false);
+            Console.WriteLine(result1.Contains("4321 Willow Lane") == false);
+            Console.WriteLine(result1.Contains("07700900832") == false);
+            Console.WriteLine(result1.Contains("derek.morgan@example.co.uk") == false);
+
+            // REDACT PERSONAL DATA - MC SURNAME
+            string json2 = @"{
+                ""people"": [
+                    {
+                        ""name"": ""Robert McDowell"",
+                        ""address"": ""12 Main Street, Belfast, BT1 1AA"",
+                        ""mobile"": ""1234567890"",
+                        ""email"": ""robert.mcdowell@test.com""
+                    }
+                ]
+            }";
+
+            string result2 = RedactPersonalData_RunFour(json2);
+            Console.WriteLine(result2.Contains(@"""name"":""RD"""));
+            Console.WriteLine(result2.Contains(@"""address"":""Belfast"""));
+            Console.WriteLine(result2.Contains(@"""mobile"":""******7890"""));
+            Console.WriteLine(result2.Contains(@"""email"":""***************@test.com"""));
+            Console.WriteLine(result2.Contains("Robert McDowell") == false);
+            Console.WriteLine(result2.Contains("12 Main Street") == false);
+            Console.WriteLine(result2.Contains("1234567890") == false);
+            Console.WriteLine(result2.Contains("robert.mcdowell@test.com") == false);
+
+            // REDACT PERSONAL DATA - SINGLE NAME
+            string json3 = @"{
+                ""people"": [
+                    {
+                        ""name"": ""Derek"",
+                        ""address"": ""4321 Willow Lane, Edinburgh, EH12 7JQ"",
+                        ""mobile"": ""1234"",
+                        ""email"": ""derek@example.com""
+                    }
+                ]
+            }";
+
+            string result3 = RedactPersonalData_RunFour(json3);
+            Console.WriteLine(result3.Contains(@"""name"":""D"""));
+            Console.WriteLine(result3.Contains(@"""address"":""Edinburgh"""));
+            Console.WriteLine(result3.Contains(@"""mobile"":""1234"""));
+            Console.WriteLine(result3.Contains(@"""email"":""*****@example.com"""));
+            Console.WriteLine(result3.Contains("4321 Willow Lane") == false);
+            Console.WriteLine(result3.Contains("derek@example.com") == false);
+
+            // REDACT PERSONAL DATA - MULTIPLE PEOPLE
+            string json4 = @"{
+            ""people"": [
+                {
+                    ""name"": ""Derek Morgan"",
+                    ""address"": ""4321 Willow Lane, Edinburgh, EH12 7JQ"",
+                    ""mobile"": ""07700900832"",
+                    ""email"": ""derek.morgan@example.co.uk""
+                },
+                {
+                    ""name"": ""Solid Snake"",
+                    ""address"": ""5678 High Street, London, SW1A 1AA"",
+                    ""mobile"": ""07700900777"",
+                    ""email"": ""solid.snake@example.co.uk""
+                },
+                {
+                    ""name"": ""Geralt McRivia"",
+                    ""address"": ""1234 River Road, Belfast, BT1 1AA"",
+                    ""mobile"": ""07700900901"",
+                    ""email"": ""geralt.mcrivia@example.co.uk""
+                }
+            ]
+        }";
+
+            string result4 = RedactPersonalData_RunFour(json4);
+            Console.WriteLine(result4.Contains(@"""name"":""DM"""));
+            Console.WriteLine(result4.Contains(@"""address"":""Edinburgh"""));
+            Console.WriteLine(result4.Contains(@"""mobile"":""*******0832"""));
+            Console.WriteLine(result4.Contains(@"""email"":""************@example.co.uk"""));
+            Console.WriteLine(result4.Contains(@"""name"":""SS"""));
+            Console.WriteLine(result4.Contains(@"""address"":""London"""));
+            Console.WriteLine(result4.Contains(@"""mobile"":""*******0777"""));
+            Console.WriteLine(result4.Contains(@"""email"":""***********@example.co.uk"""));
+            Console.WriteLine(result4.Contains(@"""name"":""GR"""));
+            Console.WriteLine(result4.Contains(@"""address"":""Belfast"""));
+            Console.WriteLine(result4.Contains(@"""mobile"":""*******0901"""));
+            Console.WriteLine(result4.Contains(@"""email"":""**************@example.co.uk"""));
+            Console.WriteLine(result4.Contains("Derek Morgan") == false);
+            Console.WriteLine(result4.Contains("Solid Snake") == false);
+            Console.WriteLine(result4.Contains("Geralt McRivia") == false);
+            Console.WriteLine(result4.Contains("07700900832") == false);
+            Console.WriteLine(result4.Contains("07700900777") == false);
+            Console.WriteLine(result4.Contains("07700900901") == false);
+
+            // INVALID INPUTS
+            Console.WriteLine(RedactPersonalData_RunFour("") == "");
+            Console.WriteLine(RedactPersonalData_RunFour("   ") == "");
+            Console.WriteLine(RedactPersonalData_RunFour("null") == "");
+
+            // INVALID EMAIL WITH NO @
+            string json5 = @"{
+                ""people"": [
+                    {
+                        ""name"": ""Geralt Rivia"",
+                        ""address"": ""1234 River Road, Belfast, BT1 1AA"",
+                        ""mobile"": ""07700900901"",
+                        ""email"": ""geralt.riviaexample.co.uk""
+                    }
+                ]
+            }";
+
+            string result5 = RedactPersonalData_RunFour(json5);
+            Console.WriteLine(result5.Contains(@"""email"":"""""));
+            Console.WriteLine(result5.Contains("geralt.riviaexample.co.uk") == false);
+
+            // EMAIL STARTING WITH @ - ALLOWED BECAUSE indexOfAt < 0 ONLY CHECKS MISSING @
+            string json6 = @"{
+                ""people"": [
+                    {
+                        ""name"": ""Test User"",
+                        ""address"": ""1 Road, Derry, BT48 1AA"",
+                        ""mobile"": ""1234567"",
+                        ""email"": ""@example.com""
+                    }
+                ]
+            }";
+
+            string result6 = RedactPersonalData_RunFour(json6);
+            Console.WriteLine(result6.Contains(@"""email"":""@example.com"""));
+
+
+            // Find The Highest Number Below Target
+            Console.WriteLine(FindHighestNumberBelowTarget_RunFour([1, 5, 10, 20], 12) == 10);
+            Console.WriteLine(FindHighestNumberBelowTarget_RunFour([10, 20, 30], 10) == null);
+            Console.WriteLine(FindHighestNumberBelowTarget_RunFour([3, 8, 2], 9) == 8);
+            Console.WriteLine(FindHighestNumberBelowTarget_RunFour([3, 8, 2], 9) == 8);
+            Console.WriteLine(FindHighestNumberBelowTarget_RunFour([], 9) == null);
+
+            // Mask Code Except Last Three:
+            Console.WriteLine(MaskCodeExceptLastThree_RunFour("ABCDEFG") == "****EFG");
+            Console.WriteLine(MaskCodeExceptLastThree_RunFour("123456") == "***456");
+            Console.WriteLine(MaskCodeExceptLastThree_RunFour("ABC") == "ABC");
+            Console.WriteLine(MaskCodeExceptLastThree_RunFour("") == "");
+
+            //Count Valid Prices
+            Console.WriteLine(CountValidPrices_RunFour("10, 20, 0, -5, hello") == 2);
+            Console.WriteLine(CountValidPrices_RunFour("0, -1, abc") == 0);
+            Console.WriteLine(CountValidPrices_RunFour(" 5, 15 , test, 25 ") == 3);
+            Console.WriteLine(CountValidPrices_RunFour("") == 0);
+        }
+        public static void Run_Three()
+        {
+            // Mask Reference Except Last Four
+            Console.WriteLine(MaskReferenceExceptLastFour_Rev("ABC1234567") == "******4567");
+            Console.WriteLine(MaskReferenceExceptLastFour_Rev("1234") == "1234");
+            Console.WriteLine(MaskReferenceExceptLastFour_Rev("ABC") == "ABC");
+            Console.WriteLine(MaskReferenceExceptLastFour_Rev("") == "");
+            Console.WriteLine(MaskReferenceExceptLastFour_Rev(" ") == "");
+
+            // Count Valid Scores
+            Console.WriteLine(CountValidScores_Rev("10, 50, 101, -1, hello, 80") == 3);
+            Console.WriteLine(CountValidScores_Rev("0, 100, 55") == 3);
+            Console.WriteLine(CountValidScores_Rev("abc, -5, 200") == 0);
+            Console.WriteLine(CountValidScores_Rev("") == 0);
+            Console.WriteLine(CountValidScores_Rev(" ") == 0);
+
+            // Find Highest Number Below Target
+            Console.WriteLine(FindHighestNumberBelowTarget_RunThree([1, 5, 10, 20], 12) == 10);
+            Console.WriteLine(FindHighestNumberBelowTarget_RunThree([10, 20, 30], 10) == null);
+            Console.WriteLine(FindHighestNumberBelowTarget_RunThree([3, 8, 2], 9) == 8);
+            Console.WriteLine(FindHighestNumberBelowTarget_RunThree([], 9) == null);
+
+            // Mask Code Except Last Three
+            Console.WriteLine(MaskCodeExceptLastThree_RunThree("ABCDEFG") == "****EFG");
+            Console.WriteLine(MaskCodeExceptLastThree_RunThree("123456") == "***456");
+            Console.WriteLine(MaskCodeExceptLastThree_RunThree("ABC") == "ABC");
+            Console.WriteLine(MaskCodeExceptLastThree_RunThree("") == "");
+
+            // Count Valid Prices
+            Console.WriteLine(CountValidPrices_RunThree("10, 20, 0, -5, hello") == 2);
+            Console.WriteLine(CountValidPrices_RunThree("0, -1, abc") == 0);
+            Console.WriteLine(CountValidPrices_RunThree(" 5, 15 , test, 25 ") == 3);
+            Console.WriteLine(CountValidPrices_RunThree(null!) == 0);
+        }
         public static void Run_Two()
         {
-            // NameRedaction
-            Console.WriteLine(NameRedaction_RunThree("Derek,Morgan") == "DM");
-            Console.WriteLine(NameRedaction_RunThree("Robert,McDowell") == "RD");
-            Console.WriteLine(NameRedaction_RunThree("Paul") == "P");
-            Console.WriteLine(NameRedaction_RunThree("") == "");
+            // Find Highest Number Below Target
+            Console.WriteLine(FindHighestNumberBelowTarget([1, 5, 10, 20], 12) == 10);
+            Console.WriteLine(FindHighestNumberBelowTarget([10, 20, 30], 10) == null);
+            Console.WriteLine(FindHighestNumberBelowTarget([3, 8, 2], 9) == 8);
+            Console.WriteLine(FindHighestNumberBelowTarget([], 9) == null);
 
-            // AddressRedaction
-            Console.WriteLine(AddressRedaction_RunThree("4321 Willow Lane, Edinburgh, EH12 7JQ") == "Edinburgh");
-            Console.WriteLine(AddressRedaction_RunThree("NoComma") == "");
-            Console.WriteLine(AddressRedaction_RunThree("") == "");
+            // Mask Code Except Last Three
+            Console.WriteLine(MaskCodeExceptLastThree("ABCDEFG") == "****EFG");
+            Console.WriteLine(MaskCodeExceptLastThree("123456") == "***456");
+            Console.WriteLine(MaskCodeExceptLastThree("ABC") == "ABC");
+            Console.WriteLine(MaskCodeExceptLastThree("AB") == "AB");
+            Console.WriteLine(MaskCodeExceptLastThree(null!) == "");
+            Console.WriteLine(MaskCodeExceptLastThree("") == "");
 
-            // MobileNumberRedaction
-            Console.WriteLine(MobileNumberRedaction_RunThree("07700900832") == "*******0832");
-            Console.WriteLine(MobileNumberRedaction_RunThree("1234") == "1234");
-            Console.WriteLine(MobileNumberRedaction_RunThree("") == "");
 
-            // EmailAddressRedaction
-            Console.WriteLine(EmailAddressRedaction_RunThree("derek.morgan@example.co.uk") == "************@example.co.uk");
-            Console.WriteLine(EmailAddressRedaction_RunThree("@example.co.uk") == "");
-            Console.WriteLine(EmailAddressRedaction_RunThree("invalidemail") == "");
-            Console.WriteLine(EmailAddressRedaction_RunThree("") == "");
-
-            Console.WriteLine("=== EmailAddressRedaction Tests ===");
-            Console.WriteLine(EmailAddressRedaction("derek.morgan@example.co.uk") == "************@example.co.uk");
-            Console.WriteLine(EmailAddressRedaction("robert.mcdowell@test.com") == "***************@test.com");
-            Console.WriteLine(EmailAddressRedaction("derek@example.co.uk") == "*****@example.co.uk");
-            Console.WriteLine(EmailAddressRedaction("invalidEmail") == "");
-            Console.WriteLine(EmailAddressRedaction("") == "");
-            Console.WriteLine(EmailAddressRedaction("   ") == "");
-
-            //Console.WriteLine("=== MobileNumberRedaction Tests ===");
-            Console.WriteLine(MobileNumberRedaction("07700900832") == "*******0832");
-            Console.WriteLine(MobileNumberRedaction("07123456789") == "*******6789");
-            Console.WriteLine(MobileNumberRedaction("1234") == "1234");
-            Console.WriteLine(MobileNumberRedaction("123") == "123");
-            Console.WriteLine(MobileNumberRedaction("") == "");
-            Console.WriteLine(MobileNumberRedaction("   ") == "");
-
-            //Console.WriteLine("=== MobileNumberRedaction Tests ===");
-            Console.WriteLine(AddressRedaction("4321 Willow Lane, Edinburgh, EH12 7JQ") == "Edinburgh");
-            Console.WriteLine(AddressRedaction("12 Main Street, Belfast, BT1 1AA") == "Belfast");
-            Console.WriteLine(AddressRedaction("Flat 4, Derry, BT48 6AA") == "Derry");
-            Console.WriteLine(AddressRedaction("No commas here") == "");
-            Console.WriteLine(AddressRedaction("") == "");
-            Console.WriteLine(AddressRedaction("   ") == "");
-
-            //Console.WriteLine("=== NameRedaction Tests ===");
-            Console.WriteLine(NameRedaction("Derek Morgan") == "DM");
-            Console.WriteLine(NameRedaction("Robert McDowell") == "RD");
-            Console.WriteLine(NameRedaction("Robert mcdowell") == "RD");
-            Console.WriteLine(NameRedaction("Derek") == "D");
-            Console.WriteLine(NameRedaction("  Derek   Morgan  ") == "DM");
-            Console.WriteLine(NameRedaction("Mary Smith") == "MS");
-            Console.WriteLine(NameRedaction("") == "");
-            Console.WriteLine(NameRedaction("   ") == "");
+            // Count Valid Prices
+            Console.WriteLine(CountValidPrices("10, 20, 0, -5, hello") == 2);
+            Console.WriteLine(CountValidPrices("0, -1, abc") == 0);
+            Console.WriteLine(CountValidPrices(" 5, 15 , test, 25 ") == 3);
+            Console.WriteLine(CountValidPrices("") == 0);
+            Console.WriteLine(CountValidPrices(null!) == 0);
 
             // FIND IDS IN BOTH LISTS
             Console.WriteLine(string.Join(", ", FindIdsInBothLists([1, 2, 3], [2, 3, 4])) == "2, 3");
