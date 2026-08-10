@@ -4,7 +4,7 @@ public class Program
 {
     public static void Main(string[] args)
     {
-        // CardShopCompositionChallenges.Run();
+        CardShopCompositionChallenges.Run();
         // ChallengeSolutionsRunner.Run_Four();
         // JsonDataSanitizerRunner.Run();
     }
