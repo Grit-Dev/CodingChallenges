@@ -17,7 +17,7 @@ namespace CodingChallenges.Challenges.Phase_02_OOP.Inheritance_Basics
 
         public string BuildDisplayName()
         {
-            return Name + " (" + Category + ")";
+            return $"{Name} ({Category})";
         }
     }
 }
