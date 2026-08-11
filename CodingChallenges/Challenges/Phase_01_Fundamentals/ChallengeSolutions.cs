@@ -6,6 +6,62 @@ namespace CodingChallenges.Challenges.Phase_02_OOP
 {
     public class ChallengeSolutions
     {
+        public static int? FindSecondHighestUniqueNumber(int[] numbers)
+        {
+            if (numbers is null || numbers.Length == 0)
+            {
+                return null;
+            }
+
+            int? highestNumber = null;
+            int? secondHighestNumber = null;
+
+            foreach (int number in numbers)
+            {
+                if (highestNumber is null || number > highestNumber)
+                {
+                    secondHighestNumber = highestNumber;
+                    highestNumber = number;
+                }
+                else if (number < highestNumber &&
+                        (secondHighestNumber is null || number > secondHighestNumber))
+                {
+                    secondHighestNumber = number;
+                }
+            }
+
+            return secondHighestNumber;
+        }
+
+        public static bool HasBalancedParentheses(string input)
+        {
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                return true;
+            }
+
+            int parenthesesMatch = 0;
+
+            foreach (var character in input)
+            {
+                if (character == '(')
+                {
+                    parenthesesMatch++;
+                }
+                else if (character == ')')
+                {
+                    parenthesesMatch--;
+
+                    if (parenthesesMatch < 0)
+                    {
+                        return false;
+                    }
+
+                }
+            }
+
+            return parenthesesMatch == 0;
+        }
         public static int CountValidScores_Rev(string input)
         {
             if (string.IsNullOrWhiteSpace(input))
