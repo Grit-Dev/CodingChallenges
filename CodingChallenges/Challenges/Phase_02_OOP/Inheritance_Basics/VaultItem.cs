@@ -1,5 +1,3 @@
-using System.Dynamic;
-
 namespace CodingChallenges.Challenges.Phase_02_OOP.Inheritance_Basics
 {
     public class VaultItem
