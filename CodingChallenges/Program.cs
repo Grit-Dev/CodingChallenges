@@ -32,18 +32,58 @@ public class Program
 
         return brackets == 0;
     }
+
+    public static bool HasBalancedSquareBrackets_Rev(string input)
+    {
+        if (string.IsNullOrWhiteSpace(input))
+        {
+            return true;
+        }
+
+        int squareBrackets = 0;
+
+        foreach (var character in input)
+        {
+            if (character == '[')
+            {
+                squareBrackets++;
+            }
+            else if (character == ']')
+            {
+                squareBrackets--;
+
+                if (squareBrackets < 0)
+                {
+                    return false;
+                }
+            }
+        }
+
+        return squareBrackets == 0;
+    }
     public static void Main(string[] args)
     {
+        // Has Balanced Square Brackets
+        Console.WriteLine(HasBalancedSquareBrackets_Rev("[hello]") == true);
+        Console.WriteLine(HasBalancedSquareBrackets_Rev("hello [world]") == true);
+        Console.WriteLine(HasBalancedSquareBrackets_Rev("hello]") == false);
+        Console.WriteLine(HasBalancedSquareBrackets_Rev("[[hello]") == false);
+        Console.WriteLine(HasBalancedSquareBrackets_Rev("]hello[]") == false);
+        Console.WriteLine(HasBalancedSquareBrackets_Rev("") == true);
+        Console.WriteLine(HasBalancedSquareBrackets_Rev(" ") == true);
+        Console.WriteLine(HasBalancedSquareBrackets_Rev(null!) == true);
+
+
         // Has Balance Parentheses Rev
-        Console.WriteLine(HasBalancedParentheses_Rev("(hello)") == true);
-        Console.WriteLine(HasBalancedParentheses_Rev("hello (world)") == true);
-        Console.WriteLine(HasBalancedParentheses_Rev("(hello (world))") == true);
-        Console.WriteLine(HasBalancedParentheses_Rev("hello)") == false);
-        Console.WriteLine(HasBalancedParentheses_Rev("((hello)") == false);
-        Console.WriteLine(HasBalancedParentheses_Rev(")hello(") == false);
-        Console.WriteLine(HasBalancedParentheses_Rev("") == true);
-        Console.WriteLine(HasBalancedParentheses_Rev(" ") == true);
-        Console.WriteLine(HasBalancedParentheses_Rev(null!) == true);
+        // Console.WriteLine(HasBalancedParentheses_Rev("(hello)") == true);
+        // Console.WriteLine(HasBalancedParentheses_Rev("hello (world)") == true);
+        // Console.WriteLine(HasBalancedParentheses_Rev("(hello (world))") == true);
+        // Console.WriteLine(HasBalancedParentheses_Rev("hello)") == false);
+        // Console.WriteLine(HasBalancedParentheses_Rev("((hello)") == false);
+        // Console.WriteLine(HasBalancedParentheses_Rev(")hello(") == false);
+        // Console.WriteLine(HasBalancedParentheses_Rev("") == true);
+        // Console.WriteLine(HasBalancedParentheses_Rev(" ") == true);
+        // Console.WriteLine(HasBalancedParentheses_Rev(null!) == true);
 
         // VaultItemInheritanceRunner.Run();
         // CardShopCompositionChallenges.Run();
