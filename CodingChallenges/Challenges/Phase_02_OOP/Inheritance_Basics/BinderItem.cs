@@ -24,7 +24,7 @@ namespace CodingChallenges.Challenges.Phase_02_OOP.Inheritance_Basics
         }
 
         
-        public virtual string BuildDisplayName()
+        public override string BuildDisplayName()
         {
             return $"{Name} - Binder {CardSlots} / {FilledSlots} filled- £{EstimatedValue}";
         }

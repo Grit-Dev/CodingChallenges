@@ -27,7 +27,7 @@ namespace CodingChallenges.Challenges.Phase_02_OOP.Inheritance_Basics
         
         public override string BuildDisplayName()
         {
-            return $"{Name} - Rarity {Rarity} Card - Attack {Attack} - £{EstimatedValue}";
+            return $"{Name} - {Rarity} - Attack {Attack} - £{EstimatedValue}";
         }
     }
 }
