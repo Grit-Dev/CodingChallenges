@@ -15,9 +15,9 @@ namespace CodingChallenges.Challenges.Phase_02_OOP.Inheritance_Basics
             EstimatedValue = estimatedValue;
         }
 
-        public string BuildDisplayName()
+        public virtual string BuildDisplayName()
         {
-            return $"{Name} ({Category})";
+            return $"{Name} - {Category} - £{EstimatedValue}";
         }
     }
 }

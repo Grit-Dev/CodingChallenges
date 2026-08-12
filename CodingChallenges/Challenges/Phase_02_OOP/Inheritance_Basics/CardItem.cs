@@ -1,3 +1,5 @@
+using CodingChallenges.Challenges.Phase_02_OOP.shared;
+
 namespace CodingChallenges.Challenges.Phase_02_OOP.Inheritance_Basics
 {
     public class CardItem : VaultItem
@@ -20,6 +22,12 @@ namespace CodingChallenges.Challenges.Phase_02_OOP.Inheritance_Basics
         public bool IsHighValueCard()
         {
             return EstimatedValue >= 100;
+        }
+
+        
+        public override string BuildDisplayName()
+        {
+            return $"{Name} - Rarity {Rarity} Card - Attack {Attack} - £{EstimatedValue}";
         }
     }
 }

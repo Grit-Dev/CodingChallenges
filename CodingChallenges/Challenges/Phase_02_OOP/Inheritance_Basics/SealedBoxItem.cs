@@ -18,5 +18,11 @@ namespace CodingChallenges.Challenges.Phase_02_OOP.Inheritance_Basics
             return IsSealed && EstimatedValue >= 200;
         }
 
+        
+        public override string BuildDisplayName()
+        {
+            return $"{Name} - Sealed Box - Packs {PackCount} - £{EstimatedValue}";
+        }
+
     }
 }

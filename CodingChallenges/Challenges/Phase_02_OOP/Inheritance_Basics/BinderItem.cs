@@ -22,5 +22,11 @@ namespace CodingChallenges.Challenges.Phase_02_OOP.Inheritance_Basics
 
             return CardSlots - FilledSlots;
         }
+
+        
+        public virtual string BuildDisplayName()
+        {
+            return $"{Name} - Binder {CardSlots} / {FilledSlots} filled- £{EstimatedValue}";
+        }
     }
 }
