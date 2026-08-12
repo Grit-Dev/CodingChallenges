@@ -6,6 +6,90 @@ namespace CodingChallenges.Challenges.Phase_02_OOP
 {
     public class ChallengeSolutions
     {
+        public static bool HasBalancedParentheses_Rev(string input)
+        {
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                return true;
+            }
+
+            int brackets = 0;
+
+            foreach (var character in input)
+            {
+                if (character == '(')
+                {
+                    brackets++;
+                }
+                else if (character == ')')
+                {
+                    brackets--;
+
+                    if (brackets < 0)
+                    {
+                        return false;
+                    }
+                }
+            }
+
+            return brackets == 0;
+        }
+
+        public static bool HasBalancedSquareBrackets_Rev(string input)
+        {
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                return true;
+            }
+
+            int squareBrackets = 0;
+
+            foreach (var character in input)
+            {
+                if (character == '[')
+                {
+                    squareBrackets++;
+                }
+                else if (character == ']')
+                {
+                    squareBrackets--;
+
+                    if (squareBrackets < 0)
+                    {
+                        return false;
+                    }
+                }
+            }
+
+            return squareBrackets == 0;
+        }
+
+        public static int? FindSecondHighestUniqueNumber_Rev(int[] numbers)
+        {
+            if (numbers is null || numbers.Length == 0)
+            {
+                return null;
+            }
+
+            int? highestNumber = null;
+            int? secondHighestNumber = null;
+
+            foreach (var digit in numbers)
+            {
+                if (highestNumber is null || digit > highestNumber)
+                {
+                    secondHighestNumber = highestNumber;
+                    highestNumber = digit;
+                }
+                else if (digit != highestNumber && (secondHighestNumber is null
+                || digit > secondHighestNumber))
+                {
+                    secondHighestNumber = digit;
+                }
+            }
+
+            return secondHighestNumber;
+        }
         public static int? FindSecondHighestUniqueNumber(int[] numbers)
         {
             if (numbers is null || numbers.Length == 0)

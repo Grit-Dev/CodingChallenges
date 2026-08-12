@@ -173,6 +173,56 @@ namespace CodingChallenges.Challenges.Phase_02_OOP
         }
         public static void Run_Three()
         {
+            // Find Second Highest Unique Number
+            Console.WriteLine(FindSecondHighestUniqueNumber_Rev([10, 20, 30]) == 20);
+            Console.WriteLine(FindSecondHighestUniqueNumber_Rev([10, 30, 30, 20]) == 20);
+            Console.WriteLine(FindSecondHighestUniqueNumber_Rev([5, 5, 5]) == null);
+            Console.WriteLine(FindSecondHighestUniqueNumber_Rev([100, 50, 100, 25]) == 50);
+            Console.WriteLine(FindSecondHighestUniqueNumber_Rev([-10, -5, -20]) == -10);
+            Console.WriteLine(FindSecondHighestUniqueNumber_Rev(null!) == null);
+            Console.WriteLine(FindSecondHighestUniqueNumber_Rev([]) == null);
+
+            // Has Balanced Square Brackets
+            Console.WriteLine(HasBalancedSquareBrackets_Rev("[hello]") == true);
+            Console.WriteLine(HasBalancedSquareBrackets_Rev("hello [world]") == true);
+            Console.WriteLine(HasBalancedSquareBrackets_Rev("hello]") == false);
+            Console.WriteLine(HasBalancedSquareBrackets_Rev("[[hello]") == false);
+            Console.WriteLine(HasBalancedSquareBrackets_Rev("]hello]") == false);
+            Console.WriteLine(HasBalancedSquareBrackets_Rev("") == true);
+            Console.WriteLine(HasBalancedSquareBrackets_Rev(" ") == true);
+            Console.WriteLine(HasBalancedSquareBrackets_Rev(null!) == true);
+
+            // Has Balance Parentheses Rev
+            Console.WriteLine(HasBalancedParentheses_Rev("(hello)") == true);
+            Console.WriteLine(HasBalancedParentheses_Rev("hello (world)") == true);
+            Console.WriteLine(HasBalancedParentheses_Rev("(hello (world))") == true);
+            Console.WriteLine(HasBalancedParentheses_Rev("hello)") == false);
+            Console.WriteLine(HasBalancedParentheses_Rev("((hello)") == false);
+            Console.WriteLine(HasBalancedParentheses_Rev(")hello(") == false);
+            Console.WriteLine(HasBalancedParentheses_Rev("") == true);
+            Console.WriteLine(HasBalancedParentheses_Rev(" ") == true);
+            Console.WriteLine(HasBalancedParentheses_Rev(null!) == true);
+
+            // Has Balanced Parentheses
+            Console.WriteLine(HasBalancedParentheses("(hello)") == true);
+            Console.WriteLine(HasBalancedParentheses("hello (world)") == true);
+            Console.WriteLine(HasBalancedParentheses("(hello (world))") == true);
+            Console.WriteLine(HasBalancedParentheses("hello)") == false);
+            Console.WriteLine(HasBalancedParentheses("((hello)") == false);
+            Console.WriteLine(HasBalancedParentheses(")hello(") == false);
+            Console.WriteLine(HasBalancedParentheses("") == true);
+            Console.WriteLine(HasBalancedParentheses(" ") == true);
+            Console.WriteLine(HasBalancedParentheses(null!) == true);
+
+            //Find The Second Highest Unique Number
+            Console.WriteLine(FindSecondHighestUniqueNumber([10, 20, 30]) == 20);
+            Console.WriteLine(FindSecondHighestUniqueNumber([10, 30, 30, 20]) == 20);
+            Console.WriteLine(FindSecondHighestUniqueNumber([5, 5, 5]) == null);
+            Console.WriteLine(FindSecondHighestUniqueNumber([100, 50, 100, 25]) == 50);
+            Console.WriteLine(FindSecondHighestUniqueNumber([-10, -5, -20]) == -10);
+            Console.WriteLine(FindSecondHighestUniqueNumber(null!) == null);
+            Console.WriteLine(FindSecondHighestUniqueNumber([]) == null);
+
             // Mask Reference Except Last Four
             Console.WriteLine(MaskReferenceExceptLastFour_Rev("ABC1234567") == "******4567");
             Console.WriteLine(MaskReferenceExceptLastFour_Rev("1234") == "1234");
