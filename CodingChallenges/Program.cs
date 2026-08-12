@@ -61,18 +61,53 @@ public class Program
 
         return squareBrackets == 0;
     }
+
+    public static int? FindSecondHighestUniqueNumber_Rev(int[] numbers)
+    {
+        if (numbers is null || numbers.Length == 0)
+        {
+            return null;
+        }
+
+        int? highestNumber = null;
+        int? secondHighestNumber = null;
+
+        foreach (var digit in numbers)
+        {
+            if (highestNumber is null || digit > highestNumber)
+            {
+                secondHighestNumber = highestNumber;
+                highestNumber = digit;
+            }
+            else if(digit != highestNumber && (secondHighestNumber is null 
+            || digit > secondHighestNumber))
+            {
+                secondHighestNumber = digit;
+            }
+        }
+
+        return secondHighestNumber;
+    }
     public static void Main(string[] args)
     {
-        // Has Balanced Square Brackets
-        Console.WriteLine(HasBalancedSquareBrackets_Rev("[hello]") == true);
-        Console.WriteLine(HasBalancedSquareBrackets_Rev("hello [world]") == true);
-        Console.WriteLine(HasBalancedSquareBrackets_Rev("hello]") == false);
-        Console.WriteLine(HasBalancedSquareBrackets_Rev("[[hello]") == false);
-        Console.WriteLine(HasBalancedSquareBrackets_Rev("]hello[]") == false);
-        Console.WriteLine(HasBalancedSquareBrackets_Rev("") == true);
-        Console.WriteLine(HasBalancedSquareBrackets_Rev(" ") == true);
-        Console.WriteLine(HasBalancedSquareBrackets_Rev(null!) == true);
+        // Find Second Highest Unique Number
+        Console.WriteLine(FindSecondHighestUniqueNumber_Rev([10, 20, 30]) == 20);
+        Console.WriteLine(FindSecondHighestUniqueNumber_Rev([10, 30, 30, 20]) == 20);
+        Console.WriteLine(FindSecondHighestUniqueNumber_Rev([5, 5, 5]) == null);
+        Console.WriteLine(FindSecondHighestUniqueNumber_Rev([100, 50, 100, 25]) == 50);
+        Console.WriteLine(FindSecondHighestUniqueNumber_Rev([-10, -5, -20]) == -10);
+        Console.WriteLine(FindSecondHighestUniqueNumber_Rev(null!) == null);
+        Console.WriteLine(FindSecondHighestUniqueNumber_Rev([]) == null);
 
+        // Has Balanced Square Brackets
+        // Console.WriteLine(HasBalancedSquareBrackets_Rev("[hello]") == true);
+        // Console.WriteLine(HasBalancedSquareBrackets_Rev("hello [world]") == true);
+        // Console.WriteLine(HasBalancedSquareBrackets_Rev("hello]") == false);
+        // Console.WriteLine(HasBalancedSquareBrackets_Rev("[[hello]") == false);
+        // Console.WriteLine(HasBalancedSquareBrackets_Rev("]hello]") == false);
+        // Console.WriteLine(HasBalancedSquareBrackets_Rev("") == true);
+        // Console.WriteLine(HasBalancedSquareBrackets_Rev(" ") == true);
+        // Console.WriteLine(HasBalancedSquareBrackets_Rev(null!) == true);
 
         // Has Balance Parentheses Rev
         // Console.WriteLine(HasBalancedParentheses_Rev("(hello)") == true);
