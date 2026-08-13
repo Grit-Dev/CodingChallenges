@@ -84,16 +84,54 @@ public class Program
 
         return strongPasswordCounter;
     }
+
+    public static int? FindClosestNumberToZero(int[] numbers)
+    {
+        if (numbers == null || numbers.Length == 0)
+        {
+            return null;
+        }
+
+        int closestToZeroSoFar = int.MaxValue;
+        int numberToZeroSoFar = 0;
+
+        foreach (int number in numbers)
+        {
+            int closest = Math.Abs(number);
+
+            if (closest == closestToZeroSoFar && number > numberToZeroSoFar)
+            {
+                closestToZeroSoFar = closest;
+                numberToZeroSoFar = number;
+            }
+
+            if (closest < closestToZeroSoFar)
+            {
+                closestToZeroSoFar = closest;
+                numberToZeroSoFar = number;
+            }
+        }
+
+        return numberToZeroSoFar;
+    }
     public static void Main(string[] args)
     {
 
+        // Find Closest Number To Zero
+        Console.WriteLine(FindClosestNumberToZero([-5, -2, 3, 2]) == 2);
+        Console.WriteLine(FindClosestNumberToZero([-10, -4, -2]) == -2);
+        Console.WriteLine(FindClosestNumberToZero([8, -8]) == 8);
+        Console.WriteLine(FindClosestNumberToZero([0, 5, -1]) == 0);
+        Console.WriteLine(FindClosestNumberToZero(null!) == null);
+        Console.WriteLine(FindClosestNumberToZero([]) == null);
+
         // Count Strong Passwords
-        Console.WriteLine(CountStrongPasswords("Password1, hello, TEST1234, GoodPass9") == 2);
-        Console.WriteLine(CountStrongPasswords("abc, 12345678, NoDigitsHere") == 0);
-        Console.WriteLine(CountStrongPasswords("Aa123456") == 1);
-        Console.WriteLine(CountStrongPasswords("") == 0);
-        Console.WriteLine(CountStrongPasswords("   ") == 0);
-        Console.WriteLine(CountStrongPasswords(null!) == 0);
+        //Console.WriteLine(CountStrongPasswords("Password1, hello, TEST1234, GoodPass9") == 2);
+        //Console.WriteLine(CountStrongPasswords("abc, 12345678, NoDigitsHere") == 0);
+        //Console.WriteLine(CountStrongPasswords("Aa123456") == 1);
+        //Console.WriteLine(CountStrongPasswords("") == 0);
+        //Console.WriteLine(CountStrongPasswords("   ") == 0);
+        //Console.WriteLine(CountStrongPasswords(null!) == 0);
 
         // Has Balanced Parentheses Rev Two
         //Console.WriteLine(HasBalancedParentheses_RevTwo("(Hello)") == true);
