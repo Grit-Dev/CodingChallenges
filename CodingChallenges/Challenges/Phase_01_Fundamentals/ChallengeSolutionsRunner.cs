@@ -6,6 +6,31 @@ namespace CodingChallenges.Challenges.Phase_02_OOP
     {
         public static void Run_Two()
         {
+            // Find Closest Number To Zero
+            Console.WriteLine(FindClosestNumberToZero([-5, -2, 3, 2]) == 2);
+            Console.WriteLine(FindClosestNumberToZero([-10, -4, -2]) == -2);
+            Console.WriteLine(FindClosestNumberToZero([8, -8]) == 8);
+            Console.WriteLine(FindClosestNumberToZero([0, 5, -1]) == 0);
+            Console.WriteLine(FindClosestNumberToZero(null!) == null);
+            Console.WriteLine(FindClosestNumberToZero([]) == null);
+
+            // Count Strong Passwords
+            Console.WriteLine(CountStrongPasswords("Password1, hello, TEST1234, GoodPass9") == 2);
+            Console.WriteLine(CountStrongPasswords("abc, 12345678, NoDigitsHere") == 0);
+            Console.WriteLine(CountStrongPasswords("Aa123456") == 1);
+            Console.WriteLine(CountStrongPasswords("") == 0);
+            Console.WriteLine(CountStrongPasswords("   ") == 0);
+            Console.WriteLine(CountStrongPasswords(null!) == 0);
+
+            // Has Balanced Parentheses Rev Two
+            Console.WriteLine(HasBalancedParentheses_RevTwo("(Hello)") == true);
+            Console.WriteLine(HasBalancedParentheses_RevTwo("((Hello))") == true);
+            Console.WriteLine(HasBalancedParentheses_RevTwo("))Hello)") == false);
+            Console.WriteLine(HasBalancedParentheses_RevTwo("((Hello)") == false);
+            Console.WriteLine(HasBalancedParentheses_RevTwo(")hello)") == false);
+            Console.WriteLine(HasBalancedParentheses_RevTwo("Hello)") == false);
+            Console.WriteLine(HasBalancedParentheses_RevTwo("") == true);
+
             // NameRedaction
             Console.WriteLine(NameRedaction_RunThree("Derek,Morgan") == "DM");
             Console.WriteLine(NameRedaction_RunThree("Robert,McDowell") == "RD");
@@ -112,6 +137,7 @@ namespace CodingChallenges.Challenges.Phase_02_OOP
             Console.WriteLine(CountUniqueIds([1, 2, 3])); // 3
             Console.WriteLine(CountUniqueIds([])); // 0
             Console.WriteLine(CountUniqueIds(null!)); // 0
+            
             // REMOVE DUPLICATE IDS PRESERVING ORDER
             Console.WriteLine($"[{string.Join(", ", RemoveDuplicateIdsPreservingOrder([1, 2, 2, 3, 1]))}]"); // [1, 2, 3]
             Console.WriteLine($"[{string.Join(", ", RemoveDuplicateIdsPreservingOrder([5, 5, 5]))}]"); // [5]
@@ -311,6 +337,7 @@ namespace CodingChallenges.Challenges.Phase_02_OOP
             Console.WriteLine(FindFirstWordWithExactlyTwoRepeatedCharacters("aabb cat moon"));          // Expected: aabb
             Console.WriteLine(FindFirstWordWithExactlyTwoRepeatedCharacters("abc banana aabb"));        // Expected: aabb
             Console.WriteLine(FindFirstWordWithExactlyTwoRepeatedCharacters("AAbb moon"));              // Expected: AAbb
+            
             /*
                 ============================================================
                 OOP CHALLENGE 4:

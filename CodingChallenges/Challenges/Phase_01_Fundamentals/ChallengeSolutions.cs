@@ -6,6 +6,118 @@ namespace CodingChallenges.Challenges.Phase_02_OOP
 {
     public class ChallengeSolutions
     {
+        public static bool HasBalancedParentheses_RevTwo(string input)
+        {
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                return true;
+            }
+
+            int balance = 0;
+
+            foreach (char character in input)
+            {
+                if (character == '(')
+                {
+                    balance++;
+                }
+                else if (character == ')')
+                {
+                    balance--;
+
+
+                    if (balance < 0)
+                    {
+                        return false;
+                    }
+                }
+            }
+
+            return balance == 0;
+        }
+
+        public static int CountStrongPasswords(string input)
+        {
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                return 0;
+            }
+
+            int strongPasswordCounter = 0;
+            string[] stringSplit = input.Split(',', StringSplitOptions.RemoveEmptyEntries);
+
+            foreach (string str in stringSplit)
+            {
+                int charIsUpperCounter = 0;
+                int charIsLowerCounter = 0;
+                int charIsDigitCounter = 0;
+
+                string strTrimmed = str.Trim();
+
+                if (strTrimmed.Contains(' '))
+                {
+                    continue;
+                }
+
+                if (strTrimmed.Length >= 8)
+                {
+                    foreach (char character in strTrimmed)
+                    {
+                        if (char.IsUpper(character))
+                        {
+                            charIsUpperCounter++;
+                        }
+
+                        if (char.IsLower(character))
+                        {
+                            charIsLowerCounter++;
+                        }
+
+                        if (char.IsDigit(character))
+                        {
+                            charIsDigitCounter++;
+                        }
+                    }
+                }
+
+                if (charIsUpperCounter > 0 && charIsLowerCounter > 0 && charIsDigitCounter > 0)
+                {
+                    strongPasswordCounter++;
+                }
+            }
+
+            return strongPasswordCounter;
+        }
+
+        public static int? FindClosestNumberToZero(int[] numbers)
+        {
+            if (numbers == null || numbers.Length == 0)
+            {
+                return null;
+            }
+
+            int closestToZeroSoFar = int.MaxValue;
+            int numberToZeroSoFar = 0;
+
+            foreach (int number in numbers)
+            {
+                int closest = Math.Abs(number);
+
+                if (closest == closestToZeroSoFar && number > numberToZeroSoFar)
+                {
+                    closestToZeroSoFar = closest;
+                    numberToZeroSoFar = number;
+                }
+
+                if (closest < closestToZeroSoFar)
+                {
+                    closestToZeroSoFar = closest;
+                    numberToZeroSoFar = number;
+                }
+            }
+
+            return numberToZeroSoFar;
+        }
         public string RedactPersonalData_RunThree(string json)
         {
             if (string.IsNullOrWhiteSpace(json))
@@ -758,33 +870,6 @@ namespace CodingChallenges.Challenges.Phase_02_OOP
             }
 
             return counter;
-        }
-
-        public static int? FindClosestNumberToZero(int[] numbers)
-        {
-            if (numbers == null || numbers.Length == 0)
-            {
-                return null;
-            }
-
-            int closest = numbers[0];
-
-            foreach (int value in numbers)
-            {
-                int currentDistance = Math.Abs(value);
-                int closestDistance = Math.Abs(closest);
-
-                if (currentDistance < closestDistance)
-                {
-                    closest = value;
-                }
-                else if (currentDistance == closestDistance && value > closest)
-                {
-                    closest = value;
-                }
-            }
-
-            return closest;
         }
         public static int? FindHighestValidScoreFromCsv(string pInput)
         {
