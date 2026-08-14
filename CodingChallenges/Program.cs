@@ -92,9 +92,9 @@
         int longestPlateau = 1;
         int currentPlateau = 1;
 
-        for (int i = 1; i < numbers.Length; i++)
+        for (int outterIndex = 1; outterIndex <= numbers.Length -1; outterIndex++)
         {
-            if (numbers[i] == numbers[i - 1])
+            if (numbers[outterIndex] == numbers[outterIndex - 1])
             {
                 currentPlateau++;
             }
@@ -114,30 +114,6 @@
 
     public static void Main(string[] args)
     {
-        // Find Longest Plateau
-        Console.WriteLine(FindLongestPlateau([1, 1, 2, 2, 2, 3]) == 3);
-        Console.WriteLine(FindLongestPlateau([5, 5, 5, 5]) == 4);
-        Console.WriteLine(FindLongestPlateau([1, 2, 3, 4]) == 1);
-        Console.WriteLine(FindLongestPlateau([7]) == 1);
-        Console.WriteLine(FindLongestPlateau(null!) == 0);
-        Console.WriteLine(FindLongestPlateau([]) == 0);
-
-        // Find closest Number To Zero Revision
-        // Console.WriteLine(FindClosestNumberToZero_Revision([-5, -2, 3, 2]) == 2);
-        // Console.WriteLine(FindClosestNumberToZero_Revision([-10, -4, -2]) == -2);
-        // Console.WriteLine(FindClosestNumberToZero_Revision([8, -8]) == 8);
-        // Console.WriteLine(FindClosestNumberToZero_Revision([0, 5, -1]) == 0);
-        // Console.WriteLine(FindClosestNumberToZero_Revision(null!) == null);
-        // Console.WriteLine(FindClosestNumberToZero_Revision([]) == null);
-
-        // Count Strong Passwords Revision
-        // Console.WriteLine(CountStrongPasswords_Revision("Password1, hello, TEST1234, GoodPass9") == 2);
-        // Console.WriteLine(CountStrongPasswords_Revision("abc, 12345678, NoDigitsHere") == 0);
-        // Console.WriteLine(CountStrongPasswords_Revision("Aa123456") == 1);
-        // Console.WriteLine(CountStrongPasswords_Revision("") == 0);
-        // Console.WriteLine(CountStrongPasswords_Revision(" ") == 0);
-        // Console.WriteLine(CountStrongPasswords_Revision(null!) == 0);
-
         // VaultItemInheritanceRunner.Run();
         // CardShopCompositionChallenges.Run();
         // ChallengeSolutionsRunner.Run_Four();
