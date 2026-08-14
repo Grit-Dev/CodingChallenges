@@ -23,7 +23,7 @@
                 continue;
             }
 
-            if (str.Length >= 8)
+            if (strTrimmed.Length >= 8)
             {
                 foreach (char character in strTrimmed)
                 {
