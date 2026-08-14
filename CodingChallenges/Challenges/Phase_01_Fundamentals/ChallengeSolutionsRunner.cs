@@ -173,6 +173,30 @@ namespace CodingChallenges.Challenges.Phase_02_OOP
         }
         public static void Run_Three()
         {
+            // Find Longest Plateau
+            Console.WriteLine(FindLongestPlateau([1, 1, 2, 2, 2, 3]) == 3);
+            Console.WriteLine(FindLongestPlateau([5, 5, 5, 5]) == 4);
+            Console.WriteLine(FindLongestPlateau([1, 2, 3, 4]) == 1);
+            Console.WriteLine(FindLongestPlateau([7]) == 1);
+            Console.WriteLine(FindLongestPlateau(null!) == 0);
+            Console.WriteLine(FindLongestPlateau([]) == 0);
+
+            // Find closest Number To Zero Revision
+            Console.WriteLine(FindClosestNumberToZero_Revision([-5, -2, 3, 2]) == 2);
+            Console.WriteLine(FindClosestNumberToZero_Revision([-10, -4, -2]) == -2);
+            Console.WriteLine(FindClosestNumberToZero_Revision([8, -8]) == 8);
+            Console.WriteLine(FindClosestNumberToZero_Revision([0, 5, -1]) == 0);
+            Console.WriteLine(FindClosestNumberToZero_Revision(null!) == null);
+            Console.WriteLine(FindClosestNumberToZero_Revision([]) == null);
+
+            // Count Strong Passwords Revision
+            Console.WriteLine(CountStrongPasswords_Revision("Password1, hello, TEST1234, GoodPass9") == 2);
+            Console.WriteLine(CountStrongPasswords_Revision("abc, 12345678, NoDigitsHere") == 0);
+            Console.WriteLine(CountStrongPasswords_Revision("Aa123456") == 1);
+            Console.WriteLine(CountStrongPasswords_Revision("") == 0);
+            Console.WriteLine(CountStrongPasswords_Revision(" ") == 0);
+            Console.WriteLine(CountStrongPasswords_Revision(null!) == 0);
+            
             // Find Second Highest Unique Number
             Console.WriteLine(FindSecondHighestUniqueNumber_Rev([10, 20, 30]) == 20);
             Console.WriteLine(FindSecondHighestUniqueNumber_Rev([10, 30, 30, 20]) == 20);
