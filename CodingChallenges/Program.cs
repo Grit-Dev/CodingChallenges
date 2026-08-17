@@ -106,31 +106,6 @@ public class Program
     }
     public static void Main(string[] args)
     {
-        // Find First Number Repeated Exactly Twice
-        Console.WriteLine(FindFirstNumberRepeatedExactlyTwice([1, 2, 3, 2, 4]) == 2);
-        Console.WriteLine(FindFirstNumberRepeatedExactlyTwice([5, 1, 5, 2, 1]) == 5);
-        Console.WriteLine(FindFirstNumberRepeatedExactlyTwice([7, 7, 7, 1, 1]) == 1);
-        Console.WriteLine(FindFirstNumberRepeatedExactlyTwice([1, 2, 3]) == null);
-        Console.WriteLine(FindFirstNumberRepeatedExactlyTwice(null!) == null);
-        Console.WriteLine(FindFirstNumberRepeatedExactlyTwice([]) == null);
-
-        // Count Valid Order References
-        // Console.WriteLine(CountValidOrderReferences("ORD-1234, ORD-9999, BAD-1234") == 2);
-        // Console.WriteLine(CountValidOrderReferences("ord-1111, ORD-12A4, ORD-12345") == 1);
-        // Console.WriteLine(CountValidOrderReferences("hello, ORD-0001") == 1);
-        // Console.WriteLine(CountValidOrderReferences("") == 0);
-        // Console.WriteLine(CountValidOrderReferences(" ") == 0);
-        // Console.WriteLine(CountValidOrderReferences(null!) == 0);
-
-        // Find Longest Consecutive Run
-        // Console.WriteLine(FindLongestConsecutiveRun_One([1, 1, 2, 2, 2, 3]));
-        // Console.WriteLine(FindLongestConsecutiveRun_One([5, 5, 5, 5]) == 4);
-        // Console.WriteLine(FindLongestConsecutiveRun_One([1, 2, 3, 4]) == 1);
-        // Console.WriteLine(FindLongestConsecutiveRun_One([7]) == 1);
-        // Console.WriteLine(FindLongestConsecutiveRun_One([1, 1, 2, 1, 1, 1]) == 3);
-        // Console.WriteLine(FindLongestConsecutiveRun_One(null!) == 0);
-        // Console.WriteLine(FindLongestConsecutiveRun_One([]) == 0);
-
         // VaultItemInheritanceRunner.Run();
         // CardShopCompositionChallenges.Run();
         // ChallengeSolutionsRunner.Run_Four();
