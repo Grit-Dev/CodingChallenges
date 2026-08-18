@@ -173,6 +173,65 @@ namespace CodingChallenges.Challenges.Phase_02_OOP
         }
         public static void Run_Three()
         {
+            // Count Numbers That Appear More Than Once:
+            Console.WriteLine(CountNumbersThatAppearMoreThanOnce([1, 2, 2, 3, 3, 3]) == 2);
+            Console.WriteLine(CountNumbersThatAppearMoreThanOnce([5, 5, 5, 5]) == 1);
+            Console.WriteLine(CountNumbersThatAppearMoreThanOnce([1, 2, 3, 4]) == 0);
+            Console.WriteLine(CountNumbersThatAppearMoreThanOnce([1, 1, 2, 2, 3, 3]) == 3);
+            Console.WriteLine(CountNumbersThatAppearMoreThanOnce(null!) == 0);
+            Console.WriteLine(CountNumbersThatAppearMoreThanOnce([]) == 0);
+            Console.WriteLine(CountNumbersThatAppearMoreThanOnce([1, 1, 1, 2, 3]) == 1);
+            Console.WriteLine(CountNumbersThatAppearMoreThanOnce([-1, -1, 0, 0, 1]) == 2);
+            Console.WriteLine(CountNumbersThatAppearMoreThanOnce([10]) == 0);
+            Console.WriteLine(CountNumbersThatAppearMoreThanOnce([2, 3, 2, 4, 3, 5, 2]) == 2);
+
+            // Count Words Starting And Ending With Same Letter
+            Console.WriteLine(CountWordsStartingAndEndingWithSameLetter("level test radar apple") == 3);
+            Console.WriteLine(CountWordsStartingAndEndingWithSameLetter("Anna went to area") == 2);
+            Console.WriteLine(CountWordsStartingAndEndingWithSameLetter("a I bob cat") == 3);
+            Console.WriteLine(CountWordsStartingAndEndingWithSameLetter("") == 0);
+            Console.WriteLine(CountWordsStartingAndEndingWithSameLetter(" ") == 0);
+            Console.WriteLine(CountWordsStartingAndEndingWithSameLetter(null!) == 0);
+
+            // Find Smallest Positive Number 
+            Console.WriteLine(FindSmallestPositiveNumber_Rev_One([5, 3, 9, 1]) == 1);
+            Console.WriteLine(FindSmallestPositiveNumber_Rev_One([-5, 0, 10, 2]) == 2);
+            Console.WriteLine(FindSmallestPositiveNumber_Rev_One([-1, -2, 0]) == null);
+            Console.WriteLine(FindSmallestPositiveNumber_Rev_One([7]) == 7);
+            Console.WriteLine(FindSmallestPositiveNumber_Rev_One(null!) == null);
+            Console.WriteLine(FindSmallestPositiveNumber_Rev_One([]) == null);
+
+            // Warm Up: Count Positive Numbers
+            Console.WriteLine(CountPositiveEvenNumbers_RV_One([1, 2, 3, 4, -6, 0]) == 2);
+            Console.WriteLine(CountPositiveEvenNumbers_RV_One([2, 4, 6]) == 3);
+            Console.WriteLine(CountPositiveEvenNumbers_RV_One([-2, 0, 1, 3]) == 0);
+            Console.WriteLine(CountPositiveEvenNumbers_RV_One(null!) == 0);
+            Console.WriteLine(CountPositiveEvenNumbers_RV_One([]) == 0);
+            // Find First Number Repeated Exactly Twice
+            Console.WriteLine(FindFirstNumberRepeatedExactlyTwice([1, 2, 3, 2, 4]) == 2);
+            Console.WriteLine(FindFirstNumberRepeatedExactlyTwice([5, 1, 5, 2, 1]) == 5);
+            Console.WriteLine(FindFirstNumberRepeatedExactlyTwice([7, 7, 7, 1, 1]) == 1);
+            Console.WriteLine(FindFirstNumberRepeatedExactlyTwice([1, 2, 3]) == null);
+            Console.WriteLine(FindFirstNumberRepeatedExactlyTwice(null!) == null);
+            Console.WriteLine(FindFirstNumberRepeatedExactlyTwice([]) == null);
+
+            // Count Valid Order References
+            Console.WriteLine(CountValidOrderReferences("ORD-1234, ORD-9999, BAD-1234") == 2);
+            Console.WriteLine(CountValidOrderReferences("ord-1111, ORD-12A4, ORD-12345") == 1);
+            Console.WriteLine(CountValidOrderReferences("hello, ORD-0001") == 1);
+            Console.WriteLine(CountValidOrderReferences("") == 0);
+            Console.WriteLine(CountValidOrderReferences(" ") == 0);
+            Console.WriteLine(CountValidOrderReferences(null!) == 0);
+
+            // Find Longest Consecutive Run
+            Console.WriteLine(FindLongestConsecutiveRun_One([1, 1, 2, 2, 2, 3]));
+            Console.WriteLine(FindLongestConsecutiveRun_One([5, 5, 5, 5]) == 4);
+            Console.WriteLine(FindLongestConsecutiveRun_One([1, 2, 3, 4]) == 1);
+            Console.WriteLine(FindLongestConsecutiveRun_One([7]) == 1);
+            Console.WriteLine(FindLongestConsecutiveRun_One([1, 1, 2, 1, 1, 1]) == 3);
+            Console.WriteLine(FindLongestConsecutiveRun_One(null!) == 0);
+            Console.WriteLine(FindLongestConsecutiveRun_One([]) == 0);
+
             // Find Longest Plateau
             Console.WriteLine(FindLongestPlateau([1, 1, 2, 2, 2, 3]) == 3);
             Console.WriteLine(FindLongestPlateau([5, 5, 5, 5]) == 4);
@@ -196,7 +255,7 @@ namespace CodingChallenges.Challenges.Phase_02_OOP
             Console.WriteLine(CountStrongPasswords_Revision("") == 0);
             Console.WriteLine(CountStrongPasswords_Revision(" ") == 0);
             Console.WriteLine(CountStrongPasswords_Revision(null!) == 0);
-            
+
             // Find Second Highest Unique Number
             Console.WriteLine(FindSecondHighestUniqueNumber_Rev([10, 20, 30]) == 20);
             Console.WriteLine(FindSecondHighestUniqueNumber_Rev([10, 30, 30, 20]) == 20);
