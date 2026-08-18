@@ -77,7 +77,7 @@ public class Program
                 continue;
             }
 
-            if(strTrimmed[0] == strTrimmed[str.Length -1])
+            if(strTrimmed[0] == strTrimmed[strTrimmed.Length -1])
             {
                 counter++;
             }
@@ -88,12 +88,12 @@ public class Program
     public static void Main(string[] args)
     {
         // Count Words Starting And Ending With Same Letter
-        Console.WriteLine(CountWordsStartingAndEndingWithSameLetter("level test radar apple") == 3);
-        Console.WriteLine(CountWordsStartingAndEndingWithSameLetter("Anna went to area") == 2);
-        Console.WriteLine(CountWordsStartingAndEndingWithSameLetter("a I bob cat") == 3);
-        Console.WriteLine(CountWordsStartingAndEndingWithSameLetter("") == 0);
-        Console.WriteLine(CountWordsStartingAndEndingWithSameLetter(" ") == 0);
-        Console.WriteLine(CountWordsStartingAndEndingWithSameLetter(null!) == 0);
+        // Console.WriteLine(CountWordsStartingAndEndingWithSameLetter("level test radar apple") == 3);
+        // Console.WriteLine(CountWordsStartingAndEndingWithSameLetter("Anna went to area") == 2);
+        // Console.WriteLine(CountWordsStartingAndEndingWithSameLetter("a I bob cat") == 3);
+        // Console.WriteLine(CountWordsStartingAndEndingWithSameLetter("") == 0);
+        // Console.WriteLine(CountWordsStartingAndEndingWithSameLetter(" ") == 0);
+        // Console.WriteLine(CountWordsStartingAndEndingWithSameLetter(null!) == 0);
 
         // Find Smallest Positive Number 
         // Console.WriteLine(FindSmallestPositiveNumber_Rev_One([5, 3, 9, 1]) == 1);
