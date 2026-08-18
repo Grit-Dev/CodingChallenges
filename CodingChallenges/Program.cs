@@ -22,14 +22,55 @@ public class Program
 
         return total;
     }
+
+    public static int? FindSmallestPositiveNumber_Rev_One(int[] numbers)
+    {
+        if(numbers is null || numbers.Length == 0)
+        {
+            return null;
+        }
+
+        int smallestNumberComparator = int.MaxValue;
+        int counter = 0;
+
+        foreach(int digit in numbers)
+        {
+            if(digit > 0)
+            {
+                if(digit < smallestNumberComparator)
+                {
+                    smallestNumberComparator = digit;
+                }
+            }
+            else
+            {
+                counter++;
+            }
+        }
+
+        if(counter == numbers.Length)
+        {
+            return null;
+        }
+
+        return smallestNumberComparator;
+    }
     public static void Main(string[] args)
     {
+        // Find Smallest Positive Number 
+        Console.WriteLine(FindSmallestPositiveNumber_Rev_One([5, 3, 9, 1]) == 1);
+        Console.WriteLine(FindSmallestPositiveNumber_Rev_One([-5, 0, 10, 2]) == 2);
+        Console.WriteLine(FindSmallestPositiveNumber_Rev_One([-1, -2, 0]) == null);
+        Console.WriteLine(FindSmallestPositiveNumber_Rev_One([7]) == 7);
+        Console.WriteLine(FindSmallestPositiveNumber_Rev_One(null!) == null);
+        Console.WriteLine(FindSmallestPositiveNumber_Rev_One([]) == null);
+
         // Warm Up: Count Positive Numbers
-        Console.WriteLine(CountPositiveEvenNumbers_RV_One([1, 2, 3, 4, -6, 0]) == 2);
-        Console.WriteLine(CountPositiveEvenNumbers_RV_One([2, 4, 6]) == 3);
-        Console.WriteLine(CountPositiveEvenNumbers_RV_One([-2, 0, 1, 3]) == 0);
-        Console.WriteLine(CountPositiveEvenNumbers_RV_One(null!) == 0);
-        Console.WriteLine(CountPositiveEvenNumbers_RV_One([]) == 0);
+        // Console.WriteLine(CountPositiveEvenNumbers_RV_One([1, 2, 3, 4, -6, 0]) == 2);
+        // Console.WriteLine(CountPositiveEvenNumbers_RV_One([2, 4, 6]) == 3);
+        // Console.WriteLine(CountPositiveEvenNumbers_RV_One([-2, 0, 1, 3]) == 0);
+        // Console.WriteLine(CountPositiveEvenNumbers_RV_One(null!) == 0);
+        // Console.WriteLine(CountPositiveEvenNumbers_RV_One([]) == 0);
 
         // VaultItemInheritanceRunner.Run();
         // CardShopCompositionChallenges.Run();
