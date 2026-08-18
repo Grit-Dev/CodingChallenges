@@ -6,6 +6,115 @@ namespace CodingChallenges.Challenges.Phase_02_OOP
 {
     public class ChallengeSolutions
     {
+        public static int CountPositiveEvenNumbers_RV_One(int[] numbers)
+        {
+            if (numbers is null || numbers.Length == 0)
+            {
+                return 0;
+            }
+
+            int total = 0;
+
+            foreach (int value in numbers)
+            {
+                if (value > 0 && value % 2 == 0)
+                {
+                    total++;
+                }
+            }
+
+            return total;
+        }
+
+        public static int? FindSmallestPositiveNumber_Rev_One(int[] numbers)
+        {
+            if (numbers is null || numbers.Length == 0)
+            {
+                return null;
+            }
+
+            int smallestNumberComparator = int.MaxValue;
+            int counter = 0;
+
+            foreach (int digit in numbers)
+            {
+                if (digit > 0)
+                {
+                    if (digit < smallestNumberComparator)
+                    {
+                        smallestNumberComparator = digit;
+                    }
+                }
+                else
+                {
+                    counter++;
+                }
+            }
+
+            if (counter == numbers.Length)
+            {
+                return null;
+            }
+
+            return smallestNumberComparator;
+        }
+
+        public static int CountWordsStartingAndEndingWithSameLetter(string input)
+        {
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                return 0;
+            }
+
+            int counter = 0;
+            string[] splitString = input.Split([' '], StringSplitOptions.RemoveEmptyEntries);
+
+            foreach (string str in splitString)
+            {
+                string strTrimmed = str.Trim().ToLower();
+
+                if (strTrimmed.Length == 1)
+                {
+                    counter++;
+                    continue;
+                }
+
+                if (strTrimmed[0] == strTrimmed[strTrimmed.Length - 1])
+                {
+                    counter++;
+                }
+            }
+
+            return counter;
+        }
+
+        public static int CountNumbersThatAppearMoreThanOnce(int[] numbers)
+        {
+            if (numbers is null || numbers.Length == 0)
+            {
+                return 0;
+            }
+
+            List<int> seenNumbersList = [];
+            List<int> repeatedNumberList = [];
+
+            foreach (int digit in numbers)
+            {
+                if (!seenNumbersList.Contains(digit))
+                {
+                    seenNumbersList.Add(digit);
+                }
+                else
+                {
+                    if (!repeatedNumberList.Contains(digit))
+                    {
+                        repeatedNumberList.Add(digit);
+                    }
+                }
+            }
+
+            return repeatedNumberList.Count;
+        }
         public static int FindLongestConsecutiveRun_One(int[] numbers)
         {
             if (numbers is null || numbers.Length == 0)
@@ -2673,74 +2782,6 @@ namespace CodingChallenges.Challenges.Phase_02_OOP
             }
 
             return "";
-        }
-
-        //public static string FindMostFrequentCharacterInEachWord(string pInputValue)
-        //{
-        //    if (string.IsNullOrEmpty(pInputValue))
-        //    {
-        //        return "";
-        //    }
-
-        //    StringBuilder newStringBuilderFormatted = new();
-
-        //    string[] stringSplit = pInputValue.Split(' ', StringSplitOptions.RemoveEmptyEntries);
-
-        //    foreach (string word in stringSplit)
-        //    {
-        //        string loweredWord = word.ToLower();
-
-        //        char characterHolder = word[0];
-        //        int highestFrequencyCounter = 0;
-
-        //        for (int outterIndex = 0; outterIndex < word.Length; outterIndex++)
-        //        {
-        //            int counter = 0;
-
-        //            for (int innerIndex = 0; innerIndex < word.Length; innerIndex++)
-        //            {
-        //                if (loweredWord[outterIndex] == loweredWord[innerIndex])
-        //                {
-        //                    counter++;
-        //                }
-        //            }
-
-        //            if (counter > highestFrequencyCounter)
-        //            {
-        //                highestFrequencyCounter = counter;
-        //                characterHolder = word[outterIndex];
-        //            }
-        //        }
-
-        //        newStringBuilderFormatted.Append(word);
-        //        newStringBuilderFormatted.Append(':');
-        //        newStringBuilderFormatted.Append(characterHolder);
-        //        newStringBuilderFormatted.Append(' ');
-        //    }
-
-        //    return newStringBuilderFormatted.ToString().Trim();
-        //}
-        public static int CountWordsStartingAndEndingWithSameLetter(string pInputValue)
-        {
-            if (string.IsNullOrEmpty(pInputValue))
-            {
-                return 0;
-            }
-
-            int counter = 0;
-            string[] stringSpilit = pInputValue.Split(' ', StringSplitOptions.RemoveEmptyEntries);
-
-            foreach (string word in stringSpilit)
-            {
-                string wordlowered = word.ToLower();
-
-                if (wordlowered[0] == wordlowered[^1])
-                {
-                    counter++;
-                }
-            }
-
-            return counter;
         }
 
         public static string TitleCaseExceptSmallWords(string pInputValue)

@@ -59,34 +59,75 @@ public class Program
 
     public static int CountWordsStartingAndEndingWithSameLetter(string input)
     {
-        if(string.IsNullOrWhiteSpace(input))
+        if (string.IsNullOrWhiteSpace(input))
         {
             return 0;
         }
 
         int counter = 0;
-        string [] splitString = input.Split([' '], StringSplitOptions.RemoveEmptyEntries);
+        string[] splitString = input.Split([' '], StringSplitOptions.RemoveEmptyEntries);
 
-        foreach(string str in splitString)
+        foreach (string str in splitString)
         {
             string strTrimmed = str.Trim().ToLower();
 
-            if(strTrimmed.Length == 1)
+            if (strTrimmed.Length == 1)
             {
                 counter++;
                 continue;
             }
 
-            if(strTrimmed[0] == strTrimmed[strTrimmed.Length -1])
+            if (strTrimmed[0] == strTrimmed[strTrimmed.Length - 1])
             {
                 counter++;
             }
         }
 
-        return counter; 
+        return counter;
+    }
+
+    public static int CountNumbersThatAppearMoreThanOnce(int[] numbers)
+    {
+        if (numbers is null || numbers.Length == 0)
+        {
+            return 0;
+        }
+
+        List<int> seenNumbersList = [];
+        List<int> repeatedNumberList = [];
+
+        foreach (int digit in numbers)
+        {
+            if (!seenNumbersList.Contains(digit))
+            {
+                seenNumbersList.Add(digit);
+            }
+            else
+            {
+                if (!repeatedNumberList.Contains(digit))
+                {
+                    repeatedNumberList.Add(digit);
+                }
+            }
+        }
+
+        return repeatedNumberList.Count;
     }
     public static void Main(string[] args)
     {
+        // Count Numbers That Appear More Than Once:
+        Console.WriteLine(CountNumbersThatAppearMoreThanOnce([1, 2, 2, 3, 3, 3]) == 2);
+        Console.WriteLine(CountNumbersThatAppearMoreThanOnce([5, 5, 5, 5]) == 1);
+        Console.WriteLine(CountNumbersThatAppearMoreThanOnce([1, 2, 3, 4]) == 0);
+        Console.WriteLine(CountNumbersThatAppearMoreThanOnce([1, 1, 2, 2, 3, 3]) == 3);
+        Console.WriteLine(CountNumbersThatAppearMoreThanOnce(null!) == 0);
+        Console.WriteLine(CountNumbersThatAppearMoreThanOnce([]) == 0);
+        Console.WriteLine(CountNumbersThatAppearMoreThanOnce([1, 1, 1, 2, 3]) == 1);
+        Console.WriteLine(CountNumbersThatAppearMoreThanOnce([-1, -1, 0, 0, 1]) == 2);
+        Console.WriteLine(CountNumbersThatAppearMoreThanOnce([10]) == 0);
+        Console.WriteLine(CountNumbersThatAppearMoreThanOnce([2, 3, 2, 4, 3, 5, 2]) == 2);
+
+
         // Count Words Starting And Ending With Same Letter
         // Console.WriteLine(CountWordsStartingAndEndingWithSameLetter("level test radar apple") == 3);
         // Console.WriteLine(CountWordsStartingAndEndingWithSameLetter("Anna went to area") == 2);
