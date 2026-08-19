@@ -57,7 +57,7 @@ public class Program
         int currentRun = 1;
         int longestRun = 1;
 
-        for (int outterIndex = 1; outterIndex <= numbers.Length -1; outterIndex++)
+        for (int outterIndex = 1; outterIndex <= numbers.Length - 1; outterIndex++)
         {
             if (numbers[outterIndex] > numbers[outterIndex - 1])
             {
@@ -76,16 +76,45 @@ public class Program
 
         return longestRun;
     }
+
+    public static int? FindFirstNumberGreaterThanAllPrevious(int[] numbers)
+    {
+        if (numbers is null || numbers.Length <= 1)
+        {
+            return null;
+        }
+
+        int maxSoFar = numbers[0];
+
+        for (int outterIndex = 1; outterIndex < numbers.Length; outterIndex++)
+        {
+            if (numbers[outterIndex] > maxSoFar)
+            {
+                return numbers[outterIndex];
+            }
+        }
+
+        return null;
+    }
     public static void Main(string[] args)
     {
+        // Find First Number Greater Than All Previous
+        Console.WriteLine(FindFirstNumberGreaterThanAllPrevious([5, 3, 4, 10, 2]) == 10);
+        Console.WriteLine(FindFirstNumberGreaterThanAllPrevious([10, 9, 8, 7]) == null);
+        Console.WriteLine(FindFirstNumberGreaterThanAllPrevious([1, 2, 3]) == 2);
+        Console.WriteLine(FindFirstNumberGreaterThanAllPrevious([4, 4, 5]) == 5);
+        Console.WriteLine(FindFirstNumberGreaterThanAllPrevious([7]) == null);
+        Console.WriteLine(FindFirstNumberGreaterThanAllPrevious(null!) == null);
+        Console.WriteLine(FindFirstNumberGreaterThanAllPrevious([]) == null);
+
         // Find Longest Increasing Run
-        Console.WriteLine(FindLongestIncreasingRun([1, 2, 3, 1, 2]) == 3);
-        Console.WriteLine(FindLongestIncreasingRun([5, 4, 3, 2]) == 1);
-        Console.WriteLine(FindLongestIncreasingRun([1, 3, 5, 7]) == 4);
-        Console.WriteLine(FindLongestIncreasingRun([2, 2, 3, 4]) == 3);
-        Console.WriteLine(FindLongestIncreasingRun([7]) == 1);
-        Console.WriteLine(FindLongestIncreasingRun(null!) == 0);
-        Console.WriteLine(FindLongestIncreasingRun([]) == 0);
+        // Console.WriteLine(FindLongestIncreasingRun([1, 2, 3, 1, 2]) == 3);
+        // Console.WriteLine(FindLongestIncreasingRun([5, 4, 3, 2]) == 1);
+        // Console.WriteLine(FindLongestIncreasingRun([1, 3, 5, 7]) == 4);
+        // Console.WriteLine(FindLongestIncreasingRun([2, 2, 3, 4]) == 3);
+        // Console.WriteLine(FindLongestIncreasingRun([7]) == 1);
+        // Console.WriteLine(FindLongestIncreasingRun(null!) == 0);
+        // Console.WriteLine(FindLongestIncreasingRun([]) == 0);
 
         // Count Valid Usernames 
         // Console.WriteLine(CountValidUsernames("paul16, bob, Alice99, bad user") == 2);
