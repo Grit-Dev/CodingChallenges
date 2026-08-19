@@ -46,16 +46,54 @@ public class Program
 
         return counter;
     }
+
+    public static int FindLongestIncreasingRun(int[] numbers)
+    {
+        if (numbers is null || numbers.Length == 0)
+        {
+            return 0;
+        }
+
+        int currentRun = 1;
+        int longestRun = 1;
+
+        for (int outterIndex = 1; outterIndex <= numbers.Length -1; outterIndex++)
+        {
+            if (numbers[outterIndex] > numbers[outterIndex - 1])
+            {
+                currentRun++;
+
+                if (currentRun > longestRun)
+                {
+                    longestRun = currentRun;
+                }
+            }
+            else
+            {
+                currentRun = 1;
+            }
+        }
+
+        return longestRun;
+    }
     public static void Main(string[] args)
     {
-        // Count Valid Usernames 
-        Console.WriteLine(CountValidUsernames("paul16, bob, Alice99, bad user") == 2);
-        Console.WriteLine(CountValidUsernames("1admin, charlie, DeltaForce") == 2);
-        Console.WriteLine(CountValidUsernames("tom, validUser, waytoolongusername") == 1);
-        Console.WriteLine(CountValidUsernames("") == 0);
-        Console.WriteLine(CountValidUsernames(" ") == 0);
-        Console.WriteLine(CountValidUsernames(null!) == 0);
+        // Find Longest Increasing Run
+        Console.WriteLine(FindLongestIncreasingRun([1, 2, 3, 1, 2]) == 3);
+        Console.WriteLine(FindLongestIncreasingRun([5, 4, 3, 2]) == 1);
+        Console.WriteLine(FindLongestIncreasingRun([1, 3, 5, 7]) == 4);
+        Console.WriteLine(FindLongestIncreasingRun([2, 2, 3, 4]) == 3);
+        Console.WriteLine(FindLongestIncreasingRun([7]) == 1);
+        Console.WriteLine(FindLongestIncreasingRun(null!) == 0);
+        Console.WriteLine(FindLongestIncreasingRun([]) == 0);
 
+        // Count Valid Usernames 
+        // Console.WriteLine(CountValidUsernames("paul16, bob, Alice99, bad user") == 2);
+        // Console.WriteLine(CountValidUsernames("1admin, charlie, DeltaForce") == 2);
+        // Console.WriteLine(CountValidUsernames("tom, validUser, waytoolongusername") == 1);
+        // Console.WriteLine(CountValidUsernames("") == 0);
+        // Console.WriteLine(CountValidUsernames(" ") == 0);
+        // Console.WriteLine(CountValidUsernames(null!) == 0);
 
         //Count Negative Odd Numbers
         // Console.WriteLine(CountNegativeOddNumbers([-1, -2, -3, 4, 5]) == 2);
