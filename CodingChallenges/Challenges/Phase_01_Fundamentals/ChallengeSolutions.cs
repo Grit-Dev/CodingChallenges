@@ -4,8 +4,36 @@ using System.Text.Json;
 
 namespace CodingChallenges.Challenges.Phase_02_OOP
 {
+    
     public class ChallengeSolutions
     {
+            public static Dictionary<char, int> CountFirstLetterFrequency(string input)
+    {
+        if (string.IsNullOrWhiteSpace(input))
+        {
+            return [];
+        }
+
+        Dictionary<char, int> dict = [];
+
+        string[] words = input.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+        foreach (string word in words)
+        {
+            char firstLetter = char.ToLower(word[0]);
+
+            if (dict.ContainsKey(firstLetter))
+            {
+                dict[firstLetter]++;
+            }
+            else
+            {
+                dict.Add(firstLetter, 1);
+            }
+        }
+
+        return dict;
+    }
         public static int CountNegativeOddNumbers(int[] numbers)
         {
             if (numbers is null || numbers.Length == 0)
