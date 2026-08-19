@@ -6,6 +6,99 @@ namespace CodingChallenges.Challenges.Phase_02_OOP
 {
     public class ChallengeSolutions
     {
+        public static int CountNegativeOddNumbers(int[] numbers)
+        {
+            if (numbers is null || numbers.Length == 0)
+            {
+                return 0;
+            }
+
+            int counter = 0;
+
+            foreach (int digit in numbers)
+            {
+                if (digit < 0 && digit % 2 != 0)
+                {
+                    counter++;
+                }
+            }
+
+            return counter;
+        }
+
+        public static int CountValidUsernames(string input)
+        {
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                return 0;
+            }
+
+            int counter = 0;
+            string[] stringSplit = input.Split([','], StringSplitOptions.RemoveEmptyEntries);
+
+            foreach (string str in stringSplit)
+            {
+                string strTrimmed = str.Trim();
+
+                if (strTrimmed.Length >= 5 && strTrimmed.Length <= 12 &&
+                char.IsLetter(strTrimmed[0]) && !strTrimmed.Contains(' '))
+                {
+                    counter++;
+                }
+            }
+
+            return counter;
+        }
+
+        public static int FindLongestIncreasingRun(int[] numbers)
+        {
+            if (numbers is null || numbers.Length == 0)
+            {
+                return 0;
+            }
+
+            int currentRun = 1;
+            int longestRun = 1;
+
+            for (int outterIndex = 1; outterIndex <= numbers.Length - 1; outterIndex++)
+            {
+                if (numbers[outterIndex] > numbers[outterIndex - 1])
+                {
+                    currentRun++;
+
+                    if (currentRun > longestRun)
+                    {
+                        longestRun = currentRun;
+                    }
+                }
+                else
+                {
+                    currentRun = 1;
+                }
+            }
+
+            return longestRun;
+        }
+
+        public static int? FindFirstNumberGreaterThanAllPrevious(int[] numbers)
+        {
+            if (numbers is null || numbers.Length <= 1)
+            {
+                return null;
+            }
+
+            int maxSoFar = numbers[0];
+
+            for (int outterIndex = 1; outterIndex < numbers.Length; outterIndex++)
+            {
+                if (numbers[outterIndex] > maxSoFar)
+                {
+                    return numbers[outterIndex];
+                }
+            }
+
+            return null;
+        }
         public static int CountPositiveEvenNumbers_RV_One(int[] numbers)
         {
             if (numbers is null || numbers.Length == 0)
