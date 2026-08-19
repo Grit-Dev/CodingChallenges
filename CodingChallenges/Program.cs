@@ -22,14 +22,47 @@ public class Program
 
         return counter;
     }
+
+    public static int CountValidUsernames(string input)
+    {
+        if (string.IsNullOrWhiteSpace(input))
+        {
+            return 0;
+        }
+
+        int counter = 0;
+        string[] stringSplit = input.Split([','], StringSplitOptions.RemoveEmptyEntries);
+
+        foreach (string str in stringSplit)
+        {
+            string strTrimmed = str.Trim();
+
+            if (strTrimmed.Length >= 5 && strTrimmed.Length <= 12 &&
+            char.IsLetter(strTrimmed[0]) && !strTrimmed.Contains(' '))
+            {
+                counter++;
+            }
+        }
+
+        return counter;
+    }
     public static void Main(string[] args)
     {
+        // Count Valid Usernames 
+        Console.WriteLine(CountValidUsernames("paul16, bob, Alice99, bad user") == 2);
+        Console.WriteLine(CountValidUsernames("1admin, charlie, DeltaForce") == 2);
+        Console.WriteLine(CountValidUsernames("tom, validUser, waytoolongusername") == 1);
+        Console.WriteLine(CountValidUsernames("") == 0);
+        Console.WriteLine(CountValidUsernames(" ") == 0);
+        Console.WriteLine(CountValidUsernames(null!) == 0);
+
+
         //Count Negative Odd Numbers
-        Console.WriteLine(CountNegativeOddNumbers([-1, -2, -3, 4, 5]) == 2);
-        Console.WriteLine(CountNegativeOddNumbers([-10, -11, -13]) == 2);
-        Console.WriteLine(CountNegativeOddNumbers([1, 3, 5]) == 0);
-        Console.WriteLine(CountNegativeOddNumbers(null!) == 0);
-        Console.WriteLine(CountNegativeOddNumbers([]) == 0);
+        // Console.WriteLine(CountNegativeOddNumbers([-1, -2, -3, 4, 5]) == 2);
+        // Console.WriteLine(CountNegativeOddNumbers([-10, -11, -13]) == 2);
+        // Console.WriteLine(CountNegativeOddNumbers([1, 3, 5]) == 0);
+        // Console.WriteLine(CountNegativeOddNumbers(null!) == 0);
+        // Console.WriteLine(CountNegativeOddNumbers([]) == 0);
 
         // RunnerChecks.Run();
         // VaultItemInheritanceRunner.Run();
