@@ -1,4 +1,6 @@
-﻿public class Program
+﻿using System.Diagnostics.Metrics;
+
+public class Program
 {
     public static int CountNumbersBetweenTenAndTwenty(int[] numbers)
     {
@@ -81,48 +83,47 @@
 
         return highestStreak;
     }
-    
+
     public static int? FindFirstRecordBreaker(int[] numbers)
     {
-        if(numbers is null || numbers.Length == 0)
+        if (numbers is null || numbers.Length <= 1)
         {
             return null;
         }
 
-        if(numbers.Length == 1)
-        {
-            return null;
-        }
+        int highestSoFar = numbers[0];
 
-        int previousNumber = numbers[0];
-        int highestSoFar = 0;
-
-        for(int outterIndex = 1; outterIndex <= numbers.Length -1; outterIndex++)
+        for (int outerIndex = 1; outerIndex < numbers.Length; outerIndex++)
         {
-            if(previousNumber > numbers[outterIndex])
+            if (numbers[outerIndex] > highestSoFar)
             {
-                highestSoFar = previousNumber;
+                return numbers[outerIndex];
             }
-
-            previousNumber = numbers[outterIndex];
         }
 
-        return highestSoFar;
+        return null;
     }
 
 
     public static void Main(string[] args)
     {
         // Find First Record Breaker
+        Console.WriteLine(FindFirstRecordBreaker([5, 3, 4, 10, 2]) == 10);
+        Console.WriteLine(FindFirstRecordBreaker([10, 9, 8, 7]) == null);
+        Console.WriteLine(FindFirstRecordBreaker([1, 2, 3]) == 2);
+        Console.WriteLine(FindFirstRecordBreaker([4, 4, 5]) == 5);
+        Console.WriteLine(FindFirstRecordBreaker([7]) == null);
+        Console.WriteLine(FindFirstRecordBreaker(null!) == null);
+        Console.WriteLine(FindFirstRecordBreaker([]) == null);
 
         // Find Longest Consecutive Increasing Streak
-        Console.WriteLine(FindLongestConsecutiveIncreasingStreak([1, 2, 3, 1, 2]) == 3);
-        Console.WriteLine(FindLongestConsecutiveIncreasingStreak([5, 4, 3, 2]) == 1);
-        Console.WriteLine(FindLongestConsecutiveIncreasingStreak([1, 3, 5, 7]) == 4);
-        Console.WriteLine(FindLongestConsecutiveIncreasingStreak([2, 2, 3, 4]) == 3);
-        Console.WriteLine(FindLongestConsecutiveIncreasingStreak([7]) == 1);
-        Console.WriteLine(FindLongestConsecutiveIncreasingStreak(null!) == 0);
-        Console.WriteLine(FindLongestConsecutiveIncreasingStreak([]) == 0);
+        // Console.WriteLine(FindLongestConsecutiveIncreasingStreak([1, 2, 3, 1, 2]) == 3);
+        // Console.WriteLine(FindLongestConsecutiveIncreasingStreak([5, 4, 3, 2]) == 1);
+        // Console.WriteLine(FindLongestConsecutiveIncreasingStreak([1, 3, 5, 7]) == 4);
+        // Console.WriteLine(FindLongestConsecutiveIncreasingStreak([2, 2, 3, 4]) == 3);
+        // Console.WriteLine(FindLongestConsecutiveIncreasingStreak([7]) == 1);
+        // Console.WriteLine(FindLongestConsecutiveIncreasingStreak(null!) == 0);
+        // Console.WriteLine(FindLongestConsecutiveIncreasingStreak([]) == 0);
 
         // Count Valid Room Codes
         // Console.WriteLine(CountValidRoomCodes("RM-101, RM-202, BAD-999") == 2);
