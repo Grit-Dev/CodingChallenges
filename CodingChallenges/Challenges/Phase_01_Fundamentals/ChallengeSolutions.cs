@@ -7,6 +7,107 @@ namespace CodingChallenges.Challenges.Phase_02_OOP
 
     public class ChallengeSolutions
     {
+        public static int CountNumbersBetweenTenAndTwenty(int[] numbers)
+        {
+            if (numbers is null || numbers.Length == 0)
+            {
+                return 0;
+            }
+
+            int count = 0;
+
+            foreach (int digit in numbers)
+            {
+                if (digit >= 10 && digit <= 20)
+                {
+                    count++;
+                }
+            }
+
+            return count;
+        }
+
+        public static int CountValidRoomCodes(string input)
+        {
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                return 0;
+            }
+
+            int count = 0;
+
+            string[] splitString = input.Split(',', StringSplitOptions.RemoveEmptyEntries);
+
+            foreach (string str in splitString)
+            {
+                string strTrimmed = str.Trim();
+
+                if (strTrimmed.Length == 6)
+                {
+                    if (strTrimmed.StartsWith("RM-", StringComparison.OrdinalIgnoreCase))
+                    {
+                        string digits = strTrimmed.Substring(3);
+
+                        if (int.TryParse(digits, out _))
+                        {
+                            count++;
+                        }
+                    }
+                }
+            }
+
+            return count;
+        }
+
+        public static int FindLongestConsecutiveIncreasingStreak(int[] numbers)
+        {
+            if (numbers is null || numbers.Length == 0)
+            {
+                return 0;
+            }
+
+            int highestStreak = 1;
+            int currentStreak = 1;
+
+            for (int outerIndex = 1; outerIndex < numbers.Length; outerIndex++)
+            {
+                if (numbers[outerIndex] > numbers[outerIndex - 1])
+                {
+                    currentStreak++;
+
+                    if (currentStreak > highestStreak)
+                    {
+                        highestStreak = currentStreak;
+                    }
+                }
+                else
+                {
+                    currentStreak = 1;
+                }
+            }
+
+            return highestStreak;
+        }
+
+        public static int? FindFirstRecordBreaker(int[] numbers)
+        {
+            if (numbers is null || numbers.Length <= 1)
+            {
+                return null;
+            }
+
+            int highestSoFar = numbers[0];
+
+            for (int outerIndex = 1; outerIndex < numbers.Length; outerIndex++)
+            {
+                if (numbers[outerIndex] > highestSoFar)
+                {
+                    return numbers[outerIndex];
+                }
+            }
+
+            return null;
+        }
         public static Dictionary<char, int> CountFirstLetterFrequency(string input)
         {
             if (string.IsNullOrWhiteSpace(input))

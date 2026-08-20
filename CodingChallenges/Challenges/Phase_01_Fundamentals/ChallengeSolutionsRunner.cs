@@ -173,6 +173,39 @@ namespace CodingChallenges.Challenges.Phase_02_OOP
         }
         public static void Run_Three()
         {
+                    // Find First Record Breaker
+        Console.WriteLine(FindFirstRecordBreaker([5, 3, 4, 10, 2]) == 10);
+        Console.WriteLine(FindFirstRecordBreaker([10, 9, 8, 7]) == null);
+        Console.WriteLine(FindFirstRecordBreaker([1, 2, 3]) == 2);
+        Console.WriteLine(FindFirstRecordBreaker([4, 4, 5]) == 5);
+        Console.WriteLine(FindFirstRecordBreaker([7]) == null);
+        Console.WriteLine(FindFirstRecordBreaker(null!) == null);
+        Console.WriteLine(FindFirstRecordBreaker([]) == null);
+
+        // Find Longest Consecutive Increasing Streak
+        Console.WriteLine(FindLongestConsecutiveIncreasingStreak([1, 2, 3, 1, 2]) == 3);
+        Console.WriteLine(FindLongestConsecutiveIncreasingStreak([5, 4, 3, 2]) == 1);
+        Console.WriteLine(FindLongestConsecutiveIncreasingStreak([1, 3, 5, 7]) == 4);
+        Console.WriteLine(FindLongestConsecutiveIncreasingStreak([2, 2, 3, 4]) == 3);
+        Console.WriteLine(FindLongestConsecutiveIncreasingStreak([7]) == 1);
+        Console.WriteLine(FindLongestConsecutiveIncreasingStreak(null!) == 0);
+        Console.WriteLine(FindLongestConsecutiveIncreasingStreak([]) == 0);
+
+        // Count Valid Room Codes
+        Console.WriteLine(CountValidRoomCodes("RM-101, RM-202, BAD-999") == 2);
+        Console.WriteLine(CountValidRoomCodes("rm-001, RM-ABC, RM-1234") == 1);
+        Console.WriteLine(CountValidRoomCodes("hello, RM-777") == 1);
+        Console.WriteLine(CountValidRoomCodes("") == 0);
+        Console.WriteLine(CountValidRoomCodes("  ") == 0);
+        Console.WriteLine(CountValidRoomCodes(null!) == 0);
+
+        // Count Numbers Between 10 and 20
+        Console.WriteLine(CountNumbersBetweenTenAndTwenty([5, 10, 15, 20, 25]) == 3);
+        Console.WriteLine(CountNumbersBetweenTenAndTwenty([1, 2, 3]) == 0);
+        Console.WriteLine(CountNumbersBetweenTenAndTwenty([10, 20, 30]) == 2);
+        Console.WriteLine(CountNumbersBetweenTenAndTwenty(null!) == 0);
+        Console.WriteLine(CountNumbersBetweenTenAndTwenty([]) == 0);
+        
             // Count First Letter Frequency
             var resultOne = CountFirstLetterFrequency("apple banana apricot");
             Console.WriteLine(resultOne['a'] == 2);
