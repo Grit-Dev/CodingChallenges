@@ -81,9 +81,40 @@
 
         return highestStreak;
     }
+    
+    public static int? FindFirstRecordBreaker(int[] numbers)
+    {
+        if(numbers is null || numbers.Length == 0)
+        {
+            return null;
+        }
+
+        if(numbers.Length == 1)
+        {
+            return null;
+        }
+
+        int previousNumber = numbers[0];
+        int highestSoFar = 0;
+
+        for(int outterIndex = 1; outterIndex <= numbers.Length -1; outterIndex++)
+        {
+            if(previousNumber > numbers[outterIndex])
+            {
+                highestSoFar = previousNumber;
+            }
+
+            previousNumber = numbers[outterIndex];
+        }
+
+        return highestSoFar;
+    }
+
 
     public static void Main(string[] args)
     {
+        // Find First Record Breaker
+
         // Find Longest Consecutive Increasing Streak
         Console.WriteLine(FindLongestConsecutiveIncreasingStreak([1, 2, 3, 1, 2]) == 3);
         Console.WriteLine(FindLongestConsecutiveIncreasingStreak([5, 4, 3, 2]) == 1);
