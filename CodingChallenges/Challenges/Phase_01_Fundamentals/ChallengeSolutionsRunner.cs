@@ -173,6 +173,39 @@ namespace CodingChallenges.Challenges.Phase_02_OOP
         }
         public static void Run_Three()
         {
+                    // Find First New Highest Number
+        Console.WriteLine(FindFirstNewHighestNumberRev([5, 3, 4, 10, 2]) == 10);
+        Console.WriteLine(FindFirstNewHighestNumberRev([10, 9, 8, 7]) == null);
+        Console.WriteLine(FindFirstNewHighestNumberRev([1, 2, 3]) == 2);
+        Console.WriteLine(FindFirstNewHighestNumberRev([4, 4, 5]) == 5);
+        Console.WriteLine(FindFirstNewHighestNumberRev([7]) == null);
+        Console.WriteLine(FindFirstNewHighestNumberRev(null!) == null);
+        Console.WriteLine(FindFirstNewHighestNumberRev([]) == null);
+
+        // Find Longest Same-Number Streak
+        Console.WriteLine(FindLongestSameNumberStreakRev([1, 1, 2, 2, 2, 3]) == 3);
+        Console.WriteLine(FindLongestSameNumberStreakRev([5, 5, 5, 5]) == 4);
+        Console.WriteLine(FindLongestSameNumberStreakRev([1, 2, 3, 4]) == 1);
+        Console.WriteLine(FindLongestSameNumberStreakRev([7]) == 1);
+        Console.WriteLine(FindLongestSameNumberStreakRev([1, 1, 2, 1, 1, 1]) == 3);
+        Console.WriteLine(FindLongestSameNumberStreakRev(null!) == 0);
+        Console.WriteLine(FindLongestSameNumberStreakRev([]) == 0);
+
+        // Count Valid Ticket Codes
+        Console.WriteLine(CountValidTicketCodes("TCK-1234, TCK-9999, BAD-1234") == 2);
+        Console.WriteLine(CountValidTicketCodes("tck-1111, TCK-12A4, TCK-12345") == 1);
+        Console.WriteLine(CountValidTicketCodes("hello, TCK-0001") == 1);
+        Console.WriteLine(CountValidTicketCodes("") == 0);
+        Console.WriteLine(CountValidTicketCodes("  ") == 0);
+        Console.WriteLine(CountValidTicketCodes(null!) == 0);
+
+        // Count Positive Multiples of 3
+        Console.WriteLine(CountPositiveMultiplesOfThree([3, 6, -3, 10, 12]) == 3);
+        Console.WriteLine(CountPositiveMultiplesOfThree([1, 2, 4, 5]) == 0);
+        Console.WriteLine(CountPositiveMultiplesOfThree([0, 3, 9]) == 2);
+        Console.WriteLine(CountPositiveMultiplesOfThree(null!) == 0);
+        Console.WriteLine(CountPositiveMultiplesOfThree([]) == 0);
+        
             // Find First Record Breaker
             Console.WriteLine(FindFirstRecordBreaker([5, 3, 4, 10, 2]) == 10);
             Console.WriteLine(FindFirstRecordBreaker([10, 9, 8, 7]) == null);

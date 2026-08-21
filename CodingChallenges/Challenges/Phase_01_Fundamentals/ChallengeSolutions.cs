@@ -7,6 +7,104 @@ namespace CodingChallenges.Challenges.Phase_02_OOP
 
     public class ChallengeSolutions
     {
+        public static int CountPositiveMultiplesOfThree(int[] numbers)
+        {
+            if (numbers is null || numbers.Length == 0)
+            {
+                return 0;
+            }
+
+            int counter = 0;
+
+            foreach (int digit in numbers)
+            {
+                if (digit > 0 && digit % 3 == 0)
+                {
+                    counter++;
+                }
+            }
+
+            return counter;
+        }
+        public static int CountValidTicketCodes(string input)
+        {
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                return 0;
+            }
+
+            int counter = 0;
+            string[] splitString = input.Split([','], StringSplitOptions.RemoveEmptyEntries);
+
+            foreach (string str in splitString)
+            {
+                string strTrimmed = str.Trim();
+
+                if (strTrimmed.Length == 8 &&
+                strTrimmed.StartsWith("TCK-", StringComparison.OrdinalIgnoreCase))
+                {
+                    if (int.TryParse(strTrimmed.Substring(3), out int value))
+                    {
+                        counter++;
+                    }
+                }
+            }
+
+            return counter;
+        }
+
+        public static int FindLongestSameNumberStreakRev(int[] numbers)
+        {
+            if (numbers is null || numbers.Length == 0)
+            {
+                return 0;
+            }
+
+            int counter = 1;
+            int longestStreakSoFar = 1;
+            int previousNumber = numbers[0];
+
+            for (int outterIndex = 1; outterIndex <= numbers.Length - 1; outterIndex++)
+            {
+                if (numbers[outterIndex] == previousNumber)
+                {
+                    counter++;
+                }
+                else
+                {
+                    counter = 1;
+                }
+
+                if (counter > longestStreakSoFar)
+                {
+                    longestStreakSoFar = counter;
+                }
+
+                previousNumber = numbers[outterIndex];
+            }
+
+            return longestStreakSoFar;
+        }
+
+        public static int? FindFirstNewHighestNumberRev(int[] numbers)
+        {
+            if (numbers is null || numbers.Length <= 1)
+            {
+                return null;
+            }
+
+            int currentHighest = numbers[0];
+
+            for (int i = 1; i < numbers.Length; i++)
+            {
+                if (numbers[i] > currentHighest)
+                {
+                    return numbers[i];
+                }
+            }
+
+            return null;
+        }
         public static int CountNumbersBetweenTenAndTwenty(int[] numbers)
         {
             if (numbers is null || numbers.Length == 0)
