@@ -46,9 +46,9 @@
         return counter;
     }
 
-    public static int FindLongestSameNumberStreakRev(int [] numbers)
+    public static int FindLongestSameNumberStreakRev(int[] numbers)
     {
-        if(numbers is null || numbers.Length == 0)
+        if (numbers is null || numbers.Length == 0)
         {
             return 0;
         }
@@ -57,9 +57,9 @@
         int longestStreakSoFar = 1;
         int previousNumber = numbers[0];
 
-        for(int outterIndex = 1; outterIndex <= numbers.Length -1; outterIndex++)
+        for (int outterIndex = 1; outterIndex <= numbers.Length - 1; outterIndex++)
         {
-            if(numbers[outterIndex] == previousNumber)
+            if (numbers[outterIndex] == previousNumber)
             {
                 counter++;
             }
@@ -68,7 +68,7 @@
                 counter = 1;
             }
 
-            if(counter > longestStreakSoFar)
+            if (counter > longestStreakSoFar)
             {
                 longestStreakSoFar = counter;
             }
@@ -78,16 +78,45 @@
 
         return longestStreakSoFar;
     }
+
+    public static int? FindFirstNewHighestNumberRev(int[] numbers)
+    {
+        if (numbers is null || numbers.Length <= 1)
+        {
+            return null;
+        }
+
+        int currentHighest = numbers[0];
+
+        for (int i = 1; i < numbers.Length; i++)
+        {
+            if (numbers[i] > currentHighest)
+            {
+                return numbers[i];
+            }
+        }
+
+        return null;
+    }
     public static void Main(string[] args)
     {
+        // Find First New Highest Number
+        Console.WriteLine(FindFirstNewHighestNumberRev([5, 3, 4, 10, 2]) == 10);
+        Console.WriteLine(FindFirstNewHighestNumberRev([10, 9, 8, 7]) == null);
+        Console.WriteLine(FindFirstNewHighestNumberRev([1, 2, 3]) == 2);
+        Console.WriteLine(FindFirstNewHighestNumberRev([4, 4, 5]) == 5);
+        Console.WriteLine(FindFirstNewHighestNumberRev([7]) == null);
+        Console.WriteLine(FindFirstNewHighestNumberRev(null!) == null);
+        Console.WriteLine(FindFirstNewHighestNumberRev([]) == null);
+
         // Find Longest Same-Number Streak
-        Console.WriteLine(FindLongestSameNumberStreakRev([1, 1, 2, 2, 2, 3]) == 3);
-        Console.WriteLine(FindLongestSameNumberStreakRev([5, 5, 5, 5]) == 4);
-        Console.WriteLine(FindLongestSameNumberStreakRev([1, 2, 3, 4]) == 1);
-        Console.WriteLine(FindLongestSameNumberStreakRev([7]) == 1);
-        Console.WriteLine(FindLongestSameNumberStreakRev([1, 1, 2, 1, 1, 1]) == 3);
-        Console.WriteLine(FindLongestSameNumberStreakRev(null!) == 0);
-        Console.WriteLine(FindLongestSameNumberStreakRev([]) == 0);
+        // Console.WriteLine(FindLongestSameNumberStreakRev([1, 1, 2, 2, 2, 3]) == 3);
+        // Console.WriteLine(FindLongestSameNumberStreakRev([5, 5, 5, 5]) == 4);
+        // Console.WriteLine(FindLongestSameNumberStreakRev([1, 2, 3, 4]) == 1);
+        // Console.WriteLine(FindLongestSameNumberStreakRev([7]) == 1);
+        // Console.WriteLine(FindLongestSameNumberStreakRev([1, 1, 2, 1, 1, 1]) == 3);
+        // Console.WriteLine(FindLongestSameNumberStreakRev(null!) == 0);
+        // Console.WriteLine(FindLongestSameNumberStreakRev([]) == 0);
 
         // Count Valid Ticket Codes
         // Console.WriteLine(CountValidTicketCodes("TCK-1234, TCK-9999, BAD-1234") == 2);
