@@ -7,6 +7,116 @@ namespace CodingChallenges.Challenges.Phase_02_OOP
 
     public class ChallengeSolutions
     {
+        public static int CountNumbersEndingInFive(int[] numbers)
+        {
+            if (numbers is null || numbers.Length == 0)
+            {
+                return 0;
+            }
+
+            int counter = 0;
+
+            foreach (int digit in numbers)
+            {
+                string digitToString = digit.ToString();
+
+                if (digitToString.EndsWith('5'))
+                {
+                    counter++;
+                }
+            }
+
+            return counter;
+        }
+
+        public static int CountValidEmployeeCodes(string input)
+        {
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                return 0;
+            }
+
+            int counter = 0;
+            string[] splitString = input.Split([','], StringSplitOptions.RemoveEmptyEntries);
+
+            foreach (string str in splitString)
+            {
+                string strTrimmed = str.Trim();
+
+                if (strTrimmed.Length == 8 &&
+                strTrimmed.StartsWith("EMP-", StringComparison.OrdinalIgnoreCase))
+                {
+                    string lastEndOfString = strTrimmed[4..];
+
+                    if (int.TryParse(lastEndOfString, out int _))
+                    {
+                        counter++;
+                    }
+                }
+            }
+
+            return counter;
+        }
+
+        public static int FindLongestSameWordStreak(string input)
+        {
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                return 0;
+            }
+
+            int counter = 1;
+            int highestStreak = 1;
+            string[] splitString = input.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+            string previousValue = splitString[0].Trim();
+
+            for (int outerIndex = 1; outerIndex <= splitString.Length - 1; outerIndex++)
+            {
+                string strTrimmed = splitString[outerIndex];
+
+                if (strTrimmed.Equals(previousValue, StringComparison.OrdinalIgnoreCase))
+                {
+                    counter++;
+                }
+                else
+                {
+                    counter = 1;
+                }
+
+                if (counter > highestStreak)
+                {
+                    highestStreak = counter;
+                }
+
+                previousValue = strTrimmed;
+            }
+
+            return highestStreak;
+        }
+        public static int? FindFirstNumberWithPreviousDuplicate(int[] numbers)
+        {
+            if (numbers is null || numbers.Length == 0)
+            {
+                return null;
+            }
+
+            List<int> newList = [];
+
+            for (int outerIndex = 0; outerIndex <= numbers.Length - 1; outerIndex++)
+            {
+                if (newList.Contains(numbers[outerIndex]))
+                {
+                    return numbers[outerIndex];
+                }
+
+                newList.Add(numbers[outerIndex]);
+
+            }
+
+            return null;
+        }
+
         public static int CountPositiveMultiplesOfThree(int[] numbers)
         {
             if (numbers is null || numbers.Length == 0)
