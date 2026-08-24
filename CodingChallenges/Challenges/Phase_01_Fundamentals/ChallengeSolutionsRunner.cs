@@ -173,39 +173,71 @@ namespace CodingChallenges.Challenges.Phase_02_OOP
         }
         public static void Run_Three()
         {
-                    // Find First New Highest Number
-        Console.WriteLine(FindFirstNewHighestNumberRev([5, 3, 4, 10, 2]) == 10);
-        Console.WriteLine(FindFirstNewHighestNumberRev([10, 9, 8, 7]) == null);
-        Console.WriteLine(FindFirstNewHighestNumberRev([1, 2, 3]) == 2);
-        Console.WriteLine(FindFirstNewHighestNumberRev([4, 4, 5]) == 5);
-        Console.WriteLine(FindFirstNewHighestNumberRev([7]) == null);
-        Console.WriteLine(FindFirstNewHighestNumberRev(null!) == null);
-        Console.WriteLine(FindFirstNewHighestNumberRev([]) == null);
+            // Find First Number With Previous Duplicate
+            Console.WriteLine(FindFirstNumberWithPreviousDuplicate([4, 7, 2, 7, 4]) == 7);
+            Console.WriteLine(FindFirstNumberWithPreviousDuplicate([1, 2, 3, 1]) == 1);
+            Console.WriteLine(FindFirstNumberWithPreviousDuplicate([5, 6, 7]) == null);
+            Console.WriteLine(FindFirstNumberWithPreviousDuplicate([9, 9, 1]) == 9);
+            Console.WriteLine(FindFirstNumberWithPreviousDuplicate(null!) == null);
+            Console.WriteLine(FindFirstNumberWithPreviousDuplicate([]) == null);
 
-        // Find Longest Same-Number Streak
-        Console.WriteLine(FindLongestSameNumberStreakRev([1, 1, 2, 2, 2, 3]) == 3);
-        Console.WriteLine(FindLongestSameNumberStreakRev([5, 5, 5, 5]) == 4);
-        Console.WriteLine(FindLongestSameNumberStreakRev([1, 2, 3, 4]) == 1);
-        Console.WriteLine(FindLongestSameNumberStreakRev([7]) == 1);
-        Console.WriteLine(FindLongestSameNumberStreakRev([1, 1, 2, 1, 1, 1]) == 3);
-        Console.WriteLine(FindLongestSameNumberStreakRev(null!) == 0);
-        Console.WriteLine(FindLongestSameNumberStreakRev([]) == 0);
+            // Find Longest Same Word Streak
+            Console.WriteLine(FindLongestSameWordStreak("red red blue blue blue red") == 3);
+            Console.WriteLine(FindLongestSameWordStreak("cat cat cat") == 3);
+            Console.WriteLine(FindLongestSameWordStreak("one two three") == 1);
+            Console.WriteLine(FindLongestSameWordStreak("Dog dog DOG cat") == 3);
+            Console.WriteLine(FindLongestSameWordStreak("") == 0);
+            Console.WriteLine(FindLongestSameWordStreak(" ") == 0);
+            Console.WriteLine(FindLongestSameWordStreak(null!) == 0);
 
-        // Count Valid Ticket Codes
-        Console.WriteLine(CountValidTicketCodes("TCK-1234, TCK-9999, BAD-1234") == 2);
-        Console.WriteLine(CountValidTicketCodes("tck-1111, TCK-12A4, TCK-12345") == 1);
-        Console.WriteLine(CountValidTicketCodes("hello, TCK-0001") == 1);
-        Console.WriteLine(CountValidTicketCodes("") == 0);
-        Console.WriteLine(CountValidTicketCodes("  ") == 0);
-        Console.WriteLine(CountValidTicketCodes(null!) == 0);
+            //Count Valid Employee Codes = String Parsing
+            Console.WriteLine(CountValidEmployeeCodes("EMP-1234, EMP-9999, BAD-1234") == 2);
+            Console.WriteLine(CountValidEmployeeCodes("emp-0001, EMP-12A4, EMP-12345") == 1);
+            Console.WriteLine(CountValidEmployeeCodes("hello, EMP-7777") == 1);
+            Console.WriteLine(CountValidEmployeeCodes("") == 0);
+            Console.WriteLine(CountValidEmployeeCodes(" ") == 0);
+            Console.WriteLine(CountValidEmployeeCodes(null!) == 0);
 
-        // Count Positive Multiples of 3
-        Console.WriteLine(CountPositiveMultiplesOfThree([3, 6, -3, 10, 12]) == 3);
-        Console.WriteLine(CountPositiveMultiplesOfThree([1, 2, 4, 5]) == 0);
-        Console.WriteLine(CountPositiveMultiplesOfThree([0, 3, 9]) == 2);
-        Console.WriteLine(CountPositiveMultiplesOfThree(null!) == 0);
-        Console.WriteLine(CountPositiveMultiplesOfThree([]) == 0);
-        
+            // Count Numbers Ending in Five
+            Console.WriteLine(CountNumbersEndingInFive([5, 15, 20, -25, 100]) == 3);
+            Console.WriteLine(CountNumbersEndingInFive([1, 2, 3, 4]) == 0);
+            Console.WriteLine(CountNumbersEndingInFive([105, 205, 305]) == 3);
+            Console.WriteLine(CountNumbersEndingInFive(null!) == 0);
+            Console.WriteLine(CountNumbersEndingInFive([]) == 0);
+
+            // Find First New Highest Number
+            Console.WriteLine(FindFirstNewHighestNumberRev([5, 3, 4, 10, 2]) == 10);
+            Console.WriteLine(FindFirstNewHighestNumberRev([10, 9, 8, 7]) == null);
+            Console.WriteLine(FindFirstNewHighestNumberRev([1, 2, 3]) == 2);
+            Console.WriteLine(FindFirstNewHighestNumberRev([4, 4, 5]) == 5);
+            Console.WriteLine(FindFirstNewHighestNumberRev([7]) == null);
+            Console.WriteLine(FindFirstNewHighestNumberRev(null!) == null);
+            Console.WriteLine(FindFirstNewHighestNumberRev([]) == null);
+
+            // Find Longest Same-Number Streak
+            Console.WriteLine(FindLongestSameNumberStreakRev([1, 1, 2, 2, 2, 3]) == 3);
+            Console.WriteLine(FindLongestSameNumberStreakRev([5, 5, 5, 5]) == 4);
+            Console.WriteLine(FindLongestSameNumberStreakRev([1, 2, 3, 4]) == 1);
+            Console.WriteLine(FindLongestSameNumberStreakRev([7]) == 1);
+            Console.WriteLine(FindLongestSameNumberStreakRev([1, 1, 2, 1, 1, 1]) == 3);
+            Console.WriteLine(FindLongestSameNumberStreakRev(null!) == 0);
+            Console.WriteLine(FindLongestSameNumberStreakRev([]) == 0);
+
+            // Count Valid Ticket Codes
+            Console.WriteLine(CountValidTicketCodes("TCK-1234, TCK-9999, BAD-1234") == 2);
+            Console.WriteLine(CountValidTicketCodes("tck-1111, TCK-12A4, TCK-12345") == 1);
+            Console.WriteLine(CountValidTicketCodes("hello, TCK-0001") == 1);
+            Console.WriteLine(CountValidTicketCodes("") == 0);
+            Console.WriteLine(CountValidTicketCodes("  ") == 0);
+            Console.WriteLine(CountValidTicketCodes(null!) == 0);
+
+            // Count Positive Multiples of 3
+            Console.WriteLine(CountPositiveMultiplesOfThree([3, 6, -3, 10, 12]) == 3);
+            Console.WriteLine(CountPositiveMultiplesOfThree([1, 2, 4, 5]) == 0);
+            Console.WriteLine(CountPositiveMultiplesOfThree([0, 3, 9]) == 2);
+            Console.WriteLine(CountPositiveMultiplesOfThree(null!) == 0);
+            Console.WriteLine(CountPositiveMultiplesOfThree([]) == 0);
+
             // Find First Record Breaker
             Console.WriteLine(FindFirstRecordBreaker([5, 3, 4, 10, 2]) == 10);
             Console.WriteLine(FindFirstRecordBreaker([10, 9, 8, 7]) == null);
