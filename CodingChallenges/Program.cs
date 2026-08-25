@@ -45,9 +45,9 @@
         return counter;
     }
 
-    public static int FindLongestSameNumberStreakRev(int [] numbers)
+    public static int FindLongestSameNumberStreakRev(int[] numbers)
     {
-        if(numbers is null || numbers.Length == 0)
+        if (numbers is null || numbers.Length == 0)
         {
             return 0;
         }
@@ -55,18 +55,18 @@
         int highestStreakSoFar = 1;
         int streakCounter = 1;
 
-        for(int outerIndex = 1; outerIndex <= numbers.Length -1; outerIndex++)
+        for (int outerIndex = 1; outerIndex <= numbers.Length - 1; outerIndex++)
         {
-            if(numbers[outerIndex] == numbers[outerIndex -1])
+            if (numbers[outerIndex] == numbers[outerIndex - 1])
             {
-                streakCounter ++;
+                streakCounter++;
             }
             else
             {
                 streakCounter = 1;
             }
 
-            if(streakCounter > highestStreakSoFar)
+            if (streakCounter > highestStreakSoFar)
             {
                 highestStreakSoFar = streakCounter;
             }
@@ -76,16 +76,43 @@
         return highestStreakSoFar;
     }
 
+    public static int? FindFirstNumberBiggerThanBothNeighbours(int[] numbers)
+    {
+        if (numbers is null || numbers.Length < 3)
+        {
+            return null;
+        }
+
+        for (int outerIndex = 1; outerIndex < numbers.Length - 1; outerIndex++)
+        {
+            if (numbers[outerIndex] > numbers[outerIndex - 1] &&
+            numbers[outerIndex] > numbers[outerIndex + 1])
+            {
+                return numbers[outerIndex];
+            }
+        }
+
+        return null;
+    }
+
     public static void Main(string[] args)
     {
+        // Find First Number Bigger Than Both Neighbours
+        Console.WriteLine(FindFirstNumberBiggerThanBothNeighbours([1, 5, 2, 8, 3]) == 5);
+        Console.WriteLine(FindFirstNumberBiggerThanBothNeighbours([1, 2, 3, 4]) == null);
+        Console.WriteLine(FindFirstNumberBiggerThanBothNeighbours([10, 20, 15]) == 20);
+        Console.WriteLine(FindFirstNumberBiggerThanBothNeighbours([5, 4, 3]) == null);
+        Console.WriteLine(FindFirstNumberBiggerThanBothNeighbours([1, 2]) == null);
+        Console.WriteLine(FindFirstNumberBiggerThanBothNeighbours(null!) == null);
+
         // Find Longest Same Number Streak Rev
-        Console.WriteLine(FindLongestSameNumberStreakRev([1, 1, 2, 2, 2, 3]) == 3);
-        Console.WriteLine(FindLongestSameNumberStreakRev([5, 5, 5, 5]) == 4);
-        Console.WriteLine(FindLongestSameNumberStreakRev([1, 2, 3, 4]) == 1);
-        Console.WriteLine(FindLongestSameNumberStreakRev([7]) == 1);
-        Console.WriteLine(FindLongestSameNumberStreakRev([1, 1, 2, 1, 1, 1]) == 3);
-        Console.WriteLine(FindLongestSameNumberStreakRev(null!) == 0);
-        Console.WriteLine(FindLongestSameNumberStreakRev([]) == 0);
+        // Console.WriteLine(FindLongestSameNumberStreakRev([1, 1, 2, 2, 2, 3]) == 3);
+        // Console.WriteLine(FindLongestSameNumberStreakRev([5, 5, 5, 5]) == 4);
+        // Console.WriteLine(FindLongestSameNumberStreakRev([1, 2, 3, 4]) == 1);
+        // Console.WriteLine(FindLongestSameNumberStreakRev([7]) == 1);
+        // Console.WriteLine(FindLongestSameNumberStreakRev([1, 1, 2, 1, 1, 1]) == 3);
+        // Console.WriteLine(FindLongestSameNumberStreakRev(null!) == 0);
+        // Console.WriteLine(FindLongestSameNumberStreakRev([]) == 0);
 
         // Count Valid Asset Codes
         // Console.WriteLine(CountValidAssetCodes("AST-1234, AST-9999, BAD-1234") == 2);
