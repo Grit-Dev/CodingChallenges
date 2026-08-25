@@ -173,6 +173,45 @@ namespace CodingChallenges.Challenges.Phase_02_OOP
         }
         public static void Run_Three()
         {
+            // Count Words Longer Than Previous
+            Console.WriteLine(CountWordsLongerThanPrevious("hi there paul") == 1);
+            Console.WriteLine(CountWordsLongerThanPrevious("one two three four") == 1);
+            Console.WriteLine(CountWordsLongerThanPrevious("aaaa bb c") == 0);
+            Console.WriteLine(CountWordsLongerThanPrevious("") == 0);
+            Console.WriteLine(CountWordsLongerThanPrevious(null!) == 0);
+
+            // Find First Number Bigger Than Both Neighbours
+            Console.WriteLine(FindFirstNumberBiggerThanBothNeighbours([1, 5, 2, 8, 3]) == 5);
+            Console.WriteLine(FindFirstNumberBiggerThanBothNeighbours([1, 2, 3, 4]) == null);
+            Console.WriteLine(FindFirstNumberBiggerThanBothNeighbours([10, 20, 15]) == 20);
+            Console.WriteLine(FindFirstNumberBiggerThanBothNeighbours([5, 4, 3]) == null);
+            Console.WriteLine(FindFirstNumberBiggerThanBothNeighbours([1, 2]) == null);
+            Console.WriteLine(FindFirstNumberBiggerThanBothNeighbours(null!) == null);
+
+            // Find Longest Same Number Streak Rev
+            Console.WriteLine(FindLongestSameNumberStreakRevTwo([1, 1, 2, 2, 2, 3]) == 3);
+            Console.WriteLine(FindLongestSameNumberStreakRevTwo([5, 5, 5, 5]) == 4);
+            Console.WriteLine(FindLongestSameNumberStreakRevTwo([1, 2, 3, 4]) == 1);
+            Console.WriteLine(FindLongestSameNumberStreakRevTwo([7]) == 1);
+            Console.WriteLine(FindLongestSameNumberStreakRevTwo([1, 1, 2, 1, 1, 1]) == 3);
+            Console.WriteLine(FindLongestSameNumberStreakRevTwo(null!) == 0);
+            Console.WriteLine(FindLongestSameNumberStreakRevTwo([]) == 0);
+
+            // Count Valid Asset Codes
+            Console.WriteLine(CountValidAssetCodes("AST-1234, AST-9999, BAD-1234") == 2);
+            Console.WriteLine(CountValidAssetCodes("ast-0001, AST-12A4, AST-12345") == 1);
+            Console.WriteLine(CountValidAssetCodes("hello, AST-7777") == 1);
+            Console.WriteLine(CountValidAssetCodes("") == 0);
+            Console.WriteLine(CountValidAssetCodes(" ") == 0);
+            Console.WriteLine(CountValidAssetCodes(null!) == 0);
+
+            // Count Odd Numbers At Odd Indexes
+            Console.WriteLine(CountOddNumbersAtOddIndexes([10, 3, 8, 7, 6]) == 2);
+            Console.WriteLine(CountOddNumbersAtOddIndexes([1, 2, 3, 4]) == 0);
+            Console.WriteLine(CountOddNumbersAtOddIndexes([5, 9, 2, 11]) == 2);
+            Console.WriteLine(CountOddNumbersAtOddIndexes(null!) == 0);
+            Console.WriteLine(CountOddNumbersAtOddIndexes([]) == 0);
+
             // Find First Number With Previous Duplicate
             Console.WriteLine(FindFirstNumberWithPreviousDuplicate([4, 7, 2, 7, 4]) == 7);
             Console.WriteLine(FindFirstNumberWithPreviousDuplicate([1, 2, 3, 1]) == 1);
@@ -213,15 +252,6 @@ namespace CodingChallenges.Challenges.Phase_02_OOP
             Console.WriteLine(FindFirstNewHighestNumberRev([7]) == null);
             Console.WriteLine(FindFirstNewHighestNumberRev(null!) == null);
             Console.WriteLine(FindFirstNewHighestNumberRev([]) == null);
-
-            // Find Longest Same-Number Streak
-            Console.WriteLine(FindLongestSameNumberStreakRev([1, 1, 2, 2, 2, 3]) == 3);
-            Console.WriteLine(FindLongestSameNumberStreakRev([5, 5, 5, 5]) == 4);
-            Console.WriteLine(FindLongestSameNumberStreakRev([1, 2, 3, 4]) == 1);
-            Console.WriteLine(FindLongestSameNumberStreakRev([7]) == 1);
-            Console.WriteLine(FindLongestSameNumberStreakRev([1, 1, 2, 1, 1, 1]) == 3);
-            Console.WriteLine(FindLongestSameNumberStreakRev(null!) == 0);
-            Console.WriteLine(FindLongestSameNumberStreakRev([]) == 0);
 
             // Count Valid Ticket Codes
             Console.WriteLine(CountValidTicketCodes("TCK-1234, TCK-9999, BAD-1234") == 2);

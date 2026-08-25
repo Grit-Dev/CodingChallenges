@@ -4,9 +4,128 @@ using System.Text.Json;
 
 namespace CodingChallenges.Challenges.Phase_02_OOP
 {
-
     public class ChallengeSolutions
     {
+        public static int CountOddNumbersAtOddIndexes(int[] numbers)
+        {
+            if (numbers is null || numbers.Length == 0)
+            {
+                return 0;
+            }
+
+            int counter = 0;
+
+            for (int outerIndex = 1; outerIndex <= numbers.Length - 1; outerIndex += 2)
+            {
+                if (numbers[outerIndex] % 2 != 0)
+                {
+                    counter++;
+                }
+            }
+
+            return counter;
+        }
+
+        public static int CountValidAssetCodes(string input)
+        {
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                return 0;
+            }
+
+            int counter = 0;
+            string[] splitString = input.Split(',', StringSplitOptions.RemoveEmptyEntries);
+
+            foreach (string str in splitString)
+            {
+                string strTrimmed = str.Trim();
+
+                if (strTrimmed.Length == 8 &&
+                strTrimmed.StartsWith("AST-", StringComparison.OrdinalIgnoreCase) &&
+                int.TryParse(strTrimmed.Substring(4), out _))
+                {
+                    counter++;
+                }
+            }
+
+            return counter;
+        }
+
+        public static int FindLongestSameNumberStreakRevTwo(int[] numbers)
+        {
+            if (numbers is null || numbers.Length == 0)
+            {
+                return 0;
+            }
+
+            int highestStreakSoFar = 1;
+            int streakCounter = 1;
+
+            for (int outerIndex = 1; outerIndex <= numbers.Length - 1; outerIndex++)
+            {
+                if (numbers[outerIndex] == numbers[outerIndex - 1])
+                {
+                    streakCounter++;
+                }
+                else
+                {
+                    streakCounter = 1;
+                }
+
+                if (streakCounter > highestStreakSoFar)
+                {
+                    highestStreakSoFar = streakCounter;
+                }
+
+            }
+
+            return highestStreakSoFar;
+        }
+
+        public static int? FindFirstNumberBiggerThanBothNeighbours(int[] numbers)
+        {
+            if (numbers is null || numbers.Length < 3)
+            {
+                return null;
+            }
+
+            for (int outerIndex = 1; outerIndex < numbers.Length - 1; outerIndex++)
+            {
+                if (numbers[outerIndex] > numbers[outerIndex - 1] &&
+                numbers[outerIndex] > numbers[outerIndex + 1])
+                {
+                    return numbers[outerIndex];
+                }
+            }
+
+            return null;
+        }
+
+        public static int CountWordsLongerThanPrevious(string input)
+        {
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                return 0;
+            }
+
+            int counter = 0;
+
+            string[] splitString = input.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+            for (int outerIndex = 1; outerIndex <= splitString.Length - 1; outerIndex++)
+            {
+                string strTrimmed = splitString[outerIndex];
+
+                if (strTrimmed.Length > splitString[outerIndex - 1].Length)
+                {
+                    counter++;
+                }
+            }
+
+            return counter;
+
+        }
+
         public static int CountNumbersEndingInFive(int[] numbers)
         {
             if (numbers is null || numbers.Length == 0)
