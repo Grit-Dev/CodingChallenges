@@ -173,6 +173,18 @@ namespace CodingChallenges.Challenges.Phase_02_OOP
         }
         public static void Run_Three()
         {
+            // Count Priority Frequence
+            Dictionary<string, int> resultOne = CountPriorityFrequency("High, Low, High");
+            Console.WriteLine(resultOne["high"] == 2);
+            Console.WriteLine(resultOne["low"] == 1);
+
+            Dictionary<string, int> resultTwo = CountPriorityFrequency("Medium, medium, LOW");
+            Console.WriteLine(resultTwo["medium"] == 2);
+            Console.WriteLine(resultTwo["low"] == 1);
+
+            Dictionary<string, int> resultThree = CountPriorityFrequency("");
+            Console.WriteLine(resultThree.Count == 0);
+
             // Count Words Longer Than Previous
             Console.WriteLine(CountWordsLongerThanPrevious("hi there paul") == 1);
             Console.WriteLine(CountWordsLongerThanPrevious("one two three four") == 1);
@@ -302,16 +314,16 @@ namespace CodingChallenges.Challenges.Phase_02_OOP
             Console.WriteLine(CountNumbersBetweenTenAndTwenty([]) == 0);
 
             // Count First Letter Frequency
-            var resultOne = CountFirstLetterFrequency("apple banana apricot");
-            Console.WriteLine(resultOne['a'] == 2);
-            Console.WriteLine(resultOne['b'] == 1);
+            var resultOneOne = CountFirstLetterFrequency("apple banana apricot");
+            Console.WriteLine(resultOneOne['a'] == 2);
+            Console.WriteLine(resultOneOne['b'] == 1);
 
-            var resultTwo = CountFirstLetterFrequency("Dog duck cat");
-            Console.WriteLine(resultTwo['d'] == 2);
-            Console.WriteLine(resultTwo['c'] == 1);
+            var resultTwoTwo = CountFirstLetterFrequency("Dog duck cat");
+            Console.WriteLine(resultTwoTwo['d'] == 2);
+            Console.WriteLine(resultTwoTwo['c'] == 1);
 
-            var resultThree = CountFirstLetterFrequency("");
-            Console.WriteLine(resultThree.Count == 0);
+            var resultThreeThree = CountFirstLetterFrequency("");
+            Console.WriteLine(resultThreeThree.Count == 0);
 
             // Find First Number Greater Than All Previous
             Console.WriteLine(FindFirstNumberGreaterThanAllPrevious([5, 3, 4, 10, 2]) == 10);

@@ -6,6 +6,36 @@ namespace CodingChallenges.Challenges.Phase_02_OOP
 {
     public class ChallengeSolutions
     {
+        public static Dictionary<string, int> CountPriorityFrequency(string input)
+        {
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                return [];
+            }
+
+            Dictionary<string, int> newDict = [];
+
+            string[] splitString = input.Split(',', StringSplitOptions.RemoveEmptyEntries);
+
+            foreach (string str in splitString)
+            {
+                string strTrimmed = str.Trim().ToLower();
+
+                if (newDict.ContainsKey(strTrimmed))
+                {
+                    newDict[strTrimmed]++;
+                }
+                else
+                {
+                    newDict[strTrimmed] = 1;
+                }
+
+
+            }
+
+            return newDict;
+
+        }
         public static int CountOddNumbersAtOddIndexes(int[] numbers)
         {
             if (numbers is null || numbers.Length == 0)
