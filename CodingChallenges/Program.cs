@@ -95,15 +95,47 @@
         return null;
     }
 
+    public static int CountWordsLongerThanPrevious(string input)
+    {
+        if(string.IsNullOrWhiteSpace(input))
+        {
+            return 0;
+        }
+
+        int counter = 0;
+
+        string [] splitString = input.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+        for(int outerIndex = 1; outerIndex <= splitString.Length -1; outerIndex++)
+        {
+            string strTrimmed = splitString[outerIndex];
+
+            if(strTrimmed.Length > splitString[outerIndex -1].Length)
+            {
+                counter++;
+            }
+        }
+
+        return counter;
+
+    }
+
     public static void Main(string[] args)
     {
+        // Count Words Longer Than Previous
+        Console.WriteLine(CountWordsLongerThanPrevious("hi there paul") == 1);
+        Console.WriteLine(CountWordsLongerThanPrevious("one two three four") == 1);
+        Console.WriteLine(CountWordsLongerThanPrevious("aaaa bb c") == 0);
+        Console.WriteLine(CountWordsLongerThanPrevious("") == 0);
+        Console.WriteLine(CountWordsLongerThanPrevious(null!) == 0);
+
         // Find First Number Bigger Than Both Neighbours
-        Console.WriteLine(FindFirstNumberBiggerThanBothNeighbours([1, 5, 2, 8, 3]) == 5);
-        Console.WriteLine(FindFirstNumberBiggerThanBothNeighbours([1, 2, 3, 4]) == null);
-        Console.WriteLine(FindFirstNumberBiggerThanBothNeighbours([10, 20, 15]) == 20);
-        Console.WriteLine(FindFirstNumberBiggerThanBothNeighbours([5, 4, 3]) == null);
-        Console.WriteLine(FindFirstNumberBiggerThanBothNeighbours([1, 2]) == null);
-        Console.WriteLine(FindFirstNumberBiggerThanBothNeighbours(null!) == null);
+        // Console.WriteLine(FindFirstNumberBiggerThanBothNeighbours([1, 5, 2, 8, 3]) == 5);
+        // Console.WriteLine(FindFirstNumberBiggerThanBothNeighbours([1, 2, 3, 4]) == null);
+        // Console.WriteLine(FindFirstNumberBiggerThanBothNeighbours([10, 20, 15]) == 20);
+        // Console.WriteLine(FindFirstNumberBiggerThanBothNeighbours([5, 4, 3]) == null);
+        // Console.WriteLine(FindFirstNumberBiggerThanBothNeighbours([1, 2]) == null);
+        // Console.WriteLine(FindFirstNumberBiggerThanBothNeighbours(null!) == null);
 
         // Find Longest Same Number Streak Rev
         // Console.WriteLine(FindLongestSameNumberStreakRev([1, 1, 2, 2, 2, 3]) == 3);
