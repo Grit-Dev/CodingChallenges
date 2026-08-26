@@ -76,16 +76,16 @@
         return highestStreakSoFar;
     }
 
-    public static int? FindFirstValleyNumber(int [] numbers)
+    public static int? FindFirstValleyNumber(int[] numbers)
     {
-        if(numbers is null || numbers.Length < 3)
+        if (numbers is null || numbers.Length < 3)
         {
             return null;
         }
 
-        for(int outerIndex = 1; outerIndex < numbers.Length -1; outerIndex++)
+        for (int outerIndex = 1; outerIndex < numbers.Length - 1; outerIndex++)
         {
-            if(numbers[outerIndex] < numbers[outerIndex - 1] &&
+            if (numbers[outerIndex] < numbers[outerIndex - 1] &&
             numbers[outerIndex] < numbers[outerIndex + 1])
             {
                 return numbers[outerIndex];
@@ -95,16 +95,57 @@
         return null;
     }
 
+    public static Dictionary<string, int> CountErrorCodeFrequency(string input)
+    {
+        if (string.IsNullOrWhiteSpace(input))
+        {
+            return [];
+        }
+
+        Dictionary<string, int> newDict = [];
+
+        input = input.ToLower();
+        string[] splitString = input.Split(',', StringSplitOptions.RemoveEmptyEntries);
+
+        foreach (string str in splitString)
+        {
+            string strTrimmed = str.Trim();
+
+            if (newDict.ContainsKey(strTrimmed))
+            {
+                newDict[strTrimmed]++;
+            }
+            else
+            {
+                newDict[strTrimmed] = 1;
+            }
+        }
+
+        return newDict;
+    }
+
     public static void Main(string[] args)
     {
+        // CountErrorCodeFrequency
+        Dictionary<string, int> res1 = CountErrorCodeFrequency("E404, E500, E404");
+        Console.WriteLine(res1["e404"] == 2);
+        Console.WriteLine(res1["e500"] == 1);
+
+        Dictionary<string, int> res2 = CountErrorCodeFrequency("E401, e401, E403");
+        Console.WriteLine(res2["e401"] == 2);
+        Console.WriteLine(res2["e403"] == 1);
+
+        Dictionary<string, int> res3 = CountErrorCodeFrequency("");
+        Console.WriteLine(res3.Count == 0);
+
         // Find First Valley Number
-        Console.WriteLine(FindFirstValleyNumber([5, 2, 6, 1, 9]) == 2);
-        Console.WriteLine(FindFirstValleyNumber([1, 2, 3, 4]) == null);
-        Console.WriteLine(FindFirstValleyNumber([10, 5, 20]) == 5);
-        Console.WriteLine(FindFirstValleyNumber([5, 4, 3]) == null);
-        Console.WriteLine(FindFirstValleyNumber([1, 2]) == null);
-        Console.WriteLine(FindFirstValleyNumber(null!) == null);
-        Console.WriteLine(FindFirstValleyNumber([]) == null);
+        // Console.WriteLine(FindFirstValleyNumber([5, 2, 6, 1, 9]) == 2);
+        // Console.WriteLine(FindFirstValleyNumber([1, 2, 3, 4]) == null);
+        // Console.WriteLine(FindFirstValleyNumber([10, 5, 20]) == 5);
+        // Console.WriteLine(FindFirstValleyNumber([5, 4, 3]) == null);
+        // Console.WriteLine(FindFirstValleyNumber([1, 2]) == null);
+        // Console.WriteLine(FindFirstValleyNumber(null!) == null);
+        // Console.WriteLine(FindFirstValleyNumber([]) == null);
 
         // Find Longest Consecutive Decreasing Streak
         // Console.WriteLine(FindLongestConsecutiveDecreasingStreak([9, 7, 5, 10, 8]) == 3);
