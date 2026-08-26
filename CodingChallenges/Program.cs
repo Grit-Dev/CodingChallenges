@@ -55,9 +55,9 @@
         int highestStreakSoFar = 1;
         int streakCounter = 1;
 
-        for(int outerIndex =  1; outerIndex <= numbers.Length -1; outerIndex++)
+        for (int outerIndex = 1; outerIndex <= numbers.Length - 1; outerIndex++)
         {
-            if(numbers[outerIndex] < numbers[outerIndex -1])
+            if (numbers[outerIndex] < numbers[outerIndex - 1])
             {
                 streakCounter++;
             }
@@ -66,7 +66,7 @@
                 streakCounter = 1;
             }
 
-            if(streakCounter > highestStreakSoFar)
+            if (streakCounter > highestStreakSoFar)
             {
                 highestStreakSoFar = streakCounter;
             }
@@ -76,16 +76,44 @@
         return highestStreakSoFar;
     }
 
+    public static int? FindFirstValleyNumber(int [] numbers)
+    {
+        if(numbers is null || numbers.Length < 3)
+        {
+            return null;
+        }
+
+        for(int outerIndex = 1; outerIndex < numbers.Length -1; outerIndex++)
+        {
+            if(numbers[outerIndex] < numbers[outerIndex - 1] &&
+            numbers[outerIndex] < numbers[outerIndex + 1])
+            {
+                return numbers[outerIndex];
+            }
+        }
+
+        return null;
+    }
+
     public static void Main(string[] args)
     {
+        // Find First Valley Number
+        Console.WriteLine(FindFirstValleyNumber([5, 2, 6, 1, 9]) == 2);
+        Console.WriteLine(FindFirstValleyNumber([1, 2, 3, 4]) == null);
+        Console.WriteLine(FindFirstValleyNumber([10, 5, 20]) == 5);
+        Console.WriteLine(FindFirstValleyNumber([5, 4, 3]) == null);
+        Console.WriteLine(FindFirstValleyNumber([1, 2]) == null);
+        Console.WriteLine(FindFirstValleyNumber(null!) == null);
+        Console.WriteLine(FindFirstValleyNumber([]) == null);
+
         // Find Longest Consecutive Decreasing Streak
-        Console.WriteLine(FindLongestConsecutiveDecreasingStreak([9, 7, 5, 10, 8]) == 3);
-        Console.WriteLine(FindLongestConsecutiveDecreasingStreak([5, 4, 3, 2]) == 4);
-        Console.WriteLine(FindLongestConsecutiveDecreasingStreak([1, 2, 3, 4]) == 1);
-        Console.WriteLine(FindLongestConsecutiveDecreasingStreak([7]) == 1);
-        Console.WriteLine(FindLongestConsecutiveDecreasingStreak([10, 8, 6, 6, 5]) == 3);
-        Console.WriteLine(FindLongestConsecutiveDecreasingStreak(null!) == 0);
-        Console.WriteLine(FindLongestConsecutiveDecreasingStreak([]) == 0);
+        // Console.WriteLine(FindLongestConsecutiveDecreasingStreak([9, 7, 5, 10, 8]) == 3);
+        // Console.WriteLine(FindLongestConsecutiveDecreasingStreak([5, 4, 3, 2]) == 4);
+        // Console.WriteLine(FindLongestConsecutiveDecreasingStreak([1, 2, 3, 4]) == 1);
+        // Console.WriteLine(FindLongestConsecutiveDecreasingStreak([7]) == 1);
+        // Console.WriteLine(FindLongestConsecutiveDecreasingStreak([10, 8, 6, 6, 5]) == 3);
+        // Console.WriteLine(FindLongestConsecutiveDecreasingStreak(null!) == 0);
+        // Console.WriteLine(FindLongestConsecutiveDecreasingStreak([]) == 0);
 
         // Count Valid Invoice Codes
         // Console.WriteLine(CountValidInvoiceCodes("INV-1234, INV-9999, BAD-1234") == 2);
