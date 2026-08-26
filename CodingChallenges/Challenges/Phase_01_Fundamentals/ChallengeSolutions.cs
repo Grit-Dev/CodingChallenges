@@ -6,6 +6,130 @@ namespace CodingChallenges.Challenges.Phase_02_OOP
 {
     public class ChallengeSolutions
     {
+        public static int CountPositiveMultiplesOfFive(int[] numbers)
+        {
+            if (numbers is null || numbers.Length == 0)
+            {
+                return 0;
+            }
+
+            int counter = 0;
+
+            foreach (int digit in numbers)
+            {
+                if (digit > 0 && digit % 5 == 0)
+                {
+                    counter++;
+                }
+            }
+
+            return counter;
+        }
+
+        public static int CountValidInvoiceCodes(string input)
+        {
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                return 0;
+            }
+
+            int counter = 0;
+            string[] splitStrings = input.Split(",", StringSplitOptions.RemoveEmptyEntries);
+
+            foreach (string str in splitStrings)
+            {
+                string strTrimmed = str.Trim();
+
+                if (strTrimmed.Length == 8 &&
+                strTrimmed.StartsWith("INV-", StringComparison.OrdinalIgnoreCase) &&
+                int.TryParse(strTrimmed.Substring(4), out _))
+                {
+                    counter++;
+                }
+            }
+
+            return counter;
+        }
+
+        public static int FindLongestConsecutiveDecreasingStreak(int[] numbers)
+        {
+            if (numbers is null || numbers.Length == 0)
+            {
+                return 0;
+            }
+
+            int highestStreakSoFar = 1;
+            int streakCounter = 1;
+
+            for (int outerIndex = 1; outerIndex <= numbers.Length - 1; outerIndex++)
+            {
+                if (numbers[outerIndex] < numbers[outerIndex - 1])
+                {
+                    streakCounter++;
+                }
+                else
+                {
+                    streakCounter = 1;
+                }
+
+                if (streakCounter > highestStreakSoFar)
+                {
+                    highestStreakSoFar = streakCounter;
+                }
+            }
+
+
+            return highestStreakSoFar;
+        }
+
+        public static int? FindFirstValleyNumber(int[] numbers)
+        {
+            if (numbers is null || numbers.Length < 3)
+            {
+                return null;
+            }
+
+            for (int outerIndex = 1; outerIndex < numbers.Length - 1; outerIndex++)
+            {
+                if (numbers[outerIndex] < numbers[outerIndex - 1] &&
+                numbers[outerIndex] < numbers[outerIndex + 1])
+                {
+                    return numbers[outerIndex];
+                }
+            }
+
+            return null;
+        }
+
+        public static Dictionary<string, int> CountErrorCodeFrequency(string input)
+        {
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                return [];
+            }
+
+            Dictionary<string, int> newDict = [];
+
+            input = input.ToLower();
+            string[] splitString = input.Split(',', StringSplitOptions.RemoveEmptyEntries);
+
+            foreach (string str in splitString)
+            {
+                string strTrimmed = str.Trim();
+
+                if (newDict.ContainsKey(strTrimmed))
+                {
+                    newDict[strTrimmed]++;
+                }
+                else
+                {
+                    newDict[strTrimmed] = 1;
+                }
+            }
+
+            return newDict;
+        }
+
         public static Dictionary<string, int> CountPriorityFrequency(string input)
         {
             if (string.IsNullOrWhiteSpace(input))
