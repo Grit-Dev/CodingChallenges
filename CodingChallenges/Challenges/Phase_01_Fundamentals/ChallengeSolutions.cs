@@ -6,6 +6,149 @@ namespace CodingChallenges.Challenges.Phase_02_OOP
 {
     public class ChallengeSolutions
     {
+        public static int CountNegativeMultiplesOfThreeWarmUp(int[] numbers)
+        {
+            if (numbers is null || numbers.Length == 0)
+            {
+                return 0;
+            }
+
+            int counter = 0;
+
+            foreach (int digit in numbers)
+            {
+                if (digit < 0 && digit % 3 == 0)
+                {
+                    counter++;
+                }
+            }
+
+            return counter;
+        }
+
+        public static int CountValidCaseCodes(string input)
+        {
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                return 0;
+            }
+
+            int counter = 0;
+            string[] splitString = input.Split([','], StringSplitOptions.RemoveEmptyEntries);
+
+            foreach (string str in splitString)
+            {
+                string strTrimmed = str.Trim();
+
+                if (strTrimmed.Length == 9 &&
+                strTrimmed.StartsWith("CASE-", StringComparison.OrdinalIgnoreCase) &&
+                int.TryParse(strTrimmed.Substring(5), out _))
+                {
+                    counter++;
+                }
+            }
+
+            return counter;
+        }
+
+        public static int FindLongestAlternatingEvenOddStreak(int[] numbers)
+        {
+            if (numbers is null || numbers.Length == 0)
+            {
+                return 0;
+            }
+
+            int highestStreakSoFar = 1;
+            int streakCounter = 0;
+            bool isEven = false;
+            bool isOdd = false;
+
+            for (int outerIndex = 0; outerIndex <= numbers.Length - 1; outerIndex++)
+            {
+                if (numbers[outerIndex] % 2 != 0 && !isOdd)
+                {
+                    streakCounter++;
+                    isOdd = true;
+                    isEven = false;
+                }
+                else if (numbers[outerIndex] % 2 == 0 && !isEven)
+                {
+                    streakCounter++;
+                    isEven = true;
+                    isOdd = false;
+                }
+                else
+                {
+                    streakCounter = 1;
+
+                    isEven = numbers[outerIndex] % 2 == 0;
+                    isOdd = numbers[outerIndex] % 2 != 0;
+                }
+
+                if (streakCounter > highestStreakSoFar)
+                {
+                    highestStreakSoFar = streakCounter;
+                }
+            }
+
+            return highestStreakSoFar;
+        }
+
+        public static string FindLongestWordStartingWithLetter(string input, char startingLetter)
+        {
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                return "";
+            }
+
+            int longestWordCounter = 0;
+            string longestWord = "";
+
+            string[] stringSplit = input.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+            foreach (string str in stringSplit)
+            {
+                if (char.ToLower(str[0]) == char.ToLower(startingLetter) &&
+                str.Length > longestWordCounter)
+                {
+                    longestWordCounter = str.Length;
+                    longestWord = str;
+                }
+            }
+
+            return longestWord;
+
+        }
+
+        public static string FindFirstWordWithRepeatedLetter(string input)
+        {
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                return "";
+            }
+
+            string[] splitString =
+                input.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+            foreach (string str in splitString)
+            {
+                string lowered = str.ToLower();
+
+                for (int outerIndex = 0; outerIndex < lowered.Length; outerIndex++)
+                {
+                    for (int innerIndex = outerIndex + 1; innerIndex < lowered.Length; innerIndex++)
+                    {
+                        if (lowered[outerIndex] == lowered[innerIndex])
+                        {
+                            return str;
+                        }
+                    }
+                }
+            }
+
+            return "";
+        }
+
         public static int CountPositiveMultiplesOfFive(int[] numbers)
         {
             if (numbers is null || numbers.Length == 0)
