@@ -116,6 +116,35 @@ public class Program
 
     }
 
+    public static string FindFirstWordWithRepeatedLetter(string input)
+    {
+        if (string.IsNullOrWhiteSpace(input))
+        {
+            return "";
+        }
+
+        string[] splitString =
+            input.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+        foreach (string str in splitString)
+        {
+            string lowered = str.ToLower();
+
+            for (int outerIndex = 0; outerIndex < lowered.Length; outerIndex++)
+            {
+                for (int innerIndex = outerIndex + 1; innerIndex < lowered.Length; innerIndex++)
+                {
+                    if (lowered[outerIndex] == lowered[innerIndex])
+                    {
+                        return str;
+                    }
+                }
+            }
+        }
+
+        return "";
+    }
+
     public static void Main(string[] args)
     {
         // Find Longest Word Starting With Letter
