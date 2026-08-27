@@ -104,13 +104,11 @@ public class Program
 
         foreach (string str in stringSplit)
         {
-            if (char.ToLower(str[0]) == char.ToLower(startingLetter))
+            if (char.ToLower(str[0]) == char.ToLower(startingLetter) &&
+            str.Length > longestWordCounter)
             {
-                if (str.Length > longestWordCounter)
-                {
-                    longestWordCounter = str.Length;
-                    longestWord = str;
-                }
+                longestWordCounter = str.Length;
+                longestWord = str;
             }
         }
 
