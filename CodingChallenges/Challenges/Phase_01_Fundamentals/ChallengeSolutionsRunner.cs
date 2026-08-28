@@ -6,8 +6,18 @@ namespace CodingChallenges.Challenges.Phase_02_OOP
     {
         public static void Run_Four_Dictionary_Work()
         {
+            Dictionary<string, int> resultOne = CountCategoryFrequency("Card, Sealed, Card");
+            Console.WriteLine(resultOne["card"] == 2);
+            Console.WriteLine(resultOne["sealed"] == 1);
+
+            Dictionary<string, int> resultTwo = CountCategoryFrequency("Binder, binder, CARD");
+            Console.WriteLine(resultTwo["binder"] == 2);
+            Console.WriteLine(resultTwo["card"] == 1);
+
+            Dictionary<string, int> resultThree = CountCategoryFrequency("");
+            Console.WriteLine(resultThree.Count == 0);
         }
-            
+
         public static void Run_Four()
         {
             // REDACT PERSONAL DATA - SINGLE PERSON

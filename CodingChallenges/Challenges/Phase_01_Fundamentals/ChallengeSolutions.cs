@@ -6,6 +6,33 @@ namespace CodingChallenges.Challenges.Phase_02_OOP
 {
     public class ChallengeSolutions
     {
+        public static Dictionary<string, int> CountCategoryFrequency(string input)
+        {
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                return [];
+            }
+
+            var newDict = new Dictionary<string, int>();
+
+            string[] splitString = input.Split(',', StringSplitOptions.RemoveEmptyEntries);
+
+            foreach (string str in splitString)
+            {
+                string strTrimmed = str.Trim().ToLower();
+
+                if (newDict.ContainsKey(strTrimmed))
+                {
+                    newDict[strTrimmed]++;
+                }
+                else
+                {
+                    newDict[strTrimmed] = 1;
+                }
+            }
+
+            return newDict;
+        }
         public static int CountPositiveNumbersWarmUp(int[] numbers)
         {
             if (numbers is null || numbers.Length == 0)
