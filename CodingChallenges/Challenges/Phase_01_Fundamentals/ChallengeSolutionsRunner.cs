@@ -4,6 +4,10 @@ namespace CodingChallenges.Challenges.Phase_02_OOP
 {
     public class ChallengeSolutionsRunner : ChallengeSolutions
     {
+        public static void Run_Four_Dictionary_Work()
+        {
+        }
+            
         public static void Run_Four()
         {
             // REDACT PERSONAL DATA - SINGLE PERSON
@@ -173,6 +177,45 @@ namespace CodingChallenges.Challenges.Phase_02_OOP
         }
         public static void Run_Three()
         {
+            // Find Last Word Longer Than Five
+            Console.WriteLine(FindLastWordLongerThanFive("cat banana dog pineapple") == "pineapple");
+            Console.WriteLine(FindLastWordLongerThanFive("hello world test") == "");
+            Console.WriteLine(FindLastWordLongerThanFive("coding challenge practice") == "practice");
+            Console.WriteLine(FindLastWordLongerThanFive("") == "");
+            Console.WriteLine(FindLastWordLongerThanFive(null!) == "");
+
+            // Find First Number Smaller Than Both Neighbours
+            Console.WriteLine(FindFirstNumberSmallerThanBothNeighbours([9, 4, 8, 3, 7]) == 4);
+            Console.WriteLine(FindFirstNumberSmallerThanBothNeighbours([1, 2, 3, 4]) == null);
+            Console.WriteLine(FindFirstNumberSmallerThanBothNeighbours([10, 5, 20]) == 5);
+            Console.WriteLine(FindFirstNumberSmallerThanBothNeighbours([5, 4, 3]) == null);
+            Console.WriteLine(FindFirstNumberSmallerThanBothNeighbours([1, 2]) == null);
+            Console.WriteLine(FindFirstNumberSmallerThanBothNeighbours(null!) == null);
+            Console.WriteLine(FindFirstNumberSmallerThanBothNeighbours([]) == null);
+
+            // Find Longest Above Limit Streak
+            Console.WriteLine(FindLongestAboveLimitStreak([5, 12, 15, 3, 20, 25, 30], 10) == 3);
+            Console.WriteLine(FindLongestAboveLimitStreak([1, 2, 3], 10) == 0);
+            Console.WriteLine(FindLongestAboveLimitStreak([11, 12, 13], 10) == 3);
+            Console.WriteLine(FindLongestAboveLimitStreak([10, 11, 10, 12], 10) == 1);
+            Console.WriteLine(FindLongestAboveLimitStreak(null!, 10) == 0);
+            Console.WriteLine(FindLongestAboveLimitStreak([], 10) == 0);
+
+            // Count Valid Batch Codes
+            Console.WriteLine(CountValidBatchCodes("BAT-1234, BAT-9999, BAD-1234") == 2);
+            Console.WriteLine(CountValidBatchCodes("bat-0001, BAT-12A4, BAT-12345") == 1);
+            Console.WriteLine(CountValidBatchCodes("hello, BAT-7777") == 1);
+            Console.WriteLine(CountValidBatchCodes("") == 0);
+            Console.WriteLine(CountValidBatchCodes(" ") == 0);
+            Console.WriteLine(CountValidBatchCodes(null!) == 0);
+
+            // Warm up: Count Positive Odd Numbers
+            Console.WriteLine(CountPositiveNumbersWarmUp([1, 2, 3, -5, 7]) == 3);
+            Console.WriteLine(CountPositiveNumbersWarmUp([-1, -3, 2, 4]) == 0);
+            Console.WriteLine(CountPositiveNumbersWarmUp([9, 11, 12]) == 2);
+            Console.WriteLine(CountPositiveNumbersWarmUp(null!) == 0);
+            Console.WriteLine(CountPositiveNumbersWarmUp([]) == 0);
+
             // Find Longest Word Starting With Letter
             Console.WriteLine(FindLongestWordStartingWithLetter("apple banana apricot avocado", 'a') == "apricot");
             Console.WriteLine(FindLongestWordStartingWithLetter("Dog duck dinosaur cat", 'd') == "dinosaur");
