@@ -6,6 +6,19 @@ namespace CodingChallenges.Challenges.Phase_02_OOP
     {
         public static void Run_Four_Dictionary_Work()
         {
+            // Dictionary Basics: Count Tag Frequency: 
+            Dictionary<string, int> resultCTGOne = CountTagFrequency("Rare, Common, Rare");
+            Console.WriteLine(resultCTGOne["rare"] == 2);
+            Console.WriteLine(resultCTGOne["common"] == 1);
+
+            Dictionary<string, int> resultCTGTwo = CountTagFrequency("Epic, epic, COMMON");
+            Console.WriteLine(resultCTGTwo["epic"] == 2);
+            Console.WriteLine(resultCTGTwo["common"] == 1);
+
+            Dictionary<string, int> resultCTGThree = CountTagFrequency("");
+            Console.WriteLine(resultCTGThree.Count == 0);
+
+            // Dictionary Basics: Count Category Frequency
             Dictionary<string, int> resultOne = CountCategoryFrequency("Card, Sealed, Card");
             Console.WriteLine(resultOne["card"] == 2);
             Console.WriteLine(resultOne["sealed"] == 1);
