@@ -6,6 +6,121 @@ namespace CodingChallenges.Challenges.Phase_02_OOP
 {
     public class ChallengeSolutions
     {
+        public static int CountPositiveNumbersWarmUp(int[] numbers)
+        {
+            if (numbers is null || numbers.Length == 0)
+            {
+                return 0;
+            }
+
+            int counter = 0;
+
+            foreach (int digit in numbers)
+            {
+                if (digit > 0 && digit % 2 != 0)
+                {
+                    counter++;
+                }
+            }
+
+            return counter;
+        }
+
+        public static int CountValidBatchCodes(string input)
+        {
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                return 0;
+            }
+
+            int counter = 0;
+            string[] splitString = input.Split(',', StringSplitOptions.RemoveEmptyEntries);
+
+            foreach (string str in splitString)
+            {
+                string strTrimmed = str.Trim();
+
+                if (strTrimmed.Length == 8 &&
+                strTrimmed.StartsWith("BAT-", StringComparison.OrdinalIgnoreCase) &&
+                int.TryParse(strTrimmed.Substring(4), out _))
+                {
+                    counter++;
+                }
+            }
+
+            return counter;
+        }
+
+        public static int FindLongestAboveLimitStreak(int[] numbers, int limit)
+        {
+            if (numbers is null || numbers.Length == 0)
+            {
+                return 0;
+            }
+
+            int highestStreakSoFar = 0;
+            int streakCounter = 0;
+
+            foreach (int digit in numbers)
+            {
+                if (digit > limit)
+                {
+                    streakCounter++;
+                }
+                else
+                {
+                    streakCounter = 0;
+                }
+
+                if (streakCounter > highestStreakSoFar)
+                {
+                    highestStreakSoFar = streakCounter;
+                }
+            }
+
+            return highestStreakSoFar;
+        }
+
+        public static int? FindFirstNumberSmallerThanBothNeighbours(int[] numbers)
+        {
+            if (numbers is null || numbers.Length < 3)
+            {
+                return null;
+            }
+
+            for (int outerIndex = 1; outerIndex < numbers.Length - 1; outerIndex++)
+            {
+                if (numbers[outerIndex] < numbers[outerIndex - 1] &&
+                numbers[outerIndex] < numbers[outerIndex + 1])
+                {
+                    return numbers[outerIndex];
+                }
+            }
+
+            return null;
+        }
+
+        public static string FindLastWordLongerThanFive(string input)
+        {
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                return "";
+            }
+
+            string[] splitString = input.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+            string wordLength = "";
+
+            for (int outerIndex = 0; outerIndex <= splitString.Length - 1; outerIndex++)
+            {
+                if (splitString[outerIndex].Length > 5)
+                {
+                    wordLength = splitString[outerIndex];
+                }
+            }
+
+            return wordLength;
+        }
         public static int CountNegativeMultiplesOfThreeWarmUp(int[] numbers)
         {
             if (numbers is null || numbers.Length == 0)
