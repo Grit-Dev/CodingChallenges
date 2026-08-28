@@ -77,15 +77,15 @@
 
     public static int? FindFirstNumberSmallerThanBothNeighbours(int[] numbers)
     {
-        if(numbers is null || numbers.Length < 3)
+        if (numbers is null || numbers.Length < 3)
         {
             return null;
         }
 
-        for(int outerIndex = 1; outerIndex < numbers.Length -1; outerIndex++)
+        for (int outerIndex = 1; outerIndex < numbers.Length - 1; outerIndex++)
         {
-            if(numbers[outerIndex] < numbers[outerIndex -1] &&
-            numbers[outerIndex] < numbers[outerIndex +1])
+            if (numbers[outerIndex] < numbers[outerIndex - 1] &&
+            numbers[outerIndex] < numbers[outerIndex + 1])
             {
                 return numbers[outerIndex];
             }
@@ -94,16 +94,45 @@
         return null;
     }
 
+    public static string FindLastWordLongerThanFive(string input)
+    {
+        if(string.IsNullOrWhiteSpace(input))
+        {
+            return "";
+        }
+
+        string [] splitString = input.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+        string wordLength = "";
+
+        for(int outerIndex = 0; outerIndex <= splitString.Length -1; outerIndex++)
+        {
+            if(splitString[outerIndex].Length > 5)
+            {
+                wordLength = splitString[outerIndex];
+            }
+        }
+
+        return wordLength;
+    }
+
     public static void Main(string[] args)
     {
+        // Find Last Word Longer Than Five
+        Console.WriteLine(FindLastWordLongerThanFive("cat banana dog pineapple") == "pineapple");
+        Console.WriteLine(FindLastWordLongerThanFive("hello world test") == "");
+        Console.WriteLine(FindLastWordLongerThanFive("coding challenge practice") == "practice");
+        Console.WriteLine(FindLastWordLongerThanFive("") == "");
+        Console.WriteLine(FindLastWordLongerThanFive(null!) == "");
+
         // Find First Number Smaller Than Both Neighbours
-        Console.WriteLine(FindFirstNumberSmallerThanBothNeighbours([9, 4, 8, 3, 7]) == 4);
-        Console.WriteLine(FindFirstNumberSmallerThanBothNeighbours([1, 2, 3, 4]) == null);
-        Console.WriteLine(FindFirstNumberSmallerThanBothNeighbours([10, 5, 20]) == 5);
-        Console.WriteLine(FindFirstNumberSmallerThanBothNeighbours([5, 4, 3]) == null);
-        Console.WriteLine(FindFirstNumberSmallerThanBothNeighbours([1, 2]) == null);
-        Console.WriteLine(FindFirstNumberSmallerThanBothNeighbours(null!) == null);
-        Console.WriteLine(FindFirstNumberSmallerThanBothNeighbours([]) == null);
+        // Console.WriteLine(FindFirstNumberSmallerThanBothNeighbours([9, 4, 8, 3, 7]) == 4);
+        // Console.WriteLine(FindFirstNumberSmallerThanBothNeighbours([1, 2, 3, 4]) == null);
+        // Console.WriteLine(FindFirstNumberSmallerThanBothNeighbours([10, 5, 20]) == 5);
+        // Console.WriteLine(FindFirstNumberSmallerThanBothNeighbours([5, 4, 3]) == null);
+        // Console.WriteLine(FindFirstNumberSmallerThanBothNeighbours([1, 2]) == null);
+        // Console.WriteLine(FindFirstNumberSmallerThanBothNeighbours(null!) == null);
+        // Console.WriteLine(FindFirstNumberSmallerThanBothNeighbours([]) == null);
 
         // Find Longest Above Limit Streak
         // Console.WriteLine(FindLongestAboveLimitStreak([5, 12, 15, 3, 20, 25, 30], 10) == 3);
