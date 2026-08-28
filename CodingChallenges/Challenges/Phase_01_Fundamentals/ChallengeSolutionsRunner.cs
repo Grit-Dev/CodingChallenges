@@ -173,6 +173,38 @@ namespace CodingChallenges.Challenges.Phase_02_OOP
         }
         public static void Run_Three()
         {
+            // Find Longest Word Starting With Letter
+            Console.WriteLine(FindLongestWordStartingWithLetter("apple banana apricot avocado", 'a') == "apricot");
+            Console.WriteLine(FindLongestWordStartingWithLetter("Dog duck dinosaur cat", 'd') == "dinosaur");
+            Console.WriteLine(FindLongestWordStartingWithLetter("red blue green", 'z') == "");
+            Console.WriteLine(FindLongestWordStartingWithLetter("", 'a') == "");
+            Console.WriteLine(FindLongestWordStartingWithLetter(" ", 'a') == "");
+            Console.WriteLine(FindLongestWordStartingWithLetter(null!, 'a') == "");
+
+            // Find Longest Alternating Even Odd Streak
+            Console.WriteLine(FindLongestAlternatingEvenOddStreak([2, 5, 8, 11, 12, 14]) == 5);
+            Console.WriteLine(FindLongestAlternatingEvenOddStreak([1, 3, 5, 7]) == 1);
+            Console.WriteLine(FindLongestAlternatingEvenOddStreak([2, 4, 6]) == 1);
+            Console.WriteLine(FindLongestAlternatingEvenOddStreak([1, 2, 3, 4]) == 4);
+            Console.WriteLine(FindLongestAlternatingEvenOddStreak([7]) == 1);
+            Console.WriteLine(FindLongestAlternatingEvenOddStreak(null!) == 0);
+            Console.WriteLine(FindLongestAlternatingEvenOddStreak([]) == 0);
+
+            // Count Valid Case Codes
+            Console.WriteLine(CountValidCaseCodes("CASE-1234, CASE-9999, BAD-1234") == 2);
+            Console.WriteLine(CountValidCaseCodes("case-0001, CASE-12A4, CASE-12345") == 1);
+            Console.WriteLine(CountValidCaseCodes("hello, CASE-7777") == 1);
+            Console.WriteLine(CountValidCaseCodes("") == 0);
+            Console.WriteLine(CountValidCaseCodes(" ") == 0);
+            Console.WriteLine(CountValidCaseCodes(null!) == 0);
+
+            // Count Negative Multiples Of Three
+            Console.WriteLine(CountNegativeMultiplesOfThreeWarmUp([-3, -6, 3, 9, -10]) == 2);
+            Console.WriteLine(CountNegativeMultiplesOfThreeWarmUp([-1, -2, -4]) == 0);
+            Console.WriteLine(CountNegativeMultiplesOfThreeWarmUp([-9, 0, -12]) == 2);
+            Console.WriteLine(CountNegativeMultiplesOfThreeWarmUp(null!) == 0);
+            Console.WriteLine(CountNegativeMultiplesOfThreeWarmUp([]) == 0);
+
             // CountErrorCodeFrequency
             Dictionary<string, int> res1 = CountErrorCodeFrequency("E404, E500, E404");
             Console.WriteLine(res1["e404"] == 2);
