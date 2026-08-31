@@ -90,7 +90,7 @@
         foreach (string word in splitString)
         {
             if (word.Length > 3 &&
-                (bestSoFar == "" || word.Length < bestSoFar.Length))
+            (bestSoFar == "" || word.Length < bestSoFar.Length))
             {
                 bestSoFar = word;
             }
@@ -98,15 +98,51 @@
 
         return bestSoFar;
     }
+
+    public static string FindMostFrequentStatus(string input)
+    {
+        if (string.IsNullOrWhiteSpace(input))
+        {
+            return "";
+        }
+
+        Dictionary<string, int> newDict = [];
+        string[] splitString = input.Split(',', StringSplitOptions.RemoveEmptyEntries);
+
+        foreach (string str in splitString)
+        {
+            string strTrimmed = str.Trim().ToLower();
+
+            if (newDict.ContainsKey(strTrimmed))
+            {
+                newDict[strTrimmed]++;
+            }
+            else
+            {
+                newDict[strTrimmed] = 1;
+            }
+        }
+
+        return newDict.MaxBy(nd => nd.Value).Key;
+    }
     public static void Main(string[] args)
     {
+        // Find most Frequent Status:
+        Console.WriteLine(FindMostFrequentStatus("Open, Closed, Open, Pending") == "open");
+        Console.WriteLine(FindMostFrequentStatus("High, Low, high, Medium, high") == "high");
+        Console.WriteLine(FindMostFrequentStatus("Red, Blue, Red, Blue") == "red");
+        Console.WriteLine(FindMostFrequentStatus("") == "");
+        Console.WriteLine(FindMostFrequentStatus("  ") == "");
+        Console.WriteLine(FindMostFrequentStatus(null!) == "");
+
+
         // Find Shortest Word Longer Than Three
-        Console.WriteLine(FindShortestWordLongerThanThree("cat banana dog pear") == "pear");
-        Console.WriteLine(FindShortestWordLongerThanThree("one two six") == "");
-        Console.WriteLine(FindShortestWordLongerThanThree("coding test practice") == "test");
-        Console.WriteLine(FindShortestWordLongerThanThree("alpha beta code") == "beta");
-        Console.WriteLine(FindShortestWordLongerThanThree("") == "");
-        Console.WriteLine(FindShortestWordLongerThanThree(null!) == "");
+        // Console.WriteLine(FindShortestWordLongerThanThree("cat banana dog pear") == "pear");
+        // Console.WriteLine(FindShortestWordLongerThanThree("one two six") == "");
+        // Console.WriteLine(FindShortestWordLongerThanThree("coding test practice") == "test");
+        // Console.WriteLine(FindShortestWordLongerThanThree("alpha beta code") == "beta");
+        // Console.WriteLine(FindShortestWordLongerThanThree("") == "");
+        // Console.WriteLine(FindShortestWordLongerThanThree(null!) == "");
 
         // Find Longest Below Limit Streak: 
         // Console.WriteLine(FindLongestBelowLimitStreak([3, 4, 10, 2, 1, 8], 5) == 2);
