@@ -45,15 +45,53 @@
 
         return counter;
     }
+
+    public static int FindLongestBelowLimitStreak(int[] numbers, int limit)
+    {
+        if(numbers is null || numbers.Length == 0)
+        {
+            return 0;
+        }
+
+        int streakCounter = 0;
+        int highestStreakSoFar = 0;
+
+        foreach(int digit in numbers)
+        {
+            if(digit < limit)
+            {
+                streakCounter++;
+            }
+            else
+            {
+                streakCounter = 0;
+            }
+
+            if(streakCounter > highestStreakSoFar)
+            {
+                highestStreakSoFar = streakCounter;
+            }
+        }
+
+        return highestStreakSoFar;
+    }
     public static void Main(string[] args)
     {
+        // Find Longest Below Limit Streak: 
+        Console.WriteLine(FindLongestBelowLimitStreak([3, 4, 10, 2, 1, 8], 5) == 2);
+        Console.WriteLine(FindLongestBelowLimitStreak([10, 11, 12], 5) == 0);
+        Console.WriteLine(FindLongestBelowLimitStreak([1, 2, 3], 5) == 3);
+        Console.WriteLine(FindLongestBelowLimitStreak([5, 4, 5, 3], 5) == 1);
+        Console.WriteLine(FindLongestBelowLimitStreak(null!, 5) == 0);
+        Console.WriteLine(FindLongestBelowLimitStreak([], 5) == 0);
+
         // Count Valid Promo Codes: 
-        Console.WriteLine(CountValidPromoCodes("PRO-1234, PRO-9999, BAD-1234") == 2);
-        Console.WriteLine(CountValidPromoCodes("pro-0001, PRO-12A4, PRO-12345") == 1);
-        Console.WriteLine(CountValidPromoCodes("hello, PRO-7777") == 1);
-        Console.WriteLine(CountValidPromoCodes("") == 0);
-        Console.WriteLine(CountValidPromoCodes("   ") == 0);
-        Console.WriteLine(CountValidPromoCodes(null!) == 0);
+        // Console.WriteLine(CountValidPromoCodes("PRO-1234, PRO-9999, BAD-1234") == 2);
+        // Console.WriteLine(CountValidPromoCodes("pro-0001, PRO-12A4, PRO-12345") == 1);
+        // Console.WriteLine(CountValidPromoCodes("hello, PRO-7777") == 1);
+        // Console.WriteLine(CountValidPromoCodes("") == 0);
+        // Console.WriteLine(CountValidPromoCodes("   ") == 0);
+        // Console.WriteLine(CountValidPromoCodes(null!) == 0);
 
         // Warm Up: Count Negative Numbers
         // Console.WriteLine(CountNegativeEvenNumbersWarmUp([-2, -4, 5, 8, -7]) == 2);
