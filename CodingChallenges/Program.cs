@@ -48,7 +48,7 @@
 
     public static int FindLongestBelowLimitStreak(int[] numbers, int limit)
     {
-        if(numbers is null || numbers.Length == 0)
+        if (numbers is null || numbers.Length == 0)
         {
             return 0;
         }
@@ -56,9 +56,9 @@
         int streakCounter = 0;
         int highestStreakSoFar = 0;
 
-        foreach(int digit in numbers)
+        foreach (int digit in numbers)
         {
-            if(digit < limit)
+            if (digit < limit)
             {
                 streakCounter++;
             }
@@ -67,7 +67,7 @@
                 streakCounter = 0;
             }
 
-            if(streakCounter > highestStreakSoFar)
+            if (streakCounter > highestStreakSoFar)
             {
                 highestStreakSoFar = streakCounter;
             }
@@ -75,15 +75,46 @@
 
         return highestStreakSoFar;
     }
+
+    public static string FindShortestWordLongerThanThree(string input)
+    {
+        if (string.IsNullOrWhiteSpace(input))
+        {
+            return "";
+        }
+
+        string bestSoFar = "";
+
+        string[] splitString = input.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+        foreach (string word in splitString)
+        {
+            if (word.Length > 3 &&
+                (bestSoFar == "" || word.Length < bestSoFar.Length))
+            {
+                bestSoFar = word;
+            }
+        }
+
+        return bestSoFar;
+    }
     public static void Main(string[] args)
     {
+        // Find Shortest Word Longer Than Three
+        Console.WriteLine(FindShortestWordLongerThanThree("cat banana dog pear") == "pear");
+        Console.WriteLine(FindShortestWordLongerThanThree("one two six") == "");
+        Console.WriteLine(FindShortestWordLongerThanThree("coding test practice") == "test");
+        Console.WriteLine(FindShortestWordLongerThanThree("alpha beta code") == "beta");
+        Console.WriteLine(FindShortestWordLongerThanThree("") == "");
+        Console.WriteLine(FindShortestWordLongerThanThree(null!) == "");
+
         // Find Longest Below Limit Streak: 
-        Console.WriteLine(FindLongestBelowLimitStreak([3, 4, 10, 2, 1, 8], 5) == 2);
-        Console.WriteLine(FindLongestBelowLimitStreak([10, 11, 12], 5) == 0);
-        Console.WriteLine(FindLongestBelowLimitStreak([1, 2, 3], 5) == 3);
-        Console.WriteLine(FindLongestBelowLimitStreak([5, 4, 5, 3], 5) == 1);
-        Console.WriteLine(FindLongestBelowLimitStreak(null!, 5) == 0);
-        Console.WriteLine(FindLongestBelowLimitStreak([], 5) == 0);
+        // Console.WriteLine(FindLongestBelowLimitStreak([3, 4, 10, 2, 1, 8], 5) == 2);
+        // Console.WriteLine(FindLongestBelowLimitStreak([10, 11, 12], 5) == 0);
+        // Console.WriteLine(FindLongestBelowLimitStreak([1, 2, 3], 5) == 3);
+        // Console.WriteLine(FindLongestBelowLimitStreak([5, 4, 5, 3], 5) == 1);
+        // Console.WriteLine(FindLongestBelowLimitStreak(null!, 5) == 0);
+        // Console.WriteLine(FindLongestBelowLimitStreak([], 5) == 0);
 
         // Count Valid Promo Codes: 
         // Console.WriteLine(CountValidPromoCodes("PRO-1234, PRO-9999, BAD-1234") == 2);
