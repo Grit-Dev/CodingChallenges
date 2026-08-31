@@ -200,6 +200,52 @@ namespace CodingChallenges.Challenges.Phase_02_OOP
         }
         public static void Run_Three()
         {
+            // Find First Word Containing Digit:
+            Console.WriteLine(FindFirstWordContainingDigit("hello test abc123 code") == "abc123");
+            Console.WriteLine(FindFirstWordContainingDigit("room7 is ready") == "room7");
+            Console.WriteLine(FindFirstWordContainingDigit("hello world") == "");
+            Console.WriteLine(FindFirstWordContainingDigit("") == "");
+            Console.WriteLine(FindFirstWordContainingDigit(null!) == "");
+
+            // Find most Frequent Status:
+            Console.WriteLine(FindMostFrequentStatus("Open, Closed, Open, Pending") == "open");
+            Console.WriteLine(FindMostFrequentStatus("High, Low, high, Medium, high") == "high");
+            Console.WriteLine(FindMostFrequentStatus("Red, Blue, Red, Blue") == "red");
+            Console.WriteLine(FindMostFrequentStatus("") == "");
+            Console.WriteLine(FindMostFrequentStatus("  ") == "");
+            Console.WriteLine(FindMostFrequentStatus(null!) == "");
+
+            // Find Shortest Word Longer Than Three
+            Console.WriteLine(FindShortestWordLongerThanThree("cat banana dog pear") == "pear");
+            Console.WriteLine(FindShortestWordLongerThanThree("one two six") == "");
+            Console.WriteLine(FindShortestWordLongerThanThree("coding test practice") == "test");
+            Console.WriteLine(FindShortestWordLongerThanThree("alpha beta code") == "beta");
+            Console.WriteLine(FindShortestWordLongerThanThree("") == "");
+            Console.WriteLine(FindShortestWordLongerThanThree(null!) == "");
+
+            // Find Longest Below Limit Streak: 
+            Console.WriteLine(FindLongestBelowLimitStreak([3, 4, 10, 2, 1, 8], 5) == 2);
+            Console.WriteLine(FindLongestBelowLimitStreak([10, 11, 12], 5) == 0);
+            Console.WriteLine(FindLongestBelowLimitStreak([1, 2, 3], 5) == 3);
+            Console.WriteLine(FindLongestBelowLimitStreak([5, 4, 5, 3], 5) == 1);
+            Console.WriteLine(FindLongestBelowLimitStreak(null!, 5) == 0);
+            Console.WriteLine(FindLongestBelowLimitStreak([], 5) == 0);
+
+            // Count Valid Promo Codes: 
+            Console.WriteLine(CountValidPromoCodes("PRO-1234, PRO-9999, BAD-1234") == 2);
+            Console.WriteLine(CountValidPromoCodes("pro-0001, PRO-12A4, PRO-12345") == 1);
+            Console.WriteLine(CountValidPromoCodes("hello, PRO-7777") == 1);
+            Console.WriteLine(CountValidPromoCodes("") == 0);
+            Console.WriteLine(CountValidPromoCodes("   ") == 0);
+            Console.WriteLine(CountValidPromoCodes(null!) == 0);
+
+            // Warm Up: Count Negative Numbers
+            Console.WriteLine(CountNegativeEvenNumbersWarmUp([-2, -4, 5, 8, -7]) == 2);
+            Console.WriteLine(CountNegativeEvenNumbersWarmUp([-1, -3, -5]) == 0);
+            Console.WriteLine(CountNegativeEvenNumbersWarmUp([-10, 0, -12]) == 2);
+            Console.WriteLine(CountNegativeEvenNumbersWarmUp(null!) == 0);
+            Console.WriteLine(CountNegativeEvenNumbersWarmUp([]) == 0);
+
             // Find Last Word Longer Than Five
             Console.WriteLine(FindLastWordLongerThanFive("cat banana dog pineapple") == "pineapple");
             Console.WriteLine(FindLastWordLongerThanFive("hello world test") == "");
