@@ -125,16 +125,45 @@
 
         return newDict.MaxBy(nd => nd.Value).Key;
     }
+
+    public static string FindFirstWordContainingDigit(string input)
+    {
+        if(string.IsNullOrWhiteSpace(input))
+        {
+            return "";
+        }
+
+        string[] splitString = input.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+        foreach(string str in splitString)
+        {
+            foreach(char character in str)
+            {
+                if(char.IsDigit(character))
+                {
+                    return str;
+                }
+            }
+        }
+
+        return "";
+    }
     public static void Main(string[] args)
     {
-        // Find most Frequent Status:
-        Console.WriteLine(FindMostFrequentStatus("Open, Closed, Open, Pending") == "open");
-        Console.WriteLine(FindMostFrequentStatus("High, Low, high, Medium, high") == "high");
-        Console.WriteLine(FindMostFrequentStatus("Red, Blue, Red, Blue") == "red");
-        Console.WriteLine(FindMostFrequentStatus("") == "");
-        Console.WriteLine(FindMostFrequentStatus("  ") == "");
-        Console.WriteLine(FindMostFrequentStatus(null!) == "");
+        // Find First Word Containing Digit:
+        Console.WriteLine(FindFirstWordContainingDigit("hello test abc123 code") == "abc123");
+        Console.WriteLine(FindFirstWordContainingDigit("room7 is ready") == "room7");
+        Console.WriteLine(FindFirstWordContainingDigit("hello world") == "");
+        Console.WriteLine(FindFirstWordContainingDigit("") == "");
+        Console.WriteLine(FindFirstWordContainingDigit(null!) == "");
 
+        // Find most Frequent Status:
+        // Console.WriteLine(FindMostFrequentStatus("Open, Closed, Open, Pending") == "open");
+        // Console.WriteLine(FindMostFrequentStatus("High, Low, high, Medium, high") == "high");
+        // Console.WriteLine(FindMostFrequentStatus("Red, Blue, Red, Blue") == "red");
+        // Console.WriteLine(FindMostFrequentStatus("") == "");
+        // Console.WriteLine(FindMostFrequentStatus("  ") == "");
+        // Console.WriteLine(FindMostFrequentStatus(null!) == "");
 
         // Find Shortest Word Longer Than Three
         // Console.WriteLine(FindShortestWordLongerThanThree("cat banana dog pear") == "pear");
