@@ -6,6 +6,154 @@ namespace CodingChallenges.Challenges.Phase_02_OOP
 {
     public class ChallengeSolutions
     {
+        public static int CountNegativeEvenNumbersWarmUp(int[] numbers)
+        {
+            if (numbers is null || numbers.Length == 0)
+            {
+                return 0;
+            }
+
+            int counter = 0;
+
+            foreach (int digit in numbers)
+            {
+                if (digit < 0 && digit % 2 == 0)
+                {
+                    counter++;
+                }
+            }
+
+            return counter;
+        }
+
+        public static int CountValidPromoCodes(string input)
+        {
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                return 0;
+            }
+
+            int counter = 0;
+
+            string[] splitString = input.Split(',', StringSplitOptions.RemoveEmptyEntries);
+
+            foreach (string str in splitString)
+            {
+                string strTrimmed = str.Trim();
+
+                if (strTrimmed.Length == 8 &&
+                strTrimmed.StartsWith("PRO-", StringComparison.OrdinalIgnoreCase) &&
+                int.TryParse(strTrimmed.Substring(4), out _))
+                {
+                    counter++;
+                }
+            }
+
+            return counter;
+        }
+
+        public static int FindLongestBelowLimitStreak(int[] numbers, int limit)
+        {
+            if (numbers is null || numbers.Length == 0)
+            {
+                return 0;
+            }
+
+            int streakCounter = 0;
+            int highestStreakSoFar = 0;
+
+            foreach (int digit in numbers)
+            {
+                if (digit < limit)
+                {
+                    streakCounter++;
+                }
+                else
+                {
+                    streakCounter = 0;
+                }
+
+                if (streakCounter > highestStreakSoFar)
+                {
+                    highestStreakSoFar = streakCounter;
+                }
+            }
+
+            return highestStreakSoFar;
+        }
+
+        public static string FindShortestWordLongerThanThree(string input)
+        {
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                return "";
+            }
+
+            string bestSoFar = "";
+
+            string[] splitString = input.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+            foreach (string word in splitString)
+            {
+                if (word.Length > 3 &&
+                (bestSoFar == "" || word.Length < bestSoFar.Length))
+                {
+                    bestSoFar = word;
+                }
+            }
+
+            return bestSoFar;
+        }
+
+        public static string FindMostFrequentStatus(string input)
+        {
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                return "";
+            }
+
+            Dictionary<string, int> newDict = [];
+            string[] splitString = input.Split(',', StringSplitOptions.RemoveEmptyEntries);
+
+            foreach (string str in splitString)
+            {
+                string strTrimmed = str.Trim().ToLower();
+
+                if (newDict.ContainsKey(strTrimmed))
+                {
+                    newDict[strTrimmed]++;
+                }
+                else
+                {
+                    newDict[strTrimmed] = 1;
+                }
+            }
+
+            return newDict.MaxBy(nd => nd.Value).Key;
+        }
+
+        public static string FindFirstWordContainingDigit(string input)
+        {
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                return "";
+            }
+
+            string[] splitString = input.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+            foreach (string str in splitString)
+            {
+                foreach (char character in str)
+                {
+                    if (char.IsDigit(character))
+                    {
+                        return str;
+                    }
+                }
+            }
+
+            return "";
+        }
         public static Dictionary<string, int> CountTagFrequency(string input)
         {
             if (string.IsNullOrWhiteSpace(input))
