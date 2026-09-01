@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Globalization;
+using System.Text;
 
 public class Program
 {
@@ -94,7 +95,7 @@ public class Program
 
     public static string FindFirstRepeatedWord(string input)
     {
-        if(string.IsNullOrWhiteSpace(input))
+        if (string.IsNullOrWhiteSpace(input))
         {
             return "";
         }
@@ -103,11 +104,11 @@ public class Program
 
         string[] splitString = input.Split(' ', StringSplitOptions.RemoveEmptyEntries);
 
-        foreach(string str in splitString)
+        foreach (string str in splitString)
         {
             string strLowered = str.ToLower();
 
-            if(newDict.ContainsKey(strLowered))
+            if (newDict.ContainsKey(strLowered))
             {
                 return str;
             }
@@ -120,15 +121,33 @@ public class Program
         return "";
     }
 
+    public static int[] GetPassingScoresWithLinq(int[] scores) => 
+    scores?.Where(s => s >= 50).ToArray() ?? [];
+    
     public static void Main(string[] args)
     {
+        // Find Passing Scores With Linq
+        int[] passingOne = GetPassingScoresWithLinq([40, 50, 60, 30]);
+        Console.WriteLine(passingOne.Length == 2);
+        Console.WriteLine(passingOne[0] == 50);
+        Console.WriteLine(passingOne[1] == 60);
+
+        int[] passingTwo = GetPassingScoresWithLinq([80, 20, 90]);
+        Console.WriteLine(passingTwo.Length == 2);
+        Console.WriteLine(passingTwo[0] == 80);
+        Console.WriteLine(passingTwo[1] == 90);
+
+        Console.WriteLine(GetPassingScoresWithLinq([10, 20]).Length == 0);
+        Console.WriteLine(GetPassingScoresWithLinq(null!).Length == 0);
+        Console.WriteLine(GetPassingScoresWithLinq([]).Length == 0);
+
         // Find First Repeated Word
-        Console.WriteLine(FindFirstRepeatedWord("red blue green red") == "red");
-        Console.WriteLine(FindFirstRepeatedWord("Cat dog cat bird") == "cat");
-        Console.WriteLine(FindFirstRepeatedWord("one two three") == "");
-        Console.WriteLine(FindFirstRepeatedWord("") == "");
-        Console.WriteLine(FindFirstRepeatedWord(" ") == "");
-        Console.WriteLine(FindFirstRepeatedWord(null!) == "");
+        // Console.WriteLine(FindFirstRepeatedWord("red blue green red") == "red");
+        // Console.WriteLine(FindFirstRepeatedWord("Cat dog cat bird") == "cat");
+        // Console.WriteLine(FindFirstRepeatedWord("one two three") == "");
+        // Console.WriteLine(FindFirstRepeatedWord("") == "");
+        // Console.WriteLine(FindFirstRepeatedWord(" ") == "");
+        // Console.WriteLine(FindFirstRepeatedWord(null!) == "");
 
         // Has Pair With Target Sum
         // Console.WriteLine(HasPairWithTargetSum([2, 4, 6, 8], 10) == true);
