@@ -50,7 +50,7 @@ public class Program
 
     public static string RemoveWordsShorterThanThree(string input)
     {
-        if(string.IsNullOrWhiteSpace(input))
+        if (string.IsNullOrWhiteSpace(input))
         {
             return "";
         }
@@ -59,9 +59,9 @@ public class Program
 
         string[] stringSplit = input.Split(' ', StringSplitOptions.RemoveEmptyEntries);
 
-        foreach(string str in stringSplit)
+        foreach (string str in stringSplit)
         {
-            if(str.Length >= 3)
+            if (str.Length >= 3)
             {
                 newStringBuild.Append($"{str} ");
             }
@@ -71,15 +71,44 @@ public class Program
 
     }
 
+    public static bool HasPairWithTargetSum(int[] numbers, int target)
+    {
+        if(numbers is null || numbers.Length < 2)
+        {
+            return false;
+        }
+
+        for(int outerIndex = 0; outerIndex <= numbers.Length -1; outerIndex++)
+        {
+            for(int innerIndex = outerIndex + 1; innerIndex <= numbers.Length -1; innerIndex++)
+            {
+                if(numbers[outerIndex] + numbers[innerIndex] == target)
+                {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
     public static void Main(string[] args)
     {
+        // Has Pair With Target Sum
+        Console.WriteLine(HasPairWithTargetSum([2, 4, 6, 8], 10) == true);
+        Console.WriteLine(HasPairWithTargetSum([1, 2, 3], 10) == false);
+        Console.WriteLine(HasPairWithTargetSum([5, 5], 10) == true);
+        Console.WriteLine(HasPairWithTargetSum([7], 7) == false);
+        Console.WriteLine(HasPairWithTargetSum(null!, 10) == false);
+        Console.WriteLine(HasPairWithTargetSum([], 10) == false);
+
         // Remove Words Shorter Than Three
-        Console.WriteLine(RemoveWordsShorterThanThree("hi paul is coding today") == "paul coding today");
-        Console.WriteLine(RemoveWordsShorterThanThree("a big red cat") == "big red cat");
-        Console.WriteLine(RemoveWordsShorterThanThree("to be or not") == "not");
-        Console.WriteLine(RemoveWordsShorterThanThree("") == "");
-        Console.WriteLine(RemoveWordsShorterThanThree(" ") == "");
-        Console.WriteLine(RemoveWordsShorterThanThree(null!) == "");
+        // Console.WriteLine(RemoveWordsShorterThanThree("hi paul is coding today") == "paul coding today");
+        // Console.WriteLine(RemoveWordsShorterThanThree("a big red cat") == "big red cat");
+        // Console.WriteLine(RemoveWordsShorterThanThree("to be or not") == "not");
+        // Console.WriteLine(RemoveWordsShorterThanThree("") == "");
+        // Console.WriteLine(RemoveWordsShorterThanThree(" ") == "");
+        // Console.WriteLine(RemoveWordsShorterThanThree(null!) == "");
 
         // Replace Negatives With Zero
         // int[] replacedOne = ReplaceNegativesWithZero(new int[] { 1, -2, 3, -4 });
