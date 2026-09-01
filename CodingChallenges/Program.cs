@@ -73,16 +73,16 @@ public class Program
 
     public static bool HasPairWithTargetSum(int[] numbers, int target)
     {
-        if(numbers is null || numbers.Length < 2)
+        if (numbers is null || numbers.Length < 2)
         {
             return false;
         }
 
-        for(int outerIndex = 0; outerIndex <= numbers.Length -1; outerIndex++)
+        for (int outerIndex = 0; outerIndex <= numbers.Length - 1; outerIndex++)
         {
-            for(int innerIndex = outerIndex + 1; innerIndex <= numbers.Length -1; innerIndex++)
+            for (int innerIndex = outerIndex + 1; innerIndex <= numbers.Length - 1; innerIndex++)
             {
-                if(numbers[outerIndex] + numbers[innerIndex] == target)
+                if (numbers[outerIndex] + numbers[innerIndex] == target)
                 {
                     return true;
                 }
@@ -92,15 +92,51 @@ public class Program
         return false;
     }
 
+    public static string FindFirstRepeatedWord(string input)
+    {
+        if(string.IsNullOrWhiteSpace(input))
+        {
+            return "";
+        }
+
+        var newDict = new Dictionary<string, int>();
+
+        string[] splitString = input.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+        foreach(string str in splitString)
+        {
+            string strLowered = str.ToLower();
+
+            if(newDict.ContainsKey(strLowered))
+            {
+                return strLowered;
+            }
+            else
+            {
+                newDict[strLowered] = 1;
+            }
+        }
+
+        return "";
+    }
+
     public static void Main(string[] args)
     {
+        // Find First Repeated Word
+        Console.WriteLine(FindFirstRepeatedWord("red blue green red") == "red");
+        Console.WriteLine(FindFirstRepeatedWord("Cat dog cat bird") == "cat");
+        Console.WriteLine(FindFirstRepeatedWord("one two three") == "");
+        Console.WriteLine(FindFirstRepeatedWord("") == "");
+        Console.WriteLine(FindFirstRepeatedWord(" ") == "");
+        Console.WriteLine(FindFirstRepeatedWord(null!) == "");
+
         // Has Pair With Target Sum
-        Console.WriteLine(HasPairWithTargetSum([2, 4, 6, 8], 10) == true);
-        Console.WriteLine(HasPairWithTargetSum([1, 2, 3], 10) == false);
-        Console.WriteLine(HasPairWithTargetSum([5, 5], 10) == true);
-        Console.WriteLine(HasPairWithTargetSum([7], 7) == false);
-        Console.WriteLine(HasPairWithTargetSum(null!, 10) == false);
-        Console.WriteLine(HasPairWithTargetSum([], 10) == false);
+        // Console.WriteLine(HasPairWithTargetSum([2, 4, 6, 8], 10) == true);
+        // Console.WriteLine(HasPairWithTargetSum([1, 2, 3], 10) == false);
+        // Console.WriteLine(HasPairWithTargetSum([5, 5], 10) == true);
+        // Console.WriteLine(HasPairWithTargetSum([7], 7) == false);
+        // Console.WriteLine(HasPairWithTargetSum(null!, 10) == false);
+        // Console.WriteLine(HasPairWithTargetSum([], 10) == false);
 
         // Remove Words Shorter Than Three
         // Console.WriteLine(RemoveWordsShorterThanThree("hi paul is coding today") == "paul coding today");
