@@ -109,7 +109,7 @@ public class Program
 
             if(newDict.ContainsKey(strLowered))
             {
-                return strLowered;
+                return str;
             }
             else
             {
