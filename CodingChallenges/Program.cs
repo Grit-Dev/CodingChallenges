@@ -1,4 +1,5 @@
 ﻿using System.Globalization;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 
 public class Program
@@ -121,25 +122,69 @@ public class Program
         return "";
     }
 
-    public static int[] GetPassingScoresWithLinq(int[] scores) => 
+    public static int[] GetPassingScoresWithLinq(int[] scores) =>
     scores?.Where(s => s >= 50).ToArray() ?? [];
-    
+
+    public static string FindFirstWordWithTwoVowels(string input)
+    {
+        if (string.IsNullOrWhiteSpace(input))
+        {
+            return "";
+        }
+
+        List<char> vowelList = ['a', 'e', 'i', 'o', 'u'];
+
+        string[] splitString = input.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+        foreach (string str in splitString)
+        {
+            int counter = 0;
+            string strLowered = str.ToLower();
+
+            foreach (char character in strLowered)
+            {
+                if (vowelList.Contains(character))
+                {
+                    counter++;
+                }
+
+                if (counter == 2)
+                {
+                    return str;
+                }
+            }
+        }
+
+        return "";
+    }
     public static void Main(string[] args)
     {
+        // Find First Word With Two Vowels
+        Console.WriteLine(FindFirstWordWithTwoVowels("sky cat tree code") == "tree");
+        Console.WriteLine(FindFirstWordWithTwoVowels("my rhythm fly") == "");
+        Console.WriteLine(FindFirstWordWithTwoVowels("Paul codes daily") == "Paul");
+        Console.WriteLine(FindFirstWordWithTwoVowels("dog house tree") == "house");
+        Console.WriteLine(FindFirstWordWithTwoVowels("APPLE banana") == "APPLE");
+        Console.WriteLine(FindFirstWordWithTwoVowels("a be see") == "see");
+        Console.WriteLine(FindFirstWordWithTwoVowels("") == "");
+        Console.WriteLine(FindFirstWordWithTwoVowels(" ") == "");
+        Console.WriteLine(FindFirstWordWithTwoVowels(null!) == "");
+
+
         // Find Passing Scores With Linq
-        int[] passingOne = GetPassingScoresWithLinq([40, 50, 60, 30]);
-        Console.WriteLine(passingOne.Length == 2);
-        Console.WriteLine(passingOne[0] == 50);
-        Console.WriteLine(passingOne[1] == 60);
+        // int[] passingOne = GetPassingScoresWithLinq([40, 50, 60, 30]);
+        // Console.WriteLine(passingOne.Length == 2);
+        // Console.WriteLine(passingOne[0] == 50);
+        // Console.WriteLine(passingOne[1] == 60);
 
-        int[] passingTwo = GetPassingScoresWithLinq([80, 20, 90]);
-        Console.WriteLine(passingTwo.Length == 2);
-        Console.WriteLine(passingTwo[0] == 80);
-        Console.WriteLine(passingTwo[1] == 90);
+        // int[] passingTwo = GetPassingScoresWithLinq([80, 20, 90]);
+        // Console.WriteLine(passingTwo.Length == 2);
+        // Console.WriteLine(passingTwo[0] == 80);
+        // Console.WriteLine(passingTwo[1] == 90);
 
-        Console.WriteLine(GetPassingScoresWithLinq([10, 20]).Length == 0);
-        Console.WriteLine(GetPassingScoresWithLinq(null!).Length == 0);
-        Console.WriteLine(GetPassingScoresWithLinq([]).Length == 0);
+        // Console.WriteLine(GetPassingScoresWithLinq([10, 20]).Length == 0);
+        // Console.WriteLine(GetPassingScoresWithLinq(null!).Length == 0);
+        // Console.WriteLine(GetPassingScoresWithLinq([]).Length == 0);
 
         // Find First Repeated Word
         // Console.WriteLine(FindFirstRepeatedWord("red blue green red") == "red");
