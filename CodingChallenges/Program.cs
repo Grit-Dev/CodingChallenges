@@ -64,15 +64,55 @@ public class Program
 
         return null;
     }
+
+    public static string[] GetHighPriorityTickets(string input)
+    {
+        if (string.IsNullOrWhiteSpace(input))
+        {
+            return [];
+        }
+
+        List<string> newList = [];
+
+        string[] splitString = input.Split(',', StringSplitOptions.RemoveEmptyEntries);
+
+        foreach (string str in splitString)
+        {
+            string strTrimmed = str.Trim();
+            if (strTrimmed.Length == 9 &&
+            strTrimmed.StartsWith("HIGH-", StringComparison.OrdinalIgnoreCase) &&
+            int.TryParse(strTrimmed.Substring(5), out _))
+            {
+                newList.Add(strTrimmed);
+            }
+        }
+
+        return newList.ToArray();
+    }
     public static void Main(string[] args)
     {
+        // Get Valid Email Email Address
+        string[] ticketsOne = GetHighPriorityTickets("HIGH-1234, LOW-9999, High-5678");
+
+        Console.WriteLine(ticketsOne.Length == 2);
+        Console.WriteLine(ticketsOne[0] == "HIGH-1234");
+        Console.WriteLine(ticketsOne[1] == "High-5678");
+
+        string[] ticketsTwo = GetHighPriorityTickets("BAD-1234, high-0001, HIGH-12A4");
+
+        Console.WriteLine(ticketsTwo.Length == 1);
+        Console.WriteLine(ticketsTwo[0] == "high-0001");
+        Console.WriteLine(GetHighPriorityTickets("").Length == 0);
+        Console.WriteLine(GetHighPriorityTickets(" ").Length == 0);
+        Console.WriteLine(GetHighPriorityTickets(null!).Length == 0);
+
         // Find First Running Total Over Limit
-        Console.WriteLine(FindFirstRunningTotalOverLimit([2, 4, 5, 1], 10) == 11);
-        Console.WriteLine(FindFirstRunningTotalOverLimit([1, 2, 3], 10) == null);
-        Console.WriteLine(FindFirstRunningTotalOverLimit([10, 1], 10) == 11);
-        Console.WriteLine(FindFirstRunningTotalOverLimit([-5, 20], 10) == 15);
-        Console.WriteLine(FindFirstRunningTotalOverLimit(null!, 10) == null);
-        Console.WriteLine(FindFirstRunningTotalOverLimit([], 10) == null);
+        // Console.WriteLine(FindFirstRunningTotalOverLimit([2, 4, 5, 1], 10) == 11);
+        // Console.WriteLine(FindFirstRunningTotalOverLimit([1, 2, 3], 10) == null);
+        // Console.WriteLine(FindFirstRunningTotalOverLimit([10, 1], 10) == 11);
+        // Console.WriteLine(FindFirstRunningTotalOverLimit([-5, 20], 10) == 15);
+        // Console.WriteLine(FindFirstRunningTotalOverLimit(null!, 10) == null);
+        // Console.WriteLine(FindFirstRunningTotalOverLimit([], 10) == null);
 
         // Replace Every Second Character With Star 
         // Console.WriteLine(ReplaceEverySecondCharacterWithStar("abcdef") == "a*c*e*");
