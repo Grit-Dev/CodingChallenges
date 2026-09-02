@@ -91,19 +91,19 @@ public class Program
     }
     public static Dictionary<string, int> CountWordFrequencyWithTryGetValue(string input)
     {
-        if(string.IsNullOrWhiteSpace(input))
+        if (string.IsNullOrWhiteSpace(input))
         {
             return [];
         }
 
-        Dictionary<string, int> newDict = []; 
+        Dictionary<string, int> newDict = [];
         string[] splitString = input.Split(' ', StringSplitOptions.RemoveEmptyEntries);
 
-        foreach(string str in splitString)
+        foreach (string str in splitString)
         {
             string strTrimmed = str.Trim().ToLower();
 
-            if(newDict.TryGetValue(strTrimmed, out int value))
+            if (newDict.TryGetValue(strTrimmed, out int value))
             {
                 newDict[strTrimmed] = value + 1;
             }
@@ -116,18 +116,40 @@ public class Program
         return newDict;
 
     }
+
+    public static int[] SquareNumbersWithLinq(int[] numbers) =>
+        numbers?.Select(n => n * n).ToArray() ?? [];
+    
     public static void Main(string[] args)
     {
+        // Square Number With Linq
+        int[] squaredOne = SquareNumbersWithLinq([1, 2, 3]);
+
+        Console.WriteLine(squaredOne.Length == 3);
+        Console.WriteLine(squaredOne[0] == 1);
+        Console.WriteLine(squaredOne[1] == 4);
+        Console.WriteLine(squaredOne[2] == 9);
+
+        int[] squaredTwo = SquareNumbersWithLinq([-2, 0, 5]);
+
+        Console.WriteLine(squaredTwo.Length == 3);
+        Console.WriteLine(squaredTwo[0] == 4);
+        Console.WriteLine(squaredTwo[1] == 0);
+        Console.WriteLine(squaredTwo[2] == 25);
+
+        Console.WriteLine(SquareNumbersWithLinq(null!).Length == 0);
+        Console.WriteLine(SquareNumbersWithLinq([]).Length == 0);
+
         // Count Word Frequency Using TryGetValue
-        Dictionary<string, int> wordsOne = CountWordFrequencyWithTryGetValue("apple banana apple");
-        Console.WriteLine(wordsOne["apple"] == 2);
-        Console.WriteLine(wordsOne["banana"] == 1);
+        // Dictionary<string, int> wordsOne = CountWordFrequencyWithTryGetValue("apple banana apple");
+        // Console.WriteLine(wordsOne["apple"] == 2);
+        // Console.WriteLine(wordsOne["banana"] == 1);
 
-        Dictionary<string, int> wordsTwo = CountWordFrequencyWithTryGetValue("Hello hello HELLO");
-        Console.WriteLine(wordsTwo["hello"] == 3);
+        // Dictionary<string, int> wordsTwo = CountWordFrequencyWithTryGetValue("Hello hello HELLO");
+        // Console.WriteLine(wordsTwo["hello"] == 3);
 
-        Dictionary<string, int> wordsThree = CountWordFrequencyWithTryGetValue("");
-        Console.WriteLine(wordsThree.Count == 0);
+        // Dictionary<string, int> wordsThree = CountWordFrequencyWithTryGetValue("");
+        // Console.WriteLine(wordsThree.Count == 0);
 
         // Get High Priority Tickets
         // string[] ticketsOne = GetHighPriorityTickets("HIGH-1234, LOW-9999, High-5678");
