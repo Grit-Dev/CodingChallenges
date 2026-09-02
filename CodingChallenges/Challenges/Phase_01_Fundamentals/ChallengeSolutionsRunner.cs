@@ -200,6 +200,78 @@ namespace CodingChallenges.Challenges.Phase_02_OOP
         }
         public static void Run_Three()
         {
+            // Find First Word With Two Vowels
+            Console.WriteLine(FindFirstWordWithTwoVowels("sky cat tree code") == "tree");
+            Console.WriteLine(FindFirstWordWithTwoVowels("my rhythm fly") == "");
+            Console.WriteLine(FindFirstWordWithTwoVowels("Paul codes daily") == "Paul");
+            Console.WriteLine(FindFirstWordWithTwoVowels("dog house tree") == "house");
+            Console.WriteLine(FindFirstWordWithTwoVowels("APPLE banana") == "APPLE");
+            Console.WriteLine(FindFirstWordWithTwoVowels("a be see") == "see");
+            Console.WriteLine(FindFirstWordWithTwoVowels("") == "");
+            Console.WriteLine(FindFirstWordWithTwoVowels(" ") == "");
+            Console.WriteLine(FindFirstWordWithTwoVowels(null!) == "");
+
+            // Find Passing Scores With Linq
+            int[] passingOne = GetPassingScoresWithLinq([40, 50, 60, 30]);
+            Console.WriteLine(passingOne.Length == 2);
+            Console.WriteLine(passingOne[0] == 50);
+            Console.WriteLine(passingOne[1] == 60);
+
+            int[] passingTwo = GetPassingScoresWithLinq([80, 20, 90]);
+            Console.WriteLine(passingTwo.Length == 2);
+            Console.WriteLine(passingTwo[0] == 80);
+            Console.WriteLine(passingTwo[1] == 90);
+
+            Console.WriteLine(GetPassingScoresWithLinq([10, 20]).Length == 0);
+            Console.WriteLine(GetPassingScoresWithLinq(null!).Length == 0);
+            Console.WriteLine(GetPassingScoresWithLinq([]).Length == 0);
+
+            // Find First Repeated Word
+            Console.WriteLine(FindFirstRepeatedWord("red blue green red") == "red");
+            Console.WriteLine(FindFirstRepeatedWord("Cat dog cat bird") == "cat");
+            Console.WriteLine(FindFirstRepeatedWord("one two three") == "");
+            Console.WriteLine(FindFirstRepeatedWord("") == "");
+            Console.WriteLine(FindFirstRepeatedWord(" ") == "");
+            Console.WriteLine(FindFirstRepeatedWord(null!) == "");
+
+            // Has Pair With Target Sum
+            Console.WriteLine(HasPairWithTargetSum([2, 4, 6, 8], 10) == true);
+            Console.WriteLine(HasPairWithTargetSum([1, 2, 3], 10) == false);
+            Console.WriteLine(HasPairWithTargetSum([5, 5], 10) == true);
+            Console.WriteLine(HasPairWithTargetSum([7], 7) == false);
+            Console.WriteLine(HasPairWithTargetSum(null!, 10) == false);
+            Console.WriteLine(HasPairWithTargetSum([], 10) == false);
+
+            // Remove Words Shorter Than Three
+            Console.WriteLine(RemoveWordsShorterThanThree("hi paul is coding today") == "paul coding today");
+            Console.WriteLine(RemoveWordsShorterThanThree("a big red cat") == "big red cat");
+            Console.WriteLine(RemoveWordsShorterThanThree("to be or not") == "not");
+            Console.WriteLine(RemoveWordsShorterThanThree("") == "");
+            Console.WriteLine(RemoveWordsShorterThanThree(" ") == "");
+            Console.WriteLine(RemoveWordsShorterThanThree(null!) == "");
+
+            // Replace Negatives With Zero
+            int[] replacedOne = ReplaceNegativesWithZero([1, -2, 3, -4]);
+            Console.WriteLine(replacedOne[0] == 1);
+            Console.WriteLine(replacedOne[1] == 0);
+            Console.WriteLine(replacedOne[2] == 3);
+            Console.WriteLine(replacedOne[3] == 0);
+
+            int[] replacedTwo = ReplaceNegativesWithZero([-1, -2, -3]);
+            Console.WriteLine(replacedTwo[0] == 0);
+            Console.WriteLine(replacedTwo[1] == 0);
+            Console.WriteLine(replacedTwo[2] == 0);
+
+            Console.WriteLine(ReplaceNegativesWithZero(null!).Length == 0);
+            Console.WriteLine(ReplaceNegativesWithZero([]).Length == 0);
+
+            // Warm Up: Count Numbers Outside Range
+            Console.WriteLine(CountNumbersOutsideRange([1, 5, 10, 15, 20], 5, 15) == 2);
+            Console.WriteLine(CountNumbersOutsideRange([5, 10, 15], 5, 15) == 0);
+            Console.WriteLine(CountNumbersOutsideRange([-5, 0, 50], 0, 20) == 2);
+            Console.WriteLine(CountNumbersOutsideRange(null!, 0, 10) == 0);
+            Console.WriteLine(CountNumbersOutsideRange([], 0, 10) == 0);
+
             // Find First Word Containing Digit:
             Console.WriteLine(FindFirstWordContainingDigit("hello test abc123 code") == "abc123");
             Console.WriteLine(FindFirstWordContainingDigit("room7 is ready") == "room7");

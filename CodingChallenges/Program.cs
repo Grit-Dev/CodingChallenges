@@ -89,22 +89,60 @@ public class Program
 
         return newList.ToArray();
     }
+    public static Dictionary<string, int> CountWordFrequencyWithTryGetValue(string input)
+    {
+        if(string.IsNullOrWhiteSpace(input))
+        {
+            return [];
+        }
+
+        Dictionary<string, int> newDict = []; 
+        string[] splitString = input.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+        foreach(string str in splitString)
+        {
+            string strTrimmed = str.Trim().ToLower();
+
+            if(newDict.TryGetValue(strTrimmed, out int value))
+            {
+                newDict[strTrimmed] = value + 1;
+            }
+            else
+            {
+                newDict[strTrimmed] = 1;
+            }
+        }
+
+        return newDict;
+
+    }
     public static void Main(string[] args)
     {
-        // Get Valid Email Email Address
-        string[] ticketsOne = GetHighPriorityTickets("HIGH-1234, LOW-9999, High-5678");
+        // Count Word Frequency Using TryGetValue
+        Dictionary<string, int> wordsOne = CountWordFrequencyWithTryGetValue("apple banana apple");
+        Console.WriteLine(wordsOne["apple"] == 2);
+        Console.WriteLine(wordsOne["banana"] == 1);
 
-        Console.WriteLine(ticketsOne.Length == 2);
-        Console.WriteLine(ticketsOne[0] == "HIGH-1234");
-        Console.WriteLine(ticketsOne[1] == "High-5678");
+        Dictionary<string, int> wordsTwo = CountWordFrequencyWithTryGetValue("Hello hello HELLO");
+        Console.WriteLine(wordsTwo["hello"] == 3);
 
-        string[] ticketsTwo = GetHighPriorityTickets("BAD-1234, high-0001, HIGH-12A4");
+        Dictionary<string, int> wordsThree = CountWordFrequencyWithTryGetValue("");
+        Console.WriteLine(wordsThree.Count == 0);
 
-        Console.WriteLine(ticketsTwo.Length == 1);
-        Console.WriteLine(ticketsTwo[0] == "high-0001");
-        Console.WriteLine(GetHighPriorityTickets("").Length == 0);
-        Console.WriteLine(GetHighPriorityTickets(" ").Length == 0);
-        Console.WriteLine(GetHighPriorityTickets(null!).Length == 0);
+        // Get High Priority Tickets
+        // string[] ticketsOne = GetHighPriorityTickets("HIGH-1234, LOW-9999, High-5678");
+
+        // Console.WriteLine(ticketsOne.Length == 2);
+        // Console.WriteLine(ticketsOne[0] == "HIGH-1234");
+        // Console.WriteLine(ticketsOne[1] == "High-5678");
+
+        // string[] ticketsTwo = GetHighPriorityTickets("BAD-1234, high-0001, HIGH-12A4");
+
+        // Console.WriteLine(ticketsTwo.Length == 1);
+        // Console.WriteLine(ticketsTwo[0] == "high-0001");
+        // Console.WriteLine(GetHighPriorityTickets("").Length == 0);
+        // Console.WriteLine(GetHighPriorityTickets(" ").Length == 0);
+        // Console.WriteLine(GetHighPriorityTickets(null!).Length == 0);
 
         // Find First Running Total Over Limit
         // Console.WriteLine(FindFirstRunningTotalOverLimit([2, 4, 5, 1], 10) == 11);
