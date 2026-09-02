@@ -42,18 +42,48 @@ public class Program
         return strBuilder.ToString();
 
     }
+
+    public static int? FindFirstRunningTotalOverLimit(int[] numbers, int limit)
+    {
+        if (numbers is null || numbers.Length == 0)
+        {
+            return null;
+        }
+
+        int total = 0;
+
+        foreach (int digit in numbers)
+        {
+            total += digit;
+
+            if (total > limit)
+            {
+                return total;
+            }
+        }
+
+        return null;
+    }
     public static void Main(string[] args)
     {
+        // Find First Running Total Over Limit
+        Console.WriteLine(FindFirstRunningTotalOverLimit([2, 4, 5, 1], 10) == 11);
+        Console.WriteLine(FindFirstRunningTotalOverLimit([1, 2, 3], 10) == null);
+        Console.WriteLine(FindFirstRunningTotalOverLimit([10, 1], 10) == 11);
+        Console.WriteLine(FindFirstRunningTotalOverLimit([-5, 20], 10) == 15);
+        Console.WriteLine(FindFirstRunningTotalOverLimit(null!, 10) == null);
+        Console.WriteLine(FindFirstRunningTotalOverLimit([], 10) == null);
+
         // Replace Every Second Character With Star 
-        Console.WriteLine(ReplaceEverySecondCharacterWithStar("abcdef") == "a*c*e*");
-        Console.WriteLine(ReplaceEverySecondCharacterWithStar("hello") == "h*l*o");
-        Console.WriteLine(ReplaceEverySecondCharacterWithStar("Paul") == "P*u*");
-        Console.WriteLine(ReplaceEverySecondCharacterWithStar("a") == "a");
-        Console.WriteLine(ReplaceEverySecondCharacterWithStar("") == "");
-        Console.WriteLine(ReplaceEverySecondCharacterWithStar(" ") == "");
-        Console.WriteLine(ReplaceEverySecondCharacterWithStar(null!) == "");
-        Console.WriteLine(ReplaceEverySecondCharacterWithStar("ab cd") == "a* *d");
-        Console.WriteLine(ReplaceEverySecondCharacterWithStar("hello world") == "h*l*o*w*r*d");
+        // Console.WriteLine(ReplaceEverySecondCharacterWithStar("abcdef") == "a*c*e*");
+        // Console.WriteLine(ReplaceEverySecondCharacterWithStar("hello") == "h*l*o");
+        // Console.WriteLine(ReplaceEverySecondCharacterWithStar("Paul") == "P*u*");
+        // Console.WriteLine(ReplaceEverySecondCharacterWithStar("a") == "a");
+        // Console.WriteLine(ReplaceEverySecondCharacterWithStar("") == "");
+        // Console.WriteLine(ReplaceEverySecondCharacterWithStar(" ") == "");
+        // Console.WriteLine(ReplaceEverySecondCharacterWithStar(null!) == "");
+        // Console.WriteLine(ReplaceEverySecondCharacterWithStar("ab cd") == "a* *d");
+        // Console.WriteLine(ReplaceEverySecondCharacterWithStar("hello world") == "h*l*o*w*r*d");
 
         // Warm Up: Count Numbers Within Distance Of Zero
         // Console.WriteLine(CountNumbersWithinDistanceOfZero([-3, -1, 0, 2, 5], 2) == 3);
