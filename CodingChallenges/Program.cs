@@ -119,26 +119,72 @@ public class Program
 
     public static int[] SquareNumbersWithLinq(int[] numbers) =>
         numbers?.Select(n => n * n).ToArray() ?? [];
-    
+
+    public static string FindFirstWordWithMoreConsonantsThanVowels(string input)
+    {
+        if (string.IsNullOrWhiteSpace(input))
+        {
+            return "";
+        }
+
+        List<char> newListVowels = ['a', 'e', 'i', 'o', 'u'];
+        string[] splitString = input.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+        foreach (string str in splitString)
+        {
+            int countVowels = 0;
+            int countNonVowels = 0;
+
+            string strLowered = str.ToLower();
+
+            foreach (char character in strLowered)
+            {
+                if (newListVowels.Contains(character))
+                {
+                    countVowels++;
+                }
+                else if(char.IsLetter(character))
+                {
+                    countNonVowels++;
+                }
+            }
+
+            if(countNonVowels > countVowels)
+            {
+                return str;
+            }
+        }
+
+        return "";
+    }
+
     public static void Main(string[] args)
     {
+        // Find First Word With More Consonants Than Vowels
+        Console.WriteLine(FindFirstWordWithMoreConsonantsThanVowels("area sky code") == "sky");
+        Console.WriteLine(FindFirstWordWithMoreConsonantsThanVowels("audio queue") == "");
+        Console.WriteLine(FindFirstWordWithMoreConsonantsThanVowels("test apple") == "test");
+        Console.WriteLine(FindFirstWordWithMoreConsonantsThanVowels("") == "");
+        Console.WriteLine(FindFirstWordWithMoreConsonantsThanVowels(null!) == "");
+        Console.WriteLine(FindFirstWordWithMoreConsonantsThanVowels("a!!! test!") == "test!");
+
         // Square Number With Linq
-        int[] squaredOne = SquareNumbersWithLinq([1, 2, 3]);
+        // int[] squaredOne = SquareNumbersWithLinq([1, 2, 3]);
 
-        Console.WriteLine(squaredOne.Length == 3);
-        Console.WriteLine(squaredOne[0] == 1);
-        Console.WriteLine(squaredOne[1] == 4);
-        Console.WriteLine(squaredOne[2] == 9);
+        // Console.WriteLine(squaredOne.Length == 3);
+        // Console.WriteLine(squaredOne[0] == 1);
+        // Console.WriteLine(squaredOne[1] == 4);
+        // Console.WriteLine(squaredOne[2] == 9);
 
-        int[] squaredTwo = SquareNumbersWithLinq([-2, 0, 5]);
+        // int[] squaredTwo = SquareNumbersWithLinq([-2, 0, 5]);
 
-        Console.WriteLine(squaredTwo.Length == 3);
-        Console.WriteLine(squaredTwo[0] == 4);
-        Console.WriteLine(squaredTwo[1] == 0);
-        Console.WriteLine(squaredTwo[2] == 25);
+        // Console.WriteLine(squaredTwo.Length == 3);
+        // Console.WriteLine(squaredTwo[0] == 4);
+        // Console.WriteLine(squaredTwo[1] == 0);
+        // Console.WriteLine(squaredTwo[2] == 25);
 
-        Console.WriteLine(SquareNumbersWithLinq(null!).Length == 0);
-        Console.WriteLine(SquareNumbersWithLinq([]).Length == 0);
+        // Console.WriteLine(SquareNumbersWithLinq(null!).Length == 0);
+        // Console.WriteLine(SquareNumbersWithLinq([]).Length == 0);
 
         // Count Word Frequency Using TryGetValue
         // Dictionary<string, int> wordsOne = CountWordFrequencyWithTryGetValue("apple banana apple");
