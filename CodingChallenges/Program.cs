@@ -110,7 +110,7 @@ public class Program
 
     public static string FindFirstUniqueWord(string input)
     {
-        if(string.IsNullOrWhiteSpace(input))
+        if (string.IsNullOrWhiteSpace(input))
         {
             return "";
         }
@@ -119,11 +119,11 @@ public class Program
 
         var newDict = new Dictionary<string, int>();
 
-        foreach(string str in splitString)
+        foreach (string str in splitString)
         {
             string strLowered = str.ToLower();
 
-            if(newDict.TryGetValue(strLowered, out int value))
+            if (newDict.TryGetValue(strLowered, out int value))
             {
                 newDict[strLowered] = value + 1;
             }
@@ -137,16 +137,27 @@ public class Program
 
         return ans ?? "";
     }
+
+    public static bool HasFailingScoreWithLinq(int[] scores) =>
+    scores?.Any(s => s < 50) ?? false;
+    
     public static void Main(string[] args)
     {
+        // Has Failing Score With Linq
+        Console.WriteLine(HasFailingScoreWithLinq([80, 70, 40]) == true);
+        Console.WriteLine(HasFailingScoreWithLinq([50, 60, 70]) == false);
+        Console.WriteLine(HasFailingScoreWithLinq([10]) == true);
+        Console.WriteLine(HasFailingScoreWithLinq(null!) == false);
+        Console.WriteLine(HasFailingScoreWithLinq([]) == false);
+
         // First Unique Word
-        Console.WriteLine(FindFirstUniqueWord("red blue red green") == "blue");
-        Console.WriteLine(FindFirstUniqueWord("Cat dog cat bird") == "dog");
-        Console.WriteLine(FindFirstUniqueWord("one one two two") == "");
-        Console.WriteLine(FindFirstUniqueWord("solo") == "solo");
-        Console.WriteLine(FindFirstUniqueWord("") == "");
-        Console.WriteLine(FindFirstUniqueWord(" ") == "");
-        Console.WriteLine(FindFirstUniqueWord(null!) == "");
+        // Console.WriteLine(FindFirstUniqueWord("red blue red green") == "blue");
+        // Console.WriteLine(FindFirstUniqueWord("Cat dog cat bird") == "dog");
+        // Console.WriteLine(FindFirstUniqueWord("one one two two") == "");
+        // Console.WriteLine(FindFirstUniqueWord("solo") == "solo");
+        // Console.WriteLine(FindFirstUniqueWord("") == "");
+        // Console.WriteLine(FindFirstUniqueWord(" ") == "");
+        // Console.WriteLine(FindFirstUniqueWord(null!) == "");
 
         // Move Zeros to End
         // int[] movedOne = MoveZeroesToEnd([0, 1, 0, 3, 12]);
