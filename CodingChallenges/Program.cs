@@ -1,4 +1,5 @@
 ﻿
+using System.Collections.Concurrent;
 using System.Text;
 
 public class Program
@@ -30,7 +31,7 @@ public class Program
 
     public static string ReverseEachWord(string input)
     {
-        if(string.IsNullOrWhiteSpace(input))
+        if (string.IsNullOrWhiteSpace(input))
         {
             return "";
         }
@@ -38,9 +39,9 @@ public class Program
         var strBuilder = new StringBuilder();
         string[] stringSplit = input.Split(' ', StringSplitOptions.RemoveEmptyEntries);
 
-        foreach(string str in stringSplit)
+        foreach (string str in stringSplit)
         {
-            for(int innerIndex = str.Length -1; innerIndex >= 0; innerIndex--)
+            for (int innerIndex = str.Length - 1; innerIndex >= 0; innerIndex--)
             {
                 strBuilder.Append(str[innerIndex]);
             }
@@ -51,16 +52,53 @@ public class Program
         return strBuilder.ToString().Trim();
 
     }
+
+    public static bool IsWordMirrorMatch(string input)
+    {
+        if(string.IsNullOrWhiteSpace(input))
+        {
+            return false;
+        }
+
+        int left = 0;
+        int right = input.Length -1;
+
+        input = input.ToLower();
+
+        while(left <= right)
+        {
+            if(input[left] != input[right])
+            {
+                return false;
+            }
+
+            left++;
+            right--;
+        }
+
+        return true;
+
+    }
     public static void Main(string[] args)
     {
+        // Is Word Mirror Match
+        Console.WriteLine(IsWordMirrorMatch("level") == true);
+        Console.WriteLine(IsWordMirrorMatch("Racecar") == true);
+        Console.WriteLine(IsWordMirrorMatch("hello") == false);
+        Console.WriteLine(IsWordMirrorMatch("ab ba") == true);
+        Console.WriteLine(IsWordMirrorMatch("a") == true);
+        Console.WriteLine(IsWordMirrorMatch("") == false);
+        Console.WriteLine(IsWordMirrorMatch(" ") == false);
+        Console.WriteLine(IsWordMirrorMatch(null!) == false);
+
         // Reverse Each Word
-        Console.WriteLine(ReverseEachWord("hello world") == "olleh dlrow");
-        Console.WriteLine(ReverseEachWord("Paul Codes") == "luaP sedoC");
-        Console.WriteLine(ReverseEachWord(" one two ") == "eno owt");
-        Console.WriteLine(ReverseEachWord("a") == "a");
-        Console.WriteLine(ReverseEachWord("") == "");
-        Console.WriteLine(ReverseEachWord(" ") == "");
-        Console.WriteLine(ReverseEachWord(null!) == "");
+        // Console.WriteLine(ReverseEachWord("hello world") == "olleh dlrow");
+        // Console.WriteLine(ReverseEachWord("Paul Codes") == "luaP sedoC");
+        // Console.WriteLine(ReverseEachWord(" one two ") == "eno owt");
+        // Console.WriteLine(ReverseEachWord("a") == "a");
+        // Console.WriteLine(ReverseEachWord("") == "");
+        // Console.WriteLine(ReverseEachWord(" ") == "");
+        // Console.WriteLine(ReverseEachWord(null!) == "");
 
         // Warm Up: Count Numbers Divisible By Three Or Five
         // Console.WriteLine(CountNumbersDivisibleByThreeOrFive([3, 5, 15, 7, 10]) == 4);
