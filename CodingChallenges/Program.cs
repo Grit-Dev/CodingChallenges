@@ -1,6 +1,4 @@
-﻿
-using System.Collections.Concurrent;
-using System.Text;
+﻿using System.Text;
 
 public class Program
 {
@@ -55,19 +53,19 @@ public class Program
 
     public static bool IsWordMirrorMatch(string input)
     {
-        if(string.IsNullOrWhiteSpace(input))
+        if (string.IsNullOrWhiteSpace(input))
         {
             return false;
         }
 
         int left = 0;
-        int right = input.Length -1;
+        int right = input.Length - 1;
 
         input = input.ToLower();
 
-        while(left <= right)
+        while (left <= right)
         {
-            if(input[left] != input[right])
+            if (input[left] != input[right])
             {
                 return false;
             }
@@ -79,17 +77,69 @@ public class Program
         return true;
 
     }
+
+    public static int[] MoveZeroesToEnd(int[] numbers)
+    {
+        if(numbers is null || numbers.Length == 0)
+        {
+            return [];
+        }
+
+        List<int> newList = [];
+        int counter = 0;
+
+        foreach(int digit in numbers)
+        {
+            if(digit != 0)
+            {
+                newList.Add(digit);
+            }
+            else
+            {
+                counter++;
+            }
+        }
+
+        for(int outerIndex = 0; outerIndex < counter; outerIndex++)
+        {
+            newList.Add(0);
+        }
+
+        return newList.ToArray();
+    }
     public static void Main(string[] args)
     {
-        // Is Word Mirror Match
-        Console.WriteLine(IsWordMirrorMatch("level") == true);
-        Console.WriteLine(IsWordMirrorMatch("Racecar") == true);
-        Console.WriteLine(IsWordMirrorMatch("hello") == false);
-        Console.WriteLine(IsWordMirrorMatch("ab ba") == true);
-        Console.WriteLine(IsWordMirrorMatch("a") == true);
-        Console.WriteLine(IsWordMirrorMatch("") == false);
-        Console.WriteLine(IsWordMirrorMatch(" ") == false);
-        Console.WriteLine(IsWordMirrorMatch(null!) == false);
+        // Move Zeros to End
+        int[] movedOne = MoveZeroesToEnd([0, 1, 0, 3, 12]);
+        Console.WriteLine(movedOne.Length == 5);
+        Console.WriteLine(movedOne[0] == 1);
+        Console.WriteLine(movedOne[1] == 3);
+        Console.WriteLine(movedOne[2] == 12);
+        Console.WriteLine(movedOne[3] == 0);
+        Console.WriteLine(movedOne[4] == 0);
+        
+        int[] movedTwo = MoveZeroesToEnd([1, 2, 3]);
+        Console.WriteLine(movedTwo[0] == 1);
+        Console.WriteLine(movedTwo[1] == 2);
+        Console.WriteLine(movedTwo[2] == 3);
+
+        int[] movedThree = MoveZeroesToEnd([0, 0, 5]);
+        Console.WriteLine(movedThree[0] == 5);
+        Console.WriteLine(movedThree[1] == 0);
+        Console.WriteLine(movedThree[2] == 0);
+        Console.WriteLine(MoveZeroesToEnd(null!).Length == 0);
+        Console.WriteLine(MoveZeroesToEnd([]).Length == 0);
+
+
+        // // Is Word Mirror Match
+        // Console.WriteLine(IsWordMirrorMatch("level") == true);
+        // Console.WriteLine(IsWordMirrorMatch("Racecar") == true);
+        // Console.WriteLine(IsWordMirrorMatch("hello") == false);
+        // Console.WriteLine(IsWordMirrorMatch("ab ba") == true);
+        // Console.WriteLine(IsWordMirrorMatch("a") == true);
+        // Console.WriteLine(IsWordMirrorMatch("") == false);
+        // Console.WriteLine(IsWordMirrorMatch(" ") == false);
+        // Console.WriteLine(IsWordMirrorMatch(null!) == false);
 
         // Reverse Each Word
         // Console.WriteLine(ReverseEachWord("hello world") == "olleh dlrow");
