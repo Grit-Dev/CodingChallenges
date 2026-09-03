@@ -140,15 +140,62 @@ public class Program
 
     public static bool HasFailingScoreWithLinq(int[] scores) =>
     scores?.Any(s => s < 50) ?? false;
-    
+
+    public static string FindFirstBalancedWord(string input)
+    {
+        if (string.IsNullOrWhiteSpace(input))
+        {
+            return "";
+        }
+
+        List<char> vowelsList = ['a', 'e', 'i', 'o', 'u'];
+
+        string[] splitString = input.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+        foreach (string str in splitString)
+        {
+            int countNonVowels = 0;
+            int countVowels = 0;
+
+            string strLowered = str.ToLower();
+
+            foreach (char character in strLowered)
+            {
+                if (vowelsList.Contains(character))
+                {
+                    countVowels++;
+                }
+                else if (char.IsLetter(character))
+                {
+                    countNonVowels++;
+                }
+            }
+
+            if (countNonVowels == countVowels)
+            {
+                return str;
+            }
+        }
+
+        return "";
+
+    }
     public static void Main(string[] args)
     {
+        // Find First Balanced Word
+        Console.WriteLine(FindFirstBalancedWord("tree sky code") == "tree");
+        Console.WriteLine(FindFirstBalancedWord("abcde test") == "");
+        Console.WriteLine(FindFirstBalancedWord("road cat") == "road");
+        Console.WriteLine(FindFirstBalancedWord("") == "");
+        Console.WriteLine(FindFirstBalancedWord(null!) == "");
+        Console.WriteLine(FindFirstBalancedWord("r!oa-d test") == "r!oa-d");
+
         // Has Failing Score With Linq
-        Console.WriteLine(HasFailingScoreWithLinq([80, 70, 40]) == true);
-        Console.WriteLine(HasFailingScoreWithLinq([50, 60, 70]) == false);
-        Console.WriteLine(HasFailingScoreWithLinq([10]) == true);
-        Console.WriteLine(HasFailingScoreWithLinq(null!) == false);
-        Console.WriteLine(HasFailingScoreWithLinq([]) == false);
+        // Console.WriteLine(HasFailingScoreWithLinq([80, 70, 40]) == true);
+        // Console.WriteLine(HasFailingScoreWithLinq([50, 60, 70]) == false);
+        // Console.WriteLine(HasFailingScoreWithLinq([10]) == true);
+        // Console.WriteLine(HasFailingScoreWithLinq(null!) == false);
+        // Console.WriteLine(HasFailingScoreWithLinq([]) == false);
 
         // First Unique Word
         // Console.WriteLine(FindFirstUniqueWord("red blue red green") == "blue");
