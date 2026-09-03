@@ -80,7 +80,7 @@ public class Program
 
     public static int[] MoveZeroesToEnd(int[] numbers)
     {
-        if(numbers is null || numbers.Length == 0)
+        if (numbers is null || numbers.Length == 0)
         {
             return [];
         }
@@ -88,9 +88,9 @@ public class Program
         List<int> newList = [];
         int counter = 0;
 
-        foreach(int digit in numbers)
+        foreach (int digit in numbers)
         {
-            if(digit != 0)
+            if (digit != 0)
             {
                 newList.Add(digit);
             }
@@ -100,36 +100,74 @@ public class Program
             }
         }
 
-        for(int outerIndex = 0; outerIndex < counter; outerIndex++)
+        for (int outerIndex = 0; outerIndex < counter; outerIndex++)
         {
             newList.Add(0);
         }
 
         return newList.ToArray();
     }
+
+    public static string FindFirstUniqueWord(string input)
+    {
+        if(string.IsNullOrWhiteSpace(input))
+        {
+            return "";
+        }
+
+        string[] splitString = input.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+        var newDict = new Dictionary<string, int>();
+
+        foreach(string str in splitString)
+        {
+            string strLowered = str.ToLower();
+
+            if(newDict.TryGetValue(strLowered, out int value))
+            {
+                newDict[strLowered] = value + 1;
+            }
+            else
+            {
+                newDict[strLowered] = 1;
+            }
+        }
+
+        var ans = newDict.FirstOrDefault(nd => nd.Value == 1).Key;
+
+        return ans ?? "";
+    }
     public static void Main(string[] args)
     {
+        // First Unique Word
+        Console.WriteLine(FindFirstUniqueWord("red blue red green") == "blue");
+        Console.WriteLine(FindFirstUniqueWord("Cat dog cat bird") == "dog");
+        Console.WriteLine(FindFirstUniqueWord("one one two two") == "");
+        Console.WriteLine(FindFirstUniqueWord("solo") == "solo");
+        Console.WriteLine(FindFirstUniqueWord("") == "");
+        Console.WriteLine(FindFirstUniqueWord(" ") == "");
+        Console.WriteLine(FindFirstUniqueWord(null!) == "");
+
         // Move Zeros to End
-        int[] movedOne = MoveZeroesToEnd([0, 1, 0, 3, 12]);
-        Console.WriteLine(movedOne.Length == 5);
-        Console.WriteLine(movedOne[0] == 1);
-        Console.WriteLine(movedOne[1] == 3);
-        Console.WriteLine(movedOne[2] == 12);
-        Console.WriteLine(movedOne[3] == 0);
-        Console.WriteLine(movedOne[4] == 0);
-        
-        int[] movedTwo = MoveZeroesToEnd([1, 2, 3]);
-        Console.WriteLine(movedTwo[0] == 1);
-        Console.WriteLine(movedTwo[1] == 2);
-        Console.WriteLine(movedTwo[2] == 3);
+        // int[] movedOne = MoveZeroesToEnd([0, 1, 0, 3, 12]);
+        // Console.WriteLine(movedOne.Length == 5);
+        // Console.WriteLine(movedOne[0] == 1);
+        // Console.WriteLine(movedOne[1] == 3);
+        // Console.WriteLine(movedOne[2] == 12);
+        // Console.WriteLine(movedOne[3] == 0);
+        // Console.WriteLine(movedOne[4] == 0);
 
-        int[] movedThree = MoveZeroesToEnd([0, 0, 5]);
-        Console.WriteLine(movedThree[0] == 5);
-        Console.WriteLine(movedThree[1] == 0);
-        Console.WriteLine(movedThree[2] == 0);
-        Console.WriteLine(MoveZeroesToEnd(null!).Length == 0);
-        Console.WriteLine(MoveZeroesToEnd([]).Length == 0);
+        // int[] movedTwo = MoveZeroesToEnd([1, 2, 3]);
+        // Console.WriteLine(movedTwo[0] == 1);
+        // Console.WriteLine(movedTwo[1] == 2);
+        // Console.WriteLine(movedTwo[2] == 3);
 
+        // int[] movedThree = MoveZeroesToEnd([0, 0, 5]);
+        // Console.WriteLine(movedThree[0] == 5);
+        // Console.WriteLine(movedThree[1] == 0);
+        // Console.WriteLine(movedThree[2] == 0);
+        // Console.WriteLine(MoveZeroesToEnd(null!).Length == 0);
+        // Console.WriteLine(MoveZeroesToEnd([]).Length == 0);
 
         // // Is Word Mirror Match
         // Console.WriteLine(IsWordMirrorMatch("level") == true);
