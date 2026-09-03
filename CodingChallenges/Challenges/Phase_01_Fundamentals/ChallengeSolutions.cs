@@ -6,6 +6,184 @@ namespace CodingChallenges.Challenges.Phase_02_OOP
 {
     public class ChallengeSolutions
     {
+        public static int CountNumbersDivisibleByThreeOrFive(int[] numbers)
+        {
+            if (numbers is null || numbers.Length == 0)
+            {
+                return 0;
+            }
+
+            int counter = 0;
+
+            foreach (int digit in numbers)
+            {
+                if (digit == 0)
+                {
+                    continue;
+                }
+
+                if (digit % 3 == 0 || digit % 5 == 0)
+                {
+                    counter++;
+                }
+            }
+
+            return counter;
+        }
+
+        public static string ReverseEachWord(string input)
+        {
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                return "";
+            }
+
+            var strBuilder = new StringBuilder();
+            string[] stringSplit = input.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+            foreach (string str in stringSplit)
+            {
+                for (int innerIndex = str.Length - 1; innerIndex >= 0; innerIndex--)
+                {
+                    strBuilder.Append(str[innerIndex]);
+                }
+
+                strBuilder.Append(' ');
+            }
+
+            return strBuilder.ToString().Trim();
+
+        }
+
+        public static bool IsWordMirrorMatch(string input)
+        {
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                return false;
+            }
+
+            int left = 0;
+            int right = input.Length - 1;
+
+            input = input.ToLower();
+
+            while (left <= right)
+            {
+                if (input[left] != input[right])
+                {
+                    return false;
+                }
+
+                left++;
+                right--;
+            }
+
+            return true;
+
+        }
+
+        public static int[] MoveZeroesToEnd(int[] numbers)
+        {
+            if (numbers is null || numbers.Length == 0)
+            {
+                return [];
+            }
+
+            List<int> newList = [];
+            int counter = 0;
+
+            foreach (int digit in numbers)
+            {
+                if (digit != 0)
+                {
+                    newList.Add(digit);
+                }
+                else
+                {
+                    counter++;
+                }
+            }
+
+            for (int outerIndex = 0; outerIndex < counter; outerIndex++)
+            {
+                newList.Add(0);
+            }
+
+            return newList.ToArray();
+        }
+
+        public static string FindFirstUniqueWord(string input)
+        {
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                return "";
+            }
+
+            string[] splitString = input.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+            var newDict = new Dictionary<string, int>();
+
+            foreach (string str in splitString)
+            {
+                string strLowered = str.ToLower();
+
+                if (newDict.TryGetValue(strLowered, out int value))
+                {
+                    newDict[strLowered] = value + 1;
+                }
+                else
+                {
+                    newDict[strLowered] = 1;
+                }
+            }
+
+            var ans = newDict.FirstOrDefault(nd => nd.Value == 1).Key;
+
+            return ans ?? "";
+        }
+
+        public static bool HasFailingScoreWithLinq(int[] scores) =>
+        scores?.Any(s => s < 50) ?? false;
+
+        public static string FindFirstBalancedWord(string input)
+        {
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                return "";
+            }
+
+            List<char> vowelsList = ['a', 'e', 'i', 'o', 'u'];
+
+            string[] splitString = input.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+            foreach (string str in splitString)
+            {
+                int countNonVowels = 0;
+                int countVowels = 0;
+
+                string strLowered = str.ToLower();
+
+                foreach (char character in strLowered)
+                {
+                    if (vowelsList.Contains(character))
+                    {
+                        countVowels++;
+                    }
+                    else if (char.IsLetter(character))
+                    {
+                        countNonVowels++;
+                    }
+                }
+
+                if (countNonVowels == countVowels)
+                {
+                    return str;
+                }
+            }
+
+            return "";
+
+        }
         public static int CountNumbersWithinDistanceOfZero(int[] numbers, int distance)
         {
             if (numbers is null || numbers.Length == 0 ||
