@@ -119,18 +119,18 @@ public class Program
 
     public static Dictionary<string, int> GroupScoresByResult(int[] numbers)
     {
-        if(numbers is null || numbers.Length == 0)
+        if (numbers is null || numbers.Length == 0)
         {
             return [];
-        }    
+        }
 
         Dictionary<string, int> newDict = [];
 
-        foreach(int number in numbers)
+        foreach (int number in numbers)
         {
             string result = number >= 50 ? "pass" : "fail";
 
-            if(newDict.TryGetValue(result, out int value))
+            if (newDict.TryGetValue(result, out int value))
             {
                 newDict[result] = value + 1;
             }
@@ -143,20 +143,38 @@ public class Program
         return newDict;
     }
 
+    public static string FindFirstLongWordWithLinq(string input)
+    {
+        if(string.IsNullOrWhiteSpace(input))
+        {
+            return "";
+        }
+
+        string[] splitString = input.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+        return splitString.FirstOrDefault(ss => ss.Length > 5) ?? "";
+    }
     public static void Main(string[] args)
     {
+        // Find First LongWord With Linq
+        Console.WriteLine(FindFirstLongWordWithLinq("cat banana dog pineapple") == "banana");
+        Console.WriteLine(FindFirstLongWordWithLinq("one two six") == "");
+        Console.WriteLine(FindFirstLongWordWithLinq("hello coding test") == "coding");
+        Console.WriteLine(FindFirstLongWordWithLinq("") == "");
+        Console.WriteLine(FindFirstLongWordWithLinq(" ") == "");
+        Console.WriteLine(FindFirstLongWordWithLinq(null!) == "");
 
         // Group Scores By Result
-        Dictionary<string, int> groupedOne = GroupScoresByResult([80, 40, 50, 20]);
-        Console.WriteLine(groupedOne["pass"] == 2);
-        Console.WriteLine(groupedOne["fail"] == 2);
+        // Dictionary<string, int> groupedOne = GroupScoresByResult([80, 40, 50, 20]);
+        // Console.WriteLine(groupedOne["pass"] == 2);
+        // Console.WriteLine(groupedOne["fail"] == 2);
 
-        Dictionary<string, int> groupedTwo = GroupScoresByResult([90, 100]);
-        Console.WriteLine(groupedTwo["pass"] == 2);
-        Console.WriteLine(groupedTwo.ContainsKey("fail") == false);
+        // Dictionary<string, int> groupedTwo = GroupScoresByResult([90, 100]);
+        // Console.WriteLine(groupedTwo["pass"] == 2);
+        // Console.WriteLine(groupedTwo.ContainsKey("fail") == false);
 
-        Dictionary<string, int> groupedThree = GroupScoresByResult(null!);
-        Console.WriteLine(groupedThree.Count == 0);
+        // Dictionary<string, int> groupedThree = GroupScoresByResult(null!);
+        // Console.WriteLine(groupedThree.Count == 0);
 
         // Sum Valid Order Totals
         // Console.WriteLine(SumValidOrderTotals("ORD-1:50, ORD-2:25, BAD"));
