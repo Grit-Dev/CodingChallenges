@@ -72,16 +72,68 @@ public class Program
         return highestSoFar;
     }
 
+    public static int SumValidOrderTotals(string input)
+    {
+        if (string.IsNullOrWhiteSpace(input))
+        {
+            return 0;
+        }
 
+        int total = 0;
+
+        string[] splitString = input.Split(',', StringSplitOptions.RemoveEmptyEntries);
+
+        foreach (string str in splitString)
+        {
+            string strTrimmed = str.Trim();
+
+            if (!strTrimmed.Contains(':'))
+            {
+                continue;
+            }
+
+            string[] parts = strTrimmed.Split(':');
+
+            if (parts.Length != 2)
+            {
+                continue;
+            }
+
+            string orderId = parts[0].Trim();
+            string totalText = parts[1].Trim();
+
+            if (string.IsNullOrWhiteSpace(orderId) ||
+                string.IsNullOrWhiteSpace(totalText))
+            {
+                continue;
+            }
+
+            if (int.TryParse(totalText, out int value) && value >= 0)
+            {
+                total += value;
+            }
+        }
+
+        return total;
+    }
     public static void Main(string[] args)
     {
+        // Sum Valid Order Totals
+        Console.WriteLine(SumValidOrderTotals("ORD-1:50, ORD-2:25, BAD"));
+        Console.WriteLine(SumValidOrderTotals("ORD-1:10, ORD-2:abc, ORD-3:5") == 15);
+        Console.WriteLine(SumValidOrderTotals("ORD-1:-5, ORD-2:20") == 20);
+        Console.WriteLine(SumValidOrderTotals("BAD, ALSO-BAD") == 0);
+        Console.WriteLine(SumValidOrderTotals("") == 0);
+        Console.WriteLine(SumValidOrderTotals(" ") == 0);
+        Console.WriteLine(SumValidOrderTotals(null!) == 0);
+
         // Find Highest Total of Three Consecutive Numbers
-        Console.WriteLine(FindHighestTotalOfThreeConsecutiveNumbers([1, 2, 3, 4, 5]) == 12);
-        Console.WriteLine(FindHighestTotalOfThreeConsecutiveNumbers([10, -5, 3, 2]) == 8);
-        Console.WriteLine(FindHighestTotalOfThreeConsecutiveNumbers([-5, -2, -10, -1]) == -13);
-        Console.WriteLine(FindHighestTotalOfThreeConsecutiveNumbers([1, 2]) == null);
-        Console.WriteLine(FindHighestTotalOfThreeConsecutiveNumbers([]) == null);
-        Console.WriteLine(FindHighestTotalOfThreeConsecutiveNumbers([]) == null);
+        // Console.WriteLine(FindHighestTotalOfThreeConsecutiveNumbers([1, 2, 3, 4, 5]) == 12);
+        // Console.WriteLine(FindHighestTotalOfThreeConsecutiveNumbers([10, -5, 3, 2]) == 8);
+        // Console.WriteLine(FindHighestTotalOfThreeConsecutiveNumbers([-5, -2, -10, -1]) == -13);
+        // Console.WriteLine(FindHighestTotalOfThreeConsecutiveNumbers([1, 2]) == null);
+        // Console.WriteLine(FindHighestTotalOfThreeConsecutiveNumbers([]) == null);
+        // Console.WriteLine(FindHighestTotalOfThreeConsecutiveNumbers([]) == null);
 
         // Create Initials 
         // Console.WriteLine(CreateInitials("Paul mcKinley") == "PM");

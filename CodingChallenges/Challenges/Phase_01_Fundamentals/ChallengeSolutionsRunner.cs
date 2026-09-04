@@ -33,6 +33,156 @@ namespace CodingChallenges.Challenges.Phase_02_OOP
 
         public static void Run_Four()
         {
+            // Find First Balanced Word
+            Console.WriteLine(FindFirstBalancedWord("tree sky code") == "tree");
+            Console.WriteLine(FindFirstBalancedWord("abcde test") == "");
+            Console.WriteLine(FindFirstBalancedWord("road cat") == "road");
+            Console.WriteLine(FindFirstBalancedWord("") == "");
+            Console.WriteLine(FindFirstBalancedWord(null!) == "");
+            Console.WriteLine(FindFirstBalancedWord("r!oa-d test") == "r!oa-d");
+
+            // Has Failing Score With Linq
+            Console.WriteLine(HasFailingScoreWithLinq([80, 70, 40]) == true);
+            Console.WriteLine(HasFailingScoreWithLinq([50, 60, 70]) == false);
+            Console.WriteLine(HasFailingScoreWithLinq([10]) == true);
+            Console.WriteLine(HasFailingScoreWithLinq(null!) == false);
+            Console.WriteLine(HasFailingScoreWithLinq([]) == false);
+
+            // First Unique Word
+            Console.WriteLine(FindFirstUniqueWord("red blue red green") == "blue");
+            Console.WriteLine(FindFirstUniqueWord("Cat dog cat bird") == "dog");
+            Console.WriteLine(FindFirstUniqueWord("one one two two") == "");
+            Console.WriteLine(FindFirstUniqueWord("solo") == "solo");
+            Console.WriteLine(FindFirstUniqueWord("") == "");
+            Console.WriteLine(FindFirstUniqueWord(" ") == "");
+            Console.WriteLine(FindFirstUniqueWord(null!) == "");
+
+            // Move Zeros to End
+            int[] movedOne = MoveZeroesToEnd([0, 1, 0, 3, 12]);
+            Console.WriteLine(movedOne.Length == 5);
+            Console.WriteLine(movedOne[0] == 1);
+            Console.WriteLine(movedOne[1] == 3);
+            Console.WriteLine(movedOne[2] == 12);
+            Console.WriteLine(movedOne[3] == 0);
+            Console.WriteLine(movedOne[4] == 0);
+
+            int[] movedTwo = MoveZeroesToEnd([1, 2, 3]);
+            Console.WriteLine(movedTwo[0] == 1);
+            Console.WriteLine(movedTwo[1] == 2);
+            Console.WriteLine(movedTwo[2] == 3);
+
+            int[] movedThree = MoveZeroesToEnd([0, 0, 5]);
+            Console.WriteLine(movedThree[0] == 5);
+            Console.WriteLine(movedThree[1] == 0);
+            Console.WriteLine(movedThree[2] == 0);
+            Console.WriteLine(MoveZeroesToEnd(null!).Length == 0);
+            Console.WriteLine(MoveZeroesToEnd([]).Length == 0);
+
+            // // Is Word Mirror Match
+            Console.WriteLine(IsWordMirrorMatch("level") == true);
+            Console.WriteLine(IsWordMirrorMatch("Racecar") == true);
+            Console.WriteLine(IsWordMirrorMatch("hello") == false);
+            Console.WriteLine(IsWordMirrorMatch("ab ba") == true);
+            Console.WriteLine(IsWordMirrorMatch("a") == true);
+            Console.WriteLine(IsWordMirrorMatch("") == false);
+            Console.WriteLine(IsWordMirrorMatch(" ") == false);
+            Console.WriteLine(IsWordMirrorMatch(null!) == false);
+
+            // Reverse Each Word
+            Console.WriteLine(ReverseEachWord("hello world") == "olleh dlrow");
+            Console.WriteLine(ReverseEachWord("Paul Codes") == "luaP sedoC");
+            Console.WriteLine(ReverseEachWord(" one two ") == "eno owt");
+            Console.WriteLine(ReverseEachWord("a") == "a");
+            Console.WriteLine(ReverseEachWord("") == "");
+            Console.WriteLine(ReverseEachWord(" ") == "");
+            Console.WriteLine(ReverseEachWord(null!) == "");
+
+            // Warm Up: Count Numbers Divisible By Three Or Five
+            Console.WriteLine(CountNumbersDivisibleByThreeOrFive([3, 5, 15, 7, 10]) == 4);
+            Console.WriteLine(CountNumbersDivisibleByThreeOrFive([1, 2, 4, 8]) == 0);
+            Console.WriteLine(CountNumbersDivisibleByThreeOrFive([0, 30, -5]) == 2);
+            Console.WriteLine(CountNumbersDivisibleByThreeOrFive(null!) == 0);
+            Console.WriteLine(CountNumbersDivisibleByThreeOrFive([]) == 0);
+
+            // Find First Word With More Consonants Than Vowels
+            Console.WriteLine(FindFirstWordWithMoreConsonantsThanVowels("area sky code") == "sky");
+            Console.WriteLine(FindFirstWordWithMoreConsonantsThanVowels("audio queue") == "");
+            Console.WriteLine(FindFirstWordWithMoreConsonantsThanVowels("test apple") == "test");
+            Console.WriteLine(FindFirstWordWithMoreConsonantsThanVowels("") == "");
+            Console.WriteLine(FindFirstWordWithMoreConsonantsThanVowels(null!) == "");
+            Console.WriteLine(FindFirstWordWithMoreConsonantsThanVowels("a!!! test!") == "test!");
+
+            // Square Number With Linq
+            int[] squaredOne = SquareNumbersWithLinq([1, 2, 3]);
+
+            Console.WriteLine(squaredOne.Length == 3);
+            Console.WriteLine(squaredOne[0] == 1);
+            Console.WriteLine(squaredOne[1] == 4);
+            Console.WriteLine(squaredOne[2] == 9);
+
+            int[] squaredTwo = SquareNumbersWithLinq([-2, 0, 5]);
+
+            Console.WriteLine(squaredTwo.Length == 3);
+            Console.WriteLine(squaredTwo[0] == 4);
+            Console.WriteLine(squaredTwo[1] == 0);
+            Console.WriteLine(squaredTwo[2] == 25);
+
+            Console.WriteLine(SquareNumbersWithLinq(null!).Length == 0);
+            Console.WriteLine(SquareNumbersWithLinq([]).Length == 0);
+
+            // Count Word Frequency Using TryGetValue
+            Dictionary<string, int> wordsOne = CountWordFrequencyWithTryGetValue("apple banana apple");
+            Console.WriteLine(wordsOne["apple"] == 2);
+            Console.WriteLine(wordsOne["banana"] == 1);
+
+            Dictionary<string, int> wordsTwo = CountWordFrequencyWithTryGetValue("Hello hello HELLO");
+            Console.WriteLine(wordsTwo["hello"] == 3);
+
+            Dictionary<string, int> wordsThree = CountWordFrequencyWithTryGetValue("");
+            Console.WriteLine(wordsThree.Count == 0);
+
+            // Get High Priority Tickets
+            string[] ticketsOne = GetHighPriorityTickets("HIGH-1234, LOW-9999, High-5678");
+
+            Console.WriteLine(ticketsOne.Length == 2);
+            Console.WriteLine(ticketsOne[0] == "HIGH-1234");
+            Console.WriteLine(ticketsOne[1] == "High-5678");
+
+            string[] ticketsTwo = GetHighPriorityTickets("BAD-1234, high-0001, HIGH-12A4");
+
+            Console.WriteLine(ticketsTwo.Length == 1);
+            Console.WriteLine(ticketsTwo[0] == "high-0001");
+            Console.WriteLine(GetHighPriorityTickets("").Length == 0);
+            Console.WriteLine(GetHighPriorityTickets(" ").Length == 0);
+            Console.WriteLine(GetHighPriorityTickets(null!).Length == 0);
+
+            // Find First Running Total Over Limit
+            Console.WriteLine(FindFirstRunningTotalOverLimit([2, 4, 5, 1], 10) == 11);
+            Console.WriteLine(FindFirstRunningTotalOverLimit([1, 2, 3], 10) == null);
+            Console.WriteLine(FindFirstRunningTotalOverLimit([10, 1], 10) == 11);
+            Console.WriteLine(FindFirstRunningTotalOverLimit([-5, 20], 10) == 15);
+            Console.WriteLine(FindFirstRunningTotalOverLimit(null!, 10) == null);
+            Console.WriteLine(FindFirstRunningTotalOverLimit([], 10) == null);
+
+            // Replace Every Second Character With Star 
+            Console.WriteLine(ReplaceEverySecondCharacterWithStar("abcdef") == "a*c*e*");
+            Console.WriteLine(ReplaceEverySecondCharacterWithStar("hello") == "h*l*o");
+            Console.WriteLine(ReplaceEverySecondCharacterWithStar("Paul") == "P*u*");
+            Console.WriteLine(ReplaceEverySecondCharacterWithStar("a") == "a");
+            Console.WriteLine(ReplaceEverySecondCharacterWithStar("") == "");
+            Console.WriteLine(ReplaceEverySecondCharacterWithStar(" ") == "");
+            Console.WriteLine(ReplaceEverySecondCharacterWithStar(null!) == "");
+            Console.WriteLine(ReplaceEverySecondCharacterWithStar("ab cd") == "a* *d");
+            Console.WriteLine(ReplaceEverySecondCharacterWithStar("hello world") == "h*l*o*w*r*d");
+
+            // Warm Up: Count Numbers Within Distance Of Zero
+            Console.WriteLine(CountNumbersWithinDistanceOfZero([-3, -1, 0, 2, 5], 2) == 3);
+            Console.WriteLine(CountNumbersWithinDistanceOfZero([-10, 4, 6], 5) == 1);
+            Console.WriteLine(CountNumbersWithinDistanceOfZero([1, -1, 2, -2], 1) == 2);
+            Console.WriteLine(CountNumbersWithinDistanceOfZero(null!, 2) == 0);
+            Console.WriteLine(CountNumbersWithinDistanceOfZero([], 2) == 0);
+            Console.WriteLine(CountNumbersWithinDistanceOfZero([1, 2, 3], -1) == 0);
+
             // REDACT PERSONAL DATA - SINGLE PERSON
             string json1 = @"{
                 ""people"": [
