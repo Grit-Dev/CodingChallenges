@@ -116,16 +116,56 @@ public class Program
 
         return total;
     }
+
+    public static Dictionary<string, int> GroupScoresByResult(int[] numbers)
+    {
+        if(numbers is null || numbers.Length == 0)
+        {
+            return [];
+        }    
+
+        Dictionary<string, int> newDict = [];
+
+        foreach(int number in numbers)
+        {
+            string result = number >= 50 ? "pass" : "fail";
+
+            if(newDict.TryGetValue(result, out int value))
+            {
+                newDict[result] = value + 1;
+            }
+            else
+            {
+                newDict[result] = 1;
+            }
+        }
+
+        return newDict;
+    }
+
     public static void Main(string[] args)
     {
+
+        // Group Scores By Result
+        Dictionary<string, int> groupedOne = GroupScoresByResult([80, 40, 50, 20]);
+        Console.WriteLine(groupedOne["pass"] == 2);
+        Console.WriteLine(groupedOne["fail"] == 2);
+
+        Dictionary<string, int> groupedTwo = GroupScoresByResult([90, 100]);
+        Console.WriteLine(groupedTwo["pass"] == 2);
+        Console.WriteLine(groupedTwo.ContainsKey("fail") == false);
+
+        Dictionary<string, int> groupedThree = GroupScoresByResult(null!);
+        Console.WriteLine(groupedThree.Count == 0);
+
         // Sum Valid Order Totals
-        Console.WriteLine(SumValidOrderTotals("ORD-1:50, ORD-2:25, BAD"));
-        Console.WriteLine(SumValidOrderTotals("ORD-1:10, ORD-2:abc, ORD-3:5") == 15);
-        Console.WriteLine(SumValidOrderTotals("ORD-1:-5, ORD-2:20") == 20);
-        Console.WriteLine(SumValidOrderTotals("BAD, ALSO-BAD") == 0);
-        Console.WriteLine(SumValidOrderTotals("") == 0);
-        Console.WriteLine(SumValidOrderTotals(" ") == 0);
-        Console.WriteLine(SumValidOrderTotals(null!) == 0);
+        // Console.WriteLine(SumValidOrderTotals("ORD-1:50, ORD-2:25, BAD"));
+        // Console.WriteLine(SumValidOrderTotals("ORD-1:10, ORD-2:abc, ORD-3:5") == 15);
+        // Console.WriteLine(SumValidOrderTotals("ORD-1:-5, ORD-2:20") == 20);
+        // Console.WriteLine(SumValidOrderTotals("BAD, ALSO-BAD") == 0);
+        // Console.WriteLine(SumValidOrderTotals("") == 0);
+        // Console.WriteLine(SumValidOrderTotals(" ") == 0);
+        // Console.WriteLine(SumValidOrderTotals(null!) == 0);
 
         // Find Highest Total of Three Consecutive Numbers
         // Console.WriteLine(FindHighestTotalOfThreeConsecutiveNumbers([1, 2, 3, 4, 5]) == 12);
