@@ -6,6 +6,158 @@ namespace CodingChallenges.Challenges.Phase_02_OOP
 {
     public class ChallengeSolutions
     {
+        public static double CalculateAverageOfPositiveNumbers(int[] numbers)
+        {
+            if (numbers is null || numbers.Length == 0)
+            {
+                return 0;
+            }
+
+            int counter = 0;
+            int total = 0;
+
+            foreach (int number in numbers)
+            {
+                if (number > 0)
+                {
+                    total += number;
+                    counter++;
+                }
+            }
+
+            if (counter == 0)
+            {
+                return 0;
+            }
+            return (double)total / counter;
+        }
+
+        public static string CreateInitials(string fullName)
+        {
+            if (string.IsNullOrWhiteSpace(fullName))
+            {
+                return "";
+            }
+
+            string initials = "";
+
+            string[] splitString = fullName.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+            foreach (string str in splitString)
+            {
+
+                initials += char.ToUpper(str[0]);
+            }
+
+            return initials;
+
+        }
+
+        public static int? FindHighestTotalOfThreeConsecutiveNumbers(int[] numbers)
+        {
+            if (numbers is null || numbers.Length < 3)
+            {
+                return null;
+            }
+
+            int highestSoFar = numbers[0] + numbers[1] + numbers[2];
+
+            for (int outerIndex = 1; outerIndex < numbers.Length - 1; outerIndex++)
+            {
+                int total = 0;
+                total = numbers[outerIndex] + numbers[outerIndex - 1] + numbers[outerIndex + 1];
+
+                if (total > highestSoFar)
+                {
+                    highestSoFar = total;
+                }
+            }
+
+            return highestSoFar;
+        }
+
+        public static int SumValidOrderTotals(string input)
+        {
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                return 0;
+            }
+
+            int total = 0;
+
+            string[] splitString = input.Split(',', StringSplitOptions.RemoveEmptyEntries);
+
+            foreach (string str in splitString)
+            {
+                string strTrimmed = str.Trim();
+
+                if (!strTrimmed.Contains(':'))
+                {
+                    continue;
+                }
+
+                string[] parts = strTrimmed.Split(':');
+
+                if (parts.Length != 2)
+                {
+                    continue;
+                }
+
+                string orderId = parts[0].Trim();
+                string totalText = parts[1].Trim();
+
+                if (string.IsNullOrWhiteSpace(orderId) ||
+                    string.IsNullOrWhiteSpace(totalText))
+                {
+                    continue;
+                }
+
+                if (int.TryParse(totalText, out int value) && value >= 0)
+                {
+                    total += value;
+                }
+            }
+
+            return total;
+        }
+
+        public static Dictionary<string, int> GroupScoresByResult(int[] numbers)
+        {
+            if (numbers is null || numbers.Length == 0)
+            {
+                return [];
+            }
+
+            Dictionary<string, int> newDict = [];
+
+            foreach (int number in numbers)
+            {
+                string result = number >= 50 ? "pass" : "fail";
+
+                if (newDict.TryGetValue(result, out int value))
+                {
+                    newDict[result] = value + 1;
+                }
+                else
+                {
+                    newDict[result] = 1;
+                }
+            }
+
+            return newDict;
+        }
+
+        public static string FindFirstLongWordWithLinq(string input)
+        {
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                return "";
+            }
+
+            string[] splitString = input.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+            return splitString.FirstOrDefault(ss => ss.Length > 5) ?? "";
+        }
         public static int CountNumbersDivisibleByThreeOrFive(int[] numbers)
         {
             if (numbers is null || numbers.Length == 0)
