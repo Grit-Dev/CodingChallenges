@@ -30,7 +30,7 @@ public class Program
 
     public static string CreateInitials(string fullName)
     {
-        if(string.IsNullOrWhiteSpace(fullName))
+        if (string.IsNullOrWhiteSpace(fullName))
         {
             return "";
         }
@@ -39,7 +39,7 @@ public class Program
 
         string[] splitString = fullName.Split(' ', StringSplitOptions.RemoveEmptyEntries);
 
-        foreach(string str in splitString)
+        foreach (string str in splitString)
         {
 
             initials += char.ToUpper(str[0]);
@@ -48,16 +48,49 @@ public class Program
         return initials;
 
     }
+
+    public static int? FindHighestTotalOfThreeConsecutiveNumbers(int[] numbers)
+    {
+        if (numbers is null || numbers.Length < 3)
+        {
+            return null;
+        }
+
+        int highestSoFar = numbers[0] + numbers[1] + numbers[2];
+
+        for (int outerIndex = 1; outerIndex < numbers.Length - 1; outerIndex++)
+        {
+            int total = 0;
+            total = numbers[outerIndex] + numbers[outerIndex - 1] + numbers[outerIndex + 1];
+
+            if (total > highestSoFar)
+            {
+                highestSoFar = total;
+            }
+        }
+
+        return highestSoFar;
+    }
+
+
     public static void Main(string[] args)
     {
+        // Find Highest Total of Three Consecutive Numbers
+        Console.WriteLine(FindHighestTotalOfThreeConsecutiveNumbers([1, 2, 3, 4, 5]) == 12);
+        Console.WriteLine(FindHighestTotalOfThreeConsecutiveNumbers([10, -5, 3, 2]) == 8);
+        Console.WriteLine(FindHighestTotalOfThreeConsecutiveNumbers([-5, -2, -10, -1]) == -13);
+        Console.WriteLine(FindHighestTotalOfThreeConsecutiveNumbers([1, 2]) == null);
+        Console.WriteLine(FindHighestTotalOfThreeConsecutiveNumbers([]) == null);
+        Console.WriteLine(FindHighestTotalOfThreeConsecutiveNumbers([]) == null);
+
         // Create Initials 
-        Console.WriteLine(CreateInitials("Paul mcKinley") == "PM");
-        Console.WriteLine(CreateInitials("john michael smith") == "JMS");
-        Console.WriteLine(CreateInitials(" sarah connor ") == "SC");
-        Console.WriteLine(CreateInitials("A") == "A");
-        Console.WriteLine(CreateInitials("") == "");
-        Console.WriteLine(CreateInitials(" ") == "");
-        Console.WriteLine(CreateInitials(null!) == "");
+        // Console.WriteLine(CreateInitials("Paul mcKinley") == "PM");
+        // Console.WriteLine(CreateInitials("john michael smith") == "JMS");
+        // Console.WriteLine(CreateInitials(" sarah connor ") == "SC");
+        // Console.WriteLine(CreateInitials("A") == "A");
+        // Console.WriteLine(CreateInitials("") == "");
+        // Console.WriteLine(CreateInitials(" ") == "");
+        // Console.WriteLine(CreateInitials(null!) == "");
 
         // Calculate Average Of Positive Numbers 
         // Console.WriteLine(CalculateAverageOfPositiveNumbers([2, 4, -1, 0, 6]) == 4);
