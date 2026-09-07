@@ -1,4 +1,5 @@
 ﻿
+using System.Diagnostics.Metrics;
 using System.Text;
 
 public class Program
@@ -146,34 +147,71 @@ public class Program
         return newDict;
     }
 
-    public static string[] GetUppercaseWordsLongerThanThreeWithLinq(string input)
+    public static string[] GetUppercaseWordsLongerThanThreeWithLinq(string input) =>
+        string.IsNullOrWhiteSpace(input)
+            ? []
+            : input.Split(' ', StringSplitOptions.RemoveEmptyEntries)
+                .Where(i => i.Length > 3)
+                .Select(i => i.ToUpper())
+                .ToArray();
+
+    public static string FindLongestWordWithoutRepeatedLetters(string input)
     {
-        if(string.IsNullOrWhiteSpace(input))
+        if (string.IsNullOrWhiteSpace(input))
         {
-            return [];
+            return "";
         }
 
-        return input.Split(' ', StringSplitOptions.RemoveEmptyEntries)
-        .Where(i => i.Length > 3)
-        .Select(i => i.ToUpper())
-        .ToArray() ?? [];
+        string[] splitString = input.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+        string longestWord = "";
+
+        foreach (string str in splitString)
+        {
+            int counter = 0;
+            string strLowered = str.ToLower();
+
+            foreach (char outerChar in strLowered)
+            {
+                foreach (char innerChar in strLowered)
+                {
+                    if (outerChar == innerChar)
+                    {
+                        counter++;
+                    }
+                }
+            }
+
+            if (counter == strLowered.Length && strLowered.Length > longestWord.Length)
+            {
+                longestWord = str;
+            }
+        }
+
+        return longestWord;
     }
     public static void Main(string[] args)
     {
+        // Find Longest Word Without Repeated Letters
+        Console.WriteLine(FindLongestWordWithoutRepeatedLetters("cat apple sword moon") == "sword");
+        Console.WriteLine(FindLongestWordWithoutRepeatedLetters("hello test abc") == "abc");
+        Console.WriteLine(FindLongestWordWithoutRepeatedLetters("book moon") == "");
+        Console.WriteLine(FindLongestWordWithoutRepeatedLetters("") == "");
+        Console.WriteLine(FindLongestWordWithoutRepeatedLetters(null!) == "");
+
         // GetUppercaseWordsLongerThanThreeWithLinq
+        // string[] linqOne = GetUppercaseWordsLongerThanThreeWithLinq("cat banana dog coding");
+        // Console.WriteLine(linqOne.Length == 2);
+        // Console.WriteLine(linqOne[0] == "BANANA");
+        // Console.WriteLine(linqOne[1] == "CODING");
 
-        string[] linqOne = GetUppercaseWordsLongerThanThreeWithLinq("cat banana dog coding");
-        Console.WriteLine(linqOne.Length == 2);
-        Console.WriteLine(linqOne[0] == "BANANA");
-        Console.WriteLine(linqOne[1] == "CODING");
-
-        string[] linqTwo = GetUppercaseWordsLongerThanThreeWithLinq("one two three four");
-        Console.WriteLine(linqTwo.Length == 2);
-        Console.WriteLine(linqTwo[0] == "THREE");
-        Console.WriteLine(linqTwo[1] == "FOUR");
-        Console.WriteLine(GetUppercaseWordsLongerThanThreeWithLinq("hi to be").Length == 0);
-        Console.WriteLine(GetUppercaseWordsLongerThanThreeWithLinq("").Length == 0);
-        Console.WriteLine(GetUppercaseWordsLongerThanThreeWithLinq(null).Length == 0);
+        // string[] linqTwo = GetUppercaseWordsLongerThanThreeWithLinq("one two three four");
+        // Console.WriteLine(linqTwo.Length == 2);
+        // Console.WriteLine(linqTwo[0] == "THREE");
+        // Console.WriteLine(linqTwo[1] == "FOUR");
+        // Console.WriteLine(GetUppercaseWordsLongerThanThreeWithLinq("hi to be").Length == 0);
+        // Console.WriteLine(GetUppercaseWordsLongerThanThreeWithLinq("").Length == 0);
+        // Console.WriteLine(GetUppercaseWordsLongerThanThreeWithLinq(null!).Length == 0);
 
         // Group Temperatures By Band
         // Dictionary<string, int> tempOne = GroupTemperaturesByBand([5, 12, 25, 30, 8]);
