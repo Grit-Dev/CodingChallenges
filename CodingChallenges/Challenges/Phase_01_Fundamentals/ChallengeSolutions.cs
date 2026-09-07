@@ -6,6 +6,192 @@ namespace CodingChallenges.Challenges.Phase_02_OOP
 {
     public class ChallengeSolutions
     {
+        public static int CountNumbersWithSameParityAsTheirIndex(int[] numbers)
+        {
+            if (numbers is null || numbers.Length == 0)
+            {
+                return 0;
+            }
+
+            int counter = 0;
+
+            for (int outerIndex = 0; outerIndex <= numbers.Length - 1; outerIndex++)
+            {
+                if (numbers[outerIndex] % 2 == 0 && outerIndex % 2 == 0)
+                {
+                    counter++;
+                }
+                else if (numbers[outerIndex] % 2 != 0 && outerIndex % 2 != 0)
+                {
+                    counter++;
+                }
+
+            }
+
+            return counter;
+        }
+
+        public static string MaskMiddleCharacters(string input)
+        {
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                return "";
+            }
+
+            if (input.Length <= 2)
+            {
+                return input;
+            }
+
+            return input[0] + new string('*', input.Length - 2) + input[input.Length - 1];
+        }
+
+        public static int? FindLargestJumpBetweenAdjacentNumbers(int[] numbers)
+        {
+            if (numbers is null || numbers.Length < 2)
+            {
+                return null;
+            }
+
+            int largestDistanceFound = Math.Abs(numbers[0] - numbers[1]);
+
+            for (int outerIndex = 1; outerIndex <= numbers.Length - 1; outerIndex++)
+            {
+
+                int distanceCounter = Math.Abs(numbers[outerIndex - 1] - numbers[outerIndex]);
+
+                if (distanceCounter > largestDistanceFound)
+                {
+                    largestDistanceFound = distanceCounter;
+                }
+            }
+
+            return largestDistanceFound;
+        }
+
+        public static int SumValidPaymentAmounts(string input)
+        {
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                return 0;
+            }
+
+            int total = 0;
+
+            string[] splitString = input.Split(',', StringSplitOptions.RemoveEmptyEntries);
+
+            foreach (string str in splitString)
+            {
+                string strTrimmed = str.Trim();
+
+                int index = strTrimmed.IndexOf(':');
+
+                if (index == -1)
+                {
+                    continue;
+                }
+
+                string name = strTrimmed.Substring(0, index).Trim();
+
+                string amountText = strTrimmed.Substring(index + 1).Trim();
+
+                if (string.IsNullOrWhiteSpace(name) || string.IsNullOrWhiteSpace(amountText))
+                {
+                    continue;
+                }
+
+                if (int.TryParse(amountText, out int value) &&
+                    value >= 0)
+                {
+                    total += value;
+                }
+            }
+
+            return total;
+        }
+
+        public static Dictionary<string, int> GroupTemperaturesByBand(int[] numbers)
+        {
+            if (numbers is null || numbers.Length == 0)
+            {
+                return [];
+            }
+
+            string temperature = "";
+
+            Dictionary<string, int> newDict = [];
+
+            foreach (int number in numbers)
+            {
+                if (number < 10)
+                {
+                    temperature = "cold";
+                }
+                else if (number >= 10 && number <= 20)
+                {
+                    temperature = "mild";
+                }
+                else
+                {
+                    temperature = "hot";
+                }
+
+                if (newDict.TryGetValue(temperature, out int value))
+                {
+                    newDict[temperature] = value + 1;
+                }
+                else
+                {
+                    newDict[temperature] = 1;
+                }
+            }
+
+            return newDict;
+        }
+
+        public static string[] GetUppercaseWordsLongerThanThreeWithLinq(string input) =>
+            string.IsNullOrWhiteSpace(input)
+                ? []
+                : input.Split(' ', StringSplitOptions.RemoveEmptyEntries)
+                    .Where(i => i.Length > 3)
+                    .Select(i => i.ToUpper())
+                    .ToArray();
+
+        public static string FindLongestWordWithoutRepeatedLetters(string input)
+        {
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                return "";
+            }
+
+            string[] splitString = input.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+            string longestWord = "";
+
+            foreach (string str in splitString)
+            {
+                int counter = 0;
+                string strLowered = str.ToLower();
+
+                foreach (char outerChar in strLowered)
+                {
+                    foreach (char innerChar in strLowered)
+                    {
+                        if (outerChar == innerChar)
+                        {
+                            counter++;
+                        }
+                    }
+                }
+
+                if (counter == strLowered.Length && strLowered.Length > longestWord.Length)
+                {
+                    longestWord = str;
+                }
+            }
+
+            return longestWord;
+        }
         public static double CalculateAverageOfPositiveNumbers(int[] numbers)
         {
             if (numbers is null || numbers.Length == 0)
