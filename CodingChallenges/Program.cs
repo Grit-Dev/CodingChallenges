@@ -106,8 +106,61 @@ public class Program
 
         return total;
     }
+
+    public static Dictionary<string, int> GroupTemperaturesByBand(int[] numbers)
+    {
+        if (numbers is null || numbers.Length == 0)
+        {
+            return [];
+        }
+
+        string temperature = "";
+
+        Dictionary<string, int> newDict = [];
+
+        foreach (int number in numbers)
+        {
+            if (number < 10)
+            {
+                temperature = "cold";
+            }
+            else if (number >= 10 && number <= 20)
+            {
+                temperature = "mild";
+            }
+            else
+            {
+                temperature = "hot";
+            }
+
+            if (newDict.TryGetValue(temperature, out int value))
+            {
+                newDict[temperature] = value + 1;
+            }
+            else
+            {
+                newDict[temperature] = 1;
+            }
+        }
+
+        return newDict;
+    }
     public static void Main(string[] args)
     {
+        // Group Temperatures By Band
+        Dictionary<string, int> tempOne = GroupTemperaturesByBand([5, 12, 25, 30, 8]);
+        Console.WriteLine(tempOne["cold"] == 2);
+        Console.WriteLine(tempOne["mild"] == 1);
+        Console.WriteLine(tempOne["hot"] == 2);
+
+        Dictionary<string, int> tempTwo = GroupTemperaturesByBand([15, 16, 20]);
+        Console.WriteLine(tempTwo["mild"] == 3);
+        Console.WriteLine(tempTwo.ContainsKey("cold") == false);
+        Console.WriteLine(tempTwo.ContainsKey("hot") == false);
+
+        Dictionary<string, int> tempThree = GroupTemperaturesByBand(null!);
+        Console.WriteLine(tempThree.Count == 0);
+
         // SUm Valid Payment Amounts
         Console.WriteLine(SumValidPaymentAmounts("Paul:20, Sarah:35, Bob:abc") == 55);
         Console.WriteLine(SumValidPaymentAmounts("Paul:10, :50, Tom:5") == 15);
