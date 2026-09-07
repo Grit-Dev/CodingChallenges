@@ -45,7 +45,7 @@ public class Program
 
     public static int? FindLargestJumpBetweenAdjacentNumbers(int[] numbers)
     {
-        if (numbers is null || numbers.Length <= 2)
+        if (numbers is null || numbers.Length < 2)
         {
             return null;
         }
@@ -55,9 +55,9 @@ public class Program
         for (int outerIndex = 1; outerIndex <= numbers.Length - 1; outerIndex++)
         {
 
-            int distanceCounter =  Math.Abs(numbers[outerIndex -1] - numbers[outerIndex]);
+            int distanceCounter = Math.Abs(numbers[outerIndex - 1] - numbers[outerIndex]);
 
-            if(distanceCounter > largestDistanceFound)
+            if (distanceCounter > largestDistanceFound)
             {
                 largestDistanceFound = distanceCounter;
             }
@@ -65,8 +65,58 @@ public class Program
 
         return largestDistanceFound;
     }
+
+    public static int SumValidPaymentAmounts(string input)
+    {
+        if (string.IsNullOrWhiteSpace(input))
+        {
+            return 0;
+        }
+
+        int total = 0;
+
+        string[] splitString = input.Split(',', StringSplitOptions.RemoveEmptyEntries);
+
+        foreach (string str in splitString)
+        {
+            string strTrimmed = str.Trim();
+
+            int index = strTrimmed.IndexOf(':');
+
+            if (index == -1)
+            {
+                continue;
+            }
+
+            string name = strTrimmed.Substring(0, index).Trim();
+
+            string amountText = strTrimmed.Substring(index + 1).Trim();
+
+            if (string.IsNullOrWhiteSpace(name) || string.IsNullOrWhiteSpace(amountText))
+            {
+                continue;
+            }
+
+            if (int.TryParse(amountText, out int value) &&
+                value >= 0)
+            {
+                total += value;
+            }
+        }
+
+        return total;
+    }
     public static void Main(string[] args)
     {
+        // SUm Valid Payment Amounts
+        Console.WriteLine(SumValidPaymentAmounts("Paul:20, Sarah:35, Bob:abc") == 55);
+        Console.WriteLine(SumValidPaymentAmounts("Paul:10, :50, Tom:5") == 15);
+        Console.WriteLine(SumValidPaymentAmounts("BadRecord, Sam:-5, Amy:30") == 30);
+        Console.WriteLine(SumValidPaymentAmounts("Paul:0, Sarah:10") == 10);
+        Console.WriteLine(SumValidPaymentAmounts("Bad, AlsoBad") == 0);
+        Console.WriteLine(SumValidPaymentAmounts("") == 0);
+        Console.WriteLine(SumValidPaymentAmounts(" ") == 0);
+        Console.WriteLine(SumValidPaymentAmounts(null) == 0);
 
         // Find Largest Jump Between Adjacent Numbers. 
         Console.WriteLine(FindLargestJumpBetweenAdjacentNumbers([3, 10, 6, 20]) == 14);
