@@ -145,39 +145,67 @@ public class Program
 
         return newDict;
     }
+
+    public static string[] GetUppercaseWordsLongerThanThreeWithLinq(string input)
+    {
+        if(string.IsNullOrWhiteSpace(input))
+        {
+            return [];
+        }
+
+        return input.Split(' ', StringSplitOptions.RemoveEmptyEntries)
+        .Where(i => i.Length > 3)
+        .Select(i => i.ToUpper())
+        .ToArray() ?? [];
+    }
     public static void Main(string[] args)
     {
+        // GetUppercaseWordsLongerThanThreeWithLinq
+
+        string[] linqOne = GetUppercaseWordsLongerThanThreeWithLinq("cat banana dog coding");
+        Console.WriteLine(linqOne.Length == 2);
+        Console.WriteLine(linqOne[0] == "BANANA");
+        Console.WriteLine(linqOne[1] == "CODING");
+
+        string[] linqTwo = GetUppercaseWordsLongerThanThreeWithLinq("one two three four");
+        Console.WriteLine(linqTwo.Length == 2);
+        Console.WriteLine(linqTwo[0] == "THREE");
+        Console.WriteLine(linqTwo[1] == "FOUR");
+        Console.WriteLine(GetUppercaseWordsLongerThanThreeWithLinq("hi to be").Length == 0);
+        Console.WriteLine(GetUppercaseWordsLongerThanThreeWithLinq("").Length == 0);
+        Console.WriteLine(GetUppercaseWordsLongerThanThreeWithLinq(null).Length == 0);
+
         // Group Temperatures By Band
-        Dictionary<string, int> tempOne = GroupTemperaturesByBand([5, 12, 25, 30, 8]);
-        Console.WriteLine(tempOne["cold"] == 2);
-        Console.WriteLine(tempOne["mild"] == 1);
-        Console.WriteLine(tempOne["hot"] == 2);
+        // Dictionary<string, int> tempOne = GroupTemperaturesByBand([5, 12, 25, 30, 8]);
+        // Console.WriteLine(tempOne["cold"] == 2);
+        // Console.WriteLine(tempOne["mild"] == 1);
+        // Console.WriteLine(tempOne["hot"] == 2);
 
-        Dictionary<string, int> tempTwo = GroupTemperaturesByBand([15, 16, 20]);
-        Console.WriteLine(tempTwo["mild"] == 3);
-        Console.WriteLine(tempTwo.ContainsKey("cold") == false);
-        Console.WriteLine(tempTwo.ContainsKey("hot") == false);
+        // Dictionary<string, int> tempTwo = GroupTemperaturesByBand([15, 16, 20]);
+        // Console.WriteLine(tempTwo["mild"] == 3);
+        // Console.WriteLine(tempTwo.ContainsKey("cold") == false);
+        // Console.WriteLine(tempTwo.ContainsKey("hot") == false);
 
-        Dictionary<string, int> tempThree = GroupTemperaturesByBand(null!);
-        Console.WriteLine(tempThree.Count == 0);
+        // Dictionary<string, int> tempThree = GroupTemperaturesByBand(null!);
+        // Console.WriteLine(tempThree.Count == 0);
 
-        // SUm Valid Payment Amounts
-        Console.WriteLine(SumValidPaymentAmounts("Paul:20, Sarah:35, Bob:abc") == 55);
-        Console.WriteLine(SumValidPaymentAmounts("Paul:10, :50, Tom:5") == 15);
-        Console.WriteLine(SumValidPaymentAmounts("BadRecord, Sam:-5, Amy:30") == 30);
-        Console.WriteLine(SumValidPaymentAmounts("Paul:0, Sarah:10") == 10);
-        Console.WriteLine(SumValidPaymentAmounts("Bad, AlsoBad") == 0);
-        Console.WriteLine(SumValidPaymentAmounts("") == 0);
-        Console.WriteLine(SumValidPaymentAmounts(" ") == 0);
-        Console.WriteLine(SumValidPaymentAmounts(null) == 0);
+        // Sum Valid Payment Amounts
+        // Console.WriteLine(SumValidPaymentAmounts("Paul:20, Sarah:35, Bob:abc") == 55);
+        // Console.WriteLine(SumValidPaymentAmounts("Paul:10, :50, Tom:5") == 15);
+        // Console.WriteLine(SumValidPaymentAmounts("BadRecord, Sam:-5, Amy:30") == 30);
+        // Console.WriteLine(SumValidPaymentAmounts("Paul:0, Sarah:10") == 10);
+        // Console.WriteLine(SumValidPaymentAmounts("Bad, AlsoBad") == 0);
+        // Console.WriteLine(SumValidPaymentAmounts("") == 0);
+        // Console.WriteLine(SumValidPaymentAmounts(" ") == 0);
+        // Console.WriteLine(SumValidPaymentAmounts(null!) == 0);
 
         // Find Largest Jump Between Adjacent Numbers. 
-        Console.WriteLine(FindLargestJumpBetweenAdjacentNumbers([3, 10, 6, 20]) == 14);
-        Console.WriteLine(FindLargestJumpBetweenAdjacentNumbers([5, 5, 5]) == 0);
-        Console.WriteLine(FindLargestJumpBetweenAdjacentNumbers([-5, 5, -10]) == 15);
-        Console.WriteLine(FindLargestJumpBetweenAdjacentNumbers([7]) == null);
-        Console.WriteLine(FindLargestJumpBetweenAdjacentNumbers(null!) == null);
-        Console.WriteLine(FindLargestJumpBetweenAdjacentNumbers([]) == null);
+        // Console.WriteLine(FindLargestJumpBetweenAdjacentNumbers([3, 10, 6, 20]) == 14);
+        // Console.WriteLine(FindLargestJumpBetweenAdjacentNumbers([5, 5, 5]) == 0);
+        // Console.WriteLine(FindLargestJumpBetweenAdjacentNumbers([-5, 5, -10]) == 15);
+        // Console.WriteLine(FindLargestJumpBetweenAdjacentNumbers([7]) == null);
+        // Console.WriteLine(FindLargestJumpBetweenAdjacentNumbers(null!) == null);
+        // Console.WriteLine(FindLargestJumpBetweenAdjacentNumbers([]) == null);
 
         //Mask Middle Character
         // Console.WriteLine(MaskMiddleCharacters("Paul") == "P**l");
