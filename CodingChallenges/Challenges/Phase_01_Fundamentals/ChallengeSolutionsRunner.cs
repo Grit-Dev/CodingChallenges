@@ -33,6 +33,60 @@ namespace CodingChallenges.Challenges.Phase_02_OOP
 
         public static void Run_Four()
         {
+            // Find First LongWord With Linq
+            Console.WriteLine(FindFirstLongWordWithLinq("cat banana dog pineapple") == "banana");
+            Console.WriteLine(FindFirstLongWordWithLinq("one two six") == "");
+            Console.WriteLine(FindFirstLongWordWithLinq("hello coding test") == "coding");
+            Console.WriteLine(FindFirstLongWordWithLinq("") == "");
+            Console.WriteLine(FindFirstLongWordWithLinq(" ") == "");
+            Console.WriteLine(FindFirstLongWordWithLinq(null!) == "");
+
+            // Group Scores By Result
+            Dictionary<string, int> groupedOne = GroupScoresByResult([80, 40, 50, 20]);
+            Console.WriteLine(groupedOne["pass"] == 2);
+            Console.WriteLine(groupedOne["fail"] == 2);
+
+            Dictionary<string, int> groupedTwo = GroupScoresByResult([90, 100]);
+            Console.WriteLine(groupedTwo["pass"] == 2);
+            Console.WriteLine(groupedTwo.ContainsKey("fail") == false);
+
+            Dictionary<string, int> groupedThree = GroupScoresByResult(null!);
+            Console.WriteLine(groupedThree.Count == 0);
+
+            // Sum Valid Order Totals
+            Console.WriteLine(SumValidOrderTotals("ORD-1:50, ORD-2:25, BAD"));
+            Console.WriteLine(SumValidOrderTotals("ORD-1:10, ORD-2:abc, ORD-3:5") == 15);
+            Console.WriteLine(SumValidOrderTotals("ORD-1:-5, ORD-2:20") == 20);
+            Console.WriteLine(SumValidOrderTotals("BAD, ALSO-BAD") == 0);
+            Console.WriteLine(SumValidOrderTotals("") == 0);
+            Console.WriteLine(SumValidOrderTotals(" ") == 0);
+            Console.WriteLine(SumValidOrderTotals(null!) == 0);
+
+            // Find Highest Total of Three Consecutive Numbers
+            Console.WriteLine(FindHighestTotalOfThreeConsecutiveNumbers([1, 2, 3, 4, 5]) == 12);
+            Console.WriteLine(FindHighestTotalOfThreeConsecutiveNumbers([10, -5, 3, 2]) == 8);
+            Console.WriteLine(FindHighestTotalOfThreeConsecutiveNumbers([-5, -2, -10, -1]) == -13);
+            Console.WriteLine(FindHighestTotalOfThreeConsecutiveNumbers([1, 2]) == null);
+            Console.WriteLine(FindHighestTotalOfThreeConsecutiveNumbers([]) == null);
+            Console.WriteLine(FindHighestTotalOfThreeConsecutiveNumbers([]) == null);
+
+            // Create Initials 
+            Console.WriteLine(CreateInitials("Paul mcKinley") == "PM");
+            Console.WriteLine(CreateInitials("john michael smith") == "JMS");
+            Console.WriteLine(CreateInitials(" sarah connor ") == "SC");
+            Console.WriteLine(CreateInitials("A") == "A");
+            Console.WriteLine(CreateInitials("") == "");
+            Console.WriteLine(CreateInitials(" ") == "");
+            Console.WriteLine(CreateInitials(null!) == "");
+
+            // Calculate Average Of Positive Numbers 
+            Console.WriteLine(CalculateAverageOfPositiveNumbers([2, 4, -1, 0, 6]) == 4);
+            Console.WriteLine(CalculateAverageOfPositiveNumbers([-1, -2, 0]) == 0);
+            Console.WriteLine(CalculateAverageOfPositiveNumbers([10]) == 10);
+            Console.WriteLine(CalculateAverageOfPositiveNumbers(null!) == 0);
+            Console.WriteLine(CalculateAverageOfPositiveNumbers([]) == 0);
+            Console.WriteLine(CalculateAverageOfPositiveNumbers([1, 2]) == 1.5);
+
             // Find First Balanced Word
             Console.WriteLine(FindFirstBalancedWord("tree sky code") == "tree");
             Console.WriteLine(FindFirstBalancedWord("abcde test") == "");
