@@ -56,18 +56,18 @@ public class Program
 
     public static int? FindFirstPointWhereBalanceGoesNegative(int[] changes)
     {
-        if(changes is null || changes.Length == 0)
+        if (changes is null || changes.Length == 0)
         {
             return null;
         }
 
         int total = 0;
 
-        foreach(int number in changes)
+        foreach (int number in changes)
         {
             total += number;
 
-            if(total < 0)
+            if (total < 0)
             {
                 return total;
             }
@@ -78,11 +78,11 @@ public class Program
     public static void Main(string[] args)
     {
         // Find First Point Where Balance Goes negative 
-        Console.WriteLine(FindFirstPointWhereBalanceGoesNegative([10, -3, -8, 5]) == -1);
-        Console.WriteLine(FindFirstPointWhereBalanceGoesNegative([5, -2, -1]) == null);
-        Console.WriteLine(FindFirstPointWhereBalanceGoesNegative([-4, 10]) == -4);
-        Console.WriteLine(FindFirstPointWhereBalanceGoesNegative(null!) == null);
-        Console.WriteLine(FindFirstPointWhereBalanceGoesNegative([]) == null);
+        // Console.WriteLine(FindFirstPointWhereBalanceGoesNegative([10, -3, -8, 5]) == -1);
+        // Console.WriteLine(FindFirstPointWhereBalanceGoesNegative([5, -2, -1]) == null);
+        // Console.WriteLine(FindFirstPointWhereBalanceGoesNegative([-4, 10]) == -4);
+        // Console.WriteLine(FindFirstPointWhereBalanceGoesNegative(null!) == null);
+        // Console.WriteLine(FindFirstPointWhereBalanceGoesNegative([]) == null);
 
         // Normalise Name List
         // Console.WriteLine(NormaliseNameList(" Paul, SARAH , bob ") == "paul, sarah, bob");
