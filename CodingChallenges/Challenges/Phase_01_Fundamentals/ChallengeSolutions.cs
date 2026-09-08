@@ -6,6 +6,193 @@ namespace CodingChallenges.Challenges.Phase_02_OOP
 {
     public class ChallengeSolutions
     {
+        public static int CountNumbersBetweenTwoValues(int[] numbers, int min, int max)
+        {
+            if (numbers is null || numbers.Length == 0 || min > max)
+            {
+                return 0;
+            }
+
+            int counter = 0;
+
+            foreach (int number in numbers)
+            {
+                if (number >= min && number <= max)
+                {
+                    counter++;
+                }
+            }
+
+            return counter;
+        }
+
+        public static string NormaliseNameList(string input)
+        {
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                return "";
+            }
+
+            var strBuilder = new StringBuilder();
+
+            string[] splitString = input.Split(',', StringSplitOptions.RemoveEmptyEntries);
+
+            foreach (string str in splitString)
+            {
+                string strTrimmed = str.Trim().ToLower();
+
+                if (strTrimmed.Length == 0)
+                {
+                    continue;
+                }
+
+                if (strBuilder.Length > 0)
+                {
+                    strBuilder.Append(", ");
+                }
+
+                strBuilder.Append(strTrimmed);
+            }
+
+            return strBuilder.ToString();
+        }
+
+        public static int? FindFirstPointWhereBalanceGoesNegative(int[] changes)
+        {
+            if (changes is null || changes.Length == 0)
+            {
+                return null;
+            }
+
+            int total = 0;
+
+            foreach (int number in changes)
+            {
+                total += number;
+
+                if (total < 0)
+                {
+                    return total;
+                }
+            }
+
+            return null;
+        }
+
+        public static int CountValidPaymentRecords(string input)
+        {
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                return 0;
+            }
+
+            int counter = 0;
+            string[] splitString = input.Split(',', StringSplitOptions.RemoveEmptyEntries);
+
+            foreach (string str in splitString)
+            {
+                string strTrimmed = str.Trim();
+
+                if (strTrimmed.Count(counter => counter == ':') != 1)
+                {
+                    continue;
+                }
+
+                int indexOfColon = strTrimmed.IndexOf(':');
+
+                string beforeColon = strTrimmed.Substring(0, indexOfColon);
+                string afterColon = strTrimmed.Substring(indexOfColon + 1);
+
+                if (beforeColon.Length != 0 && afterColon.Length != 0)
+                {
+                    if (int.TryParse(afterColon, out int value))
+                    {
+                        if (value >= 0)
+                        {
+                            counter++;
+                        }
+                    }
+                }
+            }
+
+            return counter;
+        }
+
+        public static Dictionary<char, int> CountFirstLetterFrequencyDict(string input)
+        {
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                return [];
+            }
+
+            Dictionary<char, int> newDict = [];
+            string[] splitString = input.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+            foreach (string str in splitString)
+            {
+
+                char character = char.ToLower(str[0]);
+
+                if (char.IsLetter(character))
+                {
+                    if (newDict.TryGetValue(character, out int value))
+                    {
+                        newDict[character] = value + 1;
+                    }
+                    else
+                    {
+                        newDict[character] = 1;
+                    }
+                }
+            }
+
+            return newDict;
+        }
+
+        public static bool AreAllScoresPassingWithLinq(int[] numbers) =>
+        numbers is not null && numbers.Length != 0 && numbers.All(n => n >= 50);
+
+        public static int SumValidPaymentAmountsAgain(string input)
+        {
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                return 0;
+            }
+
+            int total = 0;
+
+            string[] splitString = input.Split(',', StringSplitOptions.RemoveEmptyEntries);
+
+            foreach (string str in splitString)
+            {
+                string strTrimmed = str.Trim();
+
+                if (strTrimmed.Count(counter => counter == ':') != 1)
+                {
+                    continue;
+                }
+
+                int indexOfColon = strTrimmed.IndexOf(':');
+
+                string beforeColon = strTrimmed.Substring(0, indexOfColon).Trim();
+                string afterColon = strTrimmed.Substring(indexOfColon + 1).Trim();
+
+                if (beforeColon.Length == 0 || afterColon.Length == 0)
+                {
+                    continue;
+                }
+
+                if (int.TryParse(afterColon, out int value))
+                {
+                    if (value >= 0)
+                    {
+                        total += value;
+                    }
+                }
+            }
+
+            return total;
+        }
         public static int CountNumbersWithSameParityAsTheirIndex(int[] numbers)
         {
             if (numbers is null || numbers.Length == 0)

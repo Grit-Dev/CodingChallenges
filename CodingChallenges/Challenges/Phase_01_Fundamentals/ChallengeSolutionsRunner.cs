@@ -33,6 +33,143 @@ namespace CodingChallenges.Challenges.Phase_02_OOP
 
         public static void Run_Four()
         {
+            // Sum Valid Payment Amounts Again
+            Console.WriteLine(SumValidPaymentAmountsAgain("Paul:20, Sarah:35, Bob:abc") == 55);
+            Console.WriteLine(SumValidPaymentAmountsAgain("Paul:10, :50, Tom:5") == 15);
+            Console.WriteLine(SumValidPaymentAmountsAgain("BadRecord, Sam:-5, Amy:30") == 30);
+            Console.WriteLine(SumValidPaymentAmountsAgain("Paul:10:20, Sarah:5") == 5);
+            Console.WriteLine(SumValidPaymentAmountsAgain("Paul:0, Sarah:10") == 10);
+            Console.WriteLine(SumValidPaymentAmountsAgain("Bad, AlsoBad") == 0);
+            Console.WriteLine(SumValidPaymentAmountsAgain("") == 0);
+            Console.WriteLine(SumValidPaymentAmountsAgain(null!) == 0);
+
+            // Are All Scores Passing With Linq
+            Console.WriteLine(AreAllScoresPassingWithLinq([50, 60, 70]) == true);
+            Console.WriteLine(AreAllScoresPassingWithLinq([50, 40, 90]) == false);
+            Console.WriteLine(AreAllScoresPassingWithLinq([100]) == true);
+            Console.WriteLine(AreAllScoresPassingWithLinq(null!) == false);
+            Console.WriteLine(AreAllScoresPassingWithLinq([]) == false);
+
+            // CountFirstLetterFrequency
+            Dictionary<char, int> lettersOne = CountFirstLetterFrequencyDict("apple banana apricot");
+            Console.WriteLine(lettersOne['a'] == 2);
+            Console.WriteLine(lettersOne['b'] == 1);
+
+            Dictionary<char, int> lettersTwo = CountFirstLetterFrequencyDict("Dog duck cat");
+            Console.WriteLine(lettersTwo['d'] == 2);
+            Console.WriteLine(lettersTwo['c'] == 1);
+
+            Dictionary<char, int> lettersThree = CountFirstLetterFrequencyDict("123 apple !test");
+            Console.WriteLine(lettersThree['a'] == 1);
+            Console.WriteLine(lettersThree.ContainsKey('1') == false);
+            Console.WriteLine(lettersThree.ContainsKey('!') == false);
+
+            Dictionary<char, int> lettersFour = CountFirstLetterFrequencyDict(null!);
+            Console.WriteLine(lettersFour.Count == 0);
+
+            // Count Valid Payments Records
+            Console.WriteLine(CountValidPaymentRecords("Paul:20, Sarah:35, Bob:abc") == 2);
+            Console.WriteLine(CountValidPaymentRecords("Paul:10, :50, Tom:5") == 2);
+            Console.WriteLine(CountValidPaymentRecords("BadRecord, Sam:-5, Amy:30") == 1);
+            Console.WriteLine(CountValidPaymentRecords("Paul:10:20, Sarah:5") == 1);
+            Console.WriteLine(CountValidPaymentRecords("Paul:0, Sarah:10") == 2);
+            Console.WriteLine(CountValidPaymentRecords("Bad, AlsoBad") == 0);
+            Console.WriteLine(CountValidPaymentRecords("") == 0);
+            Console.WriteLine(CountValidPaymentRecords(" ") == 0);
+            Console.WriteLine(CountValidPaymentRecords(null!) == 0);
+
+            // Find First Point Where Balance Goes negative 
+            Console.WriteLine(FindFirstPointWhereBalanceGoesNegative([10, -3, -8, 5]) == -1);
+            Console.WriteLine(FindFirstPointWhereBalanceGoesNegative([5, -2, -1]) == null);
+            Console.WriteLine(FindFirstPointWhereBalanceGoesNegative([-4, 10]) == -4);
+            Console.WriteLine(FindFirstPointWhereBalanceGoesNegative(null!) == null);
+            Console.WriteLine(FindFirstPointWhereBalanceGoesNegative([]) == null);
+
+            // Normalise Name List
+            Console.WriteLine(NormaliseNameList(" Paul, SARAH , bob ") == "paul, sarah, bob");
+            Console.WriteLine(NormaliseNameList("Tom,, Amy, ") == "tom, amy");
+            Console.WriteLine(NormaliseNameList(" Derek ") == "derek");
+            Console.WriteLine(NormaliseNameList("") == "");
+            Console.WriteLine(NormaliseNameList(" ") == "");
+            Console.WriteLine(NormaliseNameList(null!) == "");
+
+            // Count Numbers Between Two Values
+            Console.WriteLine(CountNumbersBetweenTwoValues([1, 5, 10, 15, 20], 5, 15) == 3);
+            Console.WriteLine(CountNumbersBetweenTwoValues([5, 10, 15], 6, 14) == 1);
+            Console.WriteLine(CountNumbersBetweenTwoValues([-5, 0, 5], -5, 0) == 2);
+            Console.WriteLine(CountNumbersBetweenTwoValues([1, 2, 3], 10, 5) == 0);
+            Console.WriteLine(CountNumbersBetweenTwoValues(null!, 0, 10) == 0);
+            Console.WriteLine(CountNumbersBetweenTwoValues([], 0, 10) == 0);
+
+            // Find Longest Word Without Repeated Letters
+            Console.WriteLine(FindLongestWordWithoutRepeatedLetters("cat apple sword moon") == "sword");
+            Console.WriteLine(FindLongestWordWithoutRepeatedLetters("hello test abc") == "abc");
+            Console.WriteLine(FindLongestWordWithoutRepeatedLetters("book moon") == "");
+            Console.WriteLine(FindLongestWordWithoutRepeatedLetters("") == "");
+            Console.WriteLine(FindLongestWordWithoutRepeatedLetters(null!) == "");
+
+            // GetUppercaseWordsLongerThanThreeWithLinq
+            string[] linqOne = GetUppercaseWordsLongerThanThreeWithLinq("cat banana dog coding");
+            Console.WriteLine(linqOne.Length == 2);
+            Console.WriteLine(linqOne[0] == "BANANA");
+            Console.WriteLine(linqOne[1] == "CODING");
+
+            string[] linqTwo = GetUppercaseWordsLongerThanThreeWithLinq("one two three four");
+            Console.WriteLine(linqTwo.Length == 2);
+            Console.WriteLine(linqTwo[0] == "THREE");
+            Console.WriteLine(linqTwo[1] == "FOUR");
+            Console.WriteLine(GetUppercaseWordsLongerThanThreeWithLinq("hi to be").Length == 0);
+            Console.WriteLine(GetUppercaseWordsLongerThanThreeWithLinq("").Length == 0);
+            Console.WriteLine(GetUppercaseWordsLongerThanThreeWithLinq(null!).Length == 0);
+
+            // Group Temperatures By Band
+            Dictionary<string, int> tempOne = GroupTemperaturesByBand([5, 12, 25, 30, 8]);
+            Console.WriteLine(tempOne["cold"] == 2);
+            Console.WriteLine(tempOne["mild"] == 1);
+            Console.WriteLine(tempOne["hot"] == 2);
+
+            Dictionary<string, int> tempTwo = GroupTemperaturesByBand([15, 16, 20]);
+            Console.WriteLine(tempTwo["mild"] == 3);
+            Console.WriteLine(tempTwo.ContainsKey("cold") == false);
+            Console.WriteLine(tempTwo.ContainsKey("hot") == false);
+
+            Dictionary<string, int> tempThree = GroupTemperaturesByBand(null!);
+            Console.WriteLine(tempThree.Count == 0);
+
+            // Sum Valid Payment Amounts
+            Console.WriteLine(SumValidPaymentAmounts("Paul:20, Sarah:35, Bob:abc") == 55);
+            Console.WriteLine(SumValidPaymentAmounts("Paul:10, :50, Tom:5") == 15);
+            Console.WriteLine(SumValidPaymentAmounts("BadRecord, Sam:-5, Amy:30") == 30);
+            Console.WriteLine(SumValidPaymentAmounts("Paul:0, Sarah:10") == 10);
+            Console.WriteLine(SumValidPaymentAmounts("Bad, AlsoBad") == 0);
+            Console.WriteLine(SumValidPaymentAmounts("") == 0);
+            Console.WriteLine(SumValidPaymentAmounts(" ") == 0);
+            Console.WriteLine(SumValidPaymentAmounts(null!) == 0);
+
+            // Find Largest Jump Between Adjacent Numbers. 
+            Console.WriteLine(FindLargestJumpBetweenAdjacentNumbers([3, 10, 6, 20]) == 14);
+            Console.WriteLine(FindLargestJumpBetweenAdjacentNumbers([5, 5, 5]) == 0);
+            Console.WriteLine(FindLargestJumpBetweenAdjacentNumbers([-5, 5, -10]) == 15);
+            Console.WriteLine(FindLargestJumpBetweenAdjacentNumbers([7]) == null);
+            Console.WriteLine(FindLargestJumpBetweenAdjacentNumbers(null!) == null);
+            Console.WriteLine(FindLargestJumpBetweenAdjacentNumbers([]) == null);
+
+            //Mask Middle Character
+            Console.WriteLine(MaskMiddleCharacters("Paul") == "P**l");
+            Console.WriteLine(MaskMiddleCharacters("coding") == "c****g");
+            Console.WriteLine(MaskMiddleCharacters("ab") == "ab");
+            Console.WriteLine(MaskMiddleCharacters("a") == "a");
+            Console.WriteLine(MaskMiddleCharacters("") == "");
+            Console.WriteLine(MaskMiddleCharacters(" ") == "");
+            Console.WriteLine(MaskMiddleCharacters(null!) == "");
+
+            // Count Numbers With Same Parity As Their Index
+            Console.WriteLine(CountNumbersWithSameParityAsTheirIndex([2, 3, 4, 7]) == 4);
+            Console.WriteLine(CountNumbersWithSameParityAsTheirIndex([1, 2, 3, 4]) == 0);
+            Console.WriteLine(CountNumbersWithSameParityAsTheirIndex([0, 5, 8, 10]) == 3);
+            Console.WriteLine(CountNumbersWithSameParityAsTheirIndex(null!) == 0);
+            Console.WriteLine(CountNumbersWithSameParityAsTheirIndex([]) == 0);
+
             // Find First LongWord With Linq
             Console.WriteLine(FindFirstLongWordWithLinq("cat banana dog pineapple") == "banana");
             Console.WriteLine(FindFirstLongWordWithLinq("one two six") == "");
