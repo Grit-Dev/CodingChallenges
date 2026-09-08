@@ -146,24 +146,34 @@ public class Program
 
         return newDict;
     }
+
+    public static bool AreAllScoresPassingWithLinq(int[] numbers) => 
+    numbers is null || numbers.Length == 0 ? false : numbers.All(n => n >= 50);
     public static void Main(string[] args)
     {
+        // Are All Scores Passing With Linq
+        Console.WriteLine(AreAllScoresPassingWithLinq([50, 60, 70]) == true);
+        Console.WriteLine(AreAllScoresPassingWithLinq([50, 40, 90]) == false);
+        Console.WriteLine(AreAllScoresPassingWithLinq([100]) == true);
+        Console.WriteLine(AreAllScoresPassingWithLinq(null!) == false);
+        Console.WriteLine(AreAllScoresPassingWithLinq([]) == false);
+
         // CountFirstLetterFrequency
-        Dictionary<char, int> lettersOne = CountFirstLetterFrequency("apple banana apricot");
-        Console.WriteLine(lettersOne['a'] == 2);
-        Console.WriteLine(lettersOne['b'] == 1);
+        // Dictionary<char, int> lettersOne = CountFirstLetterFrequency("apple banana apricot");
+        // Console.WriteLine(lettersOne['a'] == 2);
+        // Console.WriteLine(lettersOne['b'] == 1);
 
-        Dictionary<char, int> lettersTwo = CountFirstLetterFrequency("Dog duck cat");
-        Console.WriteLine(lettersTwo['d'] == 2);
-        Console.WriteLine(lettersTwo['c'] == 1);
+        // Dictionary<char, int> lettersTwo = CountFirstLetterFrequency("Dog duck cat");
+        // Console.WriteLine(lettersTwo['d'] == 2);
+        // Console.WriteLine(lettersTwo['c'] == 1);
 
-        Dictionary<char, int> lettersThree = CountFirstLetterFrequency("123 apple !test");
-        Console.WriteLine(lettersThree['a'] == 1);
-        Console.WriteLine(lettersThree.ContainsKey('1') == false);
-        Console.WriteLine(lettersThree.ContainsKey('!') == false);
+        // Dictionary<char, int> lettersThree = CountFirstLetterFrequency("123 apple !test");
+        // Console.WriteLine(lettersThree['a'] == 1);
+        // Console.WriteLine(lettersThree.ContainsKey('1') == false);
+        // Console.WriteLine(lettersThree.ContainsKey('!') == false);
 
-        Dictionary<char, int> lettersFour = CountFirstLetterFrequency(null!);
-        Console.WriteLine(lettersFour.Count == 0);
+        // Dictionary<char, int> lettersFour = CountFirstLetterFrequency(null!);
+        // Console.WriteLine(lettersFour.Count == 0);
 
         // Count Valid Payments Records
         // Console.WriteLine(CountValidPaymentRecords("Paul:20, Sarah:35, Bob:abc") == 2);
