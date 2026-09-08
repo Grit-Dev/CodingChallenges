@@ -147,16 +147,68 @@ public class Program
         return newDict;
     }
 
-    public static bool AreAllScoresPassingWithLinq(int[] numbers) => 
-    numbers is null || numbers.Length == 0 ? false : numbers.All(n => n >= 50);
+    public static bool AreAllScoresPassingWithLinq(int[] numbers) =>
+    numbers is not null && numbers.Length != 0 && numbers.All(n => n >= 50);
+
+    public static int SumValidPaymentAmountsAgain(string input)
+    {
+        if (string.IsNullOrWhiteSpace(input))
+        {
+            return 0;
+        }
+
+        int total = 0;
+
+        string[] splitString = input.Split(',', StringSplitOptions.RemoveEmptyEntries);
+
+        foreach (string str in splitString)
+        {
+            string strTrimmed = str.Trim();
+
+            if (strTrimmed.Count(counter => counter == ':') != 1)
+            {
+                continue;
+            }
+
+            int indexOfColon = strTrimmed.IndexOf(':');
+
+            string beforeColon = strTrimmed.Substring(0, indexOfColon).Trim();
+            string afterColon = strTrimmed.Substring(indexOfColon + 1).Trim();
+
+            if (beforeColon.Length == 0 || afterColon.Length == 0)
+            {
+                continue;
+            }
+
+            if (int.TryParse(afterColon, out int value))
+            {
+                if (value >= 0)
+                {
+                    total += value;
+                }
+            }
+        }
+
+        return total;
+    }
     public static void Main(string[] args)
     {
+        // Sum Valid Payment Amounts Again
+        Console.WriteLine(SumValidPaymentAmountsAgain("Paul:20, Sarah:35, Bob:abc") == 55);
+        Console.WriteLine(SumValidPaymentAmountsAgain("Paul:10, :50, Tom:5") == 15);
+        Console.WriteLine(SumValidPaymentAmountsAgain("BadRecord, Sam:-5, Amy:30") == 30);
+        Console.WriteLine(SumValidPaymentAmountsAgain("Paul:10:20, Sarah:5") == 5);
+        Console.WriteLine(SumValidPaymentAmountsAgain("Paul:0, Sarah:10") == 10);
+        Console.WriteLine(SumValidPaymentAmountsAgain("Bad, AlsoBad") == 0);
+        Console.WriteLine(SumValidPaymentAmountsAgain("") == 0);
+        Console.WriteLine(SumValidPaymentAmountsAgain(null!) == 0);
+
         // Are All Scores Passing With Linq
-        Console.WriteLine(AreAllScoresPassingWithLinq([50, 60, 70]) == true);
-        Console.WriteLine(AreAllScoresPassingWithLinq([50, 40, 90]) == false);
-        Console.WriteLine(AreAllScoresPassingWithLinq([100]) == true);
-        Console.WriteLine(AreAllScoresPassingWithLinq(null!) == false);
-        Console.WriteLine(AreAllScoresPassingWithLinq([]) == false);
+        // Console.WriteLine(AreAllScoresPassingWithLinq([50, 60, 70]) == true);
+        // Console.WriteLine(AreAllScoresPassingWithLinq([50, 40, 90]) == false);
+        // Console.WriteLine(AreAllScoresPassingWithLinq([100]) == true);
+        // Console.WriteLine(AreAllScoresPassingWithLinq(null!) == false);
+        // Console.WriteLine(AreAllScoresPassingWithLinq([]) == false);
 
         // CountFirstLetterFrequency
         // Dictionary<char, int> lettersOne = CountFirstLetterFrequency("apple banana apricot");
