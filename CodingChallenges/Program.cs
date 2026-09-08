@@ -75,8 +75,58 @@ public class Program
 
         return null;
     }
+
+    public static int CountValidPaymentRecords(string input)
+    {
+        if (string.IsNullOrWhiteSpace(input))
+        {
+            return 0;
+        }
+
+        int counter = 0;
+        string[] splitString = input.Split(',', StringSplitOptions.RemoveEmptyEntries);
+
+        foreach (string str in splitString)
+        {
+            string strTrimmed = str.Trim();
+
+            if (strTrimmed.Count(counter => counter == ':') != 1)
+            {
+                continue;
+            }
+
+            int indexOfColon = strTrimmed.IndexOf(':');
+
+            string beforeColon = strTrimmed.Substring(0, indexOfColon);
+            string afterColon = strTrimmed.Substring(indexOfColon + 1);
+
+            if (beforeColon.Length != 0 && afterColon.Length != 0)
+            {
+                if (int.TryParse(afterColon, out int value))
+                {
+                    if (value >= 0)
+                    {
+                        counter++;
+                    }
+                }
+            }
+        }
+
+        return counter;
+    }
     public static void Main(string[] args)
     {
+        // Count Valid Payments Records
+        Console.WriteLine(CountValidPaymentRecords("Paul:20, Sarah:35, Bob:abc") == 2);
+        Console.WriteLine(CountValidPaymentRecords("Paul:10, :50, Tom:5") == 2);
+        Console.WriteLine(CountValidPaymentRecords("BadRecord, Sam:-5, Amy:30") == 1);
+        Console.WriteLine(CountValidPaymentRecords("Paul:10:20, Sarah:5") == 1);
+        Console.WriteLine(CountValidPaymentRecords("Paul:0, Sarah:10") == 2);
+        Console.WriteLine(CountValidPaymentRecords("Bad, AlsoBad") == 0);
+        Console.WriteLine(CountValidPaymentRecords("") == 0);
+        Console.WriteLine(CountValidPaymentRecords(" ") == 0);
+        Console.WriteLine(CountValidPaymentRecords(null!) == 0);
+
         // Find First Point Where Balance Goes negative 
         // Console.WriteLine(FindFirstPointWhereBalanceGoesNegative([10, -3, -8, 5]) == -1);
         // Console.WriteLine(FindFirstPointWhereBalanceGoesNegative([5, -2, -1]) == null);
