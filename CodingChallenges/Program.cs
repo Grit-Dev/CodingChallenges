@@ -53,15 +53,44 @@ public class Program
 
         return strBuilder.ToString();
     }
+
+    public static int? FindFirstPointWhereBalanceGoesNegative(int[] changes)
+    {
+        if(changes is null || changes.Length == 0)
+        {
+            return null;
+        }
+
+        int total = 0;
+
+        foreach(int number in changes)
+        {
+            total += number;
+
+            if(total < 0)
+            {
+                return total;
+            }
+        }
+
+        return null;
+    }
     public static void Main(string[] args)
     {
+        // Find First Point Where Balance Goes negative 
+        Console.WriteLine(FindFirstPointWhereBalanceGoesNegative([10, -3, -8, 5]) == -1);
+        Console.WriteLine(FindFirstPointWhereBalanceGoesNegative([5, -2, -1]) == null);
+        Console.WriteLine(FindFirstPointWhereBalanceGoesNegative([-4, 10]) == -4);
+        Console.WriteLine(FindFirstPointWhereBalanceGoesNegative(null!) == null);
+        Console.WriteLine(FindFirstPointWhereBalanceGoesNegative([]) == null);
+
         // Normalise Name List
-        Console.WriteLine(NormaliseNameList(" Paul, SARAH , bob ") == "paul, sarah, bob");
-        Console.WriteLine(NormaliseNameList("Tom,, Amy, ") == "tom, amy");
-        Console.WriteLine(NormaliseNameList(" Derek ") == "derek");
-        Console.WriteLine(NormaliseNameList("") == "");
-        Console.WriteLine(NormaliseNameList(" ") == "");
-        Console.WriteLine(NormaliseNameList(null!) == "");
+        // Console.WriteLine(NormaliseNameList(" Paul, SARAH , bob ") == "paul, sarah, bob");
+        // Console.WriteLine(NormaliseNameList("Tom,, Amy, ") == "tom, amy");
+        // Console.WriteLine(NormaliseNameList(" Derek ") == "derek");
+        // Console.WriteLine(NormaliseNameList("") == "");
+        // Console.WriteLine(NormaliseNameList(" ") == "");
+        // Console.WriteLine(NormaliseNameList(null!) == "");
 
         // // Count Numbers Between Two Values
         // Console.WriteLine(CountNumbersBetweenTwoValues([1, 5, 10, 15, 20], 5, 15) == 3);
