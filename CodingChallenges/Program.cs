@@ -1,4 +1,5 @@
 ﻿
+using System.Reflection.PortableExecutable;
 using System.Text;
 
 public class Program
@@ -114,18 +115,66 @@ public class Program
 
         return counter;
     }
+
+    public static Dictionary<char, int> CountFirstLetterFrequency(string input)
+    {
+        if (string.IsNullOrWhiteSpace(input))
+        {
+            return [];
+        }
+
+        Dictionary<char, int> newDict = [];
+        string[] splitString = input.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+        foreach (string str in splitString)
+        {
+
+            char character = char.ToLower(str[0]);
+
+            if (char.IsLetter(character))
+            {
+                if (newDict.TryGetValue(character, out int value))
+                {
+                    newDict[character] = value + 1;
+                }
+                else
+                {
+                    newDict[character] = 1;
+                }
+            }
+        }
+
+        return newDict;
+    }
     public static void Main(string[] args)
     {
+        // CountFirstLetterFrequency
+        Dictionary<char, int> lettersOne = CountFirstLetterFrequency("apple banana apricot");
+        Console.WriteLine(lettersOne['a'] == 2);
+        Console.WriteLine(lettersOne['b'] == 1);
+
+        Dictionary<char, int> lettersTwo = CountFirstLetterFrequency("Dog duck cat");
+        Console.WriteLine(lettersTwo['d'] == 2);
+        Console.WriteLine(lettersTwo['c'] == 1);
+
+        Dictionary<char, int> lettersThree = CountFirstLetterFrequency("123 apple !test");
+        Console.WriteLine(lettersThree['a'] == 1);
+        Console.WriteLine(lettersThree.ContainsKey('1') == false);
+        Console.WriteLine(lettersThree.ContainsKey('!') == false);
+
+        Dictionary<char, int> lettersFour = CountFirstLetterFrequency(null!);
+        Console.WriteLine(lettersFour.Count == 0);
+
         // Count Valid Payments Records
-        Console.WriteLine(CountValidPaymentRecords("Paul:20, Sarah:35, Bob:abc") == 2);
-        Console.WriteLine(CountValidPaymentRecords("Paul:10, :50, Tom:5") == 2);
-        Console.WriteLine(CountValidPaymentRecords("BadRecord, Sam:-5, Amy:30") == 1);
-        Console.WriteLine(CountValidPaymentRecords("Paul:10:20, Sarah:5") == 1);
-        Console.WriteLine(CountValidPaymentRecords("Paul:0, Sarah:10") == 2);
-        Console.WriteLine(CountValidPaymentRecords("Bad, AlsoBad") == 0);
-        Console.WriteLine(CountValidPaymentRecords("") == 0);
-        Console.WriteLine(CountValidPaymentRecords(" ") == 0);
-        Console.WriteLine(CountValidPaymentRecords(null!) == 0);
+        // Console.WriteLine(CountValidPaymentRecords("Paul:20, Sarah:35, Bob:abc") == 2);
+        // Console.WriteLine(CountValidPaymentRecords("Paul:10, :50, Tom:5") == 2);
+        // Console.WriteLine(CountValidPaymentRecords("BadRecord, Sam:-5, Amy:30") == 1);
+        // Console.WriteLine(CountValidPaymentRecords("Paul:10:20, Sarah:5") == 1);
+        // Console.WriteLine(CountValidPaymentRecords("Paul:0, Sarah:10") == 2);
+        // Console.WriteLine(CountValidPaymentRecords("Bad, AlsoBad") == 0);
+        // Console.WriteLine(CountValidPaymentRecords("") == 0);
+        // Console.WriteLine(CountValidPaymentRecords(" ") == 0);
+        // Console.WriteLine(CountValidPaymentRecords(null!) == 0);
 
         // Find First Point Where Balance Goes negative 
         // Console.WriteLine(FindFirstPointWhereBalanceGoesNegative([10, -3, -8, 5]) == -1);
