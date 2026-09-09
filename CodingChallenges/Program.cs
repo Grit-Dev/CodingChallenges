@@ -114,15 +114,62 @@ public class Program
     string.IsNullOrWhiteSpace(input) ? 0 :
     input.Split(' ', StringSplitOptions.RemoveEmptyEntries)
     .Count(ip => ip.Length > 4);
+
+    public static int CountValidSimpleScoreRecords(string input)
+    {
+        if(string.IsNullOrWhiteSpace(input))
+        {
+            return 0;
+        }
+
+        int counter = 0;
+        string[] splitString = input.Split(',', StringSplitOptions.RemoveEmptyEntries);
+
+        foreach(string str in splitString)
+        {
+            string strTrimmed = str.Trim();
+
+            int colonIndex = strTrimmed.IndexOf(':');
+            int colonCounter = strTrimmed.Count(str => str == ':');
+
+            if(colonIndex is -1 || colonCounter > 1)
+            {
+                continue;
+            }
+
+            string wordBeforeColon = strTrimmed.Substring(0, colonIndex);
+            
+            if(wordBeforeColon.Length == 0)
+            {
+                continue;
+            }
+
+            if(int.TryParse(strTrimmed.Substring(colonIndex + 1), out _))
+            {
+                counter++;
+            }
+        }
+
+        return counter;
+    }
+
     public static void Main(string[] args)
     {
+        // Count Valid Simple Score Records
+        Console.WriteLine(CountValidSimpleScoreRecords("Paul:10, Sarah:20, Bad") == 2);
+        Console.WriteLine(CountValidSimpleScoreRecords(":50, Bob:abc, Tom:5") == 1);
+        Console.WriteLine(CountValidSimpleScoreRecords("Amy:0, Sam:-5") == 2);
+        Console.WriteLine(CountValidSimpleScoreRecords("Bad, AlsoBad") == 0);
+        Console.WriteLine(CountValidSimpleScoreRecords("") == 0);
+        Console.WriteLine(CountValidSimpleScoreRecords(null!) == 0);
+
         // Count Long Words With Linq
-        Console.WriteLine(CountLongWordsWithLinq("cat banana apple dog") == 2);
-        Console.WriteLine(CountLongWordsWithLinq("one two six") == 0);
-        Console.WriteLine(CountLongWordsWithLinq("coding practice today") == 3);
-        Console.WriteLine(CountLongWordsWithLinq("") == 0);
-        Console.WriteLine(CountLongWordsWithLinq("  ") == 0);
-        Console.WriteLine(CountLongWordsWithLinq(null!) == 0);
+        // Console.WriteLine(CountLongWordsWithLinq("cat banana apple dog") == 2);
+        // Console.WriteLine(CountLongWordsWithLinq("one two six") == 0);
+        // Console.WriteLine(CountLongWordsWithLinq("coding practice today") == 3);
+        // Console.WriteLine(CountLongWordsWithLinq("") == 0);
+        // Console.WriteLine(CountLongWordsWithLinq("  ") == 0);
+        // Console.WriteLine(CountLongWordsWithLinq(null!) == 0);
 
         // Count Word Length Frequency
         // Dictionary<int, int> lengthsOne = CountWordLengthFrequency("cat dog apple");
