@@ -33,6 +33,73 @@ namespace CodingChallenges.Challenges.Phase_02_OOP
 
         public static void Run_Four()
         {
+            // Count Valid Simple Score Records
+            Console.WriteLine(CountValidSimpleScoreRecords("Paul:10, Sarah:20, Bad") == 2);
+            Console.WriteLine(CountValidSimpleScoreRecords(":50, Bob:abc, Tom:5") == 1);
+            Console.WriteLine(CountValidSimpleScoreRecords("Amy:0, Sam:-5") == 2);
+            Console.WriteLine(CountValidSimpleScoreRecords("Bad, AlsoBad") == 0);
+            Console.WriteLine(CountValidSimpleScoreRecords("") == 0);
+            Console.WriteLine(CountValidSimpleScoreRecords(null!) == 0);
+
+            // Count Long Words With Linq
+            Console.WriteLine(CountLongWordsWithLinq("cat banana apple dog") == 2);
+            Console.WriteLine(CountLongWordsWithLinq("one two six") == 0);
+            Console.WriteLine(CountLongWordsWithLinq("coding practice today") == 3);
+            Console.WriteLine(CountLongWordsWithLinq("") == 0);
+            Console.WriteLine(CountLongWordsWithLinq("  ") == 0);
+            Console.WriteLine(CountLongWordsWithLinq(null!) == 0);
+
+            // Count Word Length Frequency
+            Dictionary<int, int> lengthsOne = CountWordLengthFrequency("cat dog apple");
+            Console.WriteLine(lengthsOne[3] == 2);
+            Console.WriteLine(lengthsOne[5] == 1);
+
+            Dictionary<int, int> lengthsTwo = CountWordLengthFrequency("hi to code");
+            Console.WriteLine(lengthsTwo[2] == 2);
+            Console.WriteLine(lengthsTwo[4] == 1);
+
+            Dictionary<int, int> lengthsThree = CountWordLengthFrequency("");
+            Console.WriteLine(lengthsThree.Count == 0);
+
+            // Find Smallest Positive Number
+            Console.WriteLine(FindSmallestPositiveNumber([5, 2, -1, 10]) == 2);
+            Console.WriteLine(FindSmallestPositiveNumber([-5, 0, -2]) == null);
+            Console.WriteLine(FindSmallestPositiveNumber([7]) == 7);
+            Console.WriteLine(FindSmallestPositiveNumber([10, 3, 4, 1]) == 1);
+            Console.WriteLine(FindSmallestPositiveNumber(null!) == null);
+            Console.WriteLine(FindSmallestPositiveNumber([]) == null);
+
+            // Calculate Running Totals
+            int[] totalsOne = CalculateRunningTotals([2, 4, 5]);
+            Console.WriteLine(totalsOne.Length == 3);
+            Console.WriteLine(totalsOne[0] == 2);
+            Console.WriteLine(totalsOne[1] == 6);
+            Console.WriteLine(totalsOne[2] == 11);
+
+            int[] totalsTwo = CalculateRunningTotals([10, -3, 2]);
+            Console.WriteLine(totalsTwo.Length == 3);
+            Console.WriteLine(totalsTwo[0] == 10);
+            Console.WriteLine(totalsTwo[1] == 7);
+            Console.WriteLine(totalsTwo[2] == 9);
+            Console.WriteLine(CalculateRunningTotals(null!).Length == 0);
+            Console.WriteLine(CalculateRunningTotals([]).Length == 0);
+            Console.WriteLine(CalculateRunningTotals([]).Length == 0);
+
+            // Clean Extra Spaces Between Words
+            Console.WriteLine(CleanExtraSpacesBetweenWords("  Paul   is  coding  ") == "Paul is coding");
+            Console.WriteLine(CleanExtraSpacesBetweenWords("hello     world") == "hello world");
+            Console.WriteLine(CleanExtraSpacesBetweenWords("one") == "one");
+            Console.WriteLine(CleanExtraSpacesBetweenWords("") == "");
+            Console.WriteLine(CleanExtraSpacesBetweenWords(" ") == "");
+            Console.WriteLine(CleanExtraSpacesBetweenWords(null!) == "");
+
+            // Count Even Numbers At Even Indexes
+            Console.WriteLine(CountEvenNumbersAtEvenIndexes([2, 3, 4, 5, 6]) == 3);
+            Console.WriteLine(CountEvenNumbersAtEvenIndexes([1, 2, 3, 4]) == 0);
+            Console.WriteLine(CountEvenNumbersAtEvenIndexes([0, 1, 8, 3]) == 2);
+            Console.WriteLine(CountEvenNumbersAtEvenIndexes(null!) == 0);
+            Console.WriteLine(CountEvenNumbersAtEvenIndexes([]) == 0);
+
             // Sum Valid Payment Amounts Again
             Console.WriteLine(SumValidPaymentAmountsAgain("Paul:20, Sarah:35, Bob:abc") == 55);
             Console.WriteLine(SumValidPaymentAmountsAgain("Paul:10, :50, Tom:5") == 15);

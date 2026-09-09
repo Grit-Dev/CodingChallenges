@@ -6,6 +6,156 @@ namespace CodingChallenges.Challenges.Phase_02_OOP
 {
     public class ChallengeSolutions
     {
+        public static int CountEvenNumbersAtEvenIndexes(int[] numbers)
+        {
+            if (numbers is null || numbers.Length == 0)
+            {
+                return 0;
+            }
+
+            int counter = 0;
+
+            for (int outerIndex = 0; outerIndex <= numbers.Length - 1; outerIndex += 2)
+            {
+                if (numbers[outerIndex] % 2 == 0)
+                {
+                    counter++;
+                }
+            }
+
+            return counter;
+        }
+
+        public static string CleanExtraSpacesBetweenWords(string input)
+        {
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                return "";
+            }
+
+            var strBuilder = new StringBuilder();
+
+            string[] stringSplit = input.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+            foreach (string str in stringSplit)
+            {
+
+                if (strBuilder.Length > 0)
+                {
+                    strBuilder.Append(' ');
+                }
+                strBuilder.Append(str);
+            }
+
+            return strBuilder.ToString();
+        }
+
+        public static int[] CalculateRunningTotals(int[] numbers)
+        {
+            if (numbers is null || numbers.Length == 0)
+            {
+                return [];
+            }
+
+            int total = 0;
+            List<int> newList = [];
+
+            foreach (int number in numbers)
+            {
+                newList.Add(total += number);
+            }
+
+            return newList.ToArray();
+        }
+
+        public static int? FindSmallestPositiveNumber(int[] numbers)
+        {
+            if (numbers is null || numbers.Length == 0)
+            {
+                return null;
+            }
+
+            int? smallestNumberSoFar = null;
+
+            foreach (int number in numbers)
+            {
+                if (number > 0 && (number < smallestNumberSoFar || smallestNumberSoFar is null))
+                {
+                    smallestNumberSoFar = number;
+                }
+            }
+
+            return smallestNumberSoFar;
+        }
+
+        public static Dictionary<int, int> CountWordLengthFrequency(string input)
+        {
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                return [];
+            }
+
+            Dictionary<int, int> newDict = [];
+
+            string[] splitString = input.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+            foreach (string str in splitString)
+            {
+                if (newDict.TryGetValue(str.Length, out int value))
+                {
+                    newDict[str.Length] = value + 1;
+                }
+                else
+                {
+                    newDict[str.Length] = 1;
+                }
+            }
+
+            return newDict;
+        }
+
+        public static int CountLongWordsWithLinq(string input) =>
+        string.IsNullOrWhiteSpace(input) ? 0 :
+        input.Split(' ', StringSplitOptions.RemoveEmptyEntries)
+        .Count(ip => ip.Length > 4);
+
+        public static int CountValidSimpleScoreRecords(string input)
+        {
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                return 0;
+            }
+
+            int counter = 0;
+            string[] splitString = input.Split(',', StringSplitOptions.RemoveEmptyEntries);
+
+            foreach (string str in splitString)
+            {
+                string strTrimmed = str.Trim();
+
+                int colonIndex = strTrimmed.IndexOf(':');
+                int colonCounter = strTrimmed.Count(str => str == ':');
+
+                if (colonIndex is -1 || colonCounter > 1)
+                {
+                    continue;
+                }
+
+                string wordBeforeColon = strTrimmed.Substring(0, colonIndex);
+
+                if (wordBeforeColon.Length == 0)
+                {
+                    continue;
+                }
+
+                if (int.TryParse(strTrimmed.Substring(colonIndex + 1), out _))
+                {
+                    counter++;
+                }
+            }
+
+            return counter;
+        }
         public static int CountNumbersBetweenTwoValues(int[] numbers, int min, int max)
         {
             if (numbers is null || numbers.Length == 0 || min > max)
