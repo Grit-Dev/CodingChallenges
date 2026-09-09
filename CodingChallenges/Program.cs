@@ -86,7 +86,7 @@ public class Program
 
     public static Dictionary<int, int> CountWordLengthFrequency(string input)
     {
-        if(string.IsNullOrWhiteSpace(input))
+        if (string.IsNullOrWhiteSpace(input))
         {
             return [];
         }
@@ -95,9 +95,9 @@ public class Program
 
         string[] splitString = input.Split(' ', StringSplitOptions.RemoveEmptyEntries);
 
-        foreach(string str in splitString)
+        foreach (string str in splitString)
         {
-            if(newDict.TryGetValue(str.Length, out int value))
+            if (newDict.TryGetValue(str.Length, out int value))
             {
                 newDict[str.Length] = value + 1;
             }
@@ -109,20 +109,32 @@ public class Program
 
         return newDict;
     }
+
+    public static int CountLongWordsWithLinq(string input) => 
+    string.IsNullOrWhiteSpace(input) ? 0 : 
+    input.Split(' ', StringSplitOptions.RemoveEmptyEntries)
+    .Count( ip => ip.Length > 4);
     public static void Main(string[] args)
     {
+        // Count Long Words With Linq
+        Console.WriteLine(CountLongWordsWithLinq("cat banana apple dog") == 2);
+        Console.WriteLine(CountLongWordsWithLinq("one two six") == 0);
+        Console.WriteLine(CountLongWordsWithLinq("coding practice today") == 3);
+        Console.WriteLine(CountLongWordsWithLinq("") == 0);
+        Console.WriteLine(CountLongWordsWithLinq("  ") == 0);
+        Console.WriteLine(CountLongWordsWithLinq(null!) == 0);
+
         // Count Word Length Frequency
-        Dictionary<int, int> lengthsOne = CountWordLengthFrequency("cat dog apple");
-        Console.WriteLine(lengthsOne[3] == 2);
-        Console.WriteLine(lengthsOne[5] == 1);
+        // Dictionary<int, int> lengthsOne = CountWordLengthFrequency("cat dog apple");
+        // Console.WriteLine(lengthsOne[3] == 2);
+        // Console.WriteLine(lengthsOne[5] == 1);
 
-        Dictionary<int, int> lengthsTwo = CountWordLengthFrequency("hi to code");
-        Console.WriteLine(lengthsTwo[2] == 2);
-        Console.WriteLine(lengthsTwo[4] == 1);
+        // Dictionary<int, int> lengthsTwo = CountWordLengthFrequency("hi to code");
+        // Console.WriteLine(lengthsTwo[2] == 2);
+        // Console.WriteLine(lengthsTwo[4] == 1);
 
-        Dictionary<int, int> lengthsThree = CountWordLengthFrequency("");
-        Console.WriteLine(lengthsThree.Count == 0);
-
+        // Dictionary<int, int> lengthsThree = CountWordLengthFrequency("");
+        // Console.WriteLine(lengthsThree.Count == 0);
 
         // Find Smallest Positive Number
         // Console.WriteLine(FindSmallestPositiveNumber([5, 2, -1, 10]) == 2);
