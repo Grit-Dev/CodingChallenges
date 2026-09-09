@@ -66,16 +66,16 @@ public class Program
 
     public static int? FindSmallestPositiveNumber(int[] numbers)
     {
-        if(numbers is null || numbers.Length == 0)
+        if (numbers is null || numbers.Length == 0)
         {
             return null;
         }
 
         int? smallestNumberSoFar = null;
 
-        foreach(int number in numbers)
+        foreach (int number in numbers)
         {
-            if(number > 0 && (number < smallestNumberSoFar || smallestNumberSoFar is null))
+            if (number > 0 && (number < smallestNumberSoFar || smallestNumberSoFar is null))
             {
                 smallestNumberSoFar = number;
             }
@@ -83,15 +83,54 @@ public class Program
 
         return smallestNumberSoFar;
     }
+
+    public static Dictionary<int, int> CountWordLengthFrequency(string input)
+    {
+        if(string.IsNullOrWhiteSpace(input))
+        {
+            return [];
+        }
+
+        Dictionary<int, int> newDict = [];
+
+        string[] splitString = input.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+        foreach(string str in splitString)
+        {
+            if(newDict.TryGetValue(str.Length, out int value))
+            {
+                newDict[str.Length] = value + 1;
+            }
+            else
+            {
+                newDict[str.Length] = 1;
+            }
+        }
+
+        return newDict;
+    }
     public static void Main(string[] args)
     {
+        // Count Word Length Frequency
+        Dictionary<int, int> lengthsOne = CountWordLengthFrequency("cat dog apple");
+        Console.WriteLine(lengthsOne[3] == 2);
+        Console.WriteLine(lengthsOne[5] == 1);
+
+        Dictionary<int, int> lengthsTwo = CountWordLengthFrequency("hi to code");
+        Console.WriteLine(lengthsTwo[2] == 2);
+        Console.WriteLine(lengthsTwo[4] == 1);
+
+        Dictionary<int, int> lengthsThree = CountWordLengthFrequency("");
+        Console.WriteLine(lengthsThree.Count == 0);
+
+
         // Find Smallest Positive Number
-        Console.WriteLine(FindSmallestPositiveNumber([5, 2, -1, 10]) == 2);
-        Console.WriteLine(FindSmallestPositiveNumber([-5, 0, -2]) == null);
-        Console.WriteLine(FindSmallestPositiveNumber([7]) == 7);
-        Console.WriteLine(FindSmallestPositiveNumber([10, 3, 4, 1]) == 1);
-        Console.WriteLine(FindSmallestPositiveNumber(null!) == null);
-        Console.WriteLine(FindSmallestPositiveNumber([]) == null);
+        // Console.WriteLine(FindSmallestPositiveNumber([5, 2, -1, 10]) == 2);
+        // Console.WriteLine(FindSmallestPositiveNumber([-5, 0, -2]) == null);
+        // Console.WriteLine(FindSmallestPositiveNumber([7]) == 7);
+        // Console.WriteLine(FindSmallestPositiveNumber([10, 3, 4, 1]) == 1);
+        // Console.WriteLine(FindSmallestPositiveNumber(null!) == null);
+        // Console.WriteLine(FindSmallestPositiveNumber([]) == null);
 
         // Calculate Running Totals
         // int[] totalsOne = CalculateRunningTotals([2, 4, 5]);
