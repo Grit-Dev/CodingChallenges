@@ -110,10 +110,10 @@ public class Program
         return newDict;
     }
 
-    public static int CountLongWordsWithLinq(string input) => 
-    string.IsNullOrWhiteSpace(input) ? 0 : 
+    public static int CountLongWordsWithLinq(string input) =>
+    string.IsNullOrWhiteSpace(input) ? 0 :
     input.Split(' ', StringSplitOptions.RemoveEmptyEntries)
-    .Count( ip => ip.Length > 4);
+    .Count(ip => ip.Length > 4);
     public static void Main(string[] args)
     {
         // Count Long Words With Linq
