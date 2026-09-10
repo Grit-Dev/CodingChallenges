@@ -33,6 +33,89 @@ namespace CodingChallenges.Challenges.Phase_02_OOP
 
         public static void Run_Four()
         {
+            // Find Most Common Word Length
+            Console.WriteLine(FindMostCommonWordLength("cat dog apple pear") == 3);
+            Console.WriteLine(FindMostCommonWordLength("hi to code test") == 2);
+            Console.WriteLine(FindMostCommonWordLength("one four five") == 4);
+            Console.WriteLine(FindMostCommonWordLength("") == null);
+            Console.WriteLine(FindMostCommonWordLength(" ") == null);
+            Console.WriteLine(FindMostCommonWordLength(null!) == null);
+
+            // Where + Sum With Linq
+            Console.WriteLine(SumPositiveNumbersWithLinq([-2, 5, 10, -1]) == 15);
+            Console.WriteLine(SumPositiveNumbersWithLinq([-5, 0, -2]) == 0);
+            Console.WriteLine(SumPositiveNumbersWithLinq([1, 2, 3]) == 6);
+            Console.WriteLine(SumPositiveNumbersWithLinq(null!) == 0);
+            Console.WriteLine(SumPositiveNumbersWithLinq([]) == 0);
+
+            // Group Words By First Letter
+            Dictionary<char, List<string>> groupsOne = GroupWordsByFirstLetter("apple banana apricot");
+            Console.WriteLine(groupsOne['a'].Count == 2);
+            Console.WriteLine(groupsOne['a'][0] == "apple");
+            Console.WriteLine(groupsOne['a'][1] == "apricot");
+            Console.WriteLine(groupsOne['b'].Count == 1);
+            Console.WriteLine(groupsOne['b'][0] == "banana");
+
+            Dictionary<char, List<string>> groupsTwo = GroupWordsByFirstLetter("Dog duck cat");
+            Console.WriteLine(groupsTwo['d'].Count == 2);
+            Console.WriteLine(groupsTwo['d'][0] == "Dog");
+            Console.WriteLine(groupsTwo['d'][1] == "duck");
+            Console.WriteLine(groupsTwo['c'][0] == "cat");
+
+            Dictionary<char, List<string>> groupsThree = GroupWordsByFirstLetter("123 apple !test");
+            Console.WriteLine(groupsThree['a'].Count == 1);
+            Console.WriteLine(groupsThree.ContainsKey('1') == false);
+            Console.WriteLine(groupsThree.ContainsKey('!') == false);
+
+            Dictionary<char, List<string>> groupsFour = GroupWordsByFirstLetter(null!);
+            Console.WriteLine(groupsFour.Count == 0);
+
+            // Get words Longer Than Previous Word
+            string[] longerOne = GetWordsLongerThanPreviousWord("hi there paul coding");
+            Console.WriteLine(longerOne.Length == 2);
+            Console.WriteLine(longerOne[0] == "there");
+            Console.WriteLine(longerOne[1] == "coding");
+
+            string[] longerTwo = GetWordsLongerThanPreviousWord("one two three four");
+            Console.WriteLine(longerTwo.Length == 1);
+            Console.WriteLine(longerTwo[0] == "three");
+
+            string[] longerThree = GetWordsLongerThanPreviousWord("a bb ccc dddd");
+            Console.WriteLine(longerThree.Length == 3);
+            Console.WriteLine(longerThree[0] == "bb");
+            Console.WriteLine(longerThree[1] == "ccc");
+            Console.WriteLine(longerThree[2] == "dddd");
+            Console.WriteLine(GetWordsLongerThanPreviousWord("").Length == 0);
+            Console.WriteLine(GetWordsLongerThanPreviousWord(" ").Length == 0);
+            Console.WriteLine(GetWordsLongerThanPreviousWord(null!).Length == 0);
+
+            // Find First Three Number Total Over Limit
+            Console.WriteLine(FindFirstThreeNumberTotalOverLimit([2, 3, 6, 1], 10) == 11);
+            Console.WriteLine(FindFirstThreeNumberTotalOverLimit([1, 2, 3, 4], 20) == null);
+            Console.WriteLine(FindFirstThreeNumberTotalOverLimit([5, 5, 5], 10) == 15);
+            Console.WriteLine(FindFirstThreeNumberTotalOverLimit([-5, 10, 10], 10) == 15);
+            Console.WriteLine(FindFirstThreeNumberTotalOverLimit([1, 2], 10) == null);
+            Console.WriteLine(FindFirstThreeNumberTotalOverLimit(null!, 10) == null);
+            Console.WriteLine(FindFirstThreeNumberTotalOverLimit([], 10) == null);
+
+            // Convert To Simple Title Case
+            Console.WriteLine(ConvertToSimpleTitleCase("john SMITH codes") == "John Smith Codes");
+            Console.WriteLine(ConvertToSimpleTitleCase(" sarah CONNOR ") == "Sarah Connor");
+            Console.WriteLine(ConvertToSimpleTitleCase("a BIG day") == "A Big Day");
+            Console.WriteLine(ConvertToSimpleTitleCase("x") == "X");
+            Console.WriteLine(ConvertToSimpleTitleCase("") == "");
+            Console.WriteLine(ConvertToSimpleTitleCase(" ") == "");
+            Console.WriteLine(ConvertToSimpleTitleCase(null!) == "");
+
+            // Count Sign Changes
+            Console.WriteLine(CountSignChanges([-1, 2, -3, 0, 4, -5]));
+            Console.WriteLine(CountSignChanges([1, 2, 3]) == 0);
+            Console.WriteLine(CountSignChanges([-1, -2, 3]) == 1);
+            Console.WriteLine(CountSignChanges([0, -1, 1, 0, -2]) == 1);
+            Console.WriteLine(CountSignChanges([7]) == 0);
+            Console.WriteLine(CountSignChanges(null!) == 0);
+            Console.WriteLine(CountSignChanges([]) == 0);
+
             // Count Valid Simple Score Records
             Console.WriteLine(CountValidSimpleScoreRecords("Paul:10, Sarah:20, Bad") == 2);
             Console.WriteLine(CountValidSimpleScoreRecords(":50, Bob:abc, Tom:5") == 1);
