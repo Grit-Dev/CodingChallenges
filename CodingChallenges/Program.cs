@@ -66,7 +66,7 @@ public class Program
 
     public static string[] GetWordsLongerThanPreviousWord(string input)
     {
-        if(string.IsNullOrWhiteSpace(input))
+        if (string.IsNullOrWhiteSpace(input))
         {
             return [];
         }
@@ -75,9 +75,9 @@ public class Program
 
         string[] splitString = input.Split(' ', StringSplitOptions.RemoveEmptyEntries);
 
-        for(int index = 1; index <= splitString.Count() -1; index++)
+        for (int index = 1; index <= splitString.Count() - 1; index++)
         {
-            if(splitString[index].Length > splitString[index -1].Length)
+            if (splitString[index].Length > splitString[index - 1].Length)
             {
                 newList.Add(splitString[index]);
             }
@@ -85,36 +85,90 @@ public class Program
 
         return newList.ToArray();
     }
+
+    public static Dictionary<char, List<string>> GroupWordsByFirstLetter(string input)
+    {
+        if (String.IsNullOrWhiteSpace(input))
+        {
+            return [];
+        }
+
+        Dictionary<char, List<string>> newDict = [];
+        string[] splitString = input.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+        foreach (string str in splitString)
+        {
+            char charLowered = char.ToLower(str[0]);
+
+            if (!char.IsLetter(charLowered))
+            {
+                continue;
+            }
+
+            if (newDict.TryGetValue(charLowered, out List<string>? dictValueList))
+            {
+                dictValueList.Add(str);
+            }
+            else
+            {
+                newDict[charLowered] = new List<string> { str };
+            }
+        }
+
+        return newDict;
+
+    }
     public static void Main(string[] args)
     {
+        // Group Words By First Letter
+        Dictionary<char, List<string>> groupsOne = GroupWordsByFirstLetter("apple banana apricot");
+        Console.WriteLine(groupsOne['a'].Count == 2);
+        Console.WriteLine(groupsOne['a'][0] == "apple");
+        Console.WriteLine(groupsOne['a'][1] == "apricot");
+        Console.WriteLine(groupsOne['b'].Count == 1);
+        Console.WriteLine(groupsOne['b'][0] == "banana");
+
+        Dictionary<char, List<string>> groupsTwo = GroupWordsByFirstLetter("Dog duck cat");
+        Console.WriteLine(groupsTwo['d'].Count == 2);
+        Console.WriteLine(groupsTwo['d'][0] == "Dog");
+        Console.WriteLine(groupsTwo['d'][1] == "duck");
+        Console.WriteLine(groupsTwo['c'][0] == "cat");
+
+        Dictionary<char, List<string>> groupsThree = GroupWordsByFirstLetter("123 apple !test");
+        Console.WriteLine(groupsThree['a'].Count == 1);
+        Console.WriteLine(groupsThree.ContainsKey('1') == false);
+        Console.WriteLine(groupsThree.ContainsKey('!') == false);
+
+        Dictionary<char, List<string>> groupsFour = GroupWordsByFirstLetter(null!);
+        Console.WriteLine(groupsFour.Count == 0);
+
         // Get words Longer Than Previous Word
-        string[] longerOne = GetWordsLongerThanPreviousWord("hi there paul coding");
-        Console.WriteLine(longerOne.Length == 2);
-        Console.WriteLine(longerOne[0] == "there");
-        Console.WriteLine(longerOne[1] == "coding");
+        // string[] longerOne = GetWordsLongerThanPreviousWord("hi there paul coding");
+        // Console.WriteLine(longerOne.Length == 2);
+        // Console.WriteLine(longerOne[0] == "there");
+        // Console.WriteLine(longerOne[1] == "coding");
 
-        string[] longerTwo = GetWordsLongerThanPreviousWord("one two three four");
-        Console.WriteLine(longerTwo.Length == 1);
-        Console.WriteLine(longerTwo[0] == "three");
+        // string[] longerTwo = GetWordsLongerThanPreviousWord("one two three four");
+        // Console.WriteLine(longerTwo.Length == 1);
+        // Console.WriteLine(longerTwo[0] == "three");
 
-        string[] longerThree = GetWordsLongerThanPreviousWord("a bb ccc dddd");
-        Console.WriteLine(longerThree.Length == 3);
-        Console.WriteLine(longerThree[0] == "bb");
-        Console.WriteLine(longerThree[1] == "ccc");
-        Console.WriteLine(longerThree[2] == "dddd");
-        Console.WriteLine(GetWordsLongerThanPreviousWord("").Length == 0);
-        Console.WriteLine(GetWordsLongerThanPreviousWord(" ").Length == 0);
-        Console.WriteLine(GetWordsLongerThanPreviousWord(null).Length == 0);
-
+        // string[] longerThree = GetWordsLongerThanPreviousWord("a bb ccc dddd");
+        // Console.WriteLine(longerThree.Length == 3);
+        // Console.WriteLine(longerThree[0] == "bb");
+        // Console.WriteLine(longerThree[1] == "ccc");
+        // Console.WriteLine(longerThree[2] == "dddd");
+        // Console.WriteLine(GetWordsLongerThanPreviousWord("").Length == 0);
+        // Console.WriteLine(GetWordsLongerThanPreviousWord(" ").Length == 0);
+        // Console.WriteLine(GetWordsLongerThanPreviousWord(null).Length == 0);
 
         // Find First Three Number Total Over Limit
-        Console.WriteLine(FindFirstThreeNumberTotalOverLimit([2, 3, 6, 1], 10) == 11);
-        Console.WriteLine(FindFirstThreeNumberTotalOverLimit([1, 2, 3, 4], 20) == null);
-        Console.WriteLine(FindFirstThreeNumberTotalOverLimit([5, 5, 5], 10) == 15);
-        Console.WriteLine(FindFirstThreeNumberTotalOverLimit([-5, 10, 10], 10) == 15);
-        Console.WriteLine(FindFirstThreeNumberTotalOverLimit([1, 2], 10) == null);
-        Console.WriteLine(FindFirstThreeNumberTotalOverLimit(null!, 10) == null);
-        Console.WriteLine(FindFirstThreeNumberTotalOverLimit([], 10) == null);
+        // Console.WriteLine(FindFirstThreeNumberTotalOverLimit([2, 3, 6, 1], 10) == 11);
+        // Console.WriteLine(FindFirstThreeNumberTotalOverLimit([1, 2, 3, 4], 20) == null);
+        // Console.WriteLine(FindFirstThreeNumberTotalOverLimit([5, 5, 5], 10) == 15);
+        // Console.WriteLine(FindFirstThreeNumberTotalOverLimit([-5, 10, 10], 10) == 15);
+        // Console.WriteLine(FindFirstThreeNumberTotalOverLimit([1, 2], 10) == null);
+        // Console.WriteLine(FindFirstThreeNumberTotalOverLimit(null!, 10) == null);
+        // Console.WriteLine(FindFirstThreeNumberTotalOverLimit([], 10) == null);
 
         // Convert To Simple Title Case
         // Console.WriteLine(ConvertToSimpleTitleCase("john SMITH codes") == "John Smith Codes");
