@@ -54,8 +54,8 @@ public class Program
         for (int index = 1; index < numbers.Length - 1; index++)
         {
             int total = numbers[index - 1] + numbers[index] + numbers[index + 1];
-            
-            if(total > limit)
+
+            if (total > limit)
             {
                 return total;
             }
@@ -63,8 +63,50 @@ public class Program
 
         return null;
     }
+
+    public static string[] GetWordsLongerThanPreviousWord(string input)
+    {
+        if(string.IsNullOrWhiteSpace(input))
+        {
+            return [];
+        }
+
+        List<string> newList = [];
+
+        string[] splitString = input.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+        for(int index = 1; index <= splitString.Count() -1; index++)
+        {
+            if(splitString[index].Length > splitString[index -1].Length)
+            {
+                newList.Add(splitString[index]);
+            }
+        }
+
+        return newList.ToArray();
+    }
     public static void Main(string[] args)
     {
+        // Get words Longer Than Previous Word
+        string[] longerOne = GetWordsLongerThanPreviousWord("hi there paul coding");
+        Console.WriteLine(longerOne.Length == 2);
+        Console.WriteLine(longerOne[0] == "there");
+        Console.WriteLine(longerOne[1] == "coding");
+
+        string[] longerTwo = GetWordsLongerThanPreviousWord("one two three four");
+        Console.WriteLine(longerTwo.Length == 1);
+        Console.WriteLine(longerTwo[0] == "three");
+
+        string[] longerThree = GetWordsLongerThanPreviousWord("a bb ccc dddd");
+        Console.WriteLine(longerThree.Length == 3);
+        Console.WriteLine(longerThree[0] == "bb");
+        Console.WriteLine(longerThree[1] == "ccc");
+        Console.WriteLine(longerThree[2] == "dddd");
+        Console.WriteLine(GetWordsLongerThanPreviousWord("").Length == 0);
+        Console.WriteLine(GetWordsLongerThanPreviousWord(" ").Length == 0);
+        Console.WriteLine(GetWordsLongerThanPreviousWord(null).Length == 0);
+
+
         // Find First Three Number Total Over Limit
         Console.WriteLine(FindFirstThreeNumberTotalOverLimit([2, 3, 6, 1], 10) == 11);
         Console.WriteLine(FindFirstThreeNumberTotalOverLimit([1, 2, 3, 4], 20) == null);
