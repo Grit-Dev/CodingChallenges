@@ -44,16 +44,44 @@ public class Program
                  .Select(name => char.ToUpper(name[0]) + name.Substring(1).ToLower()));
     }
 
+    public static int? FindFirstThreeNumberTotalOverLimit(int[] numbers, int limit)
+    {
+        if (numbers is null || numbers.Length < 3)
+        {
+            return null;
+        }
+
+        for (int index = 1; index < numbers.Length - 1; index++)
+        {
+            int total = numbers[index - 1] + numbers[index] + numbers[index + 1];
+            
+            if(total > limit)
+            {
+                return total;
+            }
+        }
+
+        return null;
+    }
     public static void Main(string[] args)
     {
+        // Find First Three Number Total Over Limit
+        Console.WriteLine(FindFirstThreeNumberTotalOverLimit([2, 3, 6, 1], 10) == 11);
+        Console.WriteLine(FindFirstThreeNumberTotalOverLimit([1, 2, 3, 4], 20) == null);
+        Console.WriteLine(FindFirstThreeNumberTotalOverLimit([5, 5, 5], 10) == 15);
+        Console.WriteLine(FindFirstThreeNumberTotalOverLimit([-5, 10, 10], 10) == 15);
+        Console.WriteLine(FindFirstThreeNumberTotalOverLimit([1, 2], 10) == null);
+        Console.WriteLine(FindFirstThreeNumberTotalOverLimit(null!, 10) == null);
+        Console.WriteLine(FindFirstThreeNumberTotalOverLimit([], 10) == null);
+
         // Convert To Simple Title Case
-        Console.WriteLine(ConvertToSimpleTitleCase("john SMITH codes") == "John Smith Codes");
-        Console.WriteLine(ConvertToSimpleTitleCase(" sarah CONNOR ") == "Sarah Connor");
-        Console.WriteLine(ConvertToSimpleTitleCase("a BIG day") == "A Big Day");
-        Console.WriteLine(ConvertToSimpleTitleCase("x") == "X");
-        Console.WriteLine(ConvertToSimpleTitleCase("") == "");
-        Console.WriteLine(ConvertToSimpleTitleCase(" ") == "");
-        Console.WriteLine(ConvertToSimpleTitleCase(null!) == "");
+        // Console.WriteLine(ConvertToSimpleTitleCase("john SMITH codes") == "John Smith Codes");
+        // Console.WriteLine(ConvertToSimpleTitleCase(" sarah CONNOR ") == "Sarah Connor");
+        // Console.WriteLine(ConvertToSimpleTitleCase("a BIG day") == "A Big Day");
+        // Console.WriteLine(ConvertToSimpleTitleCase("x") == "X");
+        // Console.WriteLine(ConvertToSimpleTitleCase("") == "");
+        // Console.WriteLine(ConvertToSimpleTitleCase(" ") == "");
+        // Console.WriteLine(ConvertToSimpleTitleCase(null!) == "");
 
         // Count Sign Changes
         // Console.WriteLine(CountSignChanges([-1, 2, -3, 0, 4, -5]));
