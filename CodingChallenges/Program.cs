@@ -118,29 +118,39 @@ public class Program
         return newDict;
 
     }
+
+    public static int SumPositiveNumbersWithLinq(int[] numbers) =>
+    numbers?.Length == 0 ? 0 : numbers?.Where(n => n > 0).Sum() ?? 0;
     public static void Main(string[] args)
     {
+        // Where + Sum With Linq
+        Console.WriteLine(SumPositiveNumbersWithLinq([-2, 5, 10, -1]) == 15);
+        Console.WriteLine(SumPositiveNumbersWithLinq([-5, 0, -2]) == 0);
+        Console.WriteLine(SumPositiveNumbersWithLinq([1, 2, 3]) == 6);
+        Console.WriteLine(SumPositiveNumbersWithLinq(null!) == 0);
+        Console.WriteLine(SumPositiveNumbersWithLinq([]) == 0);
+
         // Group Words By First Letter
-        Dictionary<char, List<string>> groupsOne = GroupWordsByFirstLetter("apple banana apricot");
-        Console.WriteLine(groupsOne['a'].Count == 2);
-        Console.WriteLine(groupsOne['a'][0] == "apple");
-        Console.WriteLine(groupsOne['a'][1] == "apricot");
-        Console.WriteLine(groupsOne['b'].Count == 1);
-        Console.WriteLine(groupsOne['b'][0] == "banana");
+        // Dictionary<char, List<string>> groupsOne = GroupWordsByFirstLetter("apple banana apricot");
+        // Console.WriteLine(groupsOne['a'].Count == 2);
+        // Console.WriteLine(groupsOne['a'][0] == "apple");
+        // Console.WriteLine(groupsOne['a'][1] == "apricot");
+        // Console.WriteLine(groupsOne['b'].Count == 1);
+        // Console.WriteLine(groupsOne['b'][0] == "banana");
 
-        Dictionary<char, List<string>> groupsTwo = GroupWordsByFirstLetter("Dog duck cat");
-        Console.WriteLine(groupsTwo['d'].Count == 2);
-        Console.WriteLine(groupsTwo['d'][0] == "Dog");
-        Console.WriteLine(groupsTwo['d'][1] == "duck");
-        Console.WriteLine(groupsTwo['c'][0] == "cat");
+        // Dictionary<char, List<string>> groupsTwo = GroupWordsByFirstLetter("Dog duck cat");
+        // Console.WriteLine(groupsTwo['d'].Count == 2);
+        // Console.WriteLine(groupsTwo['d'][0] == "Dog");
+        // Console.WriteLine(groupsTwo['d'][1] == "duck");
+        // Console.WriteLine(groupsTwo['c'][0] == "cat");
 
-        Dictionary<char, List<string>> groupsThree = GroupWordsByFirstLetter("123 apple !test");
-        Console.WriteLine(groupsThree['a'].Count == 1);
-        Console.WriteLine(groupsThree.ContainsKey('1') == false);
-        Console.WriteLine(groupsThree.ContainsKey('!') == false);
+        // Dictionary<char, List<string>> groupsThree = GroupWordsByFirstLetter("123 apple !test");
+        // Console.WriteLine(groupsThree['a'].Count == 1);
+        // Console.WriteLine(groupsThree.ContainsKey('1') == false);
+        // Console.WriteLine(groupsThree.ContainsKey('!') == false);
 
-        Dictionary<char, List<string>> groupsFour = GroupWordsByFirstLetter(null!);
-        Console.WriteLine(groupsFour.Count == 0);
+        // Dictionary<char, List<string>> groupsFour = GroupWordsByFirstLetter(null!);
+        // Console.WriteLine(groupsFour.Count == 0);
 
         // Get words Longer Than Previous Word
         // string[] longerOne = GetWordsLongerThanPreviousWord("hi there paul coding");
