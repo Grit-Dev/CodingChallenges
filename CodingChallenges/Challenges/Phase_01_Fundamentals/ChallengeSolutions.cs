@@ -6,6 +6,153 @@ namespace CodingChallenges.Challenges.Phase_02_OOP
 {
     public class ChallengeSolutions
     {
+        public static int CountSignChanges(int[] numbers)
+        {
+            if (numbers is null || numbers.Length < 2)
+            {
+                return 0;
+            }
+
+            int counter = 0;
+
+            for (int index = 0; index < numbers.Length - 1; index++)
+            {
+                int currentNumber = numbers[index];
+                int nextNumber = numbers[index + 1];
+
+                if (currentNumber == 0 || nextNumber == 0)
+                {
+                    continue;
+                }
+
+                if (currentNumber > 0 && nextNumber < 0)
+                {
+                    counter++;
+                }
+                else if (currentNumber < 0 && nextNumber > 0)
+                {
+                    counter++;
+                }
+            }
+
+            return counter;
+        }
+
+        public static string ConvertToSimpleTitleCase(string input)
+        {
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                return "";
+            }
+
+            return string.Join(" ", input.Split(' ', StringSplitOptions.RemoveEmptyEntries)
+                     .Select(name => char.ToUpper(name[0]) + name.Substring(1).ToLower()));
+        }
+
+        public static int? FindFirstThreeNumberTotalOverLimit(int[] numbers, int limit)
+        {
+            if (numbers is null || numbers.Length < 3)
+            {
+                return null;
+            }
+
+            for (int index = 1; index < numbers.Length - 1; index++)
+            {
+                int total = numbers[index - 1] + numbers[index] + numbers[index + 1];
+
+                if (total > limit)
+                {
+                    return total;
+                }
+            }
+
+            return null;
+        }
+
+        public static string[] GetWordsLongerThanPreviousWord(string input)
+        {
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                return [];
+            }
+
+            List<string> newList = [];
+
+            string[] splitString = input.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+            for (int index = 1; index <= splitString.Count() - 1; index++)
+            {
+                if (splitString[index].Length > splitString[index - 1].Length)
+                {
+                    newList.Add(splitString[index]);
+                }
+            }
+
+            return newList.ToArray();
+        }
+
+        public static Dictionary<char, List<string>> GroupWordsByFirstLetter(string input)
+        {
+            if (String.IsNullOrWhiteSpace(input))
+            {
+                return [];
+            }
+
+            Dictionary<char, List<string>> newDict = [];
+            string[] splitString = input.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+            foreach (string str in splitString)
+            {
+                char charLowered = char.ToLower(str[0]);
+
+                if (!char.IsLetter(charLowered))
+                {
+                    continue;
+                }
+
+                if (newDict.TryGetValue(charLowered, out List<string>? dictValueList))
+                {
+                    dictValueList.Add(str);
+                }
+                else
+                {
+                    newDict[charLowered] = new List<string> { str };
+                }
+            }
+
+            return newDict;
+
+        }
+
+        public static int SumPositiveNumbersWithLinq(int[] numbers) =>
+        numbers?.Where(n => n > 0).Sum() ?? 0;
+
+        public static int? FindMostCommonWordLength(string input)
+        {
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                return null;
+            }
+
+            Dictionary<int, int> newDict = [];
+            string[] splitString = input.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+            foreach (string str in splitString)
+            {
+                if (newDict.TryGetValue(str.Length, out int value))
+                {
+                    newDict[str.Length] = value + 1;
+                }
+                else
+                {
+                    newDict[str.Length] = 1;
+                }
+            }
+
+            return newDict.MaxBy(nd => nd.Value).Key;
+
+        }
+
         public static int CountEvenNumbersAtEvenIndexes(int[] numbers)
         {
             if (numbers is null || numbers.Length == 0)
@@ -4814,7 +4961,7 @@ namespace CodingChallenges.Challenges.Phase_02_OOP
             return highestUniqueCharacterCountString;
         }
 
-        public static int FindMostCommonWordLength(string pInputValue)
+        public static int FindMostCommonWordLengthRev(string pInputValue)
         {
             if (string.IsNullOrEmpty(pInputValue))
             {
