@@ -120,15 +120,49 @@ public class Program
     }
 
     public static int SumPositiveNumbersWithLinq(int[] numbers) =>
-    numbers?.Length == 0 ? 0 : numbers?.Where(n => n > 0).Sum() ?? 0;
+    numbers?.Where(n => n > 0).Sum() ?? 0;
+
+    public static int? FindMostCommonWordLength(string input)
+    {
+        if(string.IsNullOrWhiteSpace(input))
+        {
+            return null;
+        }
+
+        Dictionary<int, int> newDict = [];
+        string[] splitString = input.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+        foreach(string str in splitString)
+        {
+            if(newDict.TryGetValue(str.Length, out int value))
+            {
+                newDict[str.Length] = value + 1;
+            }
+            else
+            {
+                newDict[str.Length] = 1;
+            }
+        }
+
+        return newDict.MaxBy(nd => nd.Value).Key;
+        
+    }
     public static void Main(string[] args)
     {
+        // Find Most Common Word Length
+        Console.WriteLine(FindMostCommonWordLength("cat dog apple pear") == 3);
+        Console.WriteLine(FindMostCommonWordLength("hi to code test") == 2);
+        Console.WriteLine(FindMostCommonWordLength("one four five") == 4);
+        Console.WriteLine(FindMostCommonWordLength("") == null);
+        Console.WriteLine(FindMostCommonWordLength(" ") == null);
+        Console.WriteLine(FindMostCommonWordLength(null!) == null);
+
         // Where + Sum With Linq
-        Console.WriteLine(SumPositiveNumbersWithLinq([-2, 5, 10, -1]) == 15);
-        Console.WriteLine(SumPositiveNumbersWithLinq([-5, 0, -2]) == 0);
-        Console.WriteLine(SumPositiveNumbersWithLinq([1, 2, 3]) == 6);
-        Console.WriteLine(SumPositiveNumbersWithLinq(null!) == 0);
-        Console.WriteLine(SumPositiveNumbersWithLinq([]) == 0);
+        // Console.WriteLine(SumPositiveNumbersWithLinq([-2, 5, 10, -1]) == 15);
+        // Console.WriteLine(SumPositiveNumbersWithLinq([-5, 0, -2]) == 0);
+        // Console.WriteLine(SumPositiveNumbersWithLinq([1, 2, 3]) == 6);
+        // Console.WriteLine(SumPositiveNumbersWithLinq(null!) == 0);
+        // Console.WriteLine(SumPositiveNumbersWithLinq([]) == 0);
 
         // Group Words By First Letter
         // Dictionary<char, List<string>> groupsOne = GroupWordsByFirstLetter("apple banana apricot");
