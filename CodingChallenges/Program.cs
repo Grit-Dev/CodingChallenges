@@ -1,4 +1,7 @@
 ﻿
+using System.Text;
+using CodingChallenges.Challenges.Phase_02_OOP.shared;
+
 public class Program
 {
     public static string? FindFirstRepeatedWord(string input)
@@ -173,16 +176,50 @@ public class Program
     public static string FindLongestWordWithMaxBy(string input) =>
     string.IsNullOrWhiteSpace(input) ? "" : input.Split(' ', StringSplitOptions.RemoveEmptyEntries)
     .MaxBy(ip => ip.Length) ?? "";
+
+    public static string ConvertFullNameToTitleCase(string input)
+    {
+        if (string.IsNullOrWhiteSpace(input))
+        {
+            return "";
+        }
+
+        var result = input.Split(' ', StringSplitOptions.RemoveEmptyEntries)
+        .Select(ip => ip.Trim().ToLower());
+
+        var strBuilder = new StringBuilder();
+
+        foreach(string str in result)
+        {
+            if(strBuilder.Length > 0)
+            {
+                strBuilder.Append(' ');
+            }
+
+            strBuilder.Append(char.ToUpper(str[0]) + str.Substring(1));
+            
+        }
+
+        return strBuilder.ToString();
+    }
     public static void Main(string[] args)
     {
+        // Convert Full Name To Title Case
+        Console.WriteLine(ConvertFullNameToTitleCase("paul MCGINLEY") == "Paul Mcginley");
+        Console.WriteLine(ConvertFullNameToTitleCase(" SARAH connor ") == "Sarah Connor");
+        Console.WriteLine(ConvertFullNameToTitleCase("john michael SMITH") == "John Michael Smith");
+        Console.WriteLine(ConvertFullNameToTitleCase("x") == "X");
+        Console.WriteLine(ConvertFullNameToTitleCase("") == "");
+        Console.WriteLine(ConvertFullNameToTitleCase(null) == "");
+
         // MaxBy Refresher
-        Console.WriteLine(FindLongestWordWithMaxBy("cat banana dog") == "banana");
-        Console.WriteLine(FindLongestWordWithMaxBy("one three seven") == "three");
-        Console.WriteLine(FindLongestWordWithMaxBy("coding daily practice") == "practice");
-        Console.WriteLine(FindLongestWordWithMaxBy("x") == "x");
-        Console.WriteLine(FindLongestWordWithMaxBy("") == "");
-        Console.WriteLine(FindLongestWordWithMaxBy(" ") == "");
-        Console.WriteLine(FindLongestWordWithMaxBy(null!) == "");
+        // Console.WriteLine(FindLongestWordWithMaxBy("cat banana dog") == "banana");
+        // Console.WriteLine(FindLongestWordWithMaxBy("one three seven") == "three");
+        // Console.WriteLine(FindLongestWordWithMaxBy("coding daily practice") == "practice");
+        // Console.WriteLine(FindLongestWordWithMaxBy("x") == "x");
+        // Console.WriteLine(FindLongestWordWithMaxBy("") == "");
+        // Console.WriteLine(FindLongestWordWithMaxBy(" ") == "");
+        // Console.WriteLine(FindLongestWordWithMaxBy(null!) == "");
 
         // Group Numbers By Sign
         // Dictionary<string, int> signsOne = GroupNumbersBySign([5, -2, 0, 10]);
