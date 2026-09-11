@@ -66,7 +66,7 @@ public class Program
 
         for (int index = 0; index < numbers.Length - 1; index++)
         {
-            if (numbers[index] == 0)
+            if (numbers[index] == 0 || numbers[index + 1] == 0)
             {
                 continue;
             }
@@ -79,16 +79,37 @@ public class Program
 
         return counter;
     }
+
+    public static string CapitaliseFirstLetterOnly(string input)
+    {
+        if (string.IsNullOrWhiteSpace(input))
+        {
+            return "";
+        }
+
+        input = input.Trim().ToLower();
+
+        return char.ToUpper(input[0]) + input.Substring(1);
+    }
     public static void Main(string[] args)
     {
+        // Capitalise First Letter Only
+        Console.WriteLine(CapitaliseFirstLetterOnly("paul") == "Paul");
+        Console.WriteLine(CapitaliseFirstLetterOnly("PAUL") == "Paul");
+        Console.WriteLine(CapitaliseFirstLetterOnly(" cODING ") == "Coding");
+        Console.WriteLine(CapitaliseFirstLetterOnly("x") == "X");
+        Console.WriteLine(CapitaliseFirstLetterOnly("") == "");
+        Console.WriteLine(CapitaliseFirstLetterOnly(" ") == "");
+        Console.WriteLine(CapitaliseFirstLetterOnly(null!) == "");
+
         // Count Positive To Negative Changes
-        Console.WriteLine(CountPositiveToNegativeChanges([5, -1, -2, 3, -4]) == 2);
-        Console.WriteLine(CountPositiveToNegativeChanges([-1, 2, -3]) == 1);
-        Console.WriteLine(CountPositiveToNegativeChanges([1, 0, -1]) == 0);
-        Console.WriteLine(CountPositiveToNegativeChanges([1, 2, 3]) == 0);
-        Console.WriteLine(CountPositiveToNegativeChanges([7]) == 0);
-        Console.WriteLine(CountPositiveToNegativeChanges(null!) == 0);
-        Console.WriteLine(CountPositiveToNegativeChanges([]) == 0);
+        // Console.WriteLine(CountPositiveToNegativeChanges([5, -1, -2, 3, -4]) == 2);
+        // Console.WriteLine(CountPositiveToNegativeChanges([-1, 2, -3]) == 1);
+        // Console.WriteLine(CountPositiveToNegativeChanges([1, 0, -1]) == 0);
+        // Console.WriteLine(CountPositiveToNegativeChanges([1, 2, 3]) == 0);
+        // Console.WriteLine(CountPositiveToNegativeChanges([7]) == 0);
+        // Console.WriteLine(CountPositiveToNegativeChanges(null!) == 0);
+        // Console.WriteLine(CountPositiveToNegativeChanges([]) == 0);
 
         //Find Most Frequent Word
         // Console.WriteLine(FindMostFrequentWord("apple banana apple pear banana apple") == "apple");
