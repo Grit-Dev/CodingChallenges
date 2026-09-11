@@ -91,16 +91,52 @@ public class Program
 
         return char.ToUpper(input[0]) + input.Substring(1);
     }
+
+    public static int? FindBiggestDropBetweenAdjacentNumbers(int[] numbers)
+    {
+        if (numbers is null || numbers.Length < 2)
+        {
+            return null;
+        }
+
+        int? biggestDropTotalFound = null;
+
+        for (int index = 0; index < numbers.Length - 1; index++)
+        {
+            if (numbers[index] > numbers[index + 1])
+            {
+                int dropTotal = numbers[index] - numbers[index + 1];
+
+                if (biggestDropTotalFound is null ||
+                    dropTotal > biggestDropTotalFound)
+                {
+                    biggestDropTotalFound = dropTotal;
+                }
+            }
+        }
+
+        return biggestDropTotalFound;
+    }
     public static void Main(string[] args)
     {
+        // Find Biggest Drop Between Adjacent Numbers
+        Console.WriteLine(FindBiggestDropBetweenAdjacentNumbers([10, 7, 12, 4]) == 8);
+        Console.WriteLine(FindBiggestDropBetweenAdjacentNumbers([5, 4, 3]) == 1);
+        Console.WriteLine(FindBiggestDropBetweenAdjacentNumbers([1, 2, 3]) == null);
+        Console.WriteLine(FindBiggestDropBetweenAdjacentNumbers([9, 1, 8, 2]) == 8);
+        Console.WriteLine(FindBiggestDropBetweenAdjacentNumbers([7]) == null);
+        Console.WriteLine(FindBiggestDropBetweenAdjacentNumbers(null!) == null);
+        Console.WriteLine(FindBiggestDropBetweenAdjacentNumbers([]) == null);
+
+
         // Capitalise First Letter Only
-        Console.WriteLine(CapitaliseFirstLetterOnly("paul") == "Paul");
-        Console.WriteLine(CapitaliseFirstLetterOnly("PAUL") == "Paul");
-        Console.WriteLine(CapitaliseFirstLetterOnly(" cODING ") == "Coding");
-        Console.WriteLine(CapitaliseFirstLetterOnly("x") == "X");
-        Console.WriteLine(CapitaliseFirstLetterOnly("") == "");
-        Console.WriteLine(CapitaliseFirstLetterOnly(" ") == "");
-        Console.WriteLine(CapitaliseFirstLetterOnly(null!) == "");
+        // Console.WriteLine(CapitaliseFirstLetterOnly("paul") == "Paul");
+        // Console.WriteLine(CapitaliseFirstLetterOnly("PAUL") == "Paul");
+        // Console.WriteLine(CapitaliseFirstLetterOnly(" cODING ") == "Coding");
+        // Console.WriteLine(CapitaliseFirstLetterOnly("x") == "X");
+        // Console.WriteLine(CapitaliseFirstLetterOnly("") == "");
+        // Console.WriteLine(CapitaliseFirstLetterOnly(" ") == "");
+        // Console.WriteLine(CapitaliseFirstLetterOnly(null!) == "");
 
         // Count Positive To Negative Changes
         // Console.WriteLine(CountPositiveToNegativeChanges([5, -1, -2, 3, -4]) == 2);
