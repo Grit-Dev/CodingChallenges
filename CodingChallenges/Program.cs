@@ -120,7 +120,7 @@ public class Program
 
     public static int CountValidAges(string input)
     {
-        if(string.IsNullOrWhiteSpace(input))
+        if (string.IsNullOrWhiteSpace(input))
         {
             return 0;
         }
@@ -129,11 +129,11 @@ public class Program
 
         string[] splitString = input.Split(',', StringSplitOptions.RemoveEmptyEntries);
 
-        foreach(string str in splitString)
+        foreach (string str in splitString)
         {
             string strTrimmed = str.Trim();
 
-            if(int.TryParse(strTrimmed, out int value) && 
+            if (int.TryParse(strTrimmed, out int value) &&
             value >= 0 && value <= 120)
             {
                 counter++;
@@ -142,16 +142,58 @@ public class Program
 
         return counter;
     }
+
+    public static Dictionary<string, int> GroupNumbersBySign(int[] numbers)
+    {
+        if (numbers is null || numbers.Length == 0)
+        {
+            return [];
+        }
+
+        Dictionary<string, int> newDict = [];
+
+        foreach (int number in numbers)
+        {
+            string result = number < 0 ? "negative" :
+            number > 0 ? "positive" : "zero";
+
+            if (newDict.TryGetValue(result, out int value))
+            {
+                newDict[result] = value + 1;
+            }
+            else
+            {
+                newDict[result] = 1;
+            }
+        }
+
+        return newDict;
+    }
+
     public static void Main(string[] args)
     {
+        // Group Numbers By Sign
+        Dictionary<string, int> signsOne = GroupNumbersBySign([5, -2, 0, 10]);
+        Console.WriteLine(signsOne["positive"] == 2);
+        Console.WriteLine(signsOne["negative"] == 1);
+        Console.WriteLine(signsOne["zero"] == 1);
+
+        Dictionary<string, int> signsTwo = GroupNumbersBySign([-1, -2, -3]);
+        Console.WriteLine(signsTwo["negative"] == 3);
+        Console.WriteLine(signsTwo.ContainsKey("positive") == false);
+        Console.WriteLine(signsTwo.ContainsKey("zero") == false);
+
+        Dictionary<string, int> signsThree = GroupNumbersBySign(null!);
+        Console.WriteLine(signsThree.Count == 0);
+
         // Count Valid Ages
-        Console.WriteLine(CountValidAges("20, 35, abc, -1, 121") == 2);
-        Console.WriteLine(CountValidAges("0, 120, 50") == 3);
-        Console.WriteLine(CountValidAges("10, bad, 30") == 2);
-        Console.WriteLine(CountValidAges("abc, -5, 999") == 0);
-        Console.WriteLine(CountValidAges("") == 0);
-        Console.WriteLine(CountValidAges(" ") == 0);
-        Console.WriteLine(CountValidAges(null!) == 0);
+        // Console.WriteLine(CountValidAges("20, 35, abc, -1, 121") == 2);
+        // Console.WriteLine(CountValidAges("0, 120, 50") == 3);
+        // Console.WriteLine(CountValidAges("10, bad, 30") == 2);
+        // Console.WriteLine(CountValidAges("abc, -5, 999") == 0);
+        // Console.WriteLine(CountValidAges("") == 0);
+        // Console.WriteLine(CountValidAges(" ") == 0);
+        // Console.WriteLine(CountValidAges(null!) == 0);
 
         // Find Biggest Drop Between Adjacent Numbers
         // Console.WriteLine(FindBiggestDropBetweenAdjacentNumbers([10, 7, 12, 4]) == 8);
