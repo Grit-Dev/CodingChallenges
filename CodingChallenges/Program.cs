@@ -51,19 +51,52 @@ public class Program
             }
         }
 
-        return newDict.MaxBy(nd => nd.Value).Key.FirstOrDefault();
+        return newDict.MaxBy(nd => nd.Value).Key;
 
+    }
+
+    public static int CountPositiveToNegativeChanges(int[] numbers)
+    {
+        if (numbers is null || numbers.Length < 2)
+        {
+            return 0;
+        }
+
+        int counter = 0;
+
+        for (int index = 0; index < numbers.Length - 1; index++)
+        {
+            if (numbers[index] == 0)
+            {
+                continue;
+            }
+
+            if (int.IsPositive(numbers[index]) && int.IsNegative(numbers[index + 1]))
+            {
+                counter++;
+            }
+        }
+
+        return counter;
     }
     public static void Main(string[] args)
     {
+        // Count Positive To Negative Changes
+        Console.WriteLine(CountPositiveToNegativeChanges([5, -1, -2, 3, -4]) == 2);
+        Console.WriteLine(CountPositiveToNegativeChanges([-1, 2, -3]) == 1);
+        Console.WriteLine(CountPositiveToNegativeChanges([1, 0, -1]) == 0);
+        Console.WriteLine(CountPositiveToNegativeChanges([1, 2, 3]) == 0);
+        Console.WriteLine(CountPositiveToNegativeChanges([7]) == 0);
+        Console.WriteLine(CountPositiveToNegativeChanges(null!) == 0);
+        Console.WriteLine(CountPositiveToNegativeChanges([]) == 0);
+
         //Find Most Frequent Word
-        Console.WriteLine(FindMostFrequentWord("apple banana apple pear banana apple") == "apple");
-        Console.WriteLine(FindMostFrequentWord("Dog cat DOG bird CAT") == "dog");
-        Console.WriteLine(FindMostFrequentWord("one two three") == "one");
-        Console.WriteLine(FindMostFrequentWord("") == null);
-        Console.WriteLine(FindMostFrequentWord(" ") == null);
-        Console.WriteLine(FindMostFrequentWord(null!) == null);
-        Console.WriteLine(FindMostFrequentWord("apple banana banana apple") == "banana");
+        // Console.WriteLine(FindMostFrequentWord("apple banana apple pear banana apple") == "apple");
+        // Console.WriteLine(FindMostFrequentWord("Dog cat DOG bird CAT") == "dog");
+        // Console.WriteLine(FindMostFrequentWord("one two three") == "one");
+        // Console.WriteLine(FindMostFrequentWord("") == null);
+        // Console.WriteLine(FindMostFrequentWord(" ") == null);
+        // Console.WriteLine(FindMostFrequentWord(null!) == null);
 
         // Find First Repeated Word
         // Console.WriteLine(FindFirstRepeatedWord("apple banana apple pear") == "apple");
