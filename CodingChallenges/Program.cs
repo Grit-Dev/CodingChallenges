@@ -117,17 +117,50 @@ public class Program
 
         return biggestDropTotalFound;
     }
+
+    public static int CountValidAges(string input)
+    {
+        if(string.IsNullOrWhiteSpace(input))
+        {
+            return 0;
+        }
+
+        int counter = 0;
+
+        string[] splitString = input.Split(',', StringSplitOptions.RemoveEmptyEntries);
+
+        foreach(string str in splitString)
+        {
+            string strTrimmed = str.Trim();
+
+            if(int.TryParse(strTrimmed, out int value) && 
+            value >= 0 && value <= 120)
+            {
+                counter++;
+            }
+        }
+
+        return counter;
+    }
     public static void Main(string[] args)
     {
-        // Find Biggest Drop Between Adjacent Numbers
-        Console.WriteLine(FindBiggestDropBetweenAdjacentNumbers([10, 7, 12, 4]) == 8);
-        Console.WriteLine(FindBiggestDropBetweenAdjacentNumbers([5, 4, 3]) == 1);
-        Console.WriteLine(FindBiggestDropBetweenAdjacentNumbers([1, 2, 3]) == null);
-        Console.WriteLine(FindBiggestDropBetweenAdjacentNumbers([9, 1, 8, 2]) == 8);
-        Console.WriteLine(FindBiggestDropBetweenAdjacentNumbers([7]) == null);
-        Console.WriteLine(FindBiggestDropBetweenAdjacentNumbers(null!) == null);
-        Console.WriteLine(FindBiggestDropBetweenAdjacentNumbers([]) == null);
+        // Count Valid Ages
+        Console.WriteLine(CountValidAges("20, 35, abc, -1, 121") == 2);
+        Console.WriteLine(CountValidAges("0, 120, 50") == 3);
+        Console.WriteLine(CountValidAges("10, bad, 30") == 2);
+        Console.WriteLine(CountValidAges("abc, -5, 999") == 0);
+        Console.WriteLine(CountValidAges("") == 0);
+        Console.WriteLine(CountValidAges(" ") == 0);
+        Console.WriteLine(CountValidAges(null!) == 0);
 
+        // Find Biggest Drop Between Adjacent Numbers
+        // Console.WriteLine(FindBiggestDropBetweenAdjacentNumbers([10, 7, 12, 4]) == 8);
+        // Console.WriteLine(FindBiggestDropBetweenAdjacentNumbers([5, 4, 3]) == 1);
+        // Console.WriteLine(FindBiggestDropBetweenAdjacentNumbers([1, 2, 3]) == null);
+        // Console.WriteLine(FindBiggestDropBetweenAdjacentNumbers([9, 1, 8, 2]) == 8);
+        // Console.WriteLine(FindBiggestDropBetweenAdjacentNumbers([7]) == null);
+        // Console.WriteLine(FindBiggestDropBetweenAdjacentNumbers(null!) == null);
+        // Console.WriteLine(FindBiggestDropBetweenAdjacentNumbers([]) == null);
 
         // Capitalise First Letter Only
         // Console.WriteLine(CapitaliseFirstLetterOnly("paul") == "Paul");
