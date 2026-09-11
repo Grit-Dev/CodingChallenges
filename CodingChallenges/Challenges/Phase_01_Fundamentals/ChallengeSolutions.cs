@@ -6,6 +6,184 @@ namespace CodingChallenges.Challenges.Phase_02_OOP
 {
     public class ChallengeSolutions
     {
+        public static string? FindFirstRepeatedWord(string input)
+        {
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                return null;
+            }
+
+            List<string> newList = [];
+            string[] splitString = input.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+            foreach (string str in splitString)
+            {
+                string strLowered = str.ToLower();
+
+                if (newList.Contains(strLowered))
+                {
+                    return strLowered;
+                }
+
+                newList.Add(strLowered);
+            }
+
+            return null;
+        }
+
+        public static string? FindMostFrequentWordRev(string input)
+        {
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                return null;
+            }
+
+            Dictionary<string, int> newDict = [];
+            string[] stringSplit = input.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+
+            foreach (string str in stringSplit)
+            {
+                string strLowered = str.ToLower();
+
+                if (newDict.TryGetValue(strLowered, out int value))
+                {
+                    newDict[strLowered] = value + 1;
+                }
+                else
+                {
+                    newDict[strLowered] = 1;
+                }
+            }
+
+            return newDict.MaxBy(nd => nd.Value).Key;
+
+        }
+
+        public static int CountPositiveToNegativeChanges(int[] numbers)
+        {
+            if (numbers is null || numbers.Length < 2)
+            {
+                return 0;
+            }
+
+            int counter = 0;
+
+            for (int index = 0; index < numbers.Length - 1; index++)
+            {
+                if (numbers[index] == 0 || numbers[index + 1] == 0)
+                {
+                    continue;
+                }
+
+                if (int.IsPositive(numbers[index]) && int.IsNegative(numbers[index + 1]))
+                {
+                    counter++;
+                }
+            }
+
+            return counter;
+        }
+
+        public static string CapitaliseFirstLetterOnly(string input)
+        {
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                return "";
+            }
+
+            input = input.Trim().ToLower();
+
+            return char.ToUpper(input[0]) + input.Substring(1);
+        }
+
+        public static int? FindBiggestDropBetweenAdjacentNumbers(int[] numbers)
+        {
+            if (numbers is null || numbers.Length < 2)
+            {
+                return null;
+            }
+
+            int? biggestDropTotalFound = null;
+
+            for (int index = 0; index < numbers.Length - 1; index++)
+            {
+                if (numbers[index] > numbers[index + 1])
+                {
+                    int dropTotal = numbers[index] - numbers[index + 1];
+
+                    if (biggestDropTotalFound is null ||
+                        dropTotal > biggestDropTotalFound)
+                    {
+                        biggestDropTotalFound = dropTotal;
+                    }
+                }
+            }
+
+            return biggestDropTotalFound;
+        }
+
+        public static int CountValidAges(string input)
+        {
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                return 0;
+            }
+
+            int counter = 0;
+
+            string[] splitString = input.Split(',', StringSplitOptions.RemoveEmptyEntries);
+
+            foreach (string str in splitString)
+            {
+                string strTrimmed = str.Trim();
+
+                if (int.TryParse(strTrimmed, out int value) &&
+                value >= 0 && value <= 120)
+                {
+                    counter++;
+                }
+            }
+
+            return counter;
+        }
+
+        public static Dictionary<string, int> GroupNumbersBySign(int[] numbers)
+        {
+            if (numbers is null || numbers.Length == 0)
+            {
+                return [];
+            }
+
+            Dictionary<string, int> newDict = [];
+
+            foreach (int number in numbers)
+            {
+                string result = number < 0 ? "negative" :
+                number > 0 ? "positive" : "zero";
+
+                if (newDict.TryGetValue(result, out int value))
+                {
+                    newDict[result] = value + 1;
+                }
+                else
+                {
+                    newDict[result] = 1;
+                }
+            }
+
+            return newDict;
+        }
+
+        public static string FindLongestWordWithMaxBy(string input) =>
+        string.IsNullOrWhiteSpace(input) ? "" : input.Split(' ', StringSplitOptions.RemoveEmptyEntries)
+        .MaxBy(ip => ip.Length) ?? "";
+
+        public static string ConvertFullNameToTitleCase(string input) =>
+            string.IsNullOrWhiteSpace(input) ? "" : string.Join(" ",
+            input.Split(' ', StringSplitOptions.RemoveEmptyEntries)
+            .Select(word => char.ToUpper(word[0]) + word.Substring(1).ToLower()));
+
         public static int CountSignChanges(int[] numbers)
         {
             if (numbers is null || numbers.Length < 2)
@@ -1251,7 +1429,7 @@ namespace CodingChallenges.Challenges.Phase_02_OOP
             return false;
         }
 
-        public static string FindFirstRepeatedWord(string input)
+        public static string FindFirstRepeatedWordRev(string input)
         {
             if (string.IsNullOrWhiteSpace(input))
             {

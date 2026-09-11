@@ -6,6 +6,89 @@ namespace CodingChallenges.Challenges.Phase_02_OOP
     {
         public static void Run_Four_Dictionary_Work()
         {
+            // Convert Full Name To Title Case
+            Console.WriteLine(ConvertFullNameToTitleCase("paul MCGINLEY") == "Paul Mcginley");
+            Console.WriteLine(ConvertFullNameToTitleCase(" SARAH connor ") == "Sarah Connor");
+            Console.WriteLine(ConvertFullNameToTitleCase("john michael SMITH") == "John Michael Smith");
+            Console.WriteLine(ConvertFullNameToTitleCase("x") == "X");
+            Console.WriteLine(ConvertFullNameToTitleCase("") == "");
+            Console.WriteLine(ConvertFullNameToTitleCase(null!) == "");
+
+            // MaxBy Refresher
+            Console.WriteLine(FindLongestWordWithMaxBy("cat banana dog") == "banana");
+            Console.WriteLine(FindLongestWordWithMaxBy("one three seven") == "three");
+            Console.WriteLine(FindLongestWordWithMaxBy("coding daily practice") == "practice");
+            Console.WriteLine(FindLongestWordWithMaxBy("x") == "x");
+            Console.WriteLine(FindLongestWordWithMaxBy("") == "");
+            Console.WriteLine(FindLongestWordWithMaxBy(" ") == "");
+            Console.WriteLine(FindLongestWordWithMaxBy(null!) == "");
+
+            // Group Numbers By Sign
+            Dictionary<string, int> signsOne = GroupNumbersBySign([5, -2, 0, 10]);
+            Console.WriteLine(signsOne["positive"] == 2);
+            Console.WriteLine(signsOne["negative"] == 1);
+            Console.WriteLine(signsOne["zero"] == 1);
+
+            Dictionary<string, int> signsTwo = GroupNumbersBySign([-1, -2, -3]);
+            Console.WriteLine(signsTwo["negative"] == 3);
+            Console.WriteLine(signsTwo.ContainsKey("positive") == false);
+            Console.WriteLine(signsTwo.ContainsKey("zero") == false);
+
+            Dictionary<string, int> signsThree = GroupNumbersBySign(null!);
+            Console.WriteLine(signsThree.Count == 0);
+
+            // Count Valid Ages
+            Console.WriteLine(CountValidAges("20, 35, abc, -1, 121") == 2);
+            Console.WriteLine(CountValidAges("0, 120, 50") == 3);
+            Console.WriteLine(CountValidAges("10, bad, 30") == 2);
+            Console.WriteLine(CountValidAges("abc, -5, 999") == 0);
+            Console.WriteLine(CountValidAges("") == 0);
+            Console.WriteLine(CountValidAges(" ") == 0);
+            Console.WriteLine(CountValidAges(null!) == 0);
+
+            // Find Biggest Drop Between Adjacent Numbers
+            Console.WriteLine(FindBiggestDropBetweenAdjacentNumbers([10, 7, 12, 4]) == 8);
+            Console.WriteLine(FindBiggestDropBetweenAdjacentNumbers([5, 4, 3]) == 1);
+            Console.WriteLine(FindBiggestDropBetweenAdjacentNumbers([1, 2, 3]) == null);
+            Console.WriteLine(FindBiggestDropBetweenAdjacentNumbers([9, 1, 8, 2]) == 8);
+            Console.WriteLine(FindBiggestDropBetweenAdjacentNumbers([7]) == null);
+            Console.WriteLine(FindBiggestDropBetweenAdjacentNumbers(null!) == null);
+            Console.WriteLine(FindBiggestDropBetweenAdjacentNumbers([]) == null);
+
+            // Capitalise First Letter Only
+            Console.WriteLine(CapitaliseFirstLetterOnly("paul") == "Paul");
+            Console.WriteLine(CapitaliseFirstLetterOnly("PAUL") == "Paul");
+            Console.WriteLine(CapitaliseFirstLetterOnly(" cODING ") == "Coding");
+            Console.WriteLine(CapitaliseFirstLetterOnly("x") == "X");
+            Console.WriteLine(CapitaliseFirstLetterOnly("") == "");
+            Console.WriteLine(CapitaliseFirstLetterOnly(" ") == "");
+            Console.WriteLine(CapitaliseFirstLetterOnly(null!) == "");
+
+            // Count Positive To Negative Changes
+            Console.WriteLine(CountPositiveToNegativeChanges([5, -1, -2, 3, -4]) == 2);
+            Console.WriteLine(CountPositiveToNegativeChanges([-1, 2, -3]) == 1);
+            Console.WriteLine(CountPositiveToNegativeChanges([1, 0, -1]) == 0);
+            Console.WriteLine(CountPositiveToNegativeChanges([1, 2, 3]) == 0);
+            Console.WriteLine(CountPositiveToNegativeChanges([7]) == 0);
+            Console.WriteLine(CountPositiveToNegativeChanges(null!) == 0);
+            Console.WriteLine(CountPositiveToNegativeChanges([]) == 0);
+
+            //Find Most Frequent Word
+            Console.WriteLine(FindMostFrequentWordRev("apple banana apple pear banana apple") == "apple");
+            Console.WriteLine(FindMostFrequentWordRev("Dog cat DOG bird CAT") == "dog");
+            Console.WriteLine(FindMostFrequentWordRev("one two three") == "one");
+            Console.WriteLine(FindMostFrequentWordRev("") == null);
+            Console.WriteLine(FindMostFrequentWordRev(" ") == null);
+            Console.WriteLine(FindMostFrequentWordRev(null!) == null);
+
+            // Find First Repeated Word
+            Console.WriteLine(FindFirstRepeatedWordRev("apple banana apple pear") == "apple");
+            Console.WriteLine(FindFirstRepeatedWordRev("Dog cat DOG bird") == "dog");
+            Console.WriteLine(FindFirstRepeatedWordRev("one two three") == null);
+            Console.WriteLine(FindFirstRepeatedWordRev("") == null);
+            Console.WriteLine(FindFirstRepeatedWordRev(" ") == null);
+            Console.WriteLine(FindFirstRepeatedWordRev(null!) == null);
+
             // Dictionary Basics: Count Tag Frequency: 
             Dictionary<string, int> resultCTGOne = CountTagFrequency("Rare, Common, Rare");
             Console.WriteLine(resultCTGOne["rare"] == 2);
