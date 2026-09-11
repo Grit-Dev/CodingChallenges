@@ -170,21 +170,33 @@ public class Program
         return newDict;
     }
 
+    public static string FindLongestWordWithMaxBy(string input) =>
+    string.IsNullOrWhiteSpace(input) ? "" : input.Split(' ', StringSplitOptions.RemoveEmptyEntries)
+    .MaxBy(ip => ip.Length) ?? "";
     public static void Main(string[] args)
     {
+        // MaxBy Refresher
+        Console.WriteLine(FindLongestWordWithMaxBy("cat banana dog") == "banana");
+        Console.WriteLine(FindLongestWordWithMaxBy("one three seven") == "three");
+        Console.WriteLine(FindLongestWordWithMaxBy("coding daily practice") == "practice");
+        Console.WriteLine(FindLongestWordWithMaxBy("x") == "x");
+        Console.WriteLine(FindLongestWordWithMaxBy("") == "");
+        Console.WriteLine(FindLongestWordWithMaxBy(" ") == "");
+        Console.WriteLine(FindLongestWordWithMaxBy(null!) == "");
+
         // Group Numbers By Sign
-        Dictionary<string, int> signsOne = GroupNumbersBySign([5, -2, 0, 10]);
-        Console.WriteLine(signsOne["positive"] == 2);
-        Console.WriteLine(signsOne["negative"] == 1);
-        Console.WriteLine(signsOne["zero"] == 1);
+        // Dictionary<string, int> signsOne = GroupNumbersBySign([5, -2, 0, 10]);
+        // Console.WriteLine(signsOne["positive"] == 2);
+        // Console.WriteLine(signsOne["negative"] == 1);
+        // Console.WriteLine(signsOne["zero"] == 1);
 
-        Dictionary<string, int> signsTwo = GroupNumbersBySign([-1, -2, -3]);
-        Console.WriteLine(signsTwo["negative"] == 3);
-        Console.WriteLine(signsTwo.ContainsKey("positive") == false);
-        Console.WriteLine(signsTwo.ContainsKey("zero") == false);
+        // Dictionary<string, int> signsTwo = GroupNumbersBySign([-1, -2, -3]);
+        // Console.WriteLine(signsTwo["negative"] == 3);
+        // Console.WriteLine(signsTwo.ContainsKey("positive") == false);
+        // Console.WriteLine(signsTwo.ContainsKey("zero") == false);
 
-        Dictionary<string, int> signsThree = GroupNumbersBySign(null!);
-        Console.WriteLine(signsThree.Count == 0);
+        // Dictionary<string, int> signsThree = GroupNumbersBySign(null!);
+        // Console.WriteLine(signsThree.Count == 0);
 
         // Count Valid Ages
         // Console.WriteLine(CountValidAges("20, 35, abc, -1, 121") == 2);
