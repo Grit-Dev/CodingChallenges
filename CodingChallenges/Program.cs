@@ -69,24 +69,56 @@ public class Program
 
         return totalPairCounter.ToArray();
     }
+
+    public static int? FindFirstValidScore(string input)
+    {
+        if (string.IsNullOrWhiteSpace(input))
+        {
+            return null;
+        }
+
+        string[] stringSplit = input.Split(',', StringSplitOptions.RemoveEmptyEntries);
+
+        foreach (string str in stringSplit)
+        {
+            string strTrimmed = str.Trim();
+
+            if (int.TryParse(strTrimmed, out int value) &&
+            value >= 0 && value <= 100)
+            {
+                return value;
+            }
+        }
+
+        return null;
+    }
     public static void Main(string[] args)
     {
+        // Find First Valid Score
+        Console.WriteLine(FindFirstValidScore("bad, -1, 75, 90") == 75);
+        Console.WriteLine(FindFirstValidScore("abc, 200, -5") == null);
+        Console.WriteLine(FindFirstValidScore("100, 50") == 100);
+        Console.WriteLine(FindFirstValidScore("0, 10") == 0);
+        Console.WriteLine(FindFirstValidScore("") == null);
+        Console.WriteLine(FindFirstValidScore(" ") == null);
+        Console.WriteLine(FindFirstValidScore(null!) == null);
+
         // Get Tow Number Total Above Limit
-        int[] totalsOne = GetTwoNumberTotalsAboveLimit([2, 5, 10, 1], 10);
-        Console.WriteLine(totalsOne.Length == 2);
-        Console.WriteLine(totalsOne[0] == 15);
-        Console.WriteLine(totalsOne[1] == 11);
+        // int[] totalsOne = GetTwoNumberTotalsAboveLimit([2, 5, 10, 1], 10);
+        // Console.WriteLine(totalsOne.Length == 2);
+        // Console.WriteLine(totalsOne[0] == 15);
+        // Console.WriteLine(totalsOne[1] == 11);
 
-        int[] totalsTwo = GetTwoNumberTotalsAboveLimit([1, 2, 3], 10);
-        Console.WriteLine(totalsTwo.Length == 0);
+        // int[] totalsTwo = GetTwoNumberTotalsAboveLimit([1, 2, 3], 10);
+        // Console.WriteLine(totalsTwo.Length == 0);
 
-        int[] totalsThree = GetTwoNumberTotalsAboveLimit([-5, 20, -2, 15], 10);
-        Console.WriteLine(totalsThree.Length == 3);
-        Console.WriteLine(totalsThree[0] == 15);
-        Console.WriteLine(totalsThree[1] == 18);
-        Console.WriteLine(totalsThree[2] == 13);
-        Console.WriteLine(GetTwoNumberTotalsAboveLimit(null!, 10).Length == 0);
-        Console.WriteLine(GetTwoNumberTotalsAboveLimit([], 10).Length == 0);
+        // int[] totalsThree = GetTwoNumberTotalsAboveLimit([-5, 20, -2, 15], 10);
+        // Console.WriteLine(totalsThree.Length == 3);
+        // Console.WriteLine(totalsThree[0] == 15);
+        // Console.WriteLine(totalsThree[1] == 18);
+        // Console.WriteLine(totalsThree[2] == 13);
+        // Console.WriteLine(GetTwoNumberTotalsAboveLimit(null!, 10).Length == 0);
+        // Console.WriteLine(GetTwoNumberTotalsAboveLimit([], 10).Length == 0);
 
         // Create Slug From Title
         // Console.WriteLine(CreateSlugFromTitle("Hello World") == "hello-world");
