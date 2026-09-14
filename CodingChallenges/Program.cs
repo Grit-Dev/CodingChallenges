@@ -95,7 +95,7 @@ public class Program
 
     public static Dictionary<int, List<string>> GroupWordsByLength(string input)
     {
-        if(string.IsNullOrWhiteSpace(input))
+        if (string.IsNullOrWhiteSpace(input))
         {
             return [];
         }
@@ -104,11 +104,11 @@ public class Program
 
         string[] splitString = input.Split(' ', StringSplitOptions.RemoveEmptyEntries);
 
-        foreach(string str in splitString)
+        foreach (string str in splitString)
         {
             string strTrimmed = str.Trim();
 
-            if(newDict.TryGetValue(strTrimmed.Length, out List<string>? value))
+            if (newDict.TryGetValue(strTrimmed.Length, out List<string>? value))
             {
                 value.Add(strTrimmed);
             }
@@ -121,26 +121,39 @@ public class Program
         return newDict;
     }
 
+    public static string FindShortestWordWithMinBy(string input) =>
+    string.IsNullOrWhiteSpace(input) ? "" : input.Split(' ', StringSplitOptions.RemoveEmptyEntries)
+    .MinBy(ip => ip.Length) ?? "";
+
     public static void Main(string[] args)
     {
+        // Find Shortest Word With MinBy
+        Console.WriteLine(FindShortestWordWithMinBy("cat banana hi") == "hi");
+        Console.WriteLine(FindShortestWordWithMinBy("one two three") == "one");
+        Console.WriteLine(FindShortestWordWithMinBy("coding daily practice") == "daily");
+        Console.WriteLine(FindShortestWordWithMinBy("x") == "x");
+        Console.WriteLine(FindShortestWordWithMinBy("") == "");
+        Console.WriteLine(FindShortestWordWithMinBy(" ") == "");
+        Console.WriteLine(FindShortestWordWithMinBy(null!) == "");
+
         // Group Words By Length
-        Dictionary<int, List<string>> groupsOne = GroupWordsByLength("cat dog apple");
-        Console.WriteLine(groupsOne[3].Count == 2);
-        Console.WriteLine(groupsOne[3][0] == "cat");
-        Console.WriteLine(groupsOne[3][1] == "dog");
-        Console.WriteLine(groupsOne[5].Count == 1);
-        Console.WriteLine(groupsOne[5][0] == "apple");
+        // Dictionary<int, List<string>> groupsOne = GroupWordsByLength("cat dog apple");
+        // Console.WriteLine(groupsOne[3].Count == 2);
+        // Console.WriteLine(groupsOne[3][0] == "cat");
+        // Console.WriteLine(groupsOne[3][1] == "dog");
+        // Console.WriteLine(groupsOne[5].Count == 1);
+        // Console.WriteLine(groupsOne[5][0] == "apple");
 
-        Dictionary<int, List<string>> groupsTwo = GroupWordsByLength("hi to code test");
-        Console.WriteLine(groupsTwo[2].Count == 2);
-        Console.WriteLine(groupsTwo[2][0] == "hi");
-        Console.WriteLine(groupsTwo[2][1] == "to");
-        Console.WriteLine(groupsTwo[4].Count == 2);
-        Console.WriteLine(groupsTwo[4][0] == "code");
-        Console.WriteLine(groupsTwo[4][1] == "test");
+        // Dictionary<int, List<string>> groupsTwo = GroupWordsByLength("hi to code test");
+        // Console.WriteLine(groupsTwo[2].Count == 2);
+        // Console.WriteLine(groupsTwo[2][0] == "hi");
+        // Console.WriteLine(groupsTwo[2][1] == "to");
+        // Console.WriteLine(groupsTwo[4].Count == 2);
+        // Console.WriteLine(groupsTwo[4][0] == "code");
+        // Console.WriteLine(groupsTwo[4][1] == "test");
 
-        Dictionary<int, List<string>> groupsThree = GroupWordsByLength(null!);
-        Console.WriteLine(groupsThree.Count == 0);
+        // Dictionary<int, List<string>> groupsThree = GroupWordsByLength(null!);
+        // Console.WriteLine(groupsThree.Count == 0);
 
         // Find First Valid Score
         // Console.WriteLine(FindFirstValidScore("bad, -1, 75, 90") == 75);
