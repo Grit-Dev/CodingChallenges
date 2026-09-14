@@ -6,6 +6,86 @@ namespace CodingChallenges.Challenges.Phase_02_OOP
     {
         public static void Run_Four_Dictionary_Work()
         {
+            // Convert Sentence to Title Case
+            Console.WriteLine(ConvertSentenceToTitleCase("paul is CODING today") == "Paul Is Coding Today");
+            Console.WriteLine(ConvertSentenceToTitleCase(" hello WORLD ") == "Hello World");
+            Console.WriteLine(ConvertSentenceToTitleCase("a BIG win") == "A Big Win");
+            Console.WriteLine(ConvertSentenceToTitleCase("x") == "X");
+            Console.WriteLine(ConvertSentenceToTitleCase("") == "");
+            Console.WriteLine(ConvertSentenceToTitleCase(" ") == "");
+            Console.WriteLine(ConvertSentenceToTitleCase(null!) == "");
+
+            // Find Shortest Word With MinBy
+            Console.WriteLine(FindShortestWordWithMinBy("cat banana hi") == "hi");
+            Console.WriteLine(FindShortestWordWithMinBy("one two three") == "one");
+            Console.WriteLine(FindShortestWordWithMinBy("coding daily practice") == "daily");
+            Console.WriteLine(FindShortestWordWithMinBy("x") == "x");
+            Console.WriteLine(FindShortestWordWithMinBy("") == "");
+            Console.WriteLine(FindShortestWordWithMinBy(" ") == "");
+            Console.WriteLine(FindShortestWordWithMinBy(null!) == "");
+
+            // Group Words By Length
+            Dictionary<int, List<string>> groupsOne = GroupWordsByLength("cat dog apple");
+            Console.WriteLine(groupsOne[3].Count == 2);
+            Console.WriteLine(groupsOne[3][0] == "cat");
+            Console.WriteLine(groupsOne[3][1] == "dog");
+            Console.WriteLine(groupsOne[5].Count == 1);
+            Console.WriteLine(groupsOne[5][0] == "apple");
+
+            Dictionary<int, List<string>> groupsTwo = GroupWordsByLength("hi to code test");
+            Console.WriteLine(groupsTwo[2].Count == 2);
+            Console.WriteLine(groupsTwo[2][0] == "hi");
+            Console.WriteLine(groupsTwo[2][1] == "to");
+            Console.WriteLine(groupsTwo[4].Count == 2);
+            Console.WriteLine(groupsTwo[4][0] == "code");
+            Console.WriteLine(groupsTwo[4][1] == "test");
+
+            Dictionary<int, List<string>> groupsThree = GroupWordsByLength(null!);
+            Console.WriteLine(groupsThree.Count == 0);
+
+            // Find First Valid Score
+            Console.WriteLine(FindFirstValidScore("bad, -1, 75, 90") == 75);
+            Console.WriteLine(FindFirstValidScore("abc, 200, -5") == null);
+            Console.WriteLine(FindFirstValidScore("100, 50") == 100);
+            Console.WriteLine(FindFirstValidScore("0, 10") == 0);
+            Console.WriteLine(FindFirstValidScore("") == null);
+            Console.WriteLine(FindFirstValidScore(" ") == null);
+            Console.WriteLine(FindFirstValidScore(null!) == null);
+
+            // Get Tow Number Total Above Limit
+            int[] totalsOne = GetTwoNumberTotalsAboveLimit([2, 5, 10, 1], 10);
+            Console.WriteLine(totalsOne.Length == 2);
+            Console.WriteLine(totalsOne[0] == 15);
+            Console.WriteLine(totalsOne[1] == 11);
+
+            int[] totalsTwo = GetTwoNumberTotalsAboveLimit([1, 2, 3], 10);
+            Console.WriteLine(totalsTwo.Length == 0);
+
+            int[] totalsThree = GetTwoNumberTotalsAboveLimit([-5, 20, -2, 15], 10);
+            Console.WriteLine(totalsThree.Length == 3);
+            Console.WriteLine(totalsThree[0] == 15);
+            Console.WriteLine(totalsThree[1] == 18);
+            Console.WriteLine(totalsThree[2] == 13);
+            Console.WriteLine(GetTwoNumberTotalsAboveLimit(null!, 10).Length == 0);
+            Console.WriteLine(GetTwoNumberTotalsAboveLimit([], 10).Length == 0);
+
+            // Create Slug From Title
+            Console.WriteLine(CreateSlugFromTitle("Hello World") == "hello-world");
+            Console.WriteLine(CreateSlugFromTitle(" Paul Codes Daily ") == "paul-codes-daily");
+            Console.WriteLine(CreateSlugFromTitle("CSharp Practice") == "csharp-practice");
+            Console.WriteLine(CreateSlugFromTitle("One") == "one");
+            Console.WriteLine(CreateSlugFromTitle("") == "");
+            Console.WriteLine(CreateSlugFromTitle(" ") == "");
+            Console.WriteLine(CreateSlugFromTitle(null!) == "");
+
+            // Warm up: Count Adjacent Increases. 
+            Console.WriteLine(CountAdjacentIncreases([1, 3, 2, 5]) == 2);
+            Console.WriteLine(CountAdjacentIncreases([5, 4, 3]) == 0);
+            Console.WriteLine(CountAdjacentIncreases([1, 2, 3, 4]) == 3);
+            Console.WriteLine(CountAdjacentIncreases([7]) == 0);
+            Console.WriteLine(CountAdjacentIncreases(null!) == 0);
+            Console.WriteLine(CountAdjacentIncreases([]) == 0);
+
             // Convert Full Name To Title Case
             Console.WriteLine(ConvertFullNameToTitleCase("paul MCGINLEY") == "Paul Mcginley");
             Console.WriteLine(ConvertFullNameToTitleCase(" SARAH connor ") == "Sarah Connor");

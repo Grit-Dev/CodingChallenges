@@ -6,6 +6,140 @@ namespace CodingChallenges.Challenges.Phase_02_OOP
 {
     public class ChallengeSolutions
     {
+        public static int CountAdjacentIncreases(int[] numbers)
+        {
+            if (numbers is null || numbers.Length < 2)
+            {
+                return 0;
+            }
+
+            int counter = 0;
+
+            for (int index = 1; index <= numbers.Length - 1; index++)
+            {
+                if (numbers[index] > numbers[index - 1])
+                {
+                    counter++;
+                }
+            }
+
+            return counter;
+        }
+
+        public static string CreateSlugFromTitle(string input)
+        {
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                return "";
+            }
+
+            var strBuilder = new StringBuilder();
+
+            input = input.ToLower();
+
+            string[] stringSplit = input.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+            foreach (string str in stringSplit)
+            {
+                if (strBuilder.Length > 0)
+                {
+                    strBuilder.Append('-');
+                }
+
+                strBuilder.Append(str);
+            }
+
+            return strBuilder.ToString();
+        }
+
+        public static int[] GetTwoNumberTotalsAboveLimit(int[] numbers, int limit)
+        {
+            if (numbers is null || numbers.Length < 2)
+            {
+                return [];
+            }
+
+            List<int> totalPairCounter = [];
+
+            for (int index = 0; index < numbers.Length - 1; index++)
+            {
+                int total = numbers[index] + numbers[index + 1];
+
+                if (total > limit)
+                {
+                    totalPairCounter.Add(total);
+                }
+            }
+
+            return totalPairCounter.ToArray();
+        }
+
+        public static int? FindFirstValidScore(string input)
+        {
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                return null;
+            }
+
+            string[] stringSplit = input.Split(',', StringSplitOptions.RemoveEmptyEntries);
+
+            foreach (string str in stringSplit)
+            {
+                string strTrimmed = str.Trim();
+
+                if (int.TryParse(strTrimmed, out int value) &&
+                value >= 0 && value <= 100)
+                {
+                    return value;
+                }
+            }
+
+            return null;
+        }
+
+        public static Dictionary<int, List<string>> GroupWordsByLength(string input)
+        {
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                return [];
+            }
+
+            Dictionary<int, List<string>> newDict = [];
+
+            string[] splitString = input.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+            foreach (string str in splitString)
+            {
+                string strTrimmed = str.Trim();
+
+                if (newDict.TryGetValue(strTrimmed.Length, out List<string>? value))
+                {
+                    value.Add(strTrimmed);
+                }
+                else
+                {
+                    newDict[strTrimmed.Length] = [strTrimmed];
+                }
+            }
+
+            return newDict;
+        }
+
+        public static string FindShortestWordWithMinBy(string input) =>
+        string.IsNullOrWhiteSpace(input) ? "" : input.Split(' ', StringSplitOptions.RemoveEmptyEntries)
+        .MinBy(ip => ip.Length) ?? "";
+
+        public static string ConvertSentenceToTitleCase(string input)
+        {
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                return "";
+            }
+
+            return string.Join(' ', input.Split(' ', StringSplitOptions.RemoveEmptyEntries)
+            .Select(ss => char.ToUpper(ss[0]) + ss.Substring(1).ToLower()));
+        }
+        
         public static string? FindFirstRepeatedWord(string input)
         {
             if (string.IsNullOrWhiteSpace(input))
