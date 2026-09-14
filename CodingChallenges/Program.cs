@@ -92,16 +92,64 @@ public class Program
 
         return null;
     }
+
+    public static Dictionary<int, List<string>> GroupWordsByLength(string input)
+    {
+        if(string.IsNullOrWhiteSpace(input))
+        {
+            return [];
+        }
+
+        Dictionary<int, List<string>> newDict = [];
+
+        string[] splitString = input.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+        foreach(string str in splitString)
+        {
+            string strTrimmed = str.Trim();
+
+            if(newDict.TryGetValue(strTrimmed.Length, out List<string>? value))
+            {
+                value.Add(strTrimmed);
+            }
+            else
+            {
+                newDict[strTrimmed.Length] = [strTrimmed];
+            }
+        }
+
+        return newDict;
+    }
+
     public static void Main(string[] args)
     {
+        // Group Words By Length
+        Dictionary<int, List<string>> groupsOne = GroupWordsByLength("cat dog apple");
+        Console.WriteLine(groupsOne[3].Count == 2);
+        Console.WriteLine(groupsOne[3][0] == "cat");
+        Console.WriteLine(groupsOne[3][1] == "dog");
+        Console.WriteLine(groupsOne[5].Count == 1);
+        Console.WriteLine(groupsOne[5][0] == "apple");
+
+        Dictionary<int, List<string>> groupsTwo = GroupWordsByLength("hi to code test");
+        Console.WriteLine(groupsTwo[2].Count == 2);
+        Console.WriteLine(groupsTwo[2][0] == "hi");
+        Console.WriteLine(groupsTwo[2][1] == "to");
+        Console.WriteLine(groupsTwo[4].Count == 2);
+        Console.WriteLine(groupsTwo[4][0] == "code");
+        Console.WriteLine(groupsTwo[4][1] == "test");
+
+        Dictionary<int, List<string>> groupsThree = GroupWordsByLength(null!);
+        Console.WriteLine(groupsThree.Count == 0);
+
         // Find First Valid Score
-        Console.WriteLine(FindFirstValidScore("bad, -1, 75, 90") == 75);
-        Console.WriteLine(FindFirstValidScore("abc, 200, -5") == null);
-        Console.WriteLine(FindFirstValidScore("100, 50") == 100);
-        Console.WriteLine(FindFirstValidScore("0, 10") == 0);
-        Console.WriteLine(FindFirstValidScore("") == null);
-        Console.WriteLine(FindFirstValidScore(" ") == null);
-        Console.WriteLine(FindFirstValidScore(null!) == null);
+        // Console.WriteLine(FindFirstValidScore("bad, -1, 75, 90") == 75);
+        // Console.WriteLine(FindFirstValidScore("abc, 200, -5") == null);
+        // Console.WriteLine(FindFirstValidScore("100, 50") == 100);
+        // Console.WriteLine(FindFirstValidScore("0, 10") == 0);
+        // Console.WriteLine(FindFirstValidScore("") == null);
+        // Console.WriteLine(FindFirstValidScore(" ") == null);
+        // Console.WriteLine(FindFirstValidScore(null!) == null);
 
         // Get Tow Number Total Above Limit
         // int[] totalsOne = GetTwoNumberTotalsAboveLimit([2, 5, 10, 1], 10);
