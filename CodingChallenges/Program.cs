@@ -125,16 +125,36 @@ public class Program
     string.IsNullOrWhiteSpace(input) ? "" : input.Split(' ', StringSplitOptions.RemoveEmptyEntries)
     .MinBy(ip => ip.Length) ?? "";
 
+    public static string ConvertSentenceToTitleCase(string input)
+    {
+        if (string.IsNullOrWhiteSpace(input))
+        {
+            return "";
+        }
+
+        return string.Join(' ', input.Split(' ', StringSplitOptions.RemoveEmptyEntries)
+        .Select(ss => char.ToUpper(ss[0]) + ss.Substring(1).ToLower()));
+    }
     public static void Main(string[] args)
     {
+
+        // Convert Sentence to Title Case
+        Console.WriteLine(ConvertSentenceToTitleCase("paul is CODING today") == "Paul Is Coding Today");
+        Console.WriteLine(ConvertSentenceToTitleCase(" hello WORLD ") == "Hello World");
+        Console.WriteLine(ConvertSentenceToTitleCase("a BIG win") == "A Big Win");
+        Console.WriteLine(ConvertSentenceToTitleCase("x") == "X");
+        Console.WriteLine(ConvertSentenceToTitleCase("") == "");
+        Console.WriteLine(ConvertSentenceToTitleCase(" ") == "");
+        Console.WriteLine(ConvertSentenceToTitleCase(null!) == "");
+
         // Find Shortest Word With MinBy
-        Console.WriteLine(FindShortestWordWithMinBy("cat banana hi") == "hi");
-        Console.WriteLine(FindShortestWordWithMinBy("one two three") == "one");
-        Console.WriteLine(FindShortestWordWithMinBy("coding daily practice") == "daily");
-        Console.WriteLine(FindShortestWordWithMinBy("x") == "x");
-        Console.WriteLine(FindShortestWordWithMinBy("") == "");
-        Console.WriteLine(FindShortestWordWithMinBy(" ") == "");
-        Console.WriteLine(FindShortestWordWithMinBy(null!) == "");
+        // Console.WriteLine(FindShortestWordWithMinBy("cat banana hi") == "hi");
+        // Console.WriteLine(FindShortestWordWithMinBy("one two three") == "one");
+        // Console.WriteLine(FindShortestWordWithMinBy("coding daily practice") == "daily");
+        // Console.WriteLine(FindShortestWordWithMinBy("x") == "x");
+        // Console.WriteLine(FindShortestWordWithMinBy("") == "");
+        // Console.WriteLine(FindShortestWordWithMinBy(" ") == "");
+        // Console.WriteLine(FindShortestWordWithMinBy(null!) == "");
 
         // Group Words By Length
         // Dictionary<int, List<string>> groupsOne = GroupWordsByLength("cat dog apple");
