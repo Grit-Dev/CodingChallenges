@@ -6,6 +6,80 @@ namespace CodingChallenges.Challenges.Phase_02_OOP
     {
         public static void Run_Four_Dictionary_Work()
         {
+            // LINQ Repair: Get Lowercase Long Words
+            string[] linqRepairOne = GetLowercaseLongWordsWithLinq("Cat Banana DOG Coding");
+            Console.WriteLine(linqRepairOne.Length == 2);
+            Console.WriteLine(linqRepairOne[0] == "banana");
+            Console.WriteLine(linqRepairOne[1] == "coding");
+
+            string[] linqRepairTwo = GetLowercaseLongWordsWithLinq("one three seven");
+            Console.WriteLine(linqRepairTwo.Length == 2);
+            Console.WriteLine(linqRepairTwo[0] == "three");
+            Console.WriteLine(linqRepairTwo[1] == "seven");
+
+            string[] linqRepairThree = GetLowercaseLongWordsWithLinq("hi to be");
+            Console.WriteLine(linqRepairThree.Length == 0);
+            Console.WriteLine(GetLowercaseLongWordsWithLinq("").Length == 0);
+            Console.WriteLine(GetLowercaseLongWordsWithLinq(" ").Length == 0);
+            Console.WriteLine(GetLowercaseLongWordsWithLinq(null!).Length == 0);
+
+            // Where + Count With LINQ
+            Console.WriteLine(CountPositiveEvenNumbersWithLinq([1, 2, 4, -6, 0, 8]) == 3);
+            Console.WriteLine(CountPositiveEvenNumbersWithLinq([1, 3, 5]) == 0);
+            Console.WriteLine(CountPositiveEvenNumbersWithLinq([2, 4, 6]) == 3);
+            Console.WriteLine(CountPositiveEvenNumbersWithLinq(null!) == 0);
+            Console.WriteLine(CountPositiveEvenNumbersWithLinq([]) == 0);
+
+            // Count Words By Last Letter
+            Dictionary<char, int> lastLettersOne = CountWordsByLastLetter("coding testing cat");
+            Console.WriteLine(lastLettersOne['g'] == 2);
+            Console.WriteLine(lastLettersOne['t'] == 1);
+
+            Dictionary<char, int> lastLettersTwo = CountWordsByLastLetter("Dog frog CAT");
+            Console.WriteLine(lastLettersTwo['g'] == 2);
+            Console.WriteLine(lastLettersTwo['t'] == 1);
+
+            Dictionary<char, int> lastLettersThree = CountWordsByLastLetter("hello! apple 123");
+            Console.WriteLine(lastLettersThree['e'] == 1);
+            Console.WriteLine(lastLettersThree.ContainsKey('!') == false);
+            Console.WriteLine(lastLettersThree.ContainsKey('3') == false);
+
+            Dictionary<char, int> lastLettersFour = CountWordsByLastLetter(null!);
+            Console.WriteLine(lastLettersFour.Count == 0);
+
+            // Find Last Positive Number
+            Console.WriteLine(FindLastPositiveNumber([-1, 5, 0, 9, -2]) == 9);
+            Console.WriteLine(FindLastPositiveNumber([-5, 0, -1]) == null);
+            Console.WriteLine(FindLastPositiveNumber([7]) == 7);
+            Console.WriteLine(FindLastPositiveNumber([1, 2, 3]) == 3);
+            Console.WriteLine(FindLastPositiveNumber(null!) == null);
+            Console.WriteLine(FindLastPositiveNumber([]) == null);
+
+            // Count Times Running Total Is Positive
+            Console.WriteLine(CountTimesRunningTotalIsPositive([3, -1, -5, 10]) == 3);
+            Console.WriteLine(CountTimesRunningTotalIsPositive([-5, 2, 2]) == 0);
+            Console.WriteLine(CountTimesRunningTotalIsPositive([1, 1, 1]) == 3);
+            Console.WriteLine(CountTimesRunningTotalIsPositive([5, -5, 1]) == 2);
+            Console.WriteLine(CountTimesRunningTotalIsPositive(null!) == 0);
+            Console.WriteLine(CountTimesRunningTotalIsPositive([]) == 0);
+
+            // Remove Short Words And Lowercase
+            Console.WriteLine(RemoveShortWordsAndLowercase("Hi Paul is Coding Today") == "paul coding today");
+            Console.WriteLine(RemoveShortWordsAndLowercase("a big red dragon") == "dragon");
+            Console.WriteLine(RemoveShortWordsAndLowercase("to be or no") == "");
+            Console.WriteLine(RemoveShortWordsAndLowercase(" HELLO world ") == "hello world");
+            Console.WriteLine(RemoveShortWordsAndLowercase("") == "");
+            Console.WriteLine(RemoveShortWordsAndLowercase(" ") == "");
+            Console.WriteLine(RemoveShortWordsAndLowercase(null!) == "");
+
+            // Count Numbers Divisible By Two But Not Three
+            Console.WriteLine(CountNumbersDivisibleByTwoButNotThree([2, 3, 4, 6, 8, 9, 12]) == 3);
+            Console.WriteLine(CountNumbersDivisibleByTwoButNotThree([6, 12, 18]) == 0);
+            Console.WriteLine(CountNumbersDivisibleByTwoButNotThree([0, 2, 4]) == 2);
+            Console.WriteLine(CountNumbersDivisibleByTwoButNotThree([1, 3, 5]) == 0);
+            Console.WriteLine(CountNumbersDivisibleByTwoButNotThree(null!) == 0);
+            Console.WriteLine(CountNumbersDivisibleByTwoButNotThree([]) == 0);
+
             // Convert Sentence to Title Case
             Console.WriteLine(ConvertSentenceToTitleCase("paul is CODING today") == "Paul Is Coding Today");
             Console.WriteLine(ConvertSentenceToTitleCase(" hello WORLD ") == "Hello World");

@@ -6,6 +6,107 @@ namespace CodingChallenges.Challenges.Phase_02_OOP
 {
     public class ChallengeSolutions
     {
+        public static int CountNumbersDivisibleByTwoButNotThree(int[] numbers)
+        {
+            if (numbers is null || numbers.Length == 0)
+            {
+                return 0;
+            }
+
+            int counter = 0;
+
+            foreach (int number in numbers)
+            {
+                if (number != 0 && number % 2 == 0 && number % 3 != 0)
+                {
+                    counter++;
+                }
+            }
+
+            return counter;
+        }
+
+        public static string RemoveShortWordsAndLowercase(string input)
+        {
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                return "";
+            }
+
+            return string.Join(' ', input.Split(' ', StringSplitOptions.RemoveEmptyEntries)
+            .Where(ss => ss.Length >= 4)
+            .Select(ss => ss.ToLower()));
+        }
+
+
+        public static int CountTimesRunningTotalIsPositive(int[] numbers)
+        {
+            if (numbers is null || numbers.Length == 0)
+            {
+                return 0;
+            }
+
+            int counter = 0;
+            int total = 0;
+
+            foreach (int number in numbers)
+            {
+                total += number;
+
+                if (total > 0)
+                {
+                    counter++;
+                }
+            }
+
+            return counter;
+        }
+
+        public static int? FindLastPositiveNumber(int[] numbers) =>
+        numbers is null || numbers.Length == 0 ? null :
+        numbers.Where(n => n > 0)
+        .Cast<int?>()
+        .LastOrDefault();
+
+        public static Dictionary<char, int> CountWordsByLastLetter(string input)
+        {
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                return [];
+            }
+
+            Dictionary<char, int> newDict = [];
+
+            string[] splitString = input.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+            foreach (string str in splitString)
+            {
+                char charLowered = char.ToLower(str[str.Length - 1]);
+
+                if (char.IsLetter(charLowered))
+                {
+                    if (newDict.TryGetValue(charLowered, out int value))
+                    {
+                        newDict[charLowered] = value + 1;
+                    }
+                    else
+                    {
+                        newDict[charLowered] = 1;
+                    }
+                }
+            }
+
+            return newDict;
+        }
+
+        public static int CountPositiveEvenNumbersWithLinq(int[] numbers) =>
+        numbers is null || numbers.Length == 0 ? 0 : numbers.Count(n => n > 0 && n % 2 == 0);
+
+        public static string[] GetLowercaseLongWordsWithLinq(string input) =>
+        string.IsNullOrWhiteSpace(input) ? [] : input.Split(' ', StringSplitOptions.RemoveEmptyEntries)
+        .Where(ip => ip.Length > 4)
+        .Select(ip => ip.ToLower()).ToArray();
+
         public static int CountAdjacentIncreases(int[] numbers)
         {
             if (numbers is null || numbers.Length < 2)
@@ -139,7 +240,7 @@ namespace CodingChallenges.Challenges.Phase_02_OOP
             return string.Join(' ', input.Split(' ', StringSplitOptions.RemoveEmptyEntries)
             .Select(ss => char.ToUpper(ss[0]) + ss.Substring(1).ToLower()));
         }
-        
+
         public static string? FindFirstRepeatedWord(string input)
         {
             if (string.IsNullOrWhiteSpace(input))
