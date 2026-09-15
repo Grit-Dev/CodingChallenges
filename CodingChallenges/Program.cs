@@ -62,15 +62,65 @@
     .Cast<int?>()
     .LastOrDefault();
 
+    public static Dictionary<char, int> CountWordsByLastLetter(string input)
+    {
+        if (string.IsNullOrWhiteSpace(input))
+        {
+            return [];
+        }
+
+        Dictionary<char, int> newDict = [];
+
+        string[] splitString = input.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+        foreach (string str in splitString)
+        {
+            char charLowered = char.ToLower(str[str.Length - 1]);
+
+            if (char.IsLetter(charLowered))
+            {
+                if (newDict.TryGetValue(charLowered, out int value))
+                {
+                    newDict[charLowered] = value + 1;
+                }
+                else
+                {
+                    newDict[charLowered] = 1;
+                }
+            }
+        }
+
+        return newDict;
+    }
+
+    
+
     public static void Main(string[] args)
     {
+        // Count Words By Last Letter
+        // Dictionary<char, int> lastLettersOne = CountWordsByLastLetter("coding testing cat");
+        // Console.WriteLine(lastLettersOne['g'] == 2);
+        // Console.WriteLine(lastLettersOne['t'] == 1);
+
+        // Dictionary<char, int> lastLettersTwo = CountWordsByLastLetter("Dog frog CAT");
+        // Console.WriteLine(lastLettersTwo['g'] == 2);
+        // Console.WriteLine(lastLettersTwo['t'] == 1);
+
+        // Dictionary<char, int> lastLettersThree = CountWordsByLastLetter("hello! apple 123");
+        // Console.WriteLine(lastLettersThree['e'] == 1);
+        // Console.WriteLine(lastLettersThree.ContainsKey('!') == false);
+        // Console.WriteLine(lastLettersThree.ContainsKey('3') == false);
+
+        // Dictionary<char, int> lastLettersFour = CountWordsByLastLetter(null!);
+        // Console.WriteLine(lastLettersFour.Count == 0);
+
         // Find Last Positive Number
-        Console.WriteLine(FindLastPositiveNumber([-1, 5, 0, 9, -2]) == 9);
-        Console.WriteLine(FindLastPositiveNumber([-5, 0, -1]) == null);
-        Console.WriteLine(FindLastPositiveNumber([7]) == 7);
-        Console.WriteLine(FindLastPositiveNumber([1, 2, 3]) == 3);
-        Console.WriteLine(FindLastPositiveNumber(null!) == null);
-        Console.WriteLine(FindLastPositiveNumber([]) == null);
+        // Console.WriteLine(FindLastPositiveNumber([-1, 5, 0, 9, -2]) == 9);
+        // Console.WriteLine(FindLastPositiveNumber([-5, 0, -1]) == null);
+        // Console.WriteLine(FindLastPositiveNumber([7]) == 7);
+        // Console.WriteLine(FindLastPositiveNumber([1, 2, 3]) == 3);
+        // Console.WriteLine(FindLastPositiveNumber(null!) == null);
+        // Console.WriteLine(FindLastPositiveNumber([]) == null);
 
         // Count Times Running Total Is Positive
         // Console.WriteLine(CountTimesRunningTotalIsPositive([3, -1, -5, 10]) == 3);
