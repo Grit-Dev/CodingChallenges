@@ -93,10 +93,18 @@
         return newDict;
     }
 
-    
+    public static int CountPositiveEvenNumbersWithLinq(int[] numbers) =>
+    numbers is null || numbers.Length == 0 ? 0 : numbers.Count(n => n > 0 && n % 2 == 0);
 
     public static void Main(string[] args)
     {
+        // Where + Count With LINQ
+        Console.WriteLine(CountPositiveEvenNumbersWithLinq([1, 2, 4, -6, 0, 8]) == 3);
+        Console.WriteLine(CountPositiveEvenNumbersWithLinq([1, 3, 5]) == 0);
+        Console.WriteLine(CountPositiveEvenNumbersWithLinq([2, 4, 6]) == 3);
+        Console.WriteLine(CountPositiveEvenNumbersWithLinq(null!) == 0);
+        Console.WriteLine(CountPositiveEvenNumbersWithLinq([]) == 0);
+
         // Count Words By Last Letter
         // Dictionary<char, int> lastLettersOne = CountWordsByLastLetter("coding testing cat");
         // Console.WriteLine(lastLettersOne['g'] == 2);
