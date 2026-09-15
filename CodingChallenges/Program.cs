@@ -93,17 +93,39 @@
         return newDict;
     }
 
-    public static int CountPositiveEvenNumbersWithLinq(int[] numbers) =>
-    numbers is null || numbers.Length == 0 ? 0 : numbers.Count(n => n > 0 && n % 2 == 0);
+    // public static int CountPositiveEvenNumbersWithLinq(int[] numbers) =>
+    // numbers is null || numbers.Length == 0 ? 0 : numbers.Count(n => n > 0 && n % 2 == 0);
+
+    public static string[] GetLowercaseLongWordsWithLinq(string input) =>
+    string.IsNullOrWhiteSpace(input) ? [] : input.Split(' ', StringSplitOptions.RemoveEmptyEntries)
+    .Where(ip => ip.Length > 4)
+    .Select(ip => ip.ToLower()).ToArray();
 
     public static void Main(string[] args)
     {
+        // LINQ Repair: Get Lowercase Long Words
+        string[] linqRepairOne = GetLowercaseLongWordsWithLinq("Cat Banana DOG Coding");
+        Console.WriteLine(linqRepairOne.Length == 2);
+        Console.WriteLine(linqRepairOne[0] == "banana");
+        Console.WriteLine(linqRepairOne[1] == "coding");
+
+        string[] linqRepairTwo = GetLowercaseLongWordsWithLinq("one three seven");
+        Console.WriteLine(linqRepairTwo.Length == 2);
+        Console.WriteLine(linqRepairTwo[0] == "three");
+        Console.WriteLine(linqRepairTwo[1] == "seven");
+
+        string[] linqRepairThree = GetLowercaseLongWordsWithLinq("hi to be");
+        Console.WriteLine(linqRepairThree.Length == 0);
+        Console.WriteLine(GetLowercaseLongWordsWithLinq("").Length == 0);
+        Console.WriteLine(GetLowercaseLongWordsWithLinq(" ").Length == 0);
+        Console.WriteLine(GetLowercaseLongWordsWithLinq(null!).Length == 0);
+
         // Where + Count With LINQ
-        Console.WriteLine(CountPositiveEvenNumbersWithLinq([1, 2, 4, -6, 0, 8]) == 3);
-        Console.WriteLine(CountPositiveEvenNumbersWithLinq([1, 3, 5]) == 0);
-        Console.WriteLine(CountPositiveEvenNumbersWithLinq([2, 4, 6]) == 3);
-        Console.WriteLine(CountPositiveEvenNumbersWithLinq(null!) == 0);
-        Console.WriteLine(CountPositiveEvenNumbersWithLinq([]) == 0);
+        // Console.WriteLine(CountPositiveEvenNumbersWithLinq([1, 2, 4, -6, 0, 8]) == 3);
+        // Console.WriteLine(CountPositiveEvenNumbersWithLinq([1, 3, 5]) == 0);
+        // Console.WriteLine(CountPositiveEvenNumbersWithLinq([2, 4, 6]) == 3);
+        // Console.WriteLine(CountPositiveEvenNumbersWithLinq(null!) == 0);
+        // Console.WriteLine(CountPositiveEvenNumbersWithLinq([]) == 0);
 
         // Count Words By Last Letter
         // Dictionary<char, int> lastLettersOne = CountWordsByLastLetter("coding testing cat");
