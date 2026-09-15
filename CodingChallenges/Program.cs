@@ -43,11 +43,11 @@
         int counter = 0;
         int total = 0;
 
-        foreach(int number in numbers)
+        foreach (int number in numbers)
         {
             total += number;
 
-            if(total > 0)
+            if (total > 0)
             {
                 counter++;
             }
@@ -55,15 +55,30 @@
 
         return counter;
     }
+
+    public static int? FindLastPositiveNumber(int[] numbers) =>
+    numbers is null || numbers.Length == 0 ? null :
+    numbers.Where(n => n > 0)
+    .Cast<int?>()
+    .LastOrDefault();
+
     public static void Main(string[] args)
     {
+        // Find Last Positive Number
+        Console.WriteLine(FindLastPositiveNumber([-1, 5, 0, 9, -2]) == 9);
+        Console.WriteLine(FindLastPositiveNumber([-5, 0, -1]) == null);
+        Console.WriteLine(FindLastPositiveNumber([7]) == 7);
+        Console.WriteLine(FindLastPositiveNumber([1, 2, 3]) == 3);
+        Console.WriteLine(FindLastPositiveNumber(null!) == null);
+        Console.WriteLine(FindLastPositiveNumber([]) == null);
+
         // Count Times Running Total Is Positive
-        Console.WriteLine(CountTimesRunningTotalIsPositive([3, -1, -5, 10]) == 3);
-        Console.WriteLine(CountTimesRunningTotalIsPositive([-5, 2, 2]) == 0);
-        Console.WriteLine(CountTimesRunningTotalIsPositive([1, 1, 1]) == 3);
-        Console.WriteLine(CountTimesRunningTotalIsPositive([5, -5, 1]) == 2);
-        Console.WriteLine(CountTimesRunningTotalIsPositive(null!) == 0);
-        Console.WriteLine(CountTimesRunningTotalIsPositive([]) == 0);
+        // Console.WriteLine(CountTimesRunningTotalIsPositive([3, -1, -5, 10]) == 3);
+        // Console.WriteLine(CountTimesRunningTotalIsPositive([-5, 2, 2]) == 0);
+        // Console.WriteLine(CountTimesRunningTotalIsPositive([1, 1, 1]) == 3);
+        // Console.WriteLine(CountTimesRunningTotalIsPositive([5, -5, 1]) == 2);
+        // Console.WriteLine(CountTimesRunningTotalIsPositive(null!) == 0);
+        // Console.WriteLine(CountTimesRunningTotalIsPositive([]) == 0);
 
         // Remove Short Words And Lowercase
         // Console.WriteLine(RemoveShortWordsAndLowercase("Hi Paul is Coding Today")  == "paul coding today");
