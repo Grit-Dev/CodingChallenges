@@ -144,7 +144,7 @@
 
     public static int FindLongestIncreasingStreak(int[] numbers)
     {
-        if(numbers is null || numbers.Length == 0)
+        if (numbers is null || numbers.Length == 0)
         {
             return 0;
         }
@@ -152,9 +152,9 @@
         int currentStreak = 1;
         int longestStreak = 1;
 
-        for(int index = 1; index <= numbers.Length -1; index++)
+        for (int index = 1; index <= numbers.Length - 1; index++)
         {
-            if(numbers[index] > numbers[index -1])
+            if (numbers[index] > numbers[index - 1])
             {
                 currentStreak++;
             }
@@ -163,7 +163,7 @@
                 currentStreak = 1;
             }
 
-            if(currentStreak > longestStreak)
+            if (currentStreak > longestStreak)
             {
                 longestStreak = currentStreak;
             }
@@ -171,15 +171,50 @@
 
         return longestStreak;
     }
+
+    public static int? FindSecondLargestDistinctNumber(int[] numbers)
+    {
+        if (numbers is null || numbers.Length == 0)
+        {
+            return null;
+        }
+
+        int? firstLargestNumber = null;
+        int? secondLargestNumber = null;
+
+        for (int index = 0; index <= numbers.Length - 1; index++)
+        {
+            if (firstLargestNumber is null || numbers[index] > firstLargestNumber)
+            {
+                secondLargestNumber = firstLargestNumber;
+                firstLargestNumber = numbers[index];
+            }
+            else if ((secondLargestNumber is null && numbers[index] != firstLargestNumber) ||
+            (numbers[index] > secondLargestNumber && numbers[index] != firstLargestNumber))
+            {
+                secondLargestNumber = numbers[index];
+            }
+        }
+
+        return secondLargestNumber;
+    }
     public static void Main(string[] args)
     {
+        // Find Second Largest Distinct Number
+        Console.WriteLine(FindSecondLargestDistinctNumber([10, 5, 8]) == 8);
+        Console.WriteLine(FindSecondLargestDistinctNumber([10, 10, 8]) == 8);
+        Console.WriteLine(FindSecondLargestDistinctNumber([5, 5, 5]) == null);
+        Console.WriteLine(FindSecondLargestDistinctNumber([-1, -5, -2]) == -2);
+        Console.WriteLine(FindSecondLargestDistinctNumber(null!) == null);
+        Console.WriteLine(FindSecondLargestDistinctNumber([]) == null);
+
         // Find Longest Increasing Streak:
-        Console.WriteLine(FindLongestIncreasingStreak([1, 2, 3, 1, 2, 3, 4]) == 4);
-        Console.WriteLine(FindLongestIncreasingStreak([1, 2, 3, 4]) == 4);
-        Console.WriteLine(FindLongestIncreasingStreak([5, 4, 3, 2]) == 1);
-        Console.WriteLine(FindLongestIncreasingStreak([1, 1, 1]) == 1);
-        Console.WriteLine(FindLongestIncreasingStreak([]) == 0);
-        Console.WriteLine(FindLongestIncreasingStreak(null!) == 0);
+        // Console.WriteLine(FindLongestIncreasingStreak([1, 2, 3, 1, 2, 3, 4]) == 4);
+        // Console.WriteLine(FindLongestIncreasingStreak([1, 2, 3, 4]) == 4);
+        // Console.WriteLine(FindLongestIncreasingStreak([5, 4, 3, 2]) == 1);
+        // Console.WriteLine(FindLongestIncreasingStreak([1, 1, 1]) == 1);
+        // Console.WriteLine(FindLongestIncreasingStreak([]) == 0);
+        // Console.WriteLine(FindLongestIncreasingStreak(null!) == 0);
 
         // Find the First Peak Number
         // Console.WriteLine(FindFirstPeakNumber([1, 5, 2]) == 5);
