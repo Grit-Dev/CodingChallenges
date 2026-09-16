@@ -84,15 +84,72 @@ public class Program
 
         return highestRunningIndex;
     }
+
+    public static int? FindHighestValidPrice(string input)
+    {
+        if (string.IsNullOrWhiteSpace(input))
+        {
+            return null;
+        }
+
+        int? highestValidPrice = null;
+        string[] splitString = input.Split(',', StringSplitOptions.RemoveEmptyEntries);
+
+        foreach (string str in splitString)
+        {
+            string strTrimmed = str.Trim();
+
+            int indexEqualCounter = strTrimmed.Count(iec => iec == '=');
+
+            if (indexEqualCounter > 1)
+            {
+                continue;
+            }
+
+            int indexOfEqual = strTrimmed.IndexOf('=');
+
+            if(indexOfEqual < 0)
+            {
+                continue;
+            }
+
+            if (strTrimmed.AsSpan(0, indexOfEqual).Length == 0 ||
+            strTrimmed.AsSpan(indexOfEqual +1).Length == 0)
+            {
+                continue;
+            }
+
+            if (int.TryParse(strTrimmed.AsSpan(indexOfEqual + 1), out int value) &&
+            value >= 0)
+            {
+                if (highestValidPrice is null || value > highestValidPrice)
+                {
+                    highestValidPrice = value;
+                }
+            }
+        }
+
+        return highestValidPrice;
+    }
     public static void Main(string[] args)
     {
+        // Find Highest Valid Price
+        Console.WriteLine(FindHighestValidPrice("sleeves=5, box=40, bad") == 40);
+        Console.WriteLine(FindHighestValidPrice("bad=abc, playmat=-10") == null);
+        Console.WriteLine(FindHighestValidPrice("case=120, binder=35") == 120);
+        Console.WriteLine(FindHighestValidPrice("one=10=20, two=5") == 5);
+        Console.WriteLine(FindHighestValidPrice("free=0, paid=10") == 10);
+        Console.WriteLine(FindHighestValidPrice("") == null);
+        Console.WriteLine(FindHighestValidPrice(" ") == null);
+        Console.WriteLine(FindHighestValidPrice(null!) == null);
+
         // Find Index Of Highest Running Total
-        Console.WriteLine(FindIndexOfHighestRunningTotal([3, -1, 5, -10]) == 2);
-        Console.WriteLine(FindIndexOfHighestRunningTotal([5, -2, -10, 20]) == 3);
-        Console.WriteLine(FindIndexOfHighestRunningTotal([-2, -3, -1]) == 0);
-        Console.WriteLine(FindIndexOfHighestRunningTotal([1, 1, -5]) == 1);
-        Console.WriteLine(FindIndexOfHighestRunningTotal(null!) == null);
-        Console.WriteLine(FindIndexOfHighestRunningTotal([]) == null);
+        // Console.WriteLine(FindIndexOfHighestRunningTotal([3, -1, 5, -10]) == 2);
+        // Console.WriteLine(FindIndexOfHighestRunningTotal([5, -2, -10, 20]) == 3);
+        // Console.WriteLine(FindIndexOfHighestRunningTotal([-2, -3, -1]) == 0);
+        // Console.WriteLine(FindIndexOfHighestRunningTotal([1, 1, -5]) == 1);
+        // Console.WriteLine(FindIndexOfHighestRunningTotal(null!) == null);
+        // Console.WriteLine(FindIndexOfHighestRunningTotal([]) == null);
 
         // Extract Mention Usernames 
         // string[] mentionsOne = ExtractMentionUsernames("hello @Paul and @Sarah");
