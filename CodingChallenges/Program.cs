@@ -108,13 +108,13 @@ public class Program
 
             int indexOfEqual = strTrimmed.IndexOf('=');
 
-            if(indexOfEqual < 0)
+            if (indexOfEqual < 0)
             {
                 continue;
             }
 
             if (strTrimmed.AsSpan(0, indexOfEqual).Length == 0 ||
-            strTrimmed.AsSpan(indexOfEqual +1).Length == 0)
+            strTrimmed.AsSpan(indexOfEqual + 1).Length == 0)
             {
                 continue;
             }
@@ -131,17 +131,64 @@ public class Program
 
         return highestValidPrice;
     }
+
+    public static char? FindFirstUniqueLetter(string input)
+    {
+        if (string.IsNullOrWhiteSpace(input))
+        {
+            return null;
+        }
+
+        Dictionary<char, int> newDict = [];
+
+        foreach (char character in input.Trim())
+        {
+            if (!char.IsLetter(character))
+            {
+                continue;
+            }
+
+            char characterToLower = char.ToLower(character);
+
+            if (newDict.TryGetValue(char.ToLower(characterToLower), out int value))
+            {
+                newDict[characterToLower] = value + 1;
+            }
+            else
+            {
+                newDict[characterToLower] = 1;
+            }
+        }
+
+        char result = newDict.FirstOrDefault(nd => nd.Value == 1).Key;
+
+        if (result == '\0')
+        {
+            return null;
+        }
+
+        return result;
+    }
     public static void Main(string[] args)
     {
+        // Find First Unique Letter
+        Console.WriteLine(FindFirstUniqueLetter("swiss") == 'w');
+        Console.WriteLine(FindFirstUniqueLetter("Racecar") == 'e');
+        Console.WriteLine(FindFirstUniqueLetter("aabb") == null);
+        Console.WriteLine(FindFirstUniqueLetter("1122!!a") == 'a');
+        Console.WriteLine(FindFirstUniqueLetter("") == null);
+        Console.WriteLine(FindFirstUniqueLetter(" ") == null);
+        Console.WriteLine(FindFirstUniqueLetter(null!) == null);
+
         // Find Highest Valid Price
-        Console.WriteLine(FindHighestValidPrice("sleeves=5, box=40, bad") == 40);
-        Console.WriteLine(FindHighestValidPrice("bad=abc, playmat=-10") == null);
-        Console.WriteLine(FindHighestValidPrice("case=120, binder=35") == 120);
-        Console.WriteLine(FindHighestValidPrice("one=10=20, two=5") == 5);
-        Console.WriteLine(FindHighestValidPrice("free=0, paid=10") == 10);
-        Console.WriteLine(FindHighestValidPrice("") == null);
-        Console.WriteLine(FindHighestValidPrice(" ") == null);
-        Console.WriteLine(FindHighestValidPrice(null!) == null);
+        // Console.WriteLine(FindHighestValidPrice("sleeves=5, box=40, bad") == 40);
+        // Console.WriteLine(FindHighestValidPrice("bad=abc, playmat=-10") == null);
+        // Console.WriteLine(FindHighestValidPrice("case=120, binder=35") == 120);
+        // Console.WriteLine(FindHighestValidPrice("one=10=20, two=5") == 5);
+        // Console.WriteLine(FindHighestValidPrice("free=0, paid=10") == 10);
+        // Console.WriteLine(FindHighestValidPrice("") == null);
+        // Console.WriteLine(FindHighestValidPrice(" ") == null);
+        // Console.WriteLine(FindHighestValidPrice(null!) == null);
 
         // Find Index Of Highest Running Total
         // Console.WriteLine(FindIndexOfHighestRunningTotal([3, -1, 5, -10]) == 2);
