@@ -122,15 +122,42 @@
 
         return null;
     }
+
+    public static int? FindFirstPeakNumber(int[] numbers)
+    {
+        if(numbers is null || numbers.Length < 3)
+        {
+            return null;
+        }
+
+        for(int index = 1; index < numbers.Length -1; index++)
+        {
+            if(numbers[index -1] < numbers[index] && 
+            numbers[index +1] < numbers[index])
+            {
+                return numbers[index];
+            }
+        }
+
+        return null;
+    }
     public static void Main(string[] args)
     {
+        // Find the First Peak Number
+        Console.WriteLine(FindFirstPeakNumber([1, 5, 2]) == 5);
+        Console.WriteLine(FindFirstPeakNumber([1, 2, 3, 2]) == 3);
+        Console.WriteLine(FindFirstPeakNumber([5, 4, 3, 2]) == null);
+        Console.WriteLine(FindFirstPeakNumber([1, 3, 2, 5, 1]) == 3);
+        Console.WriteLine(FindFirstPeakNumber([1, 2]) == null);
+        Console.WriteLine(FindFirstPeakNumber(null!) == null);
+
         // Find The First Repeated Number
-        Console.WriteLine(FindFirstRepeatedNumber([5, 2, 8, 2, 7]) == 2);
-        Console.WriteLine(FindFirstRepeatedNumber([1, 1, 2, 2]) == 1);
-        Console.WriteLine(FindFirstRepeatedNumber([3, 4, 5]) == null);
-        Console.WriteLine(FindFirstRepeatedNumber([-1, 5, -1]) == -1);
-        Console.WriteLine(FindFirstRepeatedNumber(null!) == null);
-        Console.WriteLine(FindFirstRepeatedNumber([]) == null);
+        // Console.WriteLine(FindFirstRepeatedNumber([5, 2, 8, 2, 7]) == 2);
+        // Console.WriteLine(FindFirstRepeatedNumber([1, 1, 2, 2]) == 1);
+        // Console.WriteLine(FindFirstRepeatedNumber([3, 4, 5]) == null);
+        // Console.WriteLine(FindFirstRepeatedNumber([-1, 5, -1]) == -1);
+        // Console.WriteLine(FindFirstRepeatedNumber(null!) == null);
+        // Console.WriteLine(FindFirstRepeatedNumber([]) == null);
 
         // Find Longest Even Streak
         // Console.WriteLine(FindLongestEvenStreak([2, 4, 6, 1, 8, 10]) == 3);
