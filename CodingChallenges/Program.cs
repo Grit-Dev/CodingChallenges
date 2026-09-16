@@ -173,7 +173,7 @@ public class Program
 
     public static int[] GetTopThreeScoresWithLinq(int[] scores)
     {
-        if(scores is null || scores.Length == 0)
+        if (scores is null || scores.Length == 0)
         {
             return [];
         }
@@ -185,29 +185,49 @@ public class Program
         return result.ToArray();
     }
 
+    public static string[] ConvertScoresToPassFailLabelsWithLinq(int[] scores) =>
+    scores is null || scores.Length == 0 ? [] : 
+    scores.Select(s => s >= 50 ? "pass" : "fail").ToArray();
+
     public static void Main(string[] args)
     {
+        // LINQ Select: Convert Scores To Pass/Fail Labels
+        string[] labelsOne = ConvertScoresToPassFailLabelsWithLinq([80, 40, 50]);
+
+        Console.WriteLine(labelsOne.Length == 3);
+        Console.WriteLine(labelsOne[0] == "pass");
+        Console.WriteLine(labelsOne[1] == "fail");
+        Console.WriteLine(labelsOne[2] == "pass");
+
+        string[] labelsTwo = ConvertScoresToPassFailLabelsWithLinq([10, 20]);
+
+        Console.WriteLine(labelsTwo.Length == 2);
+        Console.WriteLine(labelsTwo[0] == "fail");
+        Console.WriteLine(labelsTwo[1] == "fail");
+
+        Console.WriteLine(ConvertScoresToPassFailLabelsWithLinq(null!).Length == 0);
+        Console.WriteLine(ConvertScoresToPassFailLabelsWithLinq([]).Length == 0);
+
         // Get Top Three Scores With Linq
-        int[] topOne = GetTopThreeScoresWithLinq([50, 90, 70, 100]);
-        Console.WriteLine(topOne.Length == 3);
-        Console.WriteLine(topOne[0] == 100);
-        Console.WriteLine(topOne[1] == 90);
-        Console.WriteLine(topOne[2] == 70);
+        // int[] topOne = GetTopThreeScoresWithLinq([50, 90, 70, 100]);
+        // Console.WriteLine(topOne.Length == 3);
+        // Console.WriteLine(topOne[0] == 100);
+        // Console.WriteLine(topOne[1] == 90);
+        // Console.WriteLine(topOne[2] == 70);
 
-        int[] topTwo = GetTopThreeScoresWithLinq([5, 1]);
-        Console.WriteLine(topTwo.Length == 2);
-        Console.WriteLine(topTwo[0] == 5);
-        Console.WriteLine(topTwo[1] == 1);
+        // int[] topTwo = GetTopThreeScoresWithLinq([5, 1]);
+        // Console.WriteLine(topTwo.Length == 2);
+        // Console.WriteLine(topTwo[0] == 5);
+        // Console.WriteLine(topTwo[1] == 1);
 
-        int[] topThree = GetTopThreeScoresWithLinq([-1, 10, 0]);
-        Console.WriteLine(topThree.Length == 3);
-        Console.WriteLine(topThree[0] == 10);
-        Console.WriteLine(topThree[1] == 0);
-        Console.WriteLine(topThree[2] == -1);
+        // int[] topThree = GetTopThreeScoresWithLinq([-1, 10, 0]);
+        // Console.WriteLine(topThree.Length == 3);
+        // Console.WriteLine(topThree[0] == 10);
+        // Console.WriteLine(topThree[1] == 0);
+        // Console.WriteLine(topThree[2] == -1);
 
-        Console.WriteLine(GetTopThreeScoresWithLinq(null!).Length == 0);
-        Console.WriteLine(GetTopThreeScoresWithLinq([]).Length == 0);
-
+        // Console.WriteLine(GetTopThreeScoresWithLinq(null!).Length == 0);
+        // Console.WriteLine(GetTopThreeScoresWithLinq([]).Length == 0);
 
         // Find First Unique Letter
         // Console.WriteLine(FindFirstUniqueLetter("swiss") == 'w');
