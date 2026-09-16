@@ -66,15 +66,53 @@
 
         return previousNumber;
     }
+
+    public static int FindLongestEvenStreak(int[] numbers)
+    {
+        if (numbers is null || numbers.Length == 0)
+        {
+            return 0;
+        }
+
+        int currentStreak = 0;
+        int longestStreak = 0;
+
+        foreach (int number in numbers)
+        {
+            if (int.IsEvenInteger(number))
+            {
+                currentStreak++;
+            }
+            else
+            {
+                currentStreak = 0;
+            }
+
+            if (currentStreak > longestStreak)
+            {
+                longestStreak = currentStreak;
+            }
+        }
+
+        return longestStreak;
+    }
     public static void Main(string[] args)
     {
+        // FInd Longest Even Streak
+        Console.WriteLine(FindLongestEvenStreak([2, 4, 6, 1, 8, 10]) == 3);
+        Console.WriteLine(FindLongestEvenStreak([1, 3, 5]) == 0);
+        Console.WriteLine(FindLongestEvenStreak([2, 4, 6, 8]) == 4);
+        Console.WriteLine(FindLongestEvenStreak([1, 2, 4, 1, 6, 8, 10]) == 3);
+        Console.WriteLine(FindLongestEvenStreak(null!) == 0);
+        Console.WriteLine(FindLongestEvenStreak([]) == 0);
+
         // Find First Number Followed By A Bigger Number 
-        Console.WriteLine(FindFirstNumberFollowedByABiggerNumber([5, 2, 7, 1]) == 2);
-        Console.WriteLine(FindFirstNumberFollowedByABiggerNumber([1, 2, 3]) == 1);
-        Console.WriteLine(FindFirstNumberFollowedByABiggerNumber([5, 4, 3]) == null);
-        Console.WriteLine(FindFirstNumberFollowedByABiggerNumber([-5, -1]) == -5);
-        Console.WriteLine(FindFirstNumberFollowedByABiggerNumber(null!) == null);
-        Console.WriteLine(FindFirstNumberFollowedByABiggerNumber([]) == null);
+        // Console.WriteLine(FindFirstNumberFollowedByABiggerNumber([5, 2, 7, 1]) == 2);
+        // Console.WriteLine(FindFirstNumberFollowedByABiggerNumber([1, 2, 3]) == 1);
+        // Console.WriteLine(FindFirstNumberFollowedByABiggerNumber([5, 4, 3]) == null);
+        // Console.WriteLine(FindFirstNumberFollowedByABiggerNumber([-5, -1]) == -5);
+        // Console.WriteLine(FindFirstNumberFollowedByABiggerNumber(null!) == null);
+        // Console.WriteLine(FindFirstNumberFollowedByABiggerNumber([]) == null);
 
         // Find Most Expensive Item
         // Console.WriteLine(FindMostExpensiveItem("box=50, sleeves=10, binder=40") == "box");
