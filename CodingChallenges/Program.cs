@@ -98,13 +98,13 @@
     }
     public static void Main(string[] args)
     {
-        // FInd Longest Even Streak
-        Console.WriteLine(FindLongestEvenStreak([2, 4, 6, 1, 8, 10]) == 3);
-        Console.WriteLine(FindLongestEvenStreak([1, 3, 5]) == 0);
-        Console.WriteLine(FindLongestEvenStreak([2, 4, 6, 8]) == 4);
-        Console.WriteLine(FindLongestEvenStreak([1, 2, 4, 1, 6, 8, 10]) == 3);
-        Console.WriteLine(FindLongestEvenStreak(null!) == 0);
-        Console.WriteLine(FindLongestEvenStreak([]) == 0);
+        // Find Longest Even Streak
+        // Console.WriteLine(FindLongestEvenStreak([2, 4, 6, 1, 8, 10]) == 3);
+        // Console.WriteLine(FindLongestEvenStreak([1, 3, 5]) == 0);
+        // Console.WriteLine(FindLongestEvenStreak([2, 4, 6, 8]) == 4);
+        // Console.WriteLine(FindLongestEvenStreak([1, 2, 4, 1, 6, 8, 10]) == 3);
+        // Console.WriteLine(FindLongestEvenStreak(null!) == 0);
+        // Console.WriteLine(FindLongestEvenStreak([]) == 0);
 
         // Find First Number Followed By A Bigger Number 
         // Console.WriteLine(FindFirstNumberFollowedByABiggerNumber([5, 2, 7, 1]) == 2);
