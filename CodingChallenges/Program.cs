@@ -1,4 +1,5 @@
-﻿using System.Xml;
+﻿using System.Globalization;
+using System.Xml;
 
 public class Program
 {
@@ -169,16 +170,53 @@ public class Program
 
         return result;
     }
+
+    public static int[] GetTopThreeScoresWithLinq(int[] scores)
+    {
+        if(scores is null || scores.Length == 0)
+        {
+            return [];
+        }
+
+        var result = scores.OrderByDescending(n => n).Take(3);
+
+        Console.WriteLine(result);
+
+        return result.ToArray();
+    }
+
     public static void Main(string[] args)
     {
+        // Get Top Three Scores With Linq
+        int[] topOne = GetTopThreeScoresWithLinq([50, 90, 70, 100]);
+        Console.WriteLine(topOne.Length == 3);
+        Console.WriteLine(topOne[0] == 100);
+        Console.WriteLine(topOne[1] == 90);
+        Console.WriteLine(topOne[2] == 70);
+
+        int[] topTwo = GetTopThreeScoresWithLinq([5, 1]);
+        Console.WriteLine(topTwo.Length == 2);
+        Console.WriteLine(topTwo[0] == 5);
+        Console.WriteLine(topTwo[1] == 1);
+
+        int[] topThree = GetTopThreeScoresWithLinq([-1, 10, 0]);
+        Console.WriteLine(topThree.Length == 3);
+        Console.WriteLine(topThree[0] == 10);
+        Console.WriteLine(topThree[1] == 0);
+        Console.WriteLine(topThree[2] == -1);
+
+        Console.WriteLine(GetTopThreeScoresWithLinq(null!).Length == 0);
+        Console.WriteLine(GetTopThreeScoresWithLinq([]).Length == 0);
+
+
         // Find First Unique Letter
-        Console.WriteLine(FindFirstUniqueLetter("swiss") == 'w');
-        Console.WriteLine(FindFirstUniqueLetter("Racecar") == 'e');
-        Console.WriteLine(FindFirstUniqueLetter("aabb") == null);
-        Console.WriteLine(FindFirstUniqueLetter("1122!!a") == 'a');
-        Console.WriteLine(FindFirstUniqueLetter("") == null);
-        Console.WriteLine(FindFirstUniqueLetter(" ") == null);
-        Console.WriteLine(FindFirstUniqueLetter(null!) == null);
+        // Console.WriteLine(FindFirstUniqueLetter("swiss") == 'w');
+        // Console.WriteLine(FindFirstUniqueLetter("Racecar") == 'e');
+        // Console.WriteLine(FindFirstUniqueLetter("aabb") == null);
+        // Console.WriteLine(FindFirstUniqueLetter("1122!!a") == 'a');
+        // Console.WriteLine(FindFirstUniqueLetter("") == null);
+        // Console.WriteLine(FindFirstUniqueLetter(" ") == null);
+        // Console.WriteLine(FindFirstUniqueLetter(null!) == null);
 
         // Find Highest Valid Price
         // Console.WriteLine(FindHighestValidPrice("sleeves=5, box=40, bad") == 40);
