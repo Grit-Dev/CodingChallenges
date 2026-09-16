@@ -6,6 +6,391 @@ namespace CodingChallenges.Challenges.Phase_02_OOP
 {
     public class ChallengeSolutions
     {
+        public static int[] GetTopTwoEvenNumbersWithLinq(int[] numbers) =>
+numbers is null || numbers.Length == 0 ? [] :
+numbers.Where(n => n % 2 == 0).OrderByDescending(n => n).Take(2).ToArray();
+
+        public static string? FindMostExpensiveItem(string input)
+        {
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                return null;
+            }
+
+            int? HighestPriceSoFar = null;
+            string? highestProductPriceItem = null;
+
+            string[] stringSplit = input.Split(',', StringSplitOptions.RemoveEmptyEntries);
+
+            foreach (string str in stringSplit)
+            {
+                string strTrimmed = str.Trim();
+
+                int indexOfEqualCounter = strTrimmed.Count(ioe => ioe == '=');
+                int indexOfEqual = strTrimmed.IndexOf('=');
+
+                if (indexOfEqualCounter != 1)
+                {
+                    continue;
+                }
+
+                if (strTrimmed.Substring(0, indexOfEqual).Length == 0 ||
+                strTrimmed.Substring(indexOfEqual + 1).Length == 0)
+                {
+                    continue;
+                }
+
+                if (int.TryParse(strTrimmed.Substring(indexOfEqual + 1), out int value) &&
+                value >= 0 && (HighestPriceSoFar is null || value > HighestPriceSoFar))
+                {
+                    HighestPriceSoFar = value;
+                    highestProductPriceItem = strTrimmed.Substring(0, indexOfEqual).Trim();
+                }
+            }
+
+            return highestProductPriceItem;
+        }
+
+        public static int? FindFirstNumberFollowedByABiggerNumber(int[] numbers)
+        {
+            if (numbers is null || numbers.Length == 0)
+            {
+                return null;
+            }
+
+            int? previousNumber = null;
+
+            foreach (int number in numbers)
+            {
+                if (previousNumber < number)
+                {
+                    return previousNumber;
+                }
+
+                previousNumber = number;
+            }
+
+            return previousNumber;
+        }
+
+        public static int FindLongestEvenStreak(int[] numbers)
+        {
+            if (numbers is null || numbers.Length == 0)
+            {
+                return 0;
+            }
+
+            int currentStreak = 0;
+            int longestStreak = 0;
+
+            foreach (int number in numbers)
+            {
+                if (int.IsEvenInteger(number))
+                {
+                    currentStreak++;
+                }
+                else
+                {
+                    currentStreak = 0;
+                }
+
+                if (currentStreak > longestStreak)
+                {
+                    longestStreak = currentStreak;
+                }
+            }
+
+            return longestStreak;
+        }
+
+        public static int? FindFirstRepeatedNumber(int[] numbers)
+        {
+            if (numbers is null || numbers.Length == 0)
+            {
+                return null;
+            }
+
+            Dictionary<int, int> newDict = [];
+
+            foreach (int number in numbers)
+            {
+                if (newDict.TryGetValue(number, out int value))
+                {
+                    newDict[number] = value + 1;
+
+                    return number;
+                }
+                else
+                {
+                    newDict[number] = 1;
+                }
+            }
+
+            return null;
+        }
+
+        public static int? FindFirstPeakNumber(int[] numbers)
+        {
+            if (numbers is null || numbers.Length < 3)
+            {
+                return null;
+            }
+
+            for (int index = 1; index < numbers.Length - 1; index++)
+            {
+                if (numbers[index - 1] < numbers[index] &&
+                numbers[index + 1] < numbers[index])
+                {
+                    return numbers[index];
+                }
+            }
+
+            return null;
+        }
+
+        public static int FindLongestIncreasingStreak(int[] numbers)
+        {
+            if (numbers is null || numbers.Length == 0)
+            {
+                return 0;
+            }
+
+            int currentStreak = 1;
+            int longestStreak = 1;
+
+            for (int index = 1; index <= numbers.Length - 1; index++)
+            {
+                if (numbers[index] > numbers[index - 1])
+                {
+                    currentStreak++;
+                }
+                else
+                {
+                    currentStreak = 1;
+                }
+
+                if (currentStreak > longestStreak)
+                {
+                    longestStreak = currentStreak;
+                }
+            }
+
+            return longestStreak;
+        }
+
+        public static int? FindSecondLargestDistinctNumber(int[] numbers)
+        {
+            if (numbers is null || numbers.Length == 0)
+            {
+                return null;
+            }
+
+            int? firstLargestNumber = null;
+            int? secondLargestNumber = null;
+
+            for (int index = 0; index <= numbers.Length - 1; index++)
+            {
+                if (firstLargestNumber is null || numbers[index] > firstLargestNumber)
+                {
+                    secondLargestNumber = firstLargestNumber;
+                    firstLargestNumber = numbers[index];
+                }
+                else if ((secondLargestNumber is null && numbers[index] != firstLargestNumber) ||
+                (numbers[index] > secondLargestNumber && numbers[index] != firstLargestNumber))
+                {
+                    secondLargestNumber = numbers[index];
+                }
+            }
+
+            return secondLargestNumber;
+        }
+
+        public static int CountNumbersDivisibleByTwoOrThreeButNotBoth(int[] numbers)
+        {
+            if (numbers is null || numbers.Length == 0)
+            {
+                return 0;
+            }
+
+            int counter = 0;
+
+            foreach (int number in numbers)
+            {
+                if (number % 2 == 0 && number % 3 == 0)
+                {
+                    continue;
+                }
+                else if (number % 2 == 0 || number % 3 == 0)
+                {
+                    counter++;
+                }
+            }
+
+            return counter;
+        }
+
+        public static string[] ExtractMentionUsernames(string input)
+        {
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                return [];
+            }
+
+            List<string> newList = [];
+            string[] stringSplit = input.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+            foreach (string str in stringSplit)
+            {
+                int indexOfAtSymbol = str.IndexOf('@');
+                int indexOfAtSymbolCount = str.Count(i => i == '@');
+
+                if (indexOfAtSymbolCount > 1)
+                {
+                    continue;
+                }
+
+                if (indexOfAtSymbol > 0 || indexOfAtSymbol < 0)
+                {
+                    continue;
+                }
+
+                if (str.Length > 1)
+                {
+                    newList.Add(str.Substring(1));
+                }
+            }
+
+            return newList.ToArray();
+        }
+
+        public static int? FindIndexOfHighestRunningTotal(int[] numbers)
+        {
+            if (numbers is null || numbers.Length == 0)
+            {
+                return null;
+            }
+
+            int? highestRunningTotal = null;
+            int total = 0;
+            int? highestRunningIndex = null;
+
+            for (int index = 0; index < numbers.Length; index++)
+            {
+                total += numbers[index];
+
+                if (highestRunningTotal is null || total > highestRunningTotal)
+                {
+                    highestRunningTotal = total;
+                    highestRunningIndex = index;
+                }
+            }
+
+            return highestRunningIndex;
+        }
+
+        public static int? FindHighestValidPrice(string input)
+        {
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                return null;
+            }
+
+            int? highestValidPrice = null;
+            string[] splitString = input.Split(',', StringSplitOptions.RemoveEmptyEntries);
+
+            foreach (string str in splitString)
+            {
+                string strTrimmed = str.Trim();
+
+                int indexEqualCounter = strTrimmed.Count(iec => iec == '=');
+
+                if (indexEqualCounter > 1)
+                {
+                    continue;
+                }
+
+                int indexOfEqual = strTrimmed.IndexOf('=');
+
+                if (indexOfEqual < 0)
+                {
+                    continue;
+                }
+
+                if (strTrimmed.AsSpan(0, indexOfEqual).Length == 0 ||
+                strTrimmed.AsSpan(indexOfEqual + 1).Length == 0)
+                {
+                    continue;
+                }
+
+                if (int.TryParse(strTrimmed.AsSpan(indexOfEqual + 1), out int value) &&
+                value >= 0)
+                {
+                    if (highestValidPrice is null || value > highestValidPrice)
+                    {
+                        highestValidPrice = value;
+                    }
+                }
+            }
+
+            return highestValidPrice;
+        }
+
+        public static char? FindFirstUniqueLetter(string input)
+        {
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                return null;
+            }
+
+            Dictionary<char, int> newDict = [];
+
+            foreach (char character in input.Trim())
+            {
+                if (!char.IsLetter(character))
+                {
+                    continue;
+                }
+
+                char characterToLower = char.ToLower(character);
+
+                if (newDict.TryGetValue(char.ToLower(characterToLower), out int value))
+                {
+                    newDict[characterToLower] = value + 1;
+                }
+                else
+                {
+                    newDict[characterToLower] = 1;
+                }
+            }
+
+            char result = newDict.FirstOrDefault(nd => nd.Value == 1).Key;
+
+            if (result == '\0')
+            {
+                return null;
+            }
+
+            return result;
+        }
+
+        public static int[] GetTopThreeScoresWithLinq(int[] scores)
+        {
+            if (scores is null || scores.Length == 0)
+            {
+                return [];
+            }
+
+            var result = scores.OrderByDescending(n => n).Take(3);
+
+            Console.WriteLine(result);
+
+            return result.ToArray();
+        }
+
+        public static string[] ConvertScoresToPassFailLabelsWithLinq(int[] scores) =>
+        scores is null || scores.Length == 0 ? [] :
+        scores.Select(s => s >= 50 ? "pass" : "fail").ToArray();
+
         public static int CountNumbersDivisibleByTwoButNotThree(int[] numbers)
         {
             if (numbers is null || numbers.Length == 0)
@@ -4483,7 +4868,7 @@ namespace CodingChallenges.Challenges.Phase_02_OOP
             return highestScore;
 
         }
-        public static int FindLongestIncreasingStreak(int[] pNumbers)
+        public static int FindLongestIncreasingStreakRev(int[] pNumbers)
         {
             if (pNumbers == null || pNumbers.Length == 0)
             {
@@ -4544,7 +4929,7 @@ namespace CodingChallenges.Challenges.Phase_02_OOP
 
             return counter;
         }
-        public static int? FindSecondLargestDistinctNumber(int[] pNumbers)
+        public static int? FindSecondLargestDistinctNumberRev(int[] pNumbers)
         {
             if (pNumbers == null)
             {
@@ -8294,7 +8679,7 @@ namespace CodingChallenges.Challenges.Phase_02_OOP
             return [0, 0];
         }
 
-        public static int FindFirstRepeatedNumber(int[] pInputValue)
+        public static int? FindFirstRepeatedNumberRev(int[] pInputValue)
         {
             if (pInputValue == null || pInputValue.Length == 0)
             {

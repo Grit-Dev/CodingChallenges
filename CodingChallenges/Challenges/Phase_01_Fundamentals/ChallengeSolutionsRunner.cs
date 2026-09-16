@@ -6,6 +6,159 @@ namespace CodingChallenges.Challenges.Phase_02_OOP
     {
         public static void Run_Four_Dictionary_Work()
         {
+            // Find Second Largest Distinct Number
+            Console.WriteLine(FindSecondLargestDistinctNumber([10, 5, 8]) == 8);
+            Console.WriteLine(FindSecondLargestDistinctNumber([10, 10, 8]) == 8);
+            Console.WriteLine(FindSecondLargestDistinctNumber([5, 5, 5]) == null);
+            Console.WriteLine(FindSecondLargestDistinctNumber([-1, -5, -2]) == -2);
+            Console.WriteLine(FindSecondLargestDistinctNumber(null!) == null);
+            Console.WriteLine(FindSecondLargestDistinctNumber([]) == null);
+
+            // Find Longest Increasing Streak:
+            Console.WriteLine(FindLongestIncreasingStreak([1, 2, 3, 1, 2, 3, 4]) == 4);
+            Console.WriteLine(FindLongestIncreasingStreak([1, 2, 3, 4]) == 4);
+            Console.WriteLine(FindLongestIncreasingStreak([5, 4, 3, 2]) == 1);
+            Console.WriteLine(FindLongestIncreasingStreak([1, 1, 1]) == 1);
+            Console.WriteLine(FindLongestIncreasingStreak([]) == 0);
+            Console.WriteLine(FindLongestIncreasingStreak(null!) == 0);
+
+            // Find the First Peak Number
+            Console.WriteLine(FindFirstPeakNumber([1, 5, 2]) == 5);
+            Console.WriteLine(FindFirstPeakNumber([1, 2, 3, 2]) == 3);
+            Console.WriteLine(FindFirstPeakNumber([5, 4, 3, 2]) == null);
+            Console.WriteLine(FindFirstPeakNumber([1, 3, 2, 5, 1]) == 3);
+            Console.WriteLine(FindFirstPeakNumber([1, 2]) == null);
+            Console.WriteLine(FindFirstPeakNumber(null!) == null);
+
+            // Find The First Repeated Number
+            Console.WriteLine(FindFirstRepeatedNumber([5, 2, 8, 2, 7]) == 2);
+            Console.WriteLine(FindFirstRepeatedNumber([1, 1, 2, 2]) == 1);
+            Console.WriteLine(FindFirstRepeatedNumber([3, 4, 5]) == null);
+            Console.WriteLine(FindFirstRepeatedNumber([-1, 5, -1]) == -1);
+            Console.WriteLine(FindFirstRepeatedNumber(null!) == null);
+            Console.WriteLine(FindFirstRepeatedNumber([]) == null);
+
+            // Find Longest Even Streak
+            Console.WriteLine(FindLongestEvenStreak([2, 4, 6, 1, 8, 10]) == 3);
+            Console.WriteLine(FindLongestEvenStreak([1, 3, 5]) == 0);
+            Console.WriteLine(FindLongestEvenStreak([2, 4, 6, 8]) == 4);
+            Console.WriteLine(FindLongestEvenStreak([1, 2, 4, 1, 6, 8, 10]) == 3);
+            Console.WriteLine(FindLongestEvenStreak(null!) == 0);
+            Console.WriteLine(FindLongestEvenStreak([]) == 0);
+
+            // Find First Number Followed By A Bigger Number 
+            Console.WriteLine(FindFirstNumberFollowedByABiggerNumber([5, 2, 7, 1]) == 2);
+            Console.WriteLine(FindFirstNumberFollowedByABiggerNumber([1, 2, 3]) == 1);
+            Console.WriteLine(FindFirstNumberFollowedByABiggerNumber([5, 4, 3]) == null);
+            Console.WriteLine(FindFirstNumberFollowedByABiggerNumber([-5, -1]) == -5);
+            Console.WriteLine(FindFirstNumberFollowedByABiggerNumber(null!) == null);
+            Console.WriteLine(FindFirstNumberFollowedByABiggerNumber([]) == null);
+
+            // Find Most Expensive Item
+            Console.WriteLine(FindMostExpensiveItem("box=50, sleeves=10, binder=40") == "box");
+            Console.WriteLine(FindMostExpensiveItem("box=50, binder=50, sleeves=10") == "box");
+            Console.WriteLine(FindMostExpensiveItem("box=abc, sleeves=-1") == null);
+            Console.WriteLine(FindMostExpensiveItem(" item = 100 , other = 99 ") == "item");
+            Console.WriteLine(FindMostExpensiveItem("bad=10=20, good=5") == "good");
+            Console.WriteLine(FindMostExpensiveItem("") == null);
+            Console.WriteLine(FindMostExpensiveItem(" ") == null);
+            Console.WriteLine(FindMostExpensiveItem(null!) == null);
+
+            // Get Top Two Even Numbers
+            Console.WriteLine(GetTopTwoEvenNumbersWithLinq([1, 8, 4, 10, 3]).SequenceEqual([10, 8]));
+            Console.WriteLine(GetTopTwoEvenNumbersWithLinq([2]).SequenceEqual([2]));
+            Console.WriteLine(GetTopTwoEvenNumbersWithLinq([7, 9]).Length == 0);
+            Console.WriteLine(GetTopTwoEvenNumbersWithLinq(null!).Length == 0);
+            Console.WriteLine(GetTopTwoEvenNumbersWithLinq([]).Length == 0);
+
+            // LINQ Select: Convert Scores To Pass/Fail Labels
+            string[] labelsOne = ConvertScoresToPassFailLabelsWithLinq([80, 40, 50]);
+
+            Console.WriteLine(labelsOne.Length == 3);
+            Console.WriteLine(labelsOne[0] == "pass");
+            Console.WriteLine(labelsOne[1] == "fail");
+            Console.WriteLine(labelsOne[2] == "pass");
+
+            string[] labelsTwo = ConvertScoresToPassFailLabelsWithLinq([10, 20]);
+
+            Console.WriteLine(labelsTwo.Length == 2);
+            Console.WriteLine(labelsTwo[0] == "fail");
+            Console.WriteLine(labelsTwo[1] == "fail");
+
+            Console.WriteLine(ConvertScoresToPassFailLabelsWithLinq(null!).Length == 0);
+            Console.WriteLine(ConvertScoresToPassFailLabelsWithLinq([]).Length == 0);
+
+            // Get Top Three Scores With Linq
+            int[] topOne = GetTopThreeScoresWithLinq([50, 90, 70, 100]);
+            Console.WriteLine(topOne.Length == 3);
+            Console.WriteLine(topOne[0] == 100);
+            Console.WriteLine(topOne[1] == 90);
+            Console.WriteLine(topOne[2] == 70);
+
+            int[] topTwo = GetTopThreeScoresWithLinq([5, 1]);
+            Console.WriteLine(topTwo.Length == 2);
+            Console.WriteLine(topTwo[0] == 5);
+            Console.WriteLine(topTwo[1] == 1);
+
+            int[] topThree = GetTopThreeScoresWithLinq([-1, 10, 0]);
+            Console.WriteLine(topThree.Length == 3);
+            Console.WriteLine(topThree[0] == 10);
+            Console.WriteLine(topThree[1] == 0);
+            Console.WriteLine(topThree[2] == -1);
+            Console.WriteLine(GetTopThreeScoresWithLinq(null!).Length == 0);
+            Console.WriteLine(GetTopThreeScoresWithLinq([]).Length == 0);
+
+            // Find First Unique Letter
+            Console.WriteLine(FindFirstUniqueLetter("swiss") == 'w');
+            Console.WriteLine(FindFirstUniqueLetter("Racecar") == 'e');
+            Console.WriteLine(FindFirstUniqueLetter("aabb") == null);
+            Console.WriteLine(FindFirstUniqueLetter("1122!!a") == 'a');
+            Console.WriteLine(FindFirstUniqueLetter("") == null);
+            Console.WriteLine(FindFirstUniqueLetter(" ") == null);
+            Console.WriteLine(FindFirstUniqueLetter(null!) == null);
+
+            // Find Highest Valid Price
+            Console.WriteLine(FindHighestValidPrice("sleeves=5, box=40, bad") == 40);
+            Console.WriteLine(FindHighestValidPrice("bad=abc, playmat=-10") == null);
+            Console.WriteLine(FindHighestValidPrice("case=120, binder=35") == 120);
+            Console.WriteLine(FindHighestValidPrice("one=10=20, two=5") == 5);
+            Console.WriteLine(FindHighestValidPrice("free=0, paid=10") == 10);
+            Console.WriteLine(FindHighestValidPrice("") == null);
+            Console.WriteLine(FindHighestValidPrice(" ") == null);
+            Console.WriteLine(FindHighestValidPrice(null!) == null);
+
+            // Find Index Of Highest Running Total
+            Console.WriteLine(FindIndexOfHighestRunningTotal([3, -1, 5, -10]) == 2);
+            Console.WriteLine(FindIndexOfHighestRunningTotal([5, -2, -10, 20]) == 3);
+            Console.WriteLine(FindIndexOfHighestRunningTotal([-2, -3, -1]) == 0);
+            Console.WriteLine(FindIndexOfHighestRunningTotal([1, 1, -5]) == 1);
+            Console.WriteLine(FindIndexOfHighestRunningTotal(null!) == null);
+            Console.WriteLine(FindIndexOfHighestRunningTotal([]) == null);
+
+            // Extract Mention Usernames 
+            string[] mentionsOne = ExtractMentionUsernames("hello @Paul and @Sarah");
+            Console.WriteLine(mentionsOne.Length == 2);
+            Console.WriteLine(mentionsOne[0] == "Paul");
+            Console.WriteLine(mentionsOne[1] == "Sarah");
+
+            string[] mentionsTwo = ExtractMentionUsernames("@one @ @Two");
+            Console.WriteLine(mentionsTwo.Length == 2);
+            Console.WriteLine(mentionsTwo[0] == "one");
+            Console.WriteLine(mentionsTwo[1] == "Two");
+            Console.WriteLine(ExtractMentionUsernames("no mentions here").Length == 0);
+            Console.WriteLine(ExtractMentionUsernames("").Length == 0);
+            Console.WriteLine(ExtractMentionUsernames(" ").Length == 0);
+            Console.WriteLine(ExtractMentionUsernames(null!).Length == 0);
+
+            // Warm up: Count Numbers divisible by two or three but noth Both. 
+            Console.WriteLine(CountNumbersDivisibleByTwoOrThreeButNotBoth([2, 3, 4, 6, 9, 12, 15]) == 5);
+            Console.WriteLine(CountNumbersDivisibleByTwoOrThreeButNotBoth([6, 12, 18]) == 0);
+            Console.WriteLine(CountNumbersDivisibleByTwoOrThreeButNotBoth([2, 4, 8]) == 3);
+            Console.WriteLine(CountNumbersDivisibleByTwoOrThreeButNotBoth([3, 9, 15]) == 3);
+            Console.WriteLine(CountNumbersDivisibleByTwoOrThreeButNotBoth([0, 2, 6]) == 1);
+            Console.WriteLine(CountNumbersDivisibleByTwoOrThreeButNotBoth(null!) == 0);
+            Console.WriteLine(CountNumbersDivisibleByTwoOrThreeButNotBoth([]) == 0);
+
             // LINQ Repair: Get Lowercase Long Words
             string[] linqRepairOne = GetLowercaseLongWordsWithLinq("Cat Banana DOG Coding");
             Console.WriteLine(linqRepairOne.Length == 2);
