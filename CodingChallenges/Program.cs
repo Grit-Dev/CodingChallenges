@@ -96,8 +96,42 @@
 
         return longestStreak;
     }
+
+    public static int? FindFirstRepeatedNumber(int[] numbers)
+    {
+        if (numbers is null || numbers.Length == 0)
+        {
+            return null;
+        }
+
+        Dictionary<int, int> newDict = [];
+
+        foreach (int number in numbers)
+        {
+            if (newDict.TryGetValue(number, out int value))
+            {
+                newDict[number] = value + 1;
+
+                return number;
+            }
+            else
+            {
+                newDict[number] = 1;
+            }
+        }
+
+        return null;
+    }
     public static void Main(string[] args)
     {
+        // Find The First Repeated Number
+        Console.WriteLine(FindFirstRepeatedNumber([5, 2, 8, 2, 7]) == 2);
+        Console.WriteLine(FindFirstRepeatedNumber([1, 1, 2, 2]) == 1);
+        Console.WriteLine(FindFirstRepeatedNumber([3, 4, 5]) == null);
+        Console.WriteLine(FindFirstRepeatedNumber([-1, 5, -1]) == -1);
+        Console.WriteLine(FindFirstRepeatedNumber(null!) == null);
+        Console.WriteLine(FindFirstRepeatedNumber([]) == null);
+
         // Find Longest Even Streak
         // Console.WriteLine(FindLongestEvenStreak([2, 4, 6, 1, 8, 10]) == 3);
         // Console.WriteLine(FindLongestEvenStreak([1, 3, 5]) == 0);
