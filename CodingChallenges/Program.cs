@@ -71,7 +71,7 @@ public class Program
         int total = 0;
         int? highestRunningIndex = null;
 
-        for (int index = 0; index <= numbers.Length - 1; index++)
+        for (int index = 0; index < numbers.Length; index++)
         {
             total += numbers[index];
 
@@ -82,7 +82,7 @@ public class Program
             }
         }
 
-        return highestRunningTotal > 0 ? highestRunningIndex : 0;
+        return highestRunningIndex;
     }
     public static void Main(string[] args)
     {
