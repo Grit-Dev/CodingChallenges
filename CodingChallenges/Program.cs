@@ -44,17 +44,47 @@
 
         return highestProductPriceItem;
     }
+
+    public static int? FindFirstNumberFollowedByABiggerNumber(int[] numbers)
+    {
+        if (numbers is null || numbers.Length == 0)
+        {
+            return null;
+        }
+
+        int? previousNumber = null;
+
+        foreach (int number in numbers)
+        {
+            if (previousNumber < number)
+            {
+                return previousNumber;
+            }
+
+            previousNumber = number;
+        }
+
+        return previousNumber;
+    }
     public static void Main(string[] args)
     {
+        // Find First Number Followed By A Bigger Number 
+        Console.WriteLine(FindFirstNumberFollowedByABiggerNumber([5, 2, 7, 1]) == 2);
+        Console.WriteLine(FindFirstNumberFollowedByABiggerNumber([1, 2, 3]) == 1);
+        Console.WriteLine(FindFirstNumberFollowedByABiggerNumber([5, 4, 3]) == null);
+        Console.WriteLine(FindFirstNumberFollowedByABiggerNumber([-5, -1]) == -5);
+        Console.WriteLine(FindFirstNumberFollowedByABiggerNumber(null!) == null);
+        Console.WriteLine(FindFirstNumberFollowedByABiggerNumber([]) == null);
+
         // Find Most Expensive Item
-        Console.WriteLine(FindMostExpensiveItem("box=50, sleeves=10, binder=40") == "box");
-        Console.WriteLine(FindMostExpensiveItem("box=50, binder=50, sleeves=10") == "box");
-        Console.WriteLine(FindMostExpensiveItem("box=abc, sleeves=-1") == null);
-        Console.WriteLine(FindMostExpensiveItem(" item = 100 , other = 99 ") == "item");
-        Console.WriteLine(FindMostExpensiveItem("bad=10=20, good=5") == "good");
-        Console.WriteLine(FindMostExpensiveItem("") == null);
-        Console.WriteLine(FindMostExpensiveItem(" ") == null);
-        Console.WriteLine(FindMostExpensiveItem(null!) == null);
+        // Console.WriteLine(FindMostExpensiveItem("box=50, sleeves=10, binder=40") == "box");
+        // Console.WriteLine(FindMostExpensiveItem("box=50, binder=50, sleeves=10") == "box");
+        // Console.WriteLine(FindMostExpensiveItem("box=abc, sleeves=-1") == null);
+        // Console.WriteLine(FindMostExpensiveItem(" item = 100 , other = 99 ") == "item");
+        // Console.WriteLine(FindMostExpensiveItem("bad=10=20, good=5") == "good");
+        // Console.WriteLine(FindMostExpensiveItem("") == null);
+        // Console.WriteLine(FindMostExpensiveItem(" ") == null);
+        // Console.WriteLine(FindMostExpensiveItem(null!) == null);
 
         // Get Top Two Even Numbers
         // Console.WriteLine(GetTopTwoEvenNumbersWithLinq([1, 8, 4, 10, 3]).SequenceEqual([10, 8]));
