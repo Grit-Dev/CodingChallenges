@@ -6,6 +6,74 @@ namespace CodingChallenges.Challenges.Phase_02_OOP
     {
         public static void Run_Four_Dictionary_Work()
         {
+            // Running Total With Index Again
+            Console.WriteLine(FindIndexOfHighestRunningTotalAgainRev([3, -1, 5, -10]) == 2);
+            Console.WriteLine(FindIndexOfHighestRunningTotalAgainRev([5, -2, -10, 20]) == 3);
+            Console.WriteLine(FindIndexOfHighestRunningTotalAgainRev([-2, -3, -1]) == 0);
+            Console.WriteLine(FindIndexOfHighestRunningTotalAgainRev([1, 1, -5]) == 1);
+            Console.WriteLine(FindIndexOfHighestRunningTotalAgainRev(null!) == null);
+            Console.WriteLine(FindIndexOfHighestRunningTotalAgainRev([]) == null);
+
+            // OrderByDescending + Take - Refresher
+            int[] topOne = GetTopTwoScoresWithLinqRev([50, 90, 70, 100]);
+            Console.WriteLine(topOne.Length == 2);
+            Console.WriteLine(topOne[0] == 100);
+            Console.WriteLine(topOne[1] == 90);
+
+            int[] topTwo = GetTopTwoScoresWithLinqRev([5]);
+            Console.WriteLine(topTwo.Length == 1);
+            Console.WriteLine(topTwo[0] == 5);
+
+            int[] topThree = GetTopTwoScoresWithLinqRev([-1, 10, 0]);
+            Console.WriteLine(topThree.Length == 2);
+            Console.WriteLine(topThree[0] == 10);
+            Console.WriteLine(topThree[1] == 0);
+            Console.WriteLine(GetTopTwoScoresWithLinqRev(null!).Length == 0);
+            Console.WriteLine(GetTopTwoScoresWithLinqRev([]).Length == 0);
+
+            // Find First Unique word again
+            Console.WriteLine(FindFirstUniqueWordAgain("red blue red green") == "blue");
+            Console.WriteLine(FindFirstUniqueWordAgain("Cat dog cat bird") == "dog");
+            Console.WriteLine(FindFirstUniqueWordAgain("one one two two") == "");
+            Console.WriteLine(FindFirstUniqueWordAgain("solo") == "solo");
+            Console.WriteLine(FindFirstUniqueWordAgain("") == "");
+            Console.WriteLine(FindFirstUniqueWordAgain("   ") == "");
+            Console.WriteLine(FindFirstUniqueWordAgain(null!) == "");
+
+            // Find First Word Longer Than Five
+            Console.WriteLine(FindFirstWordLongerThanFive("cat banana dog pineapple") == "banana");
+            Console.WriteLine(FindFirstWordLongerThanFive("one two three") == "");
+            Console.WriteLine(FindFirstWordLongerThanFive("hello coding test") == "coding");
+            Console.WriteLine(FindFirstWordLongerThanFive("practice makes progress") == "practice");
+            Console.WriteLine(FindFirstWordLongerThanFive("") == "");
+            Console.WriteLine(FindFirstWordLongerThanFive("   ") == "");
+            Console.WriteLine(FindFirstWordLongerThanFive(null!) == "");
+
+            // Find Highest Running Total
+            Console.WriteLine(FindHighestRunningTotal([3, -1, 5, -10]) == 7);
+            Console.WriteLine(FindHighestRunningTotal([5, -2, -10, 20]) == 13);
+            Console.WriteLine(FindHighestRunningTotal([-2, -3, -1]) == -2);
+            Console.WriteLine(FindHighestRunningTotal([1, 1, -5]) == 2);
+            Console.WriteLine(FindHighestRunningTotal(null!) == null);
+            Console.WriteLine(FindHighestRunningTotal([]) == null);
+
+            // Mask All But Last Three Characters 
+            Console.WriteLine(MaskAllButLastThreeCharacters("abcdef") == "***def");
+            Console.WriteLine(MaskAllButLastThreeCharacters("Paul") == "*aul");
+            Console.WriteLine(MaskAllButLastThreeCharacters("abc") == "abc");
+            Console.WriteLine(MaskAllButLastThreeCharacters("a") == "a");
+            Console.WriteLine(MaskAllButLastThreeCharacters("") == "");
+            Console.WriteLine(MaskAllButLastThreeCharacters("   ") == "");
+            Console.WriteLine(MaskAllButLastThreeCharacters(null!) == "");
+
+            // Count Numbers Greater Than Previous number
+            Console.WriteLine(CountNumbersGreaterThanPreviousNumber([1, 3, 2, 5]) == 2);
+            Console.WriteLine(CountNumbersGreaterThanPreviousNumber([5, 4, 3]) == 0);
+            Console.WriteLine(CountNumbersGreaterThanPreviousNumber([1, 2, 3, 4]) == 3);
+            Console.WriteLine(CountNumbersGreaterThanPreviousNumber([7]) == 0);
+            Console.WriteLine(CountNumbersGreaterThanPreviousNumber(null!) == 0);
+            Console.WriteLine(CountNumbersGreaterThanPreviousNumber([]) == 0);
+
             // Find Second Largest Distinct Number
             Console.WriteLine(FindSecondLargestDistinctNumberRev([10, 5, 8]) == 8);
             Console.WriteLine(FindSecondLargestDistinctNumberRev([10, 10, 8]) == 8);
@@ -89,22 +157,22 @@ namespace CodingChallenges.Challenges.Phase_02_OOP
             Console.WriteLine(ConvertScoresToPassFailLabelsWithLinq([]).Length == 0);
 
             // Get Top Three Scores With Linq
-            int[] topOne = GetTopThreeScoresWithLinq([50, 90, 70, 100]);
-            Console.WriteLine(topOne.Length == 3);
-            Console.WriteLine(topOne[0] == 100);
-            Console.WriteLine(topOne[1] == 90);
-            Console.WriteLine(topOne[2] == 70);
+            int[] topOneRev = GetTopThreeScoresWithLinq([50, 90, 70, 100]);
+            Console.WriteLine(topOneRev.Length == 3);
+            Console.WriteLine(topOneRev[0] == 100);
+            Console.WriteLine(topOneRev[1] == 90);
+            Console.WriteLine(topOneRev[2] == 70);
 
-            int[] topTwo = GetTopThreeScoresWithLinq([5, 1]);
-            Console.WriteLine(topTwo.Length == 2);
-            Console.WriteLine(topTwo[0] == 5);
-            Console.WriteLine(topTwo[1] == 1);
+            int[] topTwoRev = GetTopThreeScoresWithLinq([5, 1]);
+            Console.WriteLine(topTwoRev.Length == 2);
+            Console.WriteLine(topTwoRev[0] == 5);
+            Console.WriteLine(topTwoRev[1] == 1);
 
-            int[] topThree = GetTopThreeScoresWithLinq([-1, 10, 0]);
-            Console.WriteLine(topThree.Length == 3);
-            Console.WriteLine(topThree[0] == 10);
-            Console.WriteLine(topThree[1] == 0);
-            Console.WriteLine(topThree[2] == -1);
+            int[] topThreeRev = GetTopThreeScoresWithLinq([-1, 10, 0]);
+            Console.WriteLine(topThreeRev.Length == 3);
+            Console.WriteLine(topThreeRev[0] == 10);
+            Console.WriteLine(topThreeRev[1] == 0);
+            Console.WriteLine(topThreeRev[2] == -1);
             Console.WriteLine(GetTopThreeScoresWithLinq(null!).Length == 0);
             Console.WriteLine(GetTopThreeScoresWithLinq([]).Length == 0);
 

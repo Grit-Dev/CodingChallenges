@@ -6,9 +6,132 @@ namespace CodingChallenges.Challenges.Phase_02_OOP
 {
     public class ChallengeSolutions
     {
+        public static int CountNumbersGreaterThanPreviousNumber(int[] numbers)
+        {
+            if (numbers is null || numbers.Length < 2)
+            {
+                return 0;
+            }
+
+            int counter = 0;
+
+            for (int index = 1; index <= numbers.Length - 1; index++)
+            {
+                if (numbers[index] > numbers[index - 1])
+                {
+                    counter++;
+                }
+            }
+
+            return counter;
+        }
+
+        public static string MaskAllButLastThreeCharacters(string input)
+        {
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                return "";
+            }
+
+            if (input.Length <= 3)
+            {
+                return input;
+            }
+
+            int charactersToMask = input.Length - 3;
+
+            string startOfString = new string('*', charactersToMask);
+            string endOfString = input.Substring(charactersToMask);
+
+            return startOfString + endOfString;
+        }
+
+        public static int? FindHighestRunningTotal(int[] numbers)
+        {
+            if (numbers is null || numbers.Length == 0)
+            {
+                return null;
+            }
+
+            int total = 0;
+            int? highestRunningTotal = null;
+
+            foreach (int number in numbers)
+            {
+                total += number;
+
+                if (highestRunningTotal is null || total > highestRunningTotal)
+                {
+                    highestRunningTotal = total;
+                }
+            }
+
+            return highestRunningTotal;
+        }
+
+        public static string FindFirstWordLongerThanFive(string input) =>
+        string.IsNullOrWhiteSpace(input) ? "" :
+        input.Split(' ', StringSplitOptions.RemoveEmptyEntries).FirstOrDefault(n => n.Length > 5) ?? "";
+
+        public static string FindFirstUniqueWordAgain(string input)
+        {
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                return "";
+            }
+
+            Dictionary<string, int> newDict = [];
+
+            string[] splitString = input.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+            foreach (string str in splitString)
+            {
+                string strTrimmed = str.ToLower();
+
+                if (newDict.TryGetValue(strTrimmed, out int value))
+                {
+                    newDict[strTrimmed] = value + 1;
+                }
+                else
+                {
+                    newDict[strTrimmed] = 1;
+                }
+            }
+
+            return newDict.FirstOrDefault(nd => nd.Value == 1).Key ?? "";
+        }
+
+        public static int[] GetTopTwoScoresWithLinqRev(int[] scores) =>
+        scores?.OrderByDescending(s => s).Take(2).ToArray() ?? [];
+
+        public static int? FindIndexOfHighestRunningTotalAgainRev(int[] numbers)
+        {
+            if (numbers is null || numbers.Length == 0)
+            {
+                return null;
+            }
+
+            int total = 0;
+            int? highestRunningTotal = null;
+            int? runningTotalIndex = null;
+
+            for (int index = 0; index <= numbers.Length - 1; index++)
+            {
+                total += numbers[index];
+
+                if (highestRunningTotal is null || total > highestRunningTotal)
+                {
+                    highestRunningTotal = total;
+                    runningTotalIndex = index;
+                }
+            }
+
+            return runningTotalIndex;
+        }
+
         public static int[] GetTopTwoEvenNumbersWithLinq(int[] numbers) =>
-numbers is null || numbers.Length == 0 ? [] :
-numbers.Where(n => n % 2 == 0).OrderByDescending(n => n).Take(2).ToArray();
+        numbers is null || numbers.Length == 0 ? [] :
+        numbers.Where(n => n % 2 == 0).OrderByDescending(n => n).Take(2).ToArray();
 
         public static string? FindMostExpensiveItem(string input)
         {
