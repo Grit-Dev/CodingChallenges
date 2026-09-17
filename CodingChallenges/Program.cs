@@ -97,9 +97,41 @@
 
     public static int[] GetTopTwoScoresWithLinqRev(int[] scores) =>
     scores?.OrderByDescending(s => s).Take(2).ToArray() ?? [];
-    
+
+    public static int? FindIndexOfHighestRunningTotalAgainRev(int [] numbers)
+    {
+        if(numbers is null || numbers.Length == 0)
+        {
+            return null;
+        }
+
+        int total = 0;
+        int? highestRunningTotal = null;
+        int? runningTotalIndex = null;
+
+        for(int index = 0; index <= numbers.Length -1; index++)
+        {
+            total += numbers[index];
+
+            if(highestRunningTotal is null || total > highestRunningTotal)
+            {
+                highestRunningTotal = total;
+                runningTotalIndex = index;
+            }
+        }
+
+        return runningTotalIndex;
+    }
     public static void Main(string[] args)
     {
+        // Running Total With Index Again
+        Console.WriteLine(FindIndexOfHighestRunningTotalAgainRev([3, -1, 5, -10]) == 2);
+        Console.WriteLine(FindIndexOfHighestRunningTotalAgainRev([5, -2, -10, 20]) == 3);
+        Console.WriteLine(FindIndexOfHighestRunningTotalAgainRev([-2, -3, -1]) == 0);
+        Console.WriteLine(FindIndexOfHighestRunningTotalAgainRev([1, 1, -5]) == 1);
+        Console.WriteLine(FindIndexOfHighestRunningTotalAgainRev(null!) == null);
+        Console.WriteLine(FindIndexOfHighestRunningTotalAgainRev([]) == null);
+
         // OrderByDescending + Take - Refresher
         int[] topOne = GetTopTwoScoresWithLinqRev([50, 90, 70, 100]);
         Console.WriteLine(topOne.Length == 2);
