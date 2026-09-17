@@ -63,20 +63,57 @@
         return highestRunningTotal;
     }
 
-    public static string FindFirstWordLongerThanFive(string input) => 
-    string.IsNullOrWhiteSpace(input) ? "" : 
+    public static string FindFirstWordLongerThanFive(string input) =>
+    string.IsNullOrWhiteSpace(input) ? "" :
     input.Split(' ', StringSplitOptions.RemoveEmptyEntries).FirstOrDefault(n => n.Length > 5) ?? "";
-    
+
+    public static string FindFirstUniqueWordAgain(string input)
+    {
+        if(string.IsNullOrWhiteSpace(input))
+        {
+            return "";
+        }
+
+        Dictionary<string, int> newDict = [];
+
+        string[] splitString = input.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+        foreach(string str in splitString)
+        {
+            string strTrimmed = str.ToLower();
+
+            if(newDict.TryGetValue(strTrimmed, out int value))
+            {
+                newDict[strTrimmed] = value + 1;
+            }
+            else
+            {
+                newDict[strTrimmed] = 1;
+            }
+        }
+
+        return newDict.FirstOrDefault(nd => nd.Value == 1).Key ?? "";
+    }
+
     public static void Main(string[] args)
     {
+        // Find First Unique word again
+        Console.WriteLine(FindFirstUniqueWordAgain("red blue red green") == "blue");
+        Console.WriteLine(FindFirstUniqueWordAgain("Cat dog cat bird") == "dog");
+        Console.WriteLine(FindFirstUniqueWordAgain("one one two two") == "");
+        Console.WriteLine(FindFirstUniqueWordAgain("solo") == "solo");
+        Console.WriteLine(FindFirstUniqueWordAgain("") == "");
+        Console.WriteLine(FindFirstUniqueWordAgain("   ") == "");
+        Console.WriteLine(FindFirstUniqueWordAgain(null!) == "");
+
         // Find First Word Longer Than Five
-        Console.WriteLine(FindFirstWordLongerThanFive("cat banana dog pineapple") == "banana");
-        Console.WriteLine(FindFirstWordLongerThanFive("one two three") == "");
-        Console.WriteLine(FindFirstWordLongerThanFive("hello coding test") == "coding");
-        Console.WriteLine(FindFirstWordLongerThanFive("practice makes progress") == "practice");
-        Console.WriteLine(FindFirstWordLongerThanFive("") == "");
-        Console.WriteLine(FindFirstWordLongerThanFive("   ") == "");
-        Console.WriteLine(FindFirstWordLongerThanFive(null!) == "");
+        // Console.WriteLine(FindFirstWordLongerThanFive("cat banana dog pineapple") == "banana");
+        // Console.WriteLine(FindFirstWordLongerThanFive("one two three") == "");
+        // Console.WriteLine(FindFirstWordLongerThanFive("hello coding test") == "coding");
+        // Console.WriteLine(FindFirstWordLongerThanFive("practice makes progress") == "practice");
+        // Console.WriteLine(FindFirstWordLongerThanFive("") == "");
+        // Console.WriteLine(FindFirstWordLongerThanFive("   ") == "");
+        // Console.WriteLine(FindFirstWordLongerThanFive(null!) == "");
 
         // Find Highest Running Total
         // Console.WriteLine(FindHighestRunningTotal([3, -1, 5, -10]) == 7);
