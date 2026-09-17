@@ -7,20 +7,20 @@ namespace CodingChallenges.Challenges.Phase_02_OOP
         public static void Run_Four_Dictionary_Work()
         {
             // Find Second Largest Distinct Number
-            Console.WriteLine(FindSecondLargestDistinctNumber([10, 5, 8]) == 8);
-            Console.WriteLine(FindSecondLargestDistinctNumber([10, 10, 8]) == 8);
-            Console.WriteLine(FindSecondLargestDistinctNumber([5, 5, 5]) == null);
-            Console.WriteLine(FindSecondLargestDistinctNumber([-1, -5, -2]) == -2);
-            Console.WriteLine(FindSecondLargestDistinctNumber(null!) == null);
-            Console.WriteLine(FindSecondLargestDistinctNumber([]) == null);
+            Console.WriteLine(FindSecondLargestDistinctNumberRev([10, 5, 8]) == 8);
+            Console.WriteLine(FindSecondLargestDistinctNumberRev([10, 10, 8]) == 8);
+            Console.WriteLine(FindSecondLargestDistinctNumberRev([5, 5, 5]) == null);
+            Console.WriteLine(FindSecondLargestDistinctNumberRev([-1, -5, -2]) == -2);
+            Console.WriteLine(FindSecondLargestDistinctNumberRev(null!) == null);
+            Console.WriteLine(FindSecondLargestDistinctNumberRev([]) == null);
 
             // Find Longest Increasing Streak:
-            Console.WriteLine(FindLongestIncreasingStreak([1, 2, 3, 1, 2, 3, 4]) == 4);
-            Console.WriteLine(FindLongestIncreasingStreak([1, 2, 3, 4]) == 4);
-            Console.WriteLine(FindLongestIncreasingStreak([5, 4, 3, 2]) == 1);
-            Console.WriteLine(FindLongestIncreasingStreak([1, 1, 1]) == 1);
-            Console.WriteLine(FindLongestIncreasingStreak([]) == 0);
-            Console.WriteLine(FindLongestIncreasingStreak(null!) == 0);
+            Console.WriteLine(FindLongestIncreasingStreakRev([1, 2, 3, 1, 2, 3, 4]) == 4);
+            Console.WriteLine(FindLongestIncreasingStreakRev([1, 2, 3, 4]) == 4);
+            Console.WriteLine(FindLongestIncreasingStreakRev([5, 4, 3, 2]) == 1);
+            Console.WriteLine(FindLongestIncreasingStreakRev([1, 1, 1]) == 1);
+            Console.WriteLine(FindLongestIncreasingStreakRev([]) == 0);
+            Console.WriteLine(FindLongestIncreasingStreakRev(null!) == 0);
 
             // Find the First Peak Number
             Console.WriteLine(FindFirstPeakNumber([1, 5, 2]) == 5);
@@ -31,12 +31,12 @@ namespace CodingChallenges.Challenges.Phase_02_OOP
             Console.WriteLine(FindFirstPeakNumber(null!) == null);
 
             // Find The First Repeated Number
-            Console.WriteLine(FindFirstRepeatedNumber([5, 2, 8, 2, 7]) == 2);
-            Console.WriteLine(FindFirstRepeatedNumber([1, 1, 2, 2]) == 1);
-            Console.WriteLine(FindFirstRepeatedNumber([3, 4, 5]) == null);
-            Console.WriteLine(FindFirstRepeatedNumber([-1, 5, -1]) == -1);
-            Console.WriteLine(FindFirstRepeatedNumber(null!) == null);
-            Console.WriteLine(FindFirstRepeatedNumber([]) == null);
+            Console.WriteLine(FindFirstRepeatedNumberRev([5, 2, 8, 2, 7]) == 2);
+            Console.WriteLine(FindFirstRepeatedNumberRev([1, 1, 2, 2]) == 1);
+            Console.WriteLine(FindFirstRepeatedNumberRev([3, 4, 5]) == null);
+            Console.WriteLine(FindFirstRepeatedNumberRev([-1, 5, -1]) == -1);
+            Console.WriteLine(FindFirstRepeatedNumberRev(null!) == null);
+            Console.WriteLine(FindFirstRepeatedNumberRev([]) == null);
 
             // Find Longest Even Streak
             Console.WriteLine(FindLongestEvenStreak([2, 4, 6, 1, 8, 10]) == 3);
