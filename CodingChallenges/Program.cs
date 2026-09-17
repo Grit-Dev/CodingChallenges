@@ -69,7 +69,7 @@
 
     public static string FindFirstUniqueWordAgain(string input)
     {
-        if(string.IsNullOrWhiteSpace(input))
+        if (string.IsNullOrWhiteSpace(input))
         {
             return "";
         }
@@ -78,11 +78,11 @@
 
         string[] splitString = input.Split(' ', StringSplitOptions.RemoveEmptyEntries);
 
-        foreach(string str in splitString)
+        foreach (string str in splitString)
         {
             string strTrimmed = str.ToLower();
 
-            if(newDict.TryGetValue(strTrimmed, out int value))
+            if (newDict.TryGetValue(strTrimmed, out int value))
             {
                 newDict[strTrimmed] = value + 1;
             }
@@ -95,16 +95,36 @@
         return newDict.FirstOrDefault(nd => nd.Value == 1).Key ?? "";
     }
 
+    public static int[] GetTopTwoScoresWithLinqRev(int[] scores) =>
+    scores?.OrderByDescending(s => s).Take(2).ToArray() ?? [];
+    
     public static void Main(string[] args)
     {
+        // OrderByDescending + Take - Refresher
+        int[] topOne = GetTopTwoScoresWithLinqRev([50, 90, 70, 100]);
+        Console.WriteLine(topOne.Length == 2);
+        Console.WriteLine(topOne[0] == 100);
+        Console.WriteLine(topOne[1] == 90);
+
+        int[] topTwo = GetTopTwoScoresWithLinqRev([5]);
+        Console.WriteLine(topTwo.Length == 1);
+        Console.WriteLine(topTwo[0] == 5);
+
+        int[] topThree = GetTopTwoScoresWithLinqRev([-1, 10, 0]);
+        Console.WriteLine(topThree.Length == 2);
+        Console.WriteLine(topThree[0] == 10);
+        Console.WriteLine(topThree[1] == 0);
+        Console.WriteLine(GetTopTwoScoresWithLinqRev(null!).Length == 0);
+        Console.WriteLine(GetTopTwoScoresWithLinqRev([]).Length == 0);
+
         // Find First Unique word again
-        Console.WriteLine(FindFirstUniqueWordAgain("red blue red green") == "blue");
-        Console.WriteLine(FindFirstUniqueWordAgain("Cat dog cat bird") == "dog");
-        Console.WriteLine(FindFirstUniqueWordAgain("one one two two") == "");
-        Console.WriteLine(FindFirstUniqueWordAgain("solo") == "solo");
-        Console.WriteLine(FindFirstUniqueWordAgain("") == "");
-        Console.WriteLine(FindFirstUniqueWordAgain("   ") == "");
-        Console.WriteLine(FindFirstUniqueWordAgain(null!) == "");
+        // Console.WriteLine(FindFirstUniqueWordAgain("red blue red green") == "blue");
+        // Console.WriteLine(FindFirstUniqueWordAgain("Cat dog cat bird") == "dog");
+        // Console.WriteLine(FindFirstUniqueWordAgain("one one two two") == "");
+        // Console.WriteLine(FindFirstUniqueWordAgain("solo") == "solo");
+        // Console.WriteLine(FindFirstUniqueWordAgain("") == "");
+        // Console.WriteLine(FindFirstUniqueWordAgain("   ") == "");
+        // Console.WriteLine(FindFirstUniqueWordAgain(null!) == "");
 
         // Find First Word Longer Than Five
         // Console.WriteLine(FindFirstWordLongerThanFive("cat banana dog pineapple") == "banana");
