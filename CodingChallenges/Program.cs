@@ -65,20 +65,20 @@ public class Program
 
     public static int? FindFirstNumberSeenThreeTimes(int[] numbers)
     {
-        if(numbers is null || numbers.Length == 0)
+        if (numbers is null || numbers.Length == 0)
         {
             return null;
         }
 
-        Dictionary<int,int> newDict = [];
+        Dictionary<int, int> newDict = [];
 
-        foreach(int number in numbers)
+        foreach (int number in numbers)
         {
-            if(newDict.TryGetValue(number, out int value))
+            if (newDict.TryGetValue(number, out int value))
             {
                 newDict[number] = value + 1;
 
-                if(newDict[number] == 3)
+                if (newDict[number] == 3)
                 {
                     return number;
                 }
@@ -87,18 +87,57 @@ public class Program
             {
                 newDict[number] = 1;
             }
-        }       
-            return null;
+        }
+        return null;
+    }
+
+    public static int FindLongestDuplicateStreakRev(int[] numbers)
+    {
+        if (numbers is null || numbers.Length == 0)
+        {
+            return 0;
+
+        }
+
+        int currentStreak = 1;
+        int highestStreak = 1;
+
+        for (int index = 1; index < numbers.Length; index++)
+        {
+            if (numbers[index] == numbers[index - 1])
+            {
+                currentStreak++;
+            }
+            else
+            {
+                currentStreak = 1;
+            }
+
+            if (currentStreak > highestStreak)
+            {
+                highestStreak = currentStreak;
+            }
+        }
+
+        return highestStreak;
     }
     public static void Main(string[] args)
     {
+        // Find Longest Consecutive Duplicate Streak
+        Console.WriteLine(FindLongestDuplicateStreakRev([7, 7, 7, 7]) == 4);
+        Console.WriteLine(FindLongestDuplicateStreakRev([5, 5, 5, 2, 2, 7]) == 3);
+        Console.WriteLine(FindLongestDuplicateStreakRev([1, 2, 3, 4]) == 1);
+        Console.WriteLine(FindLongestDuplicateStreakRev([1, 1, 2, 2, 2, 3]) == 3);
+        Console.WriteLine(FindLongestDuplicateStreakRev([]) == 0);
+        Console.WriteLine(FindLongestDuplicateStreakRev(null!) == 0);
+
         // Find Firstr Number Seen Three Times
-        Console.WriteLine(FindFirstNumberSeenThreeTimes([5, 2, 5, 7, 5]) == 5);
-        Console.WriteLine(FindFirstNumberSeenThreeTimes([1, 2, 1, 2, 1]) == 1);
-        Console.WriteLine(FindFirstNumberSeenThreeTimes([3, 3, 3]) == 3);
-        Console.WriteLine(FindFirstNumberSeenThreeTimes([1, 2, 3]) == null);
-        Console.WriteLine(FindFirstNumberSeenThreeTimes([]) == null);
-        Console.WriteLine(FindFirstNumberSeenThreeTimes(null!) == null);
+        // Console.WriteLine(FindFirstNumberSeenThreeTimes([5, 2, 5, 7, 5]) == 5);
+        // Console.WriteLine(FindFirstNumberSeenThreeTimes([1, 2, 1, 2, 1]) == 1);
+        // Console.WriteLine(FindFirstNumberSeenThreeTimes([3, 3, 3]) == 3);
+        // Console.WriteLine(FindFirstNumberSeenThreeTimes([1, 2, 3]) == null);
+        // Console.WriteLine(FindFirstNumberSeenThreeTimes([]) == null);
+        // Console.WriteLine(FindFirstNumberSeenThreeTimes(null!) == null);
 
         // Count Direction Changes
         // Console.WriteLine(CountDirectionChanges([1, 3, 5, 4, 2, 6]) == 2);
