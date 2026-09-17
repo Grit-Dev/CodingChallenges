@@ -1,4 +1,6 @@
-﻿public class Program
+﻿using System.Globalization;
+
+public class Program
 {
     public static int? FindFirstGapGreaterThanThree(int[] numbers)
     {
@@ -56,24 +58,55 @@
                 isGoingUp = false;
 
             }
-            else
-            {
-                continue;
-            }
         }
 
         return counter;
     }
 
+    public static int? FindFirstNumberSeenThreeTimes(int[] numbers)
+    {
+        if(numbers is null || numbers.Length == 0)
+        {
+            return null;
+        }
+
+        Dictionary<int,int> newDict = [];
+
+        foreach(int number in numbers)
+        {
+            if(newDict.TryGetValue(number, out int value))
+            {
+                newDict[number] = value + 1;
+
+                if(newDict[number] == 3)
+                {
+                    return number;
+                }
+            }
+            else
+            {
+                newDict[number] = 1;
+            }
+        }       
+            return null;
+    }
     public static void Main(string[] args)
     {
+        // Find Firstr Number Seen Three Times
+        Console.WriteLine(FindFirstNumberSeenThreeTimes([5, 2, 5, 7, 5]) == 5);
+        Console.WriteLine(FindFirstNumberSeenThreeTimes([1, 2, 1, 2, 1]) == 1);
+        Console.WriteLine(FindFirstNumberSeenThreeTimes([3, 3, 3]) == 3);
+        Console.WriteLine(FindFirstNumberSeenThreeTimes([1, 2, 3]) == null);
+        Console.WriteLine(FindFirstNumberSeenThreeTimes([]) == null);
+        Console.WriteLine(FindFirstNumberSeenThreeTimes(null!) == null);
+
         // Count Direction Changes
-        Console.WriteLine(CountDirectionChanges([1, 3, 5, 4, 2, 6]) == 2);
-        Console.WriteLine(CountDirectionChanges([1, 2, 3, 4]) == 0);
-        Console.WriteLine(CountDirectionChanges([4, 3, 2, 1]) == 0);
-        Console.WriteLine(CountDirectionChanges([1, 3, 1, 3, 1]) == 3);
-        Console.WriteLine(CountDirectionChanges([]) == 0);
-        Console.WriteLine(CountDirectionChanges(null!) == 0);
+        // Console.WriteLine(CountDirectionChanges([1, 3, 5, 4, 2, 6]) == 2);
+        // Console.WriteLine(CountDirectionChanges([1, 2, 3, 4]) == 0);
+        // Console.WriteLine(CountDirectionChanges([4, 3, 2, 1]) == 0);
+        // Console.WriteLine(CountDirectionChanges([1, 3, 1, 3, 1]) == 3);
+        // Console.WriteLine(CountDirectionChanges([]) == 0);
+        // Console.WriteLine(CountDirectionChanges(null!) == 0);
 
         // Find The First Gap Greater Than Three
         // Console.WriteLine(FindFirstGapGreaterThanThree([5, 6, 10, 11]) == 4);
