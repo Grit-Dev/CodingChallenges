@@ -42,7 +42,7 @@
 
     public static int? FindHighestRunningTotal(int[] numbers)
     {
-        if(numbers is null || numbers.Length == 0)
+        if (numbers is null || numbers.Length == 0)
         {
             return null;
         }
@@ -50,11 +50,11 @@
         int total = 0;
         int? highestRunningTotal = null;
 
-        foreach(int number in numbers)
+        foreach (int number in numbers)
         {
             total += number;
 
-            if(highestRunningTotal is null || total > highestRunningTotal)
+            if (highestRunningTotal is null || total > highestRunningTotal)
             {
                 highestRunningTotal = total;
             }
@@ -62,15 +62,29 @@
 
         return highestRunningTotal;
     }
+
+    public static string FindFirstWordLongerThanFive(string input) => 
+    string.IsNullOrWhiteSpace(input) ? "" : 
+    input.Split(' ', StringSplitOptions.RemoveEmptyEntries).FirstOrDefault(n => n.Length > 5) ?? "";
+    
     public static void Main(string[] args)
     {
+        // Find First Word Longer Than Five
+        Console.WriteLine(FindFirstWordLongerThanFive("cat banana dog pineapple") == "banana");
+        Console.WriteLine(FindFirstWordLongerThanFive("one two three") == "");
+        Console.WriteLine(FindFirstWordLongerThanFive("hello coding test") == "coding");
+        Console.WriteLine(FindFirstWordLongerThanFive("practice makes progress") == "practice");
+        Console.WriteLine(FindFirstWordLongerThanFive("") == "");
+        Console.WriteLine(FindFirstWordLongerThanFive("   ") == "");
+        Console.WriteLine(FindFirstWordLongerThanFive(null!) == "");
+
         // Find Highest Running Total
-        Console.WriteLine(FindHighestRunningTotal([3, -1, 5, -10]) == 7);
-        Console.WriteLine(FindHighestRunningTotal([5, -2, -10, 20]) == 13);
-        Console.WriteLine(FindHighestRunningTotal([-2, -3, -1]) == -2);
-        Console.WriteLine(FindHighestRunningTotal([1, 1, -5]) == 2);
-        Console.WriteLine(FindHighestRunningTotal(null!) == null);
-        Console.WriteLine(FindHighestRunningTotal([]) == null);
+        // Console.WriteLine(FindHighestRunningTotal([3, -1, 5, -10]) == 7);
+        // Console.WriteLine(FindHighestRunningTotal([5, -2, -10, 20]) == 13);
+        // Console.WriteLine(FindHighestRunningTotal([-2, -3, -1]) == -2);
+        // Console.WriteLine(FindHighestRunningTotal([1, 1, -5]) == 2);
+        // Console.WriteLine(FindHighestRunningTotal(null!) == null);
+        // Console.WriteLine(FindHighestRunningTotal([]) == null);
 
         // Mask All But Last Three Characters 
         // Console.WriteLine(MaskAllButLastThreeCharacters("abcdef") == "***def");
