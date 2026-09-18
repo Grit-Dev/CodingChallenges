@@ -158,18 +158,18 @@ public class Program
 
     public static double? FindHighestAverageOfTwoConsecutiveNumbers(int[] numbers)
     {
-        if(numbers is null || numbers.Length < 2)
+        if (numbers is null || numbers.Length < 2)
         {
             return null;
         }
 
         double? highestAverage = null;
 
-        for(int index = 1; index <= numbers.Length -1; index++)
+        for (int index = 1; index <= numbers.Length - 1; index++)
         {
-            double averageCounter = (numbers[index -1] + numbers[index]) / 2.0;
+            double averageCounter = (numbers[index - 1] + numbers[index]) / 2.0;
 
-            if(highestAverage is null || averageCounter > highestAverage)
+            if (highestAverage is null || averageCounter > highestAverage)
             {
                 highestAverage = averageCounter;
             }
@@ -177,15 +177,68 @@ public class Program
 
         return highestAverage;
     }
+
+    public static string FindFirstValidProductName(string input)
+    {
+        if (string.IsNullOrWhiteSpace(input))
+        {
+            return "";
+        }
+
+        string[] splitString = input.Split(',', StringSplitOptions.RemoveEmptyEntries);
+
+        foreach (string str in splitString)
+        {
+            string strTrimmed = str.Trim();
+
+            int equalsCounter = strTrimmed.Count(st => st == '=');
+
+            if (equalsCounter > 1)
+            {
+                continue;
+            }
+
+            int indexOfEqualPosition = strTrimmed.IndexOf('=');
+
+            if (indexOfEqualPosition <= 0)
+            {
+                continue;
+            }
+
+            if (strTrimmed.Substring(0, indexOfEqualPosition).Length == 0 ||
+            strTrimmed.Substring(indexOfEqualPosition + 1).Length == 0)
+            {
+                continue;
+            }
+
+            if(int.TryParse(strTrimmed.Substring(indexOfEqualPosition +1), out int value) &&
+            value >= 0)
+            {
+                return strTrimmed.Substring(0, indexOfEqualPosition);
+            }
+        }
+
+        return "";
+    }
     public static void Main(string[] args)
     {
+        // Find First Valid Product Name
+        Console.WriteLine(FindFirstValidProductName("bad, Sleeves=5, Box=40") == "sleeves");
+        Console.WriteLine(FindFirstValidProductName("Playmat=-10, Binder=35") == "Binder");
+        Console.WriteLine(FindFirstValidProductName("bad=abc, alsoBad") == "");
+        Console.WriteLine(FindFirstValidProductName("Case=0, Binder=20") == "Case");
+        Console.WriteLine(FindFirstValidProductName("One=10=20, Two=5") == "Two");
+        Console.WriteLine(FindFirstValidProductName("") == "");
+        Console.WriteLine(FindFirstValidProductName(" ") == "");
+        Console.WriteLine(FindFirstValidProductName(null!) == "");
+
         // Find Highest Average Of Two Consecutive Numbers
-        Console.WriteLine(FindHighestAverageOfTwoConsecutiveNumbers([2, 6, 10]) == 8);
-        Console.WriteLine(FindHighestAverageOfTwoConsecutiveNumbers([10, -2, 4]) == 4);
-        Console.WriteLine(FindHighestAverageOfTwoConsecutiveNumbers([-5, -1, -3]) == -2);
-        Console.WriteLine(FindHighestAverageOfTwoConsecutiveNumbers([7]) == null);
-        Console.WriteLine(FindHighestAverageOfTwoConsecutiveNumbers(null!) == null);
-        Console.WriteLine(FindHighestAverageOfTwoConsecutiveNumbers([]) == null);
+        // Console.WriteLine(FindHighestAverageOfTwoConsecutiveNumbers([2, 6, 10]) == 8);
+        // Console.WriteLine(FindHighestAverageOfTwoConsecutiveNumbers([10, -2, 4]) == 4);
+        // Console.WriteLine(FindHighestAverageOfTwoConsecutiveNumbers([-5, -1, -3]) == -2);
+        // Console.WriteLine(FindHighestAverageOfTwoConsecutiveNumbers([7]) == null);
+        // Console.WriteLine(FindHighestAverageOfTwoConsecutiveNumbers(null!) == null);
+        // Console.WriteLine(FindHighestAverageOfTwoConsecutiveNumbers([]) == null);
 
         // Extract Words Starting With Capital Letter
         // string[] capitalsOne = ExtractWordsStartingWithCapitalLetter("Paul is Coding today");
