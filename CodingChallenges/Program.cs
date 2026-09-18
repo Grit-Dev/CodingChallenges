@@ -140,16 +140,35 @@ public class Program
         return null;
     }
 
+    public static int CountNumbersInsideRangeButNotEdges(int[] numbers, int min, int max)
+    {
+        if(numbers is null || numbers.Length == 0 || min >= max)
+        {
+            return 0;
+        }
+
+        return numbers.Count(n => n > min && n < max);
+    }
+
     public static void Main(string[] args)
     {
+
+        // Warm Up: Count Numbers Inside Range But Not Equal To Edges
+        Console.WriteLine(CountNumbersInsideRangeButNotEdges([1, 5, 10, 15, 20], 5, 20) == 2);
+        Console.WriteLine(CountNumbersInsideRangeButNotEdges([5, 6, 7, 8], 5, 8) == 2);
+        Console.WriteLine(CountNumbersInsideRangeButNotEdges([1, 2, 3], 3, 3) == 0);
+        Console.WriteLine(CountNumbersInsideRangeButNotEdges([1, 2, 3], 10, 5) == 0);
+        Console.WriteLine(CountNumbersInsideRangeButNotEdges(null!, 0, 10) == 0);
+        Console.WriteLine(CountNumbersInsideRangeButNotEdges([], 0, 10) == 0);
+
         // Find First Number Larger Than The Next Two Numbers Combined
-        Console.WriteLine(FindFirstNumberLargerThanNextTwoCombined([10, 3, 4]) == 10);
-        Console.WriteLine(FindFirstNumberLargerThanNextTwoCombined([5, 3, 2]) == null);
-        Console.WriteLine(FindFirstNumberLargerThanNextTwoCombined([1, 20, 5, 5, 2]) == 20);
-        Console.WriteLine(FindFirstNumberLargerThanNextTwoCombined([1, 2, 3, 4, 5]) == null);
-        Console.WriteLine(FindFirstNumberLargerThanNextTwoCombined([5, 1, 1, 10, 3, 4]) == 5);
-        Console.WriteLine(FindFirstNumberLargerThanNextTwoCombined([]) == null);
-        Console.WriteLine(FindFirstNumberLargerThanNextTwoCombined(null!) == null);
+        // Console.WriteLine(FindFirstNumberLargerThanNextTwoCombined([10, 3, 4]) == 10);
+        // Console.WriteLine(FindFirstNumberLargerThanNextTwoCombined([5, 3, 2]) == null);
+        // Console.WriteLine(FindFirstNumberLargerThanNextTwoCombined([1, 20, 5, 5, 2]) == 20);
+        // Console.WriteLine(FindFirstNumberLargerThanNextTwoCombined([1, 2, 3, 4, 5]) == null);
+        // Console.WriteLine(FindFirstNumberLargerThanNextTwoCombined([5, 1, 1, 10, 3, 4]) == 5);
+        // Console.WriteLine(FindFirstNumberLargerThanNextTwoCombined([]) == null);
+        // Console.WriteLine(FindFirstNumberLargerThanNextTwoCombined(null!) == null);
 
         // Find Longest Consecutive Duplicate Streak
         // Console.WriteLine(FindLongestDuplicateStreakRev([7, 7, 7, 7]) == 4);
