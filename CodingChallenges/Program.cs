@@ -255,31 +255,51 @@ public class Program
 
         return winner;
     }
-
-
+    
     public static string[] GetUniqueLowercaseWordsWithLinq(string input) =>
-    string.IsNullOrWhiteSpace(input) ? [] : 
+    string.IsNullOrWhiteSpace(input) ? [] :
     input.Split(' ', StringSplitOptions.RemoveEmptyEntries).Select(i => i.ToLower())
     .Distinct()
     .ToArray();
 
+    public static int[] GetTopThreePassingScoresWithLinq(int[] scores) =>
+    scores is null || scores.Length == 0 ? [] : 
+    scores.Where(n => n >= 50).OrderByDescending(n => n).Take(3).ToArray();
+
     public static void Main(string[] args)
     {
-        // Distinct With LINQ:
-        string[] uniqueOne = GetUniqueLowercaseWordsWithLinq("Red blue RED green blue");
-        Console.WriteLine(uniqueOne.Length == 3);
-        Console.WriteLine(uniqueOne[0] == "red");
-        Console.WriteLine(uniqueOne[1] == "blue");
-        Console.WriteLine(uniqueOne[2] == "green");
+        // LINQ Where + OrderBy + Take
+        int[] passingTopOne = GetTopThreePassingScoresWithLinq([40, 80, 50, 100, 30, 90]);
+        Console.WriteLine(passingTopOne.Length == 3);
+        Console.WriteLine(passingTopOne[0] == 100);
+        Console.WriteLine(passingTopOne[1] == 90);
+        Console.WriteLine(passingTopOne[2] == 80);
 
-        string[] uniqueTwo = GetUniqueLowercaseWordsWithLinq("Cat cat DOG dog bird");
-        Console.WriteLine(uniqueTwo.Length == 3);
-        Console.WriteLine(uniqueTwo[0] == "cat");
-        Console.WriteLine(uniqueTwo[1] == "dog");
-        Console.WriteLine(uniqueTwo[2] == "bird");
-        Console.WriteLine(GetUniqueLowercaseWordsWithLinq("").Length == 0);
-        Console.WriteLine(GetUniqueLowercaseWordsWithLinq(" ").Length == 0);
-        Console.WriteLine(GetUniqueLowercaseWordsWithLinq(null!).Length == 0);
+        int[] passingTopTwo = GetTopThreePassingScoresWithLinq([45, 50, 60]);
+        Console.WriteLine(passingTopTwo.Length == 2);
+        Console.WriteLine(passingTopTwo[0] == 60);
+        Console.WriteLine(passingTopTwo[1] == 50);
+
+        int[] passingTopThree = GetTopThreePassingScoresWithLinq([10, 20, 30]);
+        Console.WriteLine(passingTopThree.Length == 0);
+        Console.WriteLine(GetTopThreePassingScoresWithLinq([]).Length == 0);
+        Console.WriteLine(GetTopThreePassingScoresWithLinq([]).Length == 0);
+
+        // Distinct With LINQ:
+        // string[] uniqueOne = GetUniqueLowercaseWordsWithLinq("Red blue RED green blue");
+        // Console.WriteLine(uniqueOne.Length == 3);
+        // Console.WriteLine(uniqueOne[0] == "red");
+        // Console.WriteLine(uniqueOne[1] == "blue");
+        // Console.WriteLine(uniqueOne[2] == "green");
+
+        // string[] uniqueTwo = GetUniqueLowercaseWordsWithLinq("Cat cat DOG dog bird");
+        // Console.WriteLine(uniqueTwo.Length == 3);
+        // Console.WriteLine(uniqueTwo[0] == "cat");
+        // Console.WriteLine(uniqueTwo[1] == "dog");
+        // Console.WriteLine(uniqueTwo[2] == "bird");
+        // Console.WriteLine(GetUniqueLowercaseWordsWithLinq("").Length == 0);
+        // Console.WriteLine(GetUniqueLowercaseWordsWithLinq(" ").Length == 0);
+        // Console.WriteLine(GetUniqueLowercaseWordsWithLinq(null!).Length == 0);
 
         // Find Most Frequent Word
         // Console.WriteLine(FindMostFrequentWord("red blue red green") == "red");
