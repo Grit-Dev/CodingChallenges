@@ -6,6 +6,298 @@ namespace CodingChallenges.Challenges.Phase_02_OOP
 {
     public class ChallengeSolutions
     {
+        public static int? FindFirstGapGreaterThanThree(int[] numbers)
+        {
+            if (numbers is null || numbers.Length < 2)
+            {
+                return null;
+            }
+
+            const int biggestgapBetweenNumbers = 3;
+
+            for (int index = 1; index <= numbers.Length - 1; index++)
+            {
+                int total = Math.Abs(numbers[index] - numbers[index - 1]);
+
+                if (total > biggestgapBetweenNumbers)
+                {
+                    return total;
+                }
+            }
+
+            return null;
+        }
+
+        public static int CountDirectionChanges(int[] numbers)
+        {
+            if (numbers is null || numbers.Length < 3)
+            {
+                return 0;
+            }
+
+            bool isGoingUp = false;
+            bool isGoingDown = false;
+            int counter = 0;
+
+            for (int index = 1; index <= numbers.Length - 1; index++)
+            {
+                if (numbers[index - 1] < numbers[index])
+                {
+                    if (isGoingDown)
+                    {
+                        counter++;
+                    }
+
+                    isGoingUp = true;
+                    isGoingDown = false;
+                }
+                else if (numbers[index - 1] > numbers[index])
+                {
+                    if (isGoingUp)
+                    {
+                        counter++;
+                    }
+
+                    isGoingDown = true;
+                    isGoingUp = false;
+
+                }
+            }
+
+            return counter;
+        }
+
+        public static int? FindFirstNumberSeenThreeTimes(int[] numbers)
+        {
+            if (numbers is null || numbers.Length == 0)
+            {
+                return null;
+            }
+
+            Dictionary<int, int> newDict = [];
+
+            foreach (int number in numbers)
+            {
+                if (newDict.TryGetValue(number, out int value))
+                {
+                    newDict[number] = value + 1;
+
+                    if (newDict[number] == 3)
+                    {
+                        return number;
+                    }
+                }
+                else
+                {
+                    newDict[number] = 1;
+                }
+            }
+            return null;
+        }
+
+        public static int FindLongestDuplicateStreakRev(int[] numbers)
+        {
+            if (numbers is null || numbers.Length == 0)
+            {
+                return 0;
+
+            }
+
+            int currentStreak = 1;
+            int highestStreak = 1;
+
+            for (int index = 1; index < numbers.Length; index++)
+            {
+                if (numbers[index] == numbers[index - 1])
+                {
+                    currentStreak++;
+                }
+                else
+                {
+                    currentStreak = 1;
+                }
+
+                if (currentStreak > highestStreak)
+                {
+                    highestStreak = currentStreak;
+                }
+            }
+
+            return highestStreak;
+        }
+
+        public static int? FindFirstNumberLargerThanNextTwoCombined(int[] numbers)
+        {
+            if (numbers is null || numbers.Length < 3)
+            {
+                return null;
+            }
+
+            for (int index = 0; index < numbers.Length - 2; index++)
+            {
+                if (numbers[index] > numbers[index + 1] + numbers[index + 2])
+                {
+                    return numbers[index];
+                }
+            }
+
+            return null;
+        }
+
+        public static int CountNumbersInsideRangeButNotEdges(int[] numbers, int min, int max)
+        {
+            if (numbers is null || numbers.Length == 0 || min >= max)
+            {
+                return 0;
+            }
+
+            return numbers.Count(n => n > min && n < max);
+        }
+
+
+        public static string[] ExtractWordsStartingWithCapitalLetter(string input) =>
+        string.IsNullOrWhiteSpace(input) ? [] :
+        input.Split(' ', StringSplitOptions.RemoveEmptyEntries)
+        .Where(i => char.IsUpper(i[0])).ToArray();
+
+        public static double? FindHighestAverageOfTwoConsecutiveNumbers(int[] numbers)
+        {
+            if (numbers is null || numbers.Length < 2)
+            {
+                return null;
+            }
+
+            double? highestAverage = null;
+
+            for (int index = 1; index <= numbers.Length - 1; index++)
+            {
+                double averageCounter = (numbers[index - 1] + numbers[index]) / 2.0;
+
+                if (highestAverage is null || averageCounter > highestAverage)
+                {
+                    highestAverage = averageCounter;
+                }
+            }
+
+            return highestAverage;
+        }
+
+        public static string FindFirstValidProductName(string input)
+        {
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                return "";
+            }
+
+            string[] splitString = input.Split(',', StringSplitOptions.RemoveEmptyEntries);
+
+            foreach (string str in splitString)
+            {
+                string strTrimmed = str.Trim();
+
+                int equalsCounter = strTrimmed.Count(st => st == '=');
+
+                if (equalsCounter > 1)
+                {
+                    continue;
+                }
+
+                int indexOfEqualPosition = strTrimmed.IndexOf('=');
+
+                if (indexOfEqualPosition <= 0)
+                {
+                    continue;
+                }
+
+                if (strTrimmed.Substring(0, indexOfEqualPosition).Length == 0 ||
+                strTrimmed.Substring(indexOfEqualPosition + 1).Length == 0)
+                {
+                    continue;
+                }
+
+                if (int.TryParse(strTrimmed.Substring(indexOfEqualPosition + 1), out int value) &&
+                value >= 0)
+                {
+                    return strTrimmed.Substring(0, indexOfEqualPosition);
+                }
+            }
+
+            return "";
+        }
+
+        public static string FindMostFrequentWord(string input)
+        {
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                return "";
+            }
+            string winner = "";
+            int highestCount = 0;
+            Dictionary<string, int> newDict = [];
+
+            string[] splitString = input.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+            foreach (string word in splitString)
+            {
+                string lowerWord = word.ToLower();
+
+                if (newDict.TryGetValue(lowerWord, out int value))
+                {
+                    newDict[lowerWord] = value + 1;
+                }
+                else
+                {
+                    newDict[lowerWord] = 1;
+                }
+
+                if (newDict[lowerWord] > highestCount)
+                {
+                    highestCount = newDict[lowerWord];
+                    winner = lowerWord;
+                }
+            }
+
+            return winner;
+        }
+
+        public static string[] GetUniqueLowercaseWordsWithLinq(string input) =>
+        string.IsNullOrWhiteSpace(input) ? [] :
+        input.Split(' ', StringSplitOptions.RemoveEmptyEntries).Select(i => i.ToLower())
+        .Distinct()
+        .ToArray();
+
+        public static int[] GetTopThreePassingScoresWithLinq(int[] scores) =>
+        scores is null || scores.Length == 0 ? [] :
+        scores.Where(n => n >= 50).OrderByDescending(n => n).Take(3).ToArray();
+
+        public static int? FindIndexOfFirstHighestNumber(int[] numbers)
+        {
+            if (numbers is null || numbers.Length == 0)
+            {
+                return null;
+            }
+
+            for (int index = 0; index <= numbers.Length - 1; index++)
+            {
+                bool isGreaterThanAllNumbers = true;
+
+                for (int innerIndex = 0; innerIndex <= numbers.Length - 1; innerIndex++)
+                {
+                    if (numbers[index] < numbers[innerIndex])
+                    {
+                        isGreaterThanAllNumbers = false;
+                        break;
+                    }
+                }
+
+                if (isGreaterThanAllNumbers)
+                {
+                    return index;
+                }
+            }
+
+            return null;
+        }
         public static int CountNumbersGreaterThanPreviousNumber(int[] numbers)
         {
             if (numbers is null || numbers.Length < 2)
