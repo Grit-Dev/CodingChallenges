@@ -211,7 +211,7 @@ public class Program
                 continue;
             }
 
-            if(int.TryParse(strTrimmed.Substring(indexOfEqualPosition +1), out int value) &&
+            if (int.TryParse(strTrimmed.Substring(indexOfEqualPosition + 1), out int value) &&
             value >= 0)
             {
                 return strTrimmed.Substring(0, indexOfEqualPosition);
@@ -220,17 +220,62 @@ public class Program
 
         return "";
     }
+
+    public static string FindMostFrequentWord(string input)
+    {
+        if (string.IsNullOrWhiteSpace(input))
+        {
+            return "";
+        }
+        string winner = "";
+        int highestCount = 0;
+        Dictionary<string, int> newDict = [];
+
+        string[] splitString = input.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+        foreach (string word in splitString)
+        {
+            string lowerWord = word.ToLower();
+
+            if (newDict.TryGetValue(lowerWord, out int value))
+            {
+                newDict[lowerWord] = value + 1;
+            }
+            else
+            {
+                newDict[lowerWord] = 1;
+            }
+
+            if (newDict[lowerWord] > highestCount)
+            {
+                highestCount = newDict[lowerWord];
+                winner = lowerWord;
+            }
+        }
+
+        return winner;
+    }
+
     public static void Main(string[] args)
     {
+        // Find Most Frequent Word
+        Console.WriteLine(FindMostFrequentWord("red blue red green") == "red");
+        Console.WriteLine(FindMostFrequentWord("Cat dog cat bird dog dog") == "dog");
+        Console.WriteLine(FindMostFrequentWord("one two three") == "one");
+        Console.WriteLine(FindMostFrequentWord("Hello hello HELLO") == "hello");
+        Console.WriteLine(FindMostFrequentWord("") == "");
+        Console.WriteLine(FindMostFrequentWord(" ") == "");
+        Console.WriteLine(FindMostFrequentWord(null!) == "");
+
         // Find First Valid Product Name
-        Console.WriteLine(FindFirstValidProductName("bad, Sleeves=5, Box=40") == "sleeves");
-        Console.WriteLine(FindFirstValidProductName("Playmat=-10, Binder=35") == "Binder");
-        Console.WriteLine(FindFirstValidProductName("bad=abc, alsoBad") == "");
-        Console.WriteLine(FindFirstValidProductName("Case=0, Binder=20") == "Case");
-        Console.WriteLine(FindFirstValidProductName("One=10=20, Two=5") == "Two");
-        Console.WriteLine(FindFirstValidProductName("") == "");
-        Console.WriteLine(FindFirstValidProductName(" ") == "");
-        Console.WriteLine(FindFirstValidProductName(null!) == "");
+        // Console.WriteLine(FindFirstValidProductName("bad, Sleeves=5, Box=40") == "sleeves");
+        // Console.WriteLine(FindFirstValidProductName("Playmat=-10, Binder=35") == "Binder");
+        // Console.WriteLine(FindFirstValidProductName("bad=abc, alsoBad") == "");
+        // Console.WriteLine(FindFirstValidProductName("Case=0, Binder=20") == "Case");
+        // Console.WriteLine(FindFirstValidProductName("One=10=20, Two=5") == "Two");
+        // Console.WriteLine(FindFirstValidProductName("") == "");
+        // Console.WriteLine(FindFirstValidProductName(" ") == "");
+        // Console.WriteLine(FindFirstValidProductName(null!) == "");
 
         // Find Highest Average Of Two Consecutive Numbers
         // Console.WriteLine(FindHighestAverageOfTwoConsecutiveNumbers([2, 6, 10]) == 8);
