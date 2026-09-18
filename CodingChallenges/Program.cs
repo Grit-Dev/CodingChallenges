@@ -142,7 +142,7 @@ public class Program
 
     public static int CountNumbersInsideRangeButNotEdges(int[] numbers, int min, int max)
     {
-        if(numbers is null || numbers.Length == 0 || min >= max)
+        if (numbers is null || numbers.Length == 0 || min >= max)
         {
             return 0;
         }
@@ -150,16 +150,35 @@ public class Program
         return numbers.Count(n => n > min && n < max);
     }
 
+
+    public static string[] ExtractWordsStartingWithCapitalLetter(string input) =>
+    string.IsNullOrWhiteSpace(input) ? [] : 
+    input.Split(' ', StringSplitOptions.RemoveEmptyEntries)
+    .Where(i => char.IsUpper(i[0])).ToArray();
+    
     public static void Main(string[] args)
     {
+        // Extract Words Starting With Capital Letter
+        string[] capitalsOne = ExtractWordsStartingWithCapitalLetter("Paul is Coding today");
+        Console.WriteLine(capitalsOne.Length == 2);
+        Console.WriteLine(capitalsOne[0] == "Paul");
+        Console.WriteLine(capitalsOne[1] == "Coding");
+
+        string[] capitalsTwo = ExtractWordsStartingWithCapitalLetter("hello World 123Test @Name");
+        Console.WriteLine(capitalsTwo.Length == 1);
+        Console.WriteLine(capitalsTwo[0] == "World");
+        Console.WriteLine(ExtractWordsStartingWithCapitalLetter("all lowercase words").Length == 0);
+        Console.WriteLine(ExtractWordsStartingWithCapitalLetter("").Length == 0);
+        Console.WriteLine(ExtractWordsStartingWithCapitalLetter(" ").Length == 0);
+        Console.WriteLine(ExtractWordsStartingWithCapitalLetter(null!).Length == 0);
 
         // Warm Up: Count Numbers Inside Range But Not Equal To Edges
-        Console.WriteLine(CountNumbersInsideRangeButNotEdges([1, 5, 10, 15, 20], 5, 20) == 2);
-        Console.WriteLine(CountNumbersInsideRangeButNotEdges([5, 6, 7, 8], 5, 8) == 2);
-        Console.WriteLine(CountNumbersInsideRangeButNotEdges([1, 2, 3], 3, 3) == 0);
-        Console.WriteLine(CountNumbersInsideRangeButNotEdges([1, 2, 3], 10, 5) == 0);
-        Console.WriteLine(CountNumbersInsideRangeButNotEdges(null!, 0, 10) == 0);
-        Console.WriteLine(CountNumbersInsideRangeButNotEdges([], 0, 10) == 0);
+        // Console.WriteLine(CountNumbersInsideRangeButNotEdges([1, 5, 10, 15, 20], 5, 20) == 2);
+        // Console.WriteLine(CountNumbersInsideRangeButNotEdges([5, 6, 7, 8], 5, 8) == 2);
+        // Console.WriteLine(CountNumbersInsideRangeButNotEdges([1, 2, 3], 3, 3) == 0);
+        // Console.WriteLine(CountNumbersInsideRangeButNotEdges([1, 2, 3], 10, 5) == 0);
+        // Console.WriteLine(CountNumbersInsideRangeButNotEdges(null!, 0, 10) == 0);
+        // Console.WriteLine(CountNumbersInsideRangeButNotEdges([], 0, 10) == 0);
 
         // Find First Number Larger Than The Next Two Numbers Combined
         // Console.WriteLine(FindFirstNumberLargerThanNextTwoCombined([10, 3, 4]) == 10);
