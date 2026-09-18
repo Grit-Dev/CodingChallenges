@@ -256,16 +256,39 @@ public class Program
         return winner;
     }
 
+
+    public static string[] GetUniqueLowercaseWordsWithLinq(string input) =>
+    string.IsNullOrWhiteSpace(input) ? [] : 
+    input.Split(' ', StringSplitOptions.RemoveEmptyEntries).Select(i => i.ToLower())
+    .Distinct()
+    .ToArray();
+
     public static void Main(string[] args)
     {
+        // Distinct With LINQ:
+        string[] uniqueOne = GetUniqueLowercaseWordsWithLinq("Red blue RED green blue");
+        Console.WriteLine(uniqueOne.Length == 3);
+        Console.WriteLine(uniqueOne[0] == "red");
+        Console.WriteLine(uniqueOne[1] == "blue");
+        Console.WriteLine(uniqueOne[2] == "green");
+
+        string[] uniqueTwo = GetUniqueLowercaseWordsWithLinq("Cat cat DOG dog bird");
+        Console.WriteLine(uniqueTwo.Length == 3);
+        Console.WriteLine(uniqueTwo[0] == "cat");
+        Console.WriteLine(uniqueTwo[1] == "dog");
+        Console.WriteLine(uniqueTwo[2] == "bird");
+        Console.WriteLine(GetUniqueLowercaseWordsWithLinq("").Length == 0);
+        Console.WriteLine(GetUniqueLowercaseWordsWithLinq(" ").Length == 0);
+        Console.WriteLine(GetUniqueLowercaseWordsWithLinq(null!).Length == 0);
+
         // Find Most Frequent Word
-        Console.WriteLine(FindMostFrequentWord("red blue red green") == "red");
-        Console.WriteLine(FindMostFrequentWord("Cat dog cat bird dog dog") == "dog");
-        Console.WriteLine(FindMostFrequentWord("one two three") == "one");
-        Console.WriteLine(FindMostFrequentWord("Hello hello HELLO") == "hello");
-        Console.WriteLine(FindMostFrequentWord("") == "");
-        Console.WriteLine(FindMostFrequentWord(" ") == "");
-        Console.WriteLine(FindMostFrequentWord(null!) == "");
+        // Console.WriteLine(FindMostFrequentWord("red blue red green") == "red");
+        // Console.WriteLine(FindMostFrequentWord("Cat dog cat bird dog dog") == "dog");
+        // Console.WriteLine(FindMostFrequentWord("one two three") == "one");
+        // Console.WriteLine(FindMostFrequentWord("Hello hello HELLO") == "hello");
+        // Console.WriteLine(FindMostFrequentWord("") == "");
+        // Console.WriteLine(FindMostFrequentWord(" ") == "");
+        // Console.WriteLine(FindMostFrequentWord(null!) == "");
 
         // Find First Valid Product Name
         // Console.WriteLine(FindFirstValidProductName("bad, Sleeves=5, Box=40") == "sleeves");
