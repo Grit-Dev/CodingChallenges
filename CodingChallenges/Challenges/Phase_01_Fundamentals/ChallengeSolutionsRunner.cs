@@ -6,6 +6,138 @@ namespace CodingChallenges.Challenges.Phase_02_OOP
     {
         public static void Run_Four_Dictionary_Work()
         {
+            // Find The First Number Greater Than All Previous Numbers
+            Console.WriteLine(FindIndexOfFirstHighestNumber([5, 3, 4, 6]) == 6);
+            Console.WriteLine(FindIndexOfFirstHighestNumber([10, 9, 8, 7]) == null);
+            Console.WriteLine(FindIndexOfFirstHighestNumber([5, 8, 2, 100]) == 8);
+            Console.WriteLine(FindIndexOfFirstHighestNumber([1, 2, 3, 4]) == 2);
+            Console.WriteLine(FindIndexOfFirstHighestNumber([5]) == null);
+            Console.WriteLine(FindIndexOfFirstHighestNumber([]) == null);
+            Console.WriteLine(FindIndexOfFirstHighestNumber(null!) == null);
+
+            // LINQ Where + OrderBy + Take
+            int[] passingTopOne = GetTopThreePassingScoresWithLinq([40, 80, 50, 100, 30, 90]);
+            Console.WriteLine(passingTopOne.Length == 3);
+            Console.WriteLine(passingTopOne[0] == 100);
+            Console.WriteLine(passingTopOne[1] == 90);
+            Console.WriteLine(passingTopOne[2] == 80);
+
+            int[] passingTopTwo = GetTopThreePassingScoresWithLinq([45, 50, 60]);
+            Console.WriteLine(passingTopTwo.Length == 2);
+            Console.WriteLine(passingTopTwo[0] == 60);
+            Console.WriteLine(passingTopTwo[1] == 50);
+
+            int[] passingTopThree = GetTopThreePassingScoresWithLinq([10, 20, 30]);
+            Console.WriteLine(passingTopThree.Length == 0);
+            Console.WriteLine(GetTopThreePassingScoresWithLinq([]).Length == 0);
+            Console.WriteLine(GetTopThreePassingScoresWithLinq([]).Length == 0);
+
+            // Distinct With LINQ:
+            string[] uniqueOne = GetUniqueLowercaseWordsWithLinq("Red blue RED green blue");
+            Console.WriteLine(uniqueOne.Length == 3);
+            Console.WriteLine(uniqueOne[0] == "red");
+            Console.WriteLine(uniqueOne[1] == "blue");
+            Console.WriteLine(uniqueOne[2] == "green");
+
+            string[] uniqueTwo = GetUniqueLowercaseWordsWithLinq("Cat cat DOG dog bird");
+            Console.WriteLine(uniqueTwo.Length == 3);
+            Console.WriteLine(uniqueTwo[0] == "cat");
+            Console.WriteLine(uniqueTwo[1] == "dog");
+            Console.WriteLine(uniqueTwo[2] == "bird");
+            Console.WriteLine(GetUniqueLowercaseWordsWithLinq("").Length == 0);
+            Console.WriteLine(GetUniqueLowercaseWordsWithLinq(" ").Length == 0);
+            Console.WriteLine(GetUniqueLowercaseWordsWithLinq(null!).Length == 0);
+
+            // Find Most Frequent Word
+            Console.WriteLine(FindMostFrequentWordRevRev("red blue red green") == "red");
+            Console.WriteLine(FindMostFrequentWordRevRev("Cat dog cat bird dog dog") == "dog");
+            Console.WriteLine(FindMostFrequentWordRevRev("one two three") == "one");
+            Console.WriteLine(FindMostFrequentWordRevRev("Hello hello HELLO") == "hello");
+            Console.WriteLine(FindMostFrequentWordRevRev("") == "");
+            Console.WriteLine(FindMostFrequentWordRevRev(" ") == "");
+            Console.WriteLine(FindMostFrequentWordRevRev(null!) == "");
+
+            // Find First Valid Product Name
+            Console.WriteLine(FindFirstValidProductName("bad, Sleeves=5, Box=40") == "sleeves");
+            Console.WriteLine(FindFirstValidProductName("Playmat=-10, Binder=35") == "Binder");
+            Console.WriteLine(FindFirstValidProductName("bad=abc, alsoBad") == "");
+            Console.WriteLine(FindFirstValidProductName("Case=0, Binder=20") == "Case");
+            Console.WriteLine(FindFirstValidProductName("One=10=20, Two=5") == "Two");
+            Console.WriteLine(FindFirstValidProductName("") == "");
+            Console.WriteLine(FindFirstValidProductName(" ") == "");
+            Console.WriteLine(FindFirstValidProductName(null!) == "");
+
+            // Find Highest Average Of Two Consecutive Numbers
+            Console.WriteLine(FindHighestAverageOfTwoConsecutiveNumbers([2, 6, 10]) == 8);
+            Console.WriteLine(FindHighestAverageOfTwoConsecutiveNumbers([10, -2, 4]) == 4);
+            Console.WriteLine(FindHighestAverageOfTwoConsecutiveNumbers([-5, -1, -3]) == -2);
+            Console.WriteLine(FindHighestAverageOfTwoConsecutiveNumbers([7]) == null);
+            Console.WriteLine(FindHighestAverageOfTwoConsecutiveNumbers(null!) == null);
+            Console.WriteLine(FindHighestAverageOfTwoConsecutiveNumbers([]) == null);
+
+            // Extract Words Starting With Capital Letter
+            string[] capitalsOne = ExtractWordsStartingWithCapitalLetter("Paul is Coding today");
+            Console.WriteLine(capitalsOne.Length == 2);
+            Console.WriteLine(capitalsOne[0] == "Paul");
+            Console.WriteLine(capitalsOne[1] == "Coding");
+
+            string[] capitalsTwo = ExtractWordsStartingWithCapitalLetter("hello World 123Test @Name");
+            Console.WriteLine(capitalsTwo.Length == 1);
+            Console.WriteLine(capitalsTwo[0] == "World");
+            Console.WriteLine(ExtractWordsStartingWithCapitalLetter("all lowercase words").Length == 0);
+            Console.WriteLine(ExtractWordsStartingWithCapitalLetter("").Length == 0);
+            Console.WriteLine(ExtractWordsStartingWithCapitalLetter(" ").Length == 0);
+            Console.WriteLine(ExtractWordsStartingWithCapitalLetter(null!).Length == 0);
+
+            // Warm Up: Count Numbers Inside Range But Not Equal To Edges
+            Console.WriteLine(CountNumbersInsideRangeButNotEdges([1, 5, 10, 15, 20], 5, 20) == 2);
+            Console.WriteLine(CountNumbersInsideRangeButNotEdges([5, 6, 7, 8], 5, 8) == 2);
+            Console.WriteLine(CountNumbersInsideRangeButNotEdges([1, 2, 3], 3, 3) == 0);
+            Console.WriteLine(CountNumbersInsideRangeButNotEdges([1, 2, 3], 10, 5) == 0);
+            Console.WriteLine(CountNumbersInsideRangeButNotEdges(null!, 0, 10) == 0);
+            Console.WriteLine(CountNumbersInsideRangeButNotEdges([], 0, 10) == 0);
+
+            // Find First Number Larger Than The Next Two Numbers Combined
+            Console.WriteLine(FindFirstNumberLargerThanNextTwoCombined([10, 3, 4]) == 10);
+            Console.WriteLine(FindFirstNumberLargerThanNextTwoCombined([5, 3, 2]) == null);
+            Console.WriteLine(FindFirstNumberLargerThanNextTwoCombined([1, 20, 5, 5, 2]) == 20);
+            Console.WriteLine(FindFirstNumberLargerThanNextTwoCombined([1, 2, 3, 4, 5]) == null);
+            Console.WriteLine(FindFirstNumberLargerThanNextTwoCombined([5, 1, 1, 10, 3, 4]) == 5);
+            Console.WriteLine(FindFirstNumberLargerThanNextTwoCombined([]) == null);
+            Console.WriteLine(FindFirstNumberLargerThanNextTwoCombined(null!) == null);
+
+            // Find Longest Consecutive Duplicate Streak
+            Console.WriteLine(FindLongestDuplicateStreakRev([7, 7, 7, 7]) == 4);
+            Console.WriteLine(FindLongestDuplicateStreakRev([5, 5, 5, 2, 2, 7]) == 3);
+            Console.WriteLine(FindLongestDuplicateStreakRev([1, 2, 3, 4]) == 1);
+            Console.WriteLine(FindLongestDuplicateStreakRev([1, 1, 2, 2, 2, 3]) == 3);
+            Console.WriteLine(FindLongestDuplicateStreakRev([]) == 0);
+            Console.WriteLine(FindLongestDuplicateStreakRev(null!) == 0);
+
+            // Find Firstr Number Seen Three Times
+            Console.WriteLine(FindFirstNumberSeenThreeTimes([5, 2, 5, 7, 5]) == 5);
+            Console.WriteLine(FindFirstNumberSeenThreeTimes([1, 2, 1, 2, 1]) == 1);
+            Console.WriteLine(FindFirstNumberSeenThreeTimes([3, 3, 3]) == 3);
+            Console.WriteLine(FindFirstNumberSeenThreeTimes([1, 2, 3]) == null);
+            Console.WriteLine(FindFirstNumberSeenThreeTimes([]) == null);
+            Console.WriteLine(FindFirstNumberSeenThreeTimes(null!) == null);
+
+            // Count Direction Changes
+            Console.WriteLine(CountDirectionChanges([1, 3, 5, 4, 2, 6]) == 2);
+            Console.WriteLine(CountDirectionChanges([1, 2, 3, 4]) == 0);
+            Console.WriteLine(CountDirectionChanges([4, 3, 2, 1]) == 0);
+            Console.WriteLine(CountDirectionChanges([1, 3, 1, 3, 1]) == 3);
+            Console.WriteLine(CountDirectionChanges([]) == 0);
+            Console.WriteLine(CountDirectionChanges(null!) == 0);
+
+            // Find The First Gap Greater Than Three
+            Console.WriteLine(FindFirstGapGreaterThanThree([5, 6, 10, 11]) == 4);
+            Console.WriteLine(FindFirstGapGreaterThanThree([1, 2, 3, 4]) == null);
+            Console.WriteLine(FindFirstGapGreaterThanThree([10, 5]) == 5);
+            Console.WriteLine(FindFirstGapGreaterThanThree([-1, -8]) == 7);
+            Console.WriteLine(FindFirstGapGreaterThanThree(null!) == null);
+            Console.WriteLine(FindFirstGapGreaterThanThree([]) == null);
+
             // Running Total With Index Again
             Console.WriteLine(FindIndexOfHighestRunningTotalAgainRev([3, -1, 5, -10]) == 2);
             Console.WriteLine(FindIndexOfHighestRunningTotalAgainRev([5, -2, -10, 20]) == 3);

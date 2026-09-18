@@ -7467,7 +7467,7 @@ namespace CodingChallenges.Challenges.Phase_02_OOP
             return newStringReturnOutCome.ToString().Trim();
         }
 
-        public static string FindMostFrequentWord(string pinputValue)
+        public static string FindMostFrequentWordRev(string pinputValue)
         {
             if (string.IsNullOrEmpty(pinputValue))
             {
