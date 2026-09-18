@@ -152,25 +152,54 @@ public class Program
 
 
     public static string[] ExtractWordsStartingWithCapitalLetter(string input) =>
-    string.IsNullOrWhiteSpace(input) ? [] : 
+    string.IsNullOrWhiteSpace(input) ? [] :
     input.Split(' ', StringSplitOptions.RemoveEmptyEntries)
     .Where(i => char.IsUpper(i[0])).ToArray();
-    
+
+    public static double? FindHighestAverageOfTwoConsecutiveNumbers(int[] numbers)
+    {
+        if(numbers is null || numbers.Length < 2)
+        {
+            return null;
+        }
+
+        double? highestAverage = null;
+
+        for(int index = 1; index <= numbers.Length -1; index++)
+        {
+            double averageCounter = (numbers[index -1] + numbers[index]) / 2.0;
+
+            if(highestAverage is null || averageCounter > highestAverage)
+            {
+                highestAverage = averageCounter;
+            }
+        }
+
+        return highestAverage;
+    }
     public static void Main(string[] args)
     {
-        // Extract Words Starting With Capital Letter
-        string[] capitalsOne = ExtractWordsStartingWithCapitalLetter("Paul is Coding today");
-        Console.WriteLine(capitalsOne.Length == 2);
-        Console.WriteLine(capitalsOne[0] == "Paul");
-        Console.WriteLine(capitalsOne[1] == "Coding");
+        // Find Highest Average Of Two Consecutive Numbers
+        Console.WriteLine(FindHighestAverageOfTwoConsecutiveNumbers([2, 6, 10]) == 8);
+        Console.WriteLine(FindHighestAverageOfTwoConsecutiveNumbers([10, -2, 4]) == 4);
+        Console.WriteLine(FindHighestAverageOfTwoConsecutiveNumbers([-5, -1, -3]) == -2);
+        Console.WriteLine(FindHighestAverageOfTwoConsecutiveNumbers([7]) == null);
+        Console.WriteLine(FindHighestAverageOfTwoConsecutiveNumbers(null!) == null);
+        Console.WriteLine(FindHighestAverageOfTwoConsecutiveNumbers([]) == null);
 
-        string[] capitalsTwo = ExtractWordsStartingWithCapitalLetter("hello World 123Test @Name");
-        Console.WriteLine(capitalsTwo.Length == 1);
-        Console.WriteLine(capitalsTwo[0] == "World");
-        Console.WriteLine(ExtractWordsStartingWithCapitalLetter("all lowercase words").Length == 0);
-        Console.WriteLine(ExtractWordsStartingWithCapitalLetter("").Length == 0);
-        Console.WriteLine(ExtractWordsStartingWithCapitalLetter(" ").Length == 0);
-        Console.WriteLine(ExtractWordsStartingWithCapitalLetter(null!).Length == 0);
+        // Extract Words Starting With Capital Letter
+        // string[] capitalsOne = ExtractWordsStartingWithCapitalLetter("Paul is Coding today");
+        // Console.WriteLine(capitalsOne.Length == 2);
+        // Console.WriteLine(capitalsOne[0] == "Paul");
+        // Console.WriteLine(capitalsOne[1] == "Coding");
+
+        // string[] capitalsTwo = ExtractWordsStartingWithCapitalLetter("hello World 123Test @Name");
+        // Console.WriteLine(capitalsTwo.Length == 1);
+        // Console.WriteLine(capitalsTwo[0] == "World");
+        // Console.WriteLine(ExtractWordsStartingWithCapitalLetter("all lowercase words").Length == 0);
+        // Console.WriteLine(ExtractWordsStartingWithCapitalLetter("").Length == 0);
+        // Console.WriteLine(ExtractWordsStartingWithCapitalLetter(" ").Length == 0);
+        // Console.WriteLine(ExtractWordsStartingWithCapitalLetter(null!).Length == 0);
 
         // Warm Up: Count Numbers Inside Range But Not Equal To Edges
         // Console.WriteLine(CountNumbersInsideRangeButNotEdges([1, 5, 10, 15, 20], 5, 20) == 2);
