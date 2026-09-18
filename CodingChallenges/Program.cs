@@ -255,7 +255,7 @@ public class Program
 
         return winner;
     }
-    
+
     public static string[] GetUniqueLowercaseWordsWithLinq(string input) =>
     string.IsNullOrWhiteSpace(input) ? [] :
     input.Split(' ', StringSplitOptions.RemoveEmptyEntries).Select(i => i.ToLower())
@@ -263,11 +263,49 @@ public class Program
     .ToArray();
 
     public static int[] GetTopThreePassingScoresWithLinq(int[] scores) =>
-    scores is null || scores.Length == 0 ? [] : 
+    scores is null || scores.Length == 0 ? [] :
     scores.Where(n => n >= 50).OrderByDescending(n => n).Take(3).ToArray();
+
+    public static int? FindIndexOfFirstHighestNumber(int[] numbers)
+    {
+        if(numbers is null || numbers.Length == 0)
+        {
+            return null;
+        }
+
+        for(int index = 0; index <= numbers.Length -1; index++)
+        {
+            bool isGreaterThanAllNumbers = true;
+
+            for( int innerIndex = 0; innerIndex <= numbers.Length -1; innerIndex++)
+            {
+                if(numbers[index] < numbers[innerIndex])
+                {
+                   isGreaterThanAllNumbers = false;
+                   break; 
+                }
+            }
+
+            if(isGreaterThanAllNumbers)
+            {
+                return index;
+            }
+        }
+
+        return null;
+    }
 
     public static void Main(string[] args)
     {
+        // Find The First Number Greater Than All Previous Numbers
+        Console.WriteLine(FindIndexOfFirstHighestNumber([5, 3, 4, 6]) == 6);
+        Console.WriteLine(FindIndexOfFirstHighestNumber([10, 9, 8, 7]) == null);
+        Console.WriteLine(FindIndexOfFirstHighestNumber([5, 8, 2, 100]) == 8);
+        Console.WriteLine(FindIndexOfFirstHighestNumber([1, 2, 3, 4]) == 2);
+        Console.WriteLine(FindIndexOfFirstHighestNumber([5]) == null);
+        Console.WriteLine(FindIndexOfFirstHighestNumber([]) == null);
+        Console.WriteLine(FindIndexOfFirstHighestNumber(null!) == null);
+
         // LINQ Where + OrderBy + Take
         int[] passingTopOne = GetTopThreePassingScoresWithLinq([40, 80, 50, 100, 30, 90]);
         Console.WriteLine(passingTopOne.Length == 3);
