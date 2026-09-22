@@ -1,5 +1,6 @@
 ﻿using System.Globalization;
 using System.Reflection.Metadata.Ecma335;
+using System.Text;
 
 public class Program
 {
@@ -468,8 +469,36 @@ public class Program
             .ToArray();
     }
 
+    public static string[] GetUniqueWordsLowercaseWithLinq(string input)
+    {
+        if (string.IsNullOrWhiteSpace(input))
+        {
+            return [];
+        }
+
+        return input.Split(' ', StringSplitOptions.RemoveEmptyEntries)
+            .Select(n => n.ToLower())
+            .Distinct().ToArray();
+    }
     public static void Main(string[] args)
     {
+        // LINQ Distinct Repair
+        string[] uniqueOne = GetUniqueWordsLowercaseWithLinq("Red blue RED green blue");
+
+        Console.WriteLine(uniqueOne.Length == 3);
+        Console.WriteLine(uniqueOne[0] == "red");
+        Console.WriteLine(uniqueOne[1] == "blue");
+        Console.WriteLine(uniqueOne[2] == "green");
+
+        string[] uniqueTwo = GetUniqueWordsLowercaseWithLinq("Cat cat DOG dog bird");
+        Console.WriteLine(uniqueTwo.Length == 3);
+        Console.WriteLine(uniqueTwo[0] == "cat");
+        Console.WriteLine(uniqueTwo[1] == "dog");
+        Console.WriteLine(uniqueTwo[2] == "bird");
+        Console.WriteLine(GetUniqueWordsLowercaseWithLinq("").Length == 0);
+        Console.WriteLine(GetUniqueWordsLowercaseWithLinq("   ").Length == 0);
+        Console.WriteLine(GetUniqueWordsLowercaseWithLinq(null!).Length == 0);
+
         //Get Squared Positive Number With Linq
         int[] squaredOne = GetSquaredPositiveNumbersWithLinq([-2, 3, 0, 4]);
         Console.WriteLine(squaredOne.Length == 2);
