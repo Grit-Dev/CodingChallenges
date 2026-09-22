@@ -456,17 +456,42 @@ public class Program
         return mostCommonLetter;
     }
 
+    public static int[] GetSquaredPositiveNumbersWithLinq(int[] numbers)
+    {
+        if (numbers is null || numbers.Length == 0)
+        {
+            return [];
+        }
+
+        return numbers.Where(n => n > 0)
+            .Select(n => n * n)
+            .ToArray();
+    }
+
     public static void Main(string[] args)
     {
-        // Find Most Common Starting Letter
-        Console.WriteLine(FindMostCommonStartingLetter("apple banana apricot") == 'a');
-        Console.WriteLine(FindMostCommonStartingLetter("Dog duck cat") == 'd');
-        Console.WriteLine(FindMostCommonStartingLetter("red blue green") == 'r');
-        Console.WriteLine(FindMostCommonStartingLetter("123 !test") == null);
-        Console.WriteLine(FindMostCommonStartingLetter("") == null);
-        Console.WriteLine(FindMostCommonStartingLetter("   ") == null);
-        Console.WriteLine(FindMostCommonStartingLetter(null!) == null);
+        //Get Squared Positive Number With Linq
+        int[] squaredOne = GetSquaredPositiveNumbersWithLinq([-2, 3, 0, 4]);
+        Console.WriteLine(squaredOne.Length == 2);
+        Console.WriteLine(squaredOne[0] == 9);
+        Console.WriteLine(squaredOne[1] == 16);
 
+        int[] squaredTwo = GetSquaredPositiveNumbersWithLinq([1, -1, 2]);
+        Console.WriteLine(squaredTwo.Length == 2);
+        Console.WriteLine(squaredTwo[0] == 1);
+        Console.WriteLine(squaredTwo[1] == 4);
+        Console.WriteLine(GetSquaredPositiveNumbersWithLinq([-5, 0, -2]).Length == 0);
+        Console.WriteLine(GetSquaredPositiveNumbersWithLinq(null!).Length == 0);
+        Console.WriteLine(GetSquaredPositiveNumbersWithLinq([]).Length == 0);
+
+        // Find Most Common Starting Letter
+        //Console.WriteLine(FindMostCommonStartingLetter("apple banana apricot") == 'a');
+        //Console.WriteLine(FindMostCommonStartingLetter("Dog duck cat") == 'd');
+        //Console.WriteLine(FindMostCommonStartingLetter("red blue green") == 'r');
+        //Console.WriteLine(FindMostCommonStartingLetter("123 !test") == null);
+        //Console.WriteLine(FindMostCommonStartingLetter("") == null);
+        //Console.WriteLine(FindMostCommonStartingLetter("   ") == null);
+        //Console.WriteLine(FindMostCommonStartingLetter(null!) == null);
 
         // Count Valid Stock Records
         //Console.WriteLine(CountValidStockRecords("sleeves=10, box=2, bad") == 2);
