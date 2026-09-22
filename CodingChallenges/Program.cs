@@ -400,17 +400,83 @@ public class Program
 
         return counter;
     }
+
+    public static char? FindMostCommonStartingLetter(string input)
+    {
+        if (string.IsNullOrWhiteSpace(input))
+        {
+            return null;
+        }
+
+        Dictionary<char, int> letterCounts = new Dictionary<char, int>();
+
+        string[] words = input.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+        char mostCommonLetter = '\0';
+        int highestCount = 0;
+        bool foundValidLetter = false;
+
+        foreach (string word in words)
+        {
+            char firstCharacter = word[0];
+
+            if (!char.IsLetter(firstCharacter))
+            {
+                continue;
+            }
+
+            char startingLetter = char.ToLower(firstCharacter);
+
+            int updatedCount;
+
+            if (letterCounts.TryGetValue(startingLetter, out int currentCount))
+            {
+                updatedCount = currentCount + 1;
+                letterCounts[startingLetter] = updatedCount;
+            }
+            else
+            {
+                updatedCount = 1;
+                letterCounts[startingLetter] = updatedCount;
+            }
+
+            if (updatedCount > highestCount)
+            {
+                highestCount = updatedCount;
+                mostCommonLetter = startingLetter;
+                foundValidLetter = true;
+            }
+        }
+
+        if (!foundValidLetter)
+        {
+            return null;
+        }
+
+        return mostCommonLetter;
+    }
+
     public static void Main(string[] args)
     {
+        // Find Most Common Starting Letter
+        Console.WriteLine(FindMostCommonStartingLetter("apple banana apricot") == 'a');
+        Console.WriteLine(FindMostCommonStartingLetter("Dog duck cat") == 'd');
+        Console.WriteLine(FindMostCommonStartingLetter("red blue green") == 'r');
+        Console.WriteLine(FindMostCommonStartingLetter("123 !test") == null);
+        Console.WriteLine(FindMostCommonStartingLetter("") == null);
+        Console.WriteLine(FindMostCommonStartingLetter("   ") == null);
+        Console.WriteLine(FindMostCommonStartingLetter(null!) == null);
+
+
         // Count Valid Stock Records
-        Console.WriteLine(CountValidStockRecords("sleeves=10, box=2, bad") == 2);
-        Console.WriteLine(CountValidStockRecords("binder=abc, case=1") == 1);
-        Console.WriteLine(CountValidStockRecords("=5, mat=0") == 1);
-        Console.WriteLine(CountValidStockRecords("one=10=20, two=5") == 1);
-        Console.WriteLine(CountValidStockRecords("bad, alsoBad") == 0);
-        Console.WriteLine(CountValidStockRecords("") == 0);
-        Console.WriteLine(CountValidStockRecords("   ") == 0);
-        Console.WriteLine(CountValidStockRecords(null!) == 0);
+        //Console.WriteLine(CountValidStockRecords("sleeves=10, box=2, bad") == 2);
+        //Console.WriteLine(CountValidStockRecords("binder=abc, case=1") == 1);
+        //Console.WriteLine(CountValidStockRecords("=5, mat=0") == 1);
+        //Console.WriteLine(CountValidStockRecords("one=10=20, two=5") == 1);
+        //Console.WriteLine(CountValidStockRecords("bad, alsoBad") == 0);
+        //Console.WriteLine(CountValidStockRecords("") == 0);
+        //Console.WriteLine(CountValidStockRecords("   ") == 0);
+        //Console.WriteLine(CountValidStockRecords(null!) == 0);
 
         // Get Adjacent Differences 
         //int[] differencesOne = GetAdjacentDifferences([10, 7, 12]);
