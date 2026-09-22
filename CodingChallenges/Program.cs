@@ -364,22 +364,68 @@ public class Program
         return newList.ToArray();
     }
 
+
+    public static int CountValidStockRecords(string input)
+    {
+        if (string.IsNullOrWhiteSpace(input))
+        {
+            return 0;
+        }
+
+        int counter = 0;
+        string[] splitString = input.Split(',', StringSplitOptions.RemoveEmptyEntries);
+
+        foreach (string str in splitString)
+        {
+            string strTrimmed = str.Trim();
+
+            int characterEqualCounter = strTrimmed.Count(str => str == '=');
+            int indexOfCharacterEqual = strTrimmed.IndexOf('=');
+
+            if (characterEqualCounter > 1 || indexOfCharacterEqual < 0)
+            {
+                continue;
+            }
+
+            if (strTrimmed.Substring(0, indexOfCharacterEqual).Length > 0 &&
+                strTrimmed.Substring(indexOfCharacterEqual + 1).Length > 0)
+            {
+                if (int.TryParse(strTrimmed.Substring(indexOfCharacterEqual + 1), out int value) 
+                    && value >= 0)
+                {
+                    counter++;
+                }
+            }
+        }
+
+        return counter;
+    }
     public static void Main(string[] args)
     {
+        // Count Valid Stock Records
+        Console.WriteLine(CountValidStockRecords("sleeves=10, box=2, bad") == 2);
+        Console.WriteLine(CountValidStockRecords("binder=abc, case=1") == 1);
+        Console.WriteLine(CountValidStockRecords("=5, mat=0") == 1);
+        Console.WriteLine(CountValidStockRecords("one=10=20, two=5") == 1);
+        Console.WriteLine(CountValidStockRecords("bad, alsoBad") == 0);
+        Console.WriteLine(CountValidStockRecords("") == 0);
+        Console.WriteLine(CountValidStockRecords("   ") == 0);
+        Console.WriteLine(CountValidStockRecords(null!) == 0);
+
         // Get Adjacent Differences 
-        int[] differencesOne = GetAdjacentDifferences([10, 7, 12]);
-        Console.WriteLine(differencesOne.Length == 2);
-        Console.WriteLine(differencesOne[0] == 3);
-        Console.WriteLine(differencesOne[1] == 5);
+        //int[] differencesOne = GetAdjacentDifferences([10, 7, 12]);
+        //Console.WriteLine(differencesOne.Length == 2);
+        //Console.WriteLine(differencesOne[0] == 3);
+        //Console.WriteLine(differencesOne[1] == 5);
 
-        int[] differencesTwo = GetAdjacentDifferences([-5, 5, -10]);
-        Console.WriteLine(differencesTwo.Length == 2);
-        Console.WriteLine(differencesTwo[0] == 10);
-        Console.WriteLine(differencesTwo[1] == 15);
+        //int[] differencesTwo = GetAdjacentDifferences([-5, 5, -10]);
+        //Console.WriteLine(differencesTwo.Length == 2);
+        //Console.WriteLine(differencesTwo[0] == 10);
+        //Console.WriteLine(differencesTwo[1] == 15);
 
-        Console.WriteLine(GetAdjacentDifferences([7]).Length == 0);
-        Console.WriteLine(GetAdjacentDifferences(null!).Length == 0);
-        Console.WriteLine(GetAdjacentDifferences([]).Length == 0);
+        //Console.WriteLine(GetAdjacentDifferences([7]).Length == 0);
+        //Console.WriteLine(GetAdjacentDifferences(null!).Length == 0);
+        //Console.WriteLine(GetAdjacentDifferences([]).Length == 0);
 
         // Extract Hashtag Words
         //string[] tagsOne = ExtractHashtagWords("learning #CSharp today #Coding");
