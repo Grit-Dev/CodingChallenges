@@ -1,4 +1,5 @@
 ﻿using System.Globalization;
+using System.Reflection.Metadata.Ecma335;
 
 public class Program
 {
@@ -295,33 +296,139 @@ public class Program
         return null;
     }
 
+
+    public static int CountOddNumbersAtEvenIndexes(int[] numbers)
+    {
+        if (numbers is null || numbers.Length == 0)
+        {
+            return 0;
+        }
+
+        int counter = 0;
+
+        for (int index = 0; index <= numbers.Length - 1; index += 2)
+        {
+            if (numbers[index] % 2 != 0)
+            {
+                counter++;
+            }
+        }
+
+        return counter;
+    }
+
+    public static string[] ExtractHashtagWords(string input)
+    {
+        if (string.IsNullOrWhiteSpace(input))
+        {
+            return [];
+        }
+
+        List<string> newList = [];
+        string[] splitStrings = input.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+        foreach (string str in splitStrings)
+        {
+            int indexOfHashTag = str.IndexOf('#');
+            int hashtagCounter = str.Count(str => str == '#');
+
+            if (indexOfHashTag == -1 || indexOfHashTag > 0 || hashtagCounter > 1)
+            {
+                continue;
+            }
+
+            if (str.Substring(indexOfHashTag + 1).Length >= 1)
+            {
+                newList.Add(str.Substring(indexOfHashTag + 1));
+            }
+
+        }
+
+        return newList.ToArray();
+    }
+
+    public static int[] GetAdjacentDifferences(int[] numbers)
+    {
+        if (numbers is null || numbers.Length < 2)
+        {
+            return [];
+        }
+
+        List<int> newList = [];
+
+        for (int index = 1; index <= numbers.Length - 1; index++)
+        {
+            newList.Add(Math.Abs(numbers[index -1] - numbers[index]));
+        }
+
+        return newList.ToArray();
+    }
+
     public static void Main(string[] args)
     {
+        // Get Adjacent Differences 
+        int[] differencesOne = GetAdjacentDifferences([10, 7, 12]);
+        Console.WriteLine(differencesOne.Length == 2);
+        Console.WriteLine(differencesOne[0] == 3);
+        Console.WriteLine(differencesOne[1] == 5);
+
+        int[] differencesTwo = GetAdjacentDifferences([-5, 5, -10]);
+        Console.WriteLine(differencesTwo.Length == 2);
+        Console.WriteLine(differencesTwo[0] == 10);
+        Console.WriteLine(differencesTwo[1] == 15);
+
+        Console.WriteLine(GetAdjacentDifferences([7]).Length == 0);
+        Console.WriteLine(GetAdjacentDifferences(null!).Length == 0);
+        Console.WriteLine(GetAdjacentDifferences([]).Length == 0);
+
+        // Extract Hashtag Words
+        //string[] tagsOne = ExtractHashtagWords("learning #CSharp today #Coding");
+        //Console.WriteLine(tagsOne.Length == 2);
+        //Console.WriteLine(tagsOne[0] == "CSharp");
+        //Console.WriteLine(tagsOne[1] == "Coding");
+
+        //string[] tagsTwo = ExtractHashtagWords("#one # @bad #Two");
+        //Console.WriteLine(tagsTwo.Length == 2);
+        //Console.WriteLine(tagsTwo[0] == "one");
+        //Console.WriteLine(tagsTwo[1] == "Two");
+
+        //Console.WriteLine(ExtractHashtagWords("no tags here").Length == 0);
+        //Console.WriteLine(ExtractHashtagWords("").Length == 0);
+        //Console.WriteLine(ExtractHashtagWords("   ").Length == 0);
+        //Console.WriteLine(ExtractHashtagWords(null!).Length == 0);
+
+        // Count Odd Numbers At Even Indexes
+        //Console.WriteLine(CountOddNumbersAtEvenIndexes([1, 2, 3, 4, 5]) == 3);
+        //Console.WriteLine(CountOddNumbersAtEvenIndexes([2, 3, 4, 5]) == 0);
+        //Console.WriteLine(CountOddNumbersAtEvenIndexes([7, 8, 10, 11, 13]) == 2);
+        //Console.WriteLine(CountOddNumbersAtEvenIndexes(null!) == 0);
+        //Console.WriteLine(CountOddNumbersAtEvenIndexes([]) == 0);
+
         // Find The First Number Greater Than All Previous Numbers
-        Console.WriteLine(FindIndexOfFirstHighestNumber([5, 3, 4, 6]) == 6);
-        Console.WriteLine(FindIndexOfFirstHighestNumber([10, 9, 8, 7]) == null);
-        Console.WriteLine(FindIndexOfFirstHighestNumber([5, 8, 2, 100]) == 8);
-        Console.WriteLine(FindIndexOfFirstHighestNumber([1, 2, 3, 4]) == 2);
-        Console.WriteLine(FindIndexOfFirstHighestNumber([5]) == null);
-        Console.WriteLine(FindIndexOfFirstHighestNumber([]) == null);
-        Console.WriteLine(FindIndexOfFirstHighestNumber(null!) == null);
+        //Console.WriteLine(FindIndexOfFirstHighestNumber([5, 3, 4, 6]) == 6);
+        //Console.WriteLine(FindIndexOfFirstHighestNumber([10, 9, 8, 7]) == null);
+        //Console.WriteLine(FindIndexOfFirstHighestNumber([5, 8, 2, 100]) == 8);
+        //Console.WriteLine(FindIndexOfFirstHighestNumber([1, 2, 3, 4]) == 2);
+        //Console.WriteLine(FindIndexOfFirstHighestNumber([5]) == null);
+        //Console.WriteLine(FindIndexOfFirstHighestNumber([]) == null);
+        //Console.WriteLine(FindIndexOfFirstHighestNumber(null!) == null);
 
         // LINQ Where + OrderBy + Take
-        int[] passingTopOne = GetTopThreePassingScoresWithLinq([40, 80, 50, 100, 30, 90]);
-        Console.WriteLine(passingTopOne.Length == 3);
-        Console.WriteLine(passingTopOne[0] == 100);
-        Console.WriteLine(passingTopOne[1] == 90);
-        Console.WriteLine(passingTopOne[2] == 80);
+        //int[] passingTopOne = GetTopThreePassingScoresWithLinq([40, 80, 50, 100, 30, 90]);
+        //Console.WriteLine(passingTopOne.Length == 3);
+        //Console.WriteLine(passingTopOne[0] == 100);
+        //Console.WriteLine(passingTopOne[1] == 90);
+        //Console.WriteLine(passingTopOne[2] == 80);
 
-        int[] passingTopTwo = GetTopThreePassingScoresWithLinq([45, 50, 60]);
-        Console.WriteLine(passingTopTwo.Length == 2);
-        Console.WriteLine(passingTopTwo[0] == 60);
-        Console.WriteLine(passingTopTwo[1] == 50);
+        //int[] passingTopTwo = GetTopThreePassingScoresWithLinq([45, 50, 60]);
+        //Console.WriteLine(passingTopTwo.Length == 2);
+        //Console.WriteLine(passingTopTwo[0] == 60);
+        //Console.WriteLine(passingTopTwo[1] == 50);
 
-        int[] passingTopThree = GetTopThreePassingScoresWithLinq([10, 20, 30]);
-        Console.WriteLine(passingTopThree.Length == 0);
-        Console.WriteLine(GetTopThreePassingScoresWithLinq([]).Length == 0);
-        Console.WriteLine(GetTopThreePassingScoresWithLinq([]).Length == 0);
+        //int[] passingTopThree = GetTopThreePassingScoresWithLinq([10, 20, 30]);
+        //Console.WriteLine(passingTopThree.Length == 0);
+        //Console.WriteLine(GetTopThreePassingScoresWithLinq([]).Length == 0);
+        //Console.WriteLine(GetTopThreePassingScoresWithLinq([]).Length == 0);
 
         // Distinct With LINQ:
         // string[] uniqueOne = GetUniqueLowercaseWordsWithLinq("Red blue RED green blue");

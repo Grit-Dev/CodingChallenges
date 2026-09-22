@@ -49,13 +49,13 @@ namespace CodingChallenges.Challenges.Phase_02_OOP
             Console.WriteLine(GetUniqueLowercaseWordsWithLinq(null!).Length == 0);
 
             // Find Most Frequent Word
-            Console.WriteLine(FindMostFrequentWordRevRev("red blue red green") == "red");
-            Console.WriteLine(FindMostFrequentWordRevRev("Cat dog cat bird dog dog") == "dog");
-            Console.WriteLine(FindMostFrequentWordRevRev("one two three") == "one");
-            Console.WriteLine(FindMostFrequentWordRevRev("Hello hello HELLO") == "hello");
-            Console.WriteLine(FindMostFrequentWordRevRev("") == "");
-            Console.WriteLine(FindMostFrequentWordRevRev(" ") == "");
-            Console.WriteLine(FindMostFrequentWordRevRev(null!) == "");
+            Console.WriteLine(FindMostFrequentWordRevRevRev("red blue red green") == "red");
+            Console.WriteLine(FindMostFrequentWordRevRevRev("Cat dog cat bird dog dog") == "dog");
+            Console.WriteLine(FindMostFrequentWordRevRevRev("one two three") == "one");
+            Console.WriteLine(FindMostFrequentWordRevRevRev("Hello hello HELLO") == "hello");
+            Console.WriteLine(FindMostFrequentWordRevRevRev("") == "");
+            Console.WriteLine(FindMostFrequentWordRevRevRev(" ") == "");
+            Console.WriteLine(FindMostFrequentWordRevRevRev(null!) == "");
 
             // Find First Valid Product Name
             Console.WriteLine(FindFirstValidProductName("bad, Sleeves=5, Box=40") == "sleeves");
@@ -581,12 +581,12 @@ namespace CodingChallenges.Challenges.Phase_02_OOP
             Console.WriteLine(CountPositiveToNegativeChanges([]) == 0);
 
             //Find Most Frequent Word
-            Console.WriteLine(FindMostFrequentWordRev("apple banana apple pear banana apple") == "apple");
-            Console.WriteLine(FindMostFrequentWordRev("Dog cat DOG bird CAT") == "dog");
-            Console.WriteLine(FindMostFrequentWordRev("one two three") == "one");
-            Console.WriteLine(FindMostFrequentWordRev("") == null);
-            Console.WriteLine(FindMostFrequentWordRev(" ") == null);
-            Console.WriteLine(FindMostFrequentWordRev(null!) == null);
+            Console.WriteLine(FindMostFrequentWordRevRevRev("apple banana apple pear banana apple") == "apple");
+            Console.WriteLine(FindMostFrequentWordRevRevRev("Dog cat DOG bird CAT") == "dog");
+            Console.WriteLine(FindMostFrequentWordRevRevRev("one two three") == "one");
+            Console.WriteLine(FindMostFrequentWordRevRevRev("") == null);
+            Console.WriteLine(FindMostFrequentWordRevRevRev(" ") == null);
+            Console.WriteLine(FindMostFrequentWordRevRevRev(null!) == null);
 
             // Find First Repeated Word
             Console.WriteLine(FindFirstRepeatedWordRev("apple banana apple pear") == "apple");
@@ -2948,11 +2948,11 @@ namespace CodingChallenges.Challenges.Phase_02_OOP
             Console.WriteLine(ReverseEachWordInSentence(null!));                 // ""
 
             // Find Most Frequent Word
-            Console.WriteLine(FindMostFrequentWord("hello world hello"));
-            Console.WriteLine(FindMostFrequentWord("one two two three"));
-            Console.WriteLine(FindMostFrequentWord("one one two two three"));
-            Console.WriteLine(FindMostFrequentWord(""));
-            Console.WriteLine(FindMostFrequentWord(null!));
+            Console.WriteLine(FindMostFrequentWordRevRevRev("hello world hello"));
+            Console.WriteLine(FindMostFrequentWordRevRevRev("one two two three"));
+            Console.WriteLine(FindMostFrequentWordRevRevRev("one one two two three"));
+            Console.WriteLine(FindMostFrequentWordRevRevRev(""));
+            Console.WriteLine(FindMostFrequentWordRevRevRev(null!));
 
 
             // Count Each Letter A to Z Revision

@@ -225,7 +225,7 @@ namespace CodingChallenges.Challenges.Phase_02_OOP
             return "";
         }
 
-        public static string FindMostFrequentWord(string input)
+        public static string FindMostFrequentWordRevRevRev(string input)
         {
             if (string.IsNullOrWhiteSpace(input))
             {
@@ -7467,7 +7467,7 @@ namespace CodingChallenges.Challenges.Phase_02_OOP
             return newStringReturnOutCome.ToString().Trim();
         }
 
-        public static string FindMostFrequentWordRev(string pinputValue)
+        public static string FindMostFrequentWordRevRev(string pinputValue)
         {
             if (string.IsNullOrEmpty(pinputValue))
             {
