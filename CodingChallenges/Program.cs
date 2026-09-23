@@ -101,7 +101,7 @@ public class Program
         string[] splitString = input.Split(',', StringSplitOptions.RemoveEmptyEntries);
 
         foreach (string str in splitString)
-        { 
+        {
             string strTrimmed = str.Trim();
 
             int indexOfEqual = strTrimmed.IndexOf('=');
@@ -118,9 +118,9 @@ public class Program
                 continue;
             }
 
-            if(strTrimmed.Substring(0, indexOfEqual).Length == 0 ||
+            if (strTrimmed.Substring(0, indexOfEqual).Length == 0 ||
                 strTrimmed.Substring(indexOfEqual + 1).Length == 0)
-            { 
+            {
                 continue;
             }
 
@@ -134,8 +134,31 @@ public class Program
         return counter;
     }
 
+    public static int[] GetTopThreeUniqueScoresWithLinq(int[] scores) => scores is null || 
+        scores.Length == 0 ?[] : scores.OrderByDescending(c => c).Distinct().Take(3).ToArray();
+
     public static void Main(string[] args)
     {
+        //Get Top Three Unique Scores With Linq
+        int[] topOne = GetTopThreeUniqueScoresWithLinq([50, 90, 90, 70, 100]);
+        Console.WriteLine(topOne.Length == 3);
+        Console.WriteLine(topOne[0] == 100);
+        Console.WriteLine(topOne[1] == 90);
+        Console.WriteLine(topOne[2] == 70);
+
+        int[] topTwo = GetTopThreeUniqueScoresWithLinq([5, 5, 1]);
+        Console.WriteLine(topTwo.Length == 2);
+        Console.WriteLine(topTwo[0] == 5);
+        Console.WriteLine(topTwo[1] == 1);
+
+        int[] topThree = GetTopThreeUniqueScoresWithLinq([-1, 10, 0, 10]);
+        Console.WriteLine(topThree.Length == 3);
+        Console.WriteLine(topThree[0] == 10);
+        Console.WriteLine(topThree[1] == 0);
+        Console.WriteLine(topThree[2] == -1);
+        Console.WriteLine(GetTopThreeUniqueScoresWithLinq(null!).Length == 0);
+        Console.WriteLine(GetTopThreeUniqueScoresWithLinq([]).Length == 0);
+
         // Count Valid Item Quantities
         Console.WriteLine(CountValidItemQuantities("binder=abc, case=1") == 1);
         Console.WriteLine(CountValidItemQuantities("   =5, mat=0") == 1);
