@@ -6,6 +6,140 @@ namespace CodingChallenges.Challenges.Phase_02_OOP
 {
     public class ChallengeSolutions
     {
+        public static int CountValuesMatchingIndexSignRule(int[] numbers)
+        {
+            if (numbers is null || numbers.Length == 0)
+            {
+                return 0;
+            }
+
+            int counter = 0;
+
+            for (int index = 0; index <= numbers.Length - 1; index++)
+            {
+                if (index % 2 == 0 && numbers[index] > 0)
+                {
+                    counter++;
+                }
+                else if (index % 2 != 0 && numbers[index] < 0)
+                {
+                    counter++;
+                }
+            }
+
+            return counter;
+        }
+
+        public static string[] ExtractLetterHashtags(string input)
+        {
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                return [];
+            }
+
+            List<string> newList = [];
+
+            string[] splitString = input.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+            foreach (string word in splitString)
+            {
+                int indexOfHashTag = word.IndexOf('#');
+
+                if (indexOfHashTag == -1 || indexOfHashTag > 0)
+                {
+                    continue;
+                }
+
+                if (word.Substring(indexOfHashTag + 1).Length < 1)
+                {
+                    continue;
+                }
+
+                char newCharacter = word[indexOfHashTag + 1];
+
+                if (!char.IsLetter(newCharacter))
+                {
+                    continue;
+                }
+                else
+                {
+                    newList.Add((word.Substring(indexOfHashTag + 1)));
+                }
+            }
+
+            return newList.ToArray();
+        }
+
+        public static int[] GetRunningTotalsUntilNegative(int[] numbers)
+        {
+            if (numbers is null || numbers.Length == 0)
+            {
+                return [];
+            }
+
+            int total = 0;
+            List<int> newList = [];
+
+            foreach (int number in numbers)
+            {
+                newList.Add(total += number);
+
+                if (total < 0)
+                {
+                    return newList.ToArray();
+                }
+            }
+
+            return newList.ToArray();
+        }
+
+        public static int CountValidItemQuantities(string input)
+        {
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                return 0;
+            }
+
+            int counter = 0;
+            string[] splitString = input.Split(',', StringSplitOptions.RemoveEmptyEntries);
+
+            foreach (string str in splitString)
+            {
+                string strTrimmed = str.Trim();
+
+                int indexOfEqual = strTrimmed.IndexOf('=');
+
+                if (indexOfEqual == -1)
+                {
+                    continue;
+                }
+
+                int countEquals = strTrimmed.Count(ce => ce == '=');
+
+                if (countEquals > 1)
+                {
+                    continue;
+                }
+
+                if (strTrimmed.Substring(0, indexOfEqual).Length == 0 ||
+                    strTrimmed.Substring(indexOfEqual + 1).Length == 0)
+                {
+                    continue;
+                }
+
+                if (int.TryParse(strTrimmed.Substring(indexOfEqual + 1), out int value) &&
+                    value >= 0)
+                {
+                    counter++;
+                }
+            }
+
+            return counter;
+        }
+
+        public static int[] GetTopThreeUniqueScoresWithLinq(int[] scores) => scores is null ||
+            scores.Length == 0 ? [] : scores.OrderByDescending(c => c).Distinct().Take(3).ToArray();
+
         public static int CountOddNumbersAtEvenIndexes(int[] numbers)
         {
             if (numbers is null || numbers.Length == 0)
