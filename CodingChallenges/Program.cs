@@ -135,7 +135,7 @@ public class Program
     }
 
     public static int[] GetTopThreeUniqueScoresWithLinq(int[] scores) => scores is null || 
-        scores.Length == 0 ?[] : scores.OrderByDescending(c => c).Distinct().Take(3).ToArray();
+        scores.Length == 0 ? [] : scores.OrderByDescending(c => c).Distinct().Take(3).ToArray();
 
     public static void Main(string[] args)
     {
