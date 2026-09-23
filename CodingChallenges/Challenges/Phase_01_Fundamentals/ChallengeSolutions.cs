@@ -211,7 +211,7 @@ namespace CodingChallenges.Challenges.Phase_02_OOP
             return null;
         }
 
-        public static int CountDirectionChanges(int[] numbers)
+        public static int CountDirectionChangesRev(int[] numbers)
         {
             if (numbers is null || numbers.Length < 3)
             {
@@ -481,8 +481,6 @@ namespace CodingChallenges.Challenges.Phase_02_OOP
 
             return null;
         }
-
-
 
         public static int? FindFirstGapGreaterThanThreeRev(int[] numbers)
         {
