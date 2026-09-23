@@ -65,36 +65,48 @@ public class Program
         return newList.ToArray();
     }
 
+    public static int[] GetRunningTotalsUntilNegative(int[] numbers)
+    {
+        if (numbers is null || numbers.Length == 0)
+        {
+            return [];
+        }
+
+        int total = 0;
+        List<int> newList = [];
+
+        foreach (int number in numbers)
+        {
+            newList.Add(total += number);
+
+            if (total < 0)
+            {
+                return newList.ToArray();
+            }
+        }
+
+        return newList.ToArray();
+    }
+
     public static void Main(string[] args)
     {
         //Get Running Totals Until Negative
-        //- Return an empty array if numbers is null or empty.
-        //- Return a new array.
-        //- Include the first negative running total before stopping.
-        //- If the total never becomes negative, return all running totals.
+        int[] totalsOne = GetRunningTotalsUntilNegative([5, -2, -10, 20]);
+        Console.WriteLine(totalsOne.Length == 3);
+        Console.WriteLine(totalsOne[0] == 5);
+        Console.WriteLine(totalsOne[1] == 3);
+        Console.WriteLine(totalsOne[2] == -7);
 
-        //Console checks:
+        int[] totalsTwo = GetRunningTotalsUntilNegative([2, 3, 4]);
+        Console.WriteLine(totalsTwo.Length == 3);
+        Console.WriteLine(totalsTwo[0] == 2);
+        Console.WriteLine(totalsTwo[1] == 5);
+        Console.WriteLine(totalsTwo[2] == 9);
 
-        //int[] totalsOne = GetRunningTotalsUntilNegative(new int[] { 5, -2, -10, 20 });
-
-        //Console.WriteLine(totalsOne.Length == 3);
-        //Console.WriteLine(totalsOne[0] == 5);
-        //Console.WriteLine(totalsOne[1] == 3);
-        //Console.WriteLine(totalsOne[2] == -7);
-
-        //int[] totalsTwo = GetRunningTotalsUntilNegative(new int[] { 2, 3, 4 });
-
-        //Console.WriteLine(totalsTwo.Length == 3);
-        //Console.WriteLine(totalsTwo[0] == 2);
-        //Console.WriteLine(totalsTwo[1] == 5);
-        //Console.WriteLine(totalsTwo[2] == 9);
-
-        //int[] totalsThree = GetRunningTotalsUntilNegative(new int[] { -1, 5 });
-
-        //Console.WriteLine(totalsThree.Length == 1);
-        //Console.WriteLine(totalsThree[0] == -1);
-
-        //Console.WriteLine(GetRunningTotalsUntilNegative(null).Length == 0);
+        int[] totalsThree = GetRunningTotalsUntilNegative([-1, 5]);
+        Console.WriteLine(totalsThree.Length == 1);
+        Console.WriteLine(totalsThree[0] == -1);
+        Console.WriteLine(GetRunningTotalsUntilNegative(null!).Length == 0);
 
         // Extract Letter Hashtags
         string[] tagsOne = ExtractLetterHashtags("learning #CSharp today #Coding");
