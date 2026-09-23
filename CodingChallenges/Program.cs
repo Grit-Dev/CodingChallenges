@@ -1,4 +1,6 @@
 ﻿
+using System.Diagnostics.Metrics;
+
 public class Program
 {
     public static int CountValuesMatchingIndexSignRule(int[] numbers)
@@ -88,9 +90,62 @@ public class Program
         return newList.ToArray();
     }
 
+    public static int CountValidItemQuantities(string input)
+    {
+        if (string.IsNullOrWhiteSpace(input))
+        {
+            return 0;
+        }
+
+        int counter = 0;
+        string[] splitString = input.Split(',', StringSplitOptions.RemoveEmptyEntries);
+
+        foreach (string str in splitString)
+        { 
+            string strTrimmed = str.Trim();
+
+            int indexOfEqual = strTrimmed.IndexOf('=');
+
+            if (indexOfEqual == -1)
+            {
+                continue;
+            }
+
+            int countEquals = strTrimmed.Count(ce => ce == '=');
+
+            if (countEquals > 1)
+            {
+                continue;
+            }
+
+            if(strTrimmed.Substring(0, indexOfEqual).Length == 0 ||
+                strTrimmed.Substring(indexOfEqual + 1).Length == 0)
+            { 
+                continue;
+            }
+
+            if (int.TryParse(strTrimmed.Substring(indexOfEqual + 1), out int value) &&
+                value >= 0)
+            {
+                counter++;
+            }
+        }
+
+        return counter;
+    }
+
     public static void Main(string[] args)
     {
-        //Get Running Totals Until Negative
+        // Count Valid Item Quantities
+        Console.WriteLine(CountValidItemQuantities("binder=abc, case=1") == 1);
+        Console.WriteLine(CountValidItemQuantities("   =5, mat=0") == 1);
+        Console.WriteLine(CountValidItemQuantities("one=10=20, two=5") == 1);
+        Console.WriteLine(CountValidItemQuantities("bad, alsoBad") == 0);
+        Console.WriteLine(CountValidItemQuantities("") == 0);
+        Console.WriteLine(CountValidItemQuantities("   ") == 0);
+        Console.WriteLine(CountValidItemQuantities(null!) == 0);
+
+        // Get Running Totals Until Negative
         int[] totalsOne = GetRunningTotalsUntilNegative([5, -2, -10, 20]);
         Console.WriteLine(totalsOne.Length == 3);
         Console.WriteLine(totalsOne[0] == 5);
