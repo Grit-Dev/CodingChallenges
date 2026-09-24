@@ -142,15 +142,15 @@ namespace CodingChallenges.Challenges.Phase_02_OOP
             Console.WriteLine(GetAdjacentDifferences([]).Length == 0);
 
             // Extract Hashtag Words
-            string[] tagsOne = ExtractHashtagWords("learning #CSharp today #Coding");
-            Console.WriteLine(tagsOne.Length == 2);
-            Console.WriteLine(tagsOne[0] == "CSharp");
-            Console.WriteLine(tagsOne[1] == "Coding");
+            string[] tagsOneOne = ExtractHashtagWords("learning #CSharp today #Coding");
+            Console.WriteLine(tagsOneOne.Length == 2);
+            Console.WriteLine(tagsOneOne[0] == "CSharp");
+            Console.WriteLine(tagsOneOne[1] == "Coding");
 
-            string[] tagsTwo = ExtractHashtagWords("#one # @bad #Two");
-            Console.WriteLine(tagsTwo.Length == 2);
-            Console.WriteLine(tagsTwo[0] == "one");
-            Console.WriteLine(tagsTwo[1] == "Two");
+            string[] tagsTwoTwo = ExtractHashtagWords("#one # @bad #Two");
+            Console.WriteLine(tagsTwoTwo.Length == 2);
+            Console.WriteLine(tagsTwoTwo[0] == "one");
+            Console.WriteLine(tagsTwoTwo[1] == "Two");
 
             Console.WriteLine(ExtractHashtagWords("no tags here").Length == 0);
             Console.WriteLine(ExtractHashtagWords("").Length == 0);
@@ -437,19 +437,19 @@ namespace CodingChallenges.Challenges.Phase_02_OOP
             Console.WriteLine(FindIndexOfHighestRunningTotalAgainRev([]) == null);
 
             // OrderByDescending + Take - Refresher
-            int[] topOne = GetTopTwoScoresWithLinqRev([50, 90, 70, 100]);
-            Console.WriteLine(topOne.Length == 2);
-            Console.WriteLine(topOne[0] == 100);
-            Console.WriteLine(topOne[1] == 90);
+            int[] topOneOne = GetTopTwoScoresWithLinqRev([50, 90, 70, 100]);
+            Console.WriteLine(topOneOne.Length == 2);
+            Console.WriteLine(topOneOne[0] == 100);
+            Console.WriteLine(topOneOne[1] == 90);
 
-            int[] topTwo = GetTopTwoScoresWithLinqRev([5]);
-            Console.WriteLine(topTwo.Length == 1);
-            Console.WriteLine(topTwo[0] == 5);
+            int[] topTwoTwo = GetTopTwoScoresWithLinqRev([5]);
+            Console.WriteLine(topTwoTwo.Length == 1);
+            Console.WriteLine(topTwoTwo[0] == 5);
 
-            int[] topThree = GetTopTwoScoresWithLinqRev([-1, 10, 0]);
-            Console.WriteLine(topThree.Length == 2);
-            Console.WriteLine(topThree[0] == 10);
-            Console.WriteLine(topThree[1] == 0);
+            int[] topThreeThree = GetTopTwoScoresWithLinqRev([-1, 10, 0]);
+            Console.WriteLine(topThreeThree.Length == 2);
+            Console.WriteLine(topThreeThree[0] == 10);
+            Console.WriteLine(topThreeThree[1] == 0);
             Console.WriteLine(GetTopTwoScoresWithLinqRev(null!).Length == 0);
             Console.WriteLine(GetTopTwoScoresWithLinqRev([]).Length == 0);
 
@@ -770,19 +770,19 @@ namespace CodingChallenges.Challenges.Phase_02_OOP
             Console.WriteLine(FindFirstValidScore(null!) == null);
 
             // Get Tow Number Total Above Limit
-            int[] totalsOne = GetTwoNumberTotalsAboveLimit([2, 5, 10, 1], 10);
-            Console.WriteLine(totalsOne.Length == 2);
-            Console.WriteLine(totalsOne[0] == 15);
-            Console.WriteLine(totalsOne[1] == 11);
+            int[] totalsOneOne = GetTwoNumberTotalsAboveLimit([2, 5, 10, 1], 10);
+            Console.WriteLine(totalsOneOne.Length == 2);
+            Console.WriteLine(totalsOneOne[0] == 15);
+            Console.WriteLine(totalsOneOne[1] == 11);
 
-            int[] totalsTwo = GetTwoNumberTotalsAboveLimit([1, 2, 3], 10);
-            Console.WriteLine(totalsTwo.Length == 0);
+            int[] totalsTwoTwo = GetTwoNumberTotalsAboveLimit([1, 2, 3], 10);
+            Console.WriteLine(totalsTwoTwo.Length == 0);
 
-            int[] totalsThree = GetTwoNumberTotalsAboveLimit([-5, 20, -2, 15], 10);
-            Console.WriteLine(totalsThree.Length == 3);
-            Console.WriteLine(totalsThree[0] == 15);
-            Console.WriteLine(totalsThree[1] == 18);
-            Console.WriteLine(totalsThree[2] == 13);
+            int[] totalsThreeThree = GetTwoNumberTotalsAboveLimit([-5, 20, -2, 15], 10);
+            Console.WriteLine(totalsThreeThree.Length == 3);
+            Console.WriteLine(totalsThreeThree[0] == 15);
+            Console.WriteLine(totalsThreeThree[1] == 18);
+            Console.WriteLine(totalsThreeThree[2] == 13);
             Console.WriteLine(GetTwoNumberTotalsAboveLimit(null!, 10).Length == 0);
             Console.WriteLine(GetTwoNumberTotalsAboveLimit([], 10).Length == 0);
 
