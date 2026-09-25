@@ -80,29 +80,56 @@
         return result.ToArray();
     }
 
+    public static int? FindFirstLocalMaximumIndex(int[] numbers)
+    {
+        if (numbers is null || numbers.Length < 3)
+        {
+            return null;
+        }
+
+        for (int index = 1; index < numbers.Length - 1; index++)
+        {
+            if (numbers[index] > numbers[index - 1] && numbers[index] > numbers[index + 1])
+            {
+                return index;
+            }
+        }
+
+        return null;
+
+    }
     public static void Main(string[] args)
     {
+        // Find First Local Maximum Index
+        Console.WriteLine(FindFirstLocalMaximumIndex([1, 5, 2, 8, 3]) == 1);
+        Console.WriteLine(FindFirstLocalMaximumIndex([1, 2, 3, 4]) == null);
+        Console.WriteLine(FindFirstLocalMaximumIndex([10, 20, 15]) == 1);
+        Console.WriteLine(FindFirstLocalMaximumIndex([5, 4, 3]) == null);
+        Console.WriteLine(FindFirstLocalMaximumIndex([1, 2]) == null);
+        Console.WriteLine(FindFirstLocalMaximumIndex(null!) == null);
+        Console.WriteLine(FindFirstLocalMaximumIndex([]) == null);
+
         // Merge Arrays Alternating 
-        int[] mergedOne = MergeArraysAlternating([1, 2, 3], [10, 20]);
-        Console.WriteLine(mergedOne.Length == 5);
-        Console.WriteLine(mergedOne[0] == 1);
-        Console.WriteLine(mergedOne[1] == 10);
-        Console.WriteLine(mergedOne[2] == 2);
-        Console.WriteLine(mergedOne[3] == 20);
-        Console.WriteLine(mergedOne[4] == 3);
+        //int[] mergedOne = MergeArraysAlternating([1, 2, 3], [10, 20]);
+        //Console.WriteLine(mergedOne.Length == 5);
+        //Console.WriteLine(mergedOne[0] == 1);
+        //Console.WriteLine(mergedOne[1] == 10);
+        //Console.WriteLine(mergedOne[2] == 2);
+        //Console.WriteLine(mergedOne[3] == 20);
+        //Console.WriteLine(mergedOne[4] == 3);
 
-        int[] mergedTwo = MergeArraysAlternating([1], [10, 20, 30]);
-        Console.WriteLine(mergedTwo.Length == 4);
-        Console.WriteLine(mergedTwo[0] == 1);
-        Console.WriteLine(mergedTwo[1] == 10);
-        Console.WriteLine(mergedTwo[2] == 20);
-        Console.WriteLine(mergedTwo[3] == 30);
+        //int[] mergedTwo = MergeArraysAlternating([1], [10, 20, 30]);
+        //Console.WriteLine(mergedTwo.Length == 4);
+        //Console.WriteLine(mergedTwo[0] == 1);
+        //Console.WriteLine(mergedTwo[1] == 10);
+        //Console.WriteLine(mergedTwo[2] == 20);
+        //Console.WriteLine(mergedTwo[3] == 30);
 
-        int[] mergedThree = MergeArraysAlternating(null!, [5, 6]);
-        Console.WriteLine(mergedThree.Length == 2);
-        Console.WriteLine(mergedThree[0] == 5);
-        Console.WriteLine(mergedThree[1] == 6);
-        Console.WriteLine(MergeArraysAlternating(null!, null!).Length == 0);
+        //int[] mergedThree = MergeArraysAlternating(null!, [5, 6]);
+        //Console.WriteLine(mergedThree.Length == 2);
+        //Console.WriteLine(mergedThree[0] == 5);
+        //Console.WriteLine(mergedThree[1] == 6);
+        //Console.WriteLine(MergeArraysAlternating(null!, null!).Length == 0);
 
         // Get Words Between Lengths
         //string[] wordsOne = GetWordsBetweenLengths("cat banana dog coding", 3, 5);
