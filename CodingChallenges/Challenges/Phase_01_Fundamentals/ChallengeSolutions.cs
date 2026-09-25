@@ -6,6 +6,104 @@ namespace CodingChallenges.Challenges.Phase_02_OOP
 {
     public class ChallengeSolutions
     {
+        public static int[] ClampNumbersToRange(int[] numbers, int min, int max)
+        {
+            if ((numbers is null || numbers.Length == 0) || min > max)
+            {
+                return [];
+            }
+
+            List<int> newList = [];
+
+            foreach (int number in numbers)
+            {
+                if (number > max)
+                {
+                    newList.Add(max);
+                }
+                else if (number < min)
+                {
+                    newList.Add(min);
+                }
+                else
+                {
+                    newList.Add(number);
+                }
+            }
+
+            return newList.ToArray();
+        }
+
+        public static string[] GetWordsBetweenLengths(string input, int minLength, int maxLength)
+        {
+            if (string.IsNullOrWhiteSpace(input) || minLength > maxLength)
+            {
+                return [];
+            }
+
+            string[] splitString = input.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+            List<string> newList = [];
+
+            foreach (string word in splitString)
+            {
+                if (word.Length >= minLength && word.Length <= maxLength)
+                {
+                    newList.Add(word);
+                }
+            }
+
+            return newList.ToArray();
+        }
+
+        public static int[] MergeArraysAlternating(int[] first, int[] second)
+        {
+            int firstLength = first?.Length ?? 0;
+            int secondLength = second?.Length ?? 0;
+
+            if (firstLength == 0 && secondLength == 0)
+            {
+                return [];
+            }
+
+            List<int> result = [];
+
+            int maxLength = Math.Max(firstLength, secondLength);
+
+            for (int index = 0; index < maxLength; index++)
+            {
+                if (index < firstLength)
+                {
+                    result.Add(first![index]);
+                }
+
+                if (index < secondLength)
+                {
+                    result.Add(second![index]);
+                }
+            }
+
+            return result.ToArray();
+        }
+
+        public static int? FindFirstLocalMaximumIndex(int[] numbers)
+        {
+            if (numbers is null || numbers.Length < 3)
+            {
+                return null;
+            }
+
+            for (int index = 1; index < numbers.Length - 1; index++)
+            {
+                if (numbers[index] > numbers[index - 1] && numbers[index] > numbers[index + 1])
+                {
+                    return index;
+                }
+            }
+
+            return null;
+
+        }
         public static int[] RotateRightByOne(int[] numbers)
         {
             if (numbers is null || numbers.Length == 0)

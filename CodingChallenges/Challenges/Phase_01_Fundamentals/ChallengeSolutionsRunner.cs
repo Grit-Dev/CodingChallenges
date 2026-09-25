@@ -6,6 +6,68 @@ namespace CodingChallenges.Challenges.Phase_02_OOP
     {
         public static void Run_Four_Dictionary_Work()
         {
+            // Find First Local Maximum Index
+            Console.WriteLine(FindFirstLocalMaximumIndex([1, 5, 2, 8, 3]) == 1);
+            Console.WriteLine(FindFirstLocalMaximumIndex([1, 2, 3, 4]) == null);
+            Console.WriteLine(FindFirstLocalMaximumIndex([10, 20, 15]) == 1);
+            Console.WriteLine(FindFirstLocalMaximumIndex([5, 4, 3]) == null);
+            Console.WriteLine(FindFirstLocalMaximumIndex([1, 2]) == null);
+            Console.WriteLine(FindFirstLocalMaximumIndex(null!) == null);
+            Console.WriteLine(FindFirstLocalMaximumIndex([]) == null);
+
+            // Merge Arrays Alternating 
+            int[] mergedOne = MergeArraysAlternating([1, 2, 3], [10, 20]);
+            Console.WriteLine(mergedOne.Length == 5);
+            Console.WriteLine(mergedOne[0] == 1);
+            Console.WriteLine(mergedOne[1] == 10);
+            Console.WriteLine(mergedOne[2] == 2);
+            Console.WriteLine(mergedOne[3] == 20);
+            Console.WriteLine(mergedOne[4] == 3);
+
+            int[] mergedTwo = MergeArraysAlternating([1], [10, 20, 30]);
+            Console.WriteLine(mergedTwo.Length == 4);
+            Console.WriteLine(mergedTwo[0] == 1);
+            Console.WriteLine(mergedTwo[1] == 10);
+            Console.WriteLine(mergedTwo[2] == 20);
+            Console.WriteLine(mergedTwo[3] == 30);
+
+            int[] mergedThree = MergeArraysAlternating(null!, [5, 6]);
+            Console.WriteLine(mergedThree.Length == 2);
+            Console.WriteLine(mergedThree[0] == 5);
+            Console.WriteLine(mergedThree[1] == 6);
+            Console.WriteLine(MergeArraysAlternating(null!, null!).Length == 0);
+
+            // Get Words Between Lengths
+            string[] wordsOne = GetWordsBetweenLengths("cat banana dog coding", 3, 5);
+            Console.WriteLine(wordsOne.Length == 2);
+            Console.WriteLine(wordsOne[0] == "cat");
+            Console.WriteLine(wordsOne[1] == "dog");
+
+            string[] wordsTwo = GetWordsBetweenLengths("hi paul code practice", 4, 8);
+            Console.WriteLine(wordsTwo.Length == 3);
+            Console.WriteLine(wordsTwo[0] == "paul");
+            Console.WriteLine(wordsTwo[1] == "code");
+            Console.WriteLine(wordsTwo[2] == "practice");
+            Console.WriteLine(GetWordsBetweenLengths("one two three", 10, 5).Length == 0);
+            Console.WriteLine(GetWordsBetweenLengths("", 1, 5).Length == 0);
+            Console.WriteLine(GetWordsBetweenLengths(null!, 1, 5).Length == 0);
+
+            // Clamp Numbers To Range
+            int[] clampedOne = ClampNumbersToRange([-5, 3, 10, 20], 0, 10);
+            Console.WriteLine(clampedOne.Length == 4);
+            Console.WriteLine(clampedOne[0] == 0);
+            Console.WriteLine(clampedOne[1] == 3);
+            Console.WriteLine(clampedOne[2] == 10);
+            Console.WriteLine(clampedOne[3] == 10);
+
+            int[] clampedTwo = ClampNumbersToRange([1, 2, 3], 0, 5);
+            Console.WriteLine(clampedTwo[0] == 1);
+            Console.WriteLine(clampedTwo[1] == 2);
+            Console.WriteLine(clampedTwo[2] == 3);
+            Console.WriteLine(ClampNumbersToRange([1, 2, 3], 10, 5).Length == 0);
+            Console.WriteLine(ClampNumbersToRange(null!, 0, 10).Length == 0);
+            Console.WriteLine(ClampNumbersToRange([], 0, 10).Length == 0);
+
             // Find Start Index Of Longest Increasing Run
             Console.WriteLine(FindStartIndexOfLongestIncreasingRun([1, 3, 5, 2, 4]) == 0);
             Console.WriteLine(FindStartIndexOfLongestIncreasingRun([5, 4, 3]) == 0);
