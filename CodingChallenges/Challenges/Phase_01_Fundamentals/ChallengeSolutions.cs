@@ -6,6 +6,101 @@ namespace CodingChallenges.Challenges.Phase_02_OOP
 {
     public class ChallengeSolutions
     {
+        public static int[] RotateRightByOne(int[] numbers)
+        {
+            if (numbers is null || numbers.Length == 0)
+            {
+                return [];
+            }
+
+            if (numbers.Length == 1)
+            {
+                return [numbers[0]];
+            }
+
+            int[] result = new int[numbers.Length];
+
+            result[0] = numbers[numbers.Length - 1];
+
+            for (int index = 0; index < numbers.Length - 1; index++)
+            {
+                result[index + 1] = numbers[index];
+            }
+
+            return result;
+        }
+
+        public static string[] FindWordsWithNoRepeatedLetters(string input)
+        {
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                return [];
+            }
+
+            List<string> newList = [];
+            string[] splitString = input.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+            foreach (string word in splitString)
+            {
+                List<char> UniqueChr = [];
+
+                foreach (char chr in word)
+                {
+                    if (!UniqueChr.Contains(chr))
+                    {
+                        UniqueChr.Add(chr);
+                    }
+                }
+
+                if (UniqueChr.Count == word.Length)
+                {
+                    newList.Add(word);
+                }
+            }
+
+            return newList.ToArray();
+        }
+
+        public static int? FindStartIndexOfLongestIncreasingRun(int[] numbers)
+        {
+            if (numbers is null || numbers.Length == 0)
+                return null;
+
+            int longestStart = 0;
+            int longestLength = 1;
+
+            int currentStart = 0;
+            int currentLength = 1;
+
+            for (int i = 1; i < numbers.Length; i++)
+            {
+                if (numbers[i] > numbers[i - 1])
+                {
+                    currentLength++;
+                }
+                else
+                {
+                    if (currentLength > longestLength)
+                    {
+                        longestLength = currentLength;
+                        longestStart = currentStart;
+                    }
+
+                    currentStart = i;
+                    currentLength = 1;
+                }
+            }
+
+            // Final check for last run
+            if (currentLength > longestLength)
+            {
+                longestLength = currentLength;
+                longestStart = currentStart;
+            }
+
+            return longestStart;
+        }
+
         public static int CountValuesMatchingIndexSignRule(int[] numbers)
         {
             if (numbers is null || numbers.Length == 0)
