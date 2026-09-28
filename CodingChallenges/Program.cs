@@ -36,7 +36,7 @@ public class Program
 
         StringBuilder newStr = new StringBuilder();
 
-       List<char> newCharList = ['a', 'e', 'i', 'o', 'u'];
+        List<char> newCharList = ['a', 'e', 'i', 'o', 'u'];
 
         foreach (char character in input)
         {
@@ -53,17 +53,58 @@ public class Program
         return newStr.ToString();
     }
 
+    public static int[] GetTotalsOfGroupsOfThree(int[] numbers)
+    {
+        if (numbers is null || numbers.Length == 0)
+        {
+            return [];
+        }
+
+        List<int> totals = [];
+
+        for (int index = 0; index < numbers.Length; index += 3)
+        {
+            int total = 0;
+
+            for (int i = index; i < index + 3 && i < numbers.Length; i++)
+            {
+                total += numbers[i];
+            }
+
+            totals.Add(total);
+        }
+
+        return totals.ToArray();
+    }
+
     public static void Main(string[] args)
     {
+        // Get Totals Of Groups Of Three
+        int[] groupTotalsOne = GetTotalsOfGroupsOfThree([1, 2, 3, 4, 5, 6, 7]);
+        Console.WriteLine(groupTotalsOne.Length == 3);
+        Console.WriteLine(groupTotalsOne[0] == 6);
+        Console.WriteLine(groupTotalsOne[1] == 15);
+        Console.WriteLine(groupTotalsOne[2] == 7);
+
+        int[] groupTotalsTwo = GetTotalsOfGroupsOfThree([10, -5, 3]);
+        Console.WriteLine(groupTotalsTwo.Length == 1);
+        Console.WriteLine(groupTotalsTwo[0] == 8);
+
+        int[] groupTotalsThree = GetTotalsOfGroupsOfThree([5, 5, 5, 5]);
+        Console.WriteLine(groupTotalsThree.Length == 2);
+        Console.WriteLine(groupTotalsThree[0] == 15);
+        Console.WriteLine(groupTotalsThree[1] == 5);
+        Console.WriteLine(GetTotalsOfGroupsOfThree(null!).Length == 0);
+        Console.WriteLine(GetTotalsOfGroupsOfThree([]).Length == 0);
 
         // Replace Vowels With Star
-        Console.WriteLine(ReplaceVowelsWithStar("Paul Codes") == "P**l C*d*s");
-        Console.WriteLine(ReplaceVowelsWithStar("HELLO") == "H*LL*");
-        Console.WriteLine(ReplaceVowelsWithStar("sky") == "sky");
-        Console.WriteLine(ReplaceVowelsWithStar("a") == "*");
-        Console.WriteLine(ReplaceVowelsWithStar("") == "");
-        Console.WriteLine(ReplaceVowelsWithStar("   ") == "");
-        Console.WriteLine(ReplaceVowelsWithStar(null!) == "");
+        //Console.WriteLine(ReplaceVowelsWithStar("Paul Codes") == "P**l C*d*s");
+        //Console.WriteLine(ReplaceVowelsWithStar("HELLO") == "H*LL*");
+        //Console.WriteLine(ReplaceVowelsWithStar("sky") == "sky");
+        //Console.WriteLine(ReplaceVowelsWithStar("a") == "*");
+        //Console.WriteLine(ReplaceVowelsWithStar("") == "");
+        //Console.WriteLine(ReplaceVowelsWithStar("   ") == "");
+        //Console.WriteLine(ReplaceVowelsWithStar(null!) == "");
 
         // Get Numbers At Odd Indexes Reversed
         //int[] oddReverseOne = GetNumbersAtOddIndexesReversed([10, 20, 30, 40, 50, 60]);
