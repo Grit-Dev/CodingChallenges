@@ -104,6 +104,7 @@ namespace CodingChallenges.Challenges.Phase_02_OOP
             return null;
 
         }
+
         public static int[] RotateRightByOne(int[] numbers)
         {
             if (numbers is null || numbers.Length == 0)
