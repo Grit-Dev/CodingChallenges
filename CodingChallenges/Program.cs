@@ -77,25 +77,85 @@ public class Program
         return totals.ToArray();
     }
 
+    public static string[] CreateInitialsFromNameList(string input)
+    {
+        if (string.IsNullOrWhiteSpace(input))
+        {
+            return [];
+        }
+
+        string[] rawNames = input.Split(',');
+
+        List<string> initialsList = [];
+
+        foreach (string raw in rawNames)
+        {
+            string trimmed = raw.Trim();
+
+            if (trimmed.Length == 0)
+            {
+                continue;
+            }
+
+            string[] parts = trimmed.Split(' ');
+
+            StringBuilder initials = new StringBuilder();
+
+            foreach (string part in parts)
+            {
+                string trimmedPart = part.Trim();
+
+                if (trimmedPart.Length == 0)
+                {
+                    continue;
+                }
+
+                initials.Append(char.ToUpper(trimmedPart[0]));
+            }
+
+            if (initials.Length > 0)
+            {
+                initialsList.Add(initials.ToString());
+            }
+        }
+
+        return initialsList.ToArray();
+    }
+
     public static void Main(string[] args)
     {
+
+        // Create Initials From Name List
+        string[] initialsOne = CreateInitialsFromNameList("Paul McGinley, Sarah Connor");
+        Console.WriteLine(initialsOne.Length == 2);
+        Console.WriteLine(initialsOne[0] == "PM");
+        Console.WriteLine(initialsOne[1] == "SC");
+
+        string[] initialsTwo = CreateInitialsFromNameList(" john  smith , , amy ");
+        Console.WriteLine(initialsTwo.Length == 2);
+        Console.WriteLine(initialsTwo[0] == "JS");
+        Console.WriteLine(initialsTwo[1] == "A");
+        Console.WriteLine(CreateInitialsFromNameList("").Length == 0);
+        Console.WriteLine(CreateInitialsFromNameList("   ").Length == 0);
+        Console.WriteLine(CreateInitialsFromNameList(null!).Length == 0);
+
         // Get Totals Of Groups Of Three
-        int[] groupTotalsOne = GetTotalsOfGroupsOfThree([1, 2, 3, 4, 5, 6, 7]);
-        Console.WriteLine(groupTotalsOne.Length == 3);
-        Console.WriteLine(groupTotalsOne[0] == 6);
-        Console.WriteLine(groupTotalsOne[1] == 15);
-        Console.WriteLine(groupTotalsOne[2] == 7);
+        //int[] groupTotalsOne = GetTotalsOfGroupsOfThree([1, 2, 3, 4, 5, 6, 7]);
+        //Console.WriteLine(groupTotalsOne.Length == 3);
+        //Console.WriteLine(groupTotalsOne[0] == 6);
+        //Console.WriteLine(groupTotalsOne[1] == 15);
+        //Console.WriteLine(groupTotalsOne[2] == 7);
 
-        int[] groupTotalsTwo = GetTotalsOfGroupsOfThree([10, -5, 3]);
-        Console.WriteLine(groupTotalsTwo.Length == 1);
-        Console.WriteLine(groupTotalsTwo[0] == 8);
+        //int[] groupTotalsTwo = GetTotalsOfGroupsOfThree([10, -5, 3]);
+        //Console.WriteLine(groupTotalsTwo.Length == 1);
+        //Console.WriteLine(groupTotalsTwo[0] == 8);
 
-        int[] groupTotalsThree = GetTotalsOfGroupsOfThree([5, 5, 5, 5]);
-        Console.WriteLine(groupTotalsThree.Length == 2);
-        Console.WriteLine(groupTotalsThree[0] == 15);
-        Console.WriteLine(groupTotalsThree[1] == 5);
-        Console.WriteLine(GetTotalsOfGroupsOfThree(null!).Length == 0);
-        Console.WriteLine(GetTotalsOfGroupsOfThree([]).Length == 0);
+        //int[] groupTotalsThree = GetTotalsOfGroupsOfThree([5, 5, 5, 5]);
+        //Console.WriteLine(groupTotalsThree.Length == 2);
+        //Console.WriteLine(groupTotalsThree[0] == 15);
+        //Console.WriteLine(groupTotalsThree[1] == 5);
+        //Console.WriteLine(GetTotalsOfGroupsOfThree(null!).Length == 0);
+        //Console.WriteLine(GetTotalsOfGroupsOfThree([]).Length == 0);
 
         // Replace Vowels With Star
         //Console.WriteLine(ReplaceVowelsWithStar("Paul Codes") == "P**l C*d*s");
