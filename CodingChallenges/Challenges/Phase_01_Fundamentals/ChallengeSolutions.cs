@@ -6,6 +6,125 @@ namespace CodingChallenges.Challenges.Phase_02_OOP
 {
     public class ChallengeSolutions
     {
+        public static int[] GetNumbersAtOddIndexesReversed(int[] numbers)
+        {
+            if (numbers is null || numbers.Length == 0)
+            {
+                return [];
+            }
+
+            List<int> newList = [];
+            List<int> reverseList = [];
+
+            for (int index = 1; index < numbers.Length; index += 2)
+            {
+                newList.Add(numbers[index]);
+            }
+
+            for (int index = newList.Count - 1; index >= 0; index--)
+            {
+                reverseList.Add(newList[index]);
+            }
+
+            return reverseList.ToArray();
+
+        }
+
+        public static string ReplaceVowelsWithStar(string input)
+        {
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                return "";
+            }
+
+            StringBuilder newStr = new StringBuilder();
+
+            List<char> newCharList = ['a', 'e', 'i', 'o', 'u'];
+
+            foreach (char character in input)
+            {
+                if (newCharList.Contains(char.ToLower(character)))
+                {
+                    newStr.Append('*');
+                }
+                else
+                {
+                    newStr.Append(character);
+                }
+            }
+
+            return newStr.ToString();
+        }
+
+        public static int[] GetTotalsOfGroupsOfThree(int[] numbers)
+        {
+            if (numbers is null || numbers.Length == 0)
+            {
+                return [];
+            }
+
+            List<int> totals = [];
+
+            for (int index = 0; index < numbers.Length; index += 3)
+            {
+                int total = 0;
+
+                for (int i = index; i < index + 3 && i < numbers.Length; i++)
+                {
+                    total += numbers[i];
+                }
+
+                totals.Add(total);
+            }
+
+            return totals.ToArray();
+        }
+
+        public static string[] CreateInitialsFromNameList(string input)
+        {
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                return [];
+            }
+
+            string[] rawNames = input.Split(',');
+
+            List<string> initialsList = [];
+
+            foreach (string raw in rawNames)
+            {
+                string trimmed = raw.Trim();
+
+                if (trimmed.Length == 0)
+                {
+                    continue;
+                }
+
+                string[] parts = trimmed.Split(' ');
+
+                StringBuilder initials = new StringBuilder();
+
+                foreach (string part in parts)
+                {
+                    string trimmedPart = part.Trim();
+
+                    if (trimmedPart.Length == 0)
+                    {
+                        continue;
+                    }
+
+                    initials.Append(char.ToUpper(trimmedPart[0]));
+                }
+
+                if (initials.Length > 0)
+                {
+                    initialsList.Add(initials.ToString());
+                }
+            }
+
+            return initialsList.ToArray();
+        }
+
         public static int[] ClampNumbersToRange(int[] numbers, int min, int max)
         {
             if ((numbers is null || numbers.Length == 0) || min > max)
